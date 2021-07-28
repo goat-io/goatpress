@@ -9,46 +9,52 @@ WORDPRESS_DB_PASSWORD="um7Upx4HrANDnK7EgD4yD5uZ7gA9"
 ###############################################################################
 # Wordpress Site Configuration
 ###############################################################################
-#
-# WORDPRESS_WP_SITEURL: Sets the domain for the site
-#       i.e:  https://nginx
-# WORDPRESS_LOGIN_URL: URL of the wordpress admin login
-#       i.e: d663bd873d93
-# WORDPRESS_HTTP_PORT: Port where WP is running
-#       i.e: By default WP runs on port 80
+# Sets the domain for the site
 WORDPRESS_WP_SITEURL="http://127.0.0.1"
 WORDPRESS_WP_API_URL="http://127.0.0.1"
+
+# WE USE WP HIDE LOGIN, IT IS USEFUL TO KEEP TRACK OF WHERE IT IS
 WORDPRESS_LOGIN_URL= "d663bd873d434343293"
-# TOTALMEM / 4
+
+# MAX AMOUNT OF MEMORY THAT WP CAN USE, RECOMMENDED: (TOTAL_MEM) / 4
 WORDPRESS_WP_MEMORY_LIMIT="512M"
+
+# HOST OF THE REDIS SERVER USED FOR WP
 WP_REDIS_HOST="192.168.1.157"
 
 ###############################################################################
 # NGINX
 ###############################################################################
-NGINX_SERVER_NAME="127.0.0.1"
-NGINX_CONFIG="php"
+# WETHER TO INSTALL OR NOT A SSL CERTIFICATE FOR NGINX. 
+# USE IT IF YOU NEED LOCAL SSL OR IF YOU PLAN TO DEPLOY A SINGLE SERVER
 NGINX_DEV_INSTALL="true"
-PHP_FPM_UPSTREAM="127.0.0.1:9000"
+
+# HOST FOR THE REDIS SERVER USED FOR NGINX
 REDIS_UPSTREAM="192.168.1.157:6379"
+
+# WETHER TO INSTALL OR NOT BAD BOTS DETECTION
+NGINX_BAD_BOTS=false
+
+# NGINX CONFIGURATION (Optional)
+NEW_RELIC_API_KEY="NRAK-ZJ83THE8VVDASVDSVASDAXRGJW6299"
+NEW_RELIC_ACCOUNT_ID="22832131231231324231"
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# MOST LIKELY, NO NEED TO CHANGE THE NEXT 6 VARIABLES
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+PHP_FPM_UPSTREAM="127.0.0.1:9000"
 NGINX_PROXY_UPSTREAM="127.0.01:8081"
 NGINX_DOCROOT="/usr/share/nginx/html"
 NGINX_VERSION="0.1.19"
-NGINX_BAD_BOTS=false
-NEW_RELIC_API_KEY="NRAK-ZJ83THE8V7G9JTBHSAXRGJW6299"
-NEW_RELIC_ACCOUNT_ID="2285661"
+NGINX_SERVER_NAME="127.0.0.1"
+# THIS VARIABLE WILL BE REMOVED ON NEXT VERSION
+NGINX_CONFIG="php"
 
 ###############################################################################
 # PHP FPM
+# Fine tune PHP configuration based on your server resources. 
+# Recommended values are only as reference, based on common practices.
 ###############################################################################
-APP_DOCROOT="/usr/share/nginx/html"
-PHP_FPM_PORT=9000
-PHP_MAX_EXECUTION_TIME=600
-PHP_MAX_INPUT_VARS=5000
-PHP_MAX_INPUT_TIME=5000
-PHP_MAX_REQUESTS=1000
-PHP_OPCACHE_ENABLE=1
-PHP_UPLOAD_MAX_FILESIZE=256M
 # TOTALMEM / 2
 PHP_MEMORY_LIMIT=256M
 # TOTALMEM / 2
@@ -63,3 +69,16 @@ PHP_START_SERVERS=16
 PHP_MIN_SPARE_SERVERS=8
 # TOTALCPU
 PHP_MAX_SPARE_SERVERS=16
+
+PHP_MAX_EXECUTION_TIME=600
+PHP_MAX_INPUT_VARS=5000
+PHP_MAX_INPUT_TIME=5000
+PHP_MAX_REQUESTS=1000
+PHP_UPLOAD_MAX_FILESIZE=256M
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# MOST LIKELY, NO NEED TO CHANGE THE NEXT 2 VARIABLES
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+APP_DOCROOT="/usr/share/nginx/html"
+PHP_FPM_PORT=9000
+PHP_OPCACHE_ENABLE=1
