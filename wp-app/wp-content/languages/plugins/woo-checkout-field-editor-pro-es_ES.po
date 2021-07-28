@@ -1,0 +1,139 @@
+# Translation of Plugins - Checkout Field Editor (Checkout Manager) for WooCommerce - Development (trunk) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Checkout Field Editor (Checkout Manager) for WooCommerce - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-12 09:45:22+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Checkout Field Editor (Checkout Manager) for WooCommerce - Development (trunk)\n"
+
+#. Author of the plugin
+msgid "ThemeHigh"
+msgstr "ThemeHigh"
+
+#: admin/class-thwcfd-admin-form-field.php:46
+msgid "Radio"
+msgstr "Radio"
+
+#: admin/class-thwcfd-admin-form-field.php:45
+msgid "Textarea"
+msgstr "Área de texto"
+
+#: admin/class-thwcfd-admin-form-field.php:41
+msgid "Password"
+msgstr "Contraseña"
+
+#: admin/class-thwcfd-admin-settings-general.php:79
+msgid "Enabled"
+msgstr "Activado"
+
+#: admin/class-thwcfd-admin-settings-general.php:78
+msgid "Required"
+msgstr "Obligatorio"
+
+#: admin/class-thwcfd-admin-form-field.php:43
+msgid "Phone"
+msgstr "Teléfono"
+
+#: admin/class-thwcfd-admin-form-field.php:42
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: admin/class-thwcfd-admin-settings-general.php:77
+msgid "Validations"
+msgstr "Validaciones"
+
+#: admin/class-thwcfd-admin-form-field.php:399
+msgid "Options"
+msgstr "Opciones"
+
+#: admin/class-thwcfd-admin-settings-general.php:76
+msgid "Placeholder"
+msgstr "Marcador de posicción"
+
+#: admin/class-thwcfd-admin-settings-general.php:75
+msgid "Label"
+msgstr "Etiqueta"
+
+#: admin/class-thwcfd-admin-settings-general.php:73
+msgid "Name"
+msgstr "Nombre"
+
+#: admin/class-thwcfd-admin-settings-general.php:74
+msgid "Type"
+msgstr "Tipo"
+
+#: admin/class-thwcfd-admin-form-field.php:44
+msgid "Select"
+msgstr "Seleccionar"
+
+#: admin/class-thwcfd-admin-form-field.php:40
+msgid "Text"
+msgstr "Texto"
+
+#: admin/class-thwcfd-admin-settings-general.php:80
+#: admin/class-thwcfd-admin-settings-general.php:173
+msgid "Edit"
+msgstr "Editar"
+
+#: admin/class-thwcfd-admin-settings-general.php:94
+msgid "Reset to default fields"
+msgstr "Restablecer a los campos por defecto"
+
+#: admin/class-thwcfd-admin-settings-general.php:93
+msgid "Save changes"
+msgstr "Guardar los cambios"
+
+#: admin/class-thwcfd-admin-settings-general.php:90
+msgid "Disable"
+msgstr "Desactivar"
+
+#: admin/class-thwcfd-admin-settings-general.php:89
+msgid "Enable"
+msgstr "Activar"
+
+#: admin/class-thwcfd-admin-settings-general.php:88
+msgid "Remove"
+msgstr "Eliminar"
+
+#: admin/class-thwcfd-admin-settings-general.php:87
+msgid "Add field"
+msgstr "Añadir un campo"
+
+#: includes/utils/class-thwcfd-utils.php:126
+msgctxt "placeholder"
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr "Notas sobre tu pedido, por ejemplo, notas especiales para la entrega."
+
+#: includes/utils/class-thwcfd-utils.php:125
+msgid "Order Notes"
+msgstr "Notas del pedido"
+
+#: admin/class-thwcfd-admin.php:75
+msgid "Settings"
+msgstr "Ajustes"
+
+#: admin/class-thwcfd-admin.php:69
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: admin/class-thwcfd-admin.php:64
+msgid "Checkout Form"
+msgstr "Formulario de pago"
+
+#. Description of the plugin
+msgid "Customize WooCommerce checkout fields(Add, Edit, Delete and re-arrange fields)."
+msgstr "Personaliza los campos de pago de WooCommerce (añadir, editar, borrar y reorganizar los campos)."
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.themehigh.com"
+msgstr "https://www.themehigh.com"
+
+#. Plugin Name of the plugin
+msgid "Checkout Field Editor for WooCommerce"
+msgstr "Checkout Field Editor for WooCommerce"

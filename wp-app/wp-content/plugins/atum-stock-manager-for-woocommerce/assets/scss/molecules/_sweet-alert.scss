@@ -1,0 +1,134 @@
+//
+// Sweet alert customizations
+//----------------------------
+
+.swal2-container {
+	z-index: 100000 !important;
+	
+	.swal2-header, .swal2-content {
+		padding: 0;
+	}
+	
+	.swal2-content, .swal2-title {
+		margin-bottom: $grid-gutter-width;
+	}
+	
+	.swal2-content {
+		input[type=text] {
+			margin: 0;
+			border-radius: 4px;
+			height: 45px;
+			box-shadow: none;
+		}
+		
+		.atum-link {
+			text-decoration: underline;
+		}
+	}
+	
+	.swal2-title {
+		flex-wrap: wrap;
+		justify-content: center;
+		line-height: 1.3;
+		font-size: 23px;
+		color: var(--main-text);
+		
+		small {
+			flex-basis: 100%;
+		}
+	}
+	
+	.swal2-modal {
+		font-family: inherit;
+		
+		.swal2-close {
+			justify-content: flex-end;
+			font-weight: 100;
+			font-family: inherit;
+			font-size: 30px;
+			line-height: 30px;
+			color: var(--gray-500);
+			z-index: 100001;
+			transition: .2s ease-in-out;
+			padding-right: 10px;
+			
+			&:hover {
+				color: var(--gray-800);
+			}
+		}
+		
+		.swal2-validation-message {
+			margin: .625em -1.25rem -.625em;
+		}
+	
+		p {
+			font-size: 15px;
+			text-align: center;
+		}
+		
+		button, a {
+			transition: background-color 0.2s ease-in-out;
+			
+			&:focus {
+				outline: none;
+				box-shadow: none;
+			}
+		}
+		
+		button {
+			border-radius: 5px;
+			text-transform: uppercase;
+			font-weight: 400;
+			padding: 9px 19px;
+			font-size: 13px;
+			letter-spacing: 1px;
+			
+			&.btn-sm {
+				padding: 0.25rem 0.5rem;
+				font-size: 12px;
+			}
+			
+			.atum-icon {
+				position: relative;
+				font-size: 1.15em;
+				top: .15em;
+				padding-right: 3px;
+			}
+			
+			@include mobile-max {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+			
+		}
+		
+		a {
+			text-decoration: none;
+			color: var(--primary) !important;
+			
+			&:hover {
+				
+				color: var(--wp-link-hover);
+				
+			}
+		}
+		
+	}
+	
+	.swal2-progress-steps {
+		.swal2-progress-step {
+			margin-bottom: 0;
+		}
+	}
+	
+	.atum-loading {
+		@include loader(18px, $primary, 3px, 1s);
+		top: $grid-gutter-width;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 40px;
+		height: 40px;
+		border-width: 3px;
+	}
+}

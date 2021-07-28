@@ -1,0 +1,16 @@
+backups/*
+wp-data/*
+volumes/*
+wp-app/log/*
+!backups/.gitkeep 
+!wp-data/.gitkeep 
+!volumes/.gitkeep
+.vscode
+.env
+**/*.log
+*.log
+logs/*
+wp-app/wp-content/updraft/*
+wp-app/wp-content/uploads/**
+wp-app/wp-content/fancy_products_orders/**
+**/.DS_Store

@@ -1,0 +1,104 @@
+//
+// Menu Popover component
+//-----------------------
+
+.popover {
+	&.menu-popover {
+		
+		.popover-header {
+			padding-bottom: 3px;
+			padding-top: 3px;
+			font-size: 12px;
+			font-weight: 500;
+			color: $blue-dark;
+			line-height: 1;
+			background-color: $gray-200;
+			max-width: 150px;
+			@include text-overflow;
+		}
+		
+		.popover-body {
+			padding: 0;
+			
+			> div {
+				width: 100%;
+			}
+		}
+		
+		ul {
+			margin-top: 6px;
+			margin-bottom: 0;
+			text-align: left;
+			width: 100%;
+			padding: 0;
+			
+			li {
+				white-space: nowrap;
+				font-size: 12px;
+				padding: 2px 7px;
+				line-height: 2;
+				
+				&:not(:last-child) {
+					border-bottom: 1px solid $gray-400;
+				}
+				
+				&:last-child {
+					padding-bottom: 0;
+				}
+				
+				&.no-actions {
+					text-align: center;
+					color: $gray-500;
+					
+					&:before, &:after {
+						content: '--';
+					}
+					
+					&:before {
+						margin-right: 3px;
+					}
+					
+					&:after {
+						margin-left: 3px;
+					}
+					
+					&:hover {
+						color: $gray-500;
+					}
+					
+				}
+				
+				a {
+					text-decoration: none;
+					color: $gray-600;
+					font-weight: normal;
+					padding: 10px 0;
+					
+					&:focus {
+						box-shadow: none;
+						outline: none;
+					}
+					
+					&.disabled {
+						pointer-events: none;
+						opacity: .6;
+						color: $gray-600 !important;
+					}
+				}
+				
+				&:hover {
+					&, a {
+						color: $primary;
+					}
+				}
+				
+				i {
+					font-size: 15px;
+					margin-right: 2px;
+					vertical-align: -1px;
+				}
+			}
+		}
+		
+	}
+}

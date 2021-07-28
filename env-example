@@ -1,0 +1,65 @@
+###############################################################################
+# Wordpress Database Configuration
+###############################################################################
+WORDPRESS_DB_HOST="db"
+WORDPRESS_DB_NAME="wordpress"
+WORDPRESS_DB_USER="root"
+WORDPRESS_DB_PASSWORD="um7Upx4HrANDnK7EgD4yD5uZ7gA9"
+
+###############################################################################
+# Wordpress Site Configuration
+###############################################################################
+#
+# WORDPRESS_WP_SITEURL: Sets the domain for the site
+#       i.e:  https://nginx
+# WORDPRESS_LOGIN_URL: URL of the wordpress admin login
+#       i.e: d663bd873d93
+# WORDPRESS_HTTP_PORT: Port where WP is running
+#       i.e: By default WP runs on port 80
+WORDPRESS_WP_SITEURL="http://127.0.0.1"
+WORDPRESS_WP_API_URL="http://127.0.0.1"
+WORDPRESS_LOGIN_URL= "d663bd873d434343293"
+# TOTALMEM / 4
+WORDPRESS_WP_MEMORY_LIMIT="512M"
+WP_REDIS_HOST="192.168.1.157"
+
+###############################################################################
+# NGINX
+###############################################################################
+NGINX_SERVER_NAME="127.0.0.1"
+NGINX_CONFIG="php"
+NGINX_DEV_INSTALL="true"
+PHP_FPM_UPSTREAM="127.0.0.1:9000"
+REDIS_UPSTREAM="192.168.1.157:6379"
+NGINX_PROXY_UPSTREAM="127.0.01:8081"
+NGINX_DOCROOT="/usr/share/nginx/html"
+NGINX_VERSION="0.1.19"
+NGINX_BAD_BOTS=false
+NEW_RELIC_API_KEY="NRAK-ZJ83THE8V7G9JTBHSAXRGJW6299"
+NEW_RELIC_ACCOUNT_ID="2285661"
+
+###############################################################################
+# PHP FPM
+###############################################################################
+APP_DOCROOT="/usr/share/nginx/html"
+PHP_FPM_PORT=9000
+PHP_MAX_EXECUTION_TIME=600
+PHP_MAX_INPUT_VARS=5000
+PHP_MAX_INPUT_TIME=5000
+PHP_MAX_REQUESTS=1000
+PHP_OPCACHE_ENABLE=1
+PHP_UPLOAD_MAX_FILESIZE=256M
+# TOTALMEM / 2
+PHP_MEMORY_LIMIT=256M
+# TOTALMEM / 2
+PHP_POST_MAX_SIZE=256M
+# TOTALMEM / 6
+PHP_OPCACHE_MEMORY_CONSUMPTION=128
+# TOTALCPU * 2
+PHP_MAX_CHILDREN=16
+# TOTALCPU / 2
+PHP_START_SERVERS=16
+# TOTALCPU / 2
+PHP_MIN_SPARE_SERVERS=8
+# TOTALCPU
+PHP_MAX_SPARE_SERVERS=16

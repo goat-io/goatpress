@@ -1,0 +1,67 @@
+server {
+  server_name                     {{NGINX_SERVER_NAME}} www.{{NGINX_SERVER_NAME}} *.{{NGINX_SERVER_NAME}};
+  server_tokens                   off;
+  server_name_in_redirect         off;
+  listen                          *:8080 default_server;
+  listen                          [::]:8080 default_server reuseport;
+  access_log                      /dev/stdout main_ext if=$no_logs;
+  
+  limit_req                       zone=req_zone burst=100 nodelay;
+  set                             $naxsi_flag_enable 0;
+
+  http2_push_preload              on;
+  access_log                      /dev/stdout main_ext if=$no_logs;
+
+  userid                          on;
+  userid_name                     _uid;
+  userid_path                     /;
+  userid_expires                  max;
+  userid_domain                   {{NGINX_SERVER_NAME}};
+
+  include                         /etc/nginx/bots.d/blockbots.conf;
+  include                         /etc/nginx/bots.d/ddos.conf;
+
+  include                         /etc/nginx/header.d/httpd.conf;
+  include                         /etc/nginx/header.d/proxy.conf;
+
+  include                         /etc/nginx/conf.d/cdn.conf;
+
+  location = /nginx_stub_status {
+        stub_status on;
+        allow 127.0.0.1;
+        deny all;
+  }
+
+  location ~ ^/(fpm-status|fpm-ping)$ {
+    access_log off;
+    allow 127.0.0.1;
+    deny all;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_pass 127.0.0.1:9000;
+  }
+
+  location / {
+     proxy_pass                   http://proxy/;
+     proxy_redirect               / /;
+     error_page                   502 =200 @failed;
+  }
+
+  include                         /etc/nginx/conf.d/secure.conf;
+  include                         /etc/nginx/conf.d/health.conf;
+  include                         /etc/nginx/conf.d/purge.conf;
+  include                         /etc/nginx/conf.d/failed.conf;
+}
+
+server {
+  server_tokens                   off;
+  server_name_in_redirect         off;
+  server_name                     {{NGINX_SERVER_NAME}} www.{{NGINX_SERVER_NAME}} *.{{NGINX_SERVER_NAME}};
+  listen                          *:8081 default_server reuseport;
+  root                            {{NGINX_DOCROOT}};
+  set                             $cache_uri $request_uri;
+  if ($redirect_uri)              {return 301 $redirect_uri;}
+  access_log                      /dev/stdout main_ext if=$no_logs;
+  include                         /etc/nginx/conf.d/location.conf;
+  include                         /etc/nginx/redis.d/location.conf;
+}

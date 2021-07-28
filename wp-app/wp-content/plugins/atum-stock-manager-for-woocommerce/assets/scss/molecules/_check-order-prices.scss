@@ -1,0 +1,56 @@
+//
+// Check order prices component
+//------------------------------
+
+#atum-checking-result {
+	display: inline-block;
+	margin-left: 4px;
+	vertical-align: text-bottom;
+	color: $warning;
+	
+	&.checking {
+		&:after {
+			content: '';
+			margin-left: 4px;
+			@include loader($color: $warning);
+		}
+	}
+}
+
+#atum-mismatching-orders {
+	background-color: $warning;
+	color: $white;
+	font-weight: 500;
+	text-align: center;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	vertical-align: 4px;
+	cursor: pointer;
+	margin-left: 4px;
+	width: 26px;
+	height: 26px;
+	border-radius: 5px;
+	transition: .2s ease-in-out;
+	
+	&:hover {
+		background-color: darken( $warning, 5% );
+	}
+	
+	&.background-success {
+		background-color: $success;
+		
+		&:hover {
+			background-color: darken( $success, 5% );
+		}
+	}
+}
+
+.wc-action-button {
+	&.atum_fix_prices {
+		&:after {
+			content: "\f308";
+		}
+	}
+}

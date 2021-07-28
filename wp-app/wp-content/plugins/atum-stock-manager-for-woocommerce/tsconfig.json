@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"outDir": "./assets/js/build/",
+		"lib": ["es6", "dom", "es2017"],
+		"module": "es6",
+		"target": "es5",
+		"sourceMap": true,
+		"removeComments": true,
+		"moduleResolution": "node",
+		"typeRoots": [ "./assets/js/src/types", "./node_modules/@types"],
+		"incremental": true,
+		"tsBuildInfoFile": "./assets/js/build/buildcache"
+	},
+	"exclude": [
+		"node_modules",
+		"./assets/js/src/types",
+		"./vendor"
+	]
+}

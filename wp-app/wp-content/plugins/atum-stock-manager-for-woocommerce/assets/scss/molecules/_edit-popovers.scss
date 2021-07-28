@@ -1,0 +1,92 @@
+//
+// Edit Popovers component
+//----------------------
+
+.popover {
+	&.edit-field-popover {
+		
+		.popover-body {
+			display: flex;
+			flex-wrap: nowrap;
+			min-height: 34px;
+			
+			.edit-popover-content {
+				.input-group {
+					flex-wrap: nowrap;
+				}
+				
+				.input-group-append {
+					.input-group-text {
+						padding-top: 0.54em;
+						padding-bottom: 0.54em;
+					}
+				}
+			}
+		}
+		
+		input, select {
+			width: 100% !important;
+			flex-grow: 1;
+			min-width: 120px;
+			border: 1px solid var(--main-border-alt) !important;
+			height: 38px !important;
+			color: $wp-gray-dark !important;
+			
+			+ input, + select, + .btn-group {
+				margin-top: 4px;
+			}
+		}
+		
+		.select2-container {
+			.select2-selection {
+				border-radius: 0.2rem;
+				border: 1px solid var(--main-border-alt) !important;
+				padding-left: 5px;
+				
+				.select2-search, .select2-search__field {
+					width: 100% !important;
+					border: none !important;
+					margin: 0 !important;
+					height: auto !important;
+					line-height: 1.5;
+				}
+				
+				.select2-search {
+					padding-top: 3px;
+				}
+				
+				.select2-search__field {
+					background: none !important;
+					margin-top: 0;
+				}
+			}
+			
+			&.select2-container--focus {
+				.select2-selection--multiple {
+					border-color: $input-border-color;
+				}
+			}
+		}
+		
+		.btn-group {
+			display: flex;
+		}
+		
+		.set {
+			margin-left: 4px;
+			height: 38px;
+			max-height: 38px;
+			text-transform: uppercase;
+			font-size: 12px;
+		}
+		
+	}
+	
+	.alert {
+		display: block;
+	}
+	
+	+ .select2-container {
+		z-index: 999999991;
+	}
+}

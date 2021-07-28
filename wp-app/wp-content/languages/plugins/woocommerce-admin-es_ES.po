@@ -1,0 +1,3708 @@
+# Translation of Plugins - WooCommerce Admin - Stable (latest release) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - WooCommerce Admin - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-07-21 07:13:30+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - WooCommerce Admin - Stable (latest release)\n"
+
+#: src/API/ProductsLowInStock.php:308
+msgid "Limit result set to products assigned a specific status."
+msgstr "Limita el conjunto de resultados a los productos asignados a un estado específico."
+
+#: src/API/Products.php:73
+msgid "Limit result set to products that are low or out of stock. (Deprecated)"
+msgstr "Limita el conjunto de resultados a los productos que tengan pocas existencias o estén agotados (obsoleto)."
+
+#: src/Notes/Notes.php:454
+msgid "Notes are unavailable because the \"admin-note\" data store cannot be loaded."
+msgstr "Las notas no están disponibles porque no se pueden cargar los datos de la tienda de «admin-note»."
+
+#: src/Notes/MarketingJetpack.php:109
+msgid "Get backups"
+msgstr "Obtener copias de seguridad"
+
+#: src/Notes/MarketingJetpack.php:102
+msgid "Store downtime means lost sales. One-click restores get you back online quickly if something goes wrong."
+msgstr "Una tienda inactiva implica la pérdida de ventas. Las restauraciones en un solo clic te ayudan a volver a estar operativo rápidamente si hay algún problema."
+
+#: src/Notes/MarketingJetpack.php:101
+msgid "Protect your WooCommerce Store with Jetpack Backup."
+msgstr "Protege tu tienda de WooCommerce con Jetpack Backup."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:75
+msgid "Mollie"
+msgstr "Mollie"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:28
+msgid "The PayFast extension for WooCommerce enables you to accept payments by Credit Card and EFT via one of South Africa’s most popular payment gateways. No setup fees or monthly subscription costs.  Selecting this extension will configure your store to use South African rands as the selected currency."
+msgstr "La extensión PayFast para WooCommerce te permite aceptar pagos con tarjeta de crédito y transferencia electrónica a través de una de las más populares pasarelas de pago de Sudáfrica. Sin cuotas de alta o costes mensuales de suscripción. Al seleccionar esta extensión, se configurará tu tienda para usar rands sudafricanos como la moneda seleccionada."
+
+#: src/API/Reports/Variations/Stats/Controller.php:157
+msgid "Number of variation items sold."
+msgstr "Número de variaciones vendidas."
+
+#: src/API/Reports/Variations/Stats/Controller.php:156
+msgid "Variations Sold"
+msgstr "Variaciones vendidas"
+
+#: src/API/Reports/Products/Stats/Controller.php:160
+msgid "Number of product items sold."
+msgstr "Número de productos vendidos."
+
+#: src/API/Reports/Products/Stats/Controller.php:159
+msgid "Products Sold"
+msgstr "Productos vendidos"
+
+#: src/API/Notes.php:576
+msgid "Source of note."
+msgstr "Origien de la nota."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:143
+#: dist/chunks/3.js:2665 dist/chunks/6.js:3505
+msgid "Manage transactions without leaving your WordPress Dashboard. Only with WooCommerce Payments."
+msgstr "Gestiona transacciones sin salir de tu escritorio de WordPress. Simplemente con WooCommerce Payments."
+
+#: src/Features/CustomerEffortScoreTracks.php:322
+msgid "How easy was it to add a product tag?"
+msgstr "¿Cómo de fácil ha sido añadir una etiqueta producto?"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:100
+#: dist/chunks/3.js:2497 dist/chunks/6.js:3346
+msgid "Accept credit and debit cards, offline (cash or bank transfer) and logged-in payments with money in Mercado Pago. Safe and secure payments with the leading payment processor in LATAM."
+msgstr "Acepta tarjetas de crédito y débito, pagos fuera de línea (efectivo y transferencia bancaria) y desconectados con dinero en Mercado Pago. Pagos seguros con el procesador de pago líder en LATAM."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:99
+#: dist/chunks/3.js:2496 dist/chunks/6.js:3345
+msgid "Mercado Pago Checkout Pro & Custom"
+msgstr "Pago pro y personalizado de Mercado Pago"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:54
+#: dist/chunks/3.js:2431 dist/chunks/6.js:3280
+msgid "Paystack helps African merchants accept one-time and recurring payments online with a modern, safe, and secure payment gateway."
+msgstr "Paystack ayuda a los vendedores africanos a aceptar pagos únicos y periódicos en línea con una pasarela de pago moderna y segura."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:53
+#: dist/chunks/3.js:2430 dist/chunks/6.js:3279
+msgid "Paystack"
+msgstr "Paystack"
+
+#: src/Features/CustomerEffortScoreTracks.php:401
+msgid "How easy was it to add a product attribute?"
+msgstr "¿Cómo de fácil ha sido añadir un atributo al producto?"
+
+#: src/Features/CustomerEffortScoreTracks.php:306
+msgid "How easy was it to add product category?"
+msgstr "¿Cómo de fácil ha sido añadir una categoría al producto?"
+
+#: src/Features/CustomerEffortScoreTracks.php:246 dist/app/index.js:9186
+msgid "How easy was it to use search?"
+msgstr "¿Cómo de fácil ha sido usar la búsqueda?"
+
+#. translators: %s: is referring to the plugin's name.
+#: src/Loader.php:128
+msgid "You have the %s plugin activated but it is not being used."
+msgstr "Tienes activado el plugin %s pero no se está usando."
+
+#: src/Notes/InsightFirstProductAndPayment.php:41
+msgid "More than 80% of new merchants add the first product and have at least one payment method set up during the first week.<br><br>Do you find this type of insight useful?"
+msgstr "Más del 80% de los nuevos vendedores añaden el primer producto y tienen al menos un método de pago configurado durante la primera semana.<br><br>¿Encontraste útil este tipo de ideas?"
+
+#. translators: %s: line break
+#: src/Notes/AddFirstProduct.php:64
+msgid "Nice one; you've created a WooCommerce store! Now it's time to add your first product and get ready to start selling.%s"
+msgstr "¡Bien hecho; has creado una tienda WooCommerce! Ahora es el momento de añadir tu primer producto y prepararte para empezar a vender.%s"
+
+#. translators: %s = merchant name
+#: src/Notes/MerchantEmailNotifications/NotificationEmail.php:209
+msgid "Hi %s,"
+msgstr "Hola %s,"
+
+#: src/Notes/MerchantEmailNotifications/NotificationEmail.php:35
+msgid "Hi there,"
+msgstr "Hola qué tal,"
+
+#: src/Notes/NavigationNudge.php:54
+msgid "Enable in Settings"
+msgstr "Activar en los ajustes"
+
+#: src/Notes/NavigationNudge.php:48
+msgid "We’re introducing a new navigation for a more intuitive and improved user experience. You can enable the beta version of the new experience in the Advanced Settings. Enable it now for your store."
+msgstr "Presentamos una nueva navegación para ofrecer una experiencia de usuario mejorada y más intuitiva. Puedes activar la versión beta de la nueva experiencia en los ajustes avanzados. Actívala ahora para tu tienda."
+
+#: src/Notes/NavigationNudge.php:47
+msgid "You now have access to the WooCommerce navigation"
+msgstr "Ahora tienes acceso a la navegación de WooCommerce"
+
+#: src/API/NavigationFavorites.php:198
+msgid "Invalid user_id provided"
+msgstr "El user_id facilitado no es válido"
+
+#: src/API/NavigationFavorites.php:173 src/API/NavigationFavorites.php:225
+#: src/API/NavigationFavorites.php:266
+msgid "You must be authenticated to use this endpoint"
+msgstr "Debes identificarte para usar esta variable"
+
+#: src/Features/Navigation/Favorites.php:99
+msgid "Favorite item not found"
+msgstr "Elemento favorito no encontrado"
+
+#: src/Features/Navigation/Favorites.php:66
+msgid "Favorite already exists"
+msgstr "El favorito ya existe"
+
+#: src/Features/Navigation/Favorites.php:57
+#: src/Features/Navigation/Favorites.php:90
+#: src/Features/Navigation/Favorites.php:122
+msgid "Sorry, invalid request"
+msgstr "Lo siento, solicitud no válida"
+
+#: src/Features/Settings.php:90
+msgid "Adds the new WooCommerce settings UI."
+msgstr "Añade la nueva interfaz de ajustes de WooCommerce."
+
+#: src/Notes/FirstDownlaodableProduct.php:51
+msgid "Congrats on adding your first digital product! You can learn more about how to handle digital or downloadable products in our documentation."
+msgstr "¡Enhorabuena por añadir tu primer producto digital! Puedes aprender más sobre cómo gestionar productos digitales o descargables en nuestra documentación."
+
+#: src/Notes/FirstDownlaodableProduct.php:49
+msgid "Learn more about digital/downloadable products"
+msgstr "Aprende más sobre productos digitales/descargables"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:76
+#: dist/chunks/3.js:2570 dist/chunks/6.js:3416
+msgid "Effortless payments by Mollie: Offer global and local payment methods, get onboarded in minutes, and supported in your language."
+msgstr "Pagos sin esfuerzo con Mollie: Ofrece métodos de pago globales y locales, ponlos en marcha en minutos, y compatibles con tu idioma."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:109
+#: dist/chunks/3.js:2511 dist/chunks/6.js:3360
+msgid "PayPal Payments"
+msgstr "Pagos con PayPal"
+
+#: src/Features/Onboarding.php:921
+msgid "If you need to enable or disable the extended task lists, please click on the button below."
+msgstr "Si tienes que activar o desactivar la lista de tareas ampliada, por favor, haz clic en el siguiente botón."
+
+#: src/Features/Onboarding.php:920
+msgid "Extended task List"
+msgstr "Lista de tareas ampliada"
+
+#. translators: %s is template name
+#: src/API/OnboardingTasks.php:201
+msgid "Sorry, creating the product with template failed."
+msgstr "Lo siento, falló la creación del producto con la plantilla."
+
+#: src/API/OnboardingTasks.php:92
+msgid "Product template name."
+msgstr "Nombre de plantilla de producto."
+
+#: src/Notes/ChooseNiche.php:68
+msgid "There’s nothing quite like entrepreneurship! We put together a blog post series — titled From Idea to First Customer — with all the tips, resources, and tools to inspire a great idea, empower you to execute it, and lead to your very first sale."
+msgstr "¡No hay nada como el espíritu emprendedor!. Hemos elaborado una serie de entradas de blog - tituladas De la idea al primer cliente - con todos los consejos, recursos y herramientas para inspirar una gran idea, capacitarte para ejecutarla y conseguir tu primera venta."
+
+#: src/Notes/ChooseNiche.php:67
+msgid "Finding an audience for your business"
+msgstr "Descubre una audiencia para tu negocio"
+
+#: src/Notes/NeedSomeInspiration.php:60
+msgid "Learn more about how other entrepreneurs used WooCommerce to build successful businesses."
+msgstr "Aprende más sobre cómo otros emprendedores utilizaron WooCommerce para crear negocios de éxito."
+
+#: src/Notes/NeedSomeInspiration.php:59
+msgid "Browse our success stories"
+msgstr "Ve nuestras historias de éxito"
+
+#: src/Notes/LearnMoreAboutVariableProducts.php:66
+msgid "Variable products are a powerful product type that lets you offer a set of variations on a product, with control over prices, stock, image and more for each variation. They can be used for a product like a shirt, where you can offer a large, medium and small and in different colors."
+msgstr "Los productos variables son un potente tipo de producto que te permite ofrecer un conjunto de variaciones sobre un producto, con control sobre los precios, el inventario, la imagen y otros aspectos para cada variación. Se pueden utilizar para productos como camisetas, en los que puedes ofrecer una grande, una mediana y una pequeña y en diferentes colores."
+
+#: src/Notes/LearnMoreAboutVariableProducts.php:64
+msgid "Learn more about variable products"
+msgstr "Aprende más sobre productos variables"
+
+#: src/Notes/CustomizingProductCatalog.php:67
+msgid "You want your product catalog and images to look great and align with your brand. This guide will give you all the tips you need to get your products looking great in your store."
+msgstr "Quieres que tu catálogo de productos y tus imágenes tengan un aspecto estupendo y estén en consonancia con tu marca. Esta guía te dará todos los consejos que necesitas para que tus productos se vean bien en tu tienda."
+
+#: src/Notes/CustomizingProductCatalog.php:66
+msgid "How to customize your product catalog"
+msgstr "Cómo personalizar tu catálogo de productos"
+
+#: src/Notes/GettingStartedInEcommerceWebinar.php:76
+msgid "Watch the webinar"
+msgstr "Mira el seminario web"
+
+#: src/Notes/GettingStartedInEcommerceWebinar.php:69
+msgid "We want to make eCommerce and this process of getting started as easy as possible for you. Watch this webinar to get tips on how to have our store up and running in a breeze."
+msgstr "Queremos que el comercio electrónico y este proceso de puesta en marcha sea lo más fácil posible para ti. Mira este seminario web para obtener consejos sobre cómo tener tu tienda en funcionamiento en un abrir y cerrar de ojos."
+
+#: src/Notes/GettingStartedInEcommerceWebinar.php:68
+msgid "Getting Started in eCommerce - webinar"
+msgstr "Primeros pasos en el comercio electrónico - seminario web"
+
+#. translators: %1$s: action label, %2$s: action URL
+#: includes/emails/plain-merchant-notification.php:19
+msgid "%1$s: %2$s"
+msgstr "%1$s: %2$s"
+
+#: src/API/ProductAttributes.php:128
+msgid "No product attribute with that slug was found."
+msgstr "No se ha encontrado ningún atributo de producto con ese slug."
+
+#: src/API/ProductAttributes.php:59
+msgid "Search by similar attribute name."
+msgstr "Buscar por nombre de atributo similar."
+
+#: src/API/ProductAttributeTerms.php:63
+msgid "Sorry, you cannot view this resource."
+msgstr "Lo siento, no puedes ver este recurso."
+
+#: src/API/ProductAttributes.php:37 src/API/ProductAttributeTerms.php:38
+msgid "Slug identifier for the resource."
+msgstr "Identificador del slug del recurso."
+
+#. translators: 1: line break tag, 2: open link to WordPress update link, 3:
+#. close link tag.
+#: src/Features/Navigation/Init.php:58
+msgid "%1$s %2$sUpdate WordPress to enable the new navigation%3$s"
+msgstr "%1$s %2$sActualiza WordPress para activar la nueva navegación%3$s"
+
+#: src/Notes/InsightFirstProductAndPayment.php:40
+msgid "Insight"
+msgstr "Detalles"
+
+#: src/Notes/OnboardingEmailMarketing.php:35
+msgid "Sign up for tips, product updates, and inspiration"
+msgstr "Regístrate para obtener trucos, actualizaciones sobre productos e inspiración"
+
+#: src/Notes/GivingFeedbackNotes.php:40
+msgid "You're invited to share your experience"
+msgstr "Estás invitado a compartir tu experiencia"
+
+#: src/Notes/AddingAndManangingProducts.php:60
+msgid "Learn more about how to set up products in WooCommerce through our useful documentation about adding and managing products."
+msgstr "Aprende más sobre cómo configurar productos en WooCommerce gracias a nuestra útil documentación sobre cómo añadir y gestionar productos."
+
+#: src/Notes/ChoosingTheme.php:47
+msgid "Visit the theme marketplace"
+msgstr "Visita la tienda de temas"
+
+#: src/Notes/ChoosingTheme.php:40
+msgid "Check out the themes that are compatible with WooCommerce and choose one aligned with your brand and business needs."
+msgstr "Echa un vistazo a los temas compatibles con WooCommerce y elige uno alineado con tu marca y las necesidades de tu negocio."
+
+#: src/Notes/ChoosingTheme.php:39
+msgid "Choosing a theme?"
+msgstr "¿Elegimos un tema?"
+
+#: src/Notes/WelcomeToWooCommerceForStoreUsers.php:44
+msgid "We've designed your navigation and home screen to help you focus on the things that matter most in managing your online store."
+msgstr "Hemos diseñado tu pantalla de navegación e inicio para ayudarte a centrarte en las cosas que más importan al gestionar tu tienda online."
+
+#: src/Notes/WelcomeToWooCommerceForStoreUsers.php:43
+#: dist/chunks/homescreen.js:3681
+msgid "Welcome to your new store management experience"
+msgstr "Bienvenido a la nueva experiencia de gestión de tu tienda"
+
+#: src/Notes/DrawAttention.php:60
+msgid "Get noticed: how to draw attention to your online store"
+msgstr "Recibe avisos: cómo llamar la atención sobre tu tienda en línea"
+
+#: src/Notes/AddFirstProduct.php:66
+msgid "<a href=\"https://docs.woocommerce.com/document/managing-products/?utm_source=help_panel\">Explore our docs</a> for more information, or just get started!"
+msgstr "<a href=\"https://docs.woocommerce.com/document/managing-products/?utm_source=help_panel\">¡Explora nuestra documentación</a> para más información, o simplemente empieza ahora!"
+
+#: src/Notes/AddFirstProduct.php:65
+msgid "There are three ways to add your products: you can <strong>create products manually, import them at once via CSV file</strong>, or <strong>migrate them from another service</strong>.<br/><br/>"
+msgstr "Hay tres maneras de añadir tus productos: puedes <strong>crear productos manualmente, importarlos todos a la vez desde un archivo CSV</strong>, o <strong>migrarlos desde otro servicio</strong>.<br/><br/>"
+
+#: src/Notes/ManageStoreActivityFromHomeScreen.php:52
+msgid "Start your day knowing the next steps you need to take with your orders, products, and customer feedback.<br/><br/>Read more about how to use the activity panels on the Home screen."
+msgstr "Empieza el día conociendo los siguientes pasos que necesitas llevar a cabo con tus pedidos, productos e información de clientes.<br/><br/>Lee más sobre cómo usar los paneles de actividad de la pantalla de inicio."
+
+#: src/Notes/ManageStoreActivityFromHomeScreen.php:51
+msgid "New! Manage your store activity from the Home screen"
+msgstr "¡Nuevo! Gestiona la actividad de tu tienda desde la pantalla de inicio"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:158
+#: dist/chunks/3.js:2612 dist/chunks/6.js:3458
+msgid "The official Razorpay extension for WooCommerce allows you to accept credit cards, debit cards, netbanking, wallet, and UPI payments."
+msgstr "La extensión oficial de Razorpay para WooCommerce te permite aceptar tarjetas de crédito, débito, banca online, monedero virtual y pagos UPI."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:157
+#: dist/chunks/3.js:2611 dist/chunks/3.js:2615 dist/chunks/6.js:3457
+#: dist/chunks/homescreen.js:3085 dist/data/index.js:5889
+msgid "Razorpay"
+msgstr "Razorpay"
+
+#. translators: 1: Duplicate menu item path.
+#: src/Features/Navigation/Menu.php:374
+msgid "The item ID %1$s attempted to register using an invalid option. The arguments `menuId` and `parent` are not allowed for add_setting_item()"
+msgstr "La ruta %1$s del ID del artículo trató de registrarse usando una opción no válida. Los argumentos `menuId` y `parent` no están permitidos en add_setting_item()"
+
+#. translators: 1: Duplicate menu item path.
+#: src/Features/Navigation/Menu.php:229
+msgid "You have attempted to register a duplicate item with WooCommerce Navigation: %1$s"
+msgstr "Has tratado de registrar un artículo duplicado con WooCommerce Navigation: %1$s"
+
+#: src/Features/CustomerEffortScoreTracks.php:378
+msgid "How easy was it to update your settings?"
+msgstr "¿Cómo de fácil fue actualizar tus ajustes?"
+
+#: src/Features/CustomerEffortScoreTracks.php:104 dist/app/index.js:8934
+msgid "Thank you for your feedback!"
+msgstr "¡Gracias por tus impresiones!"
+
+#: src/Notes/FilterByProductVariationsInReports.php:36
+msgid "One of the most awaited features has just arrived! You can now have insights into each product variation in the orders and products reports."
+msgstr "¡Acaba de llegar una de las características más esperadas! Ahora puedes tener estadísticas de cada variación de producto en los informes de pedidos y productos."
+
+#: src/Notes/FilterByProductVariationsInReports.php:35
+msgid "New - filter by product variations in orders and products reports"
+msgstr "Nuevo - Filtrar por variaciones de producto en informes de pedidos y productos"
+
+#: src/API/Reports/Orders/Stats/Controller.php:512
+msgid "Limit result set to orders that have the specified customer_type"
+msgstr "Limita el resultado establecido a pedidos que tengan el customer_type especificado."
+
+#: src/API/Reports/Orders/Stats/Controller.php:503
+msgid "Alias for customer_type (deprecated)."
+msgstr "Alias del customer_type (obsoleto)."
+
+#: src/API/Products.php:56
+msgid "The date the last order for this product was placed, in the site's timezone."
+msgstr "La fecha en que se hizo el último pedido de este producto, en la zona horaria del sitio."
+
+#: src/API/Reports/Controller.php:102
+msgid "Stats about variations."
+msgstr "Estadísticas sobre las variaciones."
+
+#: src/API/Reports/Controller.php:98
+msgid "Variations detailed reports."
+msgstr "Informes detallados de variaciones."
+
+#: src/API/Reports/Orders/Controller.php:338
+#: src/API/Reports/Orders/Stats/Controller.php:455
+msgid "Limit result set to items that don't have the specified variation(s) assigned."
+msgstr "Limitar el resultado establecido a artículos en los que no hayas especificado la(s) variación(es) asignada(s)."
+
+#: src/API/Reports/Orders/Controller.php:328
+#: src/API/Reports/Orders/Stats/Controller.php:445
+msgid "Limit result set to items that have the specified variation(s) assigned."
+msgstr "Limitar el resultado establecido a artículos en los que hayas especificado la(s) variación(es) asignada(s)."
+
+#: src/API/Reports/Variations/Controller.php:372
+msgid "Limit result set to variations in the specified categories."
+msgstr "Limitar el resultado a las variaciones de las categorías especificadas."
+
+#: src/API/Reports/Variations/Controller.php:363
+msgid "Limit result set to variations that don't include the specified attributes."
+msgstr "Limitar el conjunto de resultados a las variaciones que no incluyan los atributos especificados. "
+
+#: src/API/Reports/Variations/Controller.php:354
+msgid "Limit result set to variations that include the specified attributes."
+msgstr "Limitar el conjunto de resultados a las variaciones que incluyan los atributos especificados. "
+
+#: src/API/Reports/Variations/Controller.php:347
+msgid "Add additional piece of info about each variation to the report."
+msgstr "Añade una pieza adicional de información sobre cada variación al informe."
+
+#: src/API/Reports/Variations/Controller.php:328
+#: src/API/Reports/Variations/Stats/Controller.php:416
+msgid "Limit result set to items that don't have the specified parent product(s)."
+msgstr "Limitar el resultado establecido a artículos que no tengan los productos superiores especificados."
+
+#: src/API/Reports/Variations/Controller.php:318
+#: src/API/Reports/Variations/Stats/Controller.php:406
+msgid "Limit result set to items that have the specified parent product(s)."
+msgstr "Limitar el resultado establecido a artículos que tengan los productos superiores especificados."
+
+#: src/API/Reports/Variations/Controller.php:381
+#: src/API/Reports/Variations/Stats/Controller.php:397
+msgid "Limit result set to variations not in the specified categories."
+msgstr "Limitar el resultado establecido a variaciones que no estén en las categorías especificadas."
+
+#: src/Features/Navigation/Menu.php:189 dist/app/index.js:3748
+msgid "WooCommerce Home"
+msgstr "Página de inicio de WooCommerce"
+
+#. translators: 1: opening link tag, 2: closing tag
+#: src/Features/Analytics.php:101
+msgid "This tool will reset the cached values used in WooCommerce Analytics. If numbers still look off, try %1$sReimporting Historical Data%2$s."
+msgstr "Esta herramienta restablece los valores en caché utilizados por la analítica de WooCommerce. Si todavía se ven los números incorrectos prueba a %1$svolver a importar los datos históricos%2$s."
+
+#: src/Features/CustomerEffortScoreTracks.php:343
+msgid "How easy was it to import products?"
+msgstr "¿Cómo de fácil ha sido importar productos?"
+
+#: src/Features/Navigation/Init.php:49
+msgid "Adds the new WooCommerce navigation experience to the dashboard"
+msgstr "Añade la nueva experiencia de navegación de WooCommerce al escritorio"
+
+#: src/Features/Navigation/Init.php:66
+msgid "Navigation"
+msgstr "Navegación"
+
+#: src/Features/Features.php:242
+msgid "Start using new features that are being progressively rolled out to improve the store management experience."
+msgstr "Comienza a usar las nuevas características que se están implementando progresivamente para mejorar la experiencia de gestión de la tienda."
+
+#: src/Features/Features.php:212 src/Features/Features.php:240
+msgid "Features"
+msgstr "Características"
+
+#: src/Notes/NavigationFeedback.php:40
+msgid "You now have access to the new WooCommerce navigation"
+msgstr "Ahora tienes acceso a la nueva navegación de WooCommerce"
+
+#: src/Notes/NavigationFeedback.php:37
+msgid "We're introducing the new navigation for a more intuitive and improved user experience. We'd like to hear your thoughts and first impressions."
+msgstr "Presentamos la nueva navegación para una experiencia de usuario más intuitiva y mejorada. Nos encantaría escuchar tus pensamientos y primeras impresiones."
+
+#: src/Notes/NavigationFeedbackFollowUp.php:54
+msgid "Share your thoughts on the new WooCommerce navigation"
+msgstr "Comparte tus pensamientos sobre la nueva navegación de WooCommerce"
+
+#: src/Notes/NavigationFeedbackFollowUp.php:51
+msgid "We recently introduced the new navigation for a more intuitive and improved user experience. Now that you've had some time to give it a try, let us know how this will impact your store."
+msgstr "Recientemente hemos introducido la nueva navegación para una experiencia de usuario más intuitiva y mejorada. Ahora que ya has tenido algo de tiempo para probarla, haznos saber cómo impactará en tu tienda."
+
+#: src/Notes/ManageOrdersOnTheGo.php:49
+msgid "Look for orders, customer info, and process refunds in one click with the Woo app."
+msgstr "Busca pedidos, información de clientes y procesa reembolsos en un clic con la app de Woo."
+
+#: src/Notes/ManageOrdersOnTheGo.php:48
+msgid "Manage your orders on the go"
+msgstr "Gestiona tus pedidos desde cualquier lugar"
+
+#. translators: 1: opening link tag, 2: closing tag
+#: src/Notes/WooCommercePayments.php:108
+msgid "By clicking \"Get started\", you agree to our %1$sTerms of Service%2$s"
+msgstr "Al hacer clic en «Primeros pasos», aceptas nuestros %1$stérminos del servicio%2$s"
+
+#: src/Notes/PerformanceOnMobile.php:52
+msgid "Monitor your sales and high performing products with the Woo app."
+msgstr "Supervisa tus ventas y los productos más vendidos con la aplicación de Woo. "
+
+#: src/Notes/PerformanceOnMobile.php:51
+msgid "Track your store performance on mobile"
+msgstr "Haz seguimiento del rendimiento de tu tienda en tu móvil"
+
+#: src/Notes/GoogleAdsAndMarketing.php:67
+msgid "Google Ads & Marketing makes it easy to promote products on any budget. Run paid Smart Shopping campaigns to get your top selling products in front of buyers across the Google Network. You can also drive free traffic to your store with free listings for only $10 per month!"
+msgstr "Google Ads y marketing facilitan la promoción de productos para cualquier presupuesto. Lleva a cabo campañas de compra inteligente para poner tus productos más vendidos delante de compradores en toda la red de Google. ¡También puedes dirigir tráfico gratuito a tu tienda con anuncios gratuitos por solo 10 $ al mes!"
+
+#: src/Notes/GoogleAdsAndMarketing.php:66
+msgid "Get your products in front of millions of shoppers on Google to grow your sales"
+msgstr "Pon tus productos delante de millones de compradores en Google para hacer crecer tus ventas"
+
+#: src/Notes/SellingOnlineCourses.php:69
+msgid "Online courses are a great solution for any business that can teach a new skill. Since courses don’t require physical product development or shipping, they’re affordable, fast to create, and can generate passive income for years to come. In this article, we provide you more information about selling courses using WooCommerce."
+msgstr "Los cursos en línea son una solución fantástica para que cualquier negocio pueda enseñar una nueva habilidad. Como los cursos no requieren el desarrollo o envío de un producto físico son baratos, rápidos de crear, y pueden generar ingresos pasivos durante años. En este artículo te ofrecemos más información sobre cómo vender cursos usando WooCommerce."
+
+#: src/Notes/SellingOnlineCourses.php:68
+msgid "Do you want to sell online courses?"
+msgstr "¿Quieres vender cursos online?"
+
+#: src/Notes/ConfirmTaxSettings.php:40
+msgid "Edit tax settings"
+msgstr "Editar los ajustes de impuestos"
+
+#: src/Notes/ConfirmTaxSettings.php:36
+msgid "Automated tax calculations are enabled on your store through WooCommerce Shipping & Tax. Learn more about automated taxes <a href=\"https://docs.woocommerce.com/document/woocommerce-services/#section-12\">here</a>."
+msgstr "El cálculo automático de impeustos está activo en tu tienda mediante WooCommerce Shipping & Tax. Aprende más sobre impuestos automáticos <a href=\"https://docs.woocommerce.com/document/woocommerce-services/#section-12\">aquí</a>."
+
+#: src/Notes/ConfirmTaxSettings.php:35
+msgid "Confirm tax settings"
+msgstr "Ajustes de confirmación de impuestos"
+
+#: src/Notes/EditProductsOnTheMove.php:55
+msgid "Edit and create new products from your mobile devices with the Woo app"
+msgstr "Edita y crea nuevos productos desde tus dispositivos móviles con la aplicación de Woo"
+
+#: src/Notes/EditProductsOnTheMove.php:54
+msgid "Edit products on the move"
+msgstr "Edita productos sobre la marcha"
+
+#: src/Loader.php:321 dist/app/index.js:1520
+msgid "Setup Wizard"
+msgstr "Asistente de configuración"
+
+#: src/API/OnboardingTasks.php:593
+msgid "If the store is using WooCommerce Payments."
+msgstr "Si la tienda está usando WooCommerce Payments."
+
+#: src/API/OnboardingTasks.php:587
+msgid "Active theme modifications."
+msgstr "Modificaciones del tema activo."
+
+#: src/API/OnboardingTasks.php:581
+msgid "If the store has the TaxJar extension active."
+msgstr "Si la tienda tiene activa la extensión TaxJar."
+
+#: src/API/OnboardingTasks.php:572
+msgid "Country codes that are supported by Stripe."
+msgstr "Códigos de país admitidos por Stripe."
+
+#: src/API/OnboardingTasks.php:566
+msgid "The number of shipping zones configured for the store."
+msgstr "El número de zonas de envío configuradas para la tienda."
+
+#: src/API/OnboardingTasks.php:560
+msgid "If the tax step has been completed."
+msgstr "Si se ha completado el paso de impuestos."
+
+#: src/API/OnboardingTasks.php:554
+msgid "If the store has any products."
+msgstr "Si la tienda tiene algún producto."
+
+#: src/API/OnboardingTasks.php:548
+msgid "If the store has any physical (non-virtual) products."
+msgstr "Si la tineda tiene algún producto físico (no virtual)."
+
+#: src/API/OnboardingTasks.php:542
+msgid "If the store has an enabled payment gateway."
+msgstr "Si la tienda ha activado una pasarela de pago."
+
+#: src/API/OnboardingTasks.php:536
+msgid "If the store has a homepage created."
+msgstr "Si la tienda ha creado una página de inicio."
+
+#: src/API/OnboardingTasks.php:527
+msgid "Country codes that support Automated Taxes."
+msgstr "Códigos de país que son compatibles con los impuestos automáticos."
+
+#: src/API/OnboardingTasks.php:138
+msgid "Sorry, you are not allowed to retrieve onboarding status."
+msgstr "Lo siento, no tienes permisos para recuperar el estado de despegue."
+
+#: src/API/Notes.php:365
+msgid "Please provide an array of IDs through the noteIds param."
+msgstr "Por favor, facilita un array de IDs mediante el parámetro notelds."
+
+#: src/API/ProductVariations.php:55
+msgid "Search by similar product name, sku, or attribute value."
+msgstr "Buscar un nombre de producto, sku o valor de atributo similar."
+
+#: src/API/Reports/Export/Controller.php:112
+msgid "Export ID."
+msgstr "ID de la exportación."
+
+#: src/API/Reports/Export/Controller.php:106
+msgid "Export status message."
+msgstr "Mensaje del estado de la exportación."
+
+#: src/API/Reports/Export/Controller.php:100
+msgid "Export status."
+msgstr "Estado de la exportación."
+
+#: src/API/Reports/Orders/Controller.php:466
+#: src/API/Reports/Orders/Stats/Controller.php:543
+#: src/API/Reports/Variations/Stats/Controller.php:463
+msgid "Limit result set to orders that don't include products with the specified attributes."
+msgstr "Limita el conjunto de resultados a los pedidos que no incluyan productos con los atributos especificados. "
+
+#: src/API/Reports/Orders/Controller.php:457
+#: src/API/Reports/Orders/Stats/Controller.php:534
+#: src/API/Reports/Variations/Stats/Controller.php:454
+msgid "Limit result set to orders that include products with the specified attributes."
+msgstr "Limita el conjunto de resultados a los pedidos que incluyan productos con los atributos especificados. "
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:173
+#: dist/chunks/3.js:2597 dist/chunks/6.js:3443
+msgid "The eWAY extension for WooCommerce allows you to take credit card payments directly on your store without redirecting your customers to a third party site to make payment."
+msgstr "La extensión eWAY para WooCommerce te permite recibir pagos con tarjeta de crédito directamente en tu tienda sin redirigir a tus clientes a un sitio de terceros para hacer el pago."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:172
+#: dist/chunks/3.js:2596 dist/chunks/6.js:3442
+msgid "eWAY"
+msgstr "eWAY"
+
+#: src/Notes/TestCheckout.php:98
+msgid "Test checkout"
+msgstr "Probar la finalización de compra"
+
+#: src/Notes/TestCheckout.php:92
+msgid "Don't forget to test your checkout"
+msgstr "No olvides probar tu página de finalización de compra"
+
+#: src/Notes/TestCheckout.php:89
+msgid "Make sure that your checkout is working properly before you launch your store. Go through your checkout process in its entirety: from adding a product to your cart, choosing a shipping location, and making a payment."
+msgstr "Asegúrate de que tu página para finalizar la compra funciona correctamente antes de lanzar tu tienda. Ve a través del proceso de finalización de compra en su totalidad: desde añadir un producto a tu carrito, elegir una ubicación de envío y hacer un pago."
+
+#: src/Notes/AddingAndManangingProducts.php:58
+#: dist/chunks/activity-panels-help.js:1021
+msgid "Adding and Managing Products"
+msgstr "Añadir y gestionar los productos"
+
+#: src/Notes/LaunchChecklist.php:48
+msgid "Ready to launch your store?"
+msgstr "¿Preparado para lanzar tu tienda?"
+
+#: src/Notes/LaunchChecklist.php:45
+msgid "To make sure you never get that sinking \"what did I forget\" feeling, we've put together the essential pre-launch checklist."
+msgstr "Para asegurar que nunca tengas esa sensación de «¿Qué se me ha olvidado?», hemos agrupado la lista de comprobación esencial de lanzamiento."
+
+#: src/Notes/InsightFirstProductAndPayment.php:52
+#: src/Notes/InsightFirstProductAndPayment.php:61
+#: src/Notes/InsightFirstSale.php:55 src/Notes/InsightFirstSale.php:63
+msgid "Thanks for your feedback"
+msgstr "Gracias por tus comentarios"
+
+#: src/Notes/InsightFirstProductAndPayment.php:48
+#: src/Notes/InsightFirstSale.php:51
+msgid "Yes"
+msgstr "Sí"
+
+#: src/Notes/InsightFirstSale.php:40
+msgid "A WooCommerce powered store needs on average 31 days to get the first sale. You're on the right track! Do you find this type of insight useful?"
+msgstr "Una tienda que funciona con WooCommerce necesita un promedio de 31 días para conseguir su primera venta. ¡Estás en el camino correcto! ¿Encuentras útil este tipo de consejo?"
+
+#: src/Notes/InsightFirstSale.php:39
+msgid "Did you know?"
+msgstr "¿Lo sabías?"
+
+#: src/Notes/CustomizeStoreWithBlocks.php:70
+msgid "With our blocks, you can select and display products, categories, filters, and more virtually anywhere on your site — no need to use shortcodes or edit lines of code. Learn more about how to use each one of them."
+msgstr "Con nuestros bloques puedes seleccionar y mostrar virtualmente productos, categorías, filtros y más en cualquier parte de tu sitio – sin necesidad de usar shortcodes o editar líneas de código. Aprende más sobre cómo usar cada uno de ellos."
+
+#: src/Notes/CustomizeStoreWithBlocks.php:69
+msgid "Customize your online store with WooCommerce blocks"
+msgstr "Personaliza tu tienda online con bloques de WooCommerce"
+
+#: src/Notes/SetUpAdditionalPaymentTypes.php:86
+msgid "Set up additional payment providers"
+msgstr "Configurar proveedores de pago adicionales"
+
+#: src/Notes/SetUpAdditionalPaymentTypes.php:82
+msgid "Set up additional payment providers, using third-party services or other methods."
+msgstr "Configura proveedores de pago adicionales, usando servicios de terceros u otros métodos."
+
+#: src/API/OnboardingProfile.php:224
+msgid "Whether or not the profile was skipped."
+msgstr "Si se omitió o no el perfil."
+
+#: src/API/Reports/Orders/Stats/Controller.php:210
+msgid "Total distinct customers."
+msgstr "Clientes totales distintos."
+
+#: src/Features/Onboarding.php:899 src/Features/Onboarding.php:911
+msgid "Setup wizard"
+msgstr "Asistente de instalación"
+
+#: src/Features/Onboarding.php:445
+msgid "Customizable products"
+msgstr "Productos personalizables"
+
+#: src/Features/Onboarding.php:441
+msgid "Bundles"
+msgstr "Lotes"
+
+#: src/Features/Onboarding.php:400
+msgid "Education and learning"
+msgstr "Educación y aprendizaje"
+
+#: src/Features/Analytics.php:264
+msgid "Analytics cache cleared."
+msgstr "Caché de análisis vaciada."
+
+#: src/Features/Analytics.php:98
+msgid "Clear"
+msgstr "Vaciar"
+
+#: src/Features/Analytics.php:97
+msgid "Clear analytics cache"
+msgstr "Vaciar la caché de análisis"
+
+#. Translators: %1$s, %2$s, and %3$s are all build commands to be run in order.
+#: woocommerce-admin.php:127
+msgid "You have installed a development version of WooCommerce Admin which requires files to be built. From the plugin directory, run %1$s and %2$s to install dependencies, then %3$s to build the files."
+msgstr "Has instalado una versión de desarrollo de WooCommerce Admin que necesita crear archivos. Desde el directorio del plugin, ejecuta %1$s y %2$s para instalar las dependencias y, después, %3$s para crear los archivos."
+
+#. Translators: %1$s is referring to a php constant name, %2$s is referring to
+#. the wp-config.php file.
+#: woocommerce-admin.php:108
+msgid "WooCommerce Admin development mode requires the %1$s constant to be defined and true in your %2$s file. Otherwise you are loading the admin package from WooCommerce core."
+msgstr "El modo de desarrollo de WooCommerce Admin necesita que esté definida la constante %1$s y en «true» en tu archivo %2$s. En caso contrario, estás cargando el paquete de administración de WooCommerce."
+
+#: src/Notes/DataStore.php:126
+msgid "Invalid admin note"
+msgstr "Nota de administración no válida"
+
+#: src/Notes/OrderMilestones.php:182
+msgid "First order received"
+msgstr "Primer pedido recibido"
+
+#: src/Notes/MigrateFromShopify.php:63
+msgid "Changing eCommerce platforms might seem like a big hurdle to overcome, but it is easier than you might think to move your products, customers, and orders to WooCommerce. This article will help you with going through this process."
+msgstr "Cambiar entre plataformas de comercio electrónico puede parecer un gran obstáculo que superar, pero mover tus productos, clientes y pedidos a WooCommerce es más fácil de lo que podrías pensar. Este artículo te ayudará con este proceso."
+
+#: src/Notes/MigrateFromShopify.php:62
+msgid "Do you want to migrate from Shopify to WooCommerce?"
+msgstr "¿Quieres migrar de Shopify a WooCommerce?"
+
+#: src/Notes/EUVATNumber.php:45
+msgid "Collect and validate EU VAT numbers at checkout"
+msgstr "Recopila y valida los números de IVA de la UE al finalizar la compra"
+
+#: src/Notes/EUVATNumber.php:42
+msgid "If your store is based in the EU, we recommend using the EU VAT Number extension in addition to automated taxes. It provides your checkout with a field to collect and validate a customer's EU VAT number, if they have one."
+msgstr "Si tu tienda está ubicada en la UE, recomendamos utilizar la extensión del número de IVA de la UE además de los impuestos automatizados. Proporciona a tus pagos un campo para recopilar y validar el número de IVA de la UE de un cliente, si tiene uno."
+
+#: src/Notes/WooCommerceSubscriptions.php:53
+msgid "Learn More"
+msgstr "Más Información"
+
+#: src/Notes/WooCommerceSubscriptions.php:46
+msgid "WooCommerce Subscriptions allows you to introduce a variety of subscriptions for physical or virtual products and services. Create product-of-the-month clubs, weekly service subscriptions or even yearly software billing packages. Add sign-up fees, offer free trials, or set expiration periods."
+msgstr "WooCommerce Suscriptions te permiten introducir una variedad de suscripciones para productos y servicios físicos o virtuales. Crea clubes de productos del mes, suscripciones de servicios semanales o incluso paquetes de facturación de software anuales. Añade tarifas de registro, ofrece periodos de prueba gratuitos o establece períodos de vencimiento."
+
+#: src/Notes/WooCommerceSubscriptions.php:45
+msgid "Do you need more info about WooCommerce Subscriptions?"
+msgstr "¿Necesita más información sobre WooCommerce Subscriptions?"
+
+#: src/Notes/Note.php:554
+msgid "The admin note layout has a wrong prop value."
+msgstr "El diseño de la nota de administrador tiene un valor de referencia incorrecto."
+
+#: src/Notes/RealTimeOrderAlerts.php:46
+msgid "Get real-time order alerts anywhere"
+msgstr "Recibe alertas de pedidos en tiempo real en cualquier lugar"
+
+#: src/Notes/RealTimeOrderAlerts.php:43
+msgid "Get notifications about store activity, including new orders and product reviews directly on your mobile devices with the Woo app."
+msgstr "Recibe avisos sobre la actividad de la tienda, incluidos nuevos pedidos y reseñas de productos directamente en tus dispositivos móviles con la aplicación Woo."
+
+#: src/Notes/DrawAttention.php:61
+msgid "To get you started, here are seven ways to boost your sales and avoid getting drowned out by similar, mass-produced products competing for the same buyers."
+msgstr "Para comenzar, aquí tienes siete maneras de aumentar tus ventas y evitar que te ahogues con productos similares producidos en masa que compiten por los mismos compradores."
+
+#: src/Notes/StartDropshippingBusiness.php:68
+msgid "The ability to add inventory without having to deal with production, stocking, or fulfilling orders may seem like a dream. But is dropshipping worth it? Let’s explore some of the advantages and disadvantages to help you make the best decision for your business."
+msgstr "La capacidad de añadir inventario sin tener que lidiar con la producción, el almacenamiento o el despacho de pedidos puede parecer un sueño. ¿Pero vale la pena el «dropshipping»? Exploremos algunas de las ventajas y desventajas para ayudarte a tomar la mejor decisión para tu empresa."
+
+#: src/Notes/StartDropshippingBusiness.php:67
+msgid "Are you considering starting a dropshipping business?"
+msgstr "¿Estás planteándote lanzar una empresa de «dropshipping»?"
+
+#: src/Notes/NeedSomeInspiration.php:67
+msgid "See success stories"
+msgstr "Ver historias de éxito"
+
+#: src/Notes/OnlineClothingStore.php:82
+msgid "Starting a fashion website is exciting but it may seem overwhelming as well. In this article, we'll walk you through the setup process, teach you to create successful product listings, and show you how to market to your ideal audience."
+msgstr "Iniciar una web de moda es emocionante, pero también puede parecer abrumador. En este artículo, te guiaremos a través del proceso de configuración, te enseñaremos a crear listas de productos exitosas y te mostraremos cómo comercializar a tu audiencia ideal."
+
+#: src/Notes/OnlineClothingStore.php:81
+msgid "Start your online clothing store"
+msgstr "Inicia tu tienda de ropa en línea"
+
+#: src/Notes/GivingFeedbackNotes.php:41
+msgid "Now that you’ve chosen us as a partner, our goal is to make sure we're providing the right tools to meet your needs. We're looking forward to having your feedback on the store setup experience so we can improve it in the future."
+msgstr "Ahora que nos has elegido como colaboradores, nuestro objetivo es asegurar que te facilitamos las herramientas adecuadas a tus necesidades. Queremos tener tus impresiones sobre la experiencia de configuración de la tienda para que podamos mejorarla en el futuro."
+
+#: src/Notes/GivingFeedbackNotes.php:48 src/Notes/NavigationFeedback.php:46
+#: src/Notes/NavigationFeedbackFollowUp.php:60
+#: dist/wp-admin-scripts/navigation-opt-out.js:184
+msgid "Share feedback"
+msgstr "Comparte tu opinión"
+
+#: src/Notes/FirstProduct.php:77
+msgid "Watch tutorial"
+msgstr "Ver el tutorial"
+
+#: src/Notes/FirstProduct.php:70
+msgid "This video tutorial will help you go through the process of adding your first product in WooCommerce."
+msgstr "Este tutorial en video te ayudará en el proceso de añadir tu primer producto en WooCommerce."
+
+#: src/Notes/FirstProduct.php:69
+msgid "Do you need help with adding your first product?"
+msgstr "¿Necesitas ayuda para añadir tu primer producto?"
+
+#: src/Notes/CouponPageMoved.php:81
+msgid "Remove legacy coupon menu"
+msgstr "Eliminar el menú de cupones heredado"
+
+#: src/Notes/CouponPageMoved.php:74
+msgid "Coupons can now be managed from Marketing > Coupons. Click the button below to remove the legacy WooCommerce > Coupons menu item."
+msgstr "Los cupones ahora se pueden gestionar desde Marketing > Cupones. Haz clic en el botón a continuación para eliminar el elemento de menú heredado WooCommerce > Cupones."
+
+#: src/Notes/CouponPageMoved.php:73
+msgid "Coupon management has moved!"
+msgstr "¡La gestión de cupones se ha movido!"
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:230
+msgid "Views"
+msgstr "Visitas"
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:224
+msgid "Visitors"
+msgstr "Visitantes"
+
+#: src/API/Notes.php:700
+msgid "Registers whether the note is deleted or not"
+msgstr "Registra si la nota se ha borrado o no"
+
+#: src/API/Notes.php:694
+msgid "The image of the note, if any."
+msgstr "La imagen de la nota, si la hubiera."
+
+#: src/API/Notes.php:688
+msgid "The layout of the note (e.g. banner, thumbnail, plain)."
+msgstr "El diseño de la nota (p. ej. banner, miniatura, texto)."
+
+#: src/API/Notes.php:277
+msgid "Sorry, there is no note with that ID."
+msgstr "Lo siento, no hay ninguna nota con ese ID."
+
+#: src/API/Plugins.php:427
+msgid "There was a problem activating some of the requested plugins."
+msgstr "Ha habido un problema al activar algunos de los plugins solicitados."
+
+#: src/API/Plugins.php:426
+msgid "Plugins were successfully activated."
+msgstr "Los plugins se han activado correctamente."
+
+#. translators: %s: plugin slug (example: woocommerce-services)
+#: src/API/Plugins.php:398
+msgid "The requested plugin `%s`. is not yet installed."
+msgstr "El plugin «%s» solicitado aún no se ha instalado."
+
+#: src/API/Plugins.php:327
+msgid "There was a problem installing some of the requested plugins."
+msgstr "Ha habido un problema al instalar algunos de los plugins solicitados."
+
+#: src/API/Plugins.php:326
+msgid "Plugins were successfully installed."
+msgstr "Los plugins se han instalado correctamente."
+
+#. translators: %s: plugin slug (example: woocommerce-services)
+#: src/API/Plugins.php:308
+msgid "The requested plugin `%s` could not be installed.  Upgrader install failed."
+msgstr "El plugin «%s» solicitado no se ha podido instalar. La instalación del actualizador ha fallado."
+
+#: src/API/Plugins.php:231 src/API/Plugins.php:375
+msgid "Plugins must be a non-empty array."
+msgstr "Los plugins deben ser un array no vacío."
+
+#: src/Features/Navigation/CoreMenu.php:247
+msgid "Utilities"
+msgstr "Utilidades"
+
+#: src/Features/Navigation/CoreMenu.php:256
+msgid "Import / Export"
+msgstr "Importar / exportar"
+
+#: src/Features/Navigation/CoreMenu.php:220
+msgid "Marketplace"
+msgstr "Mercado"
+
+#: src/Features/Homescreen.php:80 src/Features/Navigation/CoreMenu.php:181
+#: dist/app/index.js:1443
+msgid "Home"
+msgstr "Inicio"
+
+#: src/Features/Analytics.php:139 src/Features/Marketing.php:137
+#: dist/app/index.js:1455 dist/app/index.js:1507
+msgid "Overview"
+msgstr "Resumen"
+
+#: src/Notes/OnboardingPayments.php:51
+msgid "Take payments with the provider that’s right for you - choose from 100+ payment gateways for WooCommerce."
+msgstr "Acepta pagos con el proveedor adecuado para ti: elige entre más de 100 pasarelas de pago para WooCommerce."
+
+#: src/Notes/OnboardingPayments.php:50
+msgid "Start accepting payments on your store!"
+msgstr "¡Comienza a aceptar pagos en tu tienda!"
+
+#: src/Notes/Marketing.php:47
+msgid "Open marketing hub"
+msgstr "Centro de marketing abierto"
+
+#: src/Notes/Marketing.php:40
+msgid "Grow your customer base and increase your sales with marketing tools built for WooCommerce."
+msgstr "Aumenta tu base de clientes y tus ventas con herramientas de marketing creadas para WooCommerce."
+
+#: src/Notes/Marketing.php:39
+msgid "Connect with your audience"
+msgstr "Conecta con tu audiencia"
+
+#: src/Notes/InstallJPAndWCSPlugins.php:55
+msgid "Install plugins"
+msgstr "Instalar plugins"
+
+#: src/Notes/InstallJPAndWCSPlugins.php:47
+msgid "Uh oh... There was a problem during the Jetpack and WooCommerce Shipping & Tax install. Please try again."
+msgstr "¡Vaya! Ha habido un problema durante la instalación de los servicios de Jetpack y WooCommerce Shipping & Tax. Por favor, inténtalo de nuevo."
+
+#: src/Notes/InstallJPAndWCSPlugins.php:44
+msgid "We noticed that there was a problem during the Jetpack and WooCommerce Shipping & Tax install. Please try again and enjoy all the advantages of having the plugins connected to your store! Sorry for the inconvenience. The \"Jetpack\" and \"WooCommerce Shipping & Tax\" plugins will be installed & activated for free."
+msgstr "Notamos que ha habido un problema durante la instalación de los servicios de Jetpack y WooCommerce. ¡Inténtalo nuevamente y disfruta de todas las ventajas de tener los plugins conectados en tu tienda! Lo sentimos por los inconvenientes ocasionados. Los plugins «Jetpack» y «WooCommerce Shipping & Tax» se instalarán y activarán de forma gratuita."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:134
+#: dist/chunks/3.js:2651 dist/chunks/6.js:3491
+msgid "Take payments via bank transfer."
+msgstr "Acepta pagos mediante transferencia bancaria."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:133
+#: dist/chunks/3.js:2650 dist/chunks/6.js:3490
+msgid "Direct bank transfer"
+msgstr "Transferencia bancaria"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:125
+#: dist/chunks/3.js:2639 dist/chunks/6.js:3482
+msgid "Take payments in cash upon delivery."
+msgstr "Acepta pagos en efectivo en el momento de la entrega."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:124
+#: dist/chunks/3.js:2638 dist/chunks/6.js:3481
+msgid "Cash on delivery"
+msgstr "Contra reembolso"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:27
+#: dist/chunks/3.js:2462 dist/chunks/6.js:3311
+msgid "PayFast"
+msgstr "PayFast"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:142
+#: dist/chunks/3.js:2664 dist/chunks/3.js:2668 dist/chunks/6.js:3504
+#: dist/chunks/homescreen.js:3078 dist/data/index.js:5882
+msgid "WooCommerce Payments"
+msgstr "WooCommerce Payments"
+
+#: src/API/Plugins.php:679
+msgid "There was an error communicating with the WooCommerce Payments plugin."
+msgstr "Ha habido un error al comunicar con el plugin WooCommerce Payments."
+
+#: src/API/MarketingOverview.php:92
+msgid "The plugin could not be activated."
+msgstr "No se ha podido activar el plugin."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:354
+#: src/API/Reports/Customers/Stats/Controller.php:379
+#: src/API/Reports/Downloads/Stats/Controller.php:371
+#: src/API/Reports/Orders/Stats/Controller.php:564
+#: src/API/Reports/Products/Stats/Controller.php:418
+#: src/API/Reports/Taxes/Stats/Controller.php:389
+#: src/API/Reports/Variations/Stats/Controller.php:445
+msgid "Limit stats fields to the specified items."
+msgstr "Limita los campos de estadística a los artículos especificados."
+
+#: src/API/OnboardingProfile.php:315
+msgid "Name of other platform used to sell (not listed)."
+msgstr "Nombre de otra plataforma usada para la venta (no figura en la lista)."
+
+#: src/Features/ShippingLabelBanner.php:91
+#: dist/wp-admin-scripts/print-shipping-label-banner.js:1069
+msgid "Shipping Label"
+msgstr "Etiqueta de envío"
+
+#: src/Features/Marketing.php:75 src/Features/Marketing.php:76
+#: src/Features/Navigation/CoreMenu.php:105 dist/app/index.js:1507
+#: dist/chunks/homescreen.js:1184
+msgid "Marketing"
+msgstr "Marketing"
+
+#: src/Notes/WooCommercePayments.php:104
+msgid "Securely accept credit and debit cards on your site. Manage transactions without leaving your WordPress dashboard. Only with <strong>WooCommerce Payments</strong>."
+msgstr "Acepta en tu sitio de forma segura tarjetas de crédito y débito. Gestiona las transacciones sin salir de tu escritorio de WordPress. Solo con <strong>WooCommerce Payments</strong>."
+
+#: src/Notes/WooCommercePayments.php:102
+msgid "Try the new way to get paid"
+msgstr "Prueba la nueva forma de cobrar"
+
+#: src/Notes/PersonalizeStore.php:57
+msgid "Personalize homepage"
+msgstr "Personalizar página de inicio"
+
+#: src/Notes/PersonalizeStore.php:51
+msgid "Personalize your store's homepage"
+msgstr "Personaliza la página de inicio de tu tienda"
+
+#: src/Notes/PersonalizeStore.php:48
+msgid "The homepage is one of the most important entry points in your store. When done right it can lead to higher conversions and engagement. Don't forget to personalize the homepage that we created for your store during the onboarding."
+msgstr "La página de inicio es uno de los puntos de entrada más importantes de tu tienda. Cuando se hace bien, puede dirigir a mayores conversiones y participación. No olvides personalizar la página de inicio que hemos creado para tu tienda durante la integración."
+
+#: src/Notes/GoogleAdsAndMarketing.php:74 src/Notes/WooCommercePayments.php:118
+#: dist/chunks/task-list.js:3721
+msgid "Get started"
+msgstr "Primeros pasos"
+
+#: src/Notes/InsightFirstProductAndPayment.php:57
+#: src/Notes/InsightFirstSale.php:59 dist/chunks/profile-wizard.js:990
+msgid "No"
+msgstr "No"
+
+#: src/Notes/SetUpAdditionalPaymentTypes.php:94 dist/app/index.js:3786
+#: dist/chunks/task-list.js:4993
+msgid "Set up payments"
+msgstr "Configurar pagos"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:64
+msgid "Klarna"
+msgstr "Klarna"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:184
+msgid "Securely accept credit and debit cards with one low rate, no surprise fees (custom rates available). Sell online and in store and track sales and inventory in one place."
+msgstr "Acepta de forma segura tarjetas de crédito y débito con una baja tarifa, sin cuotas sorpresa (disponibles tarifas personalizadas). Vende online y en tienda física y sigue las ventas y el inventario en un solo lugar."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:183
+#: dist/chunks/3.js:2578 dist/chunks/6.js:3424
+msgid "Square"
+msgstr "Cuadrado"
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:65
+#: dist/chunks/3.js:2528 dist/chunks/3.js:2546 dist/chunks/6.js:3377
+#: dist/chunks/6.js:3395
+msgid "Choose the payment that you want, pay now, pay later or slice it. No credit card numbers, no passwords, no worries."
+msgstr "Elige el pago que quieras, pagar ahora, pagar más tarde o divídelo. Sin números de tarjeta, sin contraseñas, sin preocupaciones."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:110
+#: dist/chunks/3.js:2512 dist/chunks/6.js:3361
+msgid "Safe and secure payments using credit cards or your customer's PayPal account."
+msgstr "Pagos seguros y protegidos usando tarjetas de crédito o la cuenta PayPal de tu cliente."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:43
+msgid "Accept debit and credit cards in 135+ currencies, methods such as Alipay, and one-touch checkout with Apple Pay."
+msgstr "Acepta tarjetas de débito y crédito en más de 135 monedas, métodos como Alipay y pago con un solo toque con Apple Pay."
+
+#: src/Features/PaymentGatewaySuggestions/DefaultPaymentGateways.php:42
+#: dist/chunks/3.js:2415 dist/chunks/6.js:3264
+msgid "Credit cards - powered by Stripe"
+msgstr "Tarjetas de crédito - gestionado por Stripe"
+
+#: src/API/Reports/Revenue/Stats/Controller.php:450
+#: dist/chunks/analytics-report-revenue.js:121
+#: dist/chunks/analytics-report-revenue.js:450
+#: dist/chunks/dashboard-charts.js:725
+msgid "Gross Sales"
+msgstr "Ventas brutas"
+
+#: src/API/Reports/Orders/Controller.php:530 dist/chunks/5.js:1011
+#: dist/chunks/analytics-report-orders.js:112
+#: dist/chunks/analytics-report-orders.js:725
+#: dist/chunks/dashboard-charts.js:1094
+msgid "Customer Type"
+msgstr "Tipo de cliente"
+
+#: src/API/Options.php:201
+msgid "Array of options with associated values."
+msgstr "Array de opciones con valores asociados."
+
+#: src/API/Options.php:117
+msgid "Sorry, you cannot manage these options."
+msgstr "Lo siento, no puedes gestionar estas opciones."
+
+#: src/API/Options.php:112
+msgid "You must supply an array of options and values."
+msgstr "Debes proporcionar un array de opciones y valores."
+
+#: src/API/Options.php:78
+msgid "Sorry, you cannot view these options."
+msgstr "Lo siento, no puedes ver estas opciones."
+
+#: src/API/Options.php:73
+msgid "You must supply an array of options."
+msgstr "Debes proporcionar un array de opciones."
+
+#: src/API/Coupons.php:34
+msgid "Limit results to coupons with codes matching a given string."
+msgstr "Limitar los resultados a los cupones con códigos que coincidan con una cadena concreta."
+
+#: src/API/Orders.php:36
+msgid "Limit result set to orders matching part of an order number."
+msgstr "Limita el resultado a los pedidos que coincidan con parte de un número de pedido."
+
+#: src/API/Plugins.php:739
+msgid "Action that should be completed to connect Jetpack."
+msgstr "Acción que debería completarse para conectar Jetpack."
+
+#: src/API/Plugins.php:719
+msgid "Plugin status."
+msgstr "Estado del plugin."
+
+#: src/API/Plugins.php:713
+msgid "Plugin name."
+msgstr "Nombre del plugin."
+
+#: src/API/Plugins.php:707
+msgid "Plugin slug."
+msgstr "Slug del plugin."
+
+#: src/API/Plugins.php:627
+msgid "There was an error connecting to Square."
+msgstr "Ocurrió un error al conectar con Square."
+
+#: src/API/Plugins.php:523 src/API/Plugins.php:528 src/API/Plugins.php:585
+#: src/API/Plugins.php:590 src/API/Plugins.php:606
+msgid "There was an error connecting to WooCommerce.com. Please try again."
+msgstr "Ha habido un error al conectar con WooCommerce.com. Por favor, inténtalo de nuevo."
+
+#: src/API/Plugins.php:506 src/API/Plugins.php:569
+msgid "There was an error loading the WooCommerce.com Helper API."
+msgstr "Ha habido un error al cargar la API de ayuda de WooCommerce.com."
+
+#: src/API/Plugins.php:493 dist/chunks/homescreen.js:3070
+#: dist/data/index.js:5874
+msgid "Jetpack"
+msgstr "Jetpack"
+
+#: src/API/Plugins.php:482
+msgid "Jetpack is not installed or active."
+msgstr "Jetpack no está instalado o activo."
+
+#. translators: %s: plugin slug (example: woocommerce-services)
+#: src/API/Plugins.php:410
+msgid "The requested plugin `%s` could not be activated."
+msgstr "El plugin solicitado `%s`no se pudo activar."
+
+#. translators: %s: plugin slug (example: woocommerce-services)
+#: src/API/Plugins.php:294
+msgid "The requested plugin `%s` could not be installed."
+msgstr "El plugin solicitado `%s` no se pudo instalar."
+
+#. translators: %s: plugin slug (example: woocommerce-services)
+#. translators: %s: plugin slug (example: woocommerce-services)
+#: src/API/Plugins.php:267 src/API/Plugins.php:279
+msgid "The requested plugin `%s` could not be installed. Plugin API call failed."
+msgstr "El plugin solicitado `%s` no se pudo instalar. Fallo en la llamada a la API del plugin."
+
+#: src/API/MarketingOverview.php:86
+msgid "Invalid plugin."
+msgstr "Plugin no válido."
+
+#: src/API/MarketingOverview.php:113 src/API/Plugins.php:180
+msgid "Sorry, you cannot manage plugins."
+msgstr "Lo siento, no puedes gestionar plugins."
+
+#: src/API/ProductVariations.php:168
+msgid "Product type."
+msgstr "Tipo de producto."
+
+#: src/API/ProductVariations.php:163
+msgid "Product parent name."
+msgstr "Nombre del producto padre."
+
+#: src/API/Products.php:79
+msgid "Search by similar product name or sku."
+msgstr "Buscar por nombre de producto similar o sku."
+
+#: src/API/DataDownloadIPs.php:157
+msgid "IP address."
+msgstr "Dirección IP."
+
+#: src/API/DataDownloadIPs.php:136
+msgid "A partial IP address can be passed and matching results will be returned."
+msgstr "Se puede pasar una dirección IP parcial y se devolverán los resultados coincidentes."
+
+#: src/API/DataDownloadIPs.php:72
+msgid "Invalid request. Please pass the match parameter."
+msgstr "Solicitud no válida. Por favor, pasa el parámetro de coincidencia."
+
+#: src/API/Taxes.php:39
+msgid "Limit result set to items that have the specified rate ID(s) assigned."
+msgstr "Limita el resultado a los artículos que tienen asignados ID(s) de impuesto especificos."
+
+#: src/API/Taxes.php:34
+msgid "Search by similar tax code."
+msgstr "Buscar por código de impuestos similar."
+
+#: src/API/OnboardingTasks.php:505
+msgid "Homepage created"
+msgstr "Página de inicio creada"
+
+#: src/API/OnboardingTasks.php:477
+msgid "Homepage"
+msgstr "Página de inicio"
+
+#: src/API/OnboardingTasks.php:377
+msgid "New Products"
+msgstr "Nuevos productos"
+
+#: src/API/OnboardingTasks.php:358
+msgid "Best Sellers"
+msgstr "Mejores vendedores "
+
+#: src/API/OnboardingTasks.php:354
+msgid "On Sale"
+msgstr "En oferta"
+
+#: src/API/OnboardingTasks.php:350
+msgid "Fan Favorites"
+msgstr "Favoritos de los fans"
+
+#: src/API/OnboardingTasks.php:346
+msgid "New In"
+msgstr "Nuevo en"
+
+#: src/API/OnboardingTasks.php:340
+msgid "Shop by Category"
+msgstr "Comprar por categoría"
+
+#: src/API/OnboardingTasks.php:314 src/API/OnboardingTasks.php:321
+msgid "Content…"
+msgstr "Contenido…"
+
+#: src/API/OnboardingTasks.php:281 src/API/OnboardingTasks.php:296
+msgid "Go shopping"
+msgstr "Ir de compras"
+
+#: src/API/OnboardingTasks.php:277 src/API/OnboardingTasks.php:292
+msgid "Write a short welcome message here"
+msgstr "Escribe aquí un mensaje corto de bienvenida"
+
+#: src/API/OnboardingTasks.php:273 src/API/OnboardingTasks.php:288
+msgid "Welcome to the store"
+msgstr "Bienvenido a la tienda"
+
+#: src/API/OnboardingTasks.php:272 src/API/OnboardingTasks.php:287
+msgid "Write title…"
+msgstr "Escribe el título…"
+
+#: src/API/OnboardingTasks.php:167
+msgid "Sorry, the sample products data file was not found."
+msgstr "Lo siento, no se ha encontrado el archivo de datos de productos de muestra."
+
+#: src/API/OnboardingTasks.php:124
+msgid "Sorry, you are not allowed to create new pages."
+msgstr "Lo siento, no tienes permiso para crear nuevas páginas."
+
+#: src/API/OnboardingTasks.php:110
+msgid "Sorry, you are not allowed to create resources."
+msgstr "Lo siento, no tienes permiso para crear recursos."
+
+#: src/API/OnboardingThemes.php:210
+msgid "Theme status."
+msgstr "Estado del tema."
+
+#: src/API/OnboardingThemes.php:204
+msgid "Theme name."
+msgstr "Nombre del tema."
+
+#: src/API/OnboardingThemes.php:198
+msgid "Theme slug."
+msgstr "Slug del tema."
+
+#: src/API/OnboardingThemes.php:176
+msgid "The requested theme could not be activated."
+msgstr "El tema solicitado no se pudo activar."
+
+#. translators: %s: theme slug (example: woocommerce-services)
+#: src/API/OnboardingThemes.php:171
+msgid "Invalid theme %s."
+msgstr "Tema %s no válido."
+
+#. translators: %s: theme slug (example: woocommerce-services)
+#: src/API/OnboardingThemes.php:138
+msgid "The requested theme `%s` could not be installed."
+msgstr "El tema solicitado `%s` no se pudo instalar."
+
+#. translators: %s: theme slug (example: woocommerce-services)
+#: src/API/OnboardingThemes.php:123
+msgid "The requested theme `%s` could not be installed. Theme API call failed."
+msgstr "El tema solicitado `%s` no se pudo instalar. Fallo en la llamada a la API del tema."
+
+#: src/API/OnboardingThemes.php:89 src/API/OnboardingThemes.php:162
+msgid "Invalid theme."
+msgstr "Tema no válido."
+
+#: src/API/OnboardingThemes.php:73
+msgid "Sorry, you cannot manage themes."
+msgstr "Lo siento, no puedes gestionar temas."
+
+#: src/API/Leaderboards.php:538
+msgid "Table cell value."
+msgstr "Valor de celda de tabla."
+
+#: src/API/Leaderboards.php:532
+msgid "Table cell display."
+msgstr "Visualización de celdas de tabla."
+
+#: src/API/Leaderboards.php:525
+msgid "Table rows."
+msgstr "Filas de la tabla."
+
+#: src/API/Leaderboards.php:515
+msgid "Table column header."
+msgstr "Cabecera de la columna de la tabla."
+
+#: src/API/Leaderboards.php:508
+msgid "Table headers."
+msgstr "Cabeceras de tabla."
+
+#: src/API/Leaderboards.php:502
+msgid "Displayed title for the leaderboard."
+msgstr "Título a mostrar en el marcador."
+
+#: src/API/Leaderboards.php:496
+msgid "Leaderboard ID."
+msgstr "ID del marcador"
+
+#: src/API/Leaderboards.php:476
+msgid "URL query to persist across links."
+msgstr "Consulta de URL para persistir en los enlaces."
+
+#: src/API/Leaderboards.php:330 dist/chunks/analytics-report-downloads.js:518
+#: dist/chunks/dashboard-charts.js:1441
+msgid "Product"
+msgstr "Producto"
+
+#: src/API/Leaderboards.php:327
+msgid "Top Products - Items Sold"
+msgstr "Principales productos - Artículos vendidos"
+
+#: src/API/Leaderboards.php:261
+msgid "Customer Name"
+msgstr "Nombre del cliente"
+
+#: src/API/Leaderboards.php:258
+msgid "Top Customers - Total Spend"
+msgstr "Principales clientes - Gasto total"
+
+#: src/API/Leaderboards.php:200 src/API/Leaderboards.php:336
+#: dist/chunks/5.js:859 dist/chunks/analytics-report-categories.js:59
+#: dist/chunks/analytics-report-categories.js:188
+#: dist/chunks/analytics-report-categories.js:808
+#: dist/chunks/analytics-report-categories.js:809
+#: dist/chunks/analytics-report-orders.js:135
+#: dist/chunks/analytics-report-orders.js:136
+#: dist/chunks/analytics-report-orders.js:577
+#: dist/chunks/analytics-report-products.js:485
+#: dist/chunks/analytics-report-products.js:675
+#: dist/chunks/analytics-report-products.js:676
+#: dist/chunks/analytics-report-products.js:977
+#: dist/chunks/analytics-report-products.js:978
+#: dist/chunks/analytics-report-revenue.js:139
+#: dist/chunks/analytics-report-revenue.js:468
+#: dist/chunks/analytics-report-variations.js:59
+#: dist/chunks/analytics-report-variations.js:565
+#: dist/chunks/analytics-report-variations.js:566
+#: dist/chunks/dashboard-charts.js:743 dist/chunks/dashboard-charts.js:810
+#: dist/chunks/dashboard-charts.js:946 dist/chunks/dashboard-charts.js:1793
+msgid "Net Sales"
+msgstr "Ventas netas"
+
+#: src/API/Leaderboards.php:191
+msgid "Top Categories - Items Sold"
+msgstr "Principales categorías - Artículos vendidos"
+
+#: src/API/Leaderboards.php:122
+msgid "Top Coupons - Number of Orders"
+msgstr "Principales cupones - Número de pedidos"
+
+#: src/API/NoteActions.php:36
+msgid "Unique ID for the Note Action."
+msgstr "ID único de la acción de la nota."
+
+#: src/API/NoteActions.php:32
+msgid "Unique ID for the Note."
+msgstr "ID único de la nota."
+
+#: src/API/Notes.php:682
+msgid "An array of actions, if any, for the note."
+msgstr "Un array de acciones, si lo hubiera, para la nota."
+
+#: src/API/Notes.php:676
+msgid "Whether or not a user can request to be reminded about the note."
+msgstr "Si el usuario puede solicitar un recordatorio de la nota."
+
+#: src/API/Notes.php:670
+msgid "Date after which the user should be reminded of the note, if any (GMT)."
+msgstr "Fecha después de la cual el usuario debería recibir un recordatorio de la nota, si la hubiera (GMT). "
+
+#: src/API/Notes.php:664
+msgid "Date after which the user should be reminded of the note, if any."
+msgstr "Fecha después de la cual el usuario debería recibir un recordatorio de la nota, si la hubiera."
+
+#: src/API/Notes.php:658
+msgid "Date the note was created (GMT)."
+msgstr "Fecha en que se creó la nota (GMT)."
+
+#: src/API/Notes.php:652
+msgid "Date the note was created."
+msgstr "Fecha en que se creó la nota."
+
+#: src/API/Notes.php:646
+msgid "Source of the note."
+msgstr "Origen de la nota."
+
+#: src/API/Notes.php:641
+msgid "The status of the note (e.g. unactioned, actioned)."
+msgstr "El estado de la nota (p.ej. sin activar, activa)."
+
+#: src/API/Notes.php:635
+msgid "Content data for the note. JSON string. Available for re-localization."
+msgstr "Datos de contenido para la nota. Cadena JSON. Disponible para relocalización."
+
+#: src/API/Notes.php:629
+msgid "Content of the note."
+msgstr "Contenido de la nota."
+
+#: src/API/Notes.php:623
+msgid "Title of the note."
+msgstr "Título de la nota."
+
+#: src/API/Notes.php:617
+msgid "Locale used for the note title and content."
+msgstr "Idioma utilizado para el título y el contenido de la nota."
+
+#: src/API/Notes.php:611
+msgid "The type of the note (e.g. error, warning, etc.)."
+msgstr "El tipo de nota (p.ej. error, advertencia, etc.)."
+
+#: src/API/Notes.php:605
+msgid "Name of the note."
+msgstr "Nombre de la nota."
+
+#: src/API/Notes.php:599
+msgid "ID of the note record."
+msgstr "ID del registro de la nota."
+
+#: src/API/Notes.php:566
+msgid "Status of note."
+msgstr "Estado de la nota."
+
+#: src/API/Notes.php:556
+msgid "Type of note."
+msgstr "Tipo de nota."
+
+#: src/API/NoteActions.php:63 src/API/NoteActions.php:73 src/API/Notes.php:143
+#: src/API/Notes.php:256
+msgid "Sorry, there is no resource with that ID."
+msgstr "Lo siento, no hay ningún recurso con ese ID."
+
+#: src/API/Customers.php:50 src/API/Notes.php:60
+msgid "Unique ID for the resource."
+msgstr "ID único del recurso."
+
+#: src/API/Data.php:38
+msgid "An endpoint used for searching download logs for a specific IP address."
+msgstr "Una variable utilizada para buscar registros de descarga de una dirección IP específica."
+
+#: src/API/Reports/Controller.php:278
+msgid "API path."
+msgstr "Ruta de la API."
+
+#: src/API/Reports/Controller.php:272
+msgid "A human-readable description of the resource."
+msgstr "Una descripción legible para humanos del recurso."
+
+#: src/API/Reports/Controller.php:266
+msgid "An alphanumeric identifier for the resource."
+msgstr "Un identificador alfanumérico del recurso."
+
+#: src/API/Reports/Controller.php:142
+msgid "Customers detailed reports."
+msgstr "Informes detallados de clientes."
+
+#: src/API/Reports/Controller.php:138
+msgid "Stats about product downloads."
+msgstr "Estadísticas sobre descargas de productos."
+
+#: src/API/Reports/Controller.php:134
+msgid "Product download files detailed reports."
+msgstr "Informes detallados de archivos de descarga de productos."
+
+#: src/API/Reports/Controller.php:130
+msgid "Product downloads detailed reports."
+msgstr "Informes detallados de descargas de productos."
+
+#: src/API/Reports/Controller.php:126
+msgid "Stats about taxes."
+msgstr "Estadísticas sobre impuestos."
+
+#: src/API/Reports/Controller.php:122
+msgid "Taxes detailed reports."
+msgstr "Informes detallados de impuestos."
+
+#: src/API/Reports/Controller.php:118
+msgid "Stats about coupons."
+msgstr "Estadísticas sobre cupones."
+
+#: src/API/Reports/Controller.php:114
+msgid "Coupons detailed reports."
+msgstr "Informes detallados de cupones."
+
+#: src/API/Reports/Controller.php:110
+msgid "Stats about product categories."
+msgstr "Estadísticas sobre categorías de productos."
+
+#: src/API/Reports/Controller.php:106
+msgid "Product categories detailed reports."
+msgstr "Informes detallados de categorías de productos."
+
+#: src/API/Reports/Controller.php:94
+msgid "Stats about products."
+msgstr "Estadísticas sobre productos."
+
+#: src/API/Reports/Controller.php:90
+msgid "Products detailed reports."
+msgstr "Informes detallados de productos."
+
+#: src/API/Reports/Controller.php:86
+msgid "Stats about orders."
+msgstr "Estadísticas sobre pedidos."
+
+#: src/API/Reports/Controller.php:82
+msgid "Stats about revenue."
+msgstr "Estadísticas sobre ingresos."
+
+#: src/API/Reports/Controller.php:78
+msgid "Batch endpoint for getting specific performance indicators from `stats` endpoints."
+msgstr "Variable en lote para obtener indicadores de rendimiento específicos de las variables de «estadísticas»."
+
+#: src/API/Reports/Orders/Controller.php:533
+#: dist/chunks/analytics-report-orders.js:129
+msgid "Coupon(s)"
+msgstr "Cupón(es)"
+
+#: src/API/Reports/Orders/Controller.php:531
+#: dist/chunks/analytics-report-orders.js:117
+msgid "Product(s)"
+msgstr "Producto(s)"
+
+#: src/API/Reports/Orders/Controller.php:529
+#: dist/chunks/analytics-report-orders.js:107
+msgid "Customer"
+msgstr "Cliente"
+
+#. translators: 1: numeric product quantity, 2: name of product
+#: src/API/Reports/Orders/Controller.php:500
+msgid "%1$s× %2$s"
+msgstr "%1$s× %2$s"
+
+#: src/API/Reports/Orders/Controller.php:408
+msgid "Limit result set to returning or new customers."
+msgstr "Limitar el resultado establecido a clientes habituales o nuevos."
+
+#: src/API/Reports/Orders/Controller.php:243
+msgid "Order customer information."
+msgstr "Información del cliente del pedido."
+
+#: src/API/Reports/Orders/Controller.php:237
+msgid "List of order coupons."
+msgstr "Lista de cupones del pedido."
+
+#: src/API/Reports/Orders/Controller.php:231
+msgid "List of order product IDs, names, quantities."
+msgstr "Lista de IDs de producto, nombres y cantidades del pedido."
+
+#: src/API/Reports/Orders/Controller.php:221
+msgid "Returning or new customer."
+msgstr "Cliente nuevo o habitual."
+
+#: src/API/Reports/Orders/Controller.php:215
+msgid "Net total revenue."
+msgstr "Ingresos netos totales."
+
+#: src/API/Reports/Orders/Controller.php:197
+msgid "Order status."
+msgstr "Estado del pedido."
+
+#: src/API/Reports/Orders/Controller.php:191
+msgid "Date the order was created, as GMT."
+msgstr "Fecha en que se creó el pedido, en GMT."
+
+#: src/API/Reports/Orders/Controller.php:185
+msgid "Date the order was created, in the site's timezone."
+msgstr "Fecha en que se creó el pedido, en la zona horaria del sitio."
+
+#: src/API/Reports/Orders/Controller.php:419
+#: src/API/Reports/Orders/Stats/Controller.php:521
+msgid "Limit result set to specific types of refunds."
+msgstr "Limitar el resultado a tipos específicos de reembolsos."
+
+#: src/API/Reports/Orders/Controller.php:378
+#: src/API/Reports/Orders/Stats/Controller.php:493
+msgid "Limit result set to items that don't have the specified tax rate(s) assigned."
+msgstr "Limitar el resultado establecido a artículos en los que no hayas especificado la(s) tasa(s) de impuesto(s) asignada(s)."
+
+#: src/API/Reports/Orders/Controller.php:368
+#: src/API/Reports/Orders/Stats/Controller.php:483
+msgid "Limit result set to items that have the specified tax rate(s) assigned."
+msgstr "Limitar el resultado establecido a artículos en los que hayas especificado la(s) tasa(s) de impuesto(s) asignada(s)."
+
+#: src/API/Reports/Orders/Controller.php:358
+#: src/API/Reports/Orders/Stats/Controller.php:474
+msgid "Limit result set to items that don't have the specified coupon(s) assigned."
+msgstr "Limita el resultado a los artículos que no tienen asignado el cupón o los cupones especificados."
+
+#: src/API/Reports/Orders/Controller.php:348
+#: src/API/Reports/Orders/Stats/Controller.php:465
+msgid "Limit result set to items that have the specified coupon(s) assigned."
+msgstr "Limita el resultado a los artículos que tienen asignado el cupón o los cupones especificados."
+
+#: src/API/Reports/Orders/Stats/Controller.php:216
+msgid "Number of distinct products sold."
+msgstr "Número de productos distintos vendidos."
+
+#: src/API/Reports/Orders/Stats/Controller.php:192
+msgid "Number of items sold"
+msgstr "Número de artículos vendidos"
+
+#: src/API/Reports/Orders/Stats/Controller.php:186
+msgid "Average items per order"
+msgstr "Promedio de artículos por pedido"
+
+#: src/API/Reports/Orders/Stats/Controller.php:178
+msgid "Average order value."
+msgstr "Promedio de valor del pedido."
+
+#: src/API/Reports/Orders/Stats/Controller.php:171
+msgid "Number of orders"
+msgstr "Cantidad de pedidos."
+
+#: src/API/Reports/Products/Controller.php:394 src/Features/Analytics.php:179
+#: src/ReportCSVEmail.php:41 dist/app/index.js:476 dist/chunks/5.js:955
+#: dist/chunks/analytics-report-categories.js:823
+#: dist/chunks/analytics-report-orders.js:669
+#: dist/chunks/analytics-report-products.js:690
+#: dist/chunks/analytics-report-products.js:1122
+#: dist/chunks/analytics-report-variations.js:710
+#: dist/chunks/dashboard-charts.js:1038
+msgid "Variations"
+msgstr "Variaciones"
+
+#: src/API/Reports/Products/Controller.php:243
+msgid "Product SKU."
+msgstr "SKU del producto."
+
+#: src/API/Reports/Products/Controller.php:237
+msgid "Product variations IDs."
+msgstr "IDs de variaciones de producto."
+
+#: src/API/Reports/Products/Controller.php:213
+msgid "Product category IDs."
+msgstr "IDs de categorías de producto."
+
+#: src/API/Reports/Products/Controller.php:312
+#: src/API/Reports/Products/Stats/Controller.php:381
+#: src/API/Reports/Variations/Stats/Controller.php:388
+msgid "Limit result to items from the specified categories."
+msgstr "Limita el resultado a los artículos de las categorías especificadas."
+
+#: src/API/Reports/Products/Stats/Controller.php:197
+#: src/API/Reports/Variations/Stats/Controller.php:194
+msgid "Human readable segment label, either product or variation name."
+msgstr "Etiqueta de segmento legible para humanos, ya sea el nombre del producto o de la variación."
+
+#. translators: %s is product name
+#: src/API/Reports/Coupons/DataStore.php:168
+#: src/API/Reports/Products/DataStore.php:227
+#: dist/chunks/analytics-report-downloads.js:146
+#: dist/chunks/analytics-report-downloads.js:147
+msgid "(Deleted)"
+msgstr "(Borrado)"
+
+#. translators: %s is product name
+#: src/API/Reports/Products/DataStore.php:227
+msgid "%s (Deleted)"
+msgstr "%s (borrado)"
+
+#: src/API/Reports/Export/Controller.php:210
+msgid "Sorry, there is no export with that ID."
+msgstr "Lo siento, no hay ninguna exportación con ese ID."
+
+#: src/API/Reports/Export/Controller.php:177
+msgid "Your report file is being generated."
+msgstr "Tu archivo de informe se está generando."
+
+#: src/API/Reports/Export/Controller.php:168
+msgid "There is no data to export for the given request."
+msgstr "No hay ningún dato que exportar para la solicitud dada."
+
+#: src/API/Reports/Export/Controller.php:141
+msgid "Export download URL."
+msgstr "URL de descarga de la exportación."
+
+#: src/API/Reports/Export/Controller.php:135
+msgid "Percentage complete."
+msgstr "Porcentaje completo."
+
+#: src/API/Reports/Export/Controller.php:81
+msgid "When true, email a link to download the export to the requesting user."
+msgstr "Cuando se configura en true, envía por correo electrónico un enlace para descargar la exportación al usuario que lo ha solicitado."
+
+#: src/API/Reports/Export/Controller.php:76
+msgid "Parameters to pass on to the exported report."
+msgstr "Parámetros para pasar al informe exportado."
+
+#: src/API/Reports/Revenue/Stats/Controller.php:451
+#: dist/chunks/analytics-report-revenue.js:157
+#: dist/chunks/analytics-report-revenue.js:484
+#: dist/chunks/dashboard-charts.js:759 dist/chunks/dashboard-charts.js:1789
+msgid "Total Sales"
+msgstr "Ventas totales"
+
+#: src/API/Reports/Revenue/Stats/Controller.php:239
+msgid "Gross Sales."
+msgstr "Ventas brutas."
+
+#: src/API/Reports/Revenue/Stats/Controller.php:233
+msgid "Products sold."
+msgstr "Productos vendidos."
+
+#: src/API/Reports/Revenue/Stats/Controller.php:227
+msgid "Items sold."
+msgstr "Artículos vendidos."
+
+#: src/API/Reports/Revenue/Stats/Controller.php:213
+msgid "Total of returns."
+msgstr "Total de reembolsos."
+
+#: src/API/Reports/Revenue/Stats/Controller.php:212
+#: src/API/Reports/Revenue/Stats/Controller.php:452
+#: dist/chunks/analytics-report-revenue.js:127
+#: dist/chunks/analytics-report-revenue.js:456
+#: dist/chunks/dashboard-charts.js:731 dist/chunks/dashboard-charts.js:1809
+msgid "Returns"
+msgstr "Muestra"
+
+#: src/API/Reports/Revenue/Stats/Controller.php:205
+msgid "Total of taxes."
+msgstr "Total de impuestos."
+
+#: src/API/Reports/Revenue/Stats/Controller.php:197
+msgid "Total of shipping."
+msgstr "Total de envío."
+
+#: src/API/Reports/Revenue/Stats/Controller.php:196
+#: src/API/Reports/Revenue/Stats/Controller.php:455
+#: dist/chunks/analytics-report-revenue.js:151
+#: dist/chunks/analytics-report-revenue.js:479
+#: dist/chunks/dashboard-charts.js:754 dist/chunks/dashboard-charts.js:1833
+#: dist/chunks/homescreen.js:1243
+msgid "Shipping"
+msgstr "Envío"
+
+#: src/API/Reports/Orders/Stats/Controller.php:204
+#: src/API/Reports/Revenue/Stats/Controller.php:189
+msgid "Unique coupons count."
+msgstr "Suma de cupones únicos."
+
+#: src/API/Reports/Orders/Stats/Controller.php:198
+#: src/API/Reports/Revenue/Stats/Controller.php:183
+msgid "Amount discounted by coupons."
+msgstr "Cantidad descontada por cupones."
+
+#: src/API/Reports/Orders/Stats/Controller.php:163
+#: src/API/Reports/Products/Stats/Controller.php:167
+#: src/API/Reports/Revenue/Stats/Controller.php:175
+#: src/API/Reports/Variations/Stats/Controller.php:164
+msgid "Net Sales."
+msgstr "Ventas netas."
+
+#: src/API/Reports/Taxes/Controller.php:306
+#: dist/chunks/analytics-report-taxes.js:102
+#: dist/chunks/analytics-report-taxes.js:528
+#: dist/chunks/dashboard-charts.js:1346 dist/chunks/dashboard-charts.js:1829
+msgid "Shipping Tax"
+msgstr "Tarifa de envío"
+
+#: src/API/Reports/Taxes/Controller.php:305
+#: dist/chunks/analytics-report-taxes.js:98
+#: dist/chunks/analytics-report-taxes.js:522
+#: dist/chunks/dashboard-charts.js:1340 dist/chunks/dashboard-charts.js:1825
+msgid "Order Tax"
+msgstr "Impuesto del pedido"
+
+#: src/API/Reports/Taxes/Controller.php:304
+#: dist/chunks/analytics-report-taxes.js:94
+#: dist/chunks/analytics-report-taxes.js:516
+#: dist/chunks/dashboard-charts.js:1334 dist/chunks/dashboard-charts.js:1821
+msgid "Total Tax"
+msgstr "Total de impuestos"
+
+#: src/API/Reports/Taxes/Controller.php:303
+#: dist/chunks/analytics-report-taxes.js:89
+msgid "Rate"
+msgstr "Tasa"
+
+#: src/API/Reports/Taxes/Controller.php:302
+#: dist/chunks/analytics-report-taxes.js:83
+msgid "Tax Code"
+msgstr "Código de impuesto"
+
+#: src/API/Reports/Taxes/Controller.php:283
+msgid "Limit result set to items assigned one or more tax rates."
+msgstr "Límite de resultado establecido para los artículos asignados a una o más tasas de impuestos."
+
+#: src/API/Reports/Taxes/Controller.php:187
+msgid "Priority."
+msgstr "Prioridad."
+
+#: src/API/Reports/Taxes/Controller.php:181
+msgid "State."
+msgstr "Provincia."
+
+#: src/API/Reports/Taxes/Controller.php:169
+msgid "Tax rate."
+msgstr "Tasa de impuestos."
+
+#: src/API/Reports/Taxes/Controller.php:163
+msgid "Tax rate name."
+msgstr "Nombre de la tasa de impuestos."
+
+#: src/API/Reports/Taxes/Controller.php:157
+msgid "Tax rate ID."
+msgstr "ID de la tasa de impuestos."
+
+#: src/API/Reports/Taxes/Stats/Controller.php:372
+msgid "Limit result set to all items that have the specified term assigned in the taxes taxonomy."
+msgstr "Limitar el resultado a todos los artículos que tengan asignado un término específico en la taxonomía de impuestos."
+
+#: src/API/Reports/Taxes/Stats/Controller.php:197
+msgid "Amount of tax codes."
+msgstr "Cantidad de códigos de impuestos."
+
+#: src/API/Reports/Taxes/Controller.php:205
+#: src/API/Reports/Taxes/Stats/Controller.php:183
+msgid "Shipping tax."
+msgstr "Tarifa de envío."
+
+#: src/API/Reports/Taxes/Controller.php:199
+#: src/API/Reports/Taxes/Stats/Controller.php:175
+msgid "Order tax."
+msgstr "Impuesto del pedido."
+
+#: src/API/Reports/Taxes/Controller.php:193
+#: src/API/Reports/Taxes/Stats/Controller.php:167
+msgid "Total tax."
+msgstr "Total de impuestos."
+
+#: src/API/Reports/Taxes/Stats/DataStore.php:223
+msgid "Sorry, fetching tax data failed."
+msgstr "Lo siento, la obtención de datos de impuestos ha fallado."
+
+#: src/API/Reports/Downloads/Controller.php:396
+#: dist/chunks/analytics-report-downloads.js:116
+msgid "IP"
+msgstr "IP"
+
+#: src/API/Reports/Downloads/Controller.php:395
+msgid "User Name"
+msgstr "Nombre de usuario"
+
+#: src/API/Reports/Downloads/Controller.php:394
+#: src/API/Reports/Orders/Controller.php:527
+#: dist/chunks/analytics-report-downloads.js:109
+#: dist/chunks/analytics-report-downloads.js:574
+#: dist/chunks/analytics-report-orders.js:97
+#: dist/chunks/dashboard-charts.js:1497
+msgid "Order #"
+msgstr "Pedido #"
+
+#: src/API/Reports/Downloads/Controller.php:393
+#: dist/chunks/analytics-report-downloads.js:106
+msgid "File Name"
+msgstr "Nombre de archivo"
+
+#: src/API/Reports/Downloads/Controller.php:392
+#: src/API/Reports/Products/Controller.php:388
+#: dist/chunks/analytics-report-categories.js:790
+#: dist/chunks/analytics-report-downloads.js:101
+#: dist/chunks/analytics-report-products.js:657
+msgid "Product Title"
+msgstr "Título del producto"
+
+#: src/API/Reports/Downloads/Controller.php:391
+#: src/API/Reports/Orders/Controller.php:526
+#: src/API/Reports/Revenue/Stats/Controller.php:448
+#: dist/chunks/analytics-report-downloads.js:94
+#: dist/chunks/analytics-report-orders.js:90
+#: dist/chunks/analytics-report-revenue.js:108
+msgid "Date"
+msgstr "Fecha"
+
+#: src/API/Reports/Downloads/Controller.php:355
+msgid "Limit response to objects that don't have the specified user ids."
+msgstr "Limita la respuesta a objetos que no tengan los IDs de usuario especificados."
+
+#: src/API/Reports/Downloads/Controller.php:346
+msgid "Limit response to objects that have the specified user ids."
+msgstr "Limita la respuesta a objetos que tengan los IDs de usuario especificados."
+
+#: src/API/Reports/Downloads/Controller.php:298
+msgid "Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: products, orders, username, ip_address."
+msgstr "Indica si todas las condiciones deben ser ciertas para el conjunto resultante, o si alguna de ellas es suficiente. La coincidencia afecta a los siguientes parámetros: productos, pedidos, nombre de usuario, dirección IP."
+
+#: src/API/Reports/Downloads/Controller.php:235
+msgid "IP address for the downloader."
+msgstr "Dirección IP de usuario de la descarga."
+
+#: src/API/Reports/Downloads/Controller.php:229
+msgid "User name of the downloader."
+msgstr "Nombre del usuario de la descarga."
+
+#: src/API/Reports/Downloads/Controller.php:223
+msgid "User ID for the downloader."
+msgstr "ID del usuario de la descarga."
+
+#: src/API/Reports/Downloads/Controller.php:217
+#: src/API/Reports/Orders/Controller.php:179
+msgid "Order Number."
+msgstr "Número del pedido."
+
+#: src/API/Reports/Downloads/Controller.php:211
+#: src/API/Reports/Orders/Controller.php:173
+msgid "Order ID."
+msgstr "ID del pedido."
+
+#: src/API/Reports/Downloads/Controller.php:205
+msgid "File URL."
+msgstr "URL del archivo."
+
+#: src/API/Reports/Downloads/Controller.php:199
+msgid "File name."
+msgstr "Nombre del archivo."
+
+#: src/API/Reports/Downloads/Controller.php:193
+msgid "Download ID."
+msgstr "ID de la descarga."
+
+#: src/API/Reports/Downloads/Controller.php:184
+msgid "The date of the download, as GMT."
+msgstr "Le fecha de la descarga, en GMT."
+
+#: src/API/Reports/Downloads/Controller.php:178
+msgid "The date of the download, in the site's timezone."
+msgstr "La fecha de la descarga, en la zona horaria del sitio."
+
+#: src/API/Reports/Downloads/Controller.php:169
+msgid "ID."
+msgstr "ID."
+
+#: src/API/Reports/Downloads/Controller.php:373
+#: src/API/Reports/Downloads/Stats/Controller.php:363
+msgid "Limit response to objects that don't have a specified ip address."
+msgstr "Limita la respuesta a objetos que no tengan una dirección ip especificada."
+
+#: src/API/Reports/Downloads/Controller.php:364
+#: src/API/Reports/Downloads/Stats/Controller.php:354
+msgid "Limit response to objects that have a specified ip address."
+msgstr "Limita la respuesta a objetos que tengan una dirección ip especificada."
+
+#: src/API/Reports/Downloads/Stats/Controller.php:345
+msgid "Limit response to objects that don't have the specified customer ids."
+msgstr "Limita la respuesta a los objetos que no tienen los identificadores de cliente especificados."
+
+#: src/API/Reports/Downloads/Stats/Controller.php:336
+msgid "Limit response to objects that have the specified customer ids."
+msgstr "Limita la respuesta a los objetos que tienen los identificadores de cliente especificados."
+
+#: src/API/Reports/Downloads/Controller.php:337
+#: src/API/Reports/Downloads/Stats/Controller.php:327
+#: src/API/Reports/Orders/Controller.php:448
+msgid "Limit result set to items that don't have the specified order ids."
+msgstr "Limita el resultado establecido a artículos que no tengan los IDs de pedido especificados."
+
+#: src/API/Reports/Downloads/Controller.php:328
+#: src/API/Reports/Downloads/Stats/Controller.php:318
+#: src/API/Reports/Orders/Controller.php:439
+msgid "Limit result set to items that have the specified order ids."
+msgstr "Limita el resultado establecido a artículos que tengan los IDs de pedido especificados."
+
+#: src/API/Reports/Downloads/Controller.php:318
+#: src/API/Reports/Downloads/Stats/Controller.php:309
+#: src/API/Reports/Orders/Controller.php:318
+#: src/API/Reports/Orders/Stats/Controller.php:436
+msgid "Limit result set to items that don't have the specified product(s) assigned."
+msgstr "Limita el resultado establecido a artículo(s) que no tenga(n) el/los producto(s) especificado(s) asignado(s)"
+
+#: src/API/Reports/Downloads/Controller.php:308
+#: src/API/Reports/Downloads/Stats/Controller.php:299
+#: src/API/Reports/Orders/Controller.php:308
+#: src/API/Reports/Orders/Stats/Controller.php:426
+msgid "Limit result set to items that have the specified product(s) assigned."
+msgstr "Limita el resultado establecido a artículos que tengan el/los producto(s) específico(s) asignado(s)."
+
+#: src/API/Reports/Downloads/Stats/Controller.php:145
+msgid "Number of downloads."
+msgstr "Número de descargas."
+
+#: src/API/Reports/Downloads/Stats/DataStore.php:118
+#: src/API/Reports/Downloads/Stats/DataStore.php:134
+msgid "Sorry, fetching downloads data failed."
+msgstr "Lo siento, la obtención de datos de descargas ha fallado."
+
+#: src/API/Reports/Customers/Controller.php:597
+#: dist/chunks/analytics-report-customers.js:471
+msgid "Postal Code"
+msgstr "Código postal"
+
+#: src/API/Reports/Customers/Controller.php:596
+#: dist/chunks/analytics-report-customers.js:466
+msgid "Region"
+msgstr "Región"
+
+#: src/API/Reports/Customers/Controller.php:595
+#: dist/chunks/analytics-report-customers.js:461
+#: dist/chunks/profile-wizard.js:776 dist/chunks/task-list.js:1179
+msgid "City"
+msgstr "Ciudad"
+
+#: src/API/Reports/Customers/Controller.php:594
+#: dist/chunks/analytics-report-customers.js:129
+#: dist/chunks/analytics-report-customers.js:457
+#: dist/chunks/profile-wizard.js:767 dist/chunks/task-list.js:1170
+msgid "Country / Region"
+msgstr "País / Región"
+
+#: src/API/Reports/Customers/Controller.php:593
+#: dist/chunks/analytics-report-customers.js:279
+#: dist/chunks/analytics-report-customers.js:452
+msgid "AOV"
+msgstr "VMP"
+
+#: src/API/Leaderboards.php:267 src/API/Reports/Customers/Controller.php:592
+#: dist/chunks/analytics-report-customers.js:252
+#: dist/chunks/analytics-report-customers.js:447
+msgid "Total Spend"
+msgstr "Gasto total"
+
+#: src/API/Reports/Customers/Controller.php:590
+#: dist/chunks/analytics-report-customers.js:194
+#: dist/chunks/analytics-report-customers.js:439
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: src/API/Reports/Customers/Controller.php:589
+msgid "Sign Up"
+msgstr "Registro"
+
+#: src/API/Reports/Customers/Controller.php:588
+#: dist/chunks/analytics-report-customers.js:430
+msgid "Last Active"
+msgstr "Última actividad"
+
+#: src/API/Reports/Customers/Controller.php:587
+#: dist/chunks/analytics-report-customers.js:166
+#: dist/chunks/analytics-report-customers.js:426
+#: dist/chunks/analytics-report-downloads.js:113
+#: dist/chunks/analytics-report-downloads.js:546
+#: dist/chunks/dashboard-charts.js:1469
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: src/API/Reports/Customers/Controller.php:586
+#: dist/chunks/analytics-report-customers.js:98
+#: dist/chunks/analytics-report-customers.js:420
+msgid "Name"
+msgstr "Nombre"
+
+#: src/API/Reports/Customers/Controller.php:345
+msgid "Limit response to resources with orders published before a given ISO8601 compliant date."
+msgstr "Limita la respuesta a recursos con pedidos publicados antes de una fecha dada compatible con ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:339
+msgid "Limit response to resources with orders published after a given ISO8601 compliant date."
+msgstr "Limita la respuesta a recursos con pedidos publicados después de una fecha dada compatible con ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:308
+msgid "Avg order value."
+msgstr "Valor medio del pedido."
+
+#: src/API/Reports/Customers/Controller.php:302
+msgid "Total spend."
+msgstr "Gasto total."
+
+#: src/API/Reports/Customers/Controller.php:296
+msgid "Order count."
+msgstr "Contador de pedidos."
+
+#: src/API/Reports/Customers/Controller.php:290
+msgid "Date last active GMT."
+msgstr "Fecha de última actividad GMT."
+
+#: src/API/Reports/Customers/Controller.php:284
+msgid "Date last active."
+msgstr "Fecha de última actividad."
+
+#: src/API/Reports/Customers/Controller.php:278
+msgid "Date registered GMT."
+msgstr "Fecha de registro GMT."
+
+#: src/API/Reports/Customers/Controller.php:272
+msgid "Date registered."
+msgstr "Fecha de registro."
+
+#: src/API/Reports/Customers/Controller.php:266
+msgid "Postal code."
+msgstr "Código postal."
+
+#: src/API/Reports/Customers/Controller.php:260
+msgid "Region."
+msgstr "Región."
+
+#: src/API/Reports/Customers/Controller.php:254
+msgid "City."
+msgstr "Ciudad."
+
+#: src/API/Reports/Customers/Controller.php:248
+#: src/API/Reports/Taxes/Controller.php:175
+msgid "Country / Region."
+msgstr "País / Región."
+
+#: src/API/Reports/Customers/Controller.php:242
+msgid "Username."
+msgstr "Nombre de usuario."
+
+#: src/API/Reports/Customers/Controller.php:236
+msgid "Name."
+msgstr "Nombre."
+
+#: src/API/Reports/Customers/Controller.php:230
+msgid "User ID."
+msgstr "ID de usuario."
+
+#: src/API/Reports/Customers/Controller.php:224
+#: src/API/Reports/Orders/Controller.php:203
+msgid "Customer ID."
+msgstr "ID de cliente."
+
+#: src/API/Reports/Customers/Controller.php:567
+#: src/API/Reports/Customers/Stats/Controller.php:370
+msgid "Limit result to items with specified customer ids."
+msgstr "Limita el resultado a artículos con los IDs de cliente especificados."
+
+#: src/API/Reports/Customers/Controller.php:561
+#: src/API/Reports/Customers/Stats/Controller.php:364
+msgid "Limit response to objects with last order after (or at) a given ISO8601 compliant datetime."
+msgstr "Limita la respuesta a los objetos con el último pedido después de (o en) una fecha y hora determinada conforme a ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:555
+#: src/API/Reports/Customers/Stats/Controller.php:358
+msgid "Limit response to objects with last order before (or at) a given ISO8601 compliant datetime."
+msgstr "Limita la respuesta a los objetos con el último pedido antes (o en) una determinada fecha y hora conforme a la norma ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:547
+#: src/API/Reports/Customers/Stats/Controller.php:350
+msgid "Limit response to objects with an average order spend between two given numbers."
+msgstr "Limita la respuesta a los objetos con un gasto medio de pedido entre dos números determinados."
+
+#: src/API/Reports/Customers/Controller.php:542
+#: src/API/Reports/Customers/Stats/Controller.php:345
+msgid "Limit response to objects with an average order spend less than or equal to given number."
+msgstr "Limita la respuesta a los objetos con un gasto medio de pedido inferior o igual a un número determinado."
+
+#: src/API/Reports/Customers/Controller.php:537
+#: src/API/Reports/Customers/Stats/Controller.php:340
+msgid "Limit response to objects with an average order spend greater than or equal to given number."
+msgstr "Limita la respuesta a los objetos con un gasto medio de pedido superior o igual a un número determinado."
+
+#: src/API/Reports/Customers/Controller.php:529
+#: src/API/Reports/Customers/Stats/Controller.php:332
+msgid "Limit response to objects with a total order spend between two given numbers."
+msgstr "Limita la respuesta a objetos con un total de gasto de pedido entre dos números determinados."
+
+#: src/API/Reports/Customers/Controller.php:524
+#: src/API/Reports/Customers/Stats/Controller.php:327
+msgid "Limit response to objects with a total order spend less than or equal to given number."
+msgstr "Limita la respuesta a los objetos con un total de gasto de pedido inferior o igual a un número determinado."
+
+#: src/API/Reports/Customers/Controller.php:519
+#: src/API/Reports/Customers/Stats/Controller.php:322
+msgid "Limit response to objects with a total order spend greater than or equal to given number."
+msgstr "Limita la respuesta a los objetos con un total de gasto de pedido mayor o igual a un número determinado."
+
+#: src/API/Reports/Customers/Controller.php:511
+#: src/API/Reports/Customers/Stats/Controller.php:314
+msgid "Limit response to objects with an order count between two given integers."
+msgstr "Limita la respuesta a objetos con una cuenta de pedidos entre dos números enteros dados."
+
+#: src/API/Reports/Customers/Controller.php:505
+#: src/API/Reports/Customers/Stats/Controller.php:308
+msgid "Limit response to objects with an order count less than or equal to given integer."
+msgstr "Limita la respuesta a objetos con un número de pedidos menor o igual al número entero dado."
+
+#: src/API/Reports/Customers/Controller.php:499
+#: src/API/Reports/Customers/Stats/Controller.php:302
+msgid "Limit response to objects with an order count greater than or equal to given integer."
+msgstr "Limita la respuesta a objetos con un número de pedidos mayor o igual al número entero dado."
+
+#: src/API/Reports/Customers/Controller.php:471
+#: src/API/Reports/Customers/Controller.php:491
+#: src/API/Reports/Customers/Stats/Controller.php:274
+#: src/API/Reports/Customers/Stats/Controller.php:294
+msgid "Limit response to objects last active between two given ISO8601 compliant datetime."
+msgstr "Limita la respuesta a los objetos activos por última vez entre dos fechas que conforme a la norma ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:465
+#: src/API/Reports/Customers/Stats/Controller.php:268
+msgid "Limit response to objects last active after (or at) a given ISO8601 compliant datetime."
+msgstr "Limita la respuesta a los objetos activos por última vez después de (o en) una fecha/hora determinada conforme a la norma ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:459
+#: src/API/Reports/Customers/Stats/Controller.php:262
+msgid "Limit response to objects last active before (or at) a given ISO8601 compliant datetime."
+msgstr "Limita la respuesta a los objetos activos por última vez antes de (o en) una fecha y hora determinada conforme a la norma ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:454
+#: src/API/Reports/Customers/Stats/Controller.php:257
+msgid "Limit response to objects excluding specfic countries."
+msgstr "Limitar la respuesta a los objetos, excluyendo países específicos."
+
+#: src/API/Reports/Customers/Controller.php:449
+#: src/API/Reports/Customers/Stats/Controller.php:252
+msgid "Limit response to objects with specfic countries."
+msgstr "Limita la respuesta a objetos con países específicos."
+
+#: src/API/Reports/Customers/Controller.php:444
+#: src/API/Reports/Customers/Stats/Controller.php:247
+msgid "Limit response to objects excluding emails."
+msgstr "Limitar la respuesta a los objetos, excluyendo los correos electrónicos."
+
+#: src/API/Reports/Customers/Controller.php:439
+#: src/API/Reports/Customers/Stats/Controller.php:242
+msgid "Limit response to objects including emails."
+msgstr "Limitar la respuesta a los objetos, incluidos los correos electrónicos."
+
+#: src/API/Reports/Customers/Controller.php:434
+#: src/API/Reports/Customers/Stats/Controller.php:237
+msgid "Limit response to objects excluding specfic usernames."
+msgstr "Limita la respuesta a los objetos excluyendo nombres de usuario específicos."
+
+#: src/API/Reports/Customers/Controller.php:429
+#: src/API/Reports/Customers/Stats/Controller.php:232
+msgid "Limit response to objects with specfic usernames."
+msgstr "Limitar la respuesta a los objetos con nombres de usuario específicos."
+
+#: src/API/Reports/Customers/Controller.php:424
+#: src/API/Reports/Customers/Stats/Controller.php:227
+msgid "Limit response to objects excluding specfic names."
+msgstr "Limitar la respuesta a los objetos, excluyendo nombres específicos."
+
+#: src/API/Reports/Customers/Controller.php:419
+#: src/API/Reports/Customers/Stats/Controller.php:222
+msgid "Limit response to objects with specfic names."
+msgstr "Limitar la respuesta a los objetos con nombres específicos."
+
+#: src/API/Reports/Customers/Controller.php:404
+#: src/API/Reports/Customers/Stats/Controller.php:207
+msgid "Limit response to objects with a customer field containing the search term. Searches the field provided by `searchby`."
+msgstr "Limitar la respuesta a objetos con un campo de cliente que contenga el concepto de búsqueda. Busca en el campo proporcionado por «searchby»."
+
+#: src/API/Reports/Customers/Controller.php:394
+#: src/API/Reports/Customers/Stats/Controller.php:197
+#: src/API/Reports/Downloads/Stats/Controller.php:289
+#: src/API/Reports/Orders/Stats/Controller.php:395
+#: src/API/Reports/Products/Controller.php:321
+#: src/API/Reports/Variations/Controller.php:288
+#: src/API/Reports/Variations/Stats/Controller.php:340
+msgid "Indicates whether all the conditions should be true for the resulting set, or if any one of them is sufficient. Match affects the following parameters: status_is, status_is_not, product_includes, product_excludes, coupon_includes, coupon_excludes, customer, categories"
+msgstr "Indica si todas las condiciones deben ser ciertas para el conjunto resultante, o si alguna de ellas es suficiente. La coincidencia afecta a los siguientes parámetros: status_is, status_is_not, product_includes, product_excludes, coupon_includes, coupon_excludes, customer, categories"
+
+#: src/API/Reports/Customers/Controller.php:333
+#: src/API/Reports/Customers/Controller.php:485
+#: src/API/Reports/Customers/Stats/Controller.php:191
+#: src/API/Reports/Customers/Stats/Controller.php:288
+msgid "Limit response to objects registered after (or at) a given ISO8601 compliant datetime."
+msgstr "Limita la respuesta a los objetos registrados después de (o en) una fecha y hora determinada conforme a la norma ISO8601."
+
+#: src/API/Reports/Customers/Controller.php:327
+#: src/API/Reports/Customers/Controller.php:479
+#: src/API/Reports/Customers/Stats/Controller.php:185
+#: src/API/Reports/Customers/Stats/Controller.php:282
+msgid "Limit response to objects registered before (or at) a given ISO8601 compliant datetime."
+msgstr "Limita la respuesta a los objetos registrados antes (o en) una determinada fecha y hora que cumpla con la norma ISO8601."
+
+#: src/API/Reports/Customers/Stats/Controller.php:150
+msgid "Average AOV per customer."
+msgstr "Promedio de VMP por pedido."
+
+#: src/API/Reports/Customers/Stats/Controller.php:143
+msgid "Average total spend per customer."
+msgstr "Promedio total gastado por cliente."
+
+#: src/API/Reports/Customers/Stats/Controller.php:137
+msgid "Average number of orders."
+msgstr "Promedio de número de pedidos."
+
+#: src/API/Reports/Customers/Stats/Controller.php:131
+msgid "Number of customers."
+msgstr "Número de clientes."
+
+#: src/API/Reports/Orders/Controller.php:534
+#: src/API/Reports/Products/Controller.php:391
+#: src/API/Reports/Variations/Controller.php:415
+msgid "N. Revenue"
+msgstr "Ingresos netos"
+
+#: src/API/Reports/Variations/Controller.php:412
+#: dist/chunks/analytics-report-products.js:960
+#: dist/chunks/analytics-report-variations.js:548
+msgid "Product / Variation Title"
+msgstr "Producto / Título de la variación"
+
+#: src/API/Reports/Products/Controller.php:341
+msgid "Add additional piece of info about each product to the report."
+msgstr "Añade una pieza adicional de información sobre cada producto al informe."
+
+#: src/API/Reports/Products/Stats/Controller.php:399
+#: src/API/Reports/Variations/Controller.php:338
+#: src/API/Reports/Variations/Stats/Controller.php:426
+msgid "Limit result to items with specified variation ids."
+msgstr "Limita el resultado a artículos con IDs de variación específicos."
+
+#: src/API/Reports/Products/Controller.php:331
+#: src/API/Reports/Products/Stats/Controller.php:390
+msgid "Limit result to items with specified product ids."
+msgstr "Limita el resultado a artículos con IDs de producto específicos."
+
+#: src/API/Reports/Products/Controller.php:231
+#: src/API/Reports/Variations/Controller.php:241
+msgid "Product inventory threshold for low stock."
+msgstr "Umbral de inventario de productos para pocas existencias."
+
+#: src/API/Reports/Products/Controller.php:225
+#: src/API/Reports/Variations/Controller.php:235
+msgid "Product inventory quantity."
+msgstr "Cantidad de inventario del producto."
+
+#: src/API/Reports/Products/Controller.php:219
+#: src/API/Reports/Variations/Controller.php:229
+msgid "Product inventory status."
+msgstr "Estado de inventario del producto."
+
+#: src/API/Reports/Variations/Controller.php:223
+msgid "Product attributes."
+msgstr "Atributos del producto."
+
+#: src/API/Reports/Products/Controller.php:207
+#: src/API/Reports/Variations/Controller.php:217
+msgid "Product link."
+msgstr "Enlace del producto."
+
+#: src/API/Reports/Products/Controller.php:201
+#: src/API/Reports/Variations/Controller.php:211
+msgid "Product image."
+msgstr "Imagen del producto."
+
+#: src/API/Reports/Products/Controller.php:195
+#: src/API/Reports/Variations/Controller.php:205
+msgid "Product price."
+msgstr "Precio del producto."
+
+#: src/API/Reports/Products/Controller.php:182
+#: src/API/Reports/Variations/Controller.php:192
+msgid "Number of orders product appeared in."
+msgstr "Número de pedidos en los que ha aparecido el producto."
+
+#: src/API/Reports/Products/Controller.php:176
+#: src/API/Reports/Variations/Controller.php:186
+msgid "Total Net Sales of all items sold."
+msgstr "Ingresos netos totales de todos los artículos vendidos."
+
+#: src/API/Reports/Orders/Controller.php:209
+#: src/API/Reports/Products/Controller.php:170
+#: src/API/Reports/Variations/Controller.php:180
+msgid "Number of items sold."
+msgstr "Número de artículos vendidos."
+
+#: src/API/Reports/Downloads/Controller.php:175
+#: src/API/Reports/Products/Controller.php:164
+#: src/API/Reports/Variations/Controller.php:168
+#: src/API/Reports/Variations/Controller.php:174
+msgid "Product ID."
+msgstr "ID del producto."
+
+#. translators: %s: Method name
+#: src/API/Reports/Query.php:22
+msgid "Method '%s' not implemented. Must be overridden in subclass."
+msgstr "Método «%s» no aplicado. Debe ser anulado en la subclase."
+
+#: src/API/Reports/Products/Controller.php:389
+#: src/API/Reports/Stock/Controller.php:525
+#: src/API/Reports/Variations/Controller.php:413
+#: dist/chunks/analytics-report-categories.js:796
+#: dist/chunks/analytics-report-products.js:663
+#: dist/chunks/analytics-report-products.js:965
+#: dist/chunks/analytics-report-stock.js:132
+#: dist/chunks/analytics-report-variations.js:553
+msgid "SKU"
+msgstr "SKU"
+
+#: src/API/Reports/Stock/Controller.php:524
+#: dist/chunks/analytics-report-stock.js:126
+msgid "Product / Variation"
+msgstr "Producto / Variación"
+
+#: src/API/Reports/Stock/Controller.php:508
+msgid "Limit result set to items assigned a stock report type."
+msgstr "Limita el resultado establecido a artículos asignados a un tipo de informe de inventario."
+
+#: src/API/Reports/Stock/Controller.php:499
+msgid "Limit result set to all items except those of a particular parent ID."
+msgstr "Limita el resultado establecido a todos los artículos excepto a los que tengan un ID superior particular."
+
+#: src/API/Reports/Stock/Controller.php:490
+msgid "Limit result set to those of particular parent IDs."
+msgstr "Limita el resultado establecido a los que tengan IDs superiores particulares."
+
+#: src/API/Reports/Stock/Controller.php:462
+msgid "Offset the result set by a specific number of items."
+msgstr "Compensa el resultado establecido por un número específico de artículos."
+
+#: src/API/Reports/Stock/Controller.php:453
+msgid "Limit result set to specific ids."
+msgstr "Limita el resultado establecido a IDs específicos."
+
+#: src/API/Reports/Stock/Controller.php:444
+msgid "Ensure result set excludes specific IDs."
+msgstr "Asegura que el resultado establecido excluya IDs específicos."
+
+#: src/API/Reports/Stock/Controller.php:407
+msgid "Manage stock."
+msgstr "Gestionar inventario."
+
+#: src/API/Reports/Stock/Controller.php:401
+msgid "Stock quantity."
+msgstr "Cantidad de inventario."
+
+#: src/API/Reports/Stock/Controller.php:394
+msgid "Stock status."
+msgstr "Estado del inventario."
+
+#: src/API/Reports/Stock/Controller.php:388
+msgid "Unique identifier."
+msgstr "Identificador único."
+
+#: src/API/Reports/Products/Controller.php:189
+#: src/API/Reports/Stock/Controller.php:382
+#: src/API/Reports/Variations/Controller.php:199
+msgid "Product name."
+msgstr "Nombre del producto."
+
+#: src/API/ProductVariations.php:175 src/API/Reports/Stock/Controller.php:376
+msgid "Product parent ID."
+msgstr "ID del producto padre."
+
+#. translators: Stock status. Example: "Number of low stock products
+#: src/API/Reports/Stock/Stats/Controller.php:102
+msgid "Number of %s products."
+msgstr "Número de productos %s."
+
+#: src/API/Reports/Stock/Stats/Controller.php:91
+msgid "Number of low stock products."
+msgstr "Número de productos con existencias bajas."
+
+#: src/API/Reports/Stock/Stats/Controller.php:85
+msgid "Number of products."
+msgstr "Número de productos."
+
+#. translators: Allowed values is a list of stat endpoints.
+#: src/API/Reports/PerformanceIndicators/Controller.php:661
+msgid "Limit response to specific report stats. Allowed values: %s."
+msgstr "Limitar la respuesta a las estadísticas de informes específicos. Valores permitidos: %s."
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:651
+msgid "There was an issue loading the report endpoints"
+msgstr "Hubo un problema al cargar las variables del informe"
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:620
+msgid "Value of the stat. Returns null if the stat does not exist or cannot be loaded."
+msgstr "Valor de la estadística. Devuelve «null» si la estadística no existe o no se puede cargar."
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:613
+msgid "Format of the stat."
+msgstr "Formato de la estadística."
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:607
+msgid "Human readable label for the stat."
+msgstr "Etiqueta legible para humanos de la estadística."
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:601
+msgid "The specific chart this stat referrers to."
+msgstr "El gráfico específico al que se refiere esta estadística."
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:594
+#: src/API/Reports/Stock/Controller.php:370
+msgid "Unique identifier for the resource."
+msgstr "Identificador único del recurso."
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:405
+msgid "A list of stats to query must be provided."
+msgstr "Se debe proporcionar una lista de estadísticas para la consulta."
+
+#: src/API/Reports/PerformanceIndicators/Controller.php:143
+msgid "Sorry, fetching performance indicators failed."
+msgstr "Lo siento, los indicadores de rendimiento han fallado."
+
+#: src/API/Reports/Import/Controller.php:243
+msgid "All pending and in-progress import actions have been cancelled."
+msgstr "Se han cancelado todas las acciones de importación pendientes y en curso."
+
+#: src/API/Reports/Import/Controller.php:221
+msgid "Regenerate data message."
+msgstr "Regenerar mensaje de de datos."
+
+#: src/API/Reports/Import/Controller.php:215
+msgid "Regeneration status."
+msgstr "Estado de regeneración."
+
+#: src/API/Reports/Import/Controller.php:194
+msgid "Skip importing existing order data."
+msgstr "No importar datos de pedidos existentes."
+
+#: src/API/Reports/Import/Controller.php:187
+msgid "Number of days to import."
+msgstr "Número de días a importar."
+
+#: src/API/Reports/Categories/Controller.php:331
+#: src/API/Reports/Revenue/Stats/Controller.php:456
+msgid "Net Revenue"
+msgstr "Ingresos netos"
+
+#: src/API/Leaderboards.php:197 src/API/Leaderboards.php:333
+#: src/API/Reports/Categories/Controller.php:330
+#: src/API/Reports/Orders/Controller.php:532
+#: src/API/Reports/Products/Controller.php:390
+#: src/API/Reports/Variations/Controller.php:414
+#: dist/chunks/analytics-report-categories.js:53
+#: dist/chunks/analytics-report-categories.js:181
+#: dist/chunks/analytics-report-categories.js:801
+#: dist/chunks/analytics-report-orders.js:123
+#: dist/chunks/analytics-report-products.js:479
+#: dist/chunks/analytics-report-products.js:668
+#: dist/chunks/analytics-report-products.js:970
+#: dist/chunks/analytics-report-variations.js:53
+#: dist/chunks/analytics-report-variations.js:558
+#: dist/chunks/dashboard-charts.js:804 dist/chunks/dashboard-charts.js:1805
+msgid "Items Sold"
+msgstr "Artículos vendidos"
+
+#: src/API/Leaderboards.php:194 src/API/Reports/Categories/Controller.php:329
+#: src/API/Reports/Products/Controller.php:393
+#: dist/chunks/analytics-report-categories.js:175
+#: dist/chunks/analytics-report-categories.js:820
+#: dist/chunks/analytics-report-products.js:687
+msgid "Category"
+msgstr "Categoría"
+
+#: src/API/Reports/Categories/Controller.php:312
+msgid "Add additional piece of info about each category to the report."
+msgstr "Añade información adicional sobre cada categoría al informe."
+
+#: src/API/Reports/Categories/Controller.php:303
+msgid "Limit result set to all items that have the specified term assigned in the categories taxonomy."
+msgstr "Limita el resultado a todos los artículos que tienen el término especificado asignado en la taxonomía de las categorías."
+
+#: src/API/Reports/Categories/Controller.php:293
+#: src/API/Reports/Orders/Controller.php:398
+#: src/API/Reports/Orders/Stats/Controller.php:416
+msgid "Limit result set to items that don't have the specified order status."
+msgstr "Limita el resultado establecido a los artículos que no tienen el estado de pedido especificado."
+
+#: src/API/Reports/Categories/Controller.php:283
+#: src/API/Reports/Orders/Controller.php:388
+#: src/API/Reports/Orders/Stats/Controller.php:405
+msgid "Limit result set to items that have the specified order status."
+msgstr "Limita el resultado fijado a artículos que tienen el estado de pedido especificado."
+
+#: src/API/Reports/Categories/Controller.php:201
+msgid "Category name."
+msgstr "Nombre de la categoría."
+
+#: src/API/Reports/Categories/Controller.php:191
+msgid "Amount of products."
+msgstr "Cantidad de productos."
+
+#: src/API/Reports/Categories/Controller.php:179
+#: src/API/Reports/Revenue/Stats/Controller.php:167
+msgid "Total Sales."
+msgstr "Ventas totales."
+
+#: src/API/Reports/Categories/Controller.php:173
+msgid "Amount of items sold."
+msgstr "Cantidad de artículos vendidos."
+
+#: src/API/Reports/Categories/Controller.php:167
+msgid "Category ID."
+msgstr "ID de la categoría."
+
+#: src/API/Reports/Categories/Controller.php:75
+msgid "Invalid response from data store."
+msgstr "Respuesta no válida del almacén de datos."
+
+#: src/API/Reports/Categories/DataStore.php:271
+#: src/API/Reports/Orders/Stats/DataStore.php:335
+#: src/API/Reports/Orders/Stats/DataStore.php:388
+#: src/API/Reports/Products/Stats/DataStore.php:179
+#: src/API/Reports/Products/Stats/DataStore.php:195
+#: src/API/Reports/Taxes/Stats/DataStore.php:189
+#: src/API/Reports/Variations/Stats/DataStore.php:202
+#: src/API/Reports/Variations/Stats/DataStore.php:218
+msgid "Sorry, fetching revenue data failed."
+msgstr "Lo siento, la obtención de datos de los ingresos ha fallado."
+
+#: src/API/Reports/Coupons/Controller.php:327
+#: src/API/Reports/Coupons/DataStore.php:173
+#: src/API/Reports/Products/Controller.php:436
+#: src/API/Reports/Products/Controller.php:437
+#: dist/chunks/analytics-report-categories.js:922
+#: dist/chunks/analytics-report-categories.js:925
+#: dist/chunks/analytics-report-coupons.js:160
+#: dist/chunks/analytics-report-coupons.js:166
+#: dist/chunks/analytics-report-coupons.js:204
+#: dist/chunks/analytics-report-products.js:789
+#: dist/chunks/analytics-report-products.js:792
+#: dist/chunks/analytics-report-stock.js:189 dist/components/index.js:49761
+#: dist/components/index.js:49762 dist/components/index.js:49772
+msgid "N/A"
+msgstr "N/D"
+
+#: src/API/Reports/Coupons/Controller.php:304
+#: dist/chunks/analytics-report-coupons.js:102
+msgid "Type"
+msgstr "Tipo"
+
+#: src/API/Reports/Coupons/Controller.php:303
+#: dist/chunks/analytics-report-coupons.js:99
+msgid "Expires"
+msgstr "Caduca"
+
+#: src/API/Reports/Coupons/Controller.php:302
+#: dist/chunks/analytics-report-coupons.js:96
+msgid "Created"
+msgstr "Creado"
+
+#: src/API/Leaderboards.php:131 src/API/Reports/Coupons/Controller.php:301
+#: dist/chunks/analytics-report-coupons.js:91
+msgid "Amount Discounted"
+msgstr "Cantidad descontada"
+
+#: src/API/Leaderboards.php:125 src/API/Reports/Coupons/Controller.php:299
+#: dist/chunks/analytics-report-coupons.js:78
+msgid "Coupon Code"
+msgstr "Código de cupón"
+
+#: src/API/Reports/Coupons/Controller.php:282
+#: src/API/Reports/Orders/Controller.php:432
+msgid "Add additional piece of info about each coupon to the report."
+msgstr "Añade información adicional sobre cada cupón al informe."
+
+#: src/API/Reports/Coupons/Controller.php:207
+msgid "Coupon discount type."
+msgstr "Tipo de descuento del cupón."
+
+#: src/API/Reports/Coupons/Controller.php:200
+msgid "Coupon expiration date in GMT."
+msgstr "Fecha de caducidad del cupón en GMT."
+
+#: src/API/Reports/Coupons/Controller.php:194
+msgid "Coupon expiration date."
+msgstr "Fecha de caducidad del cupón."
+
+#: src/API/Reports/Coupons/Controller.php:188
+msgid "Coupon creation date in GMT."
+msgstr "Fecha de creación del cupón en GMT."
+
+#: src/API/Reports/Coupons/Controller.php:182
+msgid "Coupon creation date."
+msgstr "Fecha de creación del cupón."
+
+#: src/API/Reports/Coupons/Controller.php:176
+msgid "Coupon code."
+msgstr "Código del cupón."
+
+#: src/API/Reports/Categories/Controller.php:185
+#: src/API/Reports/Coupons/Controller.php:166
+#: src/API/Reports/Products/Stats/Controller.php:174
+#: src/API/Reports/Revenue/Stats/Controller.php:221
+#: src/API/Reports/Taxes/Controller.php:211
+#: src/API/Reports/Taxes/Stats/Controller.php:191
+#: src/API/Reports/Variations/Stats/Controller.php:171
+msgid "Number of orders."
+msgstr "Número de pedidos."
+
+#: src/API/Reports/Coupons/Controller.php:154
+msgid "Coupon ID."
+msgstr "ID del cupón."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:343
+#: src/API/Reports/Orders/Stats/Controller.php:552
+#: src/API/Reports/Products/Stats/Controller.php:408
+#: src/API/Reports/Revenue/Stats/Controller.php:426
+#: src/API/Reports/Taxes/Stats/Controller.php:381
+#: src/API/Reports/Variations/Stats/Controller.php:435
+msgid "Segment the response by additional constraint."
+msgstr "Segmentar la respuesta por restricciones adicionales."
+
+#: src/API/Reports/Coupons/Controller.php:273
+#: src/API/Reports/Coupons/Stats/Controller.php:334
+msgid "Limit result set to coupons assigned specific coupon IDs."
+msgstr "Limita el resultado a los cupones a los que se les han asignado IDs de cupón específicos."
+
+#: src/API/Reports/Categories/Controller.php:269
+#: src/API/Reports/Coupons/Stats/Controller.php:320
+#: src/API/Reports/Downloads/Stats/Controller.php:275
+#: src/API/Reports/Orders/Stats/Controller.php:381
+#: src/API/Reports/Products/Stats/Controller.php:367
+#: src/API/Reports/Revenue/Stats/Controller.php:412
+#: src/API/Reports/Taxes/Stats/Controller.php:358
+#: src/API/Reports/Variations/Stats/Controller.php:374
+msgid "Time interval to use for buckets in the returned data."
+msgstr "Intervalo de tiempo para utilizar para los contenedores en los datos devueltos."
+
+#: src/API/Notes.php:526 src/API/Reports/Categories/Controller.php:255
+#: src/API/Reports/Coupons/Controller.php:261
+#: src/API/Reports/Coupons/Stats/Controller.php:308
+#: src/API/Reports/Customers/Controller.php:375
+#: src/API/Reports/Downloads/Controller.php:288
+#: src/API/Reports/Downloads/Stats/Controller.php:265
+#: src/API/Reports/Orders/Controller.php:297
+#: src/API/Reports/Orders/Stats/Controller.php:369
+#: src/API/Reports/Products/Controller.php:297
+#: src/API/Reports/Products/Stats/Controller.php:350
+#: src/API/Reports/Revenue/Stats/Controller.php:394
+#: src/API/Reports/Stock/Controller.php:475
+#: src/API/Reports/Taxes/Controller.php:267
+#: src/API/Reports/Taxes/Stats/Controller.php:345
+#: src/API/Reports/Variations/Controller.php:305
+#: src/API/Reports/Variations/Stats/Controller.php:357
+msgid "Sort collection by object attribute."
+msgstr "Ordena la colección por atributo de objeto."
+
+#: src/API/Notes.php:519 src/API/Reports/Categories/Controller.php:248
+#: src/API/Reports/Coupons/Controller.php:254
+#: src/API/Reports/Coupons/Stats/Controller.php:301
+#: src/API/Reports/Customers/Controller.php:368
+#: src/API/Reports/Downloads/Controller.php:281
+#: src/API/Reports/Downloads/Stats/Controller.php:258
+#: src/API/Reports/Orders/Controller.php:290
+#: src/API/Reports/Orders/Stats/Controller.php:362
+#: src/API/Reports/Products/Controller.php:290
+#: src/API/Reports/Products/Stats/Controller.php:343
+#: src/API/Reports/Revenue/Stats/Controller.php:387
+#: src/API/Reports/Stock/Controller.php:468
+#: src/API/Reports/Taxes/Controller.php:260
+#: src/API/Reports/Taxes/Stats/Controller.php:338
+#: src/API/Reports/Variations/Controller.php:298
+#: src/API/Reports/Variations/Stats/Controller.php:350
+msgid "Order sort attribute ascending or descending."
+msgstr "Ordenar atributo en orden ascendente o descendente."
+
+#: src/API/Leaderboards.php:470 src/API/Reports/Categories/Controller.php:242
+#: src/API/Reports/Coupons/Controller.php:248
+#: src/API/Reports/Coupons/Stats/Controller.php:295
+#: src/API/Reports/Downloads/Controller.php:275
+#: src/API/Reports/Downloads/Stats/Controller.php:252
+#: src/API/Reports/Orders/Controller.php:284
+#: src/API/Reports/Orders/Stats/Controller.php:356
+#: src/API/Reports/PerformanceIndicators/Controller.php:679
+#: src/API/Reports/Products/Controller.php:284
+#: src/API/Reports/Products/Stats/Controller.php:337
+#: src/API/Reports/Revenue/Stats/Controller.php:381
+#: src/API/Reports/Taxes/Controller.php:254
+#: src/API/Reports/Taxes/Stats/Controller.php:332
+#: src/API/Reports/Variations/Controller.php:282
+#: src/API/Reports/Variations/Stats/Controller.php:334
+msgid "Limit response to resources published before a given ISO8601 compliant date."
+msgstr "Limita la respuesta a los recursos publicados antes de una fecha conforme con la norma ISO8601."
+
+#: src/API/Leaderboards.php:464 src/API/Reports/Categories/Controller.php:236
+#: src/API/Reports/Coupons/Controller.php:242
+#: src/API/Reports/Coupons/Stats/Controller.php:289
+#: src/API/Reports/Downloads/Controller.php:269
+#: src/API/Reports/Downloads/Stats/Controller.php:246
+#: src/API/Reports/Orders/Controller.php:278
+#: src/API/Reports/Orders/Stats/Controller.php:350
+#: src/API/Reports/PerformanceIndicators/Controller.php:673
+#: src/API/Reports/Products/Controller.php:278
+#: src/API/Reports/Products/Stats/Controller.php:331
+#: src/API/Reports/Revenue/Stats/Controller.php:375
+#: src/API/Reports/Taxes/Controller.php:248
+#: src/API/Reports/Taxes/Stats/Controller.php:326
+#: src/API/Reports/Variations/Controller.php:276
+#: src/API/Reports/Variations/Stats/Controller.php:328
+msgid "Limit response to resources published after a given ISO8601 compliant date."
+msgstr "Limita la respuesta a los recursos publicados después de una determinada fecha conforme con la norma ISO8601."
+
+#: src/API/Leaderboards.php:455 src/API/Notes.php:547
+#: src/API/ProductsLowInStock.php:297
+#: src/API/Reports/Categories/Controller.php:227
+#: src/API/Reports/Coupons/Controller.php:233
+#: src/API/Reports/Coupons/Stats/Controller.php:280
+#: src/API/Reports/Customers/Controller.php:359
+#: src/API/Reports/Downloads/Controller.php:260
+#: src/API/Reports/Downloads/Stats/Controller.php:237
+#: src/API/Reports/Orders/Controller.php:269
+#: src/API/Reports/Orders/Stats/Controller.php:341
+#: src/API/Reports/Products/Controller.php:269
+#: src/API/Reports/Products/Stats/Controller.php:322
+#: src/API/Reports/Revenue/Stats/Controller.php:366
+#: src/API/Reports/Stock/Controller.php:435
+#: src/API/Reports/Taxes/Controller.php:239
+#: src/API/Reports/Taxes/Stats/Controller.php:317
+#: src/API/Reports/Variations/Controller.php:267
+#: src/API/Reports/Variations/Stats/Controller.php:319
+msgid "Maximum number of items to be returned in result set."
+msgstr "Número máximo de artículos a devolver en el conjunto de resultados."
+
+#: src/API/Leaderboards.php:447 src/API/Notes.php:539
+#: src/API/ProductsLowInStock.php:289
+#: src/API/Reports/Categories/Controller.php:219
+#: src/API/Reports/Coupons/Controller.php:225
+#: src/API/Reports/Coupons/Stats/Controller.php:272
+#: src/API/Reports/Customers/Controller.php:351
+#: src/API/Reports/Downloads/Controller.php:252
+#: src/API/Reports/Downloads/Stats/Controller.php:229
+#: src/API/Reports/Orders/Controller.php:261
+#: src/API/Reports/Orders/Stats/Controller.php:333
+#: src/API/Reports/Products/Controller.php:261
+#: src/API/Reports/Products/Stats/Controller.php:314
+#: src/API/Reports/Revenue/Stats/Controller.php:358
+#: src/API/Reports/Stock/Controller.php:427
+#: src/API/Reports/Taxes/Controller.php:231
+#: src/API/Reports/Taxes/Stats/Controller.php:309
+#: src/API/Reports/Variations/Controller.php:259
+#: src/API/Reports/Variations/Stats/Controller.php:311
+msgid "Current page of the collection."
+msgstr "Página actual de la colección."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:242
+#: src/API/Reports/Downloads/Stats/Controller.php:199
+#: src/API/Reports/Orders/Stats/Controller.php:303
+#: src/API/Reports/Products/Stats/Controller.php:263
+#: src/API/Reports/Revenue/Stats/Controller.php:328
+#: src/API/Reports/Taxes/Stats/Controller.php:279
+#: src/API/Reports/Variations/Stats/Controller.php:260
+msgid "The date the report end, as GMT."
+msgstr "La fecha de fin del informe, en GMT."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:236
+#: src/API/Reports/Downloads/Stats/Controller.php:193
+#: src/API/Reports/Orders/Stats/Controller.php:297
+#: src/API/Reports/Products/Stats/Controller.php:257
+#: src/API/Reports/Revenue/Stats/Controller.php:322
+#: src/API/Reports/Taxes/Stats/Controller.php:273
+#: src/API/Reports/Variations/Stats/Controller.php:254
+msgid "The date the report end, in the site's timezone."
+msgstr "La fecha de fin del informe, en la zona horaria del sitio."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:230
+#: src/API/Reports/Downloads/Stats/Controller.php:187
+#: src/API/Reports/Orders/Stats/Controller.php:291
+#: src/API/Reports/Products/Stats/Controller.php:251
+#: src/API/Reports/Revenue/Stats/Controller.php:316
+#: src/API/Reports/Taxes/Stats/Controller.php:267
+#: src/API/Reports/Variations/Stats/Controller.php:248
+msgid "The date the report start, as GMT."
+msgstr "La fecha de inicio del informe, en GMT."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:224
+#: src/API/Reports/Downloads/Stats/Controller.php:181
+#: src/API/Reports/Orders/Stats/Controller.php:285
+#: src/API/Reports/Products/Stats/Controller.php:245
+#: src/API/Reports/Revenue/Stats/Controller.php:310
+#: src/API/Reports/Taxes/Stats/Controller.php:261
+#: src/API/Reports/Variations/Stats/Controller.php:242
+msgid "The date the report start, in the site's timezone."
+msgstr "La fecha de inicio del informe, en la zona horaria del sitio."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:217
+#: src/API/Reports/Downloads/Stats/Controller.php:174
+#: src/API/Reports/Orders/Stats/Controller.php:278
+#: src/API/Reports/Products/Stats/Controller.php:238
+#: src/API/Reports/Revenue/Stats/Controller.php:303
+#: src/API/Reports/Taxes/Stats/Controller.php:254
+#: src/API/Reports/Variations/Stats/Controller.php:235
+msgid "Type of interval."
+msgstr "Tipo de intervalo."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:209
+#: src/API/Reports/Downloads/Stats/Controller.php:166
+#: src/API/Reports/Orders/Stats/Controller.php:270
+#: src/API/Reports/Products/Stats/Controller.php:230
+#: src/API/Reports/Revenue/Stats/Controller.php:295
+#: src/API/Reports/Taxes/Stats/Controller.php:246
+#: src/API/Reports/Variations/Stats/Controller.php:227
+msgid "Reports data grouped by intervals."
+msgstr "Datos de los informes agrupados por intervalos."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:202
+#: src/API/Reports/Customers/Stats/Controller.php:164
+#: src/API/Reports/Downloads/Stats/Controller.php:159
+#: src/API/Reports/Orders/Stats/Controller.php:263
+#: src/API/Reports/Products/Stats/Controller.php:223
+#: src/API/Reports/Revenue/Stats/Controller.php:288
+#: src/API/Reports/Stock/Stats/Controller.php:115
+#: src/API/Reports/Taxes/Stats/Controller.php:239
+#: src/API/Reports/Variations/Stats/Controller.php:220
+msgid "Totals data."
+msgstr "Datos totales."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:183
+#: src/API/Reports/Coupons/Stats/Controller.php:248
+#: src/API/Reports/Downloads/Stats/Controller.php:205
+#: src/API/Reports/Orders/Stats/Controller.php:239
+#: src/API/Reports/Orders/Stats/Controller.php:309
+#: src/API/Reports/Products/Stats/Controller.php:204
+#: src/API/Reports/Products/Stats/Controller.php:269
+#: src/API/Reports/Revenue/Stats/Controller.php:264
+#: src/API/Reports/Revenue/Stats/Controller.php:334
+#: src/API/Reports/Taxes/Stats/Controller.php:220
+#: src/API/Reports/Taxes/Stats/Controller.php:285
+#: src/API/Reports/Variations/Stats/Controller.php:201
+#: src/API/Reports/Variations/Stats/Controller.php:266
+msgid "Interval subtotals."
+msgstr "Subtotales del intervalo."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:177
+#: src/API/Reports/Orders/Stats/Controller.php:233
+#: src/API/Reports/Products/Stats/Controller.php:191
+#: src/API/Reports/Revenue/Stats/Controller.php:258
+#: src/API/Reports/Taxes/Stats/Controller.php:214
+#: src/API/Reports/Variations/Stats/Controller.php:188
+msgid "Segment identificator."
+msgstr "Identificador del segmento."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:169
+#: src/API/Reports/Orders/Stats/Controller.php:225
+#: src/API/Reports/Products/Stats/Controller.php:183
+#: src/API/Reports/Revenue/Stats/Controller.php:250
+#: src/API/Reports/Taxes/Stats/Controller.php:206
+#: src/API/Reports/Variations/Stats/Controller.php:180
+msgid "Reports data grouped by segment condition."
+msgstr "Informa los datos agrupados por condición del segmento."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:159
+msgid "Number of discounted orders."
+msgstr "Cantidad de pedidos con descuento."
+
+#: src/API/Reports/Coupons/Stats/Controller.php:158
+#: dist/chunks/analytics-report-coupons.js:533
+#: dist/chunks/dashboard-charts.js:1236 dist/chunks/dashboard-charts.js:1813
+msgid "Discounted Orders"
+msgstr "Pedidos con descuento"
+
+#: src/API/Reports/Coupons/Stats/Controller.php:152
+msgid "Number of coupons."
+msgstr "Cantidad de cupones."
+
+#: src/API/Reports/Coupons/Controller.php:160
+#: src/API/Reports/Coupons/Stats/Controller.php:144
+msgid "Net discount amount."
+msgstr "Cantidad de descuento neto."
+
+#: src/API/Reports/Coupons/Stats/Segmenter.php:283
+#: src/API/Reports/Orders/Stats/Segmenter.php:378
+#: src/API/Reports/Products/Stats/Segmenter.php:169
+msgid "product_includes parameter need to specify exactly one product when segmenting by variation."
+msgstr "El parámetro product_includes necesita especificar exactamente un producto al segmentar por variación."
+
+#. translators: %s: parameter name
+#: src/API/Reports/TimeInterval.php:631
+msgid "%s must contain 2 valid dates."
+msgstr "%s debe contener 2 fechas válidas."
+
+#. translators: %s: parameter name
+#: src/API/Reports/TimeInterval.php:599
+msgid "%s must contain 2 numbers."
+msgstr "%s debe contener 2 números."
+
+#. translators: 1: parameter name
+#. translators: 1: parameter name
+#: src/API/Reports/TimeInterval.php:587 src/API/Reports/TimeInterval.php:619
+msgid "%1$s is not a numerically indexed array."
+msgstr "%1$s no es un array indexado numéricamente."
+
+#: src/API/Themes.php:196
+msgid "A zip file of the theme to be uploaded."
+msgstr "Un archivo zip del tema a subir."
+
+#: src/API/Themes.php:177
+msgid "Uploaded theme."
+msgstr "Tema subido."
+
+#: src/API/Themes.php:171
+msgid "Theme installation message."
+msgstr "Mensaje de instalación del tema."
+
+#: src/API/Themes.php:165
+msgid "Theme installation status."
+msgstr "Estado de instalación del tema."
+
+#: src/API/Themes.php:77
+msgid "Specified file failed upload test."
+msgstr "El archivo especificado falló la prueba de subida."
+
+#: src/API/Themes.php:62
+msgid "Sorry, you are not allowed to install themes on this site."
+msgstr "Lo siento, no tienes permisos para instalar temas en este sitio."
+
+#: src/API/OnboardingProfile.php:358
+msgid "Whether or not the store was connected to WooCommerce.com during the extension flow."
+msgstr "Si la tienda estaba conectada a WooCommerce.com durante la ejecución de la extensión o no."
+
+#: src/API/OnboardingProfile.php:351
+msgid "Whether or not this store was setup for a client."
+msgstr "Si esta tienda se configura para un cliente o no."
+
+#: src/API/OnboardingProfile.php:343
+msgid "Selected store theme."
+msgstr "Tema de tienda seleccionado."
+
+#: src/API/OnboardingProfile.php:322
+msgid "Extra business extensions to install."
+msgstr "Extensiones de negocio adicionales a instalar."
+
+#: src/API/OnboardingProfile.php:297
+msgid "Name of other platform used to sell."
+msgstr "Nombre de otra plataforma utilizada para vender."
+
+#: src/API/OnboardingProfile.php:281
+msgid "Current annual revenue of the store."
+msgstr "Actuales ingresos anuales de la tienda."
+
+#: src/API/OnboardingProfile.php:267
+msgid "Other places the store is selling products."
+msgstr "Otros sitios en los que la tienda está vendiendo productos."
+
+#: src/API/OnboardingProfile.php:253
+msgid "Number of products to be added."
+msgstr "Número de productos a añadir."
+
+#: src/API/OnboardingProfile.php:241
+msgid "Types of products sold."
+msgstr "Tipos de productos vendidos."
+
+#: src/API/OnboardingProfile.php:231
+msgid "Industry."
+msgstr "Sector."
+
+#: src/API/OnboardingProfile.php:217
+msgid "Whether or not the profile was completed."
+msgstr "Si se completó o no el perfil."
+
+#: src/API/OnboardingProfile.php:146
+msgid "Onboarding profile data has been updated."
+msgstr "Los datos del perfil integrado se han actualizado."
+
+#: src/API/Notes.php:391 src/API/OnboardingProfile.php:87
+#: src/API/Reports/Import/Controller.php:110
+msgid "Sorry, you cannot edit this resource."
+msgstr "Lo siento, no puedes editar este recurso."
+
+#: src/API/Notes.php:224 src/API/Notes.php:238
+#: src/API/OnboardingFreeExtensions.php:61 src/API/OnboardingPayments.php:61
+#: src/API/OnboardingProfile.php:73 src/API/Reports/Controller.php:60
+msgid "Sorry, you cannot list resources."
+msgstr "Lo siento, no puedes listar recursos."
+
+#: src/Schedulers/CustomersScheduler.php:230
+msgid "[deleted]"
+msgstr "[borrado]"
+
+#: src/PageController.php:205
+msgid "Current page retrieval should be called on or after the `current_screen` hook."
+msgstr "La recuperación de la página actual debe ser llamada en o después del gancho `current_screen'."
+
+#: src/ReportsSync.php:179
+msgid "Report table data is being deleted."
+msgstr "Los datos de la tabla del informe se están borrando."
+
+#: src/ReportsSync.php:95
+msgid "Report table data is being rebuilt.  Please allow some time for data to fully populate."
+msgstr "Se están reconstruyendo los datos de la tabla de informes.  Por favor, espera un poco de tiempo para que los datos se llenen por completo."
+
+#: src/ReportsSync.php:79
+msgid "An import is already in progress.  Please allow the previous import to complete before beginning a new one."
+msgstr "Ya hay una importación en marcha. Por favor, permite que se complete la importación anterior antes de empezar una nueva."
+
+#: src/ReportsSync.php:49
+msgid "Report sync schedulers should be derived from the Automattic\\WooCommerce\\Admin\\Schedulers\\ImportScheduler class."
+msgstr "Los programadores de sincronización de informes deben derivarse de la clase Automattic\\WooCommerce\\Admin\\Schedulers\\ImportScheduler."
+
+#. translators: 1: URL of GitHub Repository build page
+#: woocommerce-admin.php:134
+msgid "Or you can download a pre-built version of the plugin by visiting <a href=\"%1$s\">the releases page in the repository</a>."
+msgstr "O puedes descargar una versión previa del plugin visitando <a href=\"%1$s\">la página de versiones en el repositorio</a>."
+
+#. translators: 1: URL of WordPress.org, 2: The minimum WordPress version
+#. number
+#: src/FeaturePlugin.php:244
+msgid "The WooCommerce Admin feature plugin requires <a href=\"%1$s\">WordPress</a> %2$s or greater to be installed and active."
+msgstr "El destacado plugin WooCommerce Admin necesita <a href=\"%1$s\">WordPress</a> %2$s o superior para poder ser instalado y activado."
+
+#. translators: 1: URL of WooCommerce plugin, 2: The minimum WooCommerce
+#. version number
+#: src/FeaturePlugin.php:235
+msgid "The WooCommerce Admin feature plugin requires <a href=\"%1$s\">WooCommerce</a> %2$s or greater to be installed and active."
+msgstr "El destacado plugin WooCommerce Admin necesita <a href=\"%1$s\">WooCommerce</a> %2$s o superior para poder ser instalado y activado."
+
+#: src/ReportCSVEmail.php:82
+msgid "[{site_title}]: Your {report_name} Report download is ready"
+msgstr "[{site_title}]: La descarga de tu informe {report_name} está preparada"
+
+#: src/ReportCSVEmail.php:73
+msgid "Your Report Download"
+msgstr "Descarga de tu informe"
+
+#: src/Loader.php:1201 src/Loader.php:1202
+msgid "Default Date Range"
+msgstr "Rango de fechas por defecto"
+
+#: src/Loader.php:1193
+msgid "Statuses that require extra action on behalf of the store admin."
+msgstr "Estados que requieren una acción adicional por parte del administrador de la tienda."
+
+#: src/Loader.php:1192
+msgid "Actionable order statuses"
+msgstr "Estados de pedido que requieren alguna acción"
+
+#: src/Loader.php:1184
+msgid "Statuses that should not be included when calculating report totals."
+msgstr "Estados que no deberían incluirse al calcular los totales del informe."
+
+#: src/Loader.php:1183
+msgid "Excluded report order statuses"
+msgstr "Estados del pedido excluidos del informe"
+
+#: src/Loader.php:1164
+msgid "Settings for WooCommerce admin reporting."
+msgstr "Ajustes del informe de administración de WooCommerce"
+
+#. translators: %1$s: updated title, %2$s: blog info name
+#: src/Loader.php:991
+msgid "%1$s &lsaquo; %2$s"
+msgstr "%1$s &lsaquo; %2$s"
+
+#: src/Features/Analytics.php:239 src/Features/Navigation/CoreMenu.php:192
+#: src/ReportCSVEmail.php:34 dist/app/index.js:518 dist/app/index.js:1475
+#: dist/chunks/analytics-report-customers.js:614
+msgid "Customers"
+msgstr "Clientes"
+
+#: src/API/Reports/Products/Controller.php:399
+#: src/API/Reports/Stock/Controller.php:527
+#: src/API/Reports/Variations/Controller.php:421 src/Features/Analytics.php:229
+#: src/ReportCSVEmail.php:39 dist/app/index.js:511
+#: dist/chunks/analytics-report-categories.js:830
+#: dist/chunks/analytics-report-products.js:697
+#: dist/chunks/analytics-report-products.js:992
+#: dist/chunks/analytics-report-stock.js:141
+#: dist/chunks/analytics-report-stock.js:240
+#: dist/chunks/analytics-report-variations.js:580
+#: dist/chunks/homescreen.js:2606
+msgid "Stock"
+msgstr "Inventario"
+
+#: src/API/Reports/Revenue/Stats/Controller.php:454
+#: src/Features/Analytics.php:209 src/ReportCSVEmail.php:40
+#: dist/app/index.js:504 dist/chunks/analytics-report-revenue.js:145
+#: dist/chunks/analytics-report-revenue.js:473
+#: dist/chunks/analytics-report-taxes.js:217
+#: dist/chunks/dashboard-charts.js:748
+msgid "Taxes"
+msgstr "Impuestos"
+
+#: src/Features/Analytics.php:189 src/ReportCSVEmail.php:32
+#: dist/app/index.js:490 dist/chunks/analytics-report-categories.js:309
+#: dist/chunks/analytics-report-variations.js:149
+msgid "Categories"
+msgstr "Categorías"
+
+#: src/Features/Analytics.php:159 src/ReportCSVEmail.php:38
+#: dist/app/index.js:462 dist/chunks/analytics-report-revenue.js:285
+msgid "Revenue"
+msgstr "Ingresos"
+
+#: src/Features/Analytics.php:129 src/Features/Analytics.php:249
+#: src/Features/Navigation/CoreMenu.php:94 dist/app/index.js:1455
+#: dist/app/index.js:1465 dist/app/index.js:1496 dist/app/index.js:4141
+msgid "Analytics"
+msgstr "Análisis"
+
+#: src/Features/Onboarding.php:914
+msgid "If you need to enable or disable the task lists, please click on the button below."
+msgstr "Si tienes que activar o desactivar la lista de tareas, por favor, haz clic en el siguiente botón."
+
+#: src/Features/Onboarding.php:913
+msgid "Task List"
+msgstr "Lista de tareas"
+
+#: src/Features/Onboarding.php:917 src/Features/Onboarding.php:924
+msgid "Disable"
+msgstr "Desactivar"
+
+#: src/Features/Onboarding.php:910
+msgid "If you need to access the setup wizard again, please click on the button below."
+msgstr "Si necesitas acceder de nuevo al asistente de configuración, por favor, haz clic en el siguiente botón."
+
+#: src/Features/Onboarding.php:909
+msgid "Profile Setup Wizard"
+msgstr "Asistente de configuración de perfil"
+
+#: src/Features/Onboarding.php:907
+msgid "WooCommerce Onboarding"
+msgstr "WooCommerce Onboarding"
+
+#: src/Features/Onboarding.php:916 src/Features/Onboarding.php:923
+#: dist/chunks/task-list.js:3554
+msgid "Enable"
+msgstr "Activar"
+
+#. translators: site currency symbol (used to show that the product costs
+#. money)
+#: src/Features/Onboarding.php:614
+msgid " — %s"
+msgstr " — %s"
+
+#: src/Features/Onboarding.php:437
+msgid "Bookings"
+msgstr "Reservas"
+
+#: src/Features/Onboarding.php:433
+msgid "Memberships"
+msgstr "Membresías"
+
+#: src/Features/Onboarding.php:429
+msgid "Subscriptions"
+msgstr "Suscripciones"
+
+#: src/API/Reports/Downloads/Stats/Controller.php:144
+#: src/Features/Analytics.php:219 src/Features/Onboarding.php:426
+#: src/ReportCSVEmail.php:35 dist/app/index.js:522
+#: dist/chunks/analytics-report-downloads.js:229
+#: dist/chunks/analytics-report-downloads.js:495
+#: dist/chunks/dashboard-charts.js:1418 dist/chunks/dashboard-charts.js:1837
+msgid "Downloads"
+msgstr "Descargas"
+
+#: src/Features/Onboarding.php:422
+msgid "Physical products"
+msgstr "Productos físicos"
+
+#: src/Features/Onboarding.php:405 dist/chunks/profile-wizard.js:981
+msgid "Other"
+msgstr "Otra"
+
+#: src/Features/Onboarding.php:395
+msgid "CBD and other hemp-derived products"
+msgstr "El CBD (cannabidol) y otros productos derivados del cáñamo"
+
+#: src/Features/Onboarding.php:390
+msgid "Home, furniture, and garden"
+msgstr "Hogar, muebles y jardín"
+
+#: src/Features/Onboarding.php:385
+msgid "Food and drink"
+msgstr "Alimentación y bebidas"
+
+#: src/Features/Onboarding.php:380
+msgid "Electronics and computers"
+msgstr "Electrónica y ordenadores"
+
+#: src/Features/Onboarding.php:375
+msgid "Health and beauty"
+msgstr "Salud y belleza"
+
+#: src/Features/Onboarding.php:370
+msgid "Fashion, apparel, and accessories"
+msgstr "Moda, complementos y accesorios"
+
+#: src/Notes/MobileApp.php:41
+msgid "Install Woo mobile app"
+msgstr "Instala la aplicación móvil WooCommerce"
+
+#: src/Notes/MobileApp.php:38
+msgid "Install the WooCommerce mobile app to manage orders, receive sales notifications, and view key metrics — wherever you are."
+msgstr "Instala la aplicación móvil de WooCommerce para gestionar pedidos, recibir avisos de ventas y ver métricas clave – allí donde estés."
+
+#: src/Notes/WooSubscriptionsNotes.php:403
+msgid "Renew Subscription"
+msgstr "Renovar suscripción"
+
+#. translators: date the subscription expired, e.g. Jun 7th 2018
+#: src/Notes/WooSubscriptionsNotes.php:378
+msgid "Your subscription expired on %s. Get a new subscription to continue receiving updates and access to support."
+msgstr "Tu suscripción ha caducado el %s. Consigue una nueva suscripción para seguir recibiendo actualizaciones y acceso a soporte."
+
+#. translators: name of the extension subscription that expired
+#: src/Notes/WooSubscriptionsNotes.php:372
+msgid "%s subscription expired"
+msgstr "%s suscripción caducada"
+
+#: src/Notes/WooSubscriptionsNotes.php:340
+msgid "Enable Autorenew"
+msgstr "Activar renovación automática"
+
+#. translators: number of days until the subscription expires
+#: src/Notes/WooSubscriptionsNotes.php:317
+msgid "Your subscription expires in %d days. Enable autorenew to avoid losing updates and access to support."
+msgstr "Tu suscripción caduca en %d días. Activa la renovación automática para evitar la pérdida de actualizaciones y el acceso al soporte."
+
+#. translators: name of the extension subscription expiring soon
+#: src/Notes/WooSubscriptionsNotes.php:311
+msgid "%s subscription expiring soon"
+msgstr "%s suscripción caducará pronto"
+
+#: src/Notes/WooSubscriptionsNotes.php:190 dist/chunks/3.js:871
+#: dist/chunks/3.js:1190 dist/chunks/3.js:1295 dist/chunks/6.js:1334
+#: dist/chunks/6.js:1732 dist/chunks/6.js:1867 dist/chunks/task-list.js:2219
+#: dist/chunks/task-list.js:4305
+msgid "Connect"
+msgstr "Conectar"
+
+#: src/Notes/WooSubscriptionsNotes.php:183
+msgid "Connect to get important product notifications and updates."
+msgstr "Conéctate para recibir avisos y actualizaciones importantes de productos."
+
+#: src/Notes/WooSubscriptionsNotes.php:182
+msgid "Connect to WooCommerce.com"
+msgstr "Conectar con WooCommerce.com"
+
+#: src/Notes/DeactivatePlugin.php:48
+msgid "Deactivate"
+msgstr "Desactivar"
+
+#: src/Notes/DeactivatePlugin.php:41
+msgid "Your current version of WooCommerce Admin is outdated and a newer version is included with WooCommerce.  We recommend deactivating the plugin and using the stable version included with WooCommerce."
+msgstr "Tu versión actual de WooCommerce Admin no está actualizada y en WooCommerce está incluida una nueva versión. Recomendamos desactivar el plugin y usar la versión estable incluida con WooCommerce."
+
+#: src/Notes/DeactivatePlugin.php:40
+msgid "Deactivate old WooCommerce Admin version"
+msgstr "Desactivar la versión antigua de WooCommerce Admin"
+
+#: src/Notes/OnboardingEmailMarketing.php:41
+msgid "Yes please!"
+msgstr "¡Sí, por favor!"
+
+#: src/Notes/OnboardingEmailMarketing.php:32
+msgid "We're here for you - get tips, product updates and inspiration straight to your email box"
+msgstr "Estamos aquí por ti - consigue trucos, actualizaciones de productos e inspiración en tu buzón."
+
+#: src/Notes/AddFirstProduct.php:86
+msgid "Add a product"
+msgstr "Añadir un producto"
+
+#: src/Notes/AddFirstProduct.php:74
+msgid "Add your first product"
+msgstr "Añade tu primer producto"
+
+#: src/Notes/NewSalesRecord.php:128
+msgid "View report"
+msgstr "Ver informe"
+
+#: src/Notes/NewSalesRecord.php:122
+msgid "New sales record!"
+msgstr "¡Nuevo récord de ventas!"
+
+#. translators: 1 and 4: Date (e.g. October 16th), 2 and 3: Amount (e.g.
+#. $160.00)
+#: src/Notes/NewSalesRecord.php:101
+msgid "Woohoo, %1$s was your record day for sales! Net Sales was %2$s beating the previous record of %3$s set on %4$s."
+msgstr "¡Ole, %1$s fue tu día récord de ventas! La facturación neta fue de %2$s superando el récord anterior de %3$s establecido el %4$s."
+
+#: src/Notes/TrackingOptIn.php:69
+msgid "Activate usage tracking"
+msgstr "Activar el seguimiento de uso"
+
+#: src/Notes/TrackingOptIn.php:63
+msgid "Help WooCommerce improve with usage tracking"
+msgstr "Ayuda a WooCommerce a mejorar con el seguimiento de uso"
+
+#. translators: 1: open link to WooCommerce.com settings, 2: open link to
+#. WooCommerce.com tracking documentation, 3: close link tag.
+#: src/Notes/TrackingOptIn.php:50
+msgid "Gathering usage data allows us to improve WooCommerce. Your store will be considered as we evaluate new features, judge the quality of an update, or determine if an improvement makes sense. You can always visit the %1$sSettings%3$s and choose to stop sharing data. %2$sRead more%3$s about what data we collect."
+msgstr "Recopilar datos de uso nos permite mejorar WooCommerce. Se tendrá en cuenta a tu tienda a medida que evaluamos nuevas características, juzgamos la calidad de una actualización o determinamos si una mejora tiene sentido. Siempre puedes visitar los %1$sAjustes%3$s y elegir dejar de compartir datos. %2$sLee más%3$s sobre los datos que recopilamos."
+
+#: src/Notes/Note.php:606
+msgid "The admin note action label prop cannot be empty."
+msgstr "La propiedad action label de la nota de administración no puede estar vacía."
+
+#: src/Notes/Note.php:602
+msgid "The admin note action name prop cannot be empty."
+msgstr "La propiedad action name de la nota de administración no puede estar vacía."
+
+#: src/Notes/Note.php:503
+msgid "The admin note date prop cannot be empty."
+msgstr "La propiedad date de la nota de administración no puede estar vacía."
+
+#: src/Notes/Note.php:490
+msgid "The admin note source prop cannot be empty."
+msgstr "La propiedad source de la nota de administración no puede estar vacía."
+
+#. translators: %s: admin note status property.
+#: src/Notes/Note.php:474
+msgid "The admin note status prop (%s) is not one of the supported statuses."
+msgstr "La propiedad status (%s) de la nota de administración no es uno de los estados compatibles."
+
+#: src/Notes/Note.php:466
+msgid "The admin note status prop cannot be empty."
+msgstr "La propiedad status de la nota de administración no puede estar vacía."
+
+#: src/Notes/Note.php:453
+msgid "The admin note content_data prop must be an instance of stdClass."
+msgstr "La propiedad content_data de la nota de administracion debe ser una instancia de stdClass."
+
+#: src/Notes/Note.php:436
+msgid "The admin note content prop cannot be empty."
+msgstr "La propiedad conrtent de la nota de administración no puede estar vacía."
+
+#: src/Notes/Note.php:396
+msgid "The admin note title prop cannot be empty."
+msgstr "La propiedad title de la nota de administración no puede estar vacía."
+
+#: src/Notes/Note.php:383
+msgid "The admin note locale prop cannot be empty."
+msgstr "La propiedad locale de la nota de administración no puede estar vacía."
+
+#. translators: %s: admin note type.
+#: src/Notes/Note.php:367
+msgid "The admin note type prop (%s) is not one of the supported types."
+msgstr "La propiedad type (%s) de la nota de administración no está entre los tipos compatibles."
+
+#: src/Notes/Note.php:359
+msgid "The admin note type prop cannot be empty."
+msgstr "La propiedad type de la nota de administración no puede estar vacía."
+
+#: src/Notes/Note.php:346
+msgid "The admin note name prop cannot be empty."
+msgstr "La propiedad name de la nota de administración no puede estar vacía."
+
+#: src/Notes/OrderMilestones.php:258
+msgid "Review your orders"
+msgstr "Revisa tus pedidos"
+
+#: src/Notes/OrderMilestones.php:245
+msgid "Browse"
+msgstr "Explorar"
+
+#: src/Notes/AddingAndManangingProducts.php:71 src/Notes/ChooseNiche.php:75
+#: src/Notes/CustomizeStoreWithBlocks.php:77
+#: src/Notes/CustomizingProductCatalog.php:74 src/Notes/DrawAttention.php:68
+#: src/Notes/EditProductsOnTheMove.php:62 src/Notes/EUVATNumber.php:53
+#: src/Notes/FilterByProductVariationsInReports.php:50
+#: src/Notes/FirstDownlaodableProduct.php:62 src/Notes/LaunchChecklist.php:54
+#: src/Notes/LearnMoreAboutVariableProducts.php:77
+#: src/Notes/ManageOrdersOnTheGo.php:56
+#: src/Notes/ManageStoreActivityFromHomeScreen.php:58
+#: src/Notes/MigrateFromShopify.php:70 src/Notes/MobileApp.php:47
+#: src/Notes/OnboardingPayments.php:58 src/Notes/OnlineClothingStore.php:89
+#: src/Notes/OrderMilestones.php:239 src/Notes/PerformanceOnMobile.php:59
+#: src/Notes/RealTimeOrderAlerts.php:52 src/Notes/SellingOnlineCourses.php:76
+#: src/Notes/StartDropshippingBusiness.php:75
+#: src/Notes/WelcomeToWooCommerceForStoreUsers.php:50
+#: src/Notes/WooCommercePayments.php:117 dist/chunks/profile-wizard.js:2353
+#: dist/chunks/task-list.js:787 dist/onboarding/index.js:889
+msgid "Learn more"
+msgstr "Aprende más"
+
+#: src/Notes/OrderMilestones.php:222
+msgid "Another order milestone! Take a look at your Orders Report to review your orders to date."
+msgstr "¡Otro hito con los pedidos! Echa un vistazo a tu informe de pedidos para revisar tus pedidos hasta la fecha."
+
+#: src/Notes/OrderMilestones.php:213
+msgid "You've hit the 10 orders milestone! Look at you go. Browse some WooCommerce success stories for inspiration."
+msgstr "¡Has logrado el hito de los 10 pedidos! Mira cómo vas. Ve algunas historias de éxito de WooCommerce para inspirarte."
+
+#: src/Notes/OrderMilestones.php:211
+msgid "Congratulations on getting your first order! Now is a great time to learn how to manage your orders."
+msgstr "¡Enhorabuena por conseguir tu primer pedido! Ahora es un buen momento para aprender cómo gestionar tus pedidos."
+
+#. translators: Number of orders processed.
+#: src/Notes/OrderMilestones.php:194
+msgid "Congratulations on processing %s orders!"
+msgstr "¡Enhorabuena por haber procesado %s pedidos!"
+
+#. translators: %1$s: report name, %2$s: download URL
+#: includes/emails/plain-admin-report-export-download.php:15
+msgid "Download your %1$s Report: %2$s"
+msgstr "Descarga tu informe de %1$s: %2$s"
+
+#. translators: %s: report name
+#: includes/emails/html-admin-report-export-download.php:19
+msgid "Download your %s Report"
+msgstr "Descarga tu informe de %s"
+
+#: includes/connect-existing-pages.php:294
+msgid "Edit attribute"
+msgstr "Editar atributo"
+
+#: includes/connect-existing-pages.php:284
+#: src/Features/Navigation/CoreMenu.php:209
+msgid "Attributes"
+msgstr "Atributos"
+
+#: includes/connect-existing-pages.php:274
+msgid "Edit tag"
+msgstr "Editar etiqueta"
+
+#: includes/connect-existing-pages.php:264
+msgid "Product tags"
+msgstr "Etiquetas del producto"
+
+#: includes/connect-existing-pages.php:254
+msgid "Edit category"
+msgstr "Editar categoría"
+
+#: includes/connect-existing-pages.php:244
+msgid "Product categories"
+msgstr "Categorías del producto"
+
+#: includes/connect-existing-pages.php:234
+msgid "Export Products"
+msgstr "Exportar productos"
+
+#: includes/connect-existing-pages.php:224
+msgid "Import Products"
+msgstr "Importar productos"
+
+#: includes/connect-existing-pages.php:214
+msgid "Edit Product"
+msgstr "Editar producto"
+
+#: includes/connect-existing-pages.php:193
+#: src/API/Reports/Categories/Controller.php:332 src/Features/Analytics.php:149
+#: src/Features/Navigation/CoreMenu.php:89 src/ReportCSVEmail.php:37
+#: dist/app/index.js:469 dist/chunks/5.js:927
+#: dist/chunks/analytics-report-categories.js:193
+#: dist/chunks/analytics-report-categories.js:990
+#: dist/chunks/analytics-report-orders.js:118
+#: dist/chunks/analytics-report-orders.js:641
+#: dist/chunks/analytics-report-products.js:857
+#: dist/chunks/analytics-report-variations.js:177
+#: dist/chunks/dashboard-charts.js:1010
+msgid "Products"
+msgstr "Productos"
+
+#: includes/connect-existing-pages.php:184
+msgid "Edit Coupon"
+msgstr "Editar cupón"
+
+#: includes/connect-existing-pages.php:163
+#: src/API/Reports/Revenue/Stats/Controller.php:453
+#: src/Features/Analytics.php:199 src/Features/Coupons.php:75
+#: src/Features/Coupons.php:76 src/ReportCSVEmail.php:33 dist/app/index.js:497
+#: dist/chunks/analytics-report-coupons.js:230
+#: dist/chunks/analytics-report-orders.js:130
+#: dist/chunks/analytics-report-revenue.js:133
+#: dist/chunks/analytics-report-revenue.js:462
+#: dist/chunks/dashboard-charts.js:737
+msgid "Coupons"
+msgstr "Cupones"
+
+#: includes/connect-existing-pages.php:153
+msgid "Edit Order"
+msgstr "Editar pedido"
+
+#: includes/connect-existing-pages.php:143
+#: includes/connect-existing-pages.php:174
+#: includes/connect-existing-pages.php:204
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: includes/connect-existing-pages.php:132 src/API/Leaderboards.php:128
+#: src/API/Leaderboards.php:264 src/API/Reports/Categories/Controller.php:333
+#: src/API/Reports/Coupons/Controller.php:300
+#: src/API/Reports/Customers/Controller.php:591
+#: src/API/Reports/Orders/Stats/Controller.php:170
+#: src/API/Reports/Products/Controller.php:392
+#: src/API/Reports/Revenue/Stats/Controller.php:449
+#: src/API/Reports/Taxes/Controller.php:307
+#: src/API/Reports/Variations/Controller.php:416 src/Features/Analytics.php:169
+#: src/Features/Navigation/CoreMenu.php:84 src/ReportCSVEmail.php:36
+#: dist/app/index.js:483 dist/chunks/5.js:855
+#: dist/chunks/analytics-report-categories.js:65
+#: dist/chunks/analytics-report-categories.js:198
+#: dist/chunks/analytics-report-categories.js:815
+#: dist/chunks/analytics-report-coupons.js:84
+#: dist/chunks/analytics-report-customers.js:442
+#: dist/chunks/analytics-report-orders.js:314
+#: dist/chunks/analytics-report-orders.js:573
+#: dist/chunks/analytics-report-products.js:491
+#: dist/chunks/analytics-report-products.js:682
+#: dist/chunks/analytics-report-products.js:984
+#: dist/chunks/analytics-report-revenue.js:115
+#: dist/chunks/analytics-report-taxes.js:106
+#: dist/chunks/analytics-report-taxes.js:534
+#: dist/chunks/analytics-report-variations.js:65
+#: dist/chunks/analytics-report-variations.js:572
+#: dist/chunks/dashboard-charts.js:816 dist/chunks/dashboard-charts.js:942
+#: dist/chunks/dashboard-charts.js:1352 dist/chunks/dashboard-charts.js:1797
+#: dist/chunks/homescreen.js:2596
+msgid "Orders"
+msgstr "Pedidos"
+
+#: includes/connect-existing-pages.php:44
+#: src/Features/Navigation/CoreMenu.php:248
+msgid "Logs"
+msgstr "Registros"
+
+#: includes/connect-existing-pages.php:43
+#: src/Features/Navigation/CoreMenu.php:117
+msgid "Tools"
+msgstr "Herramientas"
+
+#: includes/connect-existing-pages.php:42
+#: src/Features/Navigation/CoreMenu.php:246
+msgid "System status"
+msgstr "Estado del sistema"
+
+#: includes/connect-existing-pages.php:38
+#: src/API/Reports/Orders/Controller.php:528
+#: src/API/Reports/Products/Controller.php:398
+#: src/API/Reports/Stock/Controller.php:526
+#: src/API/Reports/Variations/Controller.php:420
+#: dist/chunks/analytics-report-categories.js:827
+#: dist/chunks/analytics-report-orders.js:102
+#: dist/chunks/analytics-report-products.js:694
+#: dist/chunks/analytics-report-products.js:989
+#: dist/chunks/analytics-report-stock.js:136
+#: dist/chunks/analytics-report-variations.js:577
+msgid "Status"
+msgstr "Estado"
+
+#: includes/connect-existing-pages.php:34 src/Features/Analytics.php:245
+#: src/Features/Navigation/CoreMenu.php:110 src/Features/Settings.php:89
+#: dist/app/index.js:1465 dist/app/index.js:1540 dist/chunks/homescreen.js:1217
+#: dist/chunks/homescreen.js:1686 dist/chunks/marketing-overview.js:1738
+msgid "Settings"
+msgstr "Ajustes"
+
+#: includes/connect-existing-pages.php:30
+#: src/Features/Navigation/CoreMenu.php:99
+msgid "Reports"
+msgstr "Informes"
+
+#: includes/connect-existing-pages.php:26 dist/app/index.js:3541
+#: dist/chunks/homescreen.js:1305
+msgid "Extensions"
+msgstr "Extensiones"
+
+#. translators: 1: composer command. 2: plugin directory
+#. translators: 1: composer command. 2: plugin directory
+#: woocommerce-admin.php:38 woocommerce-admin.php:56
+msgid "Your installation of the WooCommerce Admin feature plugin is incomplete. Please run %1$s within the %2$s directory."
+msgstr "Tu instalación del plugin de características WooCommerce Admin está incompleta. Por favor, ejecuta %1$s dentro del directorio %2$s."
+
+#. Author URI of the plugin
+msgid "https://woocommerce.com/"
+msgstr "https://woocommerce.com/"
+
+#. Author of the plugin
+#: includes/connect-existing-pages.php:62 src/Loader.php:1093
+#: src/PageController.php:183
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#. Description of the plugin
+msgid "A new JavaScript-driven interface for managing your store. The plugin includes new and improved reports, and a dashboard to monitor all the important key metrics of your site."
+msgstr "Una nueva interfaz, hecha en JavaScript, para gestionar tu tienda. El plugin incluye informes nuevos y mejorados, y un escritorio para vigilar todas las métricas clave de tu sitio. "
+
+#. Plugin URI of the plugin
+msgid "https://github.com/woocommerce/woocommerce-admin"
+msgstr "https://github.com/woocommerce/woocommerce-admin"
+
+#. Plugin Name of the plugin
+#: src/Loader.php:1163
+msgid "WooCommerce Admin"
+msgstr "WooCommerce Admin"

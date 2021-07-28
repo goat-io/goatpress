@@ -1,0 +1,88 @@
+version: "3.1"
+services:
+  #######################################################
+  #  Woocommerce DEV (nginx html as volume)
+  #######################################################
+  woo:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/dev/Dockerfile
+    depends_on:
+      - redis
+    ports:
+      - 80:8080
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - ./wp-app:/usr/share/nginx/html
+    networks:
+      - wordpress-network
+    env_file:
+      - ./.env
+  #######################################################
+  #  Woocommerce PROD (copy nginx html to image)
+  #######################################################
+  woo_prod:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    image: gcr.io/fluent-cd90c/woocommerce:1.19.9
+    depends_on:
+      - redis
+    ports:
+      - 80:8080
+    tty: true
+    restart: unless-stopped
+    networks:
+      - wordpress-network
+    env_file:
+      - ./.env
+  #######################################################
+  #  Mysql
+  #######################################################
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    command: [
+        '--default_authentication_plugin=mysql_native_password',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+    ports:
+      - 3306:3306
+    volumes:
+      - ./wp-data:/docker-entrypoint-initdb.d
+      - sql-data:/var/lib/mysq
+    environment:
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    networks:
+      - wordpress-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    restart: always
+  #######################################################
+  #  Mailhog
+  #######################################################
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - wordpress-network
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    networks:
+      - wordpress-network
+networks:
+  wordpress-network:
+    driver: bridge
+volumes:
+  sql-data:

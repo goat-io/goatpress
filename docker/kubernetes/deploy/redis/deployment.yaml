@@ -1,0 +1,22 @@
+apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: {APP_NAME}
+  name: redis
+  labels:
+    app: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - image: k8s.gcr.io/redis:e2e # or just image: redis
+          name: redis
+          ports:
+            - containerPort: 6379
