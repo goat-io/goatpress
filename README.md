@@ -33,6 +33,7 @@ Goatpress runs on a single container to facilitate Cloud Run or K8s deployments
 
 The image includes configuration enhancements for;
 
+* WORDPRESS 5.8.1
 * PHP 8.0 and PHP-FPM
 * NGINX 1.19.9
 * Pre-configured NEW RELIC installation
