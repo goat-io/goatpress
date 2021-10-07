@@ -15,7 +15,7 @@
     <a href="https://github.com/goat-io/goatpress"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/goat-io/goatpress/repo">View Demo</a>
+    <a href="https://github.com/goat-io/goatpress">View Demo</a>
     ·
     <a href="https://github.com/goat-io/goatpress/issues">Report Bug</a>
     ·
@@ -192,74 +192,14 @@ Should respond with: curl: (52) Empty reply from server
 Should respond with: curl: (52) Empty reply from server
 
 The Bot Blocker is now WORKING and PROTECTING your sites!
-# Testing
-
-## HTML & PHP
-If you set `NGINX_DEV_INSTALL=true` it will install a self-signed SSL cert AND copy test files to a test directory:
-```
-cp /tmp/index.php "${NGINX_DOCROOT}"/testing/test_info.php
-cp /tmp/test.html "${NGINX_DOCROOT}"/testing/test_nginx.html
-```
-This allows you to connect to `https://localhost/testing/test_info.php` to verify the container is working correctly. If you connect to `https://localhost/testing/test_nginx.html` it will show a hello world test page.
-
-Noe: Using PHP assumes you have configured a PHP backend to test anything PHP related
-
-# Monitoring
-Services in the container are monitored via Monit. One thing to note is that if Monit detects a problem with Nginx it will issue a `STOP` command. This will shutdown your container because the image uses `CMD ["nginx", "-g", "daemon off;"]`. If you are using `--restart unless-stopped` in your docker run command the server will automatically restart.
-
-Here is an example monitoring config:
-```nginx
-check process nginx with pidfile "/var/run/nginx.pid"
-      if not exist for 5 cycles then restart
-      start program = "/usr/bin/env bash -c '/usr/sbin/nginx -g daemon off'" with timeout 60 seconds
-      stop program = "/usr/bin/env bash -c '/usr/sbin/nginx -s stop'"
-      every 3 cycles
-      if cpu > 80% for 10 cycles then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s stop'"
-
-check program wwwdata-permissions with path /usr/bin/env bash -c "check_wwwdata permission"
-      every 3 cycles
-      if status != 0 then exec "/usr/bin/env bash -c 'find {{NGINX_DOCROOT}} -type d -exec chmod 755 {} \; && find {{NGINX_DOCROOT}} -type f -exec chmod 644 {} \;'"
-
-check directory cache-permissions with path {{CACHE_PREFIX}}
-      every 3 cycles
-      if failed permission 755 then exec "/usr/bin/env bash -c 'find {{CACHE_PREFIX}} -type d -exec chmod 755 {} \;'"
-
-check directory cache-owner with path {{CACHE_PREFIX}}
-      every 3 cycles
-      if failed uid www-data then exec "/usr/bin/env bash -c 'find {{CACHE_PREFIX}} -type d -exec chown www-data:www-data {} \; && find {{CACHE_PREFIX}} -type f -exec chown www-data:www-data {} \;'"
-
-check file letsencrypt_certificate with path /etc/letsencrypt/live/{{NGINX_SERVER_NAME}}/fullchain.pem
-      if changed checksum then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s reload'"
-
-check host {{NGINX_SERVER_NAME}} with address {{NGINX_SERVER_NAME}}
-      if failed host {{NGINX_SERVER_NAME}} port 80 protocol http
-        and request "/health-check"
-        with timeout 25 seconds
-        for 3 times within 4 cycles
-        then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s reload'"
-      if failed host {{NGINX_SERVER_NAME}} port 443 protocol https
-        request "/health-check"
-        status = 200
-        content = "healthy"
-        with timeout 25 seconds
-        for 3 times within 4 cycles
-      then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s reload'"
-      if failed port 8080 for 3 cycles then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s stop'"
-
-check program cache-size with path /usr/bin/env bash -c "check_folder {{CACHE_PREFIX}} 500"
-      every 20 cycles
-      if status != 0 then exec "/usr/bin/env bash -c 'rm -Rf /var/cache/*'"
-```
- The `check_folder`, `check_host` and `check_wwwdata` scripts provide additional health check utility of make sure that permissions, cache size and host respond correctly. For example, `check_host` will validate that SPA rendering service is properly serving the expected content. This can help detect if there are issues where certain user-agents that can not render SPA are being served the incorrect content. This can wreak havoc with your SEO if a pre-render service is not working as expected. Best to catch it as early as possible so you can mitigate any issues.
-
 # Content Delivery Network
-If you want to activate CDN for assets like images, you can set your location to redirect those requests to your CDN:
+If you want to activate CDN for assets like images, you can set your location to redirect those requests to your CDN by setting the NGINX_CDN_HOST env variable:
 ```nginx
 location ~* \.(gif|png|jpg|jpeg|svg)$ {
-   return  301 https://cdn.example.com$request_uri;
+   return  301 ${NGINX_CDN_HOST}$request_uri;
 }
 ```
-This assumes you have a CDN distribution setup and the assets published there. There are many CDN options in the market. Take a look at [Amazon Cloudfront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.html) as it provides an effective and low cost option.
+This assumes you have a CDN distribution setup and the assets published there. 
 
 # Logs
 Logs are currently sent to `stdout` and `stderr`. This keeps the deployed service light. You will likely want to dispatch logs to a service like Amazon Cloudwatch. This will allow you to setup alerts and triggers to perform tasks based on container activity without needing to keep logs local and chew up disk space.
@@ -271,8 +211,9 @@ However, if you want to change this behavior, simply edit the `Dockerfile` to su
 && ln -sf /dev/stderr ${LOG_PREFIX}/error.log \
 && ln -sf /dev/stdout ${LOG_PREFIX}/blocked.log
 
+```
 
-## Deploy to GCP Cloud Run
+# Deploy to GCP Cloud Run
 
 ### Login to Google Cloud
 
@@ -336,8 +277,6 @@ Get the external IP from the following command, as that is our url for the app. 
 ```
 kubectl get service nginx-ingress-controller
 ```
-## Plugins 
-https://wordpress.org/plugins/webp-converter-for-media/
 
 [stars-shield]: https://img.shields.io/github/stars/goat-io/goatpress?style=flat-square
 [stars-url]: https://github.com/goat-io/goatpress/stargazers
