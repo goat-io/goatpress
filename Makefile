@@ -18,7 +18,7 @@ backup:
 	rm -r ./wp-data/*
 	sh ./scripts/export.sh
 start:
-	docker-compose up -d db
+	docker-compose up -d db redis
 	./scripts/waitMysql.sh
 	docker-compose up --build woo
 stop:

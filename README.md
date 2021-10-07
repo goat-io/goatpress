@@ -52,7 +52,7 @@ The image includes configuration enhancements for;
 
 ## Create your own site
 
-You can either clone this project, or just use one of the docker images on your own project.
+Clone this project and execute the following command in your terminal
 
 ```bash
   make start
@@ -60,15 +60,25 @@ You can either clone this project, or just use one of the docker images on your 
 
 ## Local Development
 
-#### Starting containers
+This project has a full WP copy and some useful basic plugins that you can activate or remove as you like.
 
-```
-sudo make start
+
+
+### Create ENV file
+
+  Start the development by creating an env file based on the provided env-example file. Set all the required env variables to suit your configuration
+
+### Starting containers
+
+ This command will start both a MYSQL database and a Redis instance so you can test things locally
+
+```bash
+ make start
 ```
 
-#### Remove containers
+### Remove containers
 
-```
+```bash
 sudo make stop
 ```
 
@@ -76,7 +86,7 @@ sudo make stop
 
 Go to wp-app/.env file and set the variables
 
-```
+```config
 WORDPRESS_WP_SITEURL=https://<my-url>
 WORDPRESS_WP_API_URL=https://<my-url>
 ```
