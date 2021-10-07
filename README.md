@@ -25,7 +25,9 @@
 
 # Goatpress - Superchaged Wordpress/Woocommerce
 
-Base image to create Scalable Wordpress and Woocommerce sites based on [Openbridge](https://github.com/openbridge/nginx)'s and [Khromov](https://github.com/khromov/alpine-nginx-php8)'s work to create replicable containers to deploy using Cloud Run or K8S.
+Base image to create Scalable Wordpress and Woocommerce sites based on [Openbridge](https://github.com/openbridge/nginx) and [Khromov](https://github.com/khromov/alpine-nginx-php8).
+
+Goatpress runs on a single container to facilitate Cloud Run or K8s deployments
 
 ## Features (from [Openbridge](https://github.com/openbridge/nginx))
 
