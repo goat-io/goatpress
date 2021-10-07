@@ -35,6 +35,7 @@ The image includes configuration enhancements for;
 
 * PHP 8.0 and PHP-FPM
 * NGINX 1.19.9
+* Pre-configured NEW RELIC installation
 * Reverse Proxy
 * SEO optimizations
 * Customizable configurations
