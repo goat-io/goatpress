@@ -129,16 +129,64 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 			}
 
 			add_action( 'customize_controls_enqueue_scripts', array( $this, 'controls_scripts' ) );
-			add_filter( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_customizer_scripts' ), 999 );
+			add_action( 'customize_controls_enqueue_scripts', array( $this, 'enqueue_customizer_scripts' ), 999 );
 
 			add_action( 'customize_controls_print_footer_scripts', array( $this, 'print_footer_scripts' ) );
 
 			add_action( 'customize_register', array( $this, 'customize_register_panel' ), 2 );
 			add_action( 'customize_register', array( $this, 'customize_register' ) );
+			add_action( 'customize_register', array( $this, 'customize_register_site_icon' ), 20 );
 			add_action( 'customize_save_after', array( $this, 'customize_save' ) );
 			add_action( 'customize_save_after', array( $this, 'delete_cached_partials' ) );
 			add_action( 'wp_head', array( $this, 'preview_styles' ) );
 			add_action( 'wp_ajax_astra_regenerate_fonts_folder', array( $this, 'regenerate_astra_fonts_folder' ) );
+		}
+
+		/**
+		 * Add site icon control in the site identity panel.
+		 *
+		 * @access public
+		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+		 * @return void
+		 *
+		 * @since 3.6.9
+		 */
+		public function customize_register_site_icon( $wp_customize ) {
+
+			/** @psalm-suppress RedundantConditionGivenDocblockType */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+			if ( true !== Astra_Builder_Helper::$is_header_footer_builder_active ) {
+				/** @psalm-suppress RedundantConditionGivenDocblockType */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+				return;
+			}
+
+			$panel_arr = array(
+				'priority'       => 80,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '',
+				'title'          => 'Site Identity',
+				'description'    => '',
+			);
+			// Register panel.
+			$wp_customize->add_panel( 'astra-site-identity', $panel_arr );
+
+			$section_arr = array(
+				'priority'       => 80,
+				'capability'     => 'edit_theme_options',
+				'theme_supports' => '',
+				'title'          => 'Site Identity',
+				'description'    => '',
+			);
+
+			// Register Section.
+			$wp_customize->add_section( 'astra-site-identity', $section_arr );
+
+			/** @psalm-suppress PossiblyNullPropertyAssignment */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+			$wp_customize->get_control( 'site_icon' )->section = 'astra-site-identity';
+			/** @psalm-suppress PossiblyNullPropertyAssignment */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+
+			/** @psalm-suppress PossiblyNullPropertyAssignment */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
+			$wp_customize->get_control( 'site_icon' )->description = __( 'Site Icons are what you see in browser tabs, bookmark bars, and within the WordPress mobile apps. Upload one here! Site Icons should be square and at least 512 × 512 pixels.', 'astra' );
+			/** @psalm-suppress PossiblyNullPropertyAssignment */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 		}
 
 		/**
@@ -700,8 +748,9 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 
 			$config['label'] = astra_get_prop( $config, 'title' );
 			$config['type']  = astra_get_prop( $config, 'control' );
-
+			/** @psalm-suppress InvalidArgument */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 			if ( false !== astra_get_prop( $config, 'font-type', false ) ) {
+				/** @psalm-suppress InvalidArgument */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 				$config['type'] = astra_get_prop( $config, 'font-type', false );
 			}
 
@@ -722,7 +771,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 				'transport'         => astra_get_prop( $config, 'transport', 'refresh' ),
 				'sanitize_callback' => $sanitize_callback,
 			);
-
+			/** @psalm-suppress InvalidArgument */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 			if ( astra_get_prop( $config, 'partial', false ) ) {
 				self::$dynamic_options['partials'][ astra_get_prop( $config, 'name' ) ] = array(
 					'selector'           => astra_get_prop( $config['partial'], 'selector' ),
@@ -1082,9 +1131,17 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/colors-background/class-astra-body-colors-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-archive-typo-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-body-typo-configs.php';
-			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-content-typo-configs.php';
+
+
+			if( astra_has_gcp_typo_preset_compatibility() ) {
+				require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-headings-typo-configs.php';
+			} else {
+				require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-content-typo-configs.php';
+			}
+
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-header-typo-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-single-typo-configs.php';
+			require ASTRA_THEME_DIR . 'inc/customizer/configurations/typography/class-astra-global-typo-configs.php';
 			require ASTRA_THEME_DIR . 'inc/customizer/configurations/performance/class-astra-performance-configs.php';
 
 			if ( astra_existing_header_footer_configs() ) {
@@ -1366,6 +1423,9 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 				'dynamic_partial_options'              => self::$dynamic_options['partials'],
 				'gb_outline_buttons_patterns_support'  => Astra_Dynamic_CSS::gutenberg_core_patterns_compat(),
 				'font_weights_widget_title_support'    => Astra_Dynamic_CSS::support_font_css_to_widget_and_in_editor(),
+				'is_content_bg_option_to_load'         => astra_has_gcp_typo_preset_compatibility(),
+				'content_layout'                       => astra_get_content_layout(),
+				'site_layout'                          => astra_get_option( 'site-layout' ),
 				'has_block_editor_support'             => Astra_Dynamic_CSS::is_block_editor_support_enabled(),
 				'updated_gb_outline_button_patterns'   => astra_button_default_padding_updated(),
 			);
@@ -1442,7 +1502,7 @@ if ( ! class_exists( 'Astra_Customizer' ) ) {
 
 				if ( $image ) {
 					$fullsizepath = get_attached_file( $image->ID );
-
+					/** @psalm-suppress InvalidArgument */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 					if ( false !== $fullsizepath || file_exists( $fullsizepath ) ) {
 
 						if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {

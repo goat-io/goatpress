@@ -1,3 +1,87 @@
+v3.7.3
+- Fix: Builder - Offcanvas content directly visible on frontend even 'Toggle Button' component is not added in builder area.
+- Fix: Full Size & Wide Size block layout options missing from core/image block.
+- Fix: Button Preset preview not working for an edge case.
+- Fix: Global color palette - customizer preview for Elementor pages not working.
+- Fix: Customizer - Block Settings area getting irrelevant round shapes.
+
+v3.7.2
+- Fix: Incorrect Site Background Color on pages with Full Width layout.
+
+v3.7.1
+- Fix: Gutenberg - Group Block appearing full width on frontend.
+
+v3.7.0
+- New: Global Color Palette compatibility for Block editor using theme.json. (https://wpastra.com/astra-3-7/)
+- Improvement: Updated labels for Global Palette colors.
+- Improvement: Global Color Palette preview time optimized.
+- Improvement: Footer - Copyright text color compatibility with Global Color Palette.
+- Improvement: Added tooltip for palette inside colorpicker control.
+- Fix: Color Palette options appearing outside control container.
+
+v3.7.0-beta.1
+- New: Introduced Global Color Palette Feature. (https://wpastra.com/docs/astra-global-color-palette-settings/)
+- New: Introduced Typography Presets Feature. (https://wpastra.com/docs/astra-typography-presets/)
+- New: Introduced Button Presets Feature. (https://wpastra.com/docs/astra-button-styles-presets/)
+- New: Added Heading Typography options for H4-H6 also.
+- New: Content background color option.
+- Fix: Heading color option not working for Sidebar, Footer widget title.
+- Fix: Heading color option not working for the Archive page title.
+- Fix: Live preview for content background option not working.
+- Fix: Content background image not working for related posts section.
+
+v3.6.9
+- Improvement: In the font size option, users cannot set the value '0'.
+- Improvement: Introduced filter to exclude anchor links from text-decoration style. ( https://wpastra.com/docs/remove-underlined-content-links/ )
+- Improvement: Clear asset cache of theme and addon on every new update of the theme.
+- Improvement: Moved addon related Toggle for Desktop frontend-pro.js file from theme to the addon.
+- Improvement: Moved the 'Site Icon' control to a separate section, 'Site Identity'.
+- Fix: Auto-scroll not working on clicking Footer Builder in the customizer preview.
+- Fix: WooCommerce - Cart icon not appearing correctly on Tablet & Mobile devices.
+- Fix: Dropdown target as a link not working if the menu item has a link.
+- Fix: WooCommerce - Cart count is overlapping on submenu section.
+- Fix: The submenu toggle is not working when 'Flyout Menu' is used, and the page is resized.
+- Fix: Customizer color group control's reset position misaligned.
+- Fix: Desktop logo width is applying on the mobile devices during page load.
+- Fix: Social icon does not change in the customizer preview.
+- Fix: Gutenberg Editor content area showing white background color when Full-Width Contained / Stretched layout is active.
+- Deprecated: Builder - Account Element - Deprecated transparent header's responsive options for menu colors.
+
+v3.6.8
+- Improvement: Added WPML translation support for all customizer's strings through wpml-config.xml file.
+- Fix: Elementor Pro's Header-Footer theme builder layouts does not override theme's Header-Footer builder layouts.
+- Fix: Bulk action selection not working on any WordPress list table when theme's "Get Started" notice is active.
+- Fix: Header Footer Widgets: Off-canvas content is displaying over Legacy widget's preview in the customizer for WordPress 5.8.
+- Deprecated: Header Footer Widgets - Deprecated design specific options for better compatibility with WordPress 5.8. ( https://wpastra.com/docs/enable-astra-widget-design-options/ )
+
+v3.6.7
+- Improvement: Rendered Addon dependent toggle code conditionally and removed unwanted code.
+- Improvement: Changed the screen reader text tag from 'h2' to 'span' for better SEO.
+- Fix: Changing Off-canvas flyout close button color not reflecting on frontend.
+- Fix: Broken layout WooCommerce Shop/Archive page on mobile view when using elementor template or Product archive widget.
+- Fix: Next and Previous pagination button is not aligned with page numbers for mobile view.
+- Fix: Added dynamic breakpoint support for the responsive view of the sidebar and main content.
+- Fix: Heading color h1-h6 of customizer not working in the Gutenberg editor.
+- Fix: Global headings font family not working in the Gutenberg editor.
+- Fix: Footer Builder - Widgets - Right margin space not working. ( https://wpastra.com/docs/fix-footer-widget-right-margin/ )
+- Fix: Search icon color is not applying to the Standard and Transparent Header Search Box style.
+- Fix: Removed the spacing applied for the menu items in the customizer section.
+- Fix: Builder - WooCommerce & EDD cart - Cart and Checkout buttons not visible when multiple products added to cart flyout.
+- Fix: Builder - Social Icons - Tiktok icon not appearing in customizer and on frontend.
+- Fix: 'Disable Footer' option is missing in Page meta settings for new Header Footer builder.
+- Fix: Removed 'Disable Footer Widgets' option in Page meta settings for new Header Footer builder.
+- Fix: Sidebar block editor width changes on the widgets page.
+- Fix: Off-canvas menu closes on scrolling on mobile devices.
+- Fix: Customizer builder section not scrollable when multiple elements dropped in builder area.
+- Fix: Theme's default margin space of OL tag apply to Elementor's TOC widget. ( https://wpastra.com/docs/remove-spacing-elementor-toc/ )
+- Fix: Menu dropdown icons showing at incorrect position in RTL languages.
+- Fix: “Search” string in Search Form is not translatable.
+- Fix: Transparent header showing border even if it is not set from customizer in FireFox browser.
+- Fix: AMP - Old header center layout is not compatiblle.
+
+v3.6.6
+- Fix: Installing Starter Templates plugin notice's "Get Started" button not working.
+
 v3.6.5
 - Improvement: Compatibility with WordPress 5.8.
 - Improvement: Added default styling for - Site Logo, Site Tagline, Login/out and Search blocks.

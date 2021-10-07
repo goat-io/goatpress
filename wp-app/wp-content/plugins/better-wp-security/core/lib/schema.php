@@ -12,6 +12,7 @@ final class ITSEC_Schema {
 		'itsec_user_groups',
 		'itsec_mutexes',
 		'itsec_bans',
+		'itsec_dashboard_events',
 	];
 
 	/**
@@ -170,6 +171,16 @@ CREATE TABLE {$wpdb->base_prefix}itsec_bans (
     PRIMARY KEY  (id),
     UNIQUE KEY host (host),
     KEY actor (actor_type,actor_id)                         
+) $charset_collate;
+
+CREATE TABLE {$wpdb->base_prefix}itsec_dashboard_events (
+  event_id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  event_slug varchar(128) NOT NULL DEFAULT '',
+  event_time datetime NOT NULL,
+  event_count int(11) unsigned NOT NULL DEFAULT '1',
+  event_consolidated tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY  (`event_id`),
+  UNIQUE KEY `event_slug__time__consolidated` (event_slug,event_time,event_consolidated)
 ) $charset_collate;
 ";
 

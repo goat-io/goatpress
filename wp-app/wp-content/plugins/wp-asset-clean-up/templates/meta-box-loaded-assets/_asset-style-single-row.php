@@ -40,15 +40,13 @@ if (isset($data['handle_rows_contracted']['styles'][$data['row']['obj']->handle]
     class="wpacu_asset_row <?php echo $data['row']['class']; ?>"
     style="<?php if ($isCoreFile && $hideCoreFiles) { echo 'display: none;'; } ?>">
     <td valign="top" style="position: relative;" data-wpacu-row-status="<?php echo $dataRowStatusAttr; ?>">
+        <input type="hidden" name="<?php echo WPACU_FORM_ASSETS_POST_KEY; ?>[styles][<?php echo $data['row']['obj']->handle; ?>]" value="" />
         <div class="wpacu_handle_row_expand_contract_area">
             <a data-wpacu-handle="<?php echo $data['row']['obj']->handle; ?>"
                data-wpacu-handle-for="style"
                class="wpacu_handle_row_expand_contract"
                href="#"><span class="dashicons dashicons-<?php echo $dashSign; ?>"></span></a>
-            <input type="hidden"
-                   id="wpacu_style_<?php echo $data['row']['obj']->handle; ?>_row_contracted_area"
-                   name="wpacu_handle_row_contracted_area[styles][<?php echo $data['row']['obj']->handle; ?>]"
-                   value="<?php echo $rowIsContracted; ?>" />
+            <!-- -->
         </div>
         <?php
         include '_asset-style-single-row/_handle.php';

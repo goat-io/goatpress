@@ -123,9 +123,10 @@ SVG;
             &nbsp;&#10230;&nbsp;
             Preload (if kept loaded)?
             &nbsp;<select style="display: inline-block; width: auto; <?php if ($isCssPreload) { echo 'background: #f2faf2; padding: 5px; color: black;'; } ?>"
-                          name="wpacu_preloads[styles][<?php echo $data['row']['obj']->handle; ?>]">
+                          data-wpacu-input="preload"
+                          name="<?php echo WPACU_FORM_ASSETS_POST_KEY; ?>[styles][<?php echo $data['row']['obj']->handle; ?>][preload]">
                 <option value="">No (default)</option>
-                <option <?php if ($isCssPreload) { ?>selected="selected"<?php } ?> value="basic">Yes, basic</option>
+                <option <?php if ($isCssPreload === 'basic') { ?>selected="selected"<?php } ?> value="basic">Yes, basic</option>
                 <option disabled="disabled" value="async">Yes, async (Pro)</option>
             </select>
             <small>* applies site-wide</small> <small><a style="text-decoration: none; color: inherit;" target="_blank" href="https://assetcleanup.com/docs/?p=202"><span class="dashicons dashicons-editor-help"></span></a></small>
@@ -134,6 +135,6 @@ SVG;
 	<?php
 } else {
 	?>
-    <input type="hidden" name="wpacu_preloads[styles][<?php echo $data['row']['obj']->handle; ?>]" value="" />
+    <input type="hidden" name="<?php echo WPACU_FORM_ASSETS_POST_KEY; ?>[styles][<?php echo $data['row']['obj']->handle; ?>]" value="" />
 	<?php
 }

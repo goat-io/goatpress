@@ -6,7 +6,12 @@ import { uniqueId } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { select as selectData, dispatch as dispatchData, subscribe } from '@wordpress/data';
+import {
+	select as selectData,
+	dispatch as dispatchData,
+	subscribe,
+	createRegistryControl,
+} from '@wordpress/data';
 import { default as triggerApiFetch } from '@wordpress/api-fetch';
 
 /**
@@ -26,8 +31,14 @@ import { responseToError } from '@ithemes/security-utils';
  */
 const resolveSelect = ( { storeKey, selectorName, args } ) => {
 	return new Promise( ( resolve ) => {
-		const hasFinished = () => selectData( 'core/data' ).hasFinishedResolution( storeKey, selectorName, args );
-		const getResult = () => selectData( storeKey )[ selectorName ].apply( null, args );
+		const hasFinished = () =>
+			selectData( 'core/data' ).hasFinishedResolution(
+				storeKey,
+				selectorName,
+				args
+			);
+		const getResult = () =>
+			selectData( storeKey )[ selectorName ].apply( null, args );
 
 		// trigger the selector (to trigger the resolver)
 		const result = getResult();
@@ -60,6 +71,7 @@ export function apiFetch( request ) {
 
 /**
  * Calls a selector using the current state.
+ *
  * @param {string} storeKey Store key.
  * @param {string} selectorName Selector name.
  * @param {Array} args         Selector arguments.
@@ -103,6 +115,22 @@ export function dispatch( storeKey, actionName, ...args ) {
 		args,
 	};
 }
+
+/**
+ * Performs a native fetch request.
+ *
+ * @param {window.RequestInfo} request
+ * @param {window.RequestInit} init
+ * @return {{request, type: string}} The control descriptor.
+ */
+export function fetch( request, init ) {
+	return {
+		type: 'FETCH',
+		request,
+		init,
+	};
+}
+
 /**
  * Parses the fetch response.
  *
@@ -127,6 +155,21 @@ async function PARSE_FETCH_RESPONSE( { response } ) {
 }
 
 /**
+ * Updates a module's settings.
+ *
+ * @param {string} module The module id.
+ * @param {Object} settings The settings to update.
+ * @return {{settings, module, type: string}} The control descriptor.
+ */
+export function updateSettings( module, settings ) {
+	return {
+		type: 'UPDATE_SETTINGS',
+		module,
+		settings,
+	};
+}
+
+/**
  * Yields action objects used in signalling that a notice is to be created.
  *
  * @see @wordpress/notices#createNotice()
@@ -148,7 +191,7 @@ async function PARSE_FETCH_RESPONSE( { response } ) {
  *                                                       after x milliseconds.
  *                                                       Defaults to `false`.
  * @param {?string}                options.type          Notice type. Either 'default' or 'snackbar'.
- * @param {?Array<WPNoticeAction>} options.actions       User actions to be
+ * @param {?Array<Object>} options.actions               User actions to be
  *                                                       presented with notice.
  *
  * @return {Object} control descriptor.
@@ -182,10 +225,26 @@ const controls = {
 		return dispatchData( storeKey )[ actionName ]( ...args );
 	},
 	PARSE_FETCH_RESPONSE,
+	FETCH( { request, init } ) {
+		return window.fetch( request, init );
+	},
+	UPDATE_SETTINGS: createRegistryControl(
+		( registry ) => ( { module, settings } ) =>
+			registry
+				.dispatch( 'ithemes-security/modules' )
+				.updateSettings( module, settings )
+	),
 	CREATE_NOTICE( { status, content, options } ) {
 		if ( options.autoDismiss ) {
 			options.id = options.id || uniqueId( 'itsec-auto-dismiss-' );
-			setTimeout( () => dispatchData( 'core/notices' ).removeNotice( options.id, options.context ), options.autoDismiss );
+			setTimeout(
+				() =>
+					dispatchData( 'core/notices' ).removeNotice(
+						options.id,
+						options.context
+					),
+				options.autoDismiss
+			);
 		}
 
 		dispatchData( 'core/notices' ).createNotice( status, content, options );

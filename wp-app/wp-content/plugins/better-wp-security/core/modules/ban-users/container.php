@@ -3,12 +3,13 @@
 namespace iThemesSecurity\Ban_Users;
 
 use iThemesSecurity\Actor\Multi_Actor_Factory;
+use iThemesSecurity\Ban_Hosts\Filters;
 use Pimple\Container;
 use Pimple\Exception\FrozenServiceException;
 
 return static function ( Container $c ) {
 	$c['module.ban-users.files'] = [
-		'validator.php' => Validator::class,
+		'rest.php' => REST::class,
 	];
 
 	try {
@@ -23,15 +24,39 @@ return static function ( Container $c ) {
 
 	}
 
-	$c[ Validator::class ] = static function ( Container $c ) {
-		return new Validator( $c[ Database_Repository::class ] );
-	};
-
 	$c[ Database_Repository::class ] = static function ( Container $c ) {
 		return new Database_Repository(
 			$c[ Multi_Actor_Factory::class ],
 			$c[ \wpdb::class ]
 		);
 	};
+
+	$c[ REST::class ] = static function ( Container $c ) {
+		return new REST( $c[ Database_Repository::class ] );
+	};
+
+	\ITSEC_Lib::extend_if_able( $c, 'dashboard.cards', function ( $cards ) use ( $c ) {
+		$cards[] = new \ITSEC_Dashboard_Card_Pie_Chart( 'banned-users', __( 'Bans Overview', 'better-wp-security' ), [
+			[
+				'events' => 'blacklist-brute_force',
+				'label'  => __( 'Login Attempts', 'better-wp-security' ),
+			],
+			[
+				'events' => 'blacklist-brute_force_admin_user',
+				'label'  => __( 'Login Using "admin"', 'better-wp-security' ),
+			],
+			[
+				'events' => 'blacklist-recaptcha',
+				'label'  => __( 'Recaptcha', 'better-wp-security' ),
+			],
+		], [
+			'circle_label'    => _x( 'Banned', 'Total Banned IPs', 'better-wp-security' ),
+			'circle_callback' => function () use ( $c ) {
+				return $c[ Database_Repository::class ]->count_bans( new Filters() );
+			},
+		] );
+
+		return $cards;
+	} );
 
 };

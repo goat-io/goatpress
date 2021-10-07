@@ -1,5 +1,5 @@
 (function($){
-    
+
     $scope = {};
 
     AstraImageCommon = {
@@ -36,6 +36,7 @@
         apiStatus: true,
         id : '',
         isValidating: false,
+        scopeSet: false,
 
         init: function() {
             this._bind();
@@ -60,6 +61,32 @@
             $( document ).on( "change", ".ast-image__filter select", AstraImageCommon._filter );
             $( document ).on( "click", ".ast-image__edit-api", AstraImageCommon._editAPI );
             $( document ).on( "click", ".ast-image__browse-images", AstraImageCommon._browse );
+            $( document ).on( "click", ".ast-image__download-icon", AstraImageCommon._saveFromScreen );
+        },
+
+        _saveFromScreen: function() {
+
+            let saveIcon = $(this);
+            let source = saveIcon.closest('.ast-image__list-img-overlay');
+
+            saveIcon.addClass( 'installing' );
+
+            AstraImageCommon.image = {
+                'largeImageURL': source.data( 'img-url' ),
+                'tags' : source.find( 'span:first-child' ).html(),
+                'id' : source.data( 'img-id' ),
+            };
+
+            AstraImageCommon._saveAjax( function ( data ) {
+                if ( undefined == data.data ) {
+                    return;
+                }
+                astraImages.saved_images = data.data['updated-saved-images'];
+                wp.media.view.AstraAttachmentsBrowser.object.photoUploadComplete( data.data );
+                saveIcon.text( 'Done' );
+                saveIcon.removeClass( 'installing' );
+                AstraImageCommon._empty();
+            } );
         },
 
         _browse: function() {
@@ -102,11 +129,27 @@
             if ( thisBtn.data( 'import-status' ) ) {
                 return;
             }
+            thisBtn.removeClass( 'updating-message' );
 
-            thisBtn.text( astraImages.downloading );
+			thisBtn.text( astraImages.downloading );
             thisBtn.addClass( 'installing' );
 
             AstraImageCommon.canSave = false;
+
+            AstraImageCommon._saveAjax( function ( data ) {
+                if ( undefined == data.data ) {
+                    return;
+                }
+                astraImages.saved_images = data.data['updated-saved-images'];
+                wp.media.view.AstraAttachmentsBrowser.object.photoUploadComplete( data.data );
+                thisBtn.text( 'Done' );
+                thisBtn.removeClass( 'installing' );
+                AstraImageCommon._empty();
+            } );
+
+        },
+
+        _saveAjax: function( callback ) {
 
             // Work with JSON page here
             $.ajax({
@@ -124,17 +167,7 @@
             .fail(function( jqXHR ){
                 console.log( jqXHR );
             })
-            .done(function ( data ) {
-                console.log(data.data);
-                if ( undefined == data.data ) {
-                    return;
-                }
-                astraImages.saved_images = data.data['updated-saved-images'];
-                wp.media.view.AstraAttachmentsBrowser.object.photoUploadComplete( data.data );
-                thisBtn.text( 'Done' );
-                thisBtn.removeClass( 'installing' );
-                AstraImageCommon._empty();
-            });
+            .done( callback );
         },
 
         _empty: function() {
@@ -164,7 +197,11 @@
             $scope.find( '.ast-image__skeleton-inner-wrap' ).css( 'height', wrapHeight );
         },
 
-        _preview: function() {
+        _preview: function(event) {
+
+            if( event && event.target.classList.contains( 'ast-image__download-icon' ) ) {
+                return;
+            }
 
             AstraImageCommon.isPreview = true;
 
@@ -175,7 +212,11 @@
                 $scope.find( '.ast-image__loader-wrap' ).hide();
             }, 200 );
 
-            AstraImageCommon.image = $( this ).data( 'img-info' );
+            AstraImageCommon.image = {
+                'largeImageURL': $( this ).data( 'img-url' ),
+                'tags' : $( this ).find( 'span:first-child' ).html(),
+                'id' : $( this ).data( 'img-id' ),
+            };
 
             let preview = wp.template( 'ast-image-single' );
             let single_html = preview( AstraImageCommon.image );
@@ -206,16 +247,14 @@
             if ( undefined == $scope ) {
                 return;
             }
-            
+
             $( 'body' ).data( 'page', 1 );
             let skeleton = $( '#tmpl-ast-image-skeleton' ).text();
             $scope.append( skeleton );
 
             let pixabay_filter = wp.template( 'ast-image-filters' );
-            if ( $scope.find( '.ast-image__filter-wrap' ).length > 0 ) {
-                $scope.find( '.ast-image__filter-wrap' ).replaceWith( pixabay_filter() );
-            } else {
-                $scope.find( '.ast-attachments-search-wrap' ).append( pixabay_filter() );
+            if ( ! $scope.find( '.ast-image__filter-wrap' ).length ) {
+            	$scope.find( '.ast-attachments-search-wrap' ).append( pixabay_filter() );
             }
 
             AstraImageCommon.offset = AstraImageCommon.frame.outerHeight();
@@ -224,17 +263,17 @@
             $scope.find( '.ast-image__search' ).trigger( 'keyup' );
             $scope.find( '.ast-image__loader-wrap' ).show();
             $scope.find( '.ast-image__skeleton-inner-wrap' ).scroll( AstraImageCommon._loadMore );
+
+            AstraImageCommon.scopeSet = true;
         },
 
-        _initImages: function() {  
+        _initImages: function() {
 
             let loop = wp.template( 'ast-image-list' );
             let list_html = loop( wp.media.view.AstraAttachmentsBrowser.images );
-
-            let masonryObj;
             let container = document.querySelector( '.ast-image__skeleton' );
             $scope.find( '.ast-image__loader-wrap' ).show();
-            
+
             if ( AstraImageCommon.infiniteLoad ) {
                 AstraImageCommon.images.push( wp.media.view.AstraAttachmentsBrowser.images );
                 $scope.find( '.ast-image__skeleton' ).append( list_html );
@@ -250,9 +289,6 @@
                         $( this ).addClass( 'loaded' );
                     } );
                     $scope.find( '.ast-image__loader-wrap' ).hide();
-                    masonryObj = new Masonry( container, {
-                        itemSelector: '.ast-image__list-wrap'
-                    });
                 });
             } else {
                 $scope.find( '.ast-image__loader-wrap' ).hide();
@@ -279,7 +315,7 @@
                         AstraImageCommon.loadingStatus = false;
                         AstraImageCommon.infiniteLoad = true;
                         AstraImageCommon.config.page = page;
-                         
+
                         $( 'body' ).data( 'page', page );
 
                         $scope.find( '.ast-image__search' ).trigger( 'infinite' );

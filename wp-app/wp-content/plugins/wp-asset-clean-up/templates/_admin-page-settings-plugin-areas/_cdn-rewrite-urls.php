@@ -2,7 +2,7 @@
 /*
  * No direct access to this file
  */
-
+use WpAssetCleanUp\Misc;
 use WpAssetCleanUp\OptimiseAssets\OptimizeCommon;
 
 if (! isset($data, $selectedTabArea)) {
@@ -31,7 +31,7 @@ HTML;
         <tr valign="top">
             <th scope="row" class="setting_title">
                 <label for="wpacu_cdn_rewrite_enable"><?php _e('Enable CDN URL rewrite?', 'wp-asset-clean-up'); ?></label>
-                <p class="wpacu_subtitle"><small><em><?php echo sprintf(__('This applies ONLY to files saved in %s', 'wp-asset-clean-up'), '<code style="font-size: inherit;">'.str_replace(ABSPATH, '', '/' . WP_CONTENT_DIR . OptimizeCommon::getRelPathPluginCacheDir().'</code>')); ?></em></small></p>
+                <p class="wpacu_subtitle"><small><em><?php echo sprintf(__('This applies ONLY to files saved in %s', 'wp-asset-clean-up'), '<code style="font-size: inherit;">'.str_replace(Misc::getWpRootDirPath(), '', '/' . WP_CONTENT_DIR . OptimizeCommon::getRelPathPluginCacheDir().'</code>')); ?></em></small></p>
             </th>
             <td>
                 <label class="wpacu_switch">

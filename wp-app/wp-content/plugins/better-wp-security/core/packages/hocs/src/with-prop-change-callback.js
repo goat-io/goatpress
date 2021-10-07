@@ -29,7 +29,10 @@ export default function withPropChangeCallback( prop, cb ) {
 		return class Wrapper extends Component {
 			componentDidUpdate( prevProps ) {
 				for ( const listener of listeners ) {
-					if ( this.props[ listener.prop ] !== prevProps[ listener.prop ] ) {
+					if (
+						this.props[ listener.prop ] !==
+						prevProps[ listener.prop ]
+					) {
 						listener.cb( prevProps[ listener.prop ], this.props );
 					}
 				}

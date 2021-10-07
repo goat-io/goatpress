@@ -119,14 +119,14 @@ if ( ! class_exists( 'BSF_Quick_Links' ) ) {
 
 			foreach ( $data['links'] as $item_key => $item ) {
 				$items_html .= sprintf(
-					'<a href="%1$s" target="_blank" rel="noopener noreferrer" class="bsf-quick-link-item bsf-quick-link-item-%4$d">
+					'<a href="%1$s" target="_blank" rel="noopener noreferrer" class="bsf-quick-link-item bsf-quick-link-item-%4$s">
 						<div class="bsf-quick-link-label">%2$s</div>
 						<div class="dashicons %3$s menu-item-logo" %5$s></div>
 					</a>',
 					esc_url( $item['url'] ),
 					esc_html( $item['label'] ),
 					sanitize_html_class( $item['icon'] ),
-					(int) $item_key,
+					$item_key,
 					! empty( $item['bgcolor'] ) ? ' style="background-color: ' . esc_attr( $item['bgcolor'] ) . '"' : ''
 				);
 			}

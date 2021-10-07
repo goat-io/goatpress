@@ -51,7 +51,7 @@ if ( $data['for'] !== 'homepage' && isset($data['post_id']) && $data['post_id'] 
 
 $strAdminUrl .= '&wpacu_rand='.uniqid(time(), true);
 
-if (array_key_exists('wpacu_manage_dash', $_GET) || array_key_exists('force_manage_dash', $_REQUEST)) { // For debugging purposes
+if ( isset($_GET['wpacu_manage_dash']) || isset($_REQUEST['force_manage_dash']) ) { // For debugging purposes
     $strAdminUrl .= '&wpacu_manage_dash';
 }
 

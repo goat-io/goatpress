@@ -581,6 +581,7 @@ class Admin {
 
 			$order = WCX::get_order( $post_id );
 			if ( $invoice = wcpdf_get_invoice( $order ) ) {
+				$is_new = false === $invoice->exists();
 				$_POST = stripslashes_deep( $_POST );
 				$document_data = $this->process_order_document_form_data( $_POST, $invoice->slug );
 				$invoice->set_data( $document_data, $order );
@@ -591,6 +592,11 @@ class Admin {
 				}
 
 				$invoice->save();
+
+				if ( $is_new ) {
+					/* translators: name/description of the context for document creation logs */
+					WPO_WCPDF()->main->log_to_order_notes( $invoice, __( 'order details (number and/or date set manually)', 'woocommerce-pdf-invoices-packing-slips' ) );
+				}
 			}
 
 			// allow other documents to hook here and save their form data
@@ -768,15 +774,15 @@ class Admin {
 		$notice_messages = array(
 			'saved'       => array(
 				'success' => __( 'Document data saved!', 'woocommerce-pdf-invoices-packing-slips' ),
-				'error'   => __( 'An error ocurred while saving the document data!', 'woocommerce-pdf-invoices-packing-slips' ),
+				'error'   => __( 'An error occurred while saving the document data!', 'woocommerce-pdf-invoices-packing-slips' ),
 			),
 			'regenerated' => array(
 				'success' => __( 'Document regenerated!', 'woocommerce-pdf-invoices-packing-slips' ),
-				'error'   => __( 'An error ocurred while regenerating the document!', 'woocommerce-pdf-invoices-packing-slips' ),
+				'error'   => __( 'An error occurred while regenerating the document!', 'woocommerce-pdf-invoices-packing-slips' ),
 			),
 			'deleted' => array(
 				'success' => __( 'Document deleted!', 'woocommerce-pdf-invoices-packing-slips' ),
-				'error'   => __( 'An error ocurred while deleting the document!', 'woocommerce-pdf-invoices-packing-slips' ),
+				'error'   => __( 'An error occurred while deleting the document!', 'woocommerce-pdf-invoices-packing-slips' ),
 			),
 		);
 
@@ -811,6 +817,7 @@ class Admin {
 
 				// on save
 				} elseif( $action_type == 'save' ) {
+					$is_new = false === $document->exists();
 					$document->set_data( $document_data, $order );
 
 					// check if we have number, and if not generate one
@@ -819,6 +826,11 @@ class Admin {
 					}
 
 					$document->save();
+
+					if ( $is_new ) {
+						/* translators: name/description of the context for document creation logs */
+						WPO_WCPDF()->main->log_to_order_notes( $document, __( 'order details (number and/or date set manually)', 'woocommerce-pdf-invoices-packing-slips' ) );
+					}
 
 					$response      = array(
 						'message' => $notice_messages[$notice]['success'],

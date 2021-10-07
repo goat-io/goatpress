@@ -264,11 +264,11 @@ class AtumQueues {
 	 *
 	 * @since 1.8.8
 	 *
-	 * @return boolean
+	 * @return bool
 	 */
 	public static function check_async_request() {
 
-		$remote_available = AtumCache::get_transient( self::$async_available_transient, TRUE );
+		$remote_available = apply_filters( 'atum/queues/check_async_request', AtumCache::get_transient( self::$async_available_transient, TRUE ) );
 
 		if ( ! $remote_available ) {
 
@@ -282,7 +282,7 @@ class AtumQueues {
 
 		}
 
-		return $remote_available;
+		return (bool) $remote_available;
 
 	}
 
@@ -295,6 +295,17 @@ class AtumQueues {
 	 */
 	public static function get_async_request_user_agent() {
 		return 'ATUM/' . ATUM_VERSION;
+	}
+
+	/**
+	 * Check whether an async hook is currently running
+	 *
+	 * @since 1.9.4
+	 *
+	 * @return bool
+	 */
+	public static function is_running_async_hook() {
+		return wp_doing_ajax() && ! empty( $_POST['action'] ) && 'atum_async_hooks' === $_POST['action'];
 	}
 
 

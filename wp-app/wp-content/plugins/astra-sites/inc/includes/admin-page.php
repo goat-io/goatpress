@@ -409,8 +409,7 @@ $site_import_options = apply_filters(
 <script type="text/template" id="tmpl-astra-sites-pro-site-description">
 	<p>
 		<?php
-			/* translators: %s is pricing page link */
-			printf( __( '<span class="highlighted-note">This is a premium template available with Essential and Growth Bundle.</span><br /> <a href="%s" target="_blank">Get access</a> to this premium template.', 'astra-sites' ), 'https://wpastra.com/starter-templates-plans/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			_e( '<span class="highlighted-note">This is a premium template available with Essential and Growth Bundle.</span><br /> <a href="{{AstraSitesAdmin.premium_popup_cta_link}}" target="_blank">Get access</a> to this premium template.', 'astra-sites' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction
 		?>
 	</p>
 	<p>
@@ -670,7 +669,7 @@ $site_import_options = apply_filters(
 		<# } else { #>
 			<?php
 			/* translators: %s doc link. */
-			printf( __( 'Please report this error <a href="%s" target="_blank">here</a> so we can fix it.', 'astra-sites' ), 'https://wpastra.com/support/open-a-ticket/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			printf( __( 'Please report this error %1$shere%2$s, so we can fix it.', 'astra-sites' ), '<a class="ast-try-again" href="https://wpastra.com/support/open-a-ticket/">', '</a>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		<# } #>
 	</p>

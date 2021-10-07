@@ -7,6 +7,8 @@
  * Gutenberg editor assets.
  */
 function exactmetrics_gutenberg_editor_assets() {
+	global $wp_scripts;
+
 	// stop loading gutenberg related assets/blocks/sidebars if WP version is less than 5.4
 	if ( ! exactmetrics_load_gutenberg_app() ) {
 		return;
@@ -19,7 +21,6 @@ function exactmetrics_gutenberg_editor_assets() {
 	$js_dependencies = array(
 		'wp-plugins',
 		'wp-element',
-		'wp-edit-post',
 		'wp-i18n',
 		'wp-api-request',
 		'wp-data',
@@ -27,9 +28,17 @@ function exactmetrics_gutenberg_editor_assets() {
 		'wp-plugins',
 		'wp-components',
 		'wp-blocks',
-		'wp-editor',
+		'wp-block-editor',
 		'wp-compose',
 	);
+
+	if (
+		! $wp_scripts->query( 'wp-edit-widgets', 'enqueued' ) &&
+		! $wp_scripts->query( 'wp-customize-widgets', 'enqueued' )
+	) {
+		$js_dependencies[] = 'wp-editor';
+		$js_dependencies[] = 'wp-edit-post';
+	}
 
 	// Enqueue our plugin JavaScript.
 	wp_enqueue_script(

@@ -68,7 +68,7 @@ if ( ! class_exists( 'Astra_Builder_Header' ) ) {
 				add_action( 'astra_mobile_below_header', array( $this, 'mobile_below_header' ) );
 				add_action( 'astra_render_mobile_header_column', array( $this, 'render_mobile_column' ), 10, 2 );
 				// Load Off-Canvas Markup on Footer.
-				add_action( 'wp_footer', array( $this, 'mobile_popup' ) );
+				add_action( 'astra_footer', array( $this, 'mobile_popup' ) );
 				add_action( 'astra_mobile_header_content', array( $this, 'render_mobile_column' ), 10, 2 );
 				add_action( 'astra_render_mobile_popup', array( $this, 'render_mobile_column' ), 10, 2 );
 
@@ -95,7 +95,7 @@ if ( ! class_exists( 'Astra_Builder_Header' ) ) {
 				add_action( 'astra_header_mobile_trigger', array( $this, 'header_mobile_trigger' ) );
 
 				// Load Cart Flyout Markup on Footer.
-				add_action( 'wp_footer', array( $this, 'mobile_cart_flyout' ) );
+				add_action( 'astra_footer', array( $this, 'mobile_cart_flyout' ) );
 				add_action( 'astra_header_menu_mobile', array( $this, 'header_mobile_menu_markup' ) );
 			}
 

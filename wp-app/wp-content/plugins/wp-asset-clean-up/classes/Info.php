@@ -25,7 +25,7 @@ class Info
 	{
 		$data = array('for' => 'how-it-works');
 
-		if (array_key_exists('wpacu_for', $_GET)) {
+		if (isset($_GET['wpacu_for'])) {
 			$data['for'] = sanitize_text_field($_GET['wpacu_for']);
 		}
 

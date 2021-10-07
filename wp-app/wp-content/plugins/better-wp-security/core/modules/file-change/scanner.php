@@ -300,7 +300,7 @@ class ITSEC_File_Change_Scanner {
 		if ( $storage->is_empty() ) {
 			ITSEC_Lib::release_lock( 'file-change' );
 			ITSEC_Log::add_debug( 'file_change', 'skipping-recovery::empty-storage', array(
-				'backtrace' => debug_backtrace()
+				'backtrace' => wp_debug_backtrace_summary(),
 			) );
 
 			return false;

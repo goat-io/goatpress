@@ -48,19 +48,9 @@ class THWCFD_Admin {
 			
 		wp_enqueue_script('thwcfd-admin-script', THWCFD_ASSETS_URL_ADMIN . 'js/thwcfd-admin'. $suffix .'.js', $deps, $this->version, false);
 	}
-
-	public function wcfd_capability() {
-		$allowed = array('manage_woocommerce', 'manage_options');
-		$capability = apply_filters('thwcfd_required_capability', 'manage_woocommerce');
-
-		if(!in_array($capability, $allowed)){
-			$capability = 'manage_woocommerce';
-		}
-		return $capability;
-	}
 	
 	public function admin_menu() {
-		$capability = $this->wcfd_capability();
+		$capability = THWCFD_Utils::wcfd_capability();
 		$this->screen_id = add_submenu_page('woocommerce', __('WooCommerce Checkout Field Editor', 'woo-checkout-field-editor-pro'), __('Checkout Form', 'woo-checkout-field-editor-pro'), $capability, 'checkout_form_designer', array($this, 'output_settings'));
 	}
 	
@@ -72,7 +62,7 @@ class THWCFD_Admin {
 	}
 
 	public function plugin_action_links($links) {
-		$settings_link = '<a href="'.admin_url('admin.php?page=checkout_form_designer').'">'. __('Settings', 'woo-checkout-field-editor-pro') .'</a>';
+		$settings_link = '<a href="'.esc_url(admin_url('admin.php?page=checkout_form_designer')).'">'. __('Settings', 'woo-checkout-field-editor-pro') .'</a>';
 		array_unshift($links, $settings_link);
 		$pro_link = '<a style="color:green; font-weight:bold" target="_blank" href="https://www.themehigh.com/product/woocommerce-checkout-field-editor-pro/?utm_source=free&utm_medium=plugin_action_link&utm_campaign=wcfe_upgrade_link">'. __('Get Pro', 'woo-checkout-field-editor-pro') .'</a>';
 		array_push($links,$pro_link);
@@ -116,7 +106,7 @@ class THWCFD_Admin {
 		        <button type="button" class="button button-primary" onclick="window.open('https://wordpress.org/support/plugin/woo-checkout-field-editor-pro/reviews?rate=5#new-post', '_blank')">Review Now</button>
 		        <button type="button" class="button" onclick="thwcfdHideReviewRequestNotice(this)">Remind Me Later</button>
             	<span class="logo"><a target="_blank" href="https://www.themehigh.com">
-                	<img src="<?php echo THWCFD_ASSETS_URL_ADMIN ?>css/logo.svg" />
+                	<img src="<?php echo esc_url(THWCFD_ASSETS_URL_ADMIN .'css/logo.svg'); ?>" />
                 </a></span>
 
 			</p>
@@ -125,7 +115,7 @@ class THWCFD_Admin {
 	}
 
 	public function get_current_tab(){
-		return isset( $_GET['tab'] ) ? esc_attr( $_GET['tab'] ) : 'fields';
+		return isset( $_GET['tab'] ) ? sanitize_key( $_GET['tab'] ) : 'fields';
 	}
 	
 	public function output_settings(){
@@ -151,14 +141,18 @@ class THWCFD_Admin {
 	}
 
 	public function dismiss_thwcfd_review_request_notice(){
-		if(! check_ajax_referer( 'thwcfd_review_request_notice', 'security' )){
+		$nonse = isset($_REQUEST['thwcfd_security_review_notice']) ? $_REQUEST['thwcfd_security_review_notice'] : false;
+		$capability = THWCFD_Utils::wcfd_capability();
+		if(!wp_verify_nonce($nonse, 'thwcfd_review_request_notice') || !current_user_can($capability)){
 			die();
 		}
 		set_transient('thwcfd_review_request_notice_dismissed', true, apply_filters('thwcfd_dismissed_review_request_notice_lifespan', 1 * YEAR_IN_SECONDS));
 	}
 
 	public function skip_thwcfd_review_request_notice(){
-		if(! check_ajax_referer( 'thwcfd_review_request_notice', 'security' )){
+		$nonse = isset($_REQUEST['thwcfd_security_review_notice']) ? $_REQUEST['thwcfd_security_review_notice'] : false;
+		$capability = THWCFD_Utils::wcfd_capability();
+		if(!wp_verify_nonce($nonse, 'thwcfd_review_request_notice') || !current_user_can($capability)){
 			die();
 		}
 		set_transient('thwcfd_skip_review_request_notice', true, apply_filters('thwcfd_skip_review_request_notice_lifespan', 1 * DAY_IN_SECONDS));

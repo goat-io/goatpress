@@ -338,7 +338,7 @@ if ( ! class_exists( 'Astra_Meta_Boxes' ) ) {
 					<?php
 					$footer_adv_layout = astra_get_option( 'footer-adv' );
 
-					if ( $show_meta_field && 'disabled' != $footer_adv_layout ) {
+					if ( $show_meta_field && ( 'disabled' != $footer_adv_layout && ! Astra_Builder_Helper::$is_header_footer_builder_active ) ) {
 						?>
 					<div class="footer-adv-display-option-wrap">
 						<label for="footer-adv-display">
@@ -350,7 +350,7 @@ if ( ! class_exists( 'Astra_Meta_Boxes' ) ) {
 						<?php
 					}
 					$footer_sml_layout = astra_get_option( 'footer-sml-layout' );
-					if ( 'disabled' != $footer_sml_layout ) {
+					if ( 'disabled' != $footer_sml_layout || Astra_Builder_Helper::$is_header_footer_builder_active ) {
 						?>
 					<div class="footer-sml-layout-option-wrap">
 						<label for="footer-sml-layout">

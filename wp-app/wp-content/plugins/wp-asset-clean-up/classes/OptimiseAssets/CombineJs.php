@@ -447,6 +447,11 @@ HTML;
 
 			if ($isDeferAppliedOnBodyCombineGroupNo > 0 && $domTag = ObjectCache::wpacu_cache_get('wpacu_html_dom_body_tag_for_js')) {
 				$strPart = "id='wpacu-combined-js-body-group-".$isDeferAppliedOnBodyCombineGroupNo."' $typeAttr ";
+
+				if (strpos($htmlSource, $strPart) === false) {
+					return $htmlSource; // something is funny, do not continue
+				}
+
 				list(,$htmlAfterFirstCombinedDeferScript) = explode($strPart, $htmlSource);
 				$htmlAfterFirstCombinedDeferScriptMaybeChanged = $htmlAfterFirstCombinedDeferScript;
 				$scriptTags = $domTag->getElementsByTagName('script');
@@ -615,7 +620,7 @@ HTML;
 
 				$pathToAssetDir = OptimizeCommon::getPathToAssetDir($assetHref);
 
-				$contentToAddToCombinedFile = '/*!'.str_replace(ABSPATH, '/', $localAssetsPath)."*/\n";
+				$contentToAddToCombinedFile = '/*!'.str_replace(Misc::getWpRootDirPath(), '/', $localAssetsPath)."*/\n";
 
 				// This includes the extra from 'data' (CDATA added via wp_localize_script()) & 'before' as they are both printed BEFORE the SCRIPT tag
 				$contentToAddToCombinedFile .= self::maybeWrapBetweenTryCatch(self::appendToCombineJs('translations', $localAssetsExtra, $assetHref, $pathToAssetDir), $assetHref);
@@ -830,7 +835,7 @@ JS;
 	public static function proceedWithJsCombine()
 	{
 		// not on query string request (debugging purposes)
-		if (array_key_exists('wpacu_no_js_combine', $_GET)) {
+		if ( isset($_REQUEST['wpacu_no_js_combine']) ) {
 			return false;
 		}
 

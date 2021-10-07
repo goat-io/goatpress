@@ -22,8 +22,16 @@ if (! isset($data)) {
 					<?php } ?>
                 </td>
                 <td class="wpacu_plugin_details">
-                    <span class="wpacu_plugin_title"><?php echo $pluginData['title']; ?></span> <span class="wpacu_plugin_path">&nbsp;<small><?php echo $pluginData['path']; ?></small></span>
-                    <div class="wpacu-clearfix"></div>
+					<span class="wpacu_plugin_title"><?php echo $pluginData['title']; ?></span>
+                    <span class="wpacu_plugin_path">&nbsp;<small><?php echo $pluginData['path']; ?></small></span>
+
+					<?php
+                    if ($pluginData['network_activated']) {
+						echo '&nbsp;<span title="Network Activated" class="dashicons dashicons-admin-multisite wpacu-tooltip"></span>';
+					}
+                    ?>
+
+					<div class="wpacu-clearfix"></div>
 
                     <div class="wrap_plugin_unload_rules_options">
                         <!-- [Start] Unload Rules -->

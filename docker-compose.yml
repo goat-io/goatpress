@@ -1,12 +1,12 @@
 version: "3.1"
 services:
   #######################################################
-  #  Woocommerce DEV (nginx html as volume)
+  #  Woocommerce DEV (code as volume)
   #######################################################
   woo:
     build:
       context: .
-      dockerfile: ./docker/nginx/dev/Dockerfile
+      dockerfile: ./docker/wordpress/Dockerfile.dev
     depends_on:
       - redis
     ports:
@@ -20,12 +20,12 @@ services:
     env_file:
       - ./.env
   #######################################################
-  #  Woocommerce PROD (copy nginx html to image)
+  #  Woocommerce PROD (copy code to image)
   #######################################################
   woo_prod:
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/wordpress/Dockerfile.prod
     image: gcr.io/fluent-cd90c/woocommerce:1.19.9
     depends_on:
       - redis

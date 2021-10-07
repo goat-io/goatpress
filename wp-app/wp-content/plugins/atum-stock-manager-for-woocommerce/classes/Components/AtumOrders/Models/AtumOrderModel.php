@@ -26,9 +26,11 @@ use Atum\Inc\Helpers;
 use Atum\InventoryLogs\Items\LogItemFee;
 use Atum\InventoryLogs\Items\LogItemProduct;
 use Atum\InventoryLogs\Items\LogItemShipping;
+use Atum\InventoryLogs\Items\LogItemTax;
 use Atum\PurchaseOrders\Items\POItemFee;
 use Atum\PurchaseOrders\Items\POItemProduct;
 use Atum\PurchaseOrders\Items\POItemShipping;
+use Atum\PurchaseOrders\Items\POItemTax;
 
 
 /**
@@ -388,11 +390,11 @@ abstract class AtumOrderModel {
 	 *
 	 * @param  \WC_Product $product
 	 * @param  int|float   $qty
-	 * @param  array       $args
+	 * @param  array       $props
 	 *
 	 * @return AtumOrderItemProduct The product item added to ATUM Order
 	 */
-	public function add_product( $product, $qty = NULL, $args = array() ) {
+	public function add_product( $product, $qty = NULL, $props = array() ) {
 
 		if ( $product instanceof \WC_Product ) {
 			
@@ -422,7 +424,7 @@ abstract class AtumOrderModel {
 
 		}
 
-		$args       = wp_parse_args( $args, $default_args );
+		$props      = wp_parse_args( $props, $default_args );
 		$item_class = $this->get_items_class( $this->line_item_group );
 
 		/**
@@ -431,8 +433,9 @@ abstract class AtumOrderModel {
 		 * @var AtumOrderItemProduct $item
 		 */
 		$item = new $item_class();
-		$item->set_props( $args );
+		$item->set_props( $props );
 		$item->set_backorder_meta();
+		$this->check_order_id(); // Make sure the current PO already exists before adding products or it could fail.
 		$item->set_atum_order_id( $this->id );
 		$item->save();
 		$this->add_item( $item );
@@ -460,6 +463,7 @@ abstract class AtumOrderModel {
 		 * @var AtumOrderItemFee $item
 		 */
 		$item = new $item_class();
+		$this->check_order_id(); // Make sure the current PO already exists before adding products or it could fail.
 		$item->set_atum_order_id( $this->id );
 
 		if ( $fee ) {
@@ -467,6 +471,7 @@ abstract class AtumOrderModel {
 			$item->set_taxes( $fee->get_taxes() );
 			$item->set_tax_class( $fee->get_tax_class() );
 			$item->set_total( $fee->get_total() );
+			$item->set_name( $fee->get_name() );
 		}
 
 		$item->save();
@@ -497,6 +502,7 @@ abstract class AtumOrderModel {
 		 */
 		$item = new $item_class();
 		$item->set_shipping_rate( new \WC_Shipping_Rate() );
+		$this->check_order_id(); // Make sure the current PO already exists before adding products or it could fail.
 		$item->set_atum_order_id( $this->id );
 
 		if ( $shipping ) {
@@ -547,6 +553,7 @@ abstract class AtumOrderModel {
 		 */
 		$item = new $item_class();
 		$item->set_rate( $values['rate_id'] );
+		$this->check_order_id(); // Make sure the current PO already exists before adding products or it could fail.
 		$item->set_atum_order_id( $this->id );
 
 		if ( $tax ) {
@@ -575,6 +582,17 @@ abstract class AtumOrderModel {
 
 		return $item;
 
+	}
+
+	/**
+	 * When adding items to the ATUM Order, we need to be sure that the post already exists.
+	 *
+	 * @since 1.9.3
+	 */
+	protected function check_order_id() {
+		if ( ! $this->id ) {
+			$this->save();
+		}
 	}
 
 	/**
@@ -746,19 +764,20 @@ abstract class AtumOrderModel {
 		$existing_taxes = $this->get_taxes();
 		$saved_rate_ids = array();
 
-		foreach ( $this->get_items( [ $this->line_item_type, 'fee' ] ) as $item_id => $item ) {
+		foreach ( $this->get_items( [ $this->line_item_type, 'fee' ] ) as $item ) {
 
 			$taxes = $item->get_taxes();
 
 			foreach ( $taxes['total'] as $tax_rate_id => $tax ) {
-				$cart_taxes[ $tax_rate_id ] = ( isset( $cart_taxes[ $tax_rate_id ] ) ) ? $cart_taxes[ $tax_rate_id ] + (float) $tax : (float) $tax;
+				$cart_taxes[ $tax_rate_id ] = isset( $cart_taxes[ $tax_rate_id ] ) ? $cart_taxes[ $tax_rate_id ] + (float) $tax : (float) $tax;
 			}
 
 		}
 
-		foreach ( $this->get_shipping_methods() as $item_id => $item ) {
+		foreach ( $this->get_shipping_methods() as $item ) {
 
 			$taxes = $item->get_taxes();
+
 			foreach ( $taxes['total'] as $tax_rate_id => $tax ) {
 				$shipping_taxes[ $tax_rate_id ] = isset( $shipping_taxes[ $tax_rate_id ] ) ? $shipping_taxes[ $tax_rate_id ] + (float) $tax : (float) $tax;
 			}
@@ -1930,7 +1949,7 @@ abstract class AtumOrderModel {
 	 *
 	 * @since 1.2.4
 	 *
-	 * @return array|\WC_Order_Item_Product
+	 * @return POItemFee[]|LogItemFee[]
 	 */
 	public function get_fees() {
 		return $this->get_items( 'fee' );
@@ -1957,7 +1976,7 @@ abstract class AtumOrderModel {
 	 *
 	 * @since 1.2.4
 	 *
-	 * @return array|\WC_Order_Item_Product
+	 * @return POItemTax[]|LogItemTax[]
 	 */
 	public function get_taxes() {
 		return $this->get_items( 'tax' );
@@ -1968,7 +1987,7 @@ abstract class AtumOrderModel {
 	 *
 	 * @since 1.2.4
 	 *
-	 * @return array|\WC_Order_Item_Product
+	 * @return POItemShipping[]|LogItemShipping[]
 	 */
 	public function get_shipping_methods() {
 		return $this->get_items( 'shipping' );

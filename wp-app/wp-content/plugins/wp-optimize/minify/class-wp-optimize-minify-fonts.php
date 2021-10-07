@@ -182,6 +182,7 @@ class WP_Optimize_Minify_Fonts {
 				);
 			} else {
 				foreach ($font_details['specs'] as $key => $detail) {
+					if (is_array($detail)) $detail = implode('', $detail);
 					switch ($detail) {
 						case 'i':
 							unset(self::$fonts[$font_name]['specs'][$key]);

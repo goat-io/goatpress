@@ -135,7 +135,7 @@ if ( ! class_exists( 'Astra_Site_Identity_Configs' ) ) {
 						),
 						Astra_Builder_Helper::$general_tab_config,
 					),
-					'priority'          => 6,
+					'priority'          => 5.5,
 					'title'             => __( 'Retina Logo', 'astra' ),
 					'library_filter'    => array( 'gif', 'jpg', 'jpeg', 'png', 'ico' ),
 					'transport'         => 'postMessage',
@@ -156,7 +156,7 @@ if ( ! class_exists( 'Astra_Site_Identity_Configs' ) ) {
 					'default'   => astra_get_option( 'different-mobile-logo' ),
 					'section'   => 'title_tagline',
 					'title'     => __( 'Different Logo For Mobile Devices?', 'astra' ),
-					'priority'  => 5,
+					'priority'  => 5.5,
 					'context'   => array(
 						array(
 							'setting'  => 'custom_logo',
@@ -176,6 +176,7 @@ if ( ! class_exists( 'Astra_Site_Identity_Configs' ) ) {
 						'container_inclusive' => false,
 						'render_callback'     => 'Astra_Builder_Header::site_identity',
 					),
+					'divider'   => array( 'ast_class' => 'ast-top-divider' ),
 				),
 
 				/**
@@ -188,7 +189,7 @@ if ( ! class_exists( 'Astra_Site_Identity_Configs' ) ) {
 					'control'           => 'image',
 					'sanitize_callback' => 'esc_url_raw',
 					'section'           => 'title_tagline',
-					'priority'          => 5.5,
+					'priority'          => 6,
 					'title'             => __( 'Mobile Logo (optional)', 'astra' ),
 					'library_filter'    => array( 'gif', 'jpg', 'jpeg', 'png', 'ico' ),
 					'divider'           => array( 'ast_class' => 'ast-bottom-divider' ),
@@ -273,7 +274,7 @@ if ( ! class_exists( 'Astra_Site_Identity_Configs' ) ) {
 					'priority'  => 11,
 					'title'     => __( 'Display Site Tagline', 'astra' ),
 					'transport' => 'postMessage',
-					'divider'   => array( 'ast_class' => 'ast-bottom-divider ast-top-divider' ),
+					'divider'   => array( 'ast_class' => 'ast-top-divider' ),
 					'partial'   => array(
 
 						'selector'            => '.site-branding',
@@ -408,6 +409,21 @@ if ( ! class_exists( 'Astra_Site_Identity_Configs' ) ) {
 							'linked'          => 'section-transparent-header',
 							'link_text'       => '<u>' . __( 'Customize Transparent Header.', 'astra' ) . '</u>',
 							'active_callback' => array( $this, 'is_transparent_header_enabled' ),
+						),
+						
+						/**
+						* Link to the site icon.
+						*/
+						array(
+							'name'           => ASTRA_THEME_SETTINGS . '[site-icon-link]',
+							'type'           => 'control',
+							'control'        => 'ast-customizer-link',
+							'section'        => 'title_tagline',
+							'priority'       => 340,
+							'link_type'      => 'control',
+							'is_button_link' => true,
+							'linked'         => 'site_icon',
+							'link_text'      => __( 'Site Icon', 'astra' ),
 						),
 					)
 				);

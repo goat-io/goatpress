@@ -74,7 +74,7 @@ if ($data['status'] === 5) {
     </p>
 
     <?php
-    if (array_key_exists('wpacu_ignore_no_load_option', $_GET)) {
+    if ( isset($_GET['wpacu_ignore_no_load_option']) ) {
         ?>
         <p style="color: #cc0000;"><strong>Note:</strong> You have enabled the following option which is meant to prevent the plugin from loading on this page: <em>"Do not load Asset CleanUp Pro on this page (this will disable any functionality of the plugin)"</em>. To help you manage the assets in the front-end view, for your convenience, the query string "<em>&amp;wpacu_ignore_no_load_option</em>" has been added to the URL (after the settings were saved) which bypasses the inactivation of Asset CleanUp Pro.</small></p>
         <?php

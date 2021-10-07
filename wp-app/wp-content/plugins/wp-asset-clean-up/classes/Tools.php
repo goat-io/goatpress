@@ -363,7 +363,7 @@ class Tools
 
 	    $return .= 'Manage in the Dashboard:             '. (($settings['dashboard_show'] == 1) ? 'Yes ('.$settings['dom_get_type'].')' : 'No');
 
-	    if ($settings['hide_assets_meta_box']) {
+	    if ( ! $settings['show_assets_meta_box'] ) {
 		    $return .= ' - Assets Meta Box is Hidden';
 	    }
 

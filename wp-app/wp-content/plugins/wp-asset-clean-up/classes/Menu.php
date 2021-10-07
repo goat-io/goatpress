@@ -224,6 +224,15 @@ class Menu
 			return $actions;
 		}
 
+		if ( ! in_array(get_post_status($post), array('publish', 'private')) ) {
+			return $actions;
+		}
+
+		// Do not show the management link to specific post types that are marked as "public", but not relevant such as "ct_template" from Oxygen Builder
+		if (in_array($post->post_type, array('ct_template', 'oxy_user_library'))) {
+			return $actions;
+		}
+
 		// Build your links URL.
 		$url = admin_url( 'admin.php?page=wpassetcleanup_assets_manager' );
 

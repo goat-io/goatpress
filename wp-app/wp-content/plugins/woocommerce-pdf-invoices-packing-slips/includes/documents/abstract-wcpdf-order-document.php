@@ -417,6 +417,18 @@ abstract class Order_Document {
 		return apply_filters( "wpo_wcpdf_{$this->slug}_title", $this->title, $this );
 	}
 
+	public function get_number_title() {
+		/* translators: %s: document name */
+		$number_title = sprintf( __( '%s Number:', 'woocommerce-pdf-invoices-packing-slips' ), $this->title );
+		return apply_filters( "wpo_wcpdf_{$this->slug}_number_title", $number_title, $this );
+	}
+
+	public function get_date_title() {
+		/* translators: %s: document name */
+		$date_title = sprintf( __( '%s Date:', 'woocommerce-pdf-invoices-packing-slips' ), $this->title );
+		return apply_filters( "wpo_wcpdf_{$this->slug}_date_title", $date_title, $this );
+	}
+
 	/*
 	|--------------------------------------------------------------------------
 	| Data setters
@@ -607,14 +619,27 @@ abstract class Order_Document {
 	}
 
 	public function get_settings_text( $settings_key, $default = false, $autop = true ) {
-		if ( !empty( $this->settings[$settings_key]['default'] ) ) {
-			$text = wptexturize( trim( $this->settings[$settings_key]['default'] ) );
-			if ($autop === true) {
-				$text = wpautop( $text );
-			}
-		} else {
+		// check for 'default' key existence
+		if ( ! empty( $this->settings[$settings_key] ) && is_array( $this->settings[$settings_key] ) && array_key_exists( 'default', $this->settings[$settings_key] ) ) {
+			$text = $this->settings[$settings_key]['default'];
+		// fallback to first array element if default is not present
+		} elseif( ! empty( $this->settings[$settings_key] ) && is_array( $this->settings[$settings_key] ) ) {
+			$text = reset( $this->settings[$settings_key] );
+		}
+
+		// fallback to default
+		if ( empty( $text ) ) {
 			$text = $default;
 		}
+
+		// clean up
+		$text = wptexturize( trim( $text ) );
+
+		// replacements
+		if ( $autop === true ) {
+			$text = wpautop( $text );
+		}
+
 		// legacy filters
 		if ( in_array( $settings_key, array( 'shop_name', 'shop_address', 'footer', 'extra_1', 'extra_2', 'extra_3' ) ) ) {
 			$text = apply_filters( "wpo_wcpdf_{$settings_key}", $text, $this );
@@ -765,7 +790,7 @@ abstract class Order_Document {
 		}
 
 		$html = $this->render_template( $this->locate_template_file( "html-document-wrapper.php" ), array(
-				'content' => $content,
+				'content' => apply_filters( 'wpo_wcpdf_html_content', $content ),
 			)
 		);
 		return $html;
@@ -805,7 +830,7 @@ abstract class Order_Document {
 		if (empty($file)) {
 			$file = $this->type.'.php';
 		}
-		$path = WPO_WCPDF()->settings->get_template_path( $file );
+		$path = $this->get_template_path();
 		$file_path = "{$path}/{$file}";
 
 		$fallback_file_path = WPO_WCPDF()->plugin_path() . '/templates/Simple/' . $file;

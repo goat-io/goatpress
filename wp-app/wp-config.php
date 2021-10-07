@@ -1,10 +1,5 @@
 <?php
 
-// BEGIN iThemes Security - No modifiques ni borres esta línea
-// iThemes Security Config Details: 2
-define( 'DISALLOW_FILE_EDIT', true ); // Desactivar editor de archivos - Seguridad > Ajustes > Ajustes WordPress > Editor de archivos
-// END iThemes Security - No modifiques ni borres esta línea
-
 // Autoload the  Dotenv file
 // require_once(__DIR__ . '/vendor/autoload.php');
 // (new \Dotenv\Dotenv(__DIR__.'/'))->load();
@@ -97,16 +92,37 @@ if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROT
 if ( !defined('ABSPATH') ) {
 	define('ABSPATH', dirname(__FILE__) . '/');
 }
-	
+
 #define( 'FORCE_SSL_LOGIN', true );
 #define( 'FORCE_SSL_ADMIN', true );
+define( 'FS_METHOD', 'direct' );
+define('WP_POST_REVISIONS', 5);
+define('AUTOSAVE_INTERVAL', 300);
+define('WP_MEMORY_LIMIT', getenv('WORDPRESS_WP_MEMORY_LIMIT'));
+
 define('WP_HOME',getenv('WORDPRESS_WP_SITEURL'));
 define('WP_SITEURL',getenv('WORDPRESS_WP_SITEURL'));
-define('WP_MEMORY_LIMIT', getenv('WORDPRESS_WP_MEMORY_LIMIT'));
-define( 'FS_METHOD', 'direct' );
-define('WP_REDIS_HOST', getenv('WP_REDIS_HOST') );
-define('WP_DEBUG', false);
-define( 'WP_DEBUG_DISPLAY', false );
 
+# REDIS CACHE CONFIGURATION
+if(getenv('WP_REDIS_HOST')) {
+    define( 'WP_REDIS_HOST', getenv('WP_REDIS_HOST') );
+    define( 'WP_REDIS_PORT', getenv('WP_REDIS_PORT') );
+
+    if(getenv('WP_REDIS_PASSWORD')) {
+        define( 'WP_REDIS_PASSWORD', getenv('WP_REDIS_PASSWORD') );
+    }
+}
+
+if(getenv('WP_REDIS_DISABLED')) {
+    define( 'WP_REDIS_DISABLED', getenv('WP_REDIS_DISABLED') );
+}
+
+define( 'AS3CF_SETTINGS', serialize( array(
+    'provider' => 'gcp',
+    'key-file-path' => ABSPATH . 'service-account.json',
+) ) );
+
+define( 'WP_DEBUG_DISPLAY', false );
+define('WP_DEBUG', true);
 /** Sets up WordPress vars and included files. */
 require_once(ABSPATH . 'wp-settings.php');

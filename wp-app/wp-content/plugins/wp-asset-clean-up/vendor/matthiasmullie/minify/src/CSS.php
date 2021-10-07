@@ -256,7 +256,7 @@ class CSS extends Minify
             // loop the matches
             foreach ($matches as $match) {
                 $extension = substr(strrchr($match[2], '.'), 1);
-                if ($extension && !array_key_exists($extension, $this->importExtensions)) {
+                if ($extension && ! array_key_exists($extension, $this->importExtensions)) {
                     continue;
                 }
 

@@ -309,6 +309,38 @@ class ExactMetrics_Report {
 		return array();
 	}
 
+	protected function get_ga_report_url( $ua_name, $v4_name, $data, $ua_extra_params = '', $v4_extra_params = '', $v4_endpoint = 'explorer', $is_real_time = false ) {
+		$auth = ExactMetrics()->auth;
+
+		$params = $this->get_ga_report_range( $data );
+
+		if ( $auth->get_connected_type() === 'v4' ) {
+			$format = 'https://analytics.google.com/analytics/web/#/%1$s/' . ( $is_real_time ? 'realtime' : 'reports' ) . '/%5$s?params=%3$s%4$s&r=%2$s';
+
+			if ( empty( $v4_name ) ) {
+				$report_name = '';
+			} else {
+				$report_name = $v4_name;
+			}
+			$extra_params = '&' . $v4_extra_params;
+			$endpoint = $v4_endpoint;
+		} else {
+			$format = 'https://analytics.google.com/analytics/web/#' . ( $is_real_time ? '/realtime' : 'report' ) . '/%2$s/%1$s%3$s%4$s/';
+			$report_name = $ua_name;
+			$extra_params = '?' . $ua_extra_params;
+			$endpoint = '';
+		}
+
+		return sprintf(
+			$format,
+			$auth->get_referral_url(),
+			$report_name,
+			$params,
+			urlencode( $extra_params ),
+			$endpoint
+		);
+	}
+
 	public function get_upsell_notice() {
 		$has_level = exactmetrics_is_pro_version() ? ExactMetrics()->license->get_license_type() : false;
 		$has_level = $has_level ? $has_level : 'lite';
@@ -402,9 +434,9 @@ class ExactMetrics_Report {
 		} else {
 			if ( ! empty( $data['reportprevrange'] ) && ! empty( $data['reportprevrange']['startDate'] ) && ! empty( $data['reportprevrange']['endDate'] ) ) {
 				return urlencode( '_u.date00=' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) . '&_u.date01=' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) . '&_u.date10=' . str_replace( '-', '', $data['reportprevrange']['startDate'] ) . '&_u.date11=' . str_replace( '-', '', $data['reportprevrange']['endDate'] ) );
-			} else {
-				return urlencode( '_u.date00=' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) . '&_u.date01=' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) );
 			}
+
+			return urlencode( '_u.date00=' . str_replace( '-', '', $data['reportcurrentrange']['startDate'] ) . '&_u.date01=' . str_replace( '-', '', $data['reportcurrentrange']['endDate'] ) );
 		}
 	}
 

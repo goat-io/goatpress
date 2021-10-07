@@ -659,7 +659,7 @@ class ITSEC_Lib_Login_Interstitial {
 			wp_enqueue_script( 'customize-base' );
 		}
 
-		login_header( '', '<p class="message">' . __( 'You have logged in successfully.' ) . '</p>' );
+		login_header( '', '<p class="message">' . __( 'You have logged in successfully.', 'better-wp-security' ) . '</p>' );
 		?>
 		</div>
 		<?php

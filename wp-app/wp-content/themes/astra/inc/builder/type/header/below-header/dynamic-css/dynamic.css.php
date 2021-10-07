@@ -34,7 +34,7 @@ function astra_below_header_row_setting( $dynamic_css, $dynamic_css_filtered = '
 
 	// Common CSS options.
 	$hbb_header_height  = astra_get_option( 'hbb-header-height' );
-	$hbb_header_divider = absint( astra_get_option( 'hbb-header-separator' ) );
+	$hbb_header_divider = astra_get_option( 'hbb-header-separator' );
 	$hbb_border_color   = astra_get_option( 'hbb-header-bottom-border-color' );
 
 	// Header Height.
@@ -81,7 +81,7 @@ function astra_below_header_row_setting( $dynamic_css, $dynamic_css_filtered = '
 	);
 
 	// Apply border only when it has positive value.
-	if ( $hbb_header_divider ) {
+	if ( '' !== $hbb_header_divider && 'inherit' !== $hbb_header_divider ) {
 		$common_css_output['.ast-below-header-bar'] = array(
 			'border-bottom-width' => astra_get_css_value( $hbb_header_divider, 'px' ),
 			'border-bottom-color' => esc_attr( $hbb_border_color ),

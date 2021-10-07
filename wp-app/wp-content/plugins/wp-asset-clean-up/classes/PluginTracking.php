@@ -69,7 +69,7 @@ class PluginTracking
 	 */
 	public function opt_in_out($isAjaxCall = false)
 	{
-	    if (! array_key_exists('wpacu_action', $_REQUEST)) {
+	    if ( ! isset($_REQUEST['wpacu_action']) ) {
 	        return false;
         }
 
@@ -165,7 +165,7 @@ class PluginTracking
 		}
 
 		$plugins        = array_keys(get_plugins());
-		$active_plugins = get_option('active_plugins', array());
+		$active_plugins = Misc::getActivePlugins();
 
 		foreach ($plugins as $key => $plugin) {
 			if (in_array($plugin, $active_plugins)) {
@@ -314,7 +314,7 @@ class PluginTracking
 	public function show_tracking_notice()
 	{
 	    // On URL request (for debugging)
-		if (array_key_exists('wpacu_show_tracking_notice', $_GET)) {
+		if ( isset($_GET['wpacu_show_tracking_notice']) ) {
 			return true;
 		}
 
@@ -339,8 +339,8 @@ class PluginTracking
 		}
 
 		if (false !== stripos(network_site_url('/'), 'dev') ||
-			false !== stripos(network_site_url('/'), 'localhost') ||
-			false !== strpos(network_site_url('/'), ':8888') // This is common with MAMP on OS X
+		    false !== stripos(network_site_url('/'), 'localhost') ||
+		    false !== strpos(network_site_url('/'), ':8888') // This is common with MAMP on OS X
 		) {
 			update_option(WPACU_PLUGIN_ID . '_tracking_notice', '1');
 			return false;

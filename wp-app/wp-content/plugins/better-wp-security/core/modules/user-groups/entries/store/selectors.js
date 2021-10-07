@@ -7,7 +7,7 @@ import { map, filter, isObject, get } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { select } from '@wordpress/data';
+import { createRegistrySelector } from '@wordpress/data';
 
 /**
  * Get the list of matchables.
@@ -16,8 +16,12 @@ import { select } from '@wordpress/data';
  * @return {Array<Object>}
  */
 export const getMatchables = createSelector(
-	( state ) => filter( map( state.matchableIds, ( id ) => state.matchablesById[ id ] ), isObject ),
-	( state ) => [ state.matchablesById, state.matchableIds ],
+	( state ) =>
+		filter(
+			map( state.matchableIds, ( id ) => state.matchablesById[ id ] ),
+			isObject
+		),
+	( state ) => [ state.matchablesById, state.matchableIds ]
 );
 
 /**
@@ -53,20 +57,36 @@ export function getMatchableLabel( state, id ) {
  * @return {Array} Groups list.
  */
 export const getGroups = createSelector(
-	( state, queryId ) => filter( map( state.queries[ queryId ], ( id ) => state.byId[ id ] ), isObject ),
-	( state, queryId ) => [ state.queries[ queryId ], state.byId ],
+	( state, queryId ) =>
+		filter(
+			map( state.queries[ queryId ], ( id ) => state.byId[ id ] ),
+			isObject
+		),
+	( state, queryId ) => [ state.queries[ queryId ], state.byId ]
 );
 
 const UNKNOWN_QUERIED_OBJECTS = [];
 
 /**
  * Get the object ids returned by a query.
+ *
  * @param {Object} state
  * @param {string} queryId
- * @return {Array<string|number>}
+ * @return {Array<string|number>} List of queried ids.
  */
 export function getQueriedObjectIds( state, queryId ) {
 	return state.queries[ queryId ] || UNKNOWN_QUERIED_OBJECTS;
+}
+
+/**
+ * Checks if this group could not be found.
+ *
+ * @param {Object} state The store state.
+ * @param {string} id The group id.
+ * @return {boolean} True if not found.
+ */
+export function isGroupNotFound( state, id ) {
+	return state.groupsNotFound.includes( id );
 }
 
 /**
@@ -74,7 +94,7 @@ export function getQueriedObjectIds( state, queryId ) {
  *
  * @param {Object} state
  * @param {string} id
- * @return {Object|undefined}
+ * @return {Object|undefined} Group data.
  */
 export function getGroup( state, id ) {
 	return state.byId[ id ];
@@ -82,22 +102,26 @@ export function getGroup( state, id ) {
 
 /**
  * Get a group's attribute value.
+ *
  * @param {Object} state
  * @param {string} id
  * @param {string} attribute
- * @return {*}
+ * @return {*} Attribute value.
  */
-export function getGroupAttribute( state, id, attribute ) {
-	const group = select( 'ithemes-security/user-groups' ).getGroup( id );
+export const getGroupAttribute = createRegistrySelector(
+	( select ) => ( state, id, attribute ) => {
+		const group = select( 'ithemes-security/user-groups' ).getGroup( id );
 
-	return group ? group[ attribute ] : undefined;
-}
+		return group ? group[ attribute ] : undefined;
+	}
+);
 
 /**
  * Checks if the given user group is being updated.
+ *
  * @param {Object} state
  * @param {string} id
- * @return {boolean}
+ * @return {boolean} True if updating.
  */
 export function isUpdating( state, id ) {
 	return state.updating.includes( id );
@@ -105,9 +129,10 @@ export function isUpdating( state, id ) {
 
 /**
  * Checks if the given user group is being deleted.
+ *
  * @param {Object} state
  * @param {string} id
- * @return {boolean}
+ * @return {boolean} True if deleting.
  */
 export function isDeleting( state, id ) {
 	return state.deleting.includes( id );
@@ -118,7 +143,7 @@ export function isDeleting( state, id ) {
  *
  * @param {Object} state
  * @param {string} id
- * @return {Object|undefined}
+ * @return {Object|undefined} Group settings.
  */
 export function getGroupSettings( state, id ) {
 	return state.settings[ id ];
@@ -131,19 +156,24 @@ export function getGroupSettings( state, id ) {
  * @param {string} id
  * @param {string} module
  * @param {string} setting
- * @return {boolean}
+ * @return {boolean} The setting value.
  */
-export function getGroupSetting( state, id, module, setting ) {
-	const settings = select( 'ithemes-security/user-groups' ).getGroupSettings( id );
+export const getGroupSetting = createRegistrySelector(
+	( select ) => ( state, id, module, setting ) => {
+		const settings = select(
+			'ithemes-security/user-groups'
+		).getGroupSettings( id );
 
-	return get( settings, [ module, setting ] );
-}
+		return get( settings, [ module, setting ] );
+	}
+);
 
 /**
  * Is the application updating a group's settings.
+ *
  * @param {Object} state
  * @param {string} id
- * @return {boolean}
+ * @return {boolean} True if updating.
  */
 export function isUpdatingSettings( state, id ) {
 	return state.updatingSettings.includes( id );
@@ -151,10 +181,11 @@ export function isUpdatingSettings( state, id ) {
 
 /**
  * Is a bulk patch in progress.
+ *
  * @param {Object} state
  * @param {Array<string>} groupIds
  * @param {Object} patch
- * @return {boolean}
+ * @return {boolean} True if bulk patching.
  */
 export function isBulkPatchingSettings( state, groupIds, patch ) {
 	const id = groupIds.join( '_' );
@@ -164,6 +195,7 @@ export function isBulkPatchingSettings( state, groupIds, patch ) {
 
 /**
  * Gets the groups for each setting.
+ *
  * @param {Object} state State object.
  * @return {{}} Object of modules -> setting -> array of group ids.
  */
@@ -181,7 +213,11 @@ export function getGroupsBySetting( state ) {
 			}
 
 			for ( const setting in state.settings[ groupId ][ module ] ) {
-				if ( ! state.settings[ groupId ][ module ].hasOwnProperty( setting ) ) {
+				if (
+					! state.settings[ groupId ][ module ].hasOwnProperty(
+						setting
+					)
+				) {
 					continue;
 				}
 

@@ -271,6 +271,7 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing_Importer' ) ) :
 					'page_builder' => 'elementor',
 					'per_page'     => 100,
 					'page'         => $page,
+					'wireframe'    => 'yes',
 				)
 			);
 

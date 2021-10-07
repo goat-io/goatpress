@@ -280,6 +280,9 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 			$did_location = Module::instance()->get_locations_manager()->do_location( 'header' );
 			if ( $did_location ) {
 				remove_action( 'astra_header', 'astra_header_markup' );
+				if ( true === \Astra_Builder_Helper::$is_header_footer_builder_active ) { // phpcs:ignore PHPCompatibility.Keywords.NewKeywords.t_namespaceFound, PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+					remove_action( 'astra_header', array( \Astra_Builder_Header::get_instance(), 'header_builder_markup' ) ); // phpcs:ignore PHPCompatibility.Keywords.NewKeywords.t_namespaceFound, PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+				}
 			}
 		}
 
@@ -293,6 +296,9 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 			$did_location = Module::instance()->get_locations_manager()->do_location( 'footer' );
 			if ( $did_location ) {
 				remove_action( 'astra_footer', 'astra_footer_markup' );
+				if ( true === \Astra_Builder_Helper::$is_header_footer_builder_active ) { // phpcs:ignore PHPCompatibility.Keywords.NewKeywords.t_namespaceFound, PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+					remove_action( 'astra_footer', array( \Astra_Builder_Footer::get_instance(), 'footer_markup' ) ); // phpcs:ignore PHPCompatibility.Keywords.NewKeywords.t_namespaceFound, PHPCompatibility.LanguageConstructs.NewLanguageConstructs.t_ns_separatorFound
+				}
 			}
 		}
 

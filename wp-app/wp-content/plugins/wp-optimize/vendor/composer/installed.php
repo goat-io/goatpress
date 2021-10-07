@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5d7e8b9d92dd121c59d3b5c0c6a16545453b4258',
+    'reference' => 'ee0742e551b1b80e9e5baa31ee9c6018b57ff943',
     'name' => 'updraftplus/wp-optimize',
   ),
   'versions' => 
@@ -76,12 +76,12 @@
     ),
     'monolog/monolog' => 
     array (
-      'pretty_version' => '2.2.0',
-      'version' => '2.2.0.0',
+      'pretty_version' => '2.3.2',
+      'version' => '2.3.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1cb1cde8e8dd0f70cc0fe51354a59acad9302084',
+      'reference' => '71312564759a7db5b789296369c1a264efc43aad',
     ),
     'mrclay/jsmin-php' => 
     array (
@@ -155,12 +155,12 @@
     ),
     'rosell-dk/image-mime-type-guesser' => 
     array (
-      'pretty_version' => '0.3',
-      'version' => '0.3.0.0',
+      'pretty_version' => '0.3.1',
+      'version' => '0.3.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '204fd61ca81e3b0ba46c6165dab8f74816b1fe99',
+      'reference' => '5915934d66a7869cecc7141adf90581aad81023d',
     ),
     'rosell-dk/webp-convert' => 
     array (
@@ -214,7 +214,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5d7e8b9d92dd121c59d3b5c0c6a16545453b4258',
+      'reference' => 'ee0742e551b1b80e9e5baa31ee9c6018b57ff943',
     ),
   ),
 );

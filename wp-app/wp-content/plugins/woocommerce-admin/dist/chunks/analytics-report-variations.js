@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[16],{
 
-/***/ 525:
+/***/ 479:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18,16 +18,16 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: external ["wp","hooks"]
-var external_wp_hooks_ = __webpack_require__(34);
+var external_wp_hooks_ = __webpack_require__(30);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: ./client/lib/async-requests/index.js
-var async_requests = __webpack_require__(546);
+var async_requests = __webpack_require__(499);
 
 // EXTERNAL MODULE: ./client/customer-effort-score-tracks/data/constants.js
-var constants = __webpack_require__(62);
+var constants = __webpack_require__(54);
 
 // CONCATENATED MODULE: ./client/analytics/report/variations/config.js
 /**
@@ -50,13 +50,13 @@ const {
 } = Object(external_wp_data_["dispatch"])(constants["c" /* STORE_KEY */]);
 const charts = Object(external_wp_hooks_["applyFilters"])(VARIATIONS_REPORT_CHARTS_FILTER, [{
   key: 'items_sold',
-  label: Object(external_wp_i18n_["__"])('Items Sold', 'woocommerce-admin'),
+  label: Object(external_wp_i18n_["__"])('Items sold', 'woocommerce-admin'),
   order: 'desc',
   orderby: 'items_sold',
   type: 'number'
 }, {
   key: 'net_revenue',
-  label: Object(external_wp_i18n_["__"])('Net Sales', 'woocommerce-admin'),
+  label: Object(external_wp_i18n_["__"])('Net sales', 'woocommerce-admin'),
   order: 'desc',
   orderby: 'net_revenue',
   type: 'currency'
@@ -73,11 +73,11 @@ const filters = Object(external_wp_hooks_["applyFilters"])(VARIATIONS_REPORT_FIL
   param: 'filter-variations',
   showFilters: () => true,
   filters: [{
-    label: Object(external_wp_i18n_["__"])('All Variations', 'woocommerce-admin'),
+    label: Object(external_wp_i18n_["__"])('All variations', 'woocommerce-admin'),
     chartMode: 'item-comparison',
     value: 'all'
   }, {
-    label: Object(external_wp_i18n_["__"])('Single Variation', 'woocommerce-admin'),
+    label: Object(external_wp_i18n_["__"])('Single variation', 'woocommerce-admin'),
     value: 'select_variation',
     subFilters: [{
       component: 'Search',
@@ -89,7 +89,7 @@ const filters = Object(external_wp_hooks_["applyFilters"])(VARIATIONS_REPORT_FIL
         getLabels: async_requests["g" /* getVariationLabels */],
         labels: {
           placeholder: Object(external_wp_i18n_["__"])('Type to search for a variation', 'woocommerce-admin'),
-          button: Object(external_wp_i18n_["__"])('Single Variation', 'woocommerce-admin')
+          button: Object(external_wp_i18n_["__"])('Single variation', 'woocommerce-admin')
         }
       }
     }]
@@ -110,12 +110,12 @@ const filters = Object(external_wp_hooks_["applyFilters"])(VARIATIONS_REPORT_FIL
       onClick: addCesSurveyForAnalytics
     }
   }, {
-    label: Object(external_wp_i18n_["__"])('Advanced Filters', 'woocommerce-admin'),
+    label: Object(external_wp_i18n_["__"])('Advanced filters', 'woocommerce-admin'),
     value: 'advanced'
   }]
 }]);
 const advancedFilters = Object(external_wp_hooks_["applyFilters"])(VARIATIONS_REPORT_ADVANCED_FILTERS_FILTER, {
-  title: Object(external_wp_i18n_["_x"])('Variations Match {{select /}} Filters', 'A sentence describing filters for Variations. See screen shot for context: https://cloudup.com/cSsUY9VeCVJ', 'woocommerce-admin'),
+  title: Object(external_wp_i18n_["_x"])('Variations match {{select /}} filters', 'A sentence describing filters for Variations. See screen shot for context: https://cloudup.com/cSsUY9VeCVJ', 'woocommerce-admin'),
   filters: {
     attribute: {
       allowMultiple: true,
@@ -203,22 +203,22 @@ const advancedFilters = Object(external_wp_hooks_["applyFilters"])(VARIATIONS_RE
   }
 });
 // EXTERNAL MODULE: ./client/lib/get-selected-chart/index.js
-var get_selected_chart = __webpack_require__(555);
+var get_selected_chart = __webpack_require__(507);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-chart/index.js + 1 modules
-var report_chart = __webpack_require__(552);
+var report_chart = __webpack_require__(505);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-error/index.js
-var report_error = __webpack_require__(548);
+var report_error = __webpack_require__(501);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-summary/index.js
-var report_summary = __webpack_require__(556);
+var report_summary = __webpack_require__(508);
 
 // EXTERNAL MODULE: ./client/analytics/report/variations/table.js
-var table = __webpack_require__(577);
+var table = __webpack_require__(529);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-filters/index.js
-var report_filters = __webpack_require__(549);
+var report_filters = __webpack_require__(502);
 
 // CONCATENATED MODULE: ./client/analytics/report/variations/index.js
 
@@ -317,7 +317,7 @@ VariationsReport.propTypes = {
 
 /***/ }),
 
-/***/ 546:
+/***/ 499:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -330,9 +330,9 @@ VariationsReport.propTypes = {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getTaxRateLabels; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return getVariationName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return getVariationLabels; });
-/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(16);
+/* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15);
 /* harmony import */ var _wordpress_url__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_url__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
@@ -340,8 +340,8 @@ VariationsReport.propTypes = {
 /* harmony import */ var _woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _woocommerce_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
 /* harmony import */ var _woocommerce_data__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_data__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(17);
-/* harmony import */ var _analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(547);
+/* harmony import */ var _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(13);
+/* harmony import */ var _analytics_report_taxes_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(500);
 /**
  * External dependencies
  */
@@ -421,7 +421,7 @@ function getVariationName({
   attributes,
   name
 }) {
-  const separator = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__[/* getSetting */ "h"])('variationTitleAttributesSeparator', ' - ');
+  const separator = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_5__[/* getSetting */ "f"])('variationTitleAttributesSeparator', ' - ');
 
   if (name.indexOf(separator) > -1) {
     return name;
@@ -450,7 +450,7 @@ const getVariationLabels = getRequestByIdString(({
 
 /***/ }),
 
-/***/ 547:
+/***/ 500:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -467,7 +467,7 @@ function getTaxCode(tax) {
 
 /***/ }),
 
-/***/ 559:
+/***/ 510:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -489,7 +489,7 @@ function isLowStock(status, quantity, threshold) {
 
 /***/ }),
 
-/***/ 577:
+/***/ 529:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -499,17 +499,17 @@ function isLowStock(status, quantity, threshold) {
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _woocommerce_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(23);
+/* harmony import */ var _woocommerce_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _woocommerce_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _woocommerce_navigation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
 /* harmony import */ var _woocommerce_navigation__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _woocommerce_number__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(139);
+/* harmony import */ var _woocommerce_number__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(120);
 /* harmony import */ var _woocommerce_number__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_number__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(17);
-/* harmony import */ var _components_report_table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(550);
-/* harmony import */ var _products_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(559);
-/* harmony import */ var _lib_currency_context__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(545);
-/* harmony import */ var _lib_async_requests__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(546);
+/* harmony import */ var _woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
+/* harmony import */ var _components_report_table__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(503);
+/* harmony import */ var _products_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(510);
+/* harmony import */ var _lib_currency_context__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(498);
+/* harmony import */ var _lib_async_requests__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(499);
 
 
 /**
@@ -530,8 +530,8 @@ function isLowStock(status, quantity, threshold) {
 
 
 
-const manageStock = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getSetting */ "h"])('manageStock', 'no');
-const stockStatuses = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getSetting */ "h"])('stockStatuses', {});
+const manageStock = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getSetting */ "f"])('manageStock', 'no');
+const stockStatuses = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getSetting */ "f"])('stockStatuses', {});
 
 const getFullVariationName = rowData => Object(_lib_async_requests__WEBPACK_IMPORTED_MODULE_10__[/* getVariationName */ "h"])(rowData.extended_info || {});
 
@@ -545,7 +545,7 @@ class VariationsReportTable extends _wordpress_element__WEBPACK_IMPORTED_MODULE_
 
   getHeadersContent() {
     return [{
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Product / Variation Title', 'woocommerce-admin'),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Product / Variation title', 'woocommerce-admin'),
       key: 'name',
       required: true,
       isLeftAligned: true
@@ -555,15 +555,15 @@ class VariationsReportTable extends _wordpress_element__WEBPACK_IMPORTED_MODULE_
       hiddenByDefault: true,
       isSortable: true
     }, {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Items Sold', 'woocommerce-admin'),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Items sold', 'woocommerce-admin'),
       key: 'items_sold',
       required: true,
       defaultSort: true,
       isSortable: true,
       isNumeric: true
     }, {
-      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Net Sales', 'woocommerce-admin'),
-      screenReaderLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Net Sales', 'woocommerce-admin'),
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Net sales', 'woocommerce-admin'),
+      screenReaderLabel: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Net sales', 'woocommerce-admin'),
       key: 'net_revenue',
       required: true,
       isSortable: true,
@@ -613,7 +613,7 @@ class VariationsReportTable extends _wordpress_element__WEBPACK_IMPORTED_MODULE_
         filter: 'advanced',
         variation_includes: variationId
       });
-      const editPostLink = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getAdminLink */ "g"])(`post.php?post=${productId}&action=edit`);
+      const editPostLink = Object(_woocommerce_wc_admin_settings__WEBPACK_IMPORTED_MODULE_6__[/* getAdminLink */ "e"])(`post.php?post=${productId}&action=edit`);
       return [{
         display: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_woocommerce_components__WEBPACK_IMPORTED_MODULE_3__["Link"], {
           href: editPostLink,

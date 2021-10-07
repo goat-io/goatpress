@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["customerEffortScore"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 512);
+/******/ 	return __webpack_require__(__webpack_require__.s = 466);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,13 +107,13 @@ this["wc"] = this["wc"] || {}; this["wc"]["customerEffortScore"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(54)();
+  module.exports = __webpack_require__(47)();
 }
 
 
 /***/ }),
 
-/***/ 15:
+/***/ 14:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["compose"]; }());
@@ -127,7 +127,7 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
-/***/ 22:
+/***/ 20:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wc"]["experimental"]; }());
@@ -141,7 +141,7 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
-/***/ 512:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -162,7 +162,7 @@ var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(15);
+var external_wp_compose_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
@@ -171,11 +171,9 @@ var external_wp_data_ = __webpack_require__(7);
 var external_wp_components_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
-var external_wc_experimental_ = __webpack_require__(22);
+var external_wc_experimental_ = __webpack_require__(20);
 
-// CONCATENATED MODULE: ./packages/customer-effort-score/build-module/customer-feedback-modal/index.jsx
-
-
+// CONCATENATED MODULE: ./packages/customer-effort-score/build-module/customer-feedback-modal/index.js
 /**
  * External dependencies
  */
@@ -296,10 +294,7 @@ CustomerFeedbackModal.propTypes = {
   label: prop_types_default.a.string.isRequired
 };
 /* harmony default export */ var customer_feedback_modal = (CustomerFeedbackModal);
-//# sourceMappingURL=index.jsx.map
 // CONCATENATED MODULE: ./packages/customer-effort-score/build-module/index.js
-
-
 /**
  * External dependencies
  */
@@ -421,11 +416,10 @@ CustomerEffortScore.propTypes = {
     createNotice
   };
 }))(CustomerEffortScore));
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 54:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -438,7 +432,7 @@ CustomerEffortScore.propTypes = {
 
 
 
-var ReactPropTypesSecret = __webpack_require__(55);
+var ReactPropTypesSecret = __webpack_require__(48);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -497,7 +491,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 55:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

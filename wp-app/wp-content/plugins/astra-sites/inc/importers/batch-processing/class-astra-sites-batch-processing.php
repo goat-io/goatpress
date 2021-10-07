@@ -269,6 +269,7 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing' ) ) :
 		 */
 		public function update_library_complete() {
 			Astra_Sites_Importer::get_instance()->update_latest_checksums();
+			do_action( 'starter_templates_save_sites_count_as_per_page_builder' );
 
 			update_site_option( 'astra-sites-batch-is-complete', 'no', 'no' );
 			update_site_option( 'astra-sites-manual-sync-complete', 'yes', 'no' );
@@ -713,7 +714,14 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing' ) ) :
 				'timeout' => 60,
 			);
 
-			$response = wp_remote_get( trailingslashit( Astra_Sites::get_instance()->get_api_domain() ) . 'wp-json/astra-blocks/v1/get-blocks-count/?page_builder=elementor', $api_args );
+			$query_args = array(
+				'page_builder' => 'elementor',
+				'wireframe'    => 'yes',
+			);
+
+			$api_url = add_query_arg( $query_args, trailingslashit( Astra_Sites::get_instance()->get_api_domain() ) . 'wp-json/astra-blocks/v1/get-blocks-count/' );
+
+			$response = wp_remote_get( $api_url, $api_args );
 			if ( ! is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) === 200 ) {
 				$total_requests = json_decode( wp_remote_retrieve_body( $response ), true );
 

@@ -9,9 +9,6 @@ class ITSEC_Core_Admin {
 		add_action( 'admin_bar_menu', array( $this, 'admin_bar' ), 9999 );
 		add_action( 'admin_footer', array( $this, 'render_notices_root' ) );
 
-		add_action( 'itsec-settings-page-init', array( $this, 'init_settings_page' ) );
-		add_action( 'itsec-logs-page-init', array( $this, 'init_settings_page' ) );
-
 		if ( ! ITSEC_Core::is_pro() ) {
 			add_filter( 'itsec_meta_links', array( $this, 'add_plugin_meta_links' ) );
 		}
@@ -52,21 +49,6 @@ class ITSEC_Core_Admin {
 
 	private function should_render_admin_notices() {
 		return ITSEC_Core::current_user_can_manage() && ! ITSEC_Modules::get_setting( 'global', 'hide_admin_bar' );
-	}
-
-	public function init_settings_page() {
-		if ( ! class_exists( 'backupbuddy_api' ) ) {
-			require_once( dirname( __FILE__ ) . '/sidebar-widget-backupbuddy-cross-promo.php' );
-		}
-
-		if ( ITSEC_Core::is_pro() ) {
-			return;
-		}
-
-		require_once( dirname( __FILE__ ) . '/sidebar-widget-pro-upsell.php' );
-		require_once( dirname( __FILE__ ) . '/sidebar-widget-sync-cross-promo.php' );
-		require_once( dirname( __FILE__ ) . '/sidebar-widget-mail-list-signup.php' );
-		require_once( dirname( __FILE__ ) . '/sidebar-widget-support.php' );
 	}
 
 	/**

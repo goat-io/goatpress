@@ -409,6 +409,11 @@ if ( ! class_exists( 'Astra_Customizer_Sanitizes' ) ) {
 				return '';
 			}
 
+			// CSS variable value sanitize.
+			if ( 0 === strpos( $color, 'var(--' ) ) {
+				return preg_replace( '/[^A-Za-z0-9_)(\-,.]/', '', $color );
+			}
+
 			if ( false === strpos( $color, 'rgba' ) ) {
 				/* Hex sanitize */
 				return self::sanitize_hex_color( $color );
@@ -593,10 +598,10 @@ if ( ! class_exists( 'Astra_Customizer_Sanitizes' ) ) {
 		 * @return Array
 		 */
 		public static function sanitize_customizer_links( $val ) {
-			$val['linked']    = sanitize_text_field( $val['linked'] );
-			$val['link_text'] = esc_html( $val['link_text'] );
-			$val['link_type'] = esc_html( $val['link_type'] );
-
+			$val['linked']         = sanitize_text_field( $val['linked'] );
+			$val['link_text']      = esc_html( $val['link_text'] );
+			$val['link_type']      = esc_html( $val['link_type'] );
+			$val['is_button_link'] = esc_html( isset( $val['is_button_link'] ) ? $val['is_button_link'] : '#' );
 			return $val;
 		}
 

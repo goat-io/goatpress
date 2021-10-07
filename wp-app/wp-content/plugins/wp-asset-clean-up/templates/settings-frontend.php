@@ -15,10 +15,10 @@ if (! isset($data)) {
 		        ?>
                 <div class="wpacu-updated-frontend"><em>
                     <?php if (\WpAssetCleanUp\Misc::isHomePage()) {
-                        echo $updateClass->updateDoneMsg['homepage'];
+                            echo $updateClass->afterSubmitMsg['homepage'];
                     } else {
-                        echo $updateClass->updateDoneMsg['page'];
-                    } ?>
+	                        echo $updateClass->afterSubmitMsg['page'];
+                        } ?>
                     </em>
                 </div>
 		        <?php
@@ -45,23 +45,23 @@ if (! isset($data)) {
                 }
             }
 
-            if (\WpAssetCleanUp\Misc::isPluginActive('perfmatters/perfmatters.php')) {
-	            $perfmattersExtras = get_option('perfmatters_extras');
+        if (\WpAssetCleanUp\Misc::isPluginActive('perfmatters/perfmatters.php')) {
+	        $perfmattersExtras = get_option('perfmatters_extras');
 
-	            if (isset($perfmattersExtras['script_manager']) && (int)$perfmattersExtras['script_manager'] === 1) {
-                ?>
-                    <div class="wpacu-warning">
-                        <span class="dashicons dashicons-warning" style="color: #cc0000;"></span> <?php _e('You\'re using the "Script Manager" option from "Extras" tab within Perfmatters plugin.', 'wp-asset-clean-up'); ?> <?php _e('You\'re already using Asset CleanUp to manage the CSS/JS.', 'wp-asset-clean-up'); ?> <strong><?php _e('Try not to use both plugins for the same feature as you could end up with broken functionality on either end.', 'wp-asset-clean-up'); ?></strong>
-                    </div>
-                <?php
-                }
-            }
+	        if (isset($perfmattersExtras['script_manager']) && (int)$perfmattersExtras['script_manager'] === 1) {
+		        ?>
+                <div class="wpacu-warning">
+                    <span class="dashicons dashicons-warning" style="color: #cc0000;"></span> <?php _e('You\'ve enabled "Script Manager" within "Options" -&gt; "Assets" from Perfmatters plugin.', 'wp-asset-clean-up'); ?> <?php _e('You\'re already using Asset CleanUp to manage the CSS/JS.', 'wp-asset-clean-up'); ?> <strong><?php _e('Try not to use both plugins for the same feature as you could end up with broken functionality on either end.', 'wp-asset-clean-up'); ?></strong>
+                </div>
+		        <?php
+	        }
+        }
         ?>
-            <p><small><?php _e('This area is shown only for the admin users and if "Manage in the Front-end?" was selected in the plugin\'s settings. Handles such as \'admin-bar\' and \'wpassetcleanup-style\' are not included as they are irrelevant since they are used by the plugin for this area.', 'wp-asset-clean-up'); ?></small></p>
+        <p><small><?php _e('This area is shown only for the admin users and if "Manage in the Front-end?" was selected in the plugin\'s settings. Handles such as \'admin-bar\' and \'wpassetcleanup-style\' are not included as they are irrelevant since they are used by the plugin for this area.', 'wp-asset-clean-up'); ?></small></p>
 
             <?php
             if ($data['is_woo_shop_page']) {
-                ?>
+            ?>
                 <p><strong><span style="color: #0f6cab;" class="dashicons dashicons-cart"></span> <?php _e('This a WooCommerce shop page (\'product\' type archive).', 'wp-asset-clean-up'); ?> <?php _e('Unloading CSS/JS will also take effect for the pagination/sorting pages', 'wp-asset-clean-up'); ?>(e.g. /2, /3, /?orderby=popularity etc.).</strong></p>
                 <?php
             }

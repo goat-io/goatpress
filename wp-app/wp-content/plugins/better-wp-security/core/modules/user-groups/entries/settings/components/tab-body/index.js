@@ -8,9 +8,11 @@ import classnames from 'classnames';
  */
 import './style.scss';
 
-TabBody.Row = function( { name, children } ) {
+TabBody.Row = function ( { name, children } ) {
 	return (
-		<div className={ `itsec-user-groups-group-tab__row itsec-user-groups-group-tab__row--${ name }` }>
+		<div
+			className={ `itsec-user-groups-group-tab__row itsec-user-groups-group-tab__row--${ name }` }
+		>
 			{ children }
 		</div>
 	);
@@ -22,9 +24,5 @@ export default function TabBody( { name, isLoading, children } ) {
 		'itsec-user-groups-group-tab--is-loading': isLoading,
 	} );
 
-	return (
-		<div className={ className }>
-			{ children }
-		</div>
-	);
+	return <div className={ className }>{ children }</div>;
 }

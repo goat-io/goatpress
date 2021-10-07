@@ -342,7 +342,7 @@ class WPO_Page_Cache {
 
 		if (!$this->write_advanced_cache() && version_compare($this->get_advanced_cache_version(), $this->_minimum_advanced_cache_file_version, '<')) {
 			$message = sprintf("The request to write the file %s failed. ", htmlspecialchars($this->get_advanced_cache_filename()));
-			$message .= ' '.__('Your WP install might not have permission to write inside the wp-content folder.', 'wp-optimize');
+			$message .= ' '.__('Please check file and directory permissions on the file paths up to this point, and your PHP error log.', 'wp-optimize');
 
 			if (!defined('WP_CLI') || !WP_CLI) {
 				$message .= "\n\n".sprintf(__('1. Please navigate, via FTP, to the folder - %s', 'wp-optimize'), htmlspecialchars(dirname($this->get_advanced_cache_filename())));
@@ -533,6 +533,7 @@ class WPO_Page_Cache {
 		$cache_files_path = '/cache/wpo-cache';
 		$cache_extensions_path = WPO_CACHE_EXT_DIR;
 		$wpo_version = WPO_VERSION;
+		$wpo_home_url = trailingslashit(home_url());
 
 		// CS does not like heredoc
 		// phpcs:disable
@@ -544,8 +545,6 @@ if (!defined('ABSPATH')) die('No direct access allowed');
 // WP-Optimize advanced-cache.php (written by version: $wpo_version) (do not change this line, it is used for correctness checks)
 
 if (!defined('WPO_ADVANCED_CACHE')) define('WPO_ADVANCED_CACHE', true);
-
-if (is_admin()) { return; }
 
 \$possible_plugin_locations = array(
 	defined('WP_PLUGIN_DIR') ? WP_PLUGIN_DIR.'/$plugin_basename/cache' : false,
@@ -562,6 +561,20 @@ foreach (\$possible_plugin_locations as \$possible_location) {
 		break;
 	}
 }
+
+if (false === \$plugin_location) {
+	if (!defined('WPO_PLUGIN_LOCATION_NOT_FOUND')) define('WPO_PLUGIN_LOCATION_NOT_FOUND', true);
+	\$protocol = \$_SERVER['REQUEST_SCHEME'];
+	\$host = \$_SERVER['HTTP_HOST'];
+	\$request_uri = \$_SERVER['REQUEST_URI'];
+	if (strcasecmp('$wpo_home_url', \$protocol . '://' . \$host . \$request_uri) === 0) {
+		error_log('WP-Optimize: No caching took place, because the plugin location could not be found');
+	}
+} else {
+	if (!defined('WPO_PLUGIN_LOCATION_NOT_FOUND')) define('WPO_PLUGIN_LOCATION_NOT_FOUND', false);
+}
+
+if (is_admin()) { return; }
 
 if (!defined('WPO_CACHE_DIR')) define('WPO_CACHE_DIR', WP_CONTENT_DIR.'$cache_path');
 if (!defined('WPO_CACHE_CONFIG_DIR')) define('WPO_CACHE_CONFIG_DIR', WPO_CACHE_DIR.'/config');
@@ -628,6 +641,12 @@ EOF;
 	public function maybe_update_advanced_cache() {
 
 		if (!$this->is_enabled()) return;
+
+		if (!defined('WPO_PLUGIN_LOCATION_NOT_FOUND') || (defined('WPO_PLUGIN_LOCATION_NOT_FOUND') && true === WPO_PLUGIN_LOCATION_NOT_FOUND)) {
+			if (!$this->write_advanced_cache(true)) {
+				add_action('admin_notices', array($this, 'show_admin_notice_advanced_cache'));
+			}
+		}
 
 		// from 3.0.17 we use more secure way to store cache config files and need update advanced-cache.php
 		$advanced_cache_current_version = $this->get_advanced_cache_version();
@@ -1194,6 +1213,15 @@ EOF;
 	 */
 	public function show_farfutureexpiration_gzip_notice() {
 		echo '<div id="wp-optimize-pagespeedninja-gzip-notice" class="error wpo-notice"><p><b>'.__('WP-Optimize:', 'wp-optimize').'</b> '.__('Please disable the feature "Gzip compression" in Far Future Expiration to prevent conflicts.', 'wp-optimize').'</p></div>';
+	}
+
+	/**
+	 * This is a notice to show users that writing `advanced-cache.php` failed
+	 */
+	public function show_admin_notice_advanced_cache() {
+		$message = sprintf(__('The request to write the file %s failed.', 'wp-optimize'), htmlspecialchars($this->get_advanced_cache_filename()));
+		$message .= ' '.__('Please check file and directory permissions on the file paths up to this point, and your PHP error log.', 'wp-optimize');
+		WP_Optimize()->include_template('notices/cache-notice.php', false, array('message' => $message));
 	}
 }
 

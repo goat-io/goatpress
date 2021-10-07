@@ -224,7 +224,7 @@ function exactmetrics_add_action_links( $links ) {
 
 	// If lite, show a link where they can get pro from
 	if ( ! exactmetrics_is_pro_version() ) {
-		$get_pro = '<a title="' . esc_html__( 'Get ExactMetrics Pro', 'google-analytics-dashboard-for-wp' ) .'" href="'. exactmetrics_get_upgrade_link( 'all-plugins', 'upgrade-link', "https://www.exactmetrics.com/lite/" ) .'" style="font-weight:700">' . esc_html__( 'Get ExactMetrics Pro', 'google-analytics-dashboard-for-wp' ) . '</a>';
+		$get_pro = '<a title="' . esc_html__( 'Get ExactMetrics Pro', 'google-analytics-dashboard-for-wp' ) .'" href="'. exactmetrics_get_upgrade_link( 'all-plugins', 'upgrade-link', "https://www.exactmetrics.com/lite/" ) .'" style="font-weight:700; color: #1da867;">' . esc_html__( 'Get ExactMetrics Pro', 'google-analytics-dashboard-for-wp' ) . '</a>';
 		array_unshift( $links, $get_pro );
 	}
 
@@ -316,7 +316,7 @@ function exactmetrics_admin_setup_notices() {
 
 
     // 1. Google Analytics not authenticated
-	if ( ! is_network_admin() && ! exactmetrics_get_ua() && ! defined( 'EXACTMETRICS_DISABLE_TRACKING' ) ) {
+	if ( ! is_network_admin() && ! exactmetrics_get_ua() && ! exactmetrics_get_v4_id() && ! defined( 'EXACTMETRICS_DISABLE_TRACKING' ) ) {
 
         $submenu_base = is_network_admin() ? add_query_arg( 'page', 'exactmetrics_network', network_admin_url( 'admin.php' ) ) : add_query_arg( 'page', 'exactmetrics_settings', admin_url( 'admin.php' ) );
         $title     = esc_html__( 'Please Setup Website Analytics to See Audience Insights', 'google-analytics-dashboard-for-wp' );
@@ -324,7 +324,7 @@ function exactmetrics_admin_setup_notices() {
         $urlone    = is_network_admin() ? network_admin_url( 'admin.php?page=exactmetrics-onboarding' ) : admin_url( 'admin.php?page=exactmetrics-onboarding' );
         $secondary = esc_html__( 'Learn More', 'google-analytics-dashboard-for-wp' );
         $urltwo    = $submenu_base . '#/about/getting-started';
-        $message   = esc_html__( 'ExactMetrics, WordPress analytics plugin, helps you connect your website with Google Analytics, so you can see how people find and use your website. Over 1 million website owners use ExactMetrics to see the stats that matter and grow their business.', 'google-analytics-dashboard-for-wp' );
+        $message   = esc_html__( 'ExactMetrics, WordPress analytics plugin, helps you connect your website with Google Analytics, so you can see how people find and use your website. Over 3 million website owners use ExactMetrics to see the stats that matter and grow their business.', 'google-analytics-dashboard-for-wp' );
         echo '<div class="notice notice-info"><p style="font-weight:700">'. $title .'</p><p>'. $message.'</p><p><a href="'. $urlone .'" class="button-primary">'. $primary .'</a>&nbsp;&nbsp;&nbsp;<a href="'. $urltwo .'" class="button-secondary">'. $secondary .'</a></p></div>';
         return;
     }
@@ -371,22 +371,36 @@ function exactmetrics_admin_setup_notices() {
     if ( current_user_can( 'update_core' ) ) {
         global $wp_version;
 
-        // PHP 5.2-5.5
-        if ( version_compare( phpversion(), '5.6', '<' ) ) {
-            $url = exactmetrics_get_url( 'global-notice', 'settings-page', 'https://www.exactmetrics.com/docs/update-php/' );
-            // Translators: Placeholders add the PHP version, a link to the ExactMetrics blog and a line break.
-            $message = sprintf( esc_html__( 'Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress stopped supporting your PHP version in April, 2019.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s', 'google-analytics-dashboard-for-wp' ), phpversion(), '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
-            echo '<div class="error"><p>'. $message.'</p></div>';
-            return;
-        }
-        // WordPress 3.0 - 4.5
-        else if ( version_compare( $wp_version, '4.9', '<' ) ) {
+	    $compatible_php_version = apply_filters( 'exactmetrics_compatible_php_version', false );
+	    $compatible_wp_version  = apply_filters( 'exactmetrics_compatible_wp_version', false );
+
+	    $url = exactmetrics_get_url( 'global-notice', 'settings-page', 'https://www.exactmetrics.com/docs/update-php/' );
+
+	    $message = false;
+	    if ( version_compare( phpversion(), $compatible_php_version['required'], '<' ) ) {
+		    // Translators: Placeholders add the PHP version, a link to the ExactMetrics blog and a line break.
+		    $message = sprintf( esc_html__( 'Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress stopped supporting your PHP version in April, 2019.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s', 'google-analytics-dashboard-for-wp' ), phpversion(), '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
+	    } else if ( version_compare( phpversion(), $compatible_php_version['warning'], '<' ) ) {
+		    // Translators: Placeholders add the PHP version, a link to the ExactMetrics blog and a line break.
+		    $message = sprintf( esc_html__( 'Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress stopped supporting your PHP version in November, 2019.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s', 'google-analytics-dashboard-for-wp' ), phpversion(), '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
+	    } else if ( version_compare( phpversion(), $compatible_php_version['recommended'], '<' ) ) {
+		    // Translators: Placeholders add the PHP version, a link to the ExactMetrics blog and a line break.
+		    $message = sprintf( esc_html__( 'Your site is running an outdated, insecure version of PHP (%1$s), which could be putting your site at risk for being hacked.%4$sWordPress is working towards discontinuing support for your PHP version.%4$sUpdating PHP only takes a few minutes and will make your website significantly faster and more secure.%4$s%2$sLearn more about updating PHP%3$s', 'google-analytics-dashboard-for-wp' ), phpversion(), '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
+	    }
+
+	    if ( $message ) {
+		    echo '<div class="error"><p>'. $message.'</p></div>';
+		    return;
+	    }
+
+        // WordPress 4.9
+        /* else if ( version_compare( $wp_version, '5.0', '<' ) ) {
             $url = exactmetrics_get_url( 'global-notice', 'settings-page', 'https://www.exactmetrics.com/docs/update-wordpress/' );
             // Translators: Placeholders add the current WordPress version and links to the ExactMetrics blog
-            $message = sprintf( esc_html__( 'Your site is running an outdated version of WordPress (%1$s).%4$sExactMetrics will stop supporting WordPress versions lower than 4.9 in 2020.%4$sUpdating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install.%4$s%2$sLearn more about updating WordPress%3$s', 'google-analytics-dashboard-for-wp' ), $wp_version, '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
+            $message = sprintf( esc_html__( 'Your site is running an outdated version of WordPress (%1$s).%4$sExactMetrics will stop supporting WordPress versions lower than 5.0 in 2021.%4$sUpdating WordPress takes just a few minutes and will also solve many bugs that exist in your WordPress install.%4$s%2$sLearn more about updating WordPress%3$s', 'google-analytics-dashboard-for-wp' ), $wp_version, '<a href="' . $url . '" target="_blank">', '</a>', '<br>' );
             echo '<div class="error"><p>'. $message.'</p></div>';
             return;
-        }
+        } */
         // PHP 5.4/5.5
         // else if ( version_compare( phpversion(), '5.6', '<' ) ) {
         //  $url = exactmetrics_get_url( 'global-notice', 'settings-page', 'https://www.exactmetrics.com/docs/update-php/' );
@@ -576,3 +590,39 @@ function exactmetrics_admin_menu_inline_styles() {
 }
 
 add_action( 'admin_head', 'exactmetrics_admin_menu_inline_styles', 300 );
+
+/**
+ * Display notice in admin when measurement protocol is left blank
+ */
+function exactmetrics_empty_measurement_protocol_token() {
+	if ( ! class_exists( 'ExactMetrics_eCommerce' ) && ! class_exists( 'ExactMetrics_Forms' ) ) {
+		return;
+	}
+
+	$page = is_network_admin()
+		? network_admin_url( 'admin.php?page=exactmetrics_network' )
+		: admin_url( 'admin.php?page=exactmetrics_settings' );
+
+	$api_secret = is_network_admin()
+		? ExactMetrics()->auth->get_network_measurement_protocol_secret()
+		: ExactMetrics()->auth->get_measurement_protocol_secret();
+
+	$current_code = exactmetrics_get_v4_id_to_output();
+
+	if ( empty( $current_code ) || ! empty( $api_secret ) ) {
+		return;
+	}
+
+	$message = sprintf(
+		esc_html__(
+			'Your Measurement Protocol API Secret is currently left blank, so you won\'t be able to use some of the tracking features with your GA4 property. %1$sPlease enter your Measurement Protocol API Secret here.%2$s',
+			'google-analytics-dashboard-for-wp'
+		),
+		'<a href="' . esc_url( $page ). '">',
+		'</a>'
+	);
+	echo '<div class="error"><p>'. $message.'</p></div>';
+}
+
+add_action( 'admin_notices', 'exactmetrics_empty_measurement_protocol_token' );
+add_action( 'network_admin_notices', 'exactmetrics_admin_setup_notices' );

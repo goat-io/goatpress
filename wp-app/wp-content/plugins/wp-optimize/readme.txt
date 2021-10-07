@@ -5,7 +5,7 @@ Tags: cache, minify, database, image optimize, performance, clean, spam, speed, 
 Requires PHP: 5.6
 Requires at least: 4.5
 Tested up to: 5.8
-Stable tag: 3.1.11
+Stable tag: 3.1.12
 License: GPLv2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -364,6 +364,23 @@ If none of the above works, disable processing of JavaScript files in the minify
 
 == Changelog ==
 
+= 3.1.12 - 12/Jul/2021 =
+
+* FEATURE: Ability to defer js files and asynchronously load css files
+* FEATURE: Option to not aggregate inline styles and scripts
+* FIX: Always purge this cache HTML issue
+* FIX: Cache - Enable cache for subfolders and multisite installation with the permalink structure example.com/index.php/a-post-name
+* FIX: PHP 8 Issue: Minify and Merge Error
+* FIX: Silent failure of page caching if plugin location not found
+* TWEAK: Added Update URI header field to avoid accidentally being overwritten with an update of a plugin of a similar name from the WordPress.org Plugin Directory.
+* TWEAK: Delay displaying notices for 2 weeks
+* TWEAK: Improve label of when saving a media type in always purge this
+* TWEAK: Improve query for EWWW IO history
+* TWEAK: Prevent a PHP notice if using WP-Optimize and MetaSlider on the same site.
+* TWEAK: Prevent PHP warnings from theme update and google font minify
+* TWEAK: Skip HTML minification if the total size is > 1MB (takes too long to be worthwhile)
+* TWEAK: Updating custom compression slider values
+
 = 3.1.11 - 08/Jun/2021 =
 
 * FIX: Cache - Don't cache pages for logged-in users when 'Serve cached pages to logged in users' option (new in 3.1.10) is enabled
@@ -398,6 +415,7 @@ If none of the above works, disable processing of JavaScript files in the minify
 * TWEAK: Minify - Save all tab content settings changes with single Click
 * TWEAK: Improved optimization preview
 * TWEAK: Filter the list of preloaded URLs
+* FEATURE: Premium - Cache - Always purge this page
 * TWEAK: Update seasonal notices
 * TWEAK: Bump WP version requirement to 4.5+
 
@@ -1132,4 +1150,4 @@ If none of the above works, disable processing of JavaScript files in the minify
 * Fix Interface
 
 == Upgrade Notice ==
-* 3.1.11: Fix issue in 3.1.10. New in 3.1.10: user specific cache (Premium), Caches RSS feeds; exclude files from minify process from the files list; various small tweaks and fixes; a recommended update for all.
+* 3.1.12: Ability to defer js files and asynchronously load css files. Option to not aggregate inline styles and scripts; a recommended update for all.

@@ -8,6 +8,11 @@ import { utils } from '@rjsf/core';
  */
 import { SelectControl } from '@wordpress/components';
 
+/**
+ * Internal dependencies
+ */
+import { Markup } from '@ithemes/security-components';
+
 const { asNumber, guessType } = utils;
 const nums = new Set( [ 'number', 'integer' ] );
 
@@ -20,7 +25,7 @@ const nums = new Set( [ 'number', 'integer' ] );
  * @param {Array} schema.enum
  * @param {*} value
  *
- * @return {*}
+ * @return {*} The processed value.
  */
 function processValue( schema, value ) {
 	// "enum" is a reserved word, so only "type" and "items" can be destructured
@@ -40,7 +45,9 @@ function processValue( schema, value ) {
 	if ( schema.enum ) {
 		if ( schema.enum.every( ( x ) => guessType( x ) === 'number' ) ) {
 			return asNumber( value );
-		} else if ( schema.enum.every( ( x ) => guessType( x ) === 'boolean' ) ) {
+		} else if (
+			schema.enum.every( ( x ) => guessType( x ) === 'boolean' )
+		) {
 			return value === 'true';
 		}
 	}
@@ -91,20 +98,37 @@ function SelectWidget( props ) {
 		} );
 	}
 
+	const description = uiSchema[ 'ui:description' ] || schema.description;
+
 	return (
 		<SelectControl
-			id={ id }
 			multiple={ multiple }
 			options={ optionsList }
 			value={ typeof value === 'undefined' ? emptyValue : value }
 			label={ label }
-			help={ uiSchema[ 'ui:description' ] || schema.description }
+			help={ <Markup noWrap content={ description } /> }
 			required={ required }
 			disabled={ disabled }
 			readOnly={ readonly }
-			onChange={ ( newValue ) => onChange( processValue( schema, newValue ) ) }
-			onBlur={ onBlur && ( ( e ) => onBlur( id, processValue( schema, getValue( e, multiple ) ) ) ) }
-			onFocus={ onFocus && ( ( e ) => onFocus( id, processValue( schema, getValue( e, multiple ) ) ) ) }
+			onChange={ ( newValue ) =>
+				onChange( processValue( schema, newValue ) )
+			}
+			onBlur={
+				onBlur &&
+				( ( e ) =>
+					onBlur(
+						id,
+						processValue( schema, getValue( e, multiple ) )
+					) )
+			}
+			onFocus={
+				onFocus &&
+				( ( e ) =>
+					onFocus(
+						id,
+						processValue( schema, getValue( e, multiple ) )
+					) )
+			}
 		/>
 	);
 }

@@ -371,7 +371,8 @@ abstract class AtumListTable extends \WP_List_Table {
 		$this->query_filters = $this->get_filters_query_string();
 		$timestamp           = Helpers::get_current_timestamp( TRUE );
 		$this->day           = Helpers::date_format( $timestamp, TRUE, TRUE );
-		self::$sale_days     = Helpers::get_sold_last_days_option();
+
+		self::set_sales_day();
 
 		// Filter the table data results to show specific product types only.
 		$this->set_product_types_query_data();
@@ -1165,18 +1166,35 @@ abstract class AtumListTable extends \WP_List_Table {
 
 		if ( $this->allow_calcs ) {
 
-			$regular_price_value = $this->product->get_regular_price();
-			$regular_price_value = is_numeric( $regular_price_value ) ? Helpers::format_price( $regular_price_value, [
-				'currency' => self::$default_currency,
-			] ) : $regular_price;
+			$regular_price_orig = $this->product->get_regular_price();
+
+			if ( is_numeric( $regular_price_orig ) ) {
+
+				$regular_price_orig = (float) $regular_price_orig;
+
+				$regular_price_value = Helpers::format_price( $regular_price_orig, [
+					'currency' => self::$default_currency,
+				] );
+
+				if ( 0.0 < $regular_price_orig && 0.0 === round( $regular_price_orig, wc_get_price_decimals() ) ) {
+
+					$regular_price_value = "> $regular_price_value";
+				}
+
+			}
+			else {
+
+				$regular_price_value = $regular_price;
+			}
 
 			$args = apply_filters( 'atum/list_table/args_regular_price', array(
-				'meta_key'  => 'regular_price',
-				'value'     => $regular_price_value,
-				'symbol'    => get_woocommerce_currency_symbol(),
-				'currency'  => self::$default_currency,
-				'tooltip'   => esc_attr__( 'Click to edit the regular price', ATUM_TEXT_DOMAIN ),
-				'cell_name' => esc_attr__( 'Regular Price', ATUM_TEXT_DOMAIN ),
+				'meta_key'   => 'regular_price',
+				'value'      => $regular_price_value,
+				'symbol'     => get_woocommerce_currency_symbol(),
+				'currency'   => self::$default_currency,
+				'tooltip'    => esc_attr__( 'Click to edit the regular price', ATUM_TEXT_DOMAIN ),
+				'cell_name'  => esc_attr__( 'Regular Price', ATUM_TEXT_DOMAIN ),
+				'extra_data' => [ 'realValue' => $regular_price_orig ],
 			), $this->product );
 
 			$regular_price = self::get_editable_column( $args );
@@ -1202,10 +1220,21 @@ abstract class AtumListTable extends \WP_List_Table {
 
 		if ( $this->allow_calcs ) {
 
-			$sale_price_value = $this->product->get_sale_price();
-			$sale_price_value = is_numeric( $sale_price_value ) ? Helpers::format_price( $sale_price_value, [
-				'currency' => self::$default_currency,
-			] ) : $sale_price;
+			$sale_price_orig = $this->product->get_sale_price();
+			if ( is_numeric( $sale_price_orig ) ) {
+
+				$sale_price_value = Helpers::format_price( $sale_price_orig, [
+					'currency' => self::$default_currency,
+				] );
+
+				if ( 0.0 < $sale_price_orig && 0.0 === round( $sale_price_orig, wc_get_price_decimals() ) ) {
+
+					$sale_price_value = "> $sale_price_value";
+				}
+			}
+			else {
+				$sale_price_value = $sale_price;
+			}
 
 			$date_on_sale_from = $this->product->get_date_on_sale_from( 'edit' ) ? date_i18n( 'Y-m-d', $this->product->get_date_on_sale_from( 'edit' )->getOffsetTimestamp() ) : '';
 			$date_on_sale_to   = $this->product->get_date_on_sale_to( 'edit' ) ? date_i18n( 'Y-m-d', $this->product->get_date_on_sale_to( 'edit' )->getOffsetTimestamp() ) : '';
@@ -1237,6 +1266,7 @@ abstract class AtumListTable extends \WP_List_Table {
 						'class'       => 'atum-datepicker to',
 					),
 				),
+				'extra_data' => [ 'realValue' => $sale_price_orig ],
 			), $this->product );
 
 			$sale_price = self::get_editable_column( $args );
@@ -1266,18 +1296,32 @@ abstract class AtumListTable extends \WP_List_Table {
 
 		if ( $this->allow_calcs ) {
 
-			$purchase_price_value = $this->product->get_purchase_price();
-			$purchase_price_value = is_numeric( $purchase_price_value ) ? Helpers::format_price( $purchase_price_value, [
-				'currency' => self::$default_currency,
-			] ) : $purchase_price;
+			$purchase_price_orig = $this->product->get_purchase_price();
+			if ( is_numeric( $purchase_price_orig ) ) {
+
+				$purchase_price_orig = (float) $purchase_price_orig;
+
+				$purchase_price_value = Helpers::format_price( $purchase_price_orig, [
+					'currency' => self::$default_currency,
+				] );
+
+				if ( 0.0 < $purchase_price_orig && 0.0 === round( $purchase_price_orig, wc_get_price_decimals() ) ) {
+
+					$purchase_price_value = "> $purchase_price_value";
+				}
+			}
+			else {
+				$purchase_price_value = $purchase_price;
+			}
 
 			$args = apply_filters( 'atum/list_table/args_purchase_price', array(
-				'meta_key'  => 'purchase_price',
-				'value'     => $purchase_price_value,
-				'symbol'    => get_woocommerce_currency_symbol(),
-				'currency'  => self::$default_currency,
-				'tooltip'   => esc_attr__( 'Click to edit the purchase price', ATUM_TEXT_DOMAIN ),
-				'cell_name' => esc_attr__( 'Purchase Price', ATUM_TEXT_DOMAIN ),
+				'meta_key'   => 'purchase_price',
+				'value'      => $purchase_price_value,
+				'symbol'     => get_woocommerce_currency_symbol(),
+				'currency'   => self::$default_currency,
+				'tooltip'    => esc_attr__( 'Click to edit the purchase price', ATUM_TEXT_DOMAIN ),
+				'cell_name'  => esc_attr__( 'Purchase Price', ATUM_TEXT_DOMAIN ),
+				'extra_data' => [ 'realValue' => $purchase_price_orig ],
 			) );
 
 			$purchase_price = self::get_editable_column( $args );
@@ -1436,7 +1480,6 @@ abstract class AtumListTable extends \WP_List_Table {
 		$classes_title             = '';
 		$tooltip_warning           = '';
 		$wc_notify_no_stock_amount = wc_stock_amount( get_option( 'woocommerce_notify_no_stock_amount' ) );
-		$is_grouped                = 'grouped' === $this->product->get_type();
 		$is_inheritable            = Helpers::is_inheritable_type( $this->product->get_type() );
 		$editable                  = apply_filters( 'atum/list_table/editable_column_stock', $editable, $this->product );
 
@@ -1445,11 +1488,9 @@ abstract class AtumListTable extends \WP_List_Table {
 			return apply_filters( 'atum/list_table/column_stock', $stock, $item, $this->product, $this );
 		}
 
-		if ( ! $is_grouped ) {
-			$stock = wc_stock_amount( $this->product->get_stock_quantity() );
-		}
+		$stock = wc_stock_amount( $this->product->get_stock_quantity() );
 
-		if ( 0 !== $stock ) {
+		if ( 0 !== $stock && ( isset( $_REQUEST['view'] ) && 'unmanaged' !== $_REQUEST['view'] ) || ! isset( $_REQUEST['view'] ) ) {
 			$this->increase_total( '_stock', $stock );
 		}
 
@@ -1459,7 +1500,7 @@ abstract class AtumListTable extends \WP_List_Table {
 			// Setings value is enabled?
 			$is_out_stock_threshold_managed = 'no' === Helpers::get_option( 'out_stock_threshold', 'no' ) ? FALSE : TRUE;
 
-			if ( $is_out_stock_threshold_managed && ! $is_grouped ) {
+			if ( $is_out_stock_threshold_managed ) {
 
 				$out_stock_threshold = $this->product->get_out_stock_threshold();
 
@@ -1505,7 +1546,7 @@ abstract class AtumListTable extends \WP_List_Table {
 
 		}
 
-		if ( $editable && ! $is_grouped ) {
+		if ( $editable ) {
 
 			$args = array(
 				'meta_key'  => 'stock',
@@ -3014,7 +3055,7 @@ abstract class AtumListTable extends \WP_List_Table {
 
 			$tag   = 'cb' === $column_key ? 'td' : 'th';
 			$scope = 'th' === $tag ? 'scope="col"' : '';
-			$id    = $with_id ? "id='$column_key'" : '';
+			$id    = apply_filters( 'atum/list_table/display_column_id', $with_id ) ? "id='$column_key'" : '';
 
 			if ( ! empty( $class ) ) {
 				$class = "class='" . join( ' ', $class ) . "'";
@@ -4763,5 +4804,36 @@ abstract class AtumListTable extends \WP_List_Table {
 		}
 
 		return $args;
+	}
+
+	/**
+	 * Set the sales day value
+	 *
+	 * @since 1.9.3.1
+	 *
+	 * @return int
+	 */
+	public static function set_sales_day() {
+
+		$value_set = FALSE;
+
+		if ( isset( $_REQUEST['sold_last_days'] ) ) {
+
+			// Sanitize.
+			$value = absint( $_REQUEST['sold_last_days'] );
+
+			if ( $value > 0 && $value < 31 ) {
+				self::$sale_days = $value;
+				$value_set       = TRUE;
+			}
+
+		}
+
+		if ( ! $value_set ) {
+			self::$sale_days = Helpers::get_sold_last_days_option();
+		}
+
+		return self::$sale_days;
+
 	}
 }

@@ -2,6 +2,8 @@
 
 namespace iThemesSecurity;
 
+use iThemesSecurity\Lib\REST;
+use iThemesSecurity\Lib\Site_Types;
 use ITSEC_Lib_Upgrader;
 use Pimple\Container;
 use wpdb;
@@ -34,6 +36,10 @@ return static function ( Container $c ) {
 		return [];
 	};
 
+	$c['dashboard.cards'] = static function () {
+		return [];
+	};
+
 	$c[ Ban_Hosts\Multi_Repository::class ] = static function ( Container $c ) {
 		return new Ban_Hosts\Multi_Repository(
 			...array_map( [ $c, 'offsetGet' ], $c['ban-hosts.repositories'] )
@@ -54,4 +60,47 @@ return static function ( Container $c ) {
 		);
 	};
 
+	$c[ Site_Types\Registry::class ] = static function () {
+		return ( new Site_Types\Registry() )
+			->register( new Site_Types\Type\Ecommerce() )
+			->register( new Site_Types\Type\Network() )
+			->register( new Site_Types\Type\Non_Profit() )
+			->register( new Site_Types\Type\Blog() )
+			->register( new Site_Types\Type\Portfolio() )
+			->register( new Site_Types\Type\Brochure() );
+	};
+
+	$c[ Site_Types\Defaults::class ] = static function () {
+		return new Site_Types\Defaults();
+	};
+
+	$c[ Lib\Tools\Tools_Registry::class ] = static function () {
+		return new Lib\Tools\Tools_Registry();
+	};
+
+	$c[ Lib\Tools\Tools_Runner::class ] = static function ( Container $c ) {
+		return new Lib\Tools\Tools_Runner( $c[ Lib\Tools\Tools_Registry::class ] );
+	};
+
+	$c[ REST\Modules_Controller::class ] = static function () {
+		return new REST\Modules_Controller();
+	};
+
+	$c[ REST\Settings_Controller::class ] = static function () {
+		return new REST\Settings_Controller();
+	};
+
+	$c[ REST\Site_Types_Controller::class ] = static function ( Container $c ) {
+		return new REST\Site_Types_Controller(
+			$c[ Site_Types\Registry::class ],
+			$c[ Site_Types\Defaults::class ]
+		);
+	};
+
+	$c[ REST\Tools_Controller::class ] = static function ( Container $c ) {
+		return new REST\Tools_Controller(
+			$c[ Lib\Tools\Tools_Registry::class ],
+			$c[ Lib\Tools\Tools_Runner::class ]
+		);
+	};
 };

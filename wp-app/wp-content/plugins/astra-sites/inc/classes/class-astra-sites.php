@@ -83,6 +83,14 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 		public $wp_upload_url = '';
 
 		/**
+		 * Ajax
+		 *
+		 * @since  2.6.20
+		 * @var (Array) $ajax
+		 */
+		private $ajax = array();
+
+		/**
 		 * Instance of Astra_Sites.
 		 *
 		 * @since  1.0.0
@@ -121,24 +129,99 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 			add_action( 'elementor/preview/enqueue_styles', array( $this, 'popup_styles' ) );
 
 			// AJAX.
-			add_action( 'wp_ajax_astra-required-plugins', array( $this, 'required_plugin' ) );
-			add_action( 'wp_ajax_astra-required-plugin-activate', array( $this, 'required_plugin_activate' ) );
-			add_action( 'wp_ajax_astra-sites-backup-settings', array( $this, 'backup_settings' ) );
-			add_action( 'wp_ajax_astra-sites-set-reset-data', array( $this, 'get_reset_data' ) );
-			add_action( 'wp_ajax_astra-sites-activate-theme', array( $this, 'activate_theme' ) );
-			add_action( 'wp_ajax_astra-sites-create-page', array( $this, 'create_page' ) );
-			add_action( 'wp_ajax_astra-sites-import-media', array( $this, 'import_media' ) );
-			add_action( 'wp_ajax_astra-sites-create-template', array( $this, 'create_template' ) );
-			add_action( 'wp_ajax_astra-sites-create-image', array( $this, 'create_image' ) );
-			add_action( 'wp_ajax_astra-sites-getting-started-notice', array( $this, 'getting_started_notice' ) );
-			add_action( 'wp_ajax_astra-sites-favorite', array( $this, 'add_to_favorite' ) );
-			add_action( 'wp_ajax_astra-sites-api-request', array( $this, 'api_request' ) );
-			add_action( 'wp_ajax_astra-page-elementor-batch-process', array( $this, 'elementor_batch_process' ) );
+			$this->ajax = array(
+				'astra-required-plugins' => 'required_plugin',
+				'astra-required-plugin-activate' => 'required_plugin_activate',
+				'astra-sites-backup-settings' => 'backup_settings',
+				'astra-sites-set-reset-data' => 'get_reset_data',
+				'astra-sites-activate-theme' => 'activate_theme',
+				'astra-sites-create-page' => 'create_page',
+				'astra-sites-import-media' => 'import_media',
+				'astra-sites-create-template' => 'create_template',
+				'astra-sites-create-image' => 'create_image',
+				'astra-sites-getting-started-notice' => 'getting_started_notice',
+				'astra-sites-favorite' => 'add_to_favorite',
+				'astra-sites-api-request' => 'api_request',
+				'astra-page-elementor-batch-process' => 'elementor_batch_process',
+				'astra-sites-update-subscription' => 'update_subscription',
+			);
+
+			foreach ( $this->ajax as $ajax_hook => $ajax_callback ) {
+				add_action( 'wp_ajax_' . $ajax_hook, array( $this, $ajax_callback ) );
+			}
 
 			add_action( 'delete_attachment', array( $this, 'delete_astra_images' ) );
 			add_filter( 'heartbeat_received', array( $this, 'search_push' ), 10, 2 );
-			add_action( 'wp_ajax_astra-sites-update-subscription', array( $this, 'update_subscription' ) );
 			add_action( 'admin_footer', array( $this, 'add_quick_links' ) );
+			add_filter( 'status_header', array( $this, 'status_header' ), 10, 4 );
+			add_filter( 'wp_php_error_message', array( $this, 'php_error_message' ), 10, 2 );
+		}
+
+		/**
+		 * Check is Starter Templates AJAX request.
+		 *
+		 * @since 2.7.0
+		 * @return boolean
+		 */
+		public function is_starter_templates_request() {
+
+			if ( isset( $_REQUEST['action'] ) && in_array( $_REQUEST['action'], array_keys( $this->ajax ), true ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				return true;
+			}
+
+			return false;
+		}
+
+		/**
+		 * Filters the message that the default PHP error template displays.
+		 *
+		 * @since 2.7.0
+		 *
+		 * @param string $message HTML error message to display.
+		 * @param array  $error   Error information retrieved from `error_get_last()`.
+		 * @return mixed
+		 */
+		public function php_error_message( $message, $error ) {
+
+			if ( ! $this->is_starter_templates_request() ) {
+				return $message;
+			}
+
+			if ( empty( $error ) ) {
+				return $message;
+			}
+
+			$message = isset( $error['message'] ) ? $error['message'] : $message;
+
+			return $message;
+		}
+
+		/**
+		 * Filters an HTTP status header.
+		 *
+		 * @since 2.6.20
+		 *
+		 * @param string $status_header HTTP status header.
+		 * @param int    $code          HTTP status code.
+		 * @param string $description   Description for the status code.
+		 * @param string $protocol      Server protocol.
+		 *
+		 * @return mixed
+		 */
+		public function status_header( $status_header, $code, $description, $protocol ) {
+
+			if ( ! $this->is_starter_templates_request() ) {
+				return $status_header;
+			}
+
+			$error = error_get_last();
+			if ( empty( $error ) ) {
+				return $status_header;
+			}
+
+			$message = isset( $error['message'] ) ? $error['message'] : $description;
+
+			return "$protocol $code $message";
 		}
 
 		/**
@@ -155,33 +238,35 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 				return;
 			}
 
-			$data = array(
-				'default_logo' => array(
-					'title' => __( 'See Quick Links', 'astra-sites' ),
-					'url'   => ASTRA_SITES_URI . 'inc/assets/images/quick-link-logo.svg',
-				),
-				'links'        => array(
-					array(
-						'label'   => __( 'Upgrade to Premium', 'astra-sites' ),
-						'icon'    => 'dashicons-star-filled',
-						'url'     => 'https://wpastra.com/starter-templates-plans/?utm_source=StarterTemplatesPlugin&utm_campaign=WPAdmin',
-						'bgcolor' => '#ffa500',
+			$data = apply_filters(
+				'astra_sites_quick_links', array(
+					'default_logo' => array(
+						'title' => __( 'See Quick Links', 'astra-sites' ),
+						'url'   => ASTRA_SITES_URI . 'inc/assets/images/quick-link-logo.svg',
 					),
-					array(
-						'label' => __( 'Support & Docs', 'astra-sites' ),
-						'icon'  => 'dashicons-book',
-						'url'   => 'https://wpastra.com/docs-category/starter-templates/',
+					'links'        => array(
+						'upgrade' => array(
+							'label'   => __( 'Upgrade to Premium', 'astra-sites' ),
+							'icon'    => 'dashicons-star-filled',
+							'url'     => 'https://wpastra.com/starter-templates-plans/?utm_source=StarterTemplatesPlugin&utm_campaign=WPAdmin',
+							'bgcolor' => '#ffa500',
+						),
+						'support' => array(
+							'label' => __( 'Support & Docs', 'astra-sites' ),
+							'icon'  => 'dashicons-book',
+							'url'   => 'https://wpastra.com/docs-category/starter-templates/',
+						),
+						'join-facebook' => array(
+							'label' => __( 'Join Facebook Group', 'astra-sites' ),
+							'icon'  => 'dashicons-groups',
+							'url'   => 'https://www.facebook.com/groups/wpastra/',
+						),
 					),
-					array(
-						'label' => __( 'Join Facebook Group', 'astra-sites' ),
-						'icon'  => 'dashicons-groups',
-						'url'   => 'https://www.facebook.com/groups/wpastra/',
-					),
-				),
+				)
 			);
 
 			if ( defined( 'ASTRA_PRO_SITES_VER' ) ) {
-				array_shift( $data['links'] );
+				unset( $data['links']['upgrade'] );
 			}
 
 			bsf_quick_links( $data );
@@ -251,11 +336,12 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 				'blocking'  => true,
 				'sslverify' => apply_filters( 'https_local_ssl_verify', false ),
 				'body'      => array(
-					'search' => array_unique( $data['ast-sites-search-terms'] ),
+					'search' => $data['ast-sites-search-terms'],
+					'builder' => isset( $data['ast-sites-builder'] ) ? $data['ast-sites-builder'] : 'gutenberg',
 					'url'    => esc_url( site_url() ),
+					'type'   => 'astra-sites',
 				),
 			);
-
 			$result                             = wp_remote_post( $this->search_url, $args );
 			$response['ast-sites-search-terms'] = wp_remote_retrieve_body( $result );
 
@@ -1158,8 +1244,8 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 						'vertical'   => __( 'Vertical', 'astra-sites' ),
 						'horizontal' => __( 'Horizontal', 'astra-sites' ),
 					),
-					'title'               => __( 'Free Images from Pixabay', 'astra-sites' ),
-					'search_placeholder'  => __( 'Pixabay Search - Ex: flowers', 'astra-sites' ),
+					'title'               => __( 'Free Images', 'astra-sites' ),
+					'search_placeholder'  => __( 'Search - Ex: flowers', 'astra-sites' ),
 					'downloading'         => __( 'Downloading...', 'astra-sites' ),
 					'validating'          => __( 'Validating...', 'astra-sites' ),
 					'empty_api_key'       => __( 'Please enter an API key.', 'astra-sites' ),
@@ -1208,6 +1294,11 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 				$this->image_search_assets();
 			}
 
+			// Avoid scripts from customizer.
+			if ( is_customize_preview() ) {
+				return;
+			}
+
 			wp_enqueue_script( 'astra-sites-install-theme', ASTRA_SITES_URI . 'inc/assets/js/install-theme.js', array( 'jquery', 'updates' ), ASTRA_SITES_VER, true );
 			wp_enqueue_style( 'astra-sites-install-theme', ASTRA_SITES_URI . 'inc/assets/css/install-theme.css', null, ASTRA_SITES_VER, 'all' );
 			wp_style_add_data( 'astra-sites-install-theme', 'rtl', 'replace' );
@@ -1253,6 +1344,63 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 			$data = $this->get_local_vars();
 
 			wp_localize_script( 'astra-sites-admin-page', 'astraSitesVars', $data );
+		}
+
+		/**
+		 * Get CTA link
+		 *
+		 * @param string $source    The source of the link.
+		 * @param string $medium    The medium of the link.
+		 * @param string $campaign  The campaign of the link.
+		 * @return array
+		 */
+		public function get_cta_link( $source = '', $medium = '', $campaign = '' ) {
+			$default_page_builder = Astra_Sites_Page::get_instance()->get_setting( 'page_builder' );
+			$cta_links = $this->get_cta_links( $source, $medium, $campaign );
+			return isset( $cta_links[ $default_page_builder ] ) ? $cta_links[ $default_page_builder ] : 'https://wpastra.com/starter-templates-plans/?utm_source=StarterTemplatesPlugin&utm_campaign=WPAdmin';
+		}
+
+		/**
+		 * Get CTA Links
+		 *
+		 * @since 2.6.18
+		 *
+		 * @param string $source    The source of the link.
+		 * @param string $medium    The medium of the link.
+		 * @param string $campaign  The campaign of the link.
+		 * @return array
+		 */
+		public function get_cta_links( $source = '', $medium = '', $campaign = '' ) {
+			return array(
+				'elementor' => add_query_arg(
+					array(
+						'utm_source' => ! empty( $source ) ? $source : 'elementor-templates',
+						'utm_medium' => 'dashboard',
+						'utm_campaign' => 'Starter-Template-Backend',
+					), 'https://wpastra.com/elementor-starter-templates/'
+				),
+				'beaver-builder' => add_query_arg(
+					array(
+						'utm_source' => ! empty( $source ) ? $source : 'beaver-templates',
+						'utm_medium' => 'dashboard',
+						'utm_campaign' => 'Starter-Template-Backend',
+					), 'https://wpastra.com/beaver-builder-starter-templates/'
+				),
+				'gutenberg' => add_query_arg(
+					array(
+						'utm_source' => ! empty( $source ) ? $source : 'gutenberg-templates',
+						'utm_medium' => 'dashboard',
+						'utm_campaign' => 'Starter-Template-Backend',
+					), 'https://wpastra.com/starter-templates-plans/'
+				),
+				'brizy' => add_query_arg(
+					array(
+						'utm_source' => ! empty( $source ) ? $source : 'brizy-templates',
+						'utm_medium' => 'dashboard',
+						'utm_campaign' => 'Starter-Template-Backend',
+					), 'https://wpastra.com/starter-templates-plans/'
+				),
+			);
 		}
 
 		/**
@@ -1367,6 +1515,17 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 					'ajax_request_failed_primary'        => sprintf( __( '%1$sWe could not start the import process due to failed AJAX request and this is the message from WordPress:%2$s', 'astra-sites' ), '<p>', '</p>' ),
 					/* translators: %s URL to document. */
 					'ajax_request_failed_secondary'      => sprintf( __( '%1$sRead <a href="%2$s" target="_blank">article</a> to resolve the issue and continue importing template.%3$s', 'astra-sites' ), '<p>', esc_url( 'https://wpastra.com/docs/internal-server-error-starter-templates/' ), '</p>' ),
+					'cta_links' => $this->get_cta_links(),
+					'cta_quick_corner_links' => $this->get_cta_links( 'quick-links-corner' ),
+					'cta_premium_popup_links' => $this->get_cta_links( 'get-premium-access-popup' ),
+					'cta_link' => $this->get_cta_link(),
+					'cta_quick_corner_link' => $this->get_cta_link( 'quick-links-corner' ),
+					'cta_premium_popup_link' => $this->get_cta_link( 'get-premium-access-popup' ),
+
+					/* translators: %s URL to document. */
+					'process_failed_primary'        => sprintf( __( '%1$sWe could not complete the import process due to failed AJAX request and this is the message:%2$s', 'astra-sites' ), '<p>', '</p>' ),
+					/* translators: %s URL to document. */
+					'process_failed_secondary'      => sprintf( __( '%1$sPlease report this <a href="%2$s" target="_blank">here</a>.%3$s', 'astra-sites' ), '<p>', esc_url( 'https://wpastra.com/starter-templates-support/?url=#DEMO_URL#&subject=#SUBJECT#' ), '</p>' ),
 				)
 			);
 

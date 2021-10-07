@@ -81,18 +81,30 @@ class THWCFD_Admin_Settings_Advanced extends THWCFD_Admin_Settings{
 	}
 	
 	private function reset_settings(){
+		$nonse = isset($_REQUEST['thwcfd_security_advanced_settings']) ? $_REQUEST['thwcfd_security_advanced_settings'] : false;
+		$capability = THWCFD_Utils::wcfd_capability();
+		if(!wp_verify_nonce($nonse, 'thwcfd_advanced_settings') || !current_user_can($capability)){
+			die();
+		}
+
 		delete_option(THWCFD_Utils::OPTION_KEY_ADVANCED_SETTINGS);
 		$this->print_notices('Settings successfully reset.', 'updated', false);
 	}
 	
 	private function save_settings(){
+		$nonse = isset($_REQUEST['thwcfd_security_advanced_settings']) ? $_REQUEST['thwcfd_security_advanced_settings'] : false;
+		$capability = THWCFD_Utils::wcfd_capability();
+		if(!wp_verify_nonce($nonse, 'thwcfd_advanced_settings') || !current_user_can($capability)){
+			die();
+		}
+		
 		$settings = array();
 		
 		foreach( $this->settings_fields as $name => $field ) {
 			$value = '';
 			
 			if($field['type'] === 'checkbox'){
-				$value = !empty( $_POST['i_'.$name] ) ? $_POST['i_'.$name] : '';
+				$value = !empty( $_POST['i_'.$name] ) ? '1' : '';
 
 			}else if($field['type'] === 'multiselect_grouped'){
 				$value = !empty( $_POST['i_'.$name] ) ? $_POST['i_'.$name] : '';
@@ -145,6 +157,7 @@ class THWCFD_Admin_Settings_Advanced extends THWCFD_Admin_Settings{
                     <input type="submit" name="reset_settings" class="btn btn-small" value="Reset to default" 
 					onclick="return confirm('Are you sure you want to reset to default settings? all your changes will be deleted.');">
             	</p>
+            	<?php wp_nonce_field( 'thwcfd_advanced_settings', 'thwcfd_security_advanced_settings' ); ?>
             </form>
     	</div>       
     	<?php

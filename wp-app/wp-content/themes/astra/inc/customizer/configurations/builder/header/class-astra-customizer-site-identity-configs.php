@@ -51,6 +51,21 @@ if ( class_exists( 'Astra_Customizer_Config_Base' ) ) {
 				),
 
 				/**
+				* Link to the astra logo and site title settings.
+				*/
+				array(
+					'name'           => ASTRA_THEME_SETTINGS . '[logo-title-settings-link]',
+					'type'           => 'control',
+					'control'        => 'ast-customizer-link',
+					'section'        => 'astra-site-identity',
+					'priority'       => 5,
+					'link_type'      => 'section',
+					'is_button_link' => true,
+					'linked'         => 'title_tagline',
+					'link_text'      => __( 'Site Title & Logo Settings', 'astra' ),
+				),
+
+				/**
 				 * Option: Header Builder Tabs
 				 */
 				array(

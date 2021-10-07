@@ -1,7 +1,10 @@
 /**
  * WordPress dependencies
  */
-import { dispatch as dispatchData, select as selectData } from '@wordpress/data';
+import {
+	dispatch as dispatchData,
+	select as selectData,
+} from '@wordpress/data';
 import { default as triggerApiFetch } from '@wordpress/api-fetch';
 
 /**
@@ -24,6 +27,7 @@ export function apiFetch( request ) {
 
 /**
  * Calls a selector using the current state.
+ *
  * @param {string} storeKey Store key.
  * @param {string} selectorName Selector name.
  * @param {Array} args         Selector arguments.

@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Asset CleanUp: Page Speed Booster
  * Plugin URI: https://wordpress.org/plugins/wp-asset-clean-up/
- * Version: 1.3.8.0
+ * Version: 1.3.8.4
  * Description: Unload Chosen Scripts & Styles from Posts/Pages to reduce HTTP Requests, Combine/Minify CSS/JS files
  * Author: Gabe Livan
  * Author URI: http://gabelivan.com/
@@ -27,7 +27,7 @@ if ( (defined('WPACU_PRO_NO_LITE_NEEDED') && WPACU_PRO_NO_LITE_NEEDED !== false 
 
 // Is the Pro version triggered before the Lite one and are both plugins active?
 if (! defined('WPACU_PLUGIN_VERSION')) {
-	define('WPACU_PLUGIN_VERSION', '1.3.8.0');
+	define('WPACU_PLUGIN_VERSION', '1.3.8.4');
 }
 
 // Exit if accessed directly
@@ -81,7 +81,7 @@ if ($wpacuWrongPhp && is_admin()) { // Dashboard
 
 	         '</p></div>';
 
-	    if (array_key_exists('active', $_GET)) {
+	    if (isset($_GET['active'])) {
 		    unset($_GET['activate']);
 	    }
     });
@@ -97,7 +97,8 @@ define('WPACU_PLUGIN_URL',          plugins_url('', WPACU_PLUGIN_FILE));
 define('WPACU_PLUGIN_GO_PRO_URL',   'https://www.gabelivan.com/items/wp-asset-cleanup-pro/');
 
 // Global Values
-define('WPACU_LOAD_ASSETS_REQ_KEY', WPACU_PLUGIN_ID . '_load');
+define('WPACU_LOAD_ASSETS_REQ_KEY',  WPACU_PLUGIN_ID . '_load');
+define('WPACU_FORM_ASSETS_POST_KEY', WPACU_PLUGIN_ID.'_form_assets'); // starting from Pro version 1.1.9.9 & Lite version 1.3.8.1
 
 $wpacuGetLoadedAssetsAction = ((isset($_REQUEST[WPACU_LOAD_ASSETS_REQ_KEY]) && $_REQUEST[WPACU_LOAD_ASSETS_REQ_KEY])
                                || (isset($_REQUEST['action']) && $_REQUEST['action'] === WPACU_PLUGIN_ID.'_get_loaded_assets'));

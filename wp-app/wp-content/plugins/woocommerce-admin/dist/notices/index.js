@@ -82,12 +82,12 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 509);
+/******/ 	return __webpack_require__(__webpack_require__.s = 463);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 146:
+/***/ 127:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["notices"]; }());
@@ -101,7 +101,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 
 /***/ }),
 
-/***/ 509:
+/***/ 463:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -124,7 +124,7 @@ __webpack_require__.r(selectors_namespaceObject);
 __webpack_require__.d(selectors_namespaceObject, "getNotices", function() { return getNotices; });
 
 // EXTERNAL MODULE: external ["wp","notices"]
-var external_wp_notices_ = __webpack_require__(146);
+var external_wp_notices_ = __webpack_require__(127);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
@@ -163,7 +163,6 @@ const onSubKey = actionProperty => reducer => (state = {}, action) => {
   };
 };
 /* harmony default export */ var on_sub_key = (onSubKey);
-//# sourceMappingURL=on-sub-key.js.map
 // CONCATENATED MODULE: ./packages/notices/build-module/store/reducer.js
 /**
  * External dependencies
@@ -201,7 +200,6 @@ const notices = on_sub_key('context')((state = [], action) => {
   return state;
 });
 /* harmony default export */ var reducer = (notices);
-//# sourceMappingURL=reducer.js.map
 // CONCATENATED MODULE: ./packages/notices/build-module/store/constants.js
 /**
  * Default context to use for notice grouping when not otherwise specified. Its
@@ -218,7 +216,6 @@ const DEFAULT_CONTEXT = 'global';
  */
 
 const DEFAULT_STATUS = 'info';
-//# sourceMappingURL=constants.js.map
 // CONCATENATED MODULE: ./packages/notices/build-module/store/actions.js
 /**
  * External dependencies
@@ -383,7 +380,6 @@ function removeNotice(id, context = DEFAULT_CONTEXT) {
     context
   };
 }
-//# sourceMappingURL=actions.js.map
 // CONCATENATED MODULE: ./packages/notices/build-module/store/selectors.js
 /**
  * Internal dependencies
@@ -441,7 +437,6 @@ const DEFAULT_NOTICES = [];
 function getNotices(state, context = DEFAULT_CONTEXT) {
   return state[context] || DEFAULT_NOTICES;
 }
-//# sourceMappingURL=selectors.js.map
 // CONCATENATED MODULE: ./packages/notices/build-module/store/index.js
 /**
  * External dependencies
@@ -461,7 +456,6 @@ function getNotices(state, context = DEFAULT_CONTEXT) {
   actions: actions_namespaceObject,
   selectors: selectors_namespaceObject
 }));
-//# sourceMappingURL=index.js.map
 // CONCATENATED MODULE: ./packages/notices/build-module/index.js
 /**
  * External dependencies
@@ -472,7 +466,6 @@ function getNotices(state, context = DEFAULT_CONTEXT) {
  */
 
 
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 

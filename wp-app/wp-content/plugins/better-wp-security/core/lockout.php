@@ -76,7 +76,6 @@ final class ITSEC_Lockout {
 	}
 
 	public function run() {
-		add_action( 'itsec_scheduler_register_events', array( $this, 'register_events' ) );
 		add_action( 'itsec_scheduled_purge-lockouts', array( $this, 'purge_lockouts' ) );
 
 		//Check for host lockouts
@@ -86,7 +85,7 @@ final class ITSEC_Lockout {
 		add_filter( 'authenticate', array( $this, 'check_authenticate_lockout' ), 30 );
 
 		// Updated temp whitelist to ensure that admin users are automatically added.
-		if ( ! defined( 'ITSEC_DISABLE_TEMP_WHITELIST' ) || ! ITSEC_DISABLE_TEMP_WHITELIST ) {
+		if ( $this->is_temp_authorization_enabled() ) {
 			add_action( 'init', array( $this, 'update_temp_whitelist' ), 0 );
 		}
 
@@ -96,17 +95,10 @@ final class ITSEC_Lockout {
 		add_action( 'ithemes_sync_register_verbs', array( $this, 'register_sync_verbs' ) );
 		add_filter( 'itsec-filter-itsec-get-everything-verbs', array( $this, 'register_sync_get_everything_verbs' ) );
 
-		add_action( 'itsec-settings-page-init', array( $this, 'init_settings_page' ) );
-		add_action( 'itsec-logs-page-init', array( $this, 'init_settings_page' ) );
-
 		add_filter( 'itsec_notifications', array( $this, 'register_notification' ) );
 		add_filter( 'itsec_lockout_notification_strings', array( $this, 'notification_strings' ) );
 
 		add_filter( 'itsec_logs_prepare_lockout_entry_for_list_display', array( $this, 'filter_entry_for_list_display' ), 10, 3 );
-	}
-
-	public function init_settings_page() {
-		require_once( dirname( __FILE__ ) . '/sidebar-widget-active-lockouts.php' );
 	}
 
 	/**
@@ -829,33 +821,9 @@ final class ITSEC_Lockout {
 	 * @return string the description of settings.
 	 */
 	public function get_lockout_description() {
-		$global_settings_url = add_query_arg( array( 'module' => 'global' ), ITSEC_Core::get_settings_page_url() ) . '#itsec-global-blacklist';
-		// If the user is currently viewing "all" then let them keep viewing all
-		if ( ! empty( $_GET['module_type'] ) && 'all' === $_GET['module_type'] ) {
-			$global_settings_url = add_query_arg( array( 'module_type', 'all' ), $global_settings_url );
-		}
+		_deprecated_function( __METHOD__, '7.0.0' );
 
-		$description = '<h4>' . __( 'About Lockouts', 'better-wp-security' ) . '</h4>';
-		$description .= '<p>';
-		$description .= sprintf( __( 'Your lockout settings can be configured in <a href="%s" data-module-link="global">Global Settings</a>.', 'better-wp-security' ), esc_url( $global_settings_url ) );
-		$description .= '<br />';
-		$description .= __( 'Your current settings are configured as follows:', 'better-wp-security' );
-		$description .= '<ul><li>';
-		$description .= sprintf( __( '<strong>Permanently ban:</strong> %s', 'better-wp-security' ), ITSEC_Modules::get_setting( 'global', 'blacklist' ) === true ? __( 'yes', 'better-wp-security' ) : __( 'no', 'better-wp-security' ) );
-		$description .= '</li><li>';
-		$description .= sprintf( __( '<strong>Number of lockouts before permanent ban:</strong> %s', 'better-wp-security' ), ITSEC_Modules::get_setting( 'global', 'blacklist_count' ) );
-		$description .= '</li><li>';
-		$description .= sprintf( __( '<strong>How long lockouts will be remembered for ban:</strong> %s', 'better-wp-security' ), ITSEC_Modules::get_setting( 'global', 'blacklist_period' ) );
-		$description .= '</li><li>';
-		$description .= sprintf( __( '<strong>Host lockout message:</strong> %s', 'better-wp-security' ), ITSEC_Modules::get_setting( 'global', 'lockout_message' ) );
-		$description .= '</li><li>';
-		$description .= sprintf( __( '<strong>User lockout message:</strong> %s', 'better-wp-security' ), ITSEC_Modules::get_setting( 'global', 'user_lockout_message' ) );
-		$description .= '</li><li>';
-		$description .= sprintf( __( '<strong>Is this computer an authorized host:</strong> %s', 'better-wp-security' ), ITSEC_Lib::is_ip_whitelisted( ITSEC_Lib::get_ip() ) === true ? __( 'yes', 'better-wp-security' ) : __( 'no', 'better-wp-security' ) );
-		$description .= '</li></ul>';
-
-		return $description;
-
+		return '';
 	}
 
 	/**
@@ -973,6 +941,19 @@ final class ITSEC_Lockout {
 		}
 
 		return $results;
+	}
+
+	/**
+	 * Checks if temp host authorization is enabled.
+	 *
+	 * @return bool
+	 */
+	public function is_temp_authorization_enabled() {
+		if ( defined( 'ITSEC_DISABLE_TEMP_WHITELIST' ) && ITSEC_DISABLE_TEMP_WHITELIST ) {
+			return false;
+		}
+
+		return ITSEC_Modules::get_setting( 'global', 'automatic_temp_auth' );
 	}
 
 	/**
@@ -1109,8 +1090,7 @@ final class ITSEC_Lockout {
 	 * @return bool
 	 */
 	public function is_visitor_temp_whitelisted() {
-
-		if ( defined( 'ITSEC_DISABLE_TEMP_WHITELIST' ) && ITSEC_DISABLE_TEMP_WHITELIST ) {
+		if ( ! $this->is_temp_authorization_enabled() ) {
 			return false;
 		}
 
@@ -1122,15 +1102,6 @@ final class ITSEC_Lockout {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Register the purge lockout event.
-	 *
-	 * @param ITSEC_Scheduler $scheduler
-	 */
-	public function register_events( $scheduler ) {
-		$scheduler->schedule( ITSEC_Scheduler::S_DAILY, 'purge-lockouts' );
 	}
 
 	/**
@@ -1272,7 +1243,7 @@ final class ITSEC_Lockout {
 	public function register_notification( $notifications ) {
 		$notifications['lockout'] = array(
 			'subject_editable' => true,
-			'recipient'        => ITSEC_Notification_Center::R_USER_LIST_ADMIN_UPGRADE,
+			'recipient'        => ITSEC_Notification_Center::R_USER_LIST,
 			'schedule'         => ITSEC_Notification_Center::S_NONE,
 			'optional'         => true,
 		);
@@ -1287,9 +1258,9 @@ final class ITSEC_Lockout {
 	 */
 	public function notification_strings() {
 		return array(
-			'label'       => esc_html__( 'Site Lockouts', 'better-wp-security' ),
-			'description' => esc_html__( 'Various modules send emails to notify you when a user or host is locked out of your website.', 'better-wp-security' ),
-			'subject'     => esc_html__( 'Site Lockout Notification', 'better-wp-security' ),
+			'label'       => __( 'Site Lockouts', 'better-wp-security' ),
+			'description' => __( 'Various modules send emails to notify you when a user or host is locked out of your website.', 'better-wp-security' ),
+			'subject'     => __( 'Site Lockout Notification', 'better-wp-security' ),
 		);
 	}
 

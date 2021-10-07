@@ -98,130 +98,6 @@ if ( ! class_exists( 'Kadence_Woomail_Settings' ) ) {
 		);
 
 		/**
-		 * The normal core email types.
-		 *
-		 * @var array
-		 */
-		public static $email_types_mapping = array(
-			'new_order'                 => 'New Order',
-			'cancelled_order'           => 'Cancelled Order',
-			'customer_processing_order' => 'Customer Processing Order',
-			'customer_completed_order'  => 'Customer Completed Order',
-			'customer_refunded_order'   => 'Customer Refunded Order',
-			'customer_on_hold_order'    => 'Customer On Hold Order',
-			'customer_invoice'          => 'Customer Invoice',
-			'failed_order'              => 'Failed Order',
-			'customer_new_account'      => 'Customer New Account',
-			'customer_note'             => 'Customer Note',
-			'customer_reset_password'   => 'Customer Reset Password',
-		);
-
-		/**
-		 * The woocommerce subscriptions email types.
-		 *
-		 * @var array
-		 */
-		public static $subscription_email_types_mapping = array(
-			'new_renewal_order'                 => 'New Renewal Order',
-			'customer_processing_renewal_order' => 'Customer Processing Renewal Order',
-			'customer_completed_renewal_order'  => 'Customer Completed Renewal Order',
-			'customer_completed_switch_order'   => 'Customer Completed Switch Order',
-			'customer_renewal_invoice'          => 'Customer Renewal Invoice',
-			'cancelled_subscription'            => 'Cancelled Subscription',
-			'customer_payment_retry'            => 'Customer Payment Retry',
-			'admin_payment_retry'               => 'Payment Retry',
-		);
-
-		/**
-		 *  Woocommerce Membership Email Types
-		 *
-		 * @var array
-		 */
-		public static $membership_email_types_mapping = array(
-			'WC_Memberships_User_Membership_Note_Email'             => 'User Membership Note',
-			'WC_Memberships_User_Membership_Ending_Soon_Email'      => 'User Membership Ending Soon',
-			'WC_Memberships_User_Membership_Ended_Email'            => 'User Membership Ended',
-			'WC_Memberships_User_Membership_Renewal_Reminder_Email' => 'User Membership Renewal Reminder',
-			'WC_Memberships_User_Membership_Activated_Email'        => 'User Membership Activated',
-		);
-		/**
-		 *  WC Marketplace Email Types
-		 *
-		 * @var array
-		 */
-		public static $marketplace_email_types_mapping = array(
-			'vendor_new_account'                => 'New Vendor Account',
-			'admin_new_vendor'                  => 'Admin New Vendor Account',
-			'approved_vendor_new_account'       => 'Approved Vendor Account',
-			'rejected_vendor_new_account'       => 'Rejected Vendor Account',
-			'vendor_new_order'                  => 'Vendor New order',
-			'notify_shipped'                    => 'Notify as Shipped.',
-			'admin_new_vendor_product'          => 'New Vendor Product',
-			'admin_added_new_product_to_vendor' => 'New Vendor Product By Admin',
-			'vendor_commissions_transaction'    => 'Transactions (for Vendor)',
-			'vendor_direct_bank'                => 'Commission Paid (for Vendor) by BAC',
-			'admin_widthdrawal_request'         => 'Withdrawal request to Admin from Vendor by BAC',
-			'vendor_orders_stats_report'        => 'Vendor orders stats report',
-			'vendor_contact_widget_email'       => 'Vendor Contact Email',
-		);
-		/**
-		 *  WC German Email Types
-		 *
-		 * @var array
-		 */
-		public static $german_email_types_mapping = array(
-			'customer_ekomi'                  => 'eKomi Review Reminder',
-			'customer_new_account_activation' => 'New account activation',
-			'customer_paid_for_order'         => 'Paid for order',
-			'customer_revocation'             => 'Revocation',
-			'customer_trusted_shops'          => 'Trusted Shops Review Reminder',
-		);
-		/**
-		 *  WC German Email Types
-		 *
-		 * @var array
-		 */
-		public static $stripe_email_types_mapping = array(
-			'failed_renewal_authentication'       => 'Failed Subscription Renewal SCA Authentication',
-			'failed_preorder_sca_authentication'  => 'Pre-order Payment Action Needed',
-		);
-		/**
-		 *  WC German Email Types
-		 *
-		 * @var array
-		 */
-		public static $stripe_email_types_subscription_mapping = array(
-			'failed_authentication_requested'     => 'Payment Authentication Requested Email',
-		);
-		/**
-		 * Subscriptio Email Types
-		 *
-		 * @var array
-		 *
-		public static $subscriptio_email_types_mapping = array(
-			'customer_subscription_new_order'        => 'Subscription new order',
-			'customer_subscription_processing_order' => 'Subscription processing order',
-			'customer_subscription_completed_order'  => 'Subscription completed order',
-			'customer_subscription_paused'           => 'Subscription paused',
-			'customer_subscription_resumed'          => 'Subscription resumed',
-			'customer_subscription_suspended'        => 'Subscription suspended',
-			'customer_subscription_payment_overdue'  => 'Subscription payment overdue',
-			'customer_subscription_payment_reminder' => 'Subscription payment reminder',
-			'customer_subscription_expired'          => 'Subscription expired',
-			'customer_subscription_cancelled'        => 'Subscription cancelled',
-		);
-		 */
-
-		/**
-		 * Woocommerce Waitlist Email Types
-		 *
-		 * @var array
-		 */
-		public static $waitlist_email_types_mapping = array(
-			'woocommerce_waitlist_mailout' => 'Waitlist Mailout',
-		);
-
-		/**
 		 * Get our prebuilt tempaltes.
 		 *
 		 * @var array
@@ -1288,7 +1164,7 @@ if ( ! class_exists( 'Kadence_Woomail_Settings' ) ) {
 						'live_method'   => 'css',
 						'control_type'  => 'rangevalue',
 						'selectors'     => array(
-							'#template_header_image img' => array( 'max-width' ),
+							'#template_header_image img' => array( 'width' ),
 						),
 						'input_attrs' => array(
 							'step'  => 1,
@@ -3211,27 +3087,81 @@ To reset your password, visit the following address:',
 		 */
 		public static function get_email_types() {
 			if ( is_null( self::$email_types ) ) {
-				$types = self::$email_types_mapping;
+				$types = array(
+					'new_order'                 => __( 'New Order', 'kadence-woocommerce-email-designer' ),
+					'cancelled_order'           => __( 'Cancelled Order', 'kadence-woocommerce-email-designer' ),
+					'customer_processing_order' => __( 'Customer Processing Order', 'kadence-woocommerce-email-designer' ),
+					'customer_completed_order'  => __( 'Customer Completed Order', 'kadence-woocommerce-email-designer' ),
+					'customer_refunded_order'   => __( 'Customer Refunded Order', 'kadence-woocommerce-email-designer' ),
+					'customer_on_hold_order'    => __( 'Customer On Hold Order', 'kadence-woocommerce-email-designer' ),
+					'customer_invoice'          => __( 'Customer Invoice', 'kadence-woocommerce-email-designer' ),
+					'failed_order'              => __( 'Failed Order', 'kadence-woocommerce-email-designer' ),
+					'customer_new_account'      => __( 'Customer New Account', 'kadence-woocommerce-email-designer' ),
+					'customer_note'             => __( 'Customer Note', 'kadence-woocommerce-email-designer' ),
+					'customer_reset_password'   => __( 'Customer Reset Password', 'kadence-woocommerce-email-designer' ),
+				);
 				if ( class_exists( 'WC_Subscriptions' ) ) {
-					$types = array_merge( $types, self::$subscription_email_types_mapping );
+					$types = array_merge( $types, array(
+						'new_renewal_order'                 => __( 'New Renewal Order', 'kadence-woocommerce-email-designer' ),
+						'customer_processing_renewal_order' => __( 'Customer Processing Renewal Order', 'kadence-woocommerce-email-designer' ),
+						'customer_completed_renewal_order'  => __( 'Customer Completed Renewal Order', 'kadence-woocommerce-email-designer' ),
+						'customer_completed_switch_order'   => __( 'Customer Completed Switch Order', 'kadence-woocommerce-email-designer' ),
+						'customer_renewal_invoice'          => __( 'Customer Renewal Invoice', 'kadence-woocommerce-email-designer' ),
+						'cancelled_subscription'            => __( 'Cancelled Subscription', 'kadence-woocommerce-email-designer' ),
+						'customer_payment_retry'            => __( 'Customer Payment Retry', 'kadence-woocommerce-email-designer' ),
+						'admin_payment_retry'               => __( 'Payment Retry', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				if ( class_exists( 'WC_Memberships' ) ) {
-					$types = array_merge( $types, self::$membership_email_types_mapping );
+					$types = array_merge( $types, array(
+						'WC_Memberships_User_Membership_Note_Email'             => __( 'User Membership Note', 'kadence-woocommerce-email-designer' ),
+						'WC_Memberships_User_Membership_Ending_Soon_Email'      => __( 'User Membership Ending Soon', 'kadence-woocommerce-email-designer' ),
+						'WC_Memberships_User_Membership_Ended_Email'            => __( 'User Membership Ended', 'kadence-woocommerce-email-designer' ),
+						'WC_Memberships_User_Membership_Renewal_Reminder_Email' => __( 'User Membership Renewal Reminder', 'kadence-woocommerce-email-designer' ),
+						'WC_Memberships_User_Membership_Activated_Email'        => __( 'User Membership Activated', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				if ( class_exists( 'WCMp' ) ) {
-					$types = array_merge( $types, self::$marketplace_email_types_mapping );
+					$types = array_merge( $types, array(
+						'vendor_new_account'                => __( 'New Vendor Account', 'kadence-woocommerce-email-designer' ),
+						'admin_new_vendor'                  => __( 'Admin New Vendor Account', 'kadence-woocommerce-email-designer' ),
+						'approved_vendor_new_account'       => __( 'Approved Vendor Account', 'kadence-woocommerce-email-designer' ),
+						'rejected_vendor_new_account'       => __( 'Rejected Vendor Account', 'kadence-woocommerce-email-designer' ),
+						'vendor_new_order'                  => __( 'Vendor New order', 'kadence-woocommerce-email-designer' ),
+						'notify_shipped'                    => __( 'Notify as Shipped.', 'kadence-woocommerce-email-designer' ),
+						'admin_new_vendor_product'          => __( 'New Vendor Product', 'kadence-woocommerce-email-designer' ),
+						'admin_added_new_product_to_vendor' => __( 'New Vendor Product By Admin', 'kadence-woocommerce-email-designer' ),
+						'vendor_commissions_transaction'    => __( 'Transactions (for Vendor)', 'kadence-woocommerce-email-designer' ),
+						'vendor_direct_bank'                => __( 'Commission Paid (for Vendor) by BAC', 'kadence-woocommerce-email-designer' ),
+						'admin_widthdrawal_request'         => __( 'Withdrawal request to Admin from Vendor by BAC', 'kadence-woocommerce-email-designer' ),
+						'vendor_orders_stats_report'        => __( 'Vendor orders stats report', 'kadence-woocommerce-email-designer' ),
+						'vendor_contact_widget_email'       => __( 'Vendor Contact Email', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				if ( class_exists( 'WooCommerce_Germanized' ) ) {
-					$types = array_merge( $types, self::$german_email_types_mapping );
+					$types = array_merge( $types, array(
+						'customer_ekomi'                  => __( 'eKomi Review Reminder', 'kadence-woocommerce-email-designer' ),
+						'customer_new_account_activation' => __( 'New account activation', 'kadence-woocommerce-email-designer' ),
+						'customer_paid_for_order'         => __( 'Paid for order', 'kadence-woocommerce-email-designer' ),
+						'customer_revocation'             => __( 'Revocation', 'kadence-woocommerce-email-designer' ),
+						'customer_trusted_shops'          => __( 'Trusted Shops Review Reminder', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				if ( class_exists( 'WooCommerce_Waitlist_Plugin' ) ) {
-					$types = array_merge( $types, self::$waitlist_email_types_mapping );
+					$types = array_merge( $types, array(
+						'woocommerce_waitlist_mailout' => __( 'Waitlist Mailout', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				if ( class_exists( 'WC_Stripe' ) ) {
-					$types = array_merge( $types, self::$stripe_email_types_mapping );
+					$types = array_merge( $types, array(
+						'failed_renewal_authentication'       => __( 'Failed Subscription Renewal SCA Authentication', 'kadence-woocommerce-email-designer' ),
+						'failed_preorder_sca_authentication'  => __( 'Pre-order Payment Action Needed', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				if ( class_exists( 'WC_Stripe' ) && class_exists( 'WC_Subscriptions' ) ) {
-					$types = array_merge( $types, self::$stripe_email_types_subscription_mapping );
+					$types = array_merge( $types, array(
+						'failed_authentication_requested'     => __( 'Payment Authentication Requested Email', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				// if ( class_exists( 'Cartflows_Ca_Email_Templates' ) ) {
 				// 	$email_tmpl = Cartflows_Ca_Email_Templates::get_instance();
@@ -3258,12 +3188,35 @@ To reset your password, visit the following address:',
 		 */
 		public static function get_customized_email_types() {
 			if ( is_null( self::$customized_email_types ) ) {
-				$types = self::$email_types_mapping;
+				$types = array(
+					'new_order'                 => __( 'New Order', 'kadence-woocommerce-email-designer' ),
+					'cancelled_order'           => __( 'Cancelled Order', 'kadence-woocommerce-email-designer' ),
+					'customer_processing_order' => __( 'Customer Processing Order', 'kadence-woocommerce-email-designer' ),
+					'customer_completed_order'  => __( 'Customer Completed Order', 'kadence-woocommerce-email-designer' ),
+					'customer_refunded_order'   => __( 'Customer Refunded Order', 'kadence-woocommerce-email-designer' ),
+					'customer_on_hold_order'    => __( 'Customer On Hold Order', 'kadence-woocommerce-email-designer' ),
+					'customer_invoice'          => __( 'Customer Invoice', 'kadence-woocommerce-email-designer' ),
+					'failed_order'              => __( 'Failed Order', 'kadence-woocommerce-email-designer' ),
+					'customer_new_account'      => __( 'Customer New Account', 'kadence-woocommerce-email-designer' ),
+					'customer_note'             => __( 'Customer Note', 'kadence-woocommerce-email-designer' ),
+					'customer_reset_password'   => __( 'Customer Reset Password', 'kadence-woocommerce-email-designer' ),
+				);
 				if ( class_exists( 'WC_Subscriptions' ) ) {
-					$types = array_merge( $types, self::$subscription_email_types_mapping );
+					$types = array_merge( $types, array(
+						'new_renewal_order'                 => __( 'New Renewal Order', 'kadence-woocommerce-email-designer' ),
+						'customer_processing_renewal_order' => __( 'Customer Processing Renewal Order', 'kadence-woocommerce-email-designer' ),
+						'customer_completed_renewal_order'  => __( 'Customer Completed Renewal Order', 'kadence-woocommerce-email-designer' ),
+						'customer_completed_switch_order'   => __( 'Customer Completed Switch Order', 'kadence-woocommerce-email-designer' ),
+						'customer_renewal_invoice'          => __( 'Customer Renewal Invoice', 'kadence-woocommerce-email-designer' ),
+						'cancelled_subscription'            => __( 'Cancelled Subscription', 'kadence-woocommerce-email-designer' ),
+						'customer_payment_retry'            => __( 'Customer Payment Retry', 'kadence-woocommerce-email-designer' ),
+						'admin_payment_retry'               => __( 'Payment Retry', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 				if ( class_exists( 'WooCommerce_Waitlist_Plugin' ) ) {
-					$types = array_merge( $types, self::$waitlist_email_types_mapping );
+					$types = array_merge( $types, array(
+						'woocommerce_waitlist_mailout' => __( 'Waitlist Mailout', 'kadence-woocommerce-email-designer' ),
+					) );
 				}
 
 				self::$customized_email_types = apply_filters( 'kadence_woomail_customized_email_types', $types );
@@ -3281,7 +3234,5 @@ To reset your password, visit the following address:',
 		public static function get_email_templates() {
 			return apply_filters( 'kadence_woomail_prebuilt_email_templates_settings', self::$prebuilt_templates_mapping );
 		}
-
-
 	}
 }

@@ -1,5 +1,11 @@
 <?php
 
+use iThemesSecurity\Ban_Hosts;
+use iThemesSecurity\Lib\REST\Modules_Controller;
+use iThemesSecurity\Lib\REST\Settings_Controller;
+use iThemesSecurity\Lib\REST\Site_Types_Controller;
+use iThemesSecurity\Lib\REST\Tools_Controller;
+
 class ITSEC_REST {
 	public function run() {
 		add_action( 'rest_api_init', array( $this, 'rest_api_init' ), 0 );
@@ -8,8 +14,12 @@ class ITSEC_REST {
 		add_filter( 'rest_user_collection_params', [ $this, 'register_global_users_query' ] );
 		add_filter( 'rest_user_query', [ $this, 'apply_global_users_query' ], 10, 2 );
 		add_filter( 'rest_request_from_url', [ $this, 'retain_auth_header_from_embeds' ] );
-		add_filter( 'itsec_filter_apache_server_config_modification', [ $this, 'add_htaccess_authorization_header' ] );
-		add_filter( 'itsec_filter_litespeed_server_config_modification', [ $this, 'add_htaccess_authorization_header' ] );
+		add_filter( 'rest_avatar_sizes', [ $this, 'add_avatar_size' ] );
+
+		if ( ! ITSEC_Lib::is_wp_version_at_least( '5.6', true ) ) {
+			add_filter( 'itsec_filter_apache_server_config_modification', [ $this, 'add_htaccess_authorization_header' ] );
+			add_filter( 'itsec_filter_litespeed_server_config_modification', [ $this, 'add_htaccess_authorization_header' ] );
+		}
 	}
 
 	/**
@@ -17,7 +27,11 @@ class ITSEC_REST {
 	 */
 	public function rest_api_init() {
 		ITSEC_Modules::load_module_file( 'rest.php', ':active' );
-		ITSEC_Modules::get_container()->get( \iThemesSecurity\Ban_Hosts\REST::class )->register_routes();
+		ITSEC_Modules::get_container()->get( Ban_Hosts\REST::class )->register_routes();
+		ITSEC_Modules::get_container()->get( Modules_Controller::class )->register_routes();
+		ITSEC_Modules::get_container()->get( Settings_Controller::class )->register_routes();
+		ITSEC_Modules::get_container()->get( Site_Types_Controller::class )->register_routes();
+		ITSEC_Modules::get_container()->get( Tools_Controller::class )->register_routes();
 	}
 
 	/**
@@ -120,6 +134,19 @@ class ITSEC_REST {
 		}
 
 		return $request;
+	}
+
+	/**
+	 * Adds larger avatar sizes to the REST API responses.
+	 *
+	 * @param int[] $sizes The existing sizes.
+	 *
+	 * @return array
+	 */
+	public function add_avatar_size( $sizes ) {
+		$sizes[] = 128;
+
+		return $sizes;
 	}
 
 	public function add_htaccess_authorization_header( $rules ) {

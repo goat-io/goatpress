@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["experimental"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 508);
+/******/ 	return __webpack_require__(__webpack_require__.s = 462);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,53 +107,65 @@ this["wc"] = this["wc"] || {}; this["wc"]["experimental"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(54)();
+  module.exports = __webpack_require__(47)();
 }
 
 
 /***/ }),
 
-/***/ 13:
-/***/ (function(module, exports) {
-
-function _extends() {
-  module.exports = _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
-  return _extends.apply(this, arguments);
-}
-
-module.exports = _extends;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
-
-/***/ }),
-
-/***/ 147:
+/***/ 115:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(46);
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(47);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+var objectWithoutPropertiesLoose = __webpack_require__(22);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = Object(objectWithoutPropertiesLoose["a" /* default */])(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+// EXTERNAL MODULE: external ["wp","element"]
+var external_wp_element_ = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js
 
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 /**
  * WordPress dependencies
@@ -175,32 +187,32 @@ function Icon(_ref) {
   var icon = _ref.icon,
       _ref$size = _ref.size,
       size = _ref$size === void 0 ? 24 : _ref$size,
-      props = Object(_babel_runtime_helpers_esm_objectWithoutProperties__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])(_ref, ["icon", "size"]);
+      props = _objectWithoutProperties(_ref, ["icon", "size"]);
 
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["cloneElement"])(icon, _objectSpread({
+  return Object(external_wp_element_["cloneElement"])(icon, _objectSpread({
     width: size,
     height: size
   }, props));
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (Icon);
+/* harmony default export */ var build_module_icon = __webpack_exports__["a"] = (Icon);
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ 193:
+/***/ 169:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
-var esm_extends = __webpack_require__(25);
+var esm_extends = __webpack_require__(23);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(24);
+var objectWithoutPropertiesLoose = __webpack_require__(22);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
-var inheritsLoose = __webpack_require__(27);
+var inheritsLoose = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -254,7 +266,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/Transition.js + 1 modules
-var Transition = __webpack_require__(77);
+var Transition = __webpack_require__(64);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js
 
@@ -543,16 +555,16 @@ CSSTransition_CSSTransition.propTypes =  false ? undefined : {};
 
 /***/ }),
 
-/***/ 196:
+/***/ 172:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(24);
+var objectWithoutPropertiesLoose = __webpack_require__(22);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
-var esm_extends = __webpack_require__(25);
+var esm_extends = __webpack_require__(23);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
 function _assertThisInitialized(self) {
@@ -563,7 +575,7 @@ function _assertThisInitialized(self) {
   return self;
 }
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
-var inheritsLoose = __webpack_require__(27);
+var inheritsLoose = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -573,7 +585,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroupContext.js
-var TransitionGroupContext = __webpack_require__(37);
+var TransitionGroupContext = __webpack_require__(33);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/utils/ChildMapping.js
 
@@ -859,14 +871,14 @@ TransitionGroup_TransitionGroup.defaultProps = defaultProps;
 
 /***/ }),
 
-/***/ 23:
+/***/ 21:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wc"]["components"]; }());
 
 /***/ }),
 
-/***/ 24:
+/***/ 22:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -888,7 +900,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
-/***/ 25:
+/***/ 23:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -913,7 +925,7 @@ function _extends() {
 
 /***/ }),
 
-/***/ 27:
+/***/ 25:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -940,19 +952,12 @@ function _inheritsLoose(subClass, superClass) {
 
 /***/ }),
 
-/***/ 30:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wp"]["keycodes"]; }());
-
-/***/ }),
-
-/***/ 310:
+/***/ 264:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(5), __webpack_require__(33));
+		module.exports = factory(__webpack_require__(5), __webpack_require__(29));
 	else {}
 })(this, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__) {
 return /******/ (function(modules) { // webpackBootstrap
@@ -1543,14 +1548,71 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 33:
+/***/ 27:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["keycodes"]; }());
+
+/***/ }),
+
+/***/ 276:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * WordPress dependencies
+ */
+
+var chevronUp = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
+}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
+  d: "M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z"
+}));
+/* harmony default export */ __webpack_exports__["a"] = (chevronUp);
+//# sourceMappingURL=chevron-up.js.map
+
+/***/ }),
+
+/***/ 277:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * WordPress dependencies
+ */
+
+var chevronDown = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
+}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
+  d: "M17.5 11.6L12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"
+}));
+/* harmony default export */ __webpack_exports__["a"] = (chevronDown);
+//# sourceMappingURL=chevron-down.js.map
+
+/***/ }),
+
+/***/ 29:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["ReactDOM"]; }());
 
 /***/ }),
 
-/***/ 37:
+/***/ 33:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1568,64 +1630,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 46:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _defineProperty; });
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-/***/ }),
-
-/***/ 47:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _objectWithoutProperties; });
-/* harmony import */ var _objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(24);
-
-function _objectWithoutProperties(source, excluded) {
-  if (source == null) return {};
-  var target = Object(_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])(source, excluded);
-  var key, i;
-
-  if (Object.getOwnPropertySymbols) {
-    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
-
-    for (i = 0; i < sourceSymbolKeys.length; i++) {
-      key = sourceSymbolKeys[i];
-      if (excluded.indexOf(key) >= 0) continue;
-      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
-      target[key] = source[key];
-    }
-  }
-
-  return target;
-}
-
-/***/ }),
-
-/***/ 5:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["React"]; }());
-
-/***/ }),
-
-/***/ 508:
+/***/ 462:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1647,34 +1652,29 @@ __webpack_require__.d(__webpack_exports__, "TaskItem", function() { return /* re
 __webpack_require__.d(__webpack_exports__, "InboxNoteCard", function() { return /* reexport */ InboxNoteCard; });
 __webpack_require__.d(__webpack_exports__, "InboxDismissConfirmationModal", function() { return /* reexport */ InboxDismissConfirmationModal; });
 __webpack_require__.d(__webpack_exports__, "InboxNotePlaceholder", function() { return /* reexport */ InboxNotePlaceholder; });
+__webpack_require__.d(__webpack_exports__, "VerticalCSSTransition", function() { return /* reexport */ VerticalCSSTransition; });
 
 // EXTERNAL MODULE: external ["wp","components"]
 var external_wp_components_ = __webpack_require__(4);
 
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(13);
-var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
+// EXTERNAL MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js + 3 modules
+var CSSTransition = __webpack_require__(169);
 
 // EXTERNAL MODULE: external ["wp","element"]
 var external_wp_element_ = __webpack_require__(0);
 
-// EXTERNAL MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js + 3 modules
-var CSSTransition = __webpack_require__(193);
-
 // EXTERNAL MODULE: external ["wp","keycodes"]
-var external_wp_keycodes_ = __webpack_require__(30);
+var external_wp_keycodes_ = __webpack_require__(27);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
-// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/experimental-list-item.jsx
-
-
-
+// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/experimental-list-item.js
 /**
  * External dependencies
  */
+
 
 
 
@@ -1719,26 +1719,18 @@ const ExperimentalListItem = ({
     exit: exit,
     enter: enter,
     onExited: onExited
-  }, Object(external_wp_element_["createElement"])("li", extends_default()({}, roleProps, otherProps, {
+  }, Object(external_wp_element_["createElement"])("li", Object.assign({}, roleProps, otherProps, {
     className: `woocommerce-experimental-list__item ${tagClasses} ${className}`
   }), children));
 };
-//# sourceMappingURL=experimental-list-item.jsx.map
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroup.js + 2 modules
-var TransitionGroup = __webpack_require__(196);
+var TransitionGroup = __webpack_require__(172);
 
-// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/experimental-list.jsx
-
-
-
+// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/experimental-list.js
 /**
  * External dependencies
  */
 
-
-/**
- * Internal dependencies
- */
 
 const ExperimentalList = ({
   children,
@@ -1747,7 +1739,7 @@ const ExperimentalList = ({
   // Allow passing any other property overrides that are legal on an HTML element
   ...otherProps
 }) => {
-  return Object(external_wp_element_["createElement"])(TransitionGroup["a" /* default */], extends_default()({
+  return Object(external_wp_element_["createElement"])(TransitionGroup["a" /* default */], Object.assign({
     component: listType || 'ul',
     className: "woocommerce-experimental-list"
   }, otherProps), external_wp_element_["Children"].map(children, child => {
@@ -1776,23 +1768,19 @@ const ExperimentalList = ({
     return child; // TODO - create a less restrictive type definition for children of react-transition-group. React.Children.map seems incompatible with the type expected by `children`.
   }));
 };
-//# sourceMappingURL=experimental-list.jsx.map
-// EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js
-var icon = __webpack_require__(147);
+// EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
+var icon = __webpack_require__(115);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-down.js
-var chevron_down = __webpack_require__(517);
+var chevron_down = __webpack_require__(277);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-up.js
-var chevron_up = __webpack_require__(518);
+var chevron_up = __webpack_require__(276);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/Transition.js + 1 modules
-var Transition = __webpack_require__(77);
+var Transition = __webpack_require__(64);
 
-// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/collapsible-list/index.jsx
-
-
-
+// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/collapsible-list/index.js
 /**
  * External dependencies
  */
@@ -1806,8 +1794,9 @@ var Transition = __webpack_require__(77);
 
 
 
-const defaultStyle = {
-  transition: `max-height 500ms ease-in-out`,
+const collapsible_list_defaultStyle = {
+  transitionProperty: 'max-height',
+  transitionDuration: '500ms',
   maxHeight: 0,
   overflow: 'hidden'
 };
@@ -1818,6 +1807,9 @@ function getContainerHeight(collapseContainer) {
   if (collapseContainer) {
     for (const child of collapseContainer.children) {
       containerHeight += child.clientHeight;
+      const style = window.getComputedStyle(child);
+      containerHeight += parseInt(style.marginTop, 10) || 0;
+      containerHeight += parseInt(style.marginBottom, 10) || 0;
     }
   }
 
@@ -1848,6 +1840,31 @@ function getUpdatedShownChildren(currentChildren, currentShownChildren, newChild
   return newChildren.filter(child => child.key && (currentShownChildrenKeys.includes(child.key) || !currentChildrenKeys.includes(child.key)));
 }
 
+const collapsible_list_getTransitionStyle = (state, isCollapsed, elementRef) => {
+  let maxHeight = 0;
+
+  if ((state === 'entered' || state === 'entering') && elementRef) {
+    maxHeight = getContainerHeight(elementRef);
+  }
+
+  const styles = { ...collapsible_list_defaultStyle,
+    maxHeight
+  }; // only include transition styles when entering or exiting.
+
+  if (state !== 'entering' && state !== 'exiting') {
+    delete styles.transitionDuration;
+    delete styles.transition;
+    delete styles.transitionProperty;
+  } // Remove maxHeight when entered, so we do not need to worry about nested items changing height while expanded.
+
+
+  if (state === 'entered' && !isCollapsed) {
+    delete styles.maxHeight;
+  }
+
+  return styles;
+};
+
 const ExperimentalCollapsibleList = ({
   children,
   collapsed = true,
@@ -1859,7 +1876,7 @@ const ExperimentalCollapsibleList = ({
   ...listProps
 }) => {
   const [isCollapsed, setCollapsed] = Object(external_wp_element_["useState"])(collapsed);
-  const [containerHeight, setContainerHeight] = Object(external_wp_element_["useState"])(0);
+  const [isTransitionComponentCollapsed, setTransitionComponentCollapsed] = Object(external_wp_element_["useState"])(collapsed);
   const [footerLabels, setFooterLabels] = Object(external_wp_element_["useState"])({
     collapse: collapseLabel,
     expand: expandLabel
@@ -1869,11 +1886,7 @@ const ExperimentalCollapsibleList = ({
     shown: [],
     hidden: []
   });
-  const collapseContainerRef = Object(external_wp_element_["useCallback"])(containerElement => {
-    if (containerElement) {
-      setContainerHeight(getContainerHeight(containerElement));
-    }
-  }, [displayedChildren.hidden]);
+  const collapseContainerRef = Object(external_wp_element_["useRef"])(null);
 
   const updateChildren = () => {
     let shownChildren = [];
@@ -1899,8 +1912,13 @@ const ExperimentalCollapsibleList = ({
       shown: shownChildren,
       hidden: hiddenChildren
     });
-  };
+  }; // This allows for an extra render cycle that adds the maxHeight back in before the exiting transition.
+  // This way the exiting transition still works correctly.
 
+
+  Object(external_wp_element_["useEffect"])(() => {
+    setTransitionComponentCollapsed(isCollapsed);
+  }, [isCollapsed]);
   Object(external_wp_element_["useEffect"])(() => {
     const allChildren = external_wp_element_["Children"].map(children, child => Object(external_wp_element_["isValidElement"])(child) && 'key' in child ? child : null) || [];
 
@@ -1931,6 +1949,137 @@ const ExperimentalCollapsibleList = ({
     setCollapsed(!isCollapsed);
     triggerCallbacks(!isCollapsed);
   }, [isCollapsed]);
+  const listClasses = classnames_default()(listProps.className || '', 'woocommerce-experimental-list');
+  return Object(external_wp_element_["createElement"])(ExperimentalList, Object.assign({}, listProps, {
+    className: listClasses
+  }), [...displayedChildren.shown, Object(external_wp_element_["createElement"])(Transition["a" /* default */], {
+    key: "remaining-children",
+    timeout: 500,
+    in: !isTransitionComponentCollapsed,
+    mountOnEnter: true,
+    unmountOnExit: false
+  }, state => {
+    const transitionStyles = collapsible_list_getTransitionStyle(state, isCollapsed, collapseContainerRef.current);
+    return Object(external_wp_element_["createElement"])("div", {
+      ref: collapseContainerRef,
+      style: transitionStyles
+    }, Object(external_wp_element_["createElement"])(TransitionGroup["a" /* default */], {
+      className: "woocommerce-experimental-list"
+    }, external_wp_element_["Children"].map(displayedChildren.hidden, child => {
+      const {
+        onExited,
+        in: inTransition,
+        enter,
+        exit,
+        ...remainingProps
+      } = child.props;
+      const animationProp = remainingProps.animation || listProps.animation;
+      return Object(external_wp_element_["createElement"])(CSSTransition["a" /* default */], {
+        key: child.key,
+        timeout: 500,
+        onExited: onExited,
+        in: inTransition,
+        enter: enter,
+        exit: exit,
+        classNames: "woocommerce-list__item"
+      }, Object(external_wp_element_["cloneElement"])(child, {
+        animation: animationProp,
+        ...remainingProps
+      }));
+    })));
+  }), displayedChildren.hidden.length > 0 ? Object(external_wp_element_["createElement"])(ExperimentalListItem, {
+    key: "collapse-item",
+    className: "list-item-collapse",
+    onClick: clickHandler,
+    animation: "none",
+    disableGutters: true
+  }, Object(external_wp_element_["createElement"])("p", null, isCollapsed ? footerLabels.expand : footerLabels.collapse), Object(external_wp_element_["createElement"])(icon["a" /* default */], {
+    className: "list-item-collapse__icon",
+    size: 30,
+    icon: isCollapsed ? chevron_down["a" /* default */] : chevron_up["a" /* default */]
+  })) : null]);
+};
+// EXTERNAL MODULE: external ["wp","i18n"]
+var external_wp_i18n_ = __webpack_require__(2);
+
+// EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/check.js
+var check = __webpack_require__(472);
+
+// EXTERNAL MODULE: ./node_modules/gridicons/dist/notice-outline.js
+var notice_outline = __webpack_require__(60);
+var notice_outline_default = /*#__PURE__*/__webpack_require__.n(notice_outline);
+
+// EXTERNAL MODULE: external ["wc","components"]
+var external_wc_components_ = __webpack_require__(21);
+
+// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
+var purify = __webpack_require__(66);
+
+// CONCATENATED MODULE: ./packages/experimental/build-module/vertical-css-transition/vertical-css-transition.js
+/**
+ * External dependencies
+ */
+
+
+
+function vertical_css_transition_getContainerHeight(container) {
+  let containerHeight = 0;
+
+  for (const child of container.children) {
+    containerHeight += child.clientHeight;
+    const style = window.getComputedStyle(child);
+    containerHeight += parseInt(style.marginTop, 10) || 0;
+    containerHeight += parseInt(style.marginBottom, 10) || 0;
+  }
+
+  return containerHeight;
+}
+/**
+ * VerticalCSSTransition is a wrapper for CSSTransition, automatically adding a vertical height transition.
+ * The maxHeight is calculated through JS, something CSS does not support.
+ */
+
+
+const VerticalCSSTransition = ({
+  children,
+  defaultStyle,
+  ...props
+}) => {
+  const [containerHeight, setContainerHeight] = Object(external_wp_element_["useState"])(0);
+  const [transitionIn, setTransitionIn] = Object(external_wp_element_["useState"])(props.in || false);
+  const cssTransitionRef = Object(external_wp_element_["useRef"])(null);
+  const collapseContainerRef = Object(external_wp_element_["useCallback"])(containerElement => {
+    if (containerElement) {
+      setContainerHeight(vertical_css_transition_getContainerHeight(containerElement));
+    }
+  }, [children]);
+  Object(external_wp_element_["useEffect"])(() => {
+    setTransitionIn(props.in || false);
+  }, [props.in]);
+
+  const getTimeouts = () => {
+    const {
+      timeout
+    } = props;
+    let exit, enter, appear;
+
+    if (typeof timeout === 'number') {
+      exit = enter = appear = timeout;
+    }
+
+    if (timeout !== undefined && typeof timeout !== 'number') {
+      exit = timeout.exit;
+      enter = timeout.enter;
+      appear = timeout.appear !== undefined ? timeout.appear : enter;
+    }
+
+    return {
+      exit,
+      enter,
+      appear
+    };
+  };
+
   const transitionStyles = {
     entered: {
       maxHeight: containerHeight
@@ -1945,52 +2094,50 @@ const ExperimentalCollapsibleList = ({
       maxHeight: 0
     }
   };
-  const listClasses = classnames_default()(listProps.className || '', 'woocommerce-experimental-list');
-  return Object(external_wp_element_["createElement"])(ExperimentalList, extends_default()({}, listProps, {
-    className: listClasses
-  }), [...displayedChildren.shown, Object(external_wp_element_["createElement"])(Transition["a" /* default */], {
-    key: "remaining-children",
-    timeout: 500,
-    in: !isCollapsed,
-    mountOnEnter: true,
-    unmountOnExit: true
-  }, state => Object(external_wp_element_["createElement"])("div", {
-    ref: collapseContainerRef,
-    style: { ...defaultStyle,
-      ...transitionStyles[state]
+
+  const getTransitionStyle = state => {
+    const timeouts = getTimeouts();
+    const appearing = cssTransitionRef.current && cssTransitionRef.current.context && cssTransitionRef.current.context.isMounting;
+    let duration;
+
+    if (state.startsWith('enter')) {
+      duration = timeouts[appearing ? 'enter' : 'appear'];
+    } else {
+      duration = timeouts.exit;
     }
-  }, displayedChildren.hidden)), displayedChildren.hidden.length > 0 ? Object(external_wp_element_["createElement"])(ExperimentalListItem, {
-    key: "collapse-item",
-    className: "list-item-collapse",
-    onClick: clickHandler,
-    animation: "none",
-    disableGutters: true
-  }, Object(external_wp_element_["createElement"])("p", null, isCollapsed ? footerLabels.expand : footerLabels.collapse), Object(external_wp_element_["createElement"])(icon["a" /* default */], {
-    className: "list-item-collapse__icon",
-    size: 30,
-    icon: isCollapsed ? chevron_down["a" /* default */] : chevron_up["a" /* default */]
-  })) : null]);
+
+    const styles = {
+      transitionProperty: 'max-height',
+      transitionDuration: duration === undefined ? '500ms' : duration + 'ms',
+      overflow: 'hidden',
+      ...(defaultStyle || {}),
+      ...transitionStyles[state]
+    }; // only include transition styles when entering or exiting.
+
+    if (state !== 'entering' && state !== 'exiting') {
+      delete styles.transitionDuration;
+      delete styles.transition;
+      delete styles.transitionProperty;
+    } // Remove maxHeight when entered, so we do not need to worry about nested items changing height while expanded.
+
+
+    if (state === 'entered' && props.in) {
+      delete styles.maxHeight;
+    }
+
+    return styles;
+  };
+
+  return Object(external_wp_element_["createElement"])(CSSTransition["a" /* default */], Object.assign({}, props, {
+    in: transitionIn,
+    ref: cssTransitionRef
+  }), state => Object(external_wp_element_["createElement"])("div", {
+    className: "vertical-css-transition-container",
+    style: getTransitionStyle(state),
+    ref: collapseContainerRef
+  }, children));
 };
-//# sourceMappingURL=index.jsx.map
-// EXTERNAL MODULE: external ["wp","i18n"]
-var external_wp_i18n_ = __webpack_require__(2);
-
-// EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/check.js
-var check = __webpack_require__(519);
-
-// EXTERNAL MODULE: ./node_modules/gridicons/dist/notice-outline.js
-var notice_outline = __webpack_require__(71);
-var notice_outline_default = /*#__PURE__*/__webpack_require__.n(notice_outline);
-
-// EXTERNAL MODULE: external ["wc","components"]
-var external_wc_components_ = __webpack_require__(23);
-
-// EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
-var purify = __webpack_require__(81);
-
-// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/task-item.jsx
-
-
+// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/task-item.js
 /**
  * External dependencies
  */
@@ -2005,6 +2152,7 @@ var purify = __webpack_require__(81);
 /**
  * Internal dependencies
  */
+
 
 
 const ALLOWED_TAGS = ['a', 'b', 'em', 'i', 'strong', 'p', 'br'];
@@ -2041,9 +2189,29 @@ const OptionalTaskTooltip = ({
   }, children);
 };
 
+const OptionalExpansionWrapper = ({
+  children,
+  expandable,
+  expanded
+}) => {
+  if (!expandable) {
+    return expanded ? Object(external_wp_element_["createElement"])(external_wp_element_["Fragment"], null, children) : null;
+  }
+
+  return Object(external_wp_element_["createElement"])(VerticalCSSTransition, {
+    timeout: 500,
+    in: expanded,
+    classNames: "woocommerce-task-list__item-expandable-content",
+    defaultStyle: {
+      transitionProperty: 'max-height, opacity'
+    }
+  }, children);
+};
+
 const TaskItem = ({
   completed,
   title,
+  onDelete,
   onDismiss,
   remindMeLater,
   onClick,
@@ -2052,21 +2220,29 @@ const TaskItem = ({
   content,
   expandable = false,
   expanded = false,
+  showActionButton,
   level = 3,
   action,
-  actionLabel
+  actionLabel,
+  ...listItemProps
 }) => {
   const className = classnames_default()('woocommerce-task-list__item', {
     complete: completed,
+    expanded,
     'level-2': level === 2 && !completed,
     'level-1': level === 1 && !completed
   });
-  const showEllipsisMenu = (onDismiss || remindMeLater) && !completed;
-  return Object(external_wp_element_["createElement"])(ExperimentalListItem, {
+
+  if (showActionButton === undefined) {
+    showActionButton = expandable;
+  }
+
+  const showEllipsisMenu = (onDismiss || remindMeLater) && !completed || onDelete && completed;
+  return Object(external_wp_element_["createElement"])(ExperimentalListItem, Object.assign({
     disableGutters: true,
     className: className,
     onClick: onClick
-  }, Object(external_wp_element_["createElement"])(OptionalTaskTooltip, {
+  }, listItemProps), Object(external_wp_element_["createElement"])(OptionalTaskTooltip, {
     level: level,
     completed: completed
   }, Object(external_wp_element_["createElement"])("div", {
@@ -2087,17 +2263,15 @@ const TaskItem = ({
     variant: completed ? 'body.small' : 'button'
   }, Object(external_wp_element_["createElement"])("span", {
     className: "woocommerce-task-list__item-title"
-  }, title), Object(external_wp_element_["createElement"])(CSSTransition["a" /* default */], {
-    appear: true,
-    timeout: 500,
-    in: expanded,
-    classNames: "woocommerce-task-list__item-content"
+  }, title), Object(external_wp_element_["createElement"])(OptionalExpansionWrapper, {
+    expandable: expandable,
+    expanded: expanded
   }, Object(external_wp_element_["createElement"])("div", {
-    className: "woocommerce-task-list__item-content"
+    className: "woocommerce-task-list__item-expandable-content"
   }, content, expandable && !completed && additionalInfo && Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task__additional-info",
     dangerouslySetInnerHTML: sanitizeHTML(additionalInfo)
-  }), !completed && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
+  }), !completed && showActionButton && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
     className: "woocommerce-task-list__item-action",
     isPrimary: true,
     onClick: event => {
@@ -2117,41 +2291,43 @@ const TaskItem = ({
     onToggle: e => e.stopPropagation(),
     renderContent: () => Object(external_wp_element_["createElement"])("div", {
       className: "woocommerce-task-card__section-controls"
-    }, onDismiss && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
+    }, onDismiss && !completed && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
       onClick: e => {
         e.stopPropagation();
         onDismiss();
       }
-    }, Object(external_wp_i18n_["__"])('Dismiss', 'woocommerce-admin')), remindMeLater && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
+    }, Object(external_wp_i18n_["__"])('Dismiss', 'woocommerce-admin')), remindMeLater && !completed && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
       onClick: e => {
         e.stopPropagation();
         remindMeLater();
       }
-    }, Object(external_wp_i18n_["__"])('Remind me later', 'woocommerce-admin')))
+    }, Object(external_wp_i18n_["__"])('Remind me later', 'woocommerce-admin')), onDelete && completed && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
+      onClick: e => {
+        e.stopPropagation();
+        onDelete();
+      }
+    }, Object(external_wp_i18n_["__"])('Delete', 'woocommerce-admin')))
   }));
 };
-//# sourceMappingURL=task-item.jsx.map
 // EXTERNAL MODULE: ./node_modules/react-visibility-sensor/dist/visibility-sensor.js
-var visibility_sensor = __webpack_require__(310);
+var visibility_sensor = __webpack_require__(264);
 var visibility_sensor_default = /*#__PURE__*/__webpack_require__.n(visibility_sensor);
 
 // EXTERNAL MODULE: external "moment"
 var external_moment_ = __webpack_require__(9);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
-// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/action.jsx
-
-
+// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/action.js
 /**
  * External dependencies
  */
-
 
 
 /**
  * Renders a secondary button that can also be a link. If href is provided it will
  * automatically open it in a new tab/window.
  */
+
 const InboxNoteActionButton = ({
   label,
   onClick,
@@ -2187,7 +2363,6 @@ const InboxNoteActionButton = ({
     onClick: handleActionClick
   }, label);
 };
-//# sourceMappingURL=action.jsx.map
 // CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/use-callback-on-link-click.js
 /**
  * External dependencies
@@ -2217,10 +2392,7 @@ function useCallbackOnLinkClick(onClick) {
     };
   }, [onNodeClick]);
 }
-//# sourceMappingURL=use-callback-on-link-click.js.map
-// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/inbox-note.jsx
-
-
+// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/inbox-note.js
 /**
  * External dependencies
  */
@@ -2281,7 +2453,7 @@ const InboxNoteCard = ({
   };
 
   const handleBlur = (event, onClose) => {
-    const dropdownClasses = ['woocommerce-admin-dismiss-notification', 'components-popover__content']; // This line is for IE compatibility.
+    const dropdownClasses = ['woocommerce-admin-dismiss-notification', 'components-popover__content', 'components-dropdown__content']; // This line is for IE compatibility.
 
     let relatedTarget = null;
 
@@ -2327,7 +2499,10 @@ const InboxNoteCard = ({
         onToggle
       }) => Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
         isTertiary: true,
-        onClick: onToggle,
+        onClick: event => {
+          event.target.focus();
+          onToggle();
+        },
         ref: toggleButtonRef,
         onBlur: event => handleBlur(event, onClose)
       }, Object(external_wp_i18n_["__"])('Dismiss', 'woocommerce-admin')),
@@ -2361,8 +2536,7 @@ const InboxNoteCard = ({
 
   const renderActions = () => {
     const {
-      actions: noteActions,
-      id: noteId
+      actions: noteActions
     } = note;
 
     if (!!clickedActionText) {
@@ -2432,10 +2606,7 @@ const InboxNoteCard = ({
 };
 
 
-//# sourceMappingURL=inbox-note.jsx.map
-// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/inbox-dismiss-confirmation-modal.jsx
-
-
+// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/inbox-dismiss-confirmation-modal.js
 /**
  * External dependencies
  */
@@ -2469,8 +2640,10 @@ const InboxDismissConfirmationModal = ({
     }
   }, buttonLabel))));
 };
-//# sourceMappingURL=inbox-dismiss-confirmation-modal.jsx.map
-// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/placeholder.jsx
+// CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/placeholder.js
+/**
+ * External dependencies
+ */
 
 
 const InboxNotePlaceholder = ({
@@ -2509,12 +2682,12 @@ const InboxNotePlaceholder = ({
 };
 
 
-//# sourceMappingURL=placeholder.jsx.map
 // CONCATENATED MODULE: ./packages/experimental/build-module/inbox-note/index.js
 
 
 
-//# sourceMappingURL=index.js.map
+// CONCATENATED MODULE: ./packages/experimental/build-module/vertical-css-transition/index.js
+
 // CONCATENATED MODULE: ./packages/experimental/build-module/index.js
 /**
  * External dependencies
@@ -2536,86 +2709,11 @@ const useSlot = external_wp_components_["useSlot"] || external_wp_components_["_
 
 
 
-//# sourceMappingURL=index.js.map
+
 
 /***/ }),
 
-/***/ 517:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-
-/**
- * WordPress dependencies
- */
-
-var chevronDown = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
-  viewBox: "0 0 24 24",
-  xmlns: "http://www.w3.org/2000/svg"
-}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
-  d: "M17.5 11.6L12 16l-5.5-4.4.9-1.2L12 14l4.5-3.6 1 1.2z"
-}));
-/* harmony default export */ __webpack_exports__["a"] = (chevronDown);
-//# sourceMappingURL=chevron-down.js.map
-
-/***/ }),
-
-/***/ 518:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-
-/**
- * WordPress dependencies
- */
-
-var chevronUp = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
-  viewBox: "0 0 24 24",
-  xmlns: "http://www.w3.org/2000/svg"
-}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
-  d: "M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z"
-}));
-/* harmony default export */ __webpack_exports__["a"] = (chevronUp);
-//# sourceMappingURL=chevron-up.js.map
-
-/***/ }),
-
-/***/ 519:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-
-/**
- * WordPress dependencies
- */
-
-var check = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24"
-}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
-  d: "M18.3 5.6L9.9 16.9l-4.6-3.4-.9 1.2 5.8 4.3 9.3-12.6z"
-}));
-/* harmony default export */ __webpack_exports__["a"] = (check);
-//# sourceMappingURL=check.js.map
-
-/***/ }),
-
-/***/ 54:
+/***/ 47:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2628,7 +2726,7 @@ var check = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElemen
 
 
 
-var ReactPropTypesSecret = __webpack_require__(55);
+var ReactPropTypesSecret = __webpack_require__(48);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -2687,7 +2785,32 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 55:
+/***/ 472:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * WordPress dependencies
+ */
+
+var check = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24"
+}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
+  d: "M18.3 5.6L9.9 16.9l-4.6-3.4-.9 1.2 5.8 4.3 9.3-12.6z"
+}));
+/* harmony default export */ __webpack_exports__["a"] = (check);
+//# sourceMappingURL=check.js.map
+
+/***/ }),
+
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2704,6 +2827,13 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 
 module.exports = ReactPropTypesSecret;
 
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["React"]; }());
 
 /***/ }),
 
@@ -2772,7 +2902,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 71:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2781,7 +2911,7 @@ var _extends=Object.assign||function(a){for(var c,b=1;b<arguments.length;b++)for
 
 /***/ }),
 
-/***/ 77:
+/***/ 64:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2789,10 +2919,10 @@ var _extends=Object.assign||function(a){for(var c,b=1;b<arguments.length;b++)for
 // UNUSED EXPORTS: UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(24);
+var objectWithoutPropertiesLoose = __webpack_require__(22);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
-var inheritsLoose = __webpack_require__(27);
+var inheritsLoose = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -2802,7 +2932,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: external "ReactDOM"
-var external_ReactDOM_ = __webpack_require__(33);
+var external_ReactDOM_ = __webpack_require__(29);
 var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_ReactDOM_);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/config.js
@@ -2810,7 +2940,7 @@ var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_Reac
   disabled: false
 });
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroupContext.js
-var TransitionGroupContext = __webpack_require__(37);
+var TransitionGroupContext = __webpack_require__(33);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/Transition.js
 
@@ -3246,14 +3376,7 @@ Transition_Transition.EXITING = EXITING;
 
 /***/ }),
 
-/***/ 8:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wp"]["primitives"]; }());
-
-/***/ }),
-
-/***/ 81:
+/***/ 66:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*! @license DOMPurify | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.2.2/LICENSE */
@@ -4612,6 +4735,13 @@ Transition_Transition.EXITING = EXITING;
 }));
 //# sourceMappingURL=purify.js.map
 
+
+/***/ }),
+
+/***/ 8:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["primitives"]; }());
 
 /***/ }),
 

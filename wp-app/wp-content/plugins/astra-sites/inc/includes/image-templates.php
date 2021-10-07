@@ -37,13 +37,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<# var count = 0; #>
 		<# for ( key in data ) { count++; #>
-			<# var imported_class = _.includes( astraImages.saved_images, data[key]['id'].toString() ) ? 'imported' : ''; #>
+			<# var is_imported = _.includes( astraImages.saved_images, data[key]['id'] ); #>
+			<# var imported_class = ( is_imported ) ? 'imported' : ''; #>
 			<div class="ast-image__list-wrap loading" data-id="{{data[key]['id']}}" data-url="{{data[key]['pageURL']}}">
 				<div class="ast-image__list-inner-wrap {{imported_class}}">
 					<div class="ast-image__list-img-wrap">
 						<img src="{{data[key]['webformatURL']}}" alt="{{data[key]['tags']}}" />
-						<div class="ast-image__list-img-overlay" data-img-info="{{JSON.stringify( data[key] )}}">
+						<div class="ast-image__list-img-overlay" data-img-url={{data[key]['largeImageURL']}} data-img-id={{data[key]['id']}}>
 							<span>{{data[key]['tags']}}</span>
+							<# if ( '' === imported_class ) { #>
+							<span class="ast-image__download-icon dashicons-arrow-down-alt dashicons" data-import-status={{is_imported}}></span>
+							<# } #>
 						</div>
 					</div>
 				</div>
@@ -59,9 +63,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script type="text/template" id="tmpl-ast-image-filters">
 	<div class="ast-image__filter-wrap">
 		<ul class="ast-image__filter">
-			<li class="ast-image__filter-safesearch">
-				<label><input type="checkbox" checked value="1" /><?php esc_html_e( 'SafeSearch', 'astra-sites' ); ?></label>
-			</li>
 			<li class="ast-image__filter-category">
 				<select>
 					<# for ( key in astraImages.pixabay_category ) { #>
@@ -83,7 +84,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<# } #>
 				</select>
 			</li>
+			<li class="ast-image__filter-safesearch">
+				<label><input type="checkbox" checked value="1" /><?php esc_html_e( 'SafeSearch', 'astra-sites' ); ?></label>
+			</li>
 		</ul>
+	</div>
+	<div class="ast-powered-by-pixabay-wrap"><span><?php esc_html_e( 'Powered by', 'astra-sites' ); ?></span><img src="<?php echo esc_url( ASTRA_SITES_URI . 'inc/assets/images/pixabay-logo.png' ); ?>">
 	</div>
 </script>
 
@@ -115,10 +121,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 </script>
 
 <script type="text/template" id="tmpl-ast-image-go-back">
-	<span class="ast-image__go-back">
+	<div class="ast-image__go-back">
 		<i class="ast-icon-chevron-left"></i>
 		<span class="ast-image__go-back-text"><?php esc_html_e( 'Back to Images', 'astra-sites' ); ?></span>
-	</span>
+	</div>
 </script>
 
 <script type="text/template" id="tmpl-ast-image-save">

@@ -126,7 +126,10 @@ class Maintenance
 
 		if ($wpacuLastClearCache && (strtotime( '-1 days' ) > $wpacuLastClearCache)) {
 			OptimizeCommon::clearCache();
-			echo 'The cache was just cleared as it was not cleared in the past 24 hours.<br />';
+
+			if ($isDebug) {
+				echo 'The cache was just cleared as it was not cleared in the past 24 hours.<br />';
+			}
 		}
 	}
 

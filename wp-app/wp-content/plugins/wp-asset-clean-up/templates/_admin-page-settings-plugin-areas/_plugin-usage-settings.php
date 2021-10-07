@@ -37,34 +37,34 @@ foreach (\WpAssetCleanUp\MetaBoxes::$noMetaBoxesForPostTypes as $noMetaBoxesForP
                 &nbsp;
                 <?php _e('This will show the list of assets in a meta box on edit the post (any type) / page within the Dashboard', 'wp-asset-clean-up'); ?>
 
-                <div id="wpacu_manage_dashboard_assets_list">
+                <div id="wpacu_manage_dashboard_assets_list" <?php if ($data['dashboard_show'] != 1) { echo 'style="opacity: 0.4;"'; } ?>>
                     <p><?php _e('The assets would be retrieved via AJAX call(s) that will fetch the post/page URL and extract all the styles &amp; scripts that are enqueued.', 'wp-asset-clean-up'); ?></p>
                     <p><?php _e('Note that sometimes the assets list is not loading within the Dashboard. That could be because "mod_security" Apache module is enabled or some security plugins are blocking the AJAX request. If this option doesn\'t work, consider managing the list in the front-end view.', 'wp-asset-clean-up'); ?></p>
 
                     <div id="wpacu-settings-assets-retrieval-mode" <?php if (! ($data['dashboard_show'] == 1)) { echo 'style="display: none;"'; } ?>>
                         <ul id="wpacu-dom-get-type-selections">
-                        <li>
-                            <label><?php _e('Select a retrieval way', 'wp-asset-clean-up'); ?>:</label>
-                        </li>
-                        <li>
-                            <label>
-                                <input class="wpacu-dom-get-type-selection"
-                                       data-target="wpacu-dom-get-type-direct-info"
-								       <?php if ($data['dom_get_type'] === 'direct') { ?>checked="checked"<?php } ?>
-                                       type="radio" name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[dom_get_type]"
-                                       value="direct" /> <?php _e('Direct', 'wp-asset-clean-up'); ?>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input class="wpacu-dom-get-type-selection"
-                                       data-target="wpacu-dom-get-type-wp-remote-post-info"
-								       <?php if ($data['dom_get_type'] === 'wp_remote_post') { ?>checked="checked"<?php } ?>
-                                       type="radio" name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[dom_get_type]"
-                                       value="wp_remote_post" /> WP Remote Post
-                            </label>
-                        </li>
-                    </ul>
+                            <li>
+                                <label><?php _e('Select a retrieval way', 'wp-asset-clean-up'); ?>:</label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input class="wpacu-dom-get-type-selection"
+                                           data-target="wpacu-dom-get-type-direct-info"
+                                           <?php if ($data['dom_get_type'] === 'direct') { ?>checked="checked"<?php } ?>
+                                           type="radio" name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[dom_get_type]"
+                                           value="direct" /> <?php _e('Direct', 'wp-asset-clean-up'); ?>
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input class="wpacu-dom-get-type-selection"
+                                           data-target="wpacu-dom-get-type-wp-remote-post-info"
+                                           <?php if ($data['dom_get_type'] === 'wp_remote_post') { ?>checked="checked"<?php } ?>
+                                           type="radio" name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[dom_get_type]"
+                                           value="wp_remote_post" /> WP Remote Post
+                                </label>
+                            </li>
+                        </ul>
 
                         <div class="wpacu-clearfix" style="height: 0;"></div>
 
@@ -80,62 +80,63 @@ foreach (\WpAssetCleanUp\MetaBoxes::$noMetaBoxesForPostTypes as $noMetaBoxesForP
                                 <strong>WP Remote Post</strong> - <?php _e('It makes a WordPress AJAX call and gets the HTML source code through wp_remote_post(). This one is less likely to be blocked as it is made on the same protocol (no HTTP request from HTTPS). However, in some cases (e.g. a different load balancer configuration), this might not work when the call to fetch a domain\'s URL (your website) is actually made from the same domain.', 'wp-asset-clean-up'); ?>
                             </li>
                         </ul>
-
-                        <hr /><div class="wpacu-clearfix" style="height: 0;"></div>
-
-                        <p style="margin-top: 8px;"><?php _e('When you are in the Dashboard and edit a post, page, custom post type, category or custom taxonomy and rarely manage loaded CSS/JS from the "Asset CleanUp: CSS & JavaScript Manager", you can choose to fetch the list when you click on a button. This will help declutter the edit page on load and also save resources as AJAX calls to the front-end won\'t be made to retrieve the assets\' list.', 'wp-asset-clean-up'); ?></p>
-                        <ul style="margin-bottom: 0;">
-                            <li>
-                                <label for="assets_list_show_status_default">
-                                    <input id="assets_list_show_status_default"
-				                           <?php if (! $data['assets_list_show_status'] || $data['assets_list_show_status'] === 'default') { ?>checked="checked"<?php } ?>
-                                           type="radio"
-                                           name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[assets_list_show_status]"
-                                           value="default" /> <?php _e('Fetch the assets automatically and show the list', 'wp-asset-clean-up'); ?> (<?php _e('Default', 'wp-asset-clean-up'); ?>)
-                                </label>
-                            </li>
-                            <li>
-                                <label for="assets_list_show_status_fetch_on_click">
-                                    <input id="assets_list_show_status_fetch_on_click"
-				                           <?php if ($data['assets_list_show_status'] === 'fetch_on_click') { ?>checked="checked"<?php } ?>
-                                           type="radio"
-                                           name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[assets_list_show_status]"
-                                           value="fetch_on_click" /> <?php _e('Fetch the assets on a button click', 'wp-asset-clean-up'); ?>
-                                </label>
-                            </li>
-                        </ul><div class="wpacu-clearfix" style="height: 0; clear: both;"></div>
-
-                        <hr />
                     </div>
+
+                    <hr /><div class="wpacu-clearfix" style="height: 0;"></div>
+
+                    <input type="hidden" name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[show_assets_meta_box]" value="0" />
+                    <fieldset style="margin: 15px 0 0 0; padding: 10px; border: 1px solid #8c8f94; border-radius: 10px;">
+                        <legend style="border: 1px solid #8c8f94; padding: 10px; border-radius: 10px;"><label for="wpacu-show-assets-meta-box-checkbox"><input <?php echo (($data['show_assets_meta_box'] == 1) ? 'checked="checked"' : ''); ?> id="wpacu-show-assets-meta-box-checkbox" type="checkbox" name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[show_assets_meta_box]" value="1" /> Show "<?php echo WPACU_PLUGIN_TITLE; ?>: CSS &amp; JavaScript Manager / Page Options" meta box (applies only to edit post/page/taxonomy area)</label></legend>
+
+                        <div id="wpacu-show-assets-enabled-area" style="<?php echo (! $data['show_assets_meta_box']) ? 'display: none;' : ''; ?>">
+                            <p style="margin-top: 8px;"><?php _e('When you are in the Dashboard and edit a post, page, custom post type, category or custom taxonomy and rarely manage loaded CSS/JS from the "Asset CleanUp: CSS & JavaScript Manager", you can choose to fetch the list when you click on a button. This will help declutter the edit page on load and also save resources as AJAX calls to the front-end won\'t be made to retrieve the assets\' list.', 'wp-asset-clean-up'); ?></p>
+                            <ul style="margin-bottom: 0;">
+                                <li>
+                                    <label for="assets_list_show_status_default">
+                                        <input id="assets_list_show_status_default"
+                                               <?php if (! $data['assets_list_show_status'] || $data['assets_list_show_status'] === 'default') { ?>checked="checked"<?php } ?>
+                                               type="radio"
+                                               name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[assets_list_show_status]"
+                                               value="default" /> <?php _e('Fetch the assets automatically and show the list', 'wp-asset-clean-up'); ?> (<?php _e('Default', 'wp-asset-clean-up'); ?>)
+                                    </label>
+                                </li>
+                                <li>
+                                    <label for="assets_list_show_status_fetch_on_click">
+                                        <input id="assets_list_show_status_fetch_on_click"
+                                               <?php if ($data['assets_list_show_status'] === 'fetch_on_click') { ?>checked="checked"<?php } ?>
+                                               type="radio"
+                                               name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[assets_list_show_status]"
+                                               value="fetch_on_click" /> <?php _e('Fetch the assets on a button click', 'wp-asset-clean-up'); ?>
+                                    </label>
+                                </li>
+                            </ul><div class="wpacu-clearfix" style="height: 0; clear: both;"></div>
+
+                            <hr />
+
+                            <div id="wpacu-settings-hide-meta-boxes">
+                                <label for="wpacu-hide-meta-boxes-for-post-types">Hide the meta box for the following public post types (multiple selection drop-down):</label><br />
+                                <select style="margin-top: 4px; min-width: 340px;"
+                                        id="wpacu-hide-meta-boxes-for-post-types"
+                                        <?php if ($data['input_style'] !== 'standard') { ?>
+                                            data-placeholder="Choose Post Type(s)..."
+                                            class="wpacu-chosen-select"
+                                        <?php } ?>
+                                        multiple="multiple"
+                                        name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[hide_meta_boxes_for_post_types][]">
+                                    <?php foreach ($postTypesList as $postTypeKey => $postTypeValue) { ?>
+                                        <option <?php if (in_array($postTypeKey, $data['hide_meta_boxes_for_post_types'])) { echo 'selected="selected"'; } ?>
+                                                value="<?php echo $postTypeKey; ?>"><?php echo $postTypeValue; ?></option>
+                                    <?php } ?>
+                                </select>
+                                <p id="wpacu-hide-meta-boxes-for-post-types-info" style="margin-top: 4px;"><small>Sometimes, you might have a post type marked as 'public', but it's not queryable or doesn't have a public URL of its own, making the assets list irrelevant. Or, you have finished optimising pages for a particular post type and you wish to have the assets list hidden. You can choose to hide the meta boxes for these particular post types.</small></p>
+                            </div>
+                        </div>
+
+                        <div id="wpacu-show-assets-disabled-area" style="<?php echo ($data['show_assets_meta_box'] == 1) ? 'display: none;' : ''; ?>">
+                            <p>In order to view the options related to the CSS &amp; JS manager meta box located within the edit post/page/taxonomy area, the above option needs to be enabled.</p>
+                        </div>
+                    </fieldset>
                 </div>
-
-                <div id="wpacu-settings-hide-meta-boxes">
-                    <p><?php _e('If you wish to hide the assets management area for any reason (e.g. you rarely manage the assets and you want to reduce cluttering in the edit post/page/taxonomy area, especially if you do lots of edits), you can do so using the option below (<em>don\'t forget to uncheck them whenever you wish to manage the CSS/JS assets again</em>)', 'wp-asset-clean-up'); ?>:</p>
-                    <ul>
-                        <li><label for="wpacu-hide-assets-meta-box-checkbox"><input <?php echo (($data['hide_assets_meta_box'] == 1) ? 'checked="checked"' : ''); ?> id="wpacu-hide-assets-meta-box-checkbox" type="checkbox" name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[hide_assets_meta_box]" value="1" /> Hide "<?php echo WPACU_PLUGIN_TITLE; ?>: CSS &amp; JavaScript Manager / Page Options" meta box</label></li>
-
-                        <?php
-                        ?>
-                    </ul>
-                    <hr />
-
-                    <label for="wpacu-hide-meta-boxes-for-post-types">Hide the meta box for the following public post types (multiple selection drop-down):</label><br />
-                </div>
-
-                <select style="margin-top: 4px; min-width: 340px;"
-                        id="wpacu-hide-meta-boxes-for-post-types"
-	                    <?php if ($data['input_style'] !== 'standard') { ?>
-                            data-placeholder="Choose Post Type(s)..."
-                            class="wpacu-chosen-select"
-                        <?php } ?>
-                        multiple="multiple"
-                        name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[hide_meta_boxes_for_post_types][]">
-                    <?php foreach ($postTypesList as $postTypeKey => $postTypeValue) { ?>
-                        <option <?php if (in_array($postTypeKey, $data['hide_meta_boxes_for_post_types'])) { echo 'selected="selected"'; } ?>
-                                value="<?php echo $postTypeKey; ?>"><?php echo $postTypeValue; ?></option>
-                    <?php } ?>
-                </select>
-                <p id="wpacu-hide-meta-boxes-for-post-types-info" style="margin-top: 4px;"><small>Sometimes, you might have a post type marked as 'public', but it's not queryable or doesn't have a public URL of its own, making the assets list irrelevant. Or, you have finished optimising pages for a particular post type and you wish to have the assets list hidden. You can choose to hide the meta boxes for these particular post types.</small></p>
             </td>
         </tr>
         <tr valign="top">
@@ -153,7 +154,7 @@ foreach (\WpAssetCleanUp\MetaBoxes::$noMetaBoxesForPostTypes as $noMetaBoxesForP
                 &nbsp;
                 If you are logged in, this will make the list of assets show below the page that you view (either home page, a post or a page).
 
-                <div id="wpacu_frontend_manage_assets_list">
+                <div id="wpacu_frontend_manage_assets_list" <?php if ($data['frontend_show'] != 1) { echo 'style="opacity: 0.4;"'; } ?>>
                     <p style="margin-top: 10px;">The area will be shown through the <code>wp_footer</code> action so in case you do not see the asset list at the bottom of the page, make sure the theme is using <a href="https://codex.wordpress.org/Function_Reference/wp_footer"><code>wp_footer()</code></a> function before the <code>&lt;/body&gt;</code> tag. Any theme that follows the standards should have it. If not, you will have to add it to make sure other plugins and code from functions.php will work fine.</p>
 
                     <div id="wpacu-settings-frontend-exceptions" <?php if (! ($data['frontend_show'] == 1)) { echo 'style="display: none;"'; } ?>>

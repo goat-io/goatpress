@@ -12,28 +12,52 @@
   <p align="center">
     Scalable base image for Wordpress
     <br />
-    <a href="https://docs.goatlab.io/#/0.4.x/fluent/fluent"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/goat-io/goatpress"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/goat-io/fluent/repo">View Demo</a>
+    <a href="https://github.com/goat-io/goatpress/repo">View Demo</a>
     ·
-    <a href="https://github.com/goat-io/fluent/issues">Report Bug</a>
+    <a href="https://github.com/goat-io/goatpress/issues">Report Bug</a>
     ·
-    <a href="https://github.com/goat-io/fluent/issues">Request Feature</a>
+    <a href="https://github.com/goat-io/goatpress/issues">Request Feature</a>
   </p>
 </p>
 
-# Goatpress - Superchaged Wordpress/Woocommerce (version: 0.1.0)
+# Goatpress - Superchaged Wordpress/Woocommerce
 
-Base image to create Scalable Wordpress and Woocommerce sites based on [Openbridge](https://github.com/openbridge/nginx)'s and [Khromov](https://github.com/khromov/alpine-nginx-php8)'s work
+Base image to create Scalable Wordpress and Woocommerce sites based on [Openbridge](https://github.com/openbridge/nginx)'s and [Khromov](https://github.com/khromov/alpine-nginx-php8)'s work to create replicable containers to deploy using Cloud Run or K8S.
+
+## Features (from [Openbridge](https://github.com/openbridge/nginx))
+
+The image includes configuration enhancements for;
+* Reverse Proxy
+* SEO optimizations
+* Customizable configurations
+* SSL with support for Lets Encrypt SSL certificates
+* Mime-type based caching
+* Redis LRU cache
+* Fastcgi cache
+* Proxy cache
+* tmpfs file cache
+* Brotli and Gzip compression
+* Redirects for moved content
+* [Security & Bot Protection](https://github.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker)
+* Monitoring processes, ports, permissions... with Monit
+* Standardized UID/GID and Permissions (www-data)
+* Support GeoIP
+* Rate limited connections to slow down attackers
+* CDN support
+* Cache purge
+* Pair with [high performance PHP-FPM container](https://hub.docker.com/r/openbridge/ob_php-fpm/) for [blazing fast Wordpress installs](https://github.com/openbridge/wordpress)
 
 ## Create your own site
 
 You can either clone this project, or just use one of the docker images on your own project.
 
 ```bash
-  npm run deploy
+  make start
 ```
+
 ## Local Development
 
 #### Starting containers
@@ -97,6 +121,156 @@ You can (should) rename the resulting image name/tag by editing the docker-compo
 ```bash
 make build
 ```
+
+## Redis Cache
+
+The image is setup to use Redis as a reverse proxy LRU cache. The current cache settings reflect a balance of performance, optimization and striving for efficiencies with little resource consumption as possible. There are three main configs for Redis:
+```nginx
+/redis.d/location.conf
+/redis.d/cache.conf
+/upstream.d/redis.conf
+```
+### What is a Redis LRU cache?
+When an http client requests a web page Nginx looks for the corresponding cached object in Redis. If the object is in redis, nginx serves it. If the object is not in Redis, Nginx requests a backend that generates the page and gives it back to Nginx. Then, Nginx put it in Redis and serves it. All cached objects in Redis have a configurable TTL with a default of `15s`.
+
+## Local Development SSL Certs
+If you set `NGINX_DEV_INSTALL=true` it will install a self-signed SSL certs for you. If you already have mounted dev certs, it will not install them as it assumes you want to use those. Here is the code that does this when you set set `NGINX_DEV_INSTALL=true`:
+
+```bash
+if [[ ! -f /etc/letsencrypt/live/${NGINX_SERVER_NAME}/privkey.pem ]] || [[ ! -f /etc/letsencrypt/live/${NGINX_SERVER_NAME}/fullchain.pem ]]; then
+
+  echo "OK: Installing development SSL certificates..."
+  mkdir -p /etc/letsencrypt/live/${NGINX_SERVER_NAME}
+
+  /usr/bin/env bash -c "openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj /C=US/ST=MA/L=Boston/O=ACMECORP/CN=${NGINX_SERVER_NAME} -keyout /etc/letsencrypt/live/${NGINX_SERVER_NAME}/privkey.pem -out /etc/letsencrypt/live/${NGINX_SERVER_NAME}/fullchain.pem"
+
+  cp /etc/letsencrypt/live/${NGINX_SERVER_NAME}/fullchain.pem  /etc/letsencrypt/live/${NGINX_SERVER_NAME}/chain.pem
+
+else
+  echo "INFO: SSL files already exist. Not installing dev certs."
+fi
+```
+When use self-signed certs you will likely see warnings in the logs like this:
+
+```bash
+2018/10/25 18:23:53 [warn] 1#1: "ssl_stapling" ignored, no OCSP responder URL in the certificate "/etc/letsencrypt/live/localhost/fullchain.pem"
+nginx: [warn] "ssl_stapling" ignored, no OCSP responder URL in the certificate "/etc/letsencrypt/live/localhost/fullchain.pem"
+```
+This is because nginx is attempting to use `ssl_stapling` which will not function correctly for self-signed certs. You can ignore these warnings in this case. However, if the same warning happens with real certs then there is a different problem with the SSL cert(s).
+
+
+
+## Activating Bot Protection
+If you want to activate bot protection, you need to set an environment variable called `NGINX_BAD_BOTS` to `true`.
+```bash
+NGINX_BAD_BOTS=true
+```
+If you do not set this variable, then do not include it or set the value to `false`
+```bash
+NGINX_BAD_BOTS=false
+```
+
+### Verify Your Bot Protection
+Run the following commands line by line inside a terminal on another linux machine against your own domain name.
+
+**Substitute yourdomain.com in the examples below with your REAL domain name:**
+
+`curl -A "googlebot" http://yourdomain.com`
+
+Should respond with 200 OK
+
+`curl -A "80legs" http://yourdomain.com`
+
+`curl -A "masscan" http://yourdomain.com`
+
+Should respond with: curl: (52) Empty reply from server
+
+`curl -I http://yourdomain.com -e http://100dollars-seo.com`
+
+`curl -I http://yourdomain.com -e http://zx6.ru`
+
+Should respond with: curl: (52) Empty reply from server
+
+The Bot Blocker is now WORKING and PROTECTING your sites!
+# Testing
+
+## HTML & PHP
+If you set `NGINX_DEV_INSTALL=true` it will install a self-signed SSL cert AND copy test files to a test directory:
+```
+cp /tmp/index.php "${NGINX_DOCROOT}"/testing/test_info.php
+cp /tmp/test.html "${NGINX_DOCROOT}"/testing/test_nginx.html
+```
+This allows you to connect to `https://localhost/testing/test_info.php` to verify the container is working correctly. If you connect to `https://localhost/testing/test_nginx.html` it will show a hello world test page.
+
+Noe: Using PHP assumes you have configured a PHP backend to test anything PHP related
+
+# Monitoring
+Services in the container are monitored via Monit. One thing to note is that if Monit detects a problem with Nginx it will issue a `STOP` command. This will shutdown your container because the image uses `CMD ["nginx", "-g", "daemon off;"]`. If you are using `--restart unless-stopped` in your docker run command the server will automatically restart.
+
+Here is an example monitoring config:
+```nginx
+check process nginx with pidfile "/var/run/nginx.pid"
+      if not exist for 5 cycles then restart
+      start program = "/usr/bin/env bash -c '/usr/sbin/nginx -g daemon off'" with timeout 60 seconds
+      stop program = "/usr/bin/env bash -c '/usr/sbin/nginx -s stop'"
+      every 3 cycles
+      if cpu > 80% for 10 cycles then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s stop'"
+
+check program wwwdata-permissions with path /usr/bin/env bash -c "check_wwwdata permission"
+      every 3 cycles
+      if status != 0 then exec "/usr/bin/env bash -c 'find {{NGINX_DOCROOT}} -type d -exec chmod 755 {} \; && find {{NGINX_DOCROOT}} -type f -exec chmod 644 {} \;'"
+
+check directory cache-permissions with path {{CACHE_PREFIX}}
+      every 3 cycles
+      if failed permission 755 then exec "/usr/bin/env bash -c 'find {{CACHE_PREFIX}} -type d -exec chmod 755 {} \;'"
+
+check directory cache-owner with path {{CACHE_PREFIX}}
+      every 3 cycles
+      if failed uid www-data then exec "/usr/bin/env bash -c 'find {{CACHE_PREFIX}} -type d -exec chown www-data:www-data {} \; && find {{CACHE_PREFIX}} -type f -exec chown www-data:www-data {} \;'"
+
+check file letsencrypt_certificate with path /etc/letsencrypt/live/{{NGINX_SERVER_NAME}}/fullchain.pem
+      if changed checksum then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s reload'"
+
+check host {{NGINX_SERVER_NAME}} with address {{NGINX_SERVER_NAME}}
+      if failed host {{NGINX_SERVER_NAME}} port 80 protocol http
+        and request "/health-check"
+        with timeout 25 seconds
+        for 3 times within 4 cycles
+        then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s reload'"
+      if failed host {{NGINX_SERVER_NAME}} port 443 protocol https
+        request "/health-check"
+        status = 200
+        content = "healthy"
+        with timeout 25 seconds
+        for 3 times within 4 cycles
+      then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s reload'"
+      if failed port 8080 for 3 cycles then exec "/usr/bin/env bash -c '/usr/sbin/nginx -s stop'"
+
+check program cache-size with path /usr/bin/env bash -c "check_folder {{CACHE_PREFIX}} 500"
+      every 20 cycles
+      if status != 0 then exec "/usr/bin/env bash -c 'rm -Rf /var/cache/*'"
+```
+ The `check_folder`, `check_host` and `check_wwwdata` scripts provide additional health check utility of make sure that permissions, cache size and host respond correctly. For example, `check_host` will validate that SPA rendering service is properly serving the expected content. This can help detect if there are issues where certain user-agents that can not render SPA are being served the incorrect content. This can wreak havoc with your SEO if a pre-render service is not working as expected. Best to catch it as early as possible so you can mitigate any issues.
+
+# Content Delivery Network
+If you want to activate CDN for assets like images, you can set your location to redirect those requests to your CDN:
+```nginx
+location ~* \.(gif|png|jpg|jpeg|svg)$ {
+   return  301 https://cdn.example.com$request_uri;
+}
+```
+This assumes you have a CDN distribution setup and the assets published there. There are many CDN options in the market. Take a look at [Amazon Cloudfront](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/GettingStarted.html) as it provides an effective and low cost option.
+
+# Logs
+Logs are currently sent to `stdout` and `stderr`. This keeps the deployed service light. You will likely want to dispatch logs to a service like Amazon Cloudwatch. This will allow you to setup alerts and triggers to perform tasks based on container activity without needing to keep logs local and chew up disk space.
+
+However, if you want to change this behavior, simply edit the `Dockerfile` to suit your needs:
+
+```
+&& ln -sf /dev/stdout ${LOG_PREFIX}/access.log \
+&& ln -sf /dev/stderr ${LOG_PREFIX}/error.log \
+&& ln -sf /dev/stdout ${LOG_PREFIX}/blocked.log
+
 
 ## Deploy to GCP Cloud Run
 
@@ -165,7 +339,7 @@ kubectl get service nginx-ingress-controller
 ## Plugins 
 https://wordpress.org/plugins/webp-converter-for-media/
 
-[stars-shield]: https://img.shields.io/github/stars/goat-io/fluent?style=flat-square
-[stars-url]: https://github.com/goat-io/fluent/stargazers
-[issues-shield]: https://img.shields.io/github/issues/goat-io/fluent?style=flat-square
-[issues-url]: https://github.com/goat-io/fluent/issues
+[stars-shield]: https://img.shields.io/github/stars/goat-io/goatpress?style=flat-square
+[stars-url]: https://github.com/goat-io/goatpress/stargazers
+[issues-shield]: https://img.shields.io/github/issues/goat-io/goatpress?style=flat-square
+[issues-url]: https://github.com/goat-io/goatpress/issues

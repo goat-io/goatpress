@@ -26,13 +26,14 @@
 		</label>
 		<div class="smush-options custom_compression" <?php if (!$custom) echo 'style="display:none;"';?>>
 			<span class="alignleft"><?php _e('Maximum compression', 'wp-optimize');?></span>
-			<input id="custom_compression_slider" class="compression_level" data-max="Maximum Compression"  type="range" step="2" value="<?php echo intval($smush_options['image_quality']); ?>" min="89" max="100" list="number" />
+			<input id="custom_compression_slider" class="compression_level" data-max="Maximum Compression"  type="range" step="5" value="<?php echo intval($smush_options['image_quality']); ?>" min="60" max="85" list="number" />
 			<datalist id="number">
-				<option value="89"/>
-				<option value="93"/>
-				<option value="95"/>
-				<option value="97"/>
-				<option value="100"/>
+				<option value="60"/>
+				<option value="65"/>
+				<option value="70"/>
+				<option value="75"/>
+				<option value="80"/>
+				<option value="85"/>
 			</datalist>
 			<span class="alignright"><?php _e('Best image quality', 'wp-optimize');?></span>
 		</div>

@@ -48,7 +48,7 @@ class ITSEC_Site_Scanner_API {
 		}
 
 		if ( self::is_temporary_server_error( $response ) ) {
-			$response->add( 'itsec-temporary-server-error', __( 'Site Scanning is temporarily unavailable, please try again later.' ) );
+			$response->add( 'itsec-temporary-server-error', __( 'Site Scanning is temporarily unavailable, please try again later.', 'better-wp-security' ) );
 		}
 
 		$log_data = [ 'results' => $response, 'cached' => $cached ];

@@ -418,14 +418,18 @@ class ITSEC_Hide_Backend {
 	 */
 	public function notification_strings() {
 		return array(
-			'label'       => esc_html__( 'Hide Backend – New Login URL', 'better-wp-security' ),
-			'description' => sprintf( esc_html__( '%1$sHide Backend%2$s will notify the chosen recipients whenever the login URL is changed.', 'better-wp-security' ), '<a href="#" data-module-link="hide-backend">', '</a>' ),
-			'subject'     => esc_html__( 'WordPress Login Address Changed', 'better-wp-security' ),
-			'message'     => esc_html__( 'The login address for {{ $site_title }} has changed. The new login address is {{ $login_url }}. You will be unable to use the old login address.', 'better-wp-security' ),
+			'label'       => __( 'Hide Backend – New Login URL', 'better-wp-security' ),
+			'description' => sprintf(
+				__( '%1$sHide Backend%2$s will notify the chosen recipients whenever the login URL is changed.', 'better-wp-security' ),
+				ITSEC_Core::get_link_for_settings_route( ITSEC_Core::get_settings_module_route( 'hide-backend' ) ),
+				'</a>'
+			),
+			'subject'     => __( 'WordPress Login Address Changed', 'better-wp-security' ),
+			'message'     => __( 'The login address for {{ $site_title }} has changed. The new login address is {{ $login_url }}. You will be unable to use the old login address.', 'better-wp-security' ),
 			'tags'        => array(
-				'login_url'  => esc_html__( 'The new login link.', 'better-wp-security' ),
-				'site_title' => esc_html__( 'The WordPress Site Title. Can be changed under Settings -> General -> Site Title', 'better-wp-security' ),
-				'site_url'   => esc_html__( 'The URL to your website.', 'better-wp-security' ),
+				'login_url'  => __( 'The new login link.', 'better-wp-security' ),
+				'site_title' => __( 'The WordPress Site Title. Can be changed under Settings → General → Site Title', 'better-wp-security' ),
+				'site_url'   => __( 'The URL to your website.', 'better-wp-security' ),
 			),
 		);
 	}

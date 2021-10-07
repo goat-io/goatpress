@@ -34,6 +34,8 @@ use Atum\Suppliers\Suppliers;
 use AtumLevels\Levels\Products\BOMProductSimpleTrait;
 use AtumLevels\Levels\Products\BOMProductTrait;
 use AtumLevels\Levels\Products\BOMProductVariationTrait;
+use Westsworld\TimeAgo;
+use Westsworld\TimeAgo\Translations\En;
 
 
 final class Helpers {
@@ -989,17 +991,6 @@ final class Helpers {
 	 * @return int days between 1 and 31
 	 */
 	public static function get_sold_last_days_option() {
-
-		if ( isset( $_REQUEST['sold_last_days'] ) ) {
-
-			// Sanitize.
-			$value = absint( $_REQUEST['sold_last_days'] );
-
-			if ( $value > 0 && $value < 31 ) {
-				return $value;
-			}
-
-		}
 
 		return absint( self::get_option( 'sales_last_ndays', Settings::DEFAULT_SALE_DAYS ) );
 
@@ -3236,11 +3227,11 @@ final class Helpers {
 			$language = new $alt_lang_class();
 		}
 		else {
-			$language = new \Westsworld\TimeAgo\Translations\En();
+			$language = new En();
 		}
 
 		$time_zone = new \DateTimeZone( wp_timezone_string() );
-		$time_ago  = new \Westsworld\TimeAgo( $language );
+		$time_ago  = new TimeAgo( $language );
 
 		return $time_ago->inWords( new \DateTime( $date, $time_zone ), new \DateTime( 'now', $time_zone ) );
 

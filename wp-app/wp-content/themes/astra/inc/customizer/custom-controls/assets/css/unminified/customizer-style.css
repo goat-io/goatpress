@@ -24,7 +24,7 @@
   display: block !important;
 }
 
-.customize-control {
+.customize-control:not(.customize-control-nav_menu_item) {
   position: relative;
   margin-bottom: 0;
   margin-top: 25px;
@@ -62,6 +62,7 @@
 .customize-control-title {
   display: inline-block;
   margin-bottom: 20px;
+  vertical-align: middle;
 }
 
 .customize-control-ast-color .customize-control-title, .customize-control-ast-responsive-background .customize-control-title,
@@ -168,4 +169,10 @@ input[type="text"].select2-search__field {
 
 .block-editor-block-inspector .block-editor-block-card {
   margin-top: 12px;
+}
+
+/* Customizer - builder widget area's block gets round shapes in more-settings tab */
+.customize-widgets-layout__inspector .components-circular-option-picker__option::after {
+  box-shadow: none;
+  position: unset;
 }

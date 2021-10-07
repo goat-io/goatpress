@@ -167,8 +167,16 @@ if ( ! class_exists( 'Astra_Sites_Batch_Site_Import' ) ) :
 
 		/**
 		 * Enqueue Scripts
+		 *
+		 * @param  string $hook Current hook name.
 		 */
-		public function enqueue_scripts() {
+		public function enqueue_scripts( $hook = '' ) {
+
+			// We want to show the status on all admin screens.
+			// So, Only avoided the customizer screen.
+			if ( is_customize_preview() ) {
+				return;
+			}
 
 			wp_enqueue_style( 'astra-sites-import-status', ASTRA_SITES_URI . 'inc/assets/css/import-status.css', null, ASTRA_SITES_VER, 'all' );
 

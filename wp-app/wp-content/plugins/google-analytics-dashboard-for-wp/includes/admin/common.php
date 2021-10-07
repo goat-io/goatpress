@@ -283,8 +283,9 @@ function exactmetrics_admin_scripts() {
 		wp_enqueue_script( 'exactmetrics-vue-reports' );
 
 		// We do not have a current auth.
-		$site_auth = ExactMetrics()->auth->get_viewname();
-		$ms_auth   = is_multisite() && ExactMetrics()->auth->get_network_viewname();
+		$auth = ExactMetrics()->auth;
+		$site_auth = $auth->get_viewname();
+		$ms_auth   = is_multisite() && $auth->get_network_viewname();
 
 		wp_localize_script(
 			'exactmetrics-vue-reports',
@@ -300,6 +301,7 @@ function exactmetrics_admin_scripts() {
 				'addons_url'       => is_multisite() ? network_admin_url( 'admin.php?page=exactmetrics_network#/addons' ) : admin_url( 'admin.php?page=exactmetrics_settings#/addons' ),
 				'timezone'         => date( 'e' ),
 				'authed'           => $site_auth || $ms_auth,
+				'auth_connected_type' => $auth->get_connected_type(),
 				'settings_url'     => add_query_arg( 'page', 'exactmetrics_settings', admin_url( 'admin.php' ) ),
 				// Used to add notices for future deprecations.
 				'versions'         => exactmetrics_get_php_wp_version_warning_data(),
@@ -844,14 +846,17 @@ add_filter( 'style_loader_src', 'exactmetrics_prevent_version_number_removal', 9
 function exactmetrics_get_php_wp_version_warning_data() {
 	global $wp_version;
 
+	$compatible_php_version = apply_filters( 'exactmetrics_compatible_php_version', false );
+	$compatible_wp_version  = apply_filters( 'exactmetrics_compatible_wp_version', false );
+
 	return array(
 		'php_version'          => phpversion(),
-		'php_version_below_54' => apply_filters( 'exactmetrics_temporarily_hide_php_under_56_upgrade_warnings', version_compare( phpversion(), '5.6', '<' ) ),
-		'php_version_below_56' => apply_filters( 'exactmetrics_temporarily_hide_php_56_upgrade_warnings', version_compare( phpversion(), '5.6', '>=' ) && version_compare( phpversion(), '7', '<' ) ),
+		'php_version_below_54' => apply_filters( 'exactmetrics_temporarily_hide_php_under_56_upgrade_warnings', version_compare( phpversion(), $compatible_php_version['warning'], '<' ) ),
+		'php_version_below_56' => apply_filters( 'exactmetrics_temporarily_hide_php_56_upgrade_warnings', version_compare( phpversion(), $compatible_php_version['warning'], '>=' ) && version_compare( phpversion(), $compatible_php_version['recommended'], '<' ) ),
 		'php_update_link'      => exactmetrics_get_url( 'settings-notice', 'settings-page', 'https://www.exactmetrics.com/docs/update-php/' ),
 		'wp_version'           => $wp_version,
-		'wp_version_below_46'  => version_compare( $wp_version, '4.9', '<' ),
-		'wp_version_below_49'  => version_compare( $wp_version, '5.3', '<' ),
+		'wp_version_below_46'  => version_compare( $wp_version, $compatible_wp_version['warning'], '<' ),
+		'wp_version_below_49'  => version_compare( $wp_version, $compatible_wp_version['recommended'], '<' ),
 		'wp_update_link'       => exactmetrics_get_url( 'settings-notice', 'settings-page', 'https://www.exactmetrics.com/docs/update-wordpress/' ),
 	);
 }

@@ -165,7 +165,7 @@ class THWCFD_Public_Checkout {
 		if(is_wc_endpoint_url('edit-address')){
 			return $fields;
 		}else{
-			return $this->prepare_address_fields(get_option('wc_fields_billing'), $fields, 'billing', $country);
+			return $this->prepare_address_fields(get_option('wc_fields_billing'), $country, $fields, 'billing');
 		}
 	}
 
@@ -173,7 +173,7 @@ class THWCFD_Public_Checkout {
 		if(is_wc_endpoint_url('edit-address')){
 			return $fields;
 		}else{
-			return $this->prepare_address_fields(get_option('wc_fields_shipping'), $fields, 'shipping', $country);
+			return $this->prepare_address_fields(get_option('wc_fields_shipping'), $country, $fields, 'shipping');
 		}
 	}
 	
@@ -202,7 +202,7 @@ class THWCFD_Public_Checkout {
 		return $fields;
 	}
 
-	public function prepare_address_fields($fieldset, $original_fieldset = false, $sname = 'billing', $country){
+	public function prepare_address_fields($fieldset, $country, $original_fieldset = false, $sname = 'billing'){
 		if(is_array($fieldset) && !empty($fieldset)) {
 			$locale = WC()->countries->get_country_locale();
 
@@ -334,37 +334,33 @@ class THWCFD_Public_Checkout {
 			
 			foreach($fieldset as $key => $field) {
 				if(isset($posted[$key]) && !THWCFD_Utils::is_blank($posted[$key])){
-					$this->validate_custom_field($field, $posted, $errors);
+					$this->validate_custom_field($key, $field, $posted, $errors);
 				}
 			}
 		}
 	}
 
-	public function validate_custom_field($field, $posted, $errors=false, $return=false){
+	public function validate_custom_field($key, $field, $posted, $errors=false, $return=false){
 		$err_msgs = array();
-		$key = isset($field['name']) ? $field['name'] : false;
-		
-		if($key){
-			$value = isset($posted[$key]) ? $posted[$key] : '';
-			$validators = isset($field['validate']) ? $field['validate'] : '';
+		$value = isset($posted[$key]) ? $posted[$key] : '';
+		$validators = isset($field['validate']) ? $field['validate'] : '';
 
-			if($value && is_array($validators) && !empty($validators)){					
-				foreach($validators as $vname){
-					$err_msg = '';
-					$flabel = isset($field['label']) ? THWCFD_Utils::t($field['label']) : $key;
+		if($value && is_array($validators) && !empty($validators)){
+			foreach($validators as $vname){
+				$err_msg = '';
+				$flabel = isset($field['label']) ? THWCFD_Utils::t($field['label']) : $key;
 
-					if($vname === 'number'){
-						if(!is_numeric($value)){
-							$err_msg = '<strong>'. $flabel .'</strong> '. THWCFD_Utils::t('is not a valid number.');	
-						}
+				if($vname === 'number'){
+					if(!is_numeric($value)){
+						$err_msg = '<strong>'. $flabel .'</strong> '. THWCFD_Utils::t('is not a valid number.');	
 					}
+				}
 
-					if($err_msg){
-						if($errors || !$return){
-							$this->add_validation_error($err_msg, $errors);
-						}
-						$err_msgs[] = $err_msg;
+				if($err_msg){
+					if($errors || !$return){
+						$this->add_validation_error($err_msg, $errors);
 					}
+					$err_msgs[] = $err_msg;
 				}
 			}
 		}
@@ -393,7 +389,21 @@ class THWCFD_Public_Checkout {
 			
 			foreach($fields as $name => $field){
 				if(THWCFD_Utils::is_active_custom_field($field) && isset($posted[$name])){
-					$value = wc_clean($posted[$name]);
+
+					$type = isset($field['type']) ? $field['type'] : 'text';
+
+					if($type == 'textarea'){
+						$value =  isset($posted[$name]) ? sanitize_textarea_field($posted[$name]) : '';
+					}else if($type == 'email'){
+						$value =  isset($posted[$name]) ? sanitize_email($posted[$name]) : '';
+					}else if(($type == 'select') || ($type == 'radio')){
+						$options = isset($field['options']) ? $field['options'] : array();
+						$value =  isset($posted[$name]) ? sanitize_text_field($posted[$name]) : '';
+						$value = array_key_exists($value, $options) ? $value : '';
+					}else{
+						$value =  isset($posted[$name]) ? sanitize_text_field($posted[$name]) : '';
+					}
+
 					if($value){
 						update_post_meta($order_id, $name, $value);
 					}
@@ -430,11 +440,17 @@ class THWCFD_Public_Checkout {
 				
 				if($value){
 					$label = isset($field['label']) && $field['label'] ? $field['label'] : $key;
-					$label = esc_attr($label);
+					//$label = esc_attr($label);
 					$value = THWCFD_Utils::get_option_text($field, $value);
+
+					$f_type = isset($field['type']) ? $field['type'] : 'text';
+					$value = esc_html__($value, 'woo-checkout-field-editor-pro');
+					if($f_type == 'textarea'){
+						$value =  nl2br($value);
+					}
 					
 					$custom_field = array();
-					$custom_field['label'] = THWCFD_Utils::t($label);
+					$custom_field['label'] = wp_kses_post(__($label, 'woo-checkout-field-editor-pro'));
 					$custom_field['value'] = $value;
 					
 					$custom_fields[$key] = $custom_field;
@@ -460,11 +476,18 @@ class THWCFD_Public_Checkout {
 					$value = get_post_meta( $order_id, $key, true );
 					
 					if($value){
-						$label = isset($field['label']) && $field['label'] ? THWCFD_Utils::t($field['label']) : $key;
+						$label = isset($field['label']) && $field['label'] ? $field['label'] : $key;
 
-						$label = esc_attr($label);
+						//$label = esc_attr($label);
+						$label = wp_kses_post(__($label, 'woo-checkout-field-editor-pro'));
 						//$value = wptexturize($value);
 						$value = THWCFD_Utils::get_option_text($field, $value);
+
+						$f_type = isset($field['type']) ? $field['type'] : 'text';
+						$value = esc_html__($value, 'woo-checkout-field-editor-pro');
+						if($f_type == 'textarea'){
+							$value =  nl2br($value);
+						}
 						
 						if(is_account_page()){
 							if(apply_filters( 'thwcfd_view_order_customer_details_table_view', true )){

@@ -27,30 +27,6 @@ if ($data['dashboard_edit_not_allowed']) {
 $wpacuNoLoadInTargetPage = false;
 $wpacuNoLoadInTargetPageOutput = '';
 
-$anyMetaBoxHidden = $data['wpacu_settings']['hide_assets_meta_box'] || $data['wpacu_settings']['hide_options_meta_box'];
-
-if ( $anyMetaBoxHidden ) {
-	?>
-    <div class="wpacu-warning" style="width: 95%; margin: -10px 0 15px; padding: 10px; font-size: inherit;">
-        <strong><span class="dashicons dashicons-warning" style="color: orange;"></span> Important
-            Reminder:</strong> The following meta boxes were marked to be hidden in plugin's "Settings" &#187;
-        "Plugin Usage Preferences":
-        <ul style="margin-bottom: 0; list-style: circle; padding-left: 25px;">
-			<?php if ( $data['wpacu_settings']['hide_assets_meta_box'] ) { ?>
-                <li><strong><?php echo WPACU_PLUGIN_TITLE; ?>: CSS &amp; JavaScript Manager</strong> * <em>to see
-                        the CSS/JS list, you need to make the meta box visible again</em></li>
-			<?php } ?>
-
-			<?php if ( $data['wpacu_settings']['hide_options_meta_box'] ) { ?>
-                <li><strong><?php echo WPACU_PLUGIN_TITLE; ?>: Options</strong> * <em>to prevent
-                        minify/combine/unload settings per page, you need to make the meta box visible again</em>
-                </li>
-			<?php } ?>
-        </ul>
-    </div>
-	<?php
-}
-
 if ($data['show_on_front'] === 'page' && $data['page_on_front']) {
 	/*
 	* Case 1: A "page" (post type) set as the homepage
@@ -105,7 +81,7 @@ if ($data['show_on_front'] === 'page' && $data['page_on_front']) {
 
     $strAdminUrl = 'admin.php?page='.WPACU_PLUGIN_ID.'_assets_manager&wpacu_rand='.uniqid(time(), true);
 
-    if (array_key_exists('wpacu_manage_dash', $_GET) || array_key_exists('force_manage_dash', $_REQUEST)) { // For debugging purposes
+    if ( isset($_GET['wpacu_manage_dash']) || isset($_GET['force_manage_dash']) ) { // For debugging purposes
         $strAdminUrl .= '&wpacu_manage_dash';
     }
 

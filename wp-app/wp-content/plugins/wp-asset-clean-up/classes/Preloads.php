@@ -373,14 +373,14 @@ class Preloads
 	 * @return string
 	 */
 	public static function linkPreloadCssFormat($linkHref)
-	{
-		if (self::preventPreload()) {
-			return $linkHref;
-		}
+    {
+        if (self::preventPreload()) {
+            return $linkHref;
+        }
 
-		if (OptimizeCss::wpfcMinifyCssEnabledOnly()) {
+        if (OptimizeCss::wpfcMinifyCssEnabledOnly()) {
 		    // [wpacu_lite]
-			return '<link rel=\'preload\' data-from-rel=\'stylesheet\' as=\'style\' href=\''.esc_attr($linkHref).'\' data-wpacu-preload-css-basic=\'1\' />' . "\n";
+            return '<link rel=\'preload\' data-from-rel=\'stylesheet\' as=\'style\' data-href-before=\''.$linkHref.'\' href=\''.esc_attr($linkHref).'\' data-wpacu-preload-css-basic=\'1\' />' . "\n";
 		    // [/wpacu_lite]
 		}
 
@@ -426,11 +426,16 @@ class Preloads
 	 */
 	public static function updatePreloads()
 	{
-		if (! Misc::isValidRequest('post', 'wpacu_preloads')) {
+		if ( (isset($_POST[WPACU_FORM_ASSETS_POST_KEY]['styles']) && ! empty($_POST[WPACU_FORM_ASSETS_POST_KEY]['styles']))
+		     || (isset($_POST[WPACU_FORM_ASSETS_POST_KEY]['scripts']) && ! empty($_POST[WPACU_FORM_ASSETS_POST_KEY]['scripts'])) ) {
+			$mainVarToUse = self::updatePreloadsAdapt($_POST[WPACU_FORM_ASSETS_POST_KEY]); // New form fields (starting from v1.1.9.9)
+		} elseif (Misc::isValidRequest('post', 'wpacu_preloads')) {
+			$mainVarToUse = $_POST;
+		} else {
 			return;
 		}
 
-		if (! isset($_POST['wpacu_preloads']['styles']) && ! isset($_POST['wpacu_preloads']['scripts'])) {
+		if (! isset($mainVarToUse['wpacu_preloads']['styles']) && ! isset($mainVarToUse['wpacu_preloads']['scripts'])) {
 			return;
 		}
 
@@ -443,8 +448,8 @@ class Preloads
 		$existingListData = Main::instance()->existingList($existingListJson, $existingListEmpty);
 		$existingList = $existingListData['list'];
 
-		if ( isset( $_POST['wpacu_preloads']['styles'] ) && ! empty( $_POST['wpacu_preloads']['styles'] ) ) {
-			foreach ( $_POST['wpacu_preloads']['styles'] as $styleHandle => $stylePreload ) {
+		if ( isset( $mainVarToUse['wpacu_preloads']['styles'] ) && ! empty( $mainVarToUse['wpacu_preloads']['styles'] ) ) {
+			foreach ( $mainVarToUse['wpacu_preloads']['styles'] as $styleHandle => $stylePreload ) {
 				$stylePreload = trim( $stylePreload );
 
 				if ( $stylePreload === '' && isset( $existingList['styles'][ $globalKey ][ $styleHandle ] ) ) {
@@ -455,8 +460,8 @@ class Preloads
 			}
 		}
 
-		if ( isset( $_POST['wpacu_preloads']['scripts'] ) && ! empty( $_POST['wpacu_preloads']['scripts'] ) ) {
-			foreach ( $_POST['wpacu_preloads']['scripts'] as $scriptHandle => $scriptPreload ) {
+		if ( isset( $mainVarToUse['wpacu_preloads']['scripts'] ) && ! empty( $mainVarToUse['wpacu_preloads']['scripts'] ) ) {
+			foreach ( $mainVarToUse['wpacu_preloads']['scripts'] as $scriptHandle => $scriptPreload ) {
 				$scriptPreload = trim( $scriptPreload );
 
 				if ( $scriptPreload === '' && isset( $existingList['scripts'][ $globalKey ][ $scriptHandle ] ) ) {
@@ -468,6 +473,30 @@ class Preloads
 		}
 
 		Misc::addUpdateOption($optionToUpdate, json_encode(Misc::filterList($existingList)));
+	}
+
+	/**
+	 * @param $mainFormArray
+	 *
+	 * @return array
+	 */
+	public static function updatePreloadsAdapt($mainFormArray)
+	{
+		$wpacuPreloadsList = array();
+
+		foreach (array('styles', 'scripts') as $assetKey) {
+			if (isset($mainFormArray[$assetKey]) && ! empty($mainFormArray[$assetKey])) {
+				foreach ($mainFormArray[$assetKey] as $assetHandle => $assetData) {
+					$wpacuPreloadsList['wpacu_preloads'][$assetKey][$assetHandle] = ''; // default
+
+					if (isset($assetData['preload']) && $assetData['preload']) {
+						$wpacuPreloadsList['wpacu_preloads'][ $assetKey ][ $assetHandle ] = $assetData['preload']; // 'basic' or 'async'
+					}
+				}
+			}
+		}
+
+		return $wpacuPreloadsList;
 	}
 
 	/**

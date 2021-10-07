@@ -1,38 +1,6 @@
-(window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[47],{
+(window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[48],{
 
-/***/ 557:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export ALLOWED_TAGS */
-/* unused harmony export ALLOWED_ATTR */
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(81);
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_0__);
-/**
- * External dependencies
- */
-
-const ALLOWED_TAGS = ['a', 'b', 'em', 'i', 'strong', 'p', 'br'];
-const ALLOWED_ATTR = ['target', 'href', 'rel', 'name', 'download'];
-/* harmony default export */ __webpack_exports__["a"] = (html => {
-  return {
-    __html: Object(dompurify__WEBPACK_IMPORTED_MODULE_0__["sanitize"])(html, {
-      ALLOWED_TAGS,
-      ALLOWED_ATTR
-    })
-  };
-});
-
-/***/ }),
-
-/***/ 587:
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ 588:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -57,7 +25,39 @@ var chevronRight = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["creat
 
 /***/ }),
 
-/***/ 656:
+/***/ 506:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export ALLOWED_TAGS */
+/* unused harmony export ALLOWED_ATTR */
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(66);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * External dependencies
+ */
+
+const ALLOWED_TAGS = ['a', 'b', 'em', 'i', 'strong', 'p', 'br'];
+const ALLOWED_ATTR = ['target', 'href', 'rel', 'name', 'download'];
+/* harmony default export */ __webpack_exports__["a"] = (html => {
+  return {
+    __html: Object(dompurify__WEBPACK_IMPORTED_MODULE_0__["sanitize"])(html, {
+      ALLOWED_TAGS,
+      ALLOWED_ATTR
+    })
+  };
+});
+
+/***/ }),
+
+/***/ 541:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ 617:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -81,11 +81,11 @@ var classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/interpolate-components/lib/index.js
-var lib = __webpack_require__(19);
+var lib = __webpack_require__(18);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(15);
+var external_wp_compose_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
@@ -94,29 +94,29 @@ var external_wp_data_ = __webpack_require__(7);
 var external_moment_ = __webpack_require__(9);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
-// EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js
-var icon = __webpack_require__(147);
+// EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
+var icon = __webpack_require__(115);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-left.js
-var chevron_left = __webpack_require__(544);
+var chevron_left = __webpack_require__(290);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-right.js
-var chevron_right = __webpack_require__(588);
+var chevron_right = __webpack_require__(470);
 
-// EXTERNAL MODULE: ./client/wc-admin-settings/index.js
-var wc_admin_settings = __webpack_require__(17);
+// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
+var build_module = __webpack_require__(13);
 
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
 
 // EXTERNAL MODULE: external ["wc","tracks"]
-var external_wc_tracks_ = __webpack_require__(18);
+var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
-var external_wc_experimental_ = __webpack_require__(22);
+var external_wc_experimental_ = __webpack_require__(20);
 
 // EXTERNAL MODULE: ./client/lib/sanitize-html/index.js
-var sanitize_html = __webpack_require__(557);
+var sanitize_html = __webpack_require__(506);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -173,7 +173,7 @@ placeholder_StoreAlertsPlaceholder.defaultProps = {
   hasMultipleAlerts: false
 };
 // EXTERNAL MODULE: ./client/layout/store-alerts/style.scss
-var style = __webpack_require__(587);
+var style = __webpack_require__(541);
 
 // CONCATENATED MODULE: ./client/layout/store-alerts/index.js
 
@@ -314,7 +314,7 @@ class store_alerts_StoreAlerts extends external_wp_element_["Component"] {
 
   render() {
     const alerts = this.getAlerts();
-    const preloadAlertCount = Object(wc_admin_settings["h" /* getSetting */])('alertCount', 0, count => parseInt(count, 10));
+    const preloadAlertCount = Object(build_module["f" /* getSetting */])('alertCount', 0, count => parseInt(count, 10));
 
     if (preloadAlertCount > 0 && this.props.isLoading) {
       return Object(external_wp_element_["createElement"])(placeholder, {

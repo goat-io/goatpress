@@ -96,6 +96,7 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 				return self::$defaults;
 			}
 
+			$palette_css_var_prefix = Astra_Global_Palette::get_css_variable_prefix();
 			/**
 			 * Update Astra customizer default values. To not update directly on existing users site, added backwards.
 			 *
@@ -134,10 +135,11 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 						'author',
 					),
 					// Colors.
-					'text-color'                           => '#3a3a3a',
-					'link-color'                           => '#0170B9',
-					'theme-color'                          => '#0170B9',
-					'link-h-color'                         => '#3a3a3a',
+					'text-color'                           => 'var(' . $palette_css_var_prefix . '3)',
+					'link-color'                           => 'var(' . $palette_css_var_prefix . '0)',
+					'theme-color'                          => 'var(' . $palette_css_var_prefix . '0)',
+					'link-h-color'                         => 'var(' . $palette_css_var_prefix . '1)',
+					'heading-base-color'                   => 'var(' . $palette_css_var_prefix . '2)',
 
 					// Footer Bar Background.
 					'footer-bg-obj'                        => array(
@@ -342,6 +344,38 @@ if ( ! class_exists( 'Astra_Theme_Options' ) ) {
 						),
 						'mobile'  => array(
 							'background-color'      => '',
+							'background-image'      => '',
+							'background-repeat'     => 'repeat',
+							'background-position'   => 'center center',
+							'background-size'       => 'auto',
+							'background-attachment' => 'scroll',
+							'background-type'       => '',
+							'background-media'      => '',
+						),
+					),
+					'content-bg-obj-responsive'            => array(
+						'desktop' => array(
+							'background-color'      => 'var(' . $palette_css_var_prefix . '5)',
+							'background-image'      => '',
+							'background-repeat'     => 'repeat',
+							'background-position'   => 'center center',
+							'background-size'       => 'auto',
+							'background-attachment' => 'scroll',
+							'background-type'       => '',
+							'background-media'      => '',
+						),
+						'tablet'  => array(
+							'background-color'      => 'var(' . $palette_css_var_prefix . '5)',
+							'background-image'      => '',
+							'background-repeat'     => 'repeat',
+							'background-position'   => 'center center',
+							'background-size'       => 'auto',
+							'background-attachment' => 'scroll',
+							'background-type'       => '',
+							'background-media'      => '',
+						),
+						'mobile'  => array(
+							'background-color'      => 'var(' . $palette_css_var_prefix . '5)',
 							'background-image'      => '',
 							'background-repeat'     => 'repeat',
 							'background-position'   => 'center center',

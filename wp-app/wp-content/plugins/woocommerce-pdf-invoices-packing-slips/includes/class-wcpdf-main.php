@@ -29,10 +29,7 @@ class Main {
 		}
 
 		// include template specific custom functions
-		$template_path = WPO_WCPDF()->settings->get_template_path();
-		if ( file_exists( $template_path . '/template-functions.php' ) ) {
-			require_once( $template_path . '/template-functions.php' );
-		}
+		$this->load_template_functions();
 
 		// test mode
 		add_filter( 'wpo_wcpdf_document_use_historical_settings', array( $this, 'test_mode_settings' ), 15, 2 );
@@ -290,7 +287,9 @@ class Main {
 		$order_ids = (array) array_map( 'absint', explode( 'x', $_GET['order_ids'] ) );
 
 		// Process oldest first: reverse $order_ids array if required
-		if ( count( $order_ids ) > 1 && end( $order_ids ) < reset( $order_ids ) ) {
+		$sort_order         = apply_filters( 'wpo_wcpdf_bulk_document_sort_order', 'ASC' );
+		$current_sort_order = ( count( $order_ids ) > 1 && end( $order_ids ) < reset( $order_ids ) ) ? 'DESC' : 'ASC';
+		if ( in_array( $sort_order, array( 'ASC', 'DESC' ) ) && $sort_order != $current_sort_order ) {
 			$order_ids = array_reverse( $order_ids );
 		}
 
@@ -392,6 +391,19 @@ class Main {
 			wcpdf_output_error( $message, 'critical', $e );
 		}
 		exit;
+	}
+
+	/**
+	 * Include template specific custom functions
+	 */
+	private function load_template_functions() {
+		$file = trailingslashit( WPO_WCPDF()->settings->get_template_path() ) . 'template-functions.php';
+		if ( file_exists( $file ) ) {
+			$loaded = @include_once( $file );
+			if ( $loaded === false ) {
+				wcpdf_log_error( sprintf( 'Failed to load template functions: %s', $file ), 'critical' );
+			}
+		}
 	}
 
 	/**
@@ -933,6 +945,7 @@ class Main {
 	 * Logs the bulk document creation to the order notes
 	 */
 	public function log_bulk_to_order_notes( $document ) {
+		/* translators: name/description of the context for document creation logs */
 		$this->log_to_order_notes( $document, __( 'bulk order action', 'woocommerce-pdf-invoices-packing-slips' ) );
 	}
 
@@ -940,6 +953,7 @@ class Main {
 	 * Logs the single document creation to the order notes
 	 */
 	public function log_single_to_order_notes( $document ) {
+		/* translators: name/description of the context for document creation logs */
 		$this->log_to_order_notes( $document, __( 'single order action', 'woocommerce-pdf-invoices-packing-slips' ) );
 	}
 
@@ -947,6 +961,7 @@ class Main {
 	 * Logs the my account document creation to the order notes
 	 */
 	public function log_my_account_to_order_notes( $document ) {
+		/* translators: name/description of the context for document creation logs */
 		$this->log_to_order_notes( $document, __( 'my account', 'woocommerce-pdf-invoices-packing-slips' ) );
 	}
 
@@ -954,6 +969,7 @@ class Main {
 	 * Logs the email attachment document creation to the order notes
 	 */
 	public function log_email_attachment_to_order_notes( $document ) {
+		/* translators: name/description of the context for document creation logs */
 		$this->log_to_order_notes( $document, __( 'email attachment', 'woocommerce-pdf-invoices-packing-slips' ) );
 	}
 

@@ -29,23 +29,36 @@ class ITSEC_Lib_REST {
 	 * @return WP_REST_Response List of associative arrays with code and message keys.
 	 */
 	public static function error_to_response( WP_Error $error ) {
-		$error_data = $error->get_error_data();
-
-		if ( is_array( $error_data ) && isset( $error_data['status'] ) ) {
-			$status = $error_data['status'];
-		} else {
-			$status = 500;
+		if ( function_exists( 'rest_convert_error_to_response' ) ) {
+			return rest_convert_error_to_response( $error );
 		}
+
+		$status = array_reduce(
+			$error->get_all_error_data(),
+			function ( $status, $error_data ) {
+				return is_array( $error_data ) && isset( $error_data['status'] ) ? $error_data['status'] : $status;
+			},
+			500
+		);
 
 		$errors = array();
 
 		foreach ( (array) $error->errors as $code => $messages ) {
+			$all_data  = $error->get_all_error_data( $code );
+			$last_data = array_pop( $all_data );
+
 			foreach ( (array) $messages as $message ) {
-				$errors[] = array(
+				$formatted = array(
 					'code'    => $code,
 					'message' => $message,
-					'data'    => $error->get_error_data( $code ),
+					'data'    => $last_data,
 				);
+
+				if ( $all_data ) {
+					$formatted['additional_data'] = $all_data;
+				}
+
+				$errors[] = $formatted;
 			}
 		}
 
@@ -128,7 +141,7 @@ class ITSEC_Lib_REST {
 	public static function validate_ip( $ip, $request, $param ) {
 		if ( ! is_string( $ip ) || ! ITSEC_Lib_IP_Tools::ip_wild_to_ip_cidr( $ip ) ) {
 			/* translators: %s: Parameter name. */
-			return new WP_Error( 'rest_invalid_param', sprintf( __( '%s is not a valid IP address.' ), $param ) );
+			return new WP_Error( 'rest_invalid_param', sprintf( __( '%s is not a valid IP address.', 'better-wp-security' ), $param ) );
 		}
 
 		return true;
@@ -263,5 +276,22 @@ class ITSEC_Lib_REST {
 		}
 
 		return strtoupper( $_SERVER['REQUEST_METHOD'] );
+	}
+
+	/**
+	 * Adds a status code to a WP_Error object.
+	 *
+	 * @param int      $status
+	 * @param WP_Error $error
+	 * @param bool     $overwrite
+	 */
+	public static function add_status_to_error( int $status, WP_Error $error, bool $overwrite = false ) {
+		$data = $error->get_error_data();
+
+		if ( ! $data ) {
+			$error->add_data( [ 'status' => $status ] );
+		} elseif ( ! isset( $data['status'] ) || $overwrite ) {
+			$error->add_data( array_merge( (array) $data, [ 'status' => $status ] ) );
+		}
 	}
 }

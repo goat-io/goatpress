@@ -1,15 +1,21 @@
 /**
  * External dependencies
  */
-import { without } from 'lodash';
+import { omit } from 'lodash';
 
 /**
  * WordPress dependencies
  */
 import { TextControl } from '@wordpress/components';
 
+/**
+ * Internal dependencies
+ */
+import { Markup } from '@ithemes/security-components';
+
 function BaseInput( props ) {
 	const {
+		// eslint-disable-next-line no-unused-vars
 		id,
 		label,
 		value,
@@ -62,18 +68,30 @@ function BaseInput( props ) {
 		inputProps.max = schema.maximum;
 	}
 
+	const description = uiSchema[ 'ui:description' ] || schema.description;
+
 	return (
 		<TextControl
-			id={ id }
 			label={ label }
-			help={ uiSchema[ 'ui:description' ] || schema.description }
+			help={ <Markup noWrap content={ description } /> }
 			readOnly={ readonly }
 			disabled={ disabled }
 			value={ value ? value : '' }
-			{ ...without( inputProps, [ 'autofocus', 'formContext', 'registry', 'rawErrors' ] ) }
-			onChange={ ( newValue ) => onChange( newValue === '' ? options.emptyValue : newValue ) }
-			onBlur={ onBlur && ( ( e ) => onBlur( inputProps.id, e.target.value ) ) }
-			onFocus={ onFocus && ( ( e ) => onFocus( inputProps.id, e.target.value ) ) }
+			{ ...omit( inputProps, [
+				'autofocus',
+				'formContext',
+				'registry',
+				'rawErrors',
+			] ) }
+			onChange={ ( newValue ) =>
+				onChange( newValue === '' ? options.emptyValue : newValue )
+			}
+			onBlur={
+				onBlur && ( ( e ) => onBlur( inputProps.id, e.target.value ) )
+			}
+			onFocus={
+				onFocus && ( ( e ) => onFocus( inputProps.id, e.target.value ) )
+			}
 		/>
 	);
 }

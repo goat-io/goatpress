@@ -18,11 +18,9 @@ backup:
 	rm -r ./wp-data/*
 	sh ./scripts/export.sh
 start:
-	docker-compose build woo
 	docker-compose up -d db
-	echo "Waiting for db (MYSQL) to be up and running 30 segs"
-	sleep 30
-	docker-compose up -d redis woo
+	./scripts/waitMysql.sh
+	docker-compose up --build woo
 stop:
 	docker-compose down
 restart:

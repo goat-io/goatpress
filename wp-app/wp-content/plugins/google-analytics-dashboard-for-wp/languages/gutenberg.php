@@ -1,145 +1,145 @@
 <?php
 /* THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY. */
 $generated_i18n_strings = array(
-	// Reference: src/blocks/popular-posts-inline/index.js:102
-	// Reference: src/blocks/popular-posts-widget/index.js:106
-	__( 'Popular', 'google-analytics-dashboard-for-wp' ),
-
 	// Reference: src/blocks/popular-posts-inline/index.js:103
 	// Reference: src/blocks/popular-posts-widget/index.js:107
-	__( 'Posts', 'google-analytics-dashboard-for-wp' ),
+	__( 'Popular', 'google-analytics-dashboard-for-wp' ),
 
 	// Reference: src/blocks/popular-posts-inline/index.js:104
+	// Reference: src/blocks/popular-posts-widget/index.js:108
+	__( 'Posts', 'google-analytics-dashboard-for-wp' ),
+
+	// Reference: src/blocks/popular-posts-inline/index.js:105
 	__( 'Inline', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:213
-	// Reference: src/blocks/popular-posts-widget/index.js:254
+	// Reference: src/blocks/popular-posts-inline/index.js:214
+	// Reference: src/blocks/popular-posts-widget/index.js:255
 	__( 'Title Font Size', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:216
-	// Reference: src/blocks/popular-posts-widget/index.js:257
+	// Reference: src/blocks/popular-posts-inline/index.js:217
+	// Reference: src/blocks/popular-posts-widget/index.js:258
 	__( 'Title Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:221
-	// Reference: src/blocks/popular-posts-widget/index.js:262
+	// Reference: src/blocks/popular-posts-inline/index.js:222
+	// Reference: src/blocks/popular-posts-widget/index.js:263
 	__( 'Title Settings', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:235
-	// Reference: src/blocks/popular-posts-widget/index.js:312
+	// Reference: src/blocks/popular-posts-inline/index.js:236
+	// Reference: src/blocks/popular-posts-widget/index.js:313
 	__( 'Label Text', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:238
-	// Reference: src/blocks/popular-posts-widget/index.js:315
+	// Reference: src/blocks/popular-posts-inline/index.js:239
+	// Reference: src/blocks/popular-posts-widget/index.js:316
 	__( 'Label Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:241
-	// Reference: src/blocks/popular-posts-widget/index.js:318
+	// Reference: src/blocks/popular-posts-inline/index.js:242
+	// Reference: src/blocks/popular-posts-widget/index.js:319
 	__( 'Label Background', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:246
-	// Reference: src/blocks/popular-posts-widget/index.js:323
+	// Reference: src/blocks/popular-posts-inline/index.js:247
+	// Reference: src/blocks/popular-posts-widget/index.js:324
 	__( 'Label Settings', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:258
-	// Reference: src/blocks/popular-posts-widget/index.js:511
+	// Reference: src/blocks/popular-posts-inline/index.js:259
+	// Reference: src/blocks/popular-posts-widget/index.js:512
 	__( 'Bottom Border Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:261
-	// Reference: src/blocks/popular-posts-widget/index.js:514
+	// Reference: src/blocks/popular-posts-inline/index.js:262
+	// Reference: src/blocks/popular-posts-widget/index.js:515
 	__( 'Border Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:269
-	// Reference: src/blocks/popular-posts-widget/index.js:522
+	// Reference: src/blocks/popular-posts-inline/index.js:270
+	// Reference: src/blocks/popular-posts-widget/index.js:523
 	__( 'Border Settings', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:281
-	// Reference: src/blocks/popular-posts-widget/index.js:534
+	// Reference: src/blocks/popular-posts-inline/index.js:282
+	// Reference: src/blocks/popular-posts-widget/index.js:535
 	__( 'Background Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:286
-	// Reference: src/blocks/popular-posts-widget/index.js:539
+	// Reference: src/blocks/popular-posts-inline/index.js:287
+	// Reference: src/blocks/popular-posts-widget/index.js:540
 	__( 'Background Settings', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:298
+	// Reference: src/blocks/popular-posts-inline/index.js:299
 	__( 'Icon Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:301
+	// Reference: src/blocks/popular-posts-inline/index.js:302
 	__( 'Icon Background Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:306
+	// Reference: src/blocks/popular-posts-inline/index.js:307
 	__( 'Icon Settings', 'google-analytics-dashboard-for-wp' ),
 
 	// Reference: src/blocks/popular-posts-inline/index.js:439
 	// Reference: src/blocks/popular-posts-widget/index.js:721
 	__( 'Theme', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:97
+	// Reference: src/blocks/popular-posts-inline/index.js:98
 	__( 'Inline Popular Posts', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-inline/index.js:98
+	// Reference: src/blocks/popular-posts-inline/index.js:99
 	__( 'Add inline popular posts from ExactMetrics', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:101
+	// Reference: src/blocks/popular-posts-widget/index.js:102
 	__( 'Popular Posts', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:102
+	// Reference: src/blocks/popular-posts-widget/index.js:103
 	__( 'Add popular posts from ExactMetrics', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:108
+	// Reference: src/blocks/popular-posts-widget/index.js:109
 	__( 'Widget', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:276
+	// Reference: src/blocks/popular-posts-widget/index.js:277
 	__( 'Meta Font Size', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:279
+	// Reference: src/blocks/popular-posts-widget/index.js:280
 	__( 'Meta Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:284
+	// Reference: src/blocks/popular-posts-widget/index.js:285
 	__( 'Meta Settings', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:298
+	// Reference: src/blocks/popular-posts-widget/index.js:299
 	__( 'Comment Settings', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:301
+	// Reference: src/blocks/popular-posts-widget/index.js:302
 	__( 'Comment Color', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:332
+	// Reference: src/blocks/popular-posts-widget/index.js:333
 	__( 'Wide-Layout Options', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:335
+	// Reference: src/blocks/popular-posts-widget/index.js:336
 	__( 'Choose Layout', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:336
+	// Reference: src/blocks/popular-posts-widget/index.js:337
 	__( 'Adjust the number of columns displayed when the widget is placed in a wide container.', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:364
+	// Reference: src/blocks/popular-posts-widget/index.js:365
 	__( 'Post Count', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:365
+	// Reference: src/blocks/popular-posts-widget/index.js:366
 	__( 'Number of posts displayed.', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:403
+	// Reference: src/blocks/popular-posts-widget/index.js:404
 	__( 'Display Options', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:417
+	// Reference: src/blocks/popular-posts-widget/index.js:418
 	__( 'Behavior Settings', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:420
+	// Reference: src/blocks/popular-posts-widget/index.js:421
 	__( 'Display Widget Title', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:427
+	// Reference: src/blocks/popular-posts-widget/index.js:428
 	__( 'Widget Title', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:431
+	// Reference: src/blocks/popular-posts-widget/index.js:432
 	__( 'Only Show Posts From These Categories', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:451
+	// Reference: src/blocks/popular-posts-widget/index.js:452
 	__( 'Display Author', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:463
+	// Reference: src/blocks/popular-posts-widget/index.js:464
 	__( 'Display Date', 'google-analytics-dashboard-for-wp' ),
 
-	// Reference: src/blocks/popular-posts-widget/index.js:475
+	// Reference: src/blocks/popular-posts-widget/index.js:476
 	__( 'Display Comments', 'google-analytics-dashboard-for-wp' ),
 
 	// Reference: src/plugins/exactmetrics-Headline-Analyzer/components/HeadlinePanelCharacterCount.js:10

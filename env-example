@@ -1,84 +1,82 @@
 ###############################################################################
+# Wordpress Site Configuration
+###############################################################################
+#
+# WORDPRESS_WP_SITEURL: Sets the domain for the site
+#       i.e:  https://mydomain.com
+# WORDPRESS_LOGIN_URL: URL of the wordpress admin login
+#       i.e: d663bd873d93
+WORDPRESS_WP_SITEURL="http://127.0.0.1"
+WORDPRESS_LOGIN_URL= "mysupersecretloginurl"
+# TOTALMEM / 4
+WORDPRESS_WP_MEMORY_LIMIT="256M"
+
+###############################################################################
 # Wordpress Database Configuration
 ###############################################################################
 WORDPRESS_DB_HOST="db"
 WORDPRESS_DB_NAME="wordpress"
 WORDPRESS_DB_USER="root"
-WORDPRESS_DB_PASSWORD="um7Upx4HrANDnK7EgD4yD5uZ7gA9"
+WORDPRESS_DB_PASSWORD="some.secure.password"
 
 ###############################################################################
-# Wordpress Site Configuration
+# NEW RELIC
 ###############################################################################
-# Sets the domain for the site
-WORDPRESS_WP_SITEURL="http://127.0.0.1"
-WORDPRESS_WP_API_URL="http://127.0.0.1"
+NEW_RELIC_LICENSE_KEY="NEW_RELIC_KEY"
+NEW_RELIC_APP_NAME="NEW_RELIC_APP_NAME"
 
-# WE USE WP HIDE LOGIN, IT IS USEFUL TO KEEP TRACK OF WHERE IT IS
-WORDPRESS_LOGIN_URL= "d663bd873d434343293"
-
-# MAX AMOUNT OF MEMORY THAT WP CAN USE, RECOMMENDED: (TOTAL_MEM) / 4
-WORDPRESS_WP_MEMORY_LIMIT="512M"
-
-# HOST OF THE REDIS SERVER USED FOR WP
-WP_REDIS_HOST="192.168.1.157"
+###############################################################################
+# REDIS
+###############################################################################
+#WP_REDIS_DISABLED=true
+WP_REDIS_HOST="ec2-52-21-130-39.compute-1.amazonaws.com"
+WP_REDIS_PORT=17199
+# USE PW WHEN REQUIRED
+WP_REDIS_PASSWORD="some.secure.password"
+# Include REDIS PORT in the URL
+NGINX_REDIS_UPSTREAM="myredishost:6379"
+NGINX_REDIS_PASSWORD="some.secure.password"
 
 ###############################################################################
 # NGINX
 ###############################################################################
-# WETHER TO INSTALL OR NOT A SSL CERTIFICATE FOR NGINX. 
-# USE IT IF YOU NEED LOCAL SSL OR IF YOU PLAN TO DEPLOY A SINGLE SERVER
-NGINX_DEV_INSTALL="true"
-
-# HOST FOR THE REDIS SERVER USED FOR NGINX
-REDIS_UPSTREAM="192.168.1.157:6379"
-
-# WETHER TO INSTALL OR NOT BAD BOTS DETECTION
-NGINX_BAD_BOTS=false
-
-# NGINX CONFIGURATION (Optional)
-NEW_RELIC_API_KEY="NRAK-ZJ83THE8VVDASVDSVASDAXRGJW6299"
-NEW_RELIC_ACCOUNT_ID="22832131231231324231"
-
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# MOST LIKELY, NO NEED TO CHANGE THE NEXT 6 VARIABLES
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-PHP_FPM_UPSTREAM="127.0.0.1:9000"
-NGINX_PROXY_UPSTREAM="127.0.01:8081"
-NGINX_DOCROOT="/usr/share/nginx/html"
-NGINX_VERSION="0.1.19"
-NGINX_SERVER_NAME="127.0.0.1"
-# THIS VARIABLE WILL BE REMOVED ON NEXT VERSION
-NGINX_CONFIG="php"
+#Optional
+NGINX_CDN_HOST="https://my-ultra-fast-cdn.com"
+    #######
+    # NOT REQUIRED (SHOWING DEFAULT VALUES)
+    #######
+    # PHP_FPM_UPSTREAM="127.0.0.1:9000"
+    # NGINX_DOCROOT="/usr/share/nginx/html"
+    # NGINX_PROXY_UPSTREAM="127.0.01:8081"
 
 ###############################################################################
 # PHP FPM
-# Fine tune PHP configuration based on your server resources. 
-# Recommended values are only as reference, based on common practices.
 ###############################################################################
-# TOTALMEM / 2
-PHP_MEMORY_LIMIT=256M
-# TOTALMEM / 2
-PHP_POST_MAX_SIZE=256M
-# TOTALMEM / 6
-PHP_OPCACHE_MEMORY_CONSUMPTION=128
-# TOTALCPU * 2
-PHP_MAX_CHILDREN=16
-# TOTALCPU / 2
-PHP_START_SERVERS=16
-# TOTALCPU / 2
-PHP_MIN_SPARE_SERVERS=8
-# TOTALCPU
-PHP_MAX_SPARE_SERVERS=16
-
-PHP_MAX_EXECUTION_TIME=600
-PHP_MAX_INPUT_VARS=5000
-PHP_MAX_INPUT_TIME=5000
+PHP_MAX_INPUT_TIME=600
 PHP_MAX_REQUESTS=1000
-PHP_UPLOAD_MAX_FILESIZE=256M
+    #######
+    # NOT REQUIRED (SHOWING DEFAULT VALUES)
+    #######
+    # APP_DOCROOT="/usr/share/nginx/html"
+    #PHP_FPM_PORT=9000
+    # PHP_MAX_INPUT_VARS=10000
+    # PHP_OPCACHE_ENABLE=1
+    # PHP_MAX_EXECUTION_TIME=300
+    #PHP_UPLOAD_MAX_FILESIZE=128M
+    # TOTALMEM / 2
+    #PHP_MEMORY_LIMIT=128M
+    # TOTALMEM / 2
+    #PHP_POST_MAX_SIZE=128M
+    # TOTALMEM / 6
+    #PHP_OPCACHE_MEMORY_CONSUMPTION=62
+    # TOTALCPU * 2
+    #PHP_MAX_CHILDREN=9
+    # TOTALCPU / 2
+    #PHP_START_SERVERS=2
+    # TOTALCPU / 2
+    #PHP_MIN_SPARE_SERVERS=2
+    # TOTALCPU
+    #PHP_MAX_SPARE_SERVERS=4
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-# MOST LIKELY, NO NEED TO CHANGE THE NEXT 2 VARIABLES
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
-APP_DOCROOT="/usr/share/nginx/html"
-PHP_FPM_PORT=9000
-PHP_OPCACHE_ENABLE=1
+
+

@@ -202,7 +202,7 @@ final class ITSEC_Lib {
 	 *
 	 * @since 4.0.0
 	 *
-	 * @return string|bool server type the user is using of false if undetectable.
+	 * @return string Server type the user is using. Falls back to 'apache'.
 	 */
 	public static function get_server() {
 		require_once( ITSEC_Core::get_core_dir() . '/lib/class-itsec-lib-utility.php' );
@@ -287,9 +287,9 @@ final class ITSEC_Lib {
 	/**
 	 * Gets the list of banned IPs.
 	 *
+	 * @return string[]
 	 * @deprecated 6.7.0
 	 *
-	 * @return string[]
 	 */
 	public static function get_blacklisted_ips() {
 		_deprecated_function( __METHOD__, '6.7.0', \iThemesSecurity\Ban_Hosts\Multi_Repository::class );
@@ -310,12 +310,12 @@ final class ITSEC_Lib {
 	/**
 	 * Determines whether a given IP address is blacklisted.
 	 *
-	 * @deprecated 6.7.0
-	 *
 	 * @param string $ip              ip to check (can be in CIDR notation)
 	 * @param array  $blacklisted_ips ip list to compare to if not yet saved to options
 	 *
 	 * @return boolean true if blacklisted or false
+	 * @deprecated 6.7.0
+	 *
 	 */
 	public static function is_ip_blacklisted( $ip = null, $blacklisted_ips = null ) {
 		_deprecated_function( __METHOD__, '6.7.0', 'ITSEC_Lib::is_ip_banned' );
@@ -1009,6 +1009,28 @@ final class ITSEC_Lib {
 	}
 
 	/**
+	 * Displays a human time diff, or a formatted date if the time is too far in the past.
+	 *
+	 * @param int    $from   Unix timestamp from which the difference begins.
+	 * @param int    $to     Optional. Unix timestamp to end the time difference. Default becomes time() if not set.
+	 * @param string $format The date format to use. If omitted, the configured date_format is used instead.
+	 *
+	 * @return string
+	 */
+	public static function human_time_diff_or_date( int $from, int $to = 0, string $format = '' ): string {
+		$to   = $to ?: time();
+		$diff = abs( $to - $from );
+
+		if ( $diff < DAY_IN_SECONDS ) {
+			return sprintf( __( '%s ago', 'default' ), human_time_diff( $from, $to ) );
+		}
+
+		$format = $format ?: get_option( 'date_format' );
+
+		return gmdate( $format, $from );
+	}
+
+	/**
 	 * Get the value of an option directly from the database, bypassing any caching.
 	 *
 	 * @param string $option
@@ -1045,10 +1067,11 @@ final class ITSEC_Lib {
 	 * @param array  $array
 	 * @param string $key
 	 * @param mixed  $default
+	 * @param string $delimeter
 	 *
 	 * @return mixed
 	 */
-	public static function array_get( $array, $key, $default = null ) {
+	public static function array_get( $array, $key, $default = null, $delimeter = '.' ) {
 		if ( ! is_array( $array ) ) {
 			return $default;
 		}
@@ -1057,11 +1080,11 @@ final class ITSEC_Lib {
 			return $array[ $key ];
 		}
 
-		if ( strpos( $key, '.' ) === false ) {
+		if ( strpos( $key, $delimeter ) === false ) {
 			return isset( $array[ $key ] ) ? $array[ $key ] : $default;
 		}
 
-		foreach ( explode( '.', $key ) as $segment ) {
+		foreach ( explode( $delimeter, $key ) as $segment ) {
 			if ( is_array( $array ) && isset( $array[ $segment ] ) ) {
 				$array = $array[ $segment ];
 			} else {
@@ -1100,6 +1123,28 @@ final class ITSEC_Lib {
 		$modify[ array_shift( $keys ) ] = $value;
 
 		return $array;
+	}
+
+	/**
+	 * Merges two arrays recursively such that only arrays are deeply merged.
+	 *
+	 * @param array $array1
+	 * @param array $array2
+	 *
+	 * @return array
+	 */
+	public static function array_merge_recursive_distinct( array $array1, array $array2 ): array {
+		$merged = $array1;
+
+		foreach ( $array2 as $key => $value ) {
+			if ( is_array( $value ) && isset( $merged[ $key ] ) && is_array( $merged[ $key ] ) ) {
+				$merged[ $key ] = self::array_merge_recursive_distinct( $merged[ $key ], $value );
+			} else {
+				$merged[ $key ] = $value;
+			}
+		}
+
+		return $merged;
 	}
 
 	public static function print_r( $data, $args = array() ) {
@@ -1364,6 +1409,30 @@ final class ITSEC_Lib {
 	}
 
 	/**
+	 * Gets the first item from an array.
+	 *
+	 * @param array $arr
+	 * @param mixed $default
+	 *
+	 * @return mixed
+	 */
+	public static function first( array $arr, $default = null ) {
+		return $arr[ self::array_key_first( $arr ) ] ?? $default;
+	}
+
+	/**
+	 * Gets the last item from an array.
+	 *
+	 * @param array $arr
+	 * @param mixed $default
+	 *
+	 * @return mixed
+	 */
+	public static function last( array $arr, $default = null ) {
+		return $arr[ self::array_key_last( $arr ) ] ?? $default;
+	}
+
+	/**
 	 * Plucks a certain field out of each item in the list.
 	 *
 	 * Similar to {@see wp_list_pluck()} but it supports using methods.
@@ -1418,6 +1487,24 @@ final class ITSEC_Lib {
 	}
 
 	/**
+	 * Finds the first item in a list matching the given predicate.
+	 *
+	 * @param iterable $list
+	 * @param callable $predicate
+	 *
+	 * @return mixed|null
+	 */
+	public static function find_where( iterable $list, callable $predicate ) {
+		foreach ( $list as $item ) {
+			if ( $predicate( $item ) ) {
+				return $item;
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * Array unique implementation that allows for non-scalar values.
 	 *
 	 * Will compare elements using `serialize()`.
@@ -1425,16 +1512,21 @@ final class ITSEC_Lib {
 	 * Keys are preserved. If a numeric array is given, the array will be re-indexed.
 	 *
 	 * @param array $array
+	 * @param bool  $stabilize If true, stabilizes the values first according to JSON semantics.
 	 *
 	 * @return array
 	 */
-	public static function non_scalar_array_unique( $array ) {
+	public static function non_scalar_array_unique( $array, $stabilize = false ) {
 
 		$is_numeric = wp_is_numeric_array( $array );
 
 		$hashes = array();
 
 		foreach ( $array as $key => $value ) {
+			if ( $stabilize ) {
+				$value = rest_stabilize_value( $value );
+			}
+
 			$hash = serialize( $value );
 
 			if ( isset( $hashes[ $hash ] ) ) {
@@ -2218,13 +2310,18 @@ final class ITSEC_Lib {
 						],
 					],
 				],
+				'ssl'     => [
+					'type' => 'boolean',
+				],
 			],
 		];
 
-		$valid_requirements = rest_validate_value_from_schema( $requirements, $schema );
+		if ( ITSEC_Core::is_development() ) {
+			$valid_requirements = rest_validate_value_from_schema( $requirements, $schema );
 
-		if ( is_wp_error( $valid_requirements ) ) {
-			return $valid_requirements;
+			if ( is_wp_error( $valid_requirements ) ) {
+				return $valid_requirements;
+			}
 		}
 
 		$error = new WP_Error();
@@ -2238,10 +2335,18 @@ final class ITSEC_Lib {
 					if ( version_compare( ITSEC_Core::get_plugin_version(), $version, '<' ) ) {
 						$error->add(
 							'version',
-							sprintf( __( 'Must be running at least version %s of iThemes Security.', 'better-wp-security' ), $version )
+							sprintf( __( 'You must be running at least version %s of iThemes Security.', 'better-wp-security' ), $version )
 						);
 					}
 
+					break;
+				case 'ssl':
+					if ( $requirement !== is_ssl() ) {
+						$error->add(
+							'ssl',
+							$requirement ? __( 'Your site must support SSL.', 'better-wp-security' ) : __( 'Your site must not support SSL.', 'better-wp-security' )
+						);
+					}
 					break;
 			}
 		}
@@ -2396,5 +2501,66 @@ final class ITSEC_Lib {
 		}
 
 		return apply_filters( 'itsec_login_url', $url, $action, $redirect, $scheme );
+	}
+
+	/**
+	 * Extends a service definition, ignoring if the service has been frozen.
+	 *
+	 * @param \Pimple\Container $c
+	 * @param string            $id
+	 * @param callable          $extend
+	 *
+	 * @return bool
+	 */
+	public static function extend_if_able( \Pimple\Container $c, string $id, callable $extend ): bool {
+		try {
+			$c->extend( $id, $extend );
+
+			return true;
+		} catch ( \Pimple\Exception\FrozenServiceException $e ) {
+			return false;
+		}
+	}
+
+	/**
+	 * Resolve JSON Schema refs.
+	 *
+	 * @param array $schema
+	 *
+	 * @return array
+	 */
+	public static function resolve_schema_refs( array $schema ): array {
+		if ( isset( $schema['definitions'] ) ) {
+			array_walk( $schema, [ static::class, 'resolve_ref' ], $schema['definitions'] );
+		}
+
+		return $schema;
+	}
+
+	/**
+	 * Resolves $ref entries at any point in the config.
+	 *
+	 * Currently, only a simplified form of JSON Pointers are supported where `/` is the only
+	 * allowed control character.
+	 *
+	 * Additionally, the `$ref` keyword must start with `#/definitions`.
+	 *
+	 * @param mixed  $value       The incoming value.
+	 * @param string $key         The array key.
+	 * @param array  $definitions The shared definitions.
+	 */
+	private static function resolve_ref( &$value, $key, $definitions ) {
+		if ( ! is_array( $value ) ) {
+			return;
+		}
+
+		if ( isset( $value['$ref'] ) ) {
+			$ref   = str_replace( '#/definitions/', '', $value['$ref'] );
+			$value = \ITSEC_Lib::array_get( $definitions, $ref, null, '/' );
+
+			return;
+		}
+
+		array_walk( $value, [ static::class, 'resolve_ref' ], $definitions );
 	}
 }

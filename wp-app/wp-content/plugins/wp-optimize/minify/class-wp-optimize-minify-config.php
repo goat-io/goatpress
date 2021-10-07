@@ -153,7 +153,8 @@ class WP_Optimize_Minify_Config {
 			'enabled' => false,
 			'last-cache-update' => 0,
 			'plugin_version' => '0.0.0',
-			'cache_lifespan' => 30
+			'cache_lifespan' => 30,
+			'merge_inline_extra_css_js' => true,
 		);
 		return apply_filters('wpo_minify_defaults', $defaults);
 	}

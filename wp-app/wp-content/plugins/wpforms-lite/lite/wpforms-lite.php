@@ -289,7 +289,7 @@ class WPForms_Lite {
 	 *
 	 * @since 1.4.8
 	 *
-	 * @param object $settings
+	 * @param WPForms_Builder_Panel_Settings $settings Builder panel settings.
 	 */
 	public function form_settings_confirmations( $settings ) {
 
@@ -303,7 +303,7 @@ class WPForms_Lite {
 			$settings->form_data['settings']['confirmations'][1]['page']           = ! empty( $settings->form_data['settings']['confirmation_page'] ) ? $settings->form_data['settings']['confirmation_page'] : '';
 			$settings->form_data['settings']['confirmations'][1]['redirect']       = ! empty( $settings->form_data['settings']['confirmation_redirect'] ) ? $settings->form_data['settings']['confirmation_redirect'] : '';
 		}
-		$id = 1;
+		$field_id = 1;
 
 		echo '<div class="wpforms-panel-content-section-title">';
 			esc_html_e( 'Confirmations', 'wpforms-lite' );
@@ -322,24 +322,34 @@ class WPForms_Lite {
 			<div class="wpforms-builder-settings-block-content">
 
 				<?php
+				/**
+				 * Fires before each confirmation to add custom fields.
+				 *
+				 * @since 1.6.9
+				 *
+				 * @param WPForms_Builder_Panel_Settings $settings Builder panel settings.
+				 * @param int                            $field_id Field ID.
+				 */
+				do_action( 'wpforms_lite_form_settings_confirmations_single_before', $settings, $field_id );
+
 				wpforms_panel_field(
 					'select',
 					'confirmations',
 					'type',
 					$settings->form_data,
 					esc_html__( 'Confirmation Type', 'wpforms-lite' ),
-					array(
+					[
 						'default'     => 'message',
-						'options'     => array(
+						'options'     => [
 							'message'  => esc_html__( 'Message', 'wpforms-lite' ),
 							'page'     => esc_html__( 'Show Page', 'wpforms-lite' ),
 							'redirect' => esc_html__( 'Go to URL (Redirect)', 'wpforms-lite' ),
-						),
+						],
 						'class'       => 'wpforms-panel-field-confirmations-type-wrap',
 						'input_class' => 'wpforms-panel-field-confirmations-type',
 						'parent'      => 'settings',
-						'subsection'  => $id,
-					)
+						'subsection'  => $field_id,
+					]
 				);
 				wpforms_panel_field(
 					'textarea',
@@ -352,11 +362,14 @@ class WPForms_Lite {
 						'tinymce'     => [
 							'editor_height' => '200',
 						],
-						'input_id'    => 'wpforms-panel-field-confirmations-message-' . $id,
+						'input_id'    => 'wpforms-panel-field-confirmations-message-' . $field_id,
 						'input_class' => 'wpforms-panel-field-confirmations-message',
 						'parent'      => 'settings',
-						'subsection'  => $id,
+						'subsection'  => $field_id,
 						'class'       => 'wpforms-panel-field-tinymce',
+						'smarttags'   => [
+							'type' => 'all',
+						],
 					]
 				);
 				wpforms_panel_field(
@@ -368,7 +381,7 @@ class WPForms_Lite {
 					[
 						'input_class' => 'wpforms-panel-field-confirmations-message_scroll',
 						'parent'      => 'settings',
-						'subsection'  => $id,
+						'subsection'  => $field_id,
 					]
 				);
 				$p     = [];
@@ -384,12 +397,12 @@ class WPForms_Lite {
 					'page',
 					$settings->form_data,
 					esc_html__( 'Confirmation Page', 'wpforms-lite' ),
-					array(
+					[
 						'options'     => $p,
 						'input_class' => 'wpforms-panel-field-confirmations-page',
 						'parent'      => 'settings',
-						'subsection'  => $id,
-					)
+						'subsection'  => $field_id,
+					]
 				);
 				wpforms_panel_field(
 					'text',
@@ -397,12 +410,22 @@ class WPForms_Lite {
 					'redirect',
 					$settings->form_data,
 					esc_html__( 'Confirmation Redirect URL', 'wpforms-lite' ),
-					array(
+					[
 						'input_class' => 'wpforms-panel-field-confirmations-redirect',
 						'parent'      => 'settings',
-						'subsection'  => $id,
-					)
+						'subsection'  => $field_id,
+					]
 				);
+
+				/**
+				 * Fires after each confirmation to add custom fields.
+				 *
+				 * @since 1.6.9
+				 *
+				 * @param WPForms_Builder_Panel_Settings $settings Builder panel settings.
+				 * @param int                            $field_id Field ID.
+				 */
+				do_action( 'wpforms_lite_form_settings_confirmations_single_after', $settings, $field_id );
 				?>
 			</div>
 		</div>
@@ -456,7 +479,7 @@ class WPForms_Lite {
 	 *
 	 * @since 1.4.7
 	 *
-	 * @param string $view
+	 * @param string $view Current view inside the plugin settings page.
 	 */
 	public function settings_cta( $view ) {
 
@@ -471,17 +494,16 @@ class WPForms_Lite {
 			<p>
 				<?php
 				printf(
-					wp_kses(
-						/* translators: %s - star icons. */
-						__( 'We know that you will truly love WPForms. It has over 7000+ five star ratings (%s) and is active on over 4 million websites.', 'wpforms-lite' ),
-						array(
-							'i' => array(
-								'class'       => array(),
-								'aria-hidden' => array(),
-							),
-						)
+					wp_kses( /* translators: %s - star icons. */
+						__( 'We know that you will truly love WPForms. It has over 9000+ five star ratings (%s) and is active on over 4 million websites.', 'wpforms-lite' ),
+						[
+							'i' => [
+								'class'       => [],
+								'aria-hidden' => [],
+							],
+						]
 					),
-					str_repeat( '<i class="fa fa-star" aria-hidden="true"></i>', 5 )
+					str_repeat( '<i class="fa fa-star" aria-hidden="true"></i>', 5 ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				);
 				?>
 			</p>
@@ -511,12 +533,12 @@ class WPForms_Lite {
 				<?php
 				echo wp_kses(
 					__( '<strong>Bonus:</strong> WPForms Lite users get <span class="green">50% off regular price</span>, automatically applied at checkout.', 'wpforms-lite' ),
-					array(
-						'strong' => array(),
-						'span'   => array(
-							'class' => array(),
-						),
-					)
+					[
+						'strong' => [],
+						'span'   => [
+							'class' => [],
+						],
+					]
 				);
 				?>
 			</p>

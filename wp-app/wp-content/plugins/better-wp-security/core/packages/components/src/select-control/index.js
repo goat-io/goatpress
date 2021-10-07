@@ -66,7 +66,13 @@ export default function SelectControl( {
 							</option>
 						) );
 
-						return optgroup === 'undefined' ? optionList : <optgroup label={ optgroup } key={ optgroup }>{ optionList }</optgroup>;
+						return optgroup === 'undefined' ? (
+							optionList
+						) : (
+							<optgroup label={ optgroup } key={ optgroup }>
+								{ optionList }
+							</optgroup>
+						);
 					} ) }
 				</select>
 			</BaseControl>

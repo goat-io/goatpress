@@ -287,6 +287,48 @@
 			$css_textarea.val(list_of_excluded_files);
 		}
 
+		// Handle defer
+		$('#wpo_min_jsprocessed').on('click', '.defer', function(e) {
+			e.preventDefault();
+			add_deferred_file($(this));
+		});
+
+		// Handle async loading
+		$('#wpo_min_cssprocessed').on('click', '.async', function(e) {
+			e.preventDefault();
+			add_async_file($(this));
+		});
+
+		/**
+		 * Add deferred file
+		 *
+		 * @param {HTMLElement} el target element
+		 */
+		function add_deferred_file(el) {
+			var deferred_file = el.data('url');
+			var $async_js_textarea = $('#async_js');
+			var list_of_deferred_files = $async_js_textarea.val();
+			list_of_deferred_files += deferred_file + '\n';
+			$async_js_textarea.val(list_of_deferred_files);
+			tab_need_saving('js');
+			highlight_excluded_item(el);
+		}
+
+		/**
+		 * Add asynchronously loading file
+		 *
+		 * @param {HTMLElement} el target element
+		 */
+		function add_async_file(el) {
+			var async_file = el.data('url');
+			var $async_css_textarea = $('#async_css');
+			var list_of_async_files = $async_css_textarea.val();
+			list_of_async_files += async_file + '\n';
+			$async_css_textarea.val(list_of_async_files);
+			tab_need_saving('css');
+			highlight_excluded_item(el);
+		}
+		
 		/**
 		 *
 		 * @param {string} tab_name Name of the tab that need saving
@@ -302,13 +344,13 @@
 		 */
 		function highlight_excluded_item(el) {
 			el.closest('.wpo_min_log').prev().removeClass('hidden').addClass('updated').slideDown();
-			el.text(wpoptimize.add_to_exclusion);
+			el.text(wpoptimize.added_to_list);
 			el.removeClass('exclude');
 			el.parent().addClass('disable-list-item');
 			el.replaceWith($('<span>' + el.text() + '</span>'));
 		}
 
-		$('.save_notice').on('click', '.save-exclusions', function(e) {
+		$('#wp-optimize-minify-advanced').on('click', '.save-exclusions', function(e) {
 			e.preventDefault();
 			$('.wp-optimize-save-minify-settings').first().trigger('click');
 		});
@@ -372,8 +414,8 @@
 						<span class="filename"><a href="'+this.file_url+'" target="_blank">'+this.filename+'</a> ('+this.fsize+')</span>\
 						<a href="#" class="log">' + wpoptimize.toggle_info + '</a>\
 						<div class="hidden save_notice">\
-							<p>' + wpoptimize.excluded + '</p>\
-							<p><button class="button button-primary save-exclusions">' + wpoptimize.save_exclusions + '</button></p>\
+							<p>' + wpoptimize.added_notice + '</p>\
+							<p><button class="button button-primary save-exclusions">' + wpoptimize.save_notice + '</button></p>\
 						</div>\
 						<div class="hidden wpo_min_log">'+this.log+'</div>\
 					</li>\
@@ -394,8 +436,8 @@
 						<span class="filename"><a href="'+this.file_url+'" target="_blank">'+this.filename+'</a> ('+this.fsize+')</span>\
 						<a href="#" class="log">' + wpoptimize.toggle_info + '</a>\
 						<div class="hidden save_notice">\
-							<p>' + wpoptimize.excluded + '</p>\
-							<p><button class="button button-primary save-exclusions">' + wpoptimize.save_exclusions + '</button></p>\
+							<p>' + wpoptimize.added_to_list + '</p>\
+							<p><button class="button button-primary save-exclusions">' + wpoptimize.save_notice + '</button></p>\
 						</div>\
 						<div class="hidden wpo_min_log">'+this.log+'</div>\
 					</li>\

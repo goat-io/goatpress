@@ -41,12 +41,14 @@ class ExactMetrics_Dashboard_Widget {
 				'downloadlinks'  => false,
 			),
 			'ecommerce'   => array(
-				'infobox'     => false, // E-commerce Overview.
-				'products'    => false, // Top Products.
-				'conversions' => false, // Top Products.
-				'addremove'   => false, // Total Add/Remove.
-				'days'        => false, // Time to purchase.
-				'sessions'    => false, // Sessions to purchase.
+				'infobox'            => false, // E-commerce Overview.
+				'products'           => false, // Top Products.
+				'conversions'        => false, // Top Products.
+				'addremove'          => false, // Total Add/Remove.
+				'days'               => false, // Time to purchase.
+				'sessions'           => false, // Sessions to purchase.
+				'newcustomers'       => false,
+				'abandonedcheckouts' => false,
 			),
 			'notice30day' => false,
 		),
@@ -180,7 +182,10 @@ class ExactMetrics_Dashboard_Widget {
 					$wp_forms_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=wpforms-lite' ), 'install-plugin_wpforms-lite' );
 				}
 			}
-			$is_authed = ( ExactMetrics()->auth->is_authed() || ExactMetrics()->auth->is_network_authed() );
+
+			// We do not have a current auth.
+			$auth = ExactMetrics()->auth;
+			$is_authed = ( $auth->is_authed() || $auth->is_network_authed() );
 			wp_localize_script(
 				'exactmetrics-vue-widget',
 				'exactmetrics',
@@ -198,6 +203,7 @@ class ExactMetrics_Dashboard_Widget {
 					'wpforms_installed'   => $wpforms_installed,
 					'wpforms_url'         => $wp_forms_url,
 					'authed'              => $is_authed,
+					'auth_connected_type' => $auth->get_connected_type(),
 					// Used to add notices for future deprecations.
 					'versions'            => exactmetrics_get_php_wp_version_warning_data(),
 					'plugin_version'      => EXACTMETRICS_VERSION,

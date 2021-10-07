@@ -62,19 +62,19 @@ WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( docu
 				'.education-modal',
 				function( event ) {
 
-					var $this = $( this ),
-						name = '';
-
 					event.preventDefault();
 					event.stopImmediatePropagation();
 
+					var $this = $( this ),
+						name = $this.data( 'name' ),
+						utmContent = WPFormsEducation.core.getUTMContentValue( $this );
+
 					if ( $this.hasClass( 'wpforms-add-fields-button' ) ) {
-						name = $this.text() + ' ' + wpforms_builder.field;
-					} else {
-						name = $this.data( 'name' );
+						name  = $this.text();
+						name += name.indexOf( wpforms_builder.field ) < 0 ?  ' ' + wpforms_builder.field : '';
 					}
 
-					app.upgradeModal( name, $this.data( 'license' ), $this.data( 'video' ) );
+					app.upgradeModal( name, utmContent, $this.data( 'license' ), $this.data( 'video' ) );
 				}
 			);
 		},
@@ -84,11 +84,12 @@ WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( docu
 		 *
 		 * @since 1.6.6
 		 *
-		 * @param {string} feature Feature name.
-		 * @param {string} type    Feature license type: pro or elite.
-		 * @param {string} video   Feature video URL.
+		 * @param {string} feature    Feature name.
+		 * @param {string} utmContent UTM content.
+		 * @param {string} type       Feature license type: pro or elite.
+		 * @param {string} video      Feature video URL.
 		 */
-		upgradeModal: function( feature, type, video ) {
+		upgradeModal: function( feature, utmContent, type, video ) {
 
 			// Provide a default value.
 			if ( typeof type === 'undefined' || type.length === 0 ) {
@@ -100,16 +101,15 @@ WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( docu
 				return;
 			}
 
-			var message = wpforms_education.upgrade[ type ].message.replace( /%name%/g, feature ),
-				appendChar = /(\?)/.test( wpforms_education.upgrade[ type ].url ) ? '&' : '?',
-				upgradeURL = wpforms_education.upgrade[ type ].url + appendChar + 'utm_content=' + encodeURIComponent( feature.trim() );
+			var message = wpforms_education.upgrade[ type ].message.replace( /%name%/g, feature );
 
 			$.alert( {
-				title   : feature + ' ' + wpforms_education.upgrade[type].title,
-				icon    : 'fa fa-lock',
-				content : message,
+				title: feature + ' ' + wpforms_education.upgrade[type].title,
+				icon: 'fa fa-lock',
+				content: message,
 				boxWidth: '550px',
-				theme   : 'modern,wpforms-education',
+				theme: 'modern,wpforms-education',
+				closeIcon: true,
 				onOpenBefore: function() {
 
 					var videoHtml = ! _.isEmpty( video ) ? '<iframe src="' + video + '" class="feature-video" frameborder="0" allowfullscreen="" width="490" height="276"></iframe>' : '';
@@ -124,7 +124,7 @@ WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( docu
 						keys    : [ 'enter' ],
 						action: function() {
 
-							window.open( upgradeURL, '_blank' );
+							window.open( WPFormsEducation.core.getUpgradeURL( utmContent, type ), '_blank' );
 							app.upgradeModalThankYou( type );
 						},
 					},

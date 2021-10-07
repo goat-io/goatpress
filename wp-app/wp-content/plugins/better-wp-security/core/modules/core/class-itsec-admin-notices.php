@@ -13,14 +13,6 @@ class ITSEC_Admin_Notices {
 		if ( isset( $_GET['action'] ) && self::ACTION === $_GET['action'] ) {
 			add_action( 'admin_init', array( $this, 'handle_admin_action' ) );
 		}
-
-		if ( ITSEC_Modules::get_setting( 'global', 'hide_admin_bar' ) ) {
-			if ( is_multisite() ) {
-				add_action( 'network_admin_notices', array( $this, 'display_notices' ) );
-			} else {
-				add_action( 'admin_notices', array( $this, 'display_notices' ) );
-			}
-		}
 	}
 
 	public function rest_api_init() {

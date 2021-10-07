@@ -3,19 +3,17 @@
 Contributors: stockmanagementlabs, salvamb, japiera, agimeno82, dorquium, janberebel, danielberebel
 Tags: woocommerce inventory management, suppliers, purchase orders, inbound stock, woocommerce statistics, decimals in stock quantities, full woocommerce stock manager, stock management, woocommerce, inventory logs, purchase orders, inbound stock, woocommerce stock control, stock for woocommerce, woocommerce products, woocommerce inventory, woocommerce for business, woocommerce shop organiser, woocommerce shop, inventory for woocommerce
 Requires at least: 5.0
-Tested up to: 5.8.0
+Tested up to: 5.8.1
 Requires PHP: 5.6
 WC requires at least: 3.6.0
-WC tested up to: 5.5.1
-Stable tag: 1.9.2
+WC tested up to: 5.6.0
+Stable tag: 1.9.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 WooCommerce Full Inventory Management, Purchase Orders, Suppliers, Inbound Stock, Inventory Logs, WooCommerce Sales Statistics and New Updates Weekly.
 
 == Description ==
-
-**With an Online Selling Boost Comes [ATUM Action Logs Premium Add-on](https://www.stockmanagementlabs.com/addons/atum-action-logs/)** - keeping track of any changes happening in your shop has never been easier. The Action Logs add-on supports all ATUM premium add-ons and all WooCommerce actions.
 
 **✨ NEW IMPROVED ATUM 1.9**
 
@@ -60,6 +58,8 @@ Exports of data are done automatically instead of copying and pasting manually. 
 In addition, with the import feature of the [Export Pro add-on](https://demo.export-pro.stockmanagementlabs.com/), you will be able to save a lot of time by importing data in a bulk.
 
 🚀 [ATUM Action Logs](https://www.stockmanagementlabs.com/addons/atum-action-logs/)
+
+Keeping track of any changes happening in your shop has never been easier. The Action Logs add-on supports all ATUM premium add-ons and all WooCommerce actions.
 
 ATUM Action Logs aims to bring complete control into the WooCommerce inventory management. Every action or everyday task users take within the process needs to be recorded. These **recordings** we call action logs. Lots of outsides and inside factors are involved in fulfilling the inventory management process.
 
@@ -242,6 +242,65 @@ We officially support: WooCommerce Product Bundles, WooCommerce Subscriptions, W
 
 
 == Changelog ==
+
+---
+
+`1.9.4`
+
+*2021-09-17*
+
+**Features**
+
+* Added helper method to check if an async action is actually running.
+* Added filter for displaying columns id at ListTables.
+* Allow increasing the items per page limit in ATUM API when the request comes from the ATUM App.
+* Allow setting the fee name directly (PO premium compatibility).
+* Added WP-CLI support for all the ATUM tools.
+* Allow setting default values on editPopover JS component.
+
+**Changes**
+
+* Show grouped products' stock in Stock Central.
+* Refactoring.
+* Handle errors when removing ATUM Order items.
+* Separate the order item removal in 2 steps.
+* Regenerated the composer's autoload.
+
+**Fixes**
+
+* Fixed sales last days are always calculated in Stock Central when the sale days are distinct of 14.
+* Prevent increasing stock totalizer in Unmanaged view.
+* Fixed "In stock" and "Out of stock" counters in views counters.
+* Fixed compunded stock on bundled and grouped products when these have MI.
+* Fixed label's for attribute.
+
+---
+
+`1.9.3`
+
+*2021-08-17*
+
+**Features**
+
+* Added script hook to allow/prevent stock changes in order items.
+* Added capability to update low stock threshold at inventory level.
+* Added new filter before checking the async requests availability.
+* Added new fields to suppliers: cancellation policy, days to cancel and payment & delivery terms.
+
+**Changes**
+
+* List tables will show all decimals for prices when editing the values.
+* Ensure that ATUM orders exists before instantiated.
+* Check if an ATUM order is saved before adding items.
+* Updated ATUM icon font
+* Updated composer's autoload.
+
+**Fixes**
+
+* CSS fixes.
+* Fixed wrong shortage column color in Manufacturing Central.
+* Fixed Variable products don't allow to buy quantities less than 1.
+* Fixed email no stock and low stock notification errors.
 
 ---
 

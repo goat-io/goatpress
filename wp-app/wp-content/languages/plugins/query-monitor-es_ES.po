@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Query Monitor - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-14 08:45:58+0000\n"
+"PO-Revision-Date: 2021-09-08 08:54:25+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1383,7 +1383,7 @@ msgstr "Errores de PHP"
 #: output/html/overview.php:25 dispatchers/Html.php:337
 #: dispatchers/Html.php:379
 msgid "Overview"
-msgstr "Vista general"
+msgstr "Resumen"
 
 #: output/html/http.php:44
 msgid "Error"

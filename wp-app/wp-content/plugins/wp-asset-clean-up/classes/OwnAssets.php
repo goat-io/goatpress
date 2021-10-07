@@ -44,7 +44,7 @@ class OwnAssets
 		    $wpacu_object_data['ajax_url']  = admin_url('admin-ajax.php');
 		    $wpacu_object_data['is_frontend_view'] = false;
 
-		    if (array_key_exists('wpacu_manage_dash', $_GET)) {
+		    if ( isset($_GET['wpacu_manage_dash']) ) {
 			    $wpacu_object_data['force_manage_dash'] = true;
             }
 
@@ -317,23 +317,6 @@ class OwnAssets
             </script>
 			<?php
 		}
-
-		global $current_screen;
-
-		if (isset($current_screen->id) && $current_screen->id === 'plugins') {
-		    // Asset CleanUp Pro needs to have the page reloaded to perform the update 100% correctly
-            // as, for some reason, it sometimes gives an error of "Plugin failed" when updated via an AJAX call (no page reload)
-		    ?>
-            <script type="text/javascript">
-                jQuery(document).ready(function ($) {
-                    $('tr[data-plugin="wp-asset-clean-up-pro/wpacu.php"]')
-                        .find('div.update-message')
-                            .find('.update-link').append(' (via page reload)')
-                            .removeClass('update-link').addClass('wpacu-update-plugin');
-                });
-            </script>
-            <?php
-		}
 	}
 
     /**
@@ -351,7 +334,7 @@ class OwnAssets
 	    // Could be post, page, custom post type (e.g. product, download)
 	    $getPostId = (isset($_GET['post'], $_GET['action']) && $_GET['action'] === 'edit' && $pagenow === 'post.php') ? (int)Misc::getVar('get', 'post') : '';
 
-	    if ($getPostId && Main::instance()->settings['hide_assets_meta_box']) {
+	    if ($getPostId && ! Main::instance()->settings['show_assets_meta_box']) {
 		    // No point in loading the plugin JS if the management meta box is not shown
 		    return;
 	    }
@@ -408,11 +391,11 @@ class OwnAssets
 		}
 
 	    // Do not load any CSS & JS belonging to Asset CleanUp if in "Elementor" preview
-	    if (Main::instance()->isFrontendEditView && array_key_exists('elementor-preview', $_GET) && $_GET['elementor-preview']) {
+	    if (Main::instance()->isFrontendEditView && isset($_GET['elementor-preview']) && $_GET['elementor-preview']) {
 	        return;
 	    }
 
-	    if (array_key_exists('wpacu_clean_load', $_GET)) {
+	    if ( isset($_GET['wpacu_clean_load']) ) {
 	        return;
         }
 
@@ -743,7 +726,7 @@ JS;
 			// [End] SweetAlert
         }
 
-		if (in_array($page, array(WPACU_PLUGIN_ID . '_overview', WPACU_PLUGIN_ID . '_bulk_unloads'))) {
+		if (in_array($page, array(WPACU_PLUGIN_ID . '_plugins_manager', WPACU_PLUGIN_ID . '_overview', WPACU_PLUGIN_ID . '_bulk_unloads'))) {
 			// [Start] Tooltipster Style
 			wp_enqueue_style(
 				WPACU_PLUGIN_ID . '-tooltipster-style',

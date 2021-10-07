@@ -43,7 +43,9 @@
 		if ($installed && $installed_for > 28*86400 && $installed_for < 84*86400) {
 			$advert = 'rate_plugin';
 		}
-		
-		// This is to display the notices.
-		$wp_optimize_notices->do_notice($advert);
+
+		if ($installed && $installed_for > 14*86400) {
+			// This is to display the notices.
+			$wp_optimize_notices->do_notice($advert);
+		}
 	}

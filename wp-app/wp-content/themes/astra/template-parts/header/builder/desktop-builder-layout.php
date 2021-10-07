@@ -34,7 +34,7 @@ if ( 'full-width' === $mobile_header_type ) {
 		astra_main_header_bar_bottom();
 	?>
 <?php
-if ( 'dropdown' === $mobile_header_type || is_customize_preview() ) {
+if ( ( 'dropdown' === $mobile_header_type && Astra_Builder_Helper::is_component_loaded( 'mobile-trigger', 'header' ) ) || is_customize_preview() ) {
 	$content_alignment = astra_get_option( 'header-offcanvas-content-alignment', 'flex-start' );
 	$alignment_class   = 'content-align-' . $content_alignment . ' ';
 	?>

@@ -26,6 +26,8 @@ if ( ! function_exists( 'astra_get_foreground_color' ) ) {
 	 */
 	function astra_get_foreground_color( $hex ) {
 
+		$hex = apply_filters( 'astra_before_foreground_color_generation', $hex );
+
 		// bail early if color's not set.
 		if ( 'transparent' == $hex || 'false' == $hex || '#' == $hex || empty( $hex ) ) {
 			return 'transparent';
@@ -151,8 +153,8 @@ if ( ! function_exists( 'astra_get_font_css_value' ) ) {
 	 */
 	function astra_get_font_css_value( $value, $unit = 'px', $device = 'desktop' ) {
 
-		// If value is empty or 0 then return blank.
-		if ( '' == $value || 0 == $value ) {
+		// If value is empty then return blank.
+		if ( '' == $value || ( 0 == $value && ! astra_zero_font_size_case() ) ) {
 			return '';
 		}
 
@@ -465,9 +467,9 @@ if ( ! function_exists( 'astra_get_option' ) ) {
 	 * Return Theme options.
 	 *
 	 * @param  string $option       Option key.
-	 * @param  string $default      Option default value.
+	 * @param  mixed  $default      Option default value.
 	 * @param  string $deprecated   Option default value.
-	 * @return Mixed               Return option value.
+	 * @return mixed               Return option value.
 	 */
 	function astra_get_option( $option, $default = '', $deprecated = '' ) {
 
@@ -1180,7 +1182,7 @@ if ( ! function_exists( 'astra_get_search_form' ) ) :
 				'data_attributes'   => apply_filters( 'astra_search_field_toggle_data_attrs', '' ),
 				'input_value'       => get_search_query(),
 				'show_input_submit' => false,
-			) 
+			)
 		);
 
 		/**
@@ -1523,4 +1525,28 @@ function is_astra_pagination_enabled() {
  */
 function is_current_post_comment_enabled() {
 	return ( is_singular() && comments_open() );
+}
+
+/**
+ * Dont apply zero size to existing user.
+ *
+ * @since 3.6.9
+ * @return boolean false if it is an existing user , true if not.
+ */
+function astra_zero_font_size_case() {
+	$astra_settings                                  = get_option( ASTRA_THEME_SETTINGS );
+	$astra_settings['astra-zero-font-size-case-css'] = isset( $astra_settings['astra-zero-font-size-case-css'] ) ? false : true;
+	return apply_filters( 'astra_zero_font_size_case', $astra_settings['astra-zero-font-size-case-css'] );
+}
+
+/**
+ * Check the WordPress version.
+ *
+ * @since  2.5.4
+ * @param string $version   WordPress version to compare with the current version.
+ * @param mixed  $compare   Comparison value i.e > or < etc.
+ * @return bool|null            True/False based on the  $version and $compare value.
+ */
+function astra_wp_version_compare( $version, $compare ) {
+	return version_compare( get_bloginfo( 'version' ), $version, $compare );
 }

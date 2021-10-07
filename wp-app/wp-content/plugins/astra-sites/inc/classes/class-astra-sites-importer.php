@@ -564,7 +564,7 @@ if ( ! class_exists( 'Astra_Sites_Importer' ) ) {
 				)
 			);
 
-			$demo_api_uri = add_query_arg( $request_params, $demo_api_uri );
+			$demo_api_uri = add_query_arg( $request_params, trailingslashit( $demo_api_uri ) );
 
 			// API Call.
 			$response = wp_remote_get( $demo_api_uri, $api_args );

@@ -182,10 +182,10 @@ if ( ! class_exists( 'Kadence_Woomail_Customizer' ) ) {
 		}
 		public function get_customizer_options_override_ready() {
 			foreach ( Kadence_Woomail_Settings::get_email_types() as $key => $value ) {
-				add_filter( 'pre_option_woocommerce_' . $key . '_settings', array( $this, 'customizer_woo_options_override' ), 99, 2 );
+				add_filter( 'option_woocommerce_' . $key . '_settings', array( $this, 'customizer_woo_options_override' ), 99, 2 );
 			}
 		}
-		public function customizer_woo_options_override( $value = array(), $option ) {
+		public function customizer_woo_options_override( $value = array(), $option = '' ) {
 			if ( isset( $_POST['customized'] ) ) {
 				$post_values = json_decode( stripslashes_deep( $_POST['customized'] ), true );
 				if ( isset( $_POST['customized'] ) && ! empty( $post_values ) ) {

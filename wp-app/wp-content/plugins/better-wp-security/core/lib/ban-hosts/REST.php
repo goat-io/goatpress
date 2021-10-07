@@ -391,10 +391,13 @@ class REST extends \WP_REST_Controller {
 
 		foreach ( $this->repository->get_sources() as $source ) {
 			if ( $this->repository->supports_create( $source ) ) {
+				$schema = $this->repository->get_creation_schema( $source );
+
 				$links[] = [
 					'rel'              => 'create-form',
 					'href'             => rest_url( sprintf( '%s/%s/%s', $this->namespace, $this->rest_base, $source ) ),
-					'submissionSchema' => \ITSEC_Lib_REST::sanitize_schema_for_output( $this->repository->get_creation_schema( $source ) ),
+					'submissionSchema' => \ITSEC_Lib_REST::sanitize_schema_for_output( $schema ),
+					'title'            => $schema['title'] ?? __( 'Add Ban', 'better-wp-security' ),
 				];
 			}
 
@@ -407,7 +410,7 @@ class REST extends \WP_REST_Controller {
 			}
 		}
 
-		return $this->schema = [
+		$schema = [
 			'$schema'    => 'http://json-schema.org/draft-04/schema#',
 			'title'      => 'ithemes-security-ban',
 			'type'       => 'object',
@@ -453,6 +456,17 @@ class REST extends \WP_REST_Controller {
 			],
 			'links'      => $links,
 		];
+
+		/**
+		 * Filters the schema for the Ban Hosts REST API endpoint.
+		 *
+		 * @since 7.0.0
+		 *
+		 * @param array $schema The schema to filter.
+		 */
+		$this->schema = apply_filters( 'itsec_ban_hosts_rest_schema', $schema );
+
+		return $this->schema;
 	}
 
 	public function get_collection_params( $source = '' ) {

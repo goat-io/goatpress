@@ -1,16 +1,28 @@
 /**
  * WordPress dependencies
  */
-import { select } from '@wordpress/data';
+import { createRegistrySelector } from '@wordpress/data';
+import { MODULES_STORE_NAME } from './';
 
 /**
  * Get a WP User by its ID.
+ *
  * @param {Object} state
  * @param {number} userId
- * @return {Object}
+ * @return {Object} User data.
  */
 export function getUser( state, userId ) {
 	return state.users.byId[ userId ];
+}
+
+/**
+ * Get the current user.
+ *
+ * @param {Object} state The store state.
+ * @return {Object} The current user object.
+ */
+export function getCurrentUser( state ) {
+	return state.users.byId[ state.users.currentId ];
 }
 
 export function getIndex( state ) {
@@ -19,12 +31,13 @@ export function getIndex( state ) {
 
 /**
  * Get a schema from the root index.
+ *
  * @param {Object} state
  * @param {string} schemaId The full schema ID like ithemes-security-user-group
- * @return {Object|null}
+ * @return {Object|null} The schema.
  */
 export function getSchema( state, schemaId ) {
-	const index = select( 'ithemes-security/core' ).getIndex();
+	const index = state.index;
 
 	if ( ! index ) {
 		return null;
@@ -45,14 +58,8 @@ export function getSchema( state, schemaId ) {
 	return null;
 }
 
-export function getRoles() {
-	const index = select( 'ithemes-security/core' ).getIndex();
-
-	if ( ! index ) {
-		return null;
-	}
-
-	return index.roles;
+export function getRoles( state ) {
+	return state.index?.roles || null;
 }
 
 export function getActorTypes( state ) {
@@ -62,3 +69,11 @@ export function getActorTypes( state ) {
 export function getActors( state, type ) {
 	return state.actors.byType[ type ];
 }
+
+export function getSiteInfo( state ) {
+	return state.siteInfo;
+}
+
+export const getFeatureFlags = createRegistrySelector( ( select ) => () =>
+	select( MODULES_STORE_NAME ).getSetting( 'feature-flags', 'enabled' ) || []
+);

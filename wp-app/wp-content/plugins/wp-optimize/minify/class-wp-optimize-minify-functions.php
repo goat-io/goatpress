@@ -208,7 +208,7 @@ class WP_Optimize_Minify_Functions {
 				$i = preg_replace('/^https?:\/\//i', '//', $i); // better compatibility
 				$i = strtok(urldecode(rawurldecode($i)), '?'); // no query string, decode entities
 				$i = trim(trim(trim(rtrim($i, '/')), '*')); // wildcard char removal
-				if (false !== stripos($hurl, $i)) {
+				if (!empty($i) && false !== stripos($hurl, $i)) {
 					return true;
 				}
 			}
@@ -386,6 +386,9 @@ class WP_Optimize_Minify_Functions {
 	 * @return string
 	 */
 	public static function html_compression_finish($html) {
+		$max_size_to_minify = (defined('WP_OPTIMIZE_MAX_HTML_MINIFY_BYTES') && WP_OPTIMIZE_MAX_HTML_MINIFY_BYTES) ? WP_OPTIMIZE_MAX_HTML_MINIFY_BYTES : 1048576;
+		// Minification of large amounts of HTML is not efficient. This is a quick-fix; in future a better algorithm (e.g. cache pre-loading taking place?) can be devised.
+		if (strlen($html) > $max_size_to_minify) return $html;
 		return self::minify_html($html);
 	}
 

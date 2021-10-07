@@ -262,12 +262,12 @@ class MinifyJs
 		// Request Minify On The Fly
 		// It will preview the page with JS minified
 		// Only if the admin is logged-in as it uses more resources (CPU / Memory)
-		if (array_key_exists('wpacu_js_minify', $_GET) && Menu::userCanManageAssets()) {
+		if ( isset($_GET['wpacu_js_minify']) && Menu::userCanManageAssets()) {
 			self::isMinifyJsEnabledChecked('true');
 			return true;
 		}
 
-		if ( array_key_exists('wpacu_no_js_minify', $_GET) || // not on query string request (debugging purposes)
+		if ( isset($_REQUEST['wpacu_no_js_minify']) || // not on query string request (debugging purposes)
 		     is_admin() || // not for Dashboard view
 		     (! Main::instance()->settings['minify_loaded_js']) || // Minify JS has to be Enabled
 		     (Main::instance()->settings['test_mode'] && ! Menu::userCanManageAssets()) ) { // Does not trigger if "Test Mode" is Enabled
@@ -296,6 +296,7 @@ class MinifyJs
 			return false;
 		}
 
+		self::isMinifyJsEnabledChecked('true');
 		return true;
 	}
 

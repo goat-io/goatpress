@@ -10,11 +10,17 @@ if ( ! isset($data, $isCoreFile, $hideCoreFiles, $childHandles) ) {
 <div class="wpacu_handle" style="margin: 0 0 -8px;">
 	<label for="style_<?php echo $data['row']['obj']->handle; ?>"><?php _e('Handle:', 'wp-asset-clean-up'); ?> <strong><span style="color: green;"><?php echo $data['row']['obj']->handle; ?></span></strong></label>
 	&nbsp;<em>* Stylesheet (.css)</em>
-	<?php if ($isCoreFile && ! $hideCoreFiles) { ?>
-		<span class="dashicons dashicons-wordpress-alt wordpress-core-file"><span class="wpacu-tooltip">WordPress Core File<br /><?php _e('Not sure if needed or not? In this case, it\'s better to leave it loaded to avoid breaking the website.', 'wp-asset-clean-up'); ?></span></span>
+	<?php
+	if ($data['row']['obj']->handle === 'wp-block-library') {
+		?>
+        &#10230; <span style="color: #ccc;" class="dashicons dashicons-text-page"></span> <a href="https://assetcleanup.com/docs/?p=713" target="_blank" rel="noopener noreferrer">Read more</a>
 		<?php
 	}
 
+    if ($isCoreFile && ! $hideCoreFiles) { ?>
+		<span class="dashicons dashicons-wordpress-alt wordpress-core-file"><span class="wpacu-tooltip">WordPress Core File<br /><?php _e('Not sure if needed or not? In this case, it\'s better to leave it loaded to avoid breaking the website.', 'wp-asset-clean-up'); ?></span></span>
+		<?php
+	}
 	if (isset($data['load_exceptions_debug']['styles']) && in_array($data['row']['obj']->handle, $data['load_exceptions_debug']['styles'])) {
 		// '/?wpacu_load_css=' was used and has the handle within its value
 	    echo '&nbsp; <span style="color: green; font-style: italic;"><strong>Load Exception:</strong> This handle is loading for you on this page as requested via the "wpacu_load_css" value from the current page URL (for debugging purposes).</span>';
@@ -32,7 +38,7 @@ if ( ! isset($data, $isCoreFile, $hideCoreFiles, $childHandles) ) {
 	?>
 </div>
 	<!-- Clear on form submit it if the dependency is not there anymore -->
-	<input type="hidden" name="wpacu_ignore_child[styles][<?php echo $data['row']['obj']->handle; ?>]" value="" />
+    <!-- -->
 <?php
 if (! empty($childHandles)) {
 	$ignoreChild = (isset($data['ignore_child']['styles'][$data['row']['obj']->handle]) && $data['ignore_child']['styles'][$data['row']['obj']->handle]);
@@ -60,7 +66,7 @@ if (! empty($childHandles)) {
 			&#10230; <input id="style_<?php echo $data['row']['obj']->handle; ?>_ignore_children"
 			                type="checkbox"
 			                <?php if ($ignoreChild) { ?>checked="checked"<?php } ?>
-			                name="wpacu_ignore_child[styles][<?php echo $data['row']['obj']->handle; ?>]"
+			                name="<?php echo WPACU_FORM_ASSETS_POST_KEY; ?>[styles][<?php echo $data['row']['obj']->handle; ?>][ignore_child]"
 			                value="1" /> <small><?php _e('Ignore dependency rule and keep the "children" loaded', 'wp-asset-clean-up'); ?>
 				<?php if (in_array($data['row']['obj']->handle, \WpAssetCleanUp\Main::instance()->keepChildrenLoadedForHandles['css'])) { echo '(recommended)'; } ?>
             </small>

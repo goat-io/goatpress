@@ -90,9 +90,15 @@ class AssetsPagesManager
 	        $wpacuHomePageUpdate = Misc::getVar( 'post', 'wpacu_manage_home_page_assets', false );
 
 	        if ( $wpacuHomePageUpdate ) {
-		        check_admin_referer( $this->data['nonce_action'], $this->data['nonce_name'] );
-
 		        $wpacuUpdate = new Update;
+
+		        if ( ! (isset($_REQUEST[$this->data['nonce_name']])
+                    && wp_verify_nonce($_REQUEST[$this->data['nonce_name']], $this->data['nonce_action'])) ) {
+			        add_action('wpacu_admin_notices', array($wpacuUpdate, 'changesNotMadeInvalidNonce'));
+			        return;
+		        }
+
+		        // All good with the nonce? Do the changes!
 		        $wpacuUpdate->updateFrontPage( $wpacuNoLoadAssets );
 	        }
         }
@@ -122,7 +128,14 @@ class AssetsPagesManager
 
 		    // Could Be an Empty Array as Well so just is_array() is enough to use
 		    if ( is_array( $wpacuNoLoadAssets ) && $wpacuSingularPageUpdate ) {
-			    check_admin_referer( $this->data['nonce_action'], $this->data['nonce_name'] );
+			    $wpacuUpdate = new Update;
+
+			    if ( ! (isset($_REQUEST[$this->data['nonce_name']])
+			            && wp_verify_nonce($_REQUEST[$this->data['nonce_name']], $this->data['nonce_action'])) ) {
+				    add_action('wpacu_admin_notices', array($wpacuUpdate, 'changesNotMadeInvalidNonce'));
+				    return;
+			    }
+
 			    $postObj = get_post($postId);
 
 			    if ($postId > 0) {

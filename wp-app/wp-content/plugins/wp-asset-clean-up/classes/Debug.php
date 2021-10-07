@@ -14,7 +14,7 @@ class Debug
 	 */
 	public function __construct()
 	{
-		if (array_key_exists('wpacu_debug', $_GET)) {
+		if (isset($_GET['wpacu_debug'])) {
 			add_action('wp_footer', array($this, 'showDebugOptions'), PHP_INT_MAX);
 		}
 
@@ -82,62 +82,19 @@ class Debug
 		$styleAttrType = Misc::getStyleTypeAttribute();
 		?>
 		<style <?php echo $styleAttrType; ?>>
-			#wpacu-debug-options {
-                background: white;
-                width: 90%;
-                margin: 10px;
-				border: 1px solid #cdcdcd;
-				border-radius: 5px;
-				padding: 12px;
-			}
-
-            #wpacu-debug-options p {
-                margin-bottom: 15px;
-            }
-
-            #wpacu-debug-options ul.wpacu-options {
-                list-style: none;
-                padding-left: 0;
-                margin-top: 0;
-                margin-left: 8px;
-            }
-
-            #wpacu-debug-options ul.wpacu-options li {
-                line-height: normal;
-                font-size: inherit;
-            }
-
-			#wpacu-debug-options ul.wpacu-options li label {
-				cursor: pointer;
-                font-size: inherit;
-			}
-
-            #wpacu-debug-options table td {
-                padding: 20px;
-            }
-
-            ul#wpacu-debug-timing {
-                margin-left: 0;
-                padding-left: 0;
-            }
-
-			ul#wpacu-debug-timing > li {
-				list-style: none;
-				padding-left: 20px;
-			}
-
-			ul#wpacu-debug-timing li > ul > li {
-				list-style: disc;
-				padding-left: 0;
-			}
+			<?php echo file_get_contents(WPACU_PLUGIN_DIR.'/assets/wpacu-debug.css'); ?>
 		</style>
+
+        <script <?php echo Misc::getScriptTypeAttribute(); ?>>
+	        <?php echo file_get_contents(WPACU_PLUGIN_DIR.'/assets/wpacu-debug.js'); ?>
+        </script>
 
 		<div id="wpacu-debug-options">
             <table>
                 <tr>
-                    <td valign="top">
+                    <td style="vertical-align: top;">
                         <p>View the page with the following options <strong>disabled</strong> (for debugging purposes):</p>
-                        <form>
+                        <form method="post">
                             <ul class="wpacu-options">
                             <?php
                             foreach ($allDebugOptions as $debugKey => $debugText) {
@@ -145,7 +102,7 @@ class Debug
                                 <li>
                                     <label><input type="checkbox"
                                                   name="<?php echo $debugKey; ?>"
-                                                  <?php if (array_key_exists($debugKey, $_GET)) { echo 'checked="checked"'; } ?> /> &nbsp;<?php echo $debugText; ?></label>
+                                                  <?php if ( ! empty($_GET) && array_key_exists($debugKey, $_GET) ) { echo 'checked="checked"'; } ?> /> &nbsp;<?php echo $debugText; ?></label>
                                 </li>
                             <?php
                             }
@@ -153,7 +110,7 @@ class Debug
                             </ul>
                             <div>
                                 <input type="submit"
-                                       value="View page with the chosen options turned off" />
+                                       value="Preview this page with the changes made above" />
                             </div>
                             <input type="hidden" name="wpacu_debug" value="on" />
                         </form>
@@ -197,6 +154,9 @@ class Debug
                                 <li style="margin-bottom: 10px;">Dequeue any chosen styles (.css): <?php echo Misc::printTimingFor('filter_dequeue_styles',  '{wpacu_filter_dequeue_styles_exec_time} ({wpacu_filter_dequeue_styles_exec_time_sec})'); ?></li>
                                 <li style="margin-bottom: 20px;">Dequeue any chosen scripts (.js): <?php echo Misc::printTimingFor('filter_dequeue_scripts', '{wpacu_filter_dequeue_scripts_exec_time} ({wpacu_filter_dequeue_scripts_exec_time_sec})'); ?></li>
 
+                                <li style="margin-bottom: 10px;">Prepare CSS files to optimize: {wpacu_prepare_optimize_files_css_exec_time} ({wpacu_prepare_optimize_files_css_exec_time_sec})</li>
+                                <li style="margin-bottom: 20px;">Prepare JS files to optimize: {wpacu_prepare_optimize_files_js_exec_time} ({wpacu_prepare_optimize_files_js_exec_time_sec})</li>
+
                                 <li style="margin-bottom: 10px;">OptimizeCommon - HTML alteration via <em>wp_loaded</em>: {wpacu_alter_html_source_exec_time} ({wpacu_alter_html_source_exec_time_sec})
                                     <ul id="wpacu-debug-timing">
                                         <li style="margin-top: 10px; margin-bottom: 10px;">&nbsp;OptimizeCSS: {wpacu_alter_html_source_for_optimize_css_exec_time} ({wpacu_alter_html_source_for_optimize_css_exec_time_sec})
@@ -222,8 +182,18 @@ class Debug
                                                 <li>Move any inline wih jQuery code after jQuery library: {wpacu_alter_html_source_move_inline_jquery_after_src_tag_exec_time}</li>
                                             </ul>
                                         </li>
+                                        <li>HTML CleanUp: {wpacu_alter_html_source_cleanup_exec_time}
+                                            <ul>
+                                                <li>Strip HTML Comments: {wpacu_alter_html_source_for_remove_html_comments_exec_time}</li>
+	                                            <li>Remove Generator Meta Tags: {wpacu_alter_html_source_for_remove_meta_generators_exec_time}</li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
+
+								<li style="margin-bottom: 10px;">Output CSS &amp; JS Management List: {wpacu_output_css_js_manager_exec_time} ({wpacu_output_css_js_manager_exec_time_sec})</li>
+
+                                <!-- -->
 							</ul>
 	                    </div>
                     </td>

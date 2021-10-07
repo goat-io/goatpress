@@ -182,9 +182,18 @@ include_once '_top-area.php';
                 }
 
                 if ( $hasPostsWithOptions ) {
-                    foreach ($data['page_options_results']['posts'] as $results) { ?>
-                        <tr>
-                            <td><?php echo get_the_title($results['post_id']); ?> (ID: <?php echo $results['post_id']; ?>)<br /><small><a target="_blank" href="<?php echo get_permalink($results['post_id']); ?>"><?php echo get_permalink($results['post_id']); ?></a></small></td>
+                    foreach ($data['page_options_results']['posts'] as $results) {
+                        $postStatus = $postStatusText = get_post_status($results['post_id']);
+
+	                    $rowStyle = '';
+
+                        if ( ! in_array($postStatus, array('publish', 'private')) ) {
+                            $rowStyle = 'style="opacity: 0.6;"';
+                            $postStatusText = '<span style="color: #cc0000;">'.$postStatus.'</span>';
+                        }
+                        ?>
+                        <tr <?php echo $rowStyle; ?>>
+                            <td><?php echo get_the_title($results['post_id']); ?> / ID: <?php echo $results['post_id']; ?>, Status: <?php echo $postStatusText; ?><br /><small><a target="_blank" href="<?php echo get_permalink($results['post_id']); ?>"><?php echo get_permalink($results['post_id']); ?></a></small></td>
                             <td>
                                 <?php
                                 $optionsForCurrentPage = array();

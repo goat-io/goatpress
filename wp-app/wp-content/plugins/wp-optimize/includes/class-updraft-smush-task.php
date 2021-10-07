@@ -87,6 +87,10 @@ abstract class Updraft_Smush_Task extends Updraft_Task_1_1 {
 
 			$this->log($this->get_description());
 
+			if (defined('WPO_USE_WEBP_CONVERSION') && true === WPO_USE_WEBP_CONVERSION) {
+				$this->maybe_do_webp_conversion($file_path);
+			}
+
 			/**
 			 * Filters the options for a single image to compress.
 			 * Currently supports:
@@ -112,6 +116,17 @@ abstract class Updraft_Smush_Task extends Updraft_Task_1_1 {
 		}
 
 		return $this->success;
+	}
+
+	/**
+	 * Converts to WebP format, if possible
+	 *
+	 * @param string $source Source image file path
+	 */
+	public function maybe_do_webp_conversion($source) {
+		if (!class_exists('WPO_WebP_Convert')) include_once(WPO_PLUGIN_MAIN_PATH . 'webp/class-wpo-webp-convert.php');
+		$webp_converter = new WPO_WebP_Convert();
+		$webp_converter->convert($source);
 	}
 
 	/**

@@ -4,9 +4,9 @@
  * Plugin URI: https://exactmetrics.com
  * Description: Displays Google Analytics Reports and Real-Time Statistics in your Dashboard. Automatically inserts the tracking code in every page of your website.
  * Author: ExactMetrics
- * Version: 6.8.0
- * Requires at least: 3.8.0
- * Requires PHP: 5.2
+ * Version: 7.1.0
+ * Requires at least: 4.8.0
+ * Requires PHP: 5.5
  * Author URI: https://exactmetrics.com
  * Text Domain: google-analytics-dashboard-for-wp
  * Domain Path: /languages
@@ -44,7 +44,7 @@ final class ExactMetrics_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '6.8.0';
+	public $version = '7.1.0';
 
 	/**
 	 * Plugin file.
@@ -178,18 +178,14 @@ final class ExactMetrics_Lite {
 			self::$instance = new ExactMetrics_Lite();
 			self::$instance->file = __FILE__;
 
-			global $wp_version;
-
-			// Detect non-supported WordPress version and return early
-			if ( version_compare( $wp_version, '3.8', '<' ) && ( ! defined( 'EXACTMETRICS_FORCE_ACTIVATION' ) || ! EXACTMETRICS_FORCE_ACTIVATION ) ) {
-				add_action( 'admin_notices', array( self::$instance, 'exactmetrics_wp_notice' ) );
-				return;
-			}
-
 			// Detect Pro version and return early
 			if ( defined( 'EXACTMETRICS_PRO_VERSION' ) ) {
 				add_action( 'admin_notices', array( self::$instance, 'exactmetrics_pro_notice' ) );
-				return;
+				return self::$instance;
+			}
+
+			if ( ! self::$instance->check_compatibility() ) {
+				return self::$instance;
 			}
 
 			// Define constants
@@ -299,6 +295,24 @@ final class ExactMetrics_Lite {
 	}
 
 	/**
+	 * Check compatibility with PHP and WP, and display notices if necessary
+	 *
+	 * @since 7.0.0
+	 * @return bool
+	 */
+	private function check_compatibility() {
+		if ( defined( 'EXACTMETRICS_FORCE_ACTIVATION' ) && EXACTMETRICS_FORCE_ACTIVATION ) {
+			return true;
+		}
+
+		require_once plugin_dir_path( __FILE__ ) . 'includes/compatibility-check.php';
+		$compatibility = ExactMetrics_Compatibility_Check::get_instance();
+		$compatibility->maybe_display_notice();
+
+		return $compatibility->is_php_compatible() && $compatibility->is_wp_compatible();
+	}
+
+	/**
 	 * Define ExactMetrics constants.
 	 *
 	 * This function defines all of the ExactMetrics PHP constants.
@@ -381,32 +395,6 @@ final class ExactMetrics_Lite {
 			load_plugin_textdomain( 'google-analytics-dashboard-for-wp', false, $mi_mofile4 );
 		}
 
-	}
-
-	/**
-	 * Output a nag notice if the user has an out of date WP version installed
-	 *
-	 * @access public
-	 * @since 6.0.0
-	 *
-	 * @return 	void
-	 */
-	public function exactmetrics_wp_notice() {
-		$url = admin_url( 'plugins.php' );
-		// Check for MS dashboard
-		if( is_network_admin() ) {
-			$url = network_admin_url( 'plugins.php' );
-		}
-		?>
-		<div class="error">
-			<p>
-				<?php
-				// Translators: Make version number bold and add a link to return to the plugins page.
-				echo sprintf( esc_html__( 'Sorry, but your version of WordPress does not meet ExactMetrics\'s required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s.', 'google-analytics-dashboard-for-wp' ), '<strong>', '</strong>', '<a href="' . $url . '">', '</a>' );
-				?>
-			</p>
-		</div>
-		<?php
 	}
 
 	/**
@@ -555,6 +543,7 @@ final class ExactMetrics_Lite {
 		require_once EXACTMETRICS_PLUGIN_DIR . 'includes/frontend/frontend.php';
 		require_once EXACTMETRICS_PLUGIN_DIR . 'includes/frontend/seedprod.php';
 		require_once EXACTMETRICS_PLUGIN_DIR . 'includes/measurement-protocol.php';
+		require_once EXACTMETRICS_PLUGIN_DIR . 'includes/measurement-protocol-v4.php';
 	}
 
 	/**
@@ -586,24 +575,20 @@ final class ExactMetrics_Lite {
  * @return void
  */
 function exactmetrics_lite_activation_hook( $network_wide ) {
-
-	global $wp_version;
-
 	$url = admin_url( 'plugins.php' );
 	// Check for MS dashboard
 	if ( is_network_admin() ) {
 		$url = network_admin_url( 'plugins.php' );
 	}
 
-	if ( version_compare( $wp_version, '3.8', '<' ) && ( ! defined( 'EXACTMETRICS_FORCE_ACTIVATION' ) || ! EXACTMETRICS_FORCE_ACTIVATION ) ) {
-		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die( sprintf( esc_html__( 'Sorry, but your version of WordPress does not meet MonsterInsight\'s required version of %1$s3.8%2$s to run properly. The plugin not been activated. %3$sClick here to return to the Dashboard%4$s.', 'google-analytics-by-wordpress' ), '<strong>', '</strong>', '<a href="' . $url . '">', '</a>' ) );
-	}
-
 	if ( class_exists( 'ExactMetrics' ) ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
 		wp_die( sprintf( esc_html__( 'Please uninstall and remove ExactMetrics Pro before activating Google Analytics Dashboard for WP (GADWP). The Lite version has not been activated. %1$sClick here to return to the Dashboard%2$s.', 'google-analytics-by-wordpress' ), '<a href="' . $url . '">', '</a>' ) );
 	}
+
+	require_once plugin_dir_path( __FILE__ ) . 'includes/compatibility-check.php';
+	$compatibility = ExactMetrics_Compatibility_Check::get_instance();
+	$compatibility->maybe_deactivate_plugin( plugin_basename( __FILE__ ) );
 
 	// Add transient to trigger redirect.
 	set_transient( '_exactmetrics_activation_redirect', 1, 30 );
@@ -719,10 +704,11 @@ function ExactMetrics_Lite() {
  * @return void
  */
 function exactmetrics_lite_install_and_upgrade() {
-	global $wp_version;
+	require_once plugin_dir_path( __FILE__ ) . 'includes/compatibility-check.php';
+	$compatibility = ExactMetrics_Compatibility_Check::get_instance();
 
-	// If the WordPress site doesn't meet the correct WP version requirements, don't activate ExactMetrics
-	if ( version_compare( $wp_version, '3.8', '<' ) ) {
+	// If the WordPress site doesn't meet the correct WP or PHP version requirements, don't activate ExactMetrics
+	if ( ! $compatibility->is_php_compatible() || ! $compatibility->is_wp_compatible() ) {
 		if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
 			return;
 		}

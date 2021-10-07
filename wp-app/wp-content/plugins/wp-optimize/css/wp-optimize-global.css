@@ -39,3 +39,7 @@
 #wpadminbar .quicklinks .menupop ul li .ab-item.loading {
 	opacity: 0.2;
 }
+
+#wpo_always_purge_this_post_type_select + .select2 {
+	width: 90% !important;
+}

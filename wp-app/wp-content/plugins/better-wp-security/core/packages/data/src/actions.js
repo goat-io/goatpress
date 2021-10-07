@@ -36,6 +36,13 @@ export function receiveUser( user ) {
 	};
 }
 
+export function receiveCurrentUserId( userId ) {
+	return {
+		type: RECEIVE_CURRENT_USER_ID,
+		userId,
+	};
+}
+
 export function receiveActorTypes( types ) {
 	return {
 		type: RECEIVE_ACTOR_TYPES,
@@ -47,11 +54,20 @@ export function receiveActors( type, actors ) {
 	return {
 		type: RECEIVE_ACTORS,
 		actorType: type,
-		actors: actors,
+		actors,
+	};
+}
+
+export function receiveSiteInfo( siteInfo ) {
+	return {
+		type: RECEIVE_SITE_INFO,
+		siteInfo,
 	};
 }
 
 export const RECEIVE_INDEX = 'RECEIVE_INDEX';
 export const RECEIVE_USER = 'RECEIVE_USER';
+export const RECEIVE_CURRENT_USER_ID = 'RECEIVE_CURRENT_USER_ID';
 export const RECEIVE_ACTOR_TYPES = 'RECEIVE_ACTOR_TYPES';
 export const RECEIVE_ACTORS = 'RECEIVE_ACTORS';
+export const RECEIVE_SITE_INFO = 'RECEIVE_SITE_INFO';

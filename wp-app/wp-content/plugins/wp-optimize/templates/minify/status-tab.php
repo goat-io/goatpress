@@ -82,7 +82,7 @@
 						</label>
 					</div>
 				</div>
-			
+
 				<div class="wpo-fieldgroup__subgroup">
 					<div class="switch-container">
 						<label class="switch">

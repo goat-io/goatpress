@@ -6,7 +6,10 @@ import { uniqueId } from 'lodash';
 /**
  * WordPress dependencies
  */
-import { select as selectData, dispatch as dispatchData } from '@wordpress/data';
+import {
+	select as selectData,
+	dispatch as dispatchData,
+} from '@wordpress/data';
 import { default as triggerApiFetch } from '@wordpress/api-fetch';
 
 /**
@@ -29,6 +32,7 @@ export function apiFetch( request ) {
 
 /**
  * Calls a selector using the current state.
+ *
  * @param {string} storeKey Store key.
  * @param {string} selectorName Selector name.
  * @param {Array} args         Selector arguments.
@@ -95,7 +99,7 @@ export function dispatch( storeKey, actionName, ...args ) {
  *                                                       after x milliseconds.
  *                                                       Defaults to `false`.
  * @param {?string}                options.type          Notice type. Either 'default' or 'snackbar'.
- * @param {?Array<WPNoticeAction>} options.actions       User actions to be
+ * @param {?Array<Object>} options.actions               User actions to be
  *                                                       presented with notice.
  *
  * @return {Object} control descriptor.
@@ -125,7 +129,14 @@ const controls = {
 	CREATE_NOTICE( { status, content, options } ) {
 		if ( options.autoDismiss ) {
 			options.id = options.id || uniqueId( 'itsec-auto-dismiss-' );
-			setTimeout( () => dispatchData( 'core/notices' ).removeNotice( options.id, options.context ), options.autoDismiss );
+			setTimeout(
+				() =>
+					dispatchData( 'core/notices' ).removeNotice(
+						options.id,
+						options.context
+					),
+				options.autoDismiss
+			);
 		}
 
 		dispatchData( 'core/notices' ).createNotice( status, content, options );

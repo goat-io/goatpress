@@ -191,7 +191,7 @@ final class Database_Repository implements Repository, Creatable, Updatable, Del
 	public function get_creation_schema() {
 		return [
 			'type'       => 'object',
-			'title'      => __( 'Manually Ban', 'better-wp-security' ),
+			'title'      => __( 'Add Ban', 'better-wp-security' ),
 			'required'   => [ 'host' ],
 			'properties' => [
 				'host'    => [

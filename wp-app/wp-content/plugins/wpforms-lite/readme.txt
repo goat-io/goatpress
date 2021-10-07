@@ -3,7 +3,7 @@ Contributors: wpforms, jaredatch, smub, slaFFik
 Tags: contact form, contact form plugin, forms, form builder, custom form, contact button, contact me, custom contact form, form manager, form, forms builder, forms creator, captcha, recaptcha, Akismet, email form, web form, feedback form, payment form, survey form, donation form, email submit form, message form, mailchimp, mailchimp form, aweber, aweber form, paypal, paypal form, stripe, stripe form, getresponse, getresponse form, email subscription, contact form widget, user registration form, wordpress registration, wordpress login form, feedback
 Requires at least: 4.9
 Tested up to: 5.8
-Stable tag: 1.6.8.1
+Stable tag: 1.6.9
 Requires PHP: 5.5
 License: GNU General Public License v2.0 or later
 
@@ -390,7 +390,7 @@ Yes, WPForms has full translation and localization support via the wpforms textd
 
 = Does WPForms include spam protection? =
 
-Yes, WPForms includes spam proection which is enabled on all forms by default in the form settings.
+Yes, WPForms includes spam protection which is enabled on all forms by default in the form settings.
 
 Additionally, Google reCAPTCHA is also supported and can be setup at WPForms > Settings > reCAPTCHA.
 
@@ -418,8 +418,35 @@ Syed Balkhi
 
 == Changelog ==
 
+= 1.6.9 =
+- Added: Keyboard Shortcuts informational popup in the Form Builder, triggered with `Ctrl + /` shortcut.
+- Added: Separate category for templates added by addons.
+- Added: Smart Tags support in Confirmation Messages.
+- Added: Punycode support for the Email field to allow using international domain names.
+- Added: Compatibility with PHP 8.
+- Changed: Display only WPForms related actions on the Tools > Scheduled Actions page.
+- Changed: Enable AJAX form submission by default for new forms created using Blank template and addon templates.
+- Changed: Default state on the CAPTCHA Settings screen on new installs is now set to None.
+- Changed: Improved consistency of various modal popups in the Form Builder.
+- Changed: Speed up form preview in the Form Builder by limiting the number of choices displayed.
+- Changed: Updated ActionScheduler library to 3.2.1.
+- Fixed: Missing down arrow in the Dropdown field in the Twenty Twenty-One theme on a fresh install.
+- Fixed: Clicking on the Field Options tab in the Form Builder always opens options for the first field in the form.
+- Fixed: Form Setting panels can be broken by horizontally resizing textarea fields.
+- Fixed: Insert/edit link button not working in the Confirmation Message editor.
+- Fixed: Prevent editor styles from loading on various settings pages.
+- Fixed: Missing Conditional Logic class in the Lite version causing errors when using custom integration that extends the `WPForms_Provider` class.
+- Fixed: Console error in Chrome when re-ordering choices in the Dropdown, Checkboxes and Multiple Choice field settings.
+- Fixed: Unrelated admin notices are no longer displayed on the WPForms admin pages.
+- Fixed: Modern Dropdown field not initialized properly in the Divi Builder.
+- Fixed: Dropdown preview in the Form Builder not updated if the first option's value is empty.
+- Fixed: Preserve reply-to in the Notifications settings when creating a form from a template.
+- Fixed: Minor button styling issue in WordPress 4.9.
+- Fixed: Avoid error by allowing objects implementing the `__invoke()` method as a hook callback.
+- Fixed: Various Dropdown field CSS issues in the Form Builder.
+
 = 1.6.8.1 =
-- Changed: Allow using right click to open a form preview in new tab or window.
+- Changed: Allow using right-click to open a form preview in a new tab or window.
 - Fixed: Notifications disabled on the previous version were enabled after the 1.6.8 update.
 - Fixed: Block preview in new WordPress 5.8 Widgets Block Editor now aligned properly.
 - Fixed: Word wrapping issues in various places for non-English languages.

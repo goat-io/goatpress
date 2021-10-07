@@ -24,7 +24,10 @@ function generate( seed, files ) {
 
 	for ( const file of splitChunks ) {
 		file.chunk.groupsIterable.forEach( ( group ) => {
-			if ( manifest[ group.name ] && ! manifest[ group.name ].vendors.includes( file.chunk.name ) ) {
+			if (
+				manifest[ group.name ] &&
+				! manifest[ group.name ].vendors.includes( file.chunk.name )
+			) {
 				manifest[ group.name ].vendors.push( file.chunk.name );
 			}
 		} );
@@ -36,14 +39,17 @@ function generate( seed, files ) {
 /**
  * Generate a chunk manifest entry.
  *
- * @param {Chunk} chunk
+ * @param {Object} chunk The webpack chunk.
  * @return {{runtime: boolean, vendors: Array, hash: string, dependencies: Array}} Manifest object.
  */
 function generateChunk( chunk ) {
 	const chunkManifest = {
 		runtime: chunk.hasRuntime(),
 		files: [],
-		hash: crypto.createHash( 'md4' ).update( JSON.stringify( chunk.contentHash ) ).digest( 'hex' ),
+		hash: crypto
+			.createHash( 'md4' )
+			.update( JSON.stringify( chunk.contentHash ) )
+			.digest( 'hex' ),
 		contentHash: chunk.contentHash,
 		vendors: [],
 		dependencies: [],
@@ -52,7 +58,9 @@ function generateChunk( chunk ) {
 	chunk.getModules().forEach( ( module ) => {
 		if ( module.external && module.userRequest ) {
 			if ( module.userRequest.includes( '@wordpress/' ) ) {
-				chunkManifest.dependencies.push( `wp-${ module.userRequest.replace( '@wordpress/', '' ) }` );
+				chunkManifest.dependencies.push(
+					`wp-${ module.userRequest.replace( '@wordpress/', '' ) }`
+				);
 			} else {
 				chunkManifest.dependencies.push( module.userRequest );
 			}

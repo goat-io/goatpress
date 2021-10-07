@@ -2,6 +2,7 @@ backups/*
 wp-data/*
 volumes/*
 wp-app/log/*
+wp-app/service-account.json
 !backups/.gitkeep 
 !wp-data/.gitkeep 
 !volumes/.gitkeep

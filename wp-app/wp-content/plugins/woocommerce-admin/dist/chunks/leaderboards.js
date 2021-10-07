@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[32],{
 
-/***/ 548:
+/***/ 501:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10,7 +10,7 @@
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _woocommerce_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(23);
+/* harmony import */ var _woocommerce_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var _woocommerce_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_components__WEBPACK_IMPORTED_MODULE_3__);
 
 
@@ -58,13 +58,13 @@ ReportError.propTypes = {
 
 /***/ }),
 
-/***/ 557:
+/***/ 506:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export ALLOWED_TAGS */
 /* unused harmony export ALLOWED_ATTR */
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(81);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(66);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * External dependencies
@@ -83,21 +83,21 @@ const ALLOWED_ATTR = ['target', 'href', 'rel', 'name', 'download'];
 
 /***/ }),
 
-/***/ 640:
+/***/ 599:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 641:
+/***/ 600:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 658:
+/***/ 619:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -111,7 +111,7 @@ var external_wp_element_ = __webpack_require__(0);
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(15);
+var external_wp_compose_ = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
@@ -124,31 +124,31 @@ var external_wp_components_ = __webpack_require__(4);
 var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: external ["wc","components"]
-var external_wc_components_ = __webpack_require__(23);
+var external_wc_components_ = __webpack_require__(21);
 
 // EXTERNAL MODULE: external ["wc","data"]
 var external_wc_data_ = __webpack_require__(11);
 
-// EXTERNAL MODULE: ./client/wc-admin-settings/index.js
-var wc_admin_settings = __webpack_require__(17);
+// EXTERNAL MODULE: ./packages/wc-admin-settings/build-module/index.js
+var build_module = __webpack_require__(13);
 
 // EXTERNAL MODULE: external ["wc","tracks"]
-var external_wc_tracks_ = __webpack_require__(18);
+var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: external ["wc","navigation"]
 var external_wc_navigation_ = __webpack_require__(12);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
-var external_wc_experimental_ = __webpack_require__(22);
+var external_wc_experimental_ = __webpack_require__(20);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-error/index.js
-var report_error = __webpack_require__(548);
+var report_error = __webpack_require__(501);
 
 // EXTERNAL MODULE: ./client/lib/sanitize-html/index.js
-var sanitize_html = __webpack_require__(557);
+var sanitize_html = __webpack_require__(506);
 
 // EXTERNAL MODULE: ./client/analytics/components/leaderboard/style.scss
-var style = __webpack_require__(640);
+var style = __webpack_require__(599);
 
 // CONCATENATED MODULE: ./client/analytics/components/leaderboard/index.js
 
@@ -220,10 +220,10 @@ class leaderboard_Leaderboard extends external_wp_element_["Component"] {
       return Object(external_wp_element_["createElement"])(external_wp_components_["Card"], {
         className: classes
       }, Object(external_wp_element_["createElement"])(external_wp_components_["CardHeader"], null, Object(external_wp_element_["createElement"])(external_wc_experimental_["Text"], {
-        variant: "title.small",
+        size: 16,
+        weight: 600,
         as: "h3",
-        size: "20",
-        lineHeight: "28px"
+        color: "#23282d"
       }, title)), Object(external_wp_element_["createElement"])(external_wp_components_["CardBody"], {
         size: null
       }, Object(external_wp_element_["createElement"])(external_wc_components_["EmptyTable"], null, Object(external_wp_i18n_["__"])('No data recorded for the selected time period.', 'woocommerce-admin'))));
@@ -310,7 +310,7 @@ leaderboard_Leaderboard.defaultProps = {
   return leaderboardData;
 }))(leaderboard_Leaderboard));
 // EXTERNAL MODULE: ./client/dashboard/leaderboards/style.scss
-var leaderboards_style = __webpack_require__(641);
+var leaderboards_style = __webpack_require__(600);
 
 // CONCATENATED MODULE: ./client/dashboard/leaderboards/index.js
 
@@ -423,7 +423,7 @@ const Leaderboards = props => {
       onToggleHiddenBlock
     }), Object(external_wp_element_["createElement"])(external_wp_components_["SelectControl"], {
       className: "woocommerce-dashboard__dashboard-leaderboards__select",
-      label: Object(external_wp_i18n_["__"])('Rows Per Table', 'woocommerce-admin'),
+      label: Object(external_wp_i18n_["__"])('Rows per table', 'woocommerce-admin'),
       value: rowsPerTable,
       options: Array.from({
         length: 20
@@ -432,7 +432,7 @@ const Leaderboards = props => {
         label: key + 1
       })),
       onChange: setRowsPerTable
-    }), window.wcAdminFeatures['analytics-dashboard/customizable'] && Object(external_wp_element_["createElement"])(Controls, {
+    }), Object(external_wp_element_["createElement"])(Controls, {
       onToggle: onToggle,
       onMove: onMove,
       onRemove: onRemove,
@@ -470,7 +470,7 @@ Leaderboards.propTypes = {
   } = select(external_wc_data_["ITEMS_STORE_NAME"]);
   const {
     leaderboards: allLeaderboards
-  } = Object(wc_admin_settings["h" /* getSetting */])('dataEndpoints', {
+  } = Object(build_module["f" /* getSetting */])('dataEndpoints', {
     leaderboards: []
   });
   return {

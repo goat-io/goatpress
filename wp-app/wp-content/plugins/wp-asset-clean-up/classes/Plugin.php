@@ -399,7 +399,8 @@ HTACCESS;
 		}
 
 		// e.g. /amp/ - /amp? - /amp/? - /?amp or ending in /amp
-		$isAmpInRequestUri = ((isset($_SERVER['REQUEST_URI']) && (preg_match('/(\/amp$|\/amp\?)|(\/amp\/|\/amp\/\?)/', $_SERVER['REQUEST_URI']))) || (array_key_exists('amp', $_GET)));
+		$isAmpInRequestUri = ( (isset($_SERVER['REQUEST_URI']) && (preg_match('/(\/amp$|\/amp\?)|(\/amp\/|\/amp\/\?)/', $_SERVER['REQUEST_URI'])))
+                               || isset($_GET['amp']) );
 
 		// Is it an AMP endpoint?
 		if ( ($isAmpInRequestUri && Misc::isPluginActive('accelerated-mobile-pages/accelerated-mobile-pages.php')) // "AMP for WP – Accelerated Mobile Pages"
@@ -410,14 +411,15 @@ HTACCESS;
 		}
 
 		// Some pages are AMP but their URI does not end in /amp
-		if ( Misc::isPluginActive('accelerated-mobile-pages/accelerated-mobile-pages.php')
-		     || Misc::isPluginActive('amp/amp.php')
-		     || Misc::isPluginActive('wp-amp/wp-amp.php')
+		if ( ! defined('WPACU_DO_EXTRA_CHECKS_FOR_AMP') &&
+             ( Misc::isPluginActive('accelerated-mobile-pages/accelerated-mobile-pages.php')
+		        || Misc::isPluginActive('amp/amp.php')
+		        || Misc::isPluginActive('wp-amp/wp-amp.php') )
 		) {
 			define('WPACU_DO_EXTRA_CHECKS_FOR_AMP', true);
 		}
 
-		if (array_key_exists('wpacu_clean_load', $_GET)) {
+		if ( isset($_GET['wpacu_clean_load']) ) {
 			return true;
 		}
 

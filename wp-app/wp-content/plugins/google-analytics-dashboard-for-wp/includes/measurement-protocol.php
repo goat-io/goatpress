@@ -122,6 +122,12 @@ function exactmetrics_mp_api_call( $args = array() ) {
 }
 
 function exactmetrics_mp_track_event_call( $args = array() ) {
+	$ua = exactmetrics_get_ua();
+
+	if ( empty( $ua ) ) {
+		return;
+	}
+
 	// Detect if browser request is a prefetch
 	if ( ( isset( $_SERVER["HTTP_X_PURPOSE"] ) && ( 'prefetch' === strtolower( $_SERVER["HTTP_X_PURPOSE"] ) ) ) ||
 	     ( isset( $_SERVER["HTTP_X_MOZ"] ) && ( 'prefetch' === strtolower( $_SERVER["HTTP_X_MOZ"] ) ) ) ) {
@@ -144,6 +150,7 @@ function exactmetrics_mp_track_event_call( $args = array() ) {
 		// Optional: Event Value
 		'ev' => null,
 	);
+
 	$args         = wp_parse_args( $args, $default_args );
 
 	//$args = apply_filters( 'exactmetrics_mp_track_event_call', $args );

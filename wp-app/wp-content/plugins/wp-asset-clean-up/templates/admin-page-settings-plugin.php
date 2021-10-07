@@ -22,7 +22,7 @@ do_action('wpacu_admin_notices');
 $wikiStatus = ($data['wiki_read'] == 1) ? '<small style="font-weight: 200; color: green;">* '.__('read', 'wp-asset-clean-up').'</small>'
 	: '<small style="font-weight: 200; color: #cc0000;"><span class="dashicons dashicons-warning" style="width: 15px; height: 15px; margin: 2px 0 0 0; font-size: 16px;"></span> '.__('unread', 'wp-asset-clean-up').'</small>';
 
-$showSettingsType = array_key_exists('wpacu_show_all', $_GET) ? 'all' : 'tabs';
+$showSettingsType = isset($_GET['wpacu_show_all']) ? 'all' : 'tabs';
 $selectedTabArea = $selectedSubTabArea = '';
 
 if ($showSettingsType === 'tabs') {

@@ -419,6 +419,7 @@ var thwcfd_settings_field = (function($, window, document) {
 	var FIELDS_TO_HIDE = {
 		radio : ['placeholder', 'validate'],
 		select : ['validate'],
+		password: ['default'],
 	};	
 
 	function open_new_field_form(sname){
@@ -544,7 +545,7 @@ var thwcfd_settings_field = (function($, window, document) {
 			var type   = field['type'];
 			var value  = props && props[name] ? props[name] : '';
 
-			if(ftype == 'textarea' && name == 'value'){
+			if(ftype == 'textarea' && name == 'default'){
 				type = "textarea";
 			}
 
@@ -679,6 +680,9 @@ var thwcfd_settings_field = (function($, window, document) {
 		var ftype  = thwcfd_base.get_property_field_value(form, 'select', 'type');
 		var ftitle = thwcfd_base.get_property_field_value(form, 'text', 'label');
 		var fotype = thwcfd_base.get_property_field_value(form, 'hidden', 'otype');
+		var fvalue = thwcfd_base.get_property_field_value(form, 'text', 'default');
+		var option_values = form.find("input[name='i_options_key[]']").map(function(){ return $(this).val(); }).get();
+
 
 		if(ftype == '' && ($.inArray(fotype, SPECIAL_FIELD_TYPES) == -1) ){
 			err_msgs = 'Type is required';
@@ -689,6 +693,12 @@ var thwcfd_settings_field = (function($, window, document) {
 		}else if(!thwcfd_base.isHtmlIdValid(fname)){
 			err_msgs = MSG_INVALID_NAME;
 		}
+
+		if(option_values.length>0 && fvalue !='' && (ftype == 'select' || ftype == 'radio') ){
+			if(!(option_values.includes(fvalue))){
+				err_msgs = 'Only default value that given as an option value is allowed';
+			}
+		}		
 
 		if(err_msgs != ''){
 			form.find('.err_msgs').html(err_msgs);
@@ -855,7 +865,7 @@ var thwcfd_settings = (function($, window, document) {
 		var nonce = wrapper.data("nonce");
 		var action = wrapper.data("action");
 		var data = {
-			security: nonce,
+			thwcfd_security_review_notice: nonce,
 			action: action,
 		};
 		$.post( ajaxurl, data, function() {
@@ -867,7 +877,14 @@ var thwcfd_settings = (function($, window, document) {
 	   setTimeout(function(){
 	      $("#thwcfd_review_request_notice").fadeIn(500);
 	   }, 2000);
-	});	
+	});
+
+	$(document).keypress(function(e) {
+		if ($("#thwcfd_field_form_pp").is(':visible') && (e.keycode == 13 || e.which == 13)) {
+			e.preventDefault();
+			thwcfdSaveField(this);
+		}
+	});
    
 	function select_all_fields(elm){
 		var checkAll = $(elm).prop('checked');
@@ -907,7 +924,7 @@ var thwcfd_settings = (function($, window, document) {
 		var wrapper = $(elm).closest('div.thpladmin-notice');
 		var nonce = wrapper.data("nonce");
 		var data = {
-			security: nonce,
+			thwcfd_security_review_notice: nonce,
 			action: 'skip_thwcfd_review_request_notice',
 		};
 		$.post( ajaxurl, data, function() {

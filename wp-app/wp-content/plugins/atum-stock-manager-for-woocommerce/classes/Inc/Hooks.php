@@ -520,6 +520,9 @@ class Hooks {
 			// Add custom decimal quantities to order add products.
 			add_action( 'woocommerce_order_item_add_line_buttons', array( $this, 'wc_orders_min_qty' ) );
 
+			// Change min_qty on quantity field on variable products if its necesary.
+			add_filter( 'woocommerce_available_variation', array( $this, 'maybe_change_variable_min_qty' ) );
+
 		}
 
 	}
@@ -1292,7 +1295,8 @@ class Hooks {
 		];
 
 		foreach ( $statuses as $status ) {
-			if ( $note->content === sprintf( __( 'Order status set to %s.', 'woocommerce' ), wc_get_order_status_name( $status ) ) ) {
+			/* Translators: %s status_to */
+			if ( sprintf( __( 'Order status set to %s.', 'woocommerce' ) === $note->content, wc_get_order_status_name( $status ) ) ) { // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
 				$found_data = [
 					'action' => 'order_status_set',
 					'status' => $status,
@@ -1301,7 +1305,7 @@ class Hooks {
 			}
 			foreach ( $statuses as $status_to ) {
 				/* Translators: %1$s status_from, %2$s status_to */
-				if ( $note->content === sprintf( __( 'Order status changed from %1$s to %2$s.', 'woocommerce' ), wc_get_order_status_name( $status ), wc_get_order_status_name( $status_to ) ) ) {
+				if ( sprintf( __( 'Order status changed from %1$s to %2$s.', 'woocommerce' ) === $note->content, wc_get_order_status_name( $status ), wc_get_order_status_name( $status_to ) ) ) {  // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
 					$found_data = [
 						'action'      => 'order_status_change',
 						'status_from' => $status,
@@ -1334,8 +1338,8 @@ class Hooks {
 	 * @since 1.9.2
 	 */
 	public function allow_stock_emails() {
-		remove_action( 'woocommerce_low_stock', array( $this, 'prevent_sending_low_stock_email' ), 9, 2 );
-		remove_action( 'woocommerce_no_stock', array( $this, 'prevent_sending_no_stock_email' ), 9, 2 );
+		remove_action( 'woocommerce_low_stock', array( $this, 'prevent_sending_low_stock_email' ), 9 );
+		remove_action( 'woocommerce_no_stock', array( $this, 'prevent_sending_no_stock_email' ), 9 );
 	}
 
 	/**
@@ -1478,13 +1482,19 @@ class Hooks {
 		foreach ( $changes as $change ) {
 
 			$product                = Helpers::get_atum_product( $change['product']->get_id() );
-			$out_of_stock_threshold = $product->get_out_stock_threshold();
+			$out_of_stock_threshold = $product->get_out_stock_threshold() !== '' ? $product->get_out_stock_threshold() : absint( get_option( 'woocommerce_notify_no_stock_amount', 0 ) );
 			$low_stock_amount       = absint( wc_get_low_stock_amount( wc_get_product( $change['product']->get_id() ) ) );
 
-			if ( $change['to'] <= $out_of_stock_threshold ) {
+			if ( $change['to'] <= $out_of_stock_threshold && 'yes' === get_option( 'woocommerce_notify_no_stock', 'yes' ) ) {
+
 				do_action( 'woocommerce_no_stock', wc_get_product( $change['product']->get_id() ) );
-			} elseif ( $change['to'] > $out_of_stock_threshold && $change['to'] <= $low_stock_amount ) {
+
+			}
+			elseif ( $change['to'] > $out_of_stock_threshold && $change['to'] <= $low_stock_amount &&
+					'yes' === get_option( 'woocommerce_notify_low_stock', 'yes' ) ) {
+
 				do_action( 'woocommerce_low_stock', wc_get_product( $change['product']->get_id() ) );
+
 			}
 
 			if ( $change['to'] < 0 ) {
@@ -1501,6 +1511,27 @@ class Hooks {
 			}
 
 		}
+
+	}
+
+	/**
+	 * Check if its necesary change the variable min quantity value
+	 *
+	 * @since 1.9.2
+	 *        
+	 * @param array $variation_atts
+	 *
+	 * @return array
+	 */
+	public function maybe_change_variable_min_qty( $variation_atts ) {
+
+		$input_step = Helpers::get_input_step();
+
+		if ( $input_step ) {
+			$variation_atts['min_qty'] = $input_step;
+		}
+
+		return $variation_atts;
 
 	}
 

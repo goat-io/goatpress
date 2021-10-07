@@ -87,30 +87,15 @@ final class ITSEC_WordPress_Tweaks {
 			add_filter( 'authenticate', array( $this, 'block_multiauth_attempts' ), 0, 3 );
 		}
 
-		//remove wlmanifest link if turned on
-		if ( $this->settings['wlwmanifest_header'] ) {
-			remove_action( 'wp_head', 'wlwmanifest_link' );
-		}
-
-		//remove rsd link from header if turned on
-		if ( $this->settings['edituri_header'] ) {
-			remove_action( 'wp_head', 'rsd_link' );
-		}
-
 		//Disable XML-RPC
-		if ( 2 == $this->settings['disable_xmlrpc'] ) {
+		if ( 'disable' === $this->settings['disable_xmlrpc'] ) {
 			add_filter( 'xmlrpc_enabled', '__return_null' );
 			add_filter( 'bloginfo_url', array( $this, 'remove_pingback_url' ), 10, 2 );
-		} else if ( 1 == $this->settings['disable_xmlrpc'] ) { // Disable pingbacks
+		} else if ( 'disable_pingbacks' === $this->settings['disable_xmlrpc'] ) {
 			add_filter( 'xmlrpc_methods', array( $this, 'xmlrpc_methods' ) );
 		}
 
 		add_filter( 'rest_dispatch_request', array( $this, 'filter_rest_dispatch_request' ), 10, 4 );
-
-		//Process remove login errors
-		if ( $this->settings['login_errors'] ) {
-			add_filter( 'login_errors', '__return_null' );
-		}
 
 		//Process require unique nicename
 		if ( $this->settings['force_unique_nicename'] ) {
@@ -120,11 +105,6 @@ final class ITSEC_WordPress_Tweaks {
 		//Process remove extra author archives
 		if ( $this->settings['disable_unused_author_pages'] ) {
 			add_action( 'template_redirect', array( $this, 'disable_unused_author_pages' ) );
-		}
-
-		if ( $this->settings['block_tabnapping'] ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'add_block_tabnapping_script' ) );
-			add_action( 'admin_enqueue_scripts', array( $this, 'add_block_tabnapping_script' ) );
 		}
 	}
 
@@ -147,30 +127,15 @@ final class ITSEC_WordPress_Tweaks {
 			remove_filter( 'authenticate', array( $this, 'block_multiauth_attempts' ), 0 );
 		}
 
-		//remove wlmanifest link if turned on
-		if ( $this->settings['wlwmanifest_header'] ) {
-			add_action( 'wp_head', 'wlwmanifest_link' );
-		}
-
-		//remove rsd link from header if turned on
-		if ( $this->settings['edituri_header'] ) {
-			add_action( 'wp_head', 'rsd_link' );
-		}
-
 		//Disable XML-RPC
-		if ( 2 == $this->settings['disable_xmlrpc'] ) {
+		if ( 'disable' === $this->settings['disable_xmlrpc'] ) {
 			remove_filter( 'xmlrpc_enabled', '__return_null' );
 			remove_filter( 'bloginfo_url', array( $this, 'remove_pingback_url' ), 10 );
-		} else if ( 1 == $this->settings['disable_xmlrpc'] ) { // Disable pingbacks
+		} else if ( 'disable_pinbacks' === $this->settings['disable_xmlrpc'] ) { // Disable pingbacks
 			remove_filter( 'xmlrpc_methods', array( $this, 'xmlrpc_methods' ) );
 		}
 
 		remove_filter( 'rest_dispatch_request', array( $this, 'filter_rest_dispatch_request' ), 10 );
-
-		//Process remove login errors
-		if ( $this->settings['login_errors'] ) {
-			remove_filter( 'login_errors', '__return_null' );
-		}
 
 		//Process require unique nicename
 		if ( $this->settings['force_unique_nicename'] ) {
@@ -182,12 +147,7 @@ final class ITSEC_WordPress_Tweaks {
 			remove_action( 'template_redirect', array( $this, 'disable_unused_author_pages' ) );
 		}
 
-		if ( $this->settings['block_tabnapping'] ) {
-			remove_action( 'wp_enqueue_scripts', array( $this, 'add_block_tabnapping_script' ) );
-			remove_action( 'admin_enqueue_scripts', array( $this, 'add_block_tabnapping_script' ) );
-		}
-
-		remove_filter( 'rest_request_after_callbacks', array( $this, 'filter_taxonomies_response' ), 10, 3 );
+		remove_filter( 'rest_request_after_callbacks', array( $this, 'filter_taxonomies_response' ) );
 	}
 
 	/**
@@ -445,11 +405,6 @@ final class ITSEC_WordPress_Tweaks {
 		return $response;
 	}
 
-	public function add_block_tabnapping_script() {
-		wp_enqueue_script( 'blankshield', plugins_url( 'js/blankshield/blankshield.min.js', __FILE__ ), array(), ITSEC_Core::get_plugin_build(), true );
-		wp_enqueue_script( 'itsec-wt-block-tabnapping', plugins_url( 'js/block-tabnapping.min.js', __FILE__ ), array( 'blankshield' ), ITSEC_Core::get_plugin_build(), true );
-	}
-
 	/**
 	 * Prevent an attacker from trying multiple login credentials in a single XML-RPC request.
 	 *
@@ -475,7 +430,7 @@ final class ITSEC_WordPress_Tweaks {
 
 		status_header( 405 );
 		header( 'Content-Type: text/plain' );
-		die( __( 'XML-RPC services are disabled on this site.' ) );
+		die( __( 'XML-RPC services are disabled on this site.', 'better-wp-security' ) );
 	}
 
 	/**

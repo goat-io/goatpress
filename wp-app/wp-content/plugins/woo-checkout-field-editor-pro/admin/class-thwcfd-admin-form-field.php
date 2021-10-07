@@ -61,7 +61,7 @@ class THWCFD_Admin_Form_Field extends THWCFD_Admin_Form{
 		$display_style = array(
 			'full' => 'Full width',
 			'half_left' => 'Half width left',
-			'ha;lf_right' => 'Half width right',
+			'half_right' => 'Half width right',
 		);
 				
 		return array(
@@ -74,7 +74,7 @@ class THWCFD_Admin_Form_Field extends THWCFD_Admin_Form{
 			//'options'     => array('type'=>'text', 'name'=>'options', 'label'=>'Options', 'placeholder'=>'Seperate options with pipe(|)'),
 			'class'       => array('type'=>'text', 'name'=>'class', 'label'=>'Class', 'placeholder'=>'Separate classes with comma'),
 			'validate'    => array('type'=>'multiselect', 'name'=>'validate', 'label'=>'Validation', 'placeholder'=>'Select validations', 'options'=>$validations, 'multiple'=>1),
-			'disp_style' => array('type'=>'select', 'name'=>'disp_style', 'label'=>'Field Display', 'options'=>$display_style),
+			// 'disp_style' => array('type'=>'select', 'name'=>'disp_style', 'label'=>'Field Display', 'options'=>$display_style),
 						
 			'required' => array('type'=>'checkbox', 'name'=>'required', 'label'=>'Required', 'value'=>'1', 'checked'=>1),
 			//'clear'    => array('type'=>'checkbox', 'name'=>'clear', 'label'=>'Clear Row', 'value'=>'1', 'checked'=>1),
@@ -150,6 +150,7 @@ class THWCFD_Admin_Form_Field extends THWCFD_Admin_Form{
 									<!-- <div class="data-panel data_panel_1">
 										<?php //$this->render_form_tab_display_details(); ?>
 									</div> -->
+									<?php wp_nonce_field( 'thwcfd_field_form', 'thwcfd_security_manage_field' ); ?>
 								</form>
 							</main>
 							<footer>

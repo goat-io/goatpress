@@ -2,7 +2,9 @@
 /*
  * No direct access to this file
  */
-if (! isset($data)) {
+use WpAssetCleanUp\Misc;
+
+if (! isset($data, $selectedTabArea)) {
 	exit;
 }
 
@@ -27,7 +29,7 @@ $styleTabContent = ($selectedTabArea === $tabIdArea) ? 'style="display: table-ce
     <hr />
     <div style="margin: 20px 0 10px;"><strong style="font-size: 15px; line-height: 17px;"><?php _e('Can this plugin make the pages load slower?', 'wp-asset-clean-up'); ?></strong></div>
     <p><?php echo WPACU_PLUGIN_TITLE; ?> doesn't add any extra files to load in the front-end view that will increase the number of HTTP requests in any way as it will defy its purpose. It's main task is to prevent other files from loading and cleaning up the HTML code. Moreover, by enabling concatenation (if your website is not using the HTTP/2 protocol), you will reduce the number of HTTP requests further. If you're using another plugin that also has an option for minification/concatenation and you have enabled the feature on both plugins (never do it), or haven't configured something the right way, you could end up with extra CSS/JS loaded that will eventually lead to a poorer page speed score and a slower website.</p>
-    <p><?php echo WPACU_PLUGIN_TITLE; ?> will never alter (in any way) or delete CSS &amp; JS files from their original source (e.g. plugins, themes). Files created through minification/concatenation are cached and stored in <code><em><?php echo '/'.str_replace(ABSPATH, '', WP_CONTENT_DIR) . \WpAssetCleanUp\OptimiseAssets\OptimizeCommon::getRelPathPluginCacheDir(); ?></em></code> directory.</p>
+    <p><?php echo WPACU_PLUGIN_TITLE; ?> will never alter (in any way) or delete CSS &amp; JS files from their original source (e.g. plugins, themes). Files created through minification/concatenation are cached and stored in <code><em><?php echo '/'.str_replace(Misc::getWpRootDirPath(), '', WP_CONTENT_DIR) . \WpAssetCleanUp\OptimiseAssets\OptimizeCommon::getRelPathPluginCacheDir(); ?></em></code> directory.</p>
     <hr />
 
     <label class="wpacu_switch">

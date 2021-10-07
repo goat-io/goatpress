@@ -67,7 +67,7 @@ if ( empty( $header_placement ) ) {
 	$header_placement = 'outside';
 }
 $header_image_link = Kadence_Woomail_Customizer::opt( 'header_image_link' );
-$img = get_option( 'woocommerce_email_header_image' )
+$img = get_option( 'woocommerce_email_header_image' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

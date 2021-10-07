@@ -291,8 +291,8 @@ img {
 	padding-bottom:5px;
 }
 .ft-social-link img {
-	max-width:24px;
-	width:100%;
+	width:24px;
+	max-width:100%;
 	display:inline-block;
 }
 .ft-social-title {
@@ -301,6 +301,6 @@ img {
 	padding-left: 5px;
 }
 #template_header_image img {
-	width:100%;
+	max-width:100%;
 }
 <?php

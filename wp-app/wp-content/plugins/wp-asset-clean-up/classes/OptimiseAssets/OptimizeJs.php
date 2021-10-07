@@ -50,7 +50,10 @@ class OptimizeJs
 		// Collect all enqueued clean (no query strings) HREFs to later compare them against any hardcoded JS
 		$allEnqueuedCleanScriptSrcs = array();
 
+		// [Start] Collect for caching
 		if ( ! empty($wpScriptsList) ) {
+			$isMinifyJsFilesEnabled = MinifyJs::isMinifyJsEnabled() && in_array(Main::instance()->settings['minify_loaded_js_for'], array('src', 'all', ''));
+
 			foreach ( $wpScriptsList as $index => $scriptHandle ) {
 				if ( isset( Main::instance()->wpAllScripts['registered'][ $scriptHandle ]->src ) && ( $src = Main::instance()->wpAllScripts['registered'][ $scriptHandle ]->src ) ) {
 					$localAssetPath = OptimizeCommon::getLocalAssetPath( $src, 'js' );
@@ -74,29 +77,17 @@ class OptimizeJs
 					if ( isset( $cleanScriptSrcFromTagArray['source'] ) && $cleanScriptSrcFromTagArray['source'] ) {
 						$allEnqueuedCleanScriptSrcs[] = $cleanScriptSrcFromTagArray['source'];
 					}
-				}
-			}
-		}
 
-		// [Start] Collect for caching
-		if ( ! empty($wpScriptsList) ) {
-			foreach ( $wpScriptsList as $handle ) {
-				if ( ! isset( $wp_scripts->registered[ $handle ]->src ) ) {
-					continue;
-				}
+					$optimizeValues = self::maybeOptimizeIt(
+						Main::instance()->wpAllScripts['registered'][ $scriptHandle ],
+						array( 'local_asset_path' => $localAssetPath, 'is_minify_js_enabled' => $isMinifyJsFilesEnabled )
+					);
 
-				$value = $wp_scripts->registered[ $handle ];
+					ObjectCache::wpacu_cache_set( 'wpacu_maybe_optimize_it_js_' . $scriptHandle, $optimizeValues );
 
-				$localAssetPath = OptimizeCommon::getLocalAssetPath( $value->src, 'js' );
-				if ( ! $localAssetPath || ! is_file( $localAssetPath ) ) {
-					continue; // not a local file
-				}
-
-				$optimizeValues = self::maybeOptimizeIt( $value );
-				ObjectCache::wpacu_cache_set( 'wpacu_maybe_optimize_it_js_' . $handle, $optimizeValues );
-
-				if ( ! empty( $optimizeValues ) ) {
-					$jsOptimizeList[] = $optimizeValues;
+					if ( ! empty( $optimizeValues ) ) {
+						$jsOptimizeList[] = $optimizeValues;
+					}
 				}
 			}
 		}
@@ -108,10 +99,11 @@ class OptimizeJs
 
 	/**
 	 * @param $value
+	 * @param array $fileAlreadyChecked
 	 *
 	 * @return array
 	 */
-	public static function maybeOptimizeIt($value)
+	public static function maybeOptimizeIt($value, $fileAlreadyChecked = array())
 	{
 		if ($optimizeValues = ObjectCache::wpacu_cache_get('wpacu_maybe_optimize_it_js_'.$value->handle)) {
 			return $optimizeValues;
@@ -127,7 +119,9 @@ class OptimizeJs
 
 		$doFileMinify = true;
 
-		$isMinifyJsFilesEnabled = MinifyJs::isMinifyJsEnabled() && in_array(Main::instance()->settings['minify_loaded_js_for'], array('src', 'all', ''));
+		$isMinifyJsFilesEnabled = (isset($fileAlreadyChecked['is_minify_js_enabled']) && $fileAlreadyChecked['is_minify_js_enabled'])
+					? $fileAlreadyChecked['is_minify_js_enabled']
+					: MinifyJs::isMinifyJsEnabled() && in_array(Main::instance()->settings['minify_loaded_js_for'], array('src', 'all', ''));
 
 		if (! $isMinifyJsFilesEnabled) {
 			$doFileMinify = false;
@@ -140,8 +134,16 @@ class OptimizeJs
 
 		$isJsFile = false;
 
-		$localAssetPath = OptimizeCommon::getLocalAssetPath($src, 'js');
-		if ($localAssetPath && is_file($localAssetPath)) {
+		// Already checked? Do not reuse OptimizeCommon::getLocalAssetPath() and is_file()
+		if (isset($fileAlreadyChecked['local_asset_path']) && $fileAlreadyChecked['local_asset_path']) {
+			$localAssetPath = $fileAlreadyChecked['local_asset_path'];
+			$checkCond = $localAssetPath;
+		} else {
+			$localAssetPath = OptimizeCommon::getLocalAssetPath( $src, 'js' );
+			$checkCond = $localAssetPath && is_file($localAssetPath);
+		}
+
+		if ($checkCond) {
 			if ($fileMTime = @filemtime($localAssetPath)) {
 				$dbVer = $fileMTime;
 			}
@@ -177,7 +179,7 @@ class OptimizeJs
 					// New File Version? Delete transient as it will be re-added to the database with the new version
 					OptimizeCommon::deleteTransient($transientName);
 				} else {
-					$localPathToJsOptimized = str_replace( '//', '/', ABSPATH . $savedValuesArray['optimize_uri'] );
+					$localPathToJsOptimized = str_replace( '//', '/', Misc::getWpRootDirPath() . $savedValuesArray['optimize_uri'] );
 
 					// Do not load any minified JS file (from the database transient cache) if it doesn't exist
 					// It will fallback to the original JS file
@@ -233,7 +235,7 @@ class OptimizeJs
 			 * This is a local .JS file
 			 */
 			$pathToAssetDir = OptimizeCommon::getPathToAssetDir($value->src);
-			$sourceBeforeOptimization = str_replace(ABSPATH, '/', $localAssetPath);
+			$sourceBeforeOptimization = str_replace(Misc::getWpRootDirPath(), '/', $localAssetPath);
 
 			$jsContent = $jsContentBefore = FileSystem::file_get_contents($localAssetPath);
 		}
@@ -527,7 +529,7 @@ class OptimizeJs
 
 				// If the minified files are deleted (e.g. /wp-content/cache/ is cleared)
 				// do not replace the JS file path to avoid breaking the website
-				$localPathOptimizedFile = rtrim(ABSPATH, '/') . $listValues[1];
+				$localPathOptimizedFile = rtrim(Misc::getWpRootDirPath(), '/') . $listValues[1];
 
 				if (! is_file($localPathOptimizedFile)) {
 					continue;
@@ -581,9 +583,7 @@ class OptimizeJs
 			}
 		}
 
-		$htmlSource = strtr($htmlSource, $scriptTagsToUpdate);
-
-		return $htmlSource;
+		return strtr($htmlSource, $scriptTagsToUpdate);
 	}
 
 	/**
@@ -635,7 +635,7 @@ class OptimizeJs
 	public static function alterHtmlSource($htmlSource)
 	{
 		// There has to be at least one "<script", otherwise, it could be a feed request or something similar (not page, post, homepage etc.)
-		if (stripos($htmlSource, '<script') === false || array_key_exists('wpacu_no_optimize_js', $_GET)) {
+		if ( stripos($htmlSource, '<script') === false || isset($_GET['wpacu_no_optimize_js']) ) {
 			return $htmlSource;
 		}
 

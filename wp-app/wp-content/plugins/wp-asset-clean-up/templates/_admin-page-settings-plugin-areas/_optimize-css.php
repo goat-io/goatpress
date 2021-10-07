@@ -167,7 +167,7 @@ $availableForPro = '<a class="go-pro-link-no-style" target="_blank" href="' . WP
                            name="<?php echo WPACU_PLUGIN_ID . '_settings'; ?>[combine_loaded_css]"
                            value="1" /> <span class="wpacu_slider wpacu_round"></span> </label>
 
-                &nbsp;<small>* if <code style="font-size: inherit;"><?php echo '/'.str_replace(ABSPATH, '', WP_CONTENT_DIR) . \WpAssetCleanUp\OptimiseAssets\OptimizeCommon::getRelPathPluginCacheDir(); ?></code> directory is not writable for some reason, this feature will not work; requires the DOMDocument XML DOM Parser to be enabled in PHP (which it is by default) for maximum performance</small>
+                &nbsp;<small>* if <code style="font-size: inherit;"><?php echo '/'.str_replace(Misc::getWpRootDirPath(), '', WP_CONTENT_DIR) . \WpAssetCleanUp\OptimiseAssets\OptimizeCommon::getRelPathPluginCacheDir(); ?></code> directory is not writable for some reason, this feature will not work; requires the DOMDocument XML DOM Parser to be enabled in PHP (which it is by default) for maximum performance</small>
                 &nbsp;
 			    <?php
 			    if (! empty($data['is_optimize_css_enabled_by_other_party'])) {

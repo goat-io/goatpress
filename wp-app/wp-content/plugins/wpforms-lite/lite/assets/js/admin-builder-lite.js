@@ -63,8 +63,6 @@ var WPFormsBuilderLite = window.WPFormsBuilderLite || ( function( document, wind
 			$.alert( {
 				title: wpforms_builder.heads_up,
 				content: wpforms_builder_lite.disable_notifications,
-				backgroundDismiss: false,
-				closeIcon: false,
 				icon: 'fa fa-exclamation-circle',
 				type: 'orange',
 				buttons: {

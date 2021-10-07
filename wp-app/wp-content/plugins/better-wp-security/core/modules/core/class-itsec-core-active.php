@@ -2,11 +2,16 @@
 
 class ITSEC_Core_Active {
 
+	/** @var string[] */
+	private $handles = [];
+
 	public function run() {
 		add_action( 'rest_api_init', array( $this, 'rest_api_init' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts' ), 0 );
 		add_action( 'login_enqueue_scripts', array( $this, 'register_scripts' ), 0 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'register_scripts' ), 0 );
+		add_action( 'wp_footer', array( $this, 'add_live_reload' ), 1000 );
+		add_action( 'admin_footer', array( $this, 'add_live_reload' ), 1000 );
 	}
 
 	public function rest_api_init() {
@@ -27,9 +32,16 @@ class ITSEC_Core_Active {
 
 		foreach ( $manifest as $name => $config ) {
 			foreach ( $config['files'] as $file ) {
-				$handle = $this->name_to_handle( $name );
+				$handle          = $this->name_to_handle( $name );
+				$this->handles[] = $handle;
 
-				if ( $script_debug && file_exists( $dir . $file ) ) {
+				if ( ! ITSEC_Core::is_pro() ) {
+					// WordPress.org installs always use non-minified file names.
+					// This is to allow for WP-CLI to scan the files since, by default
+					// minified JS files are excluded.
+					$path     = 'dist/' . $file;
+					$is_debug = false;
+				} elseif ( $script_debug && file_exists( $dir . $file ) ) {
 					$path     = 'dist/' . $file;
 					$is_debug = true;
 				} else {
@@ -52,6 +64,10 @@ class ITSEC_Core_Active {
 
 				$deps = $is_js ? $config['dependencies'] : array();
 
+				if ( $is_js && 'runtime' !== $name ) {
+					$deps[] = $this->name_to_handle( 'runtime' );
+				}
+
 				if ( $is_css && in_array( 'wp-components', $config['dependencies'], true ) ) {
 					$deps[] = 'wp-components';
 				}
@@ -66,17 +82,15 @@ class ITSEC_Core_Active {
 					$deps[ $i ] = $this->name_to_handle( "{$parts[1]}/{$parts[2]}" );
 				}
 
-				if ( ! $is_debug ) {
-					foreach ( array_reverse( $config['vendors'] ) as $vendor ) {
-						if ( ! isset( $manifest[ $vendor ] ) ) {
-							continue;
-						}
+				foreach ( array_reverse( $config['vendors'] ) as $vendor ) {
+					if ( ! isset( $manifest[ $vendor ] ) || $name === $vendor ) {
+						continue;
+					}
 
-						if ( $is_js && $this->has_js( $manifest[ $vendor ]['files'] ) ) {
-							$deps[] = $this->name_to_handle( $vendor );
-						} elseif ( $is_css && $this->has_css( $manifest[ $vendor ]['files'] ) ) {
-							$deps[] = $this->name_to_handle( $vendor );
-						}
+					if ( $is_js && $this->has_js( $manifest[ $vendor ]['files'] ) ) {
+						$deps[] = $this->name_to_handle( $vendor );
+					} elseif ( $is_css && $this->has_css( $manifest[ $vendor ]['files'] ) ) {
+						$deps[] = $this->name_to_handle( $vendor );
 					}
 				}
 
@@ -96,7 +110,7 @@ class ITSEC_Core_Active {
 					);
 				}
 
-				if ( function_exists( 'wp_set_script_translations' ) && ! ITSEC_Core::is_pro() && in_array( 'wp-i18n', $deps, true ) ) {
+				if ( in_array( 'wp-i18n', $deps, true ) ) {
 					wp_set_script_translations( $handle, 'better-wp-security' );
 				}
 
@@ -104,6 +118,26 @@ class ITSEC_Core_Active {
 					$public_path = esc_js( trailingslashit( plugins_url( 'dist', ITSEC_Core::get_plugin_file() ) ) );
 					wp_add_inline_script( $handle, "window.itsecWebpackPublicPath = window.itsecWebpackPublicPath || '{$public_path}';", 'before' );
 				}
+			}
+		}
+	}
+
+	public function add_live_reload() {
+		if ( ! ITSEC_Core::is_development() ) {
+			return;
+		}
+
+		foreach ( $this->handles as $handle ) {
+			if ( wp_script_is( $handle ) ) {
+				$url = 'http://localhost:35729/livereload.js';
+
+				if ( is_ssl() ) {
+					$url = set_url_scheme( $url, 'https' );
+				}
+
+				echo '<script src="' . esc_url( $url ) . '" async></script>';
+
+				return;
 			}
 		}
 	}

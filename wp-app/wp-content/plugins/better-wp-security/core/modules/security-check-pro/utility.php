@@ -12,6 +12,8 @@ final class ITSEC_Security_Check_Pro_Utility {
 	 * @return array|WP_Error
 	 */
 	public static function run_scan( $feedback ) {
+		_deprecated_function( __METHOD__, '7.0.0' );
+
 		$response = self::get_server_response();
 
 		if ( ! is_array( $response ) ) {
@@ -68,20 +70,9 @@ final class ITSEC_Security_Check_Pro_Utility {
 	}
 
 	public static function handle_enable_ssl( $data ) {
-		$settings = ITSEC_Modules::get_settings( 'ssl' );
+		_deprecated_function( __METHOD__, '7.0.0' );
 
-		$settings['require_ssl'] = 'enabled';
-
-		$results = ITSEC_Modules::set_settings( 'ssl', $settings );
-
-		if ( is_wp_error( $results ) ) {
-			ITSEC_Response::add_error( $results );
-		} elseif ( $results['saved'] ) {
-			ITSEC_Modules::activate( 'ssl' );
-			ITSEC_Response::add_js_function_call( 'setModuleToActive', 'ssl' );
-			ITSEC_Response::set_response( '<p>' . __( 'Your site now redirects http page requests to https.', 'better-wp-security' ) . '</p>' );
-			ITSEC_Response::reload_module( 'ssl' );
-		}
+		ITSEC_Modules::activate( 'ssl' );
 	}
 
 	public static function handle_scan_request() {
@@ -281,9 +272,7 @@ final class ITSEC_Security_Check_Pro_Utility {
 		$time = time();
 		$hash = hash_hmac( 'md5', $time, $salt );
 
-		$key = "$time:$hash";
-
-		return $key;
+		return "$time:$hash";
 	}
 
 	/**

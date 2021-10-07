@@ -1,17 +1,17 @@
 # Copyright (C) 2021 Ewout Fernhout
-# This file is distributed under the same license as the WooCommerce PDF Invoices & Packing Slips plugin.
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce PDF Invoices & Packing Slips 2.8.3\n"
+"Project-Id-Version: WooCommerce PDF Invoices & Packing Slips 2.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-pdf-invoices-packing-slips\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-25T12:50:50+00:00\n"
+"POT-Creation-Date: 2021-07-26T15:06:25+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: woocommerce-pdf-invoices-packing-slips\n"
 
 #. Plugin Name of the plugin
@@ -108,12 +108,12 @@ msgid "Send email"
 msgstr ""
 
 #: includes/class-wcpdf-admin.php:378
-#: templates/Simple/invoice.php:59
+#: includes/documents/class-wcpdf-invoice.php:460
 msgid "Invoice Number:"
 msgstr ""
 
 #: includes/class-wcpdf-admin.php:381
-#: templates/Simple/invoice.php:65
+#: includes/documents/class-wcpdf-invoice.php:468
 msgid "Invoice Date:"
 msgstr ""
 
@@ -138,60 +138,66 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+#. translators: name/description of the context for document creation logs
+#: includes/class-wcpdf-admin.php:598
+#: includes/class-wcpdf-admin.php:832
+msgid "order details (number and/or date set manually)"
+msgstr ""
+
 #. translators: %s: email title
-#: includes/class-wcpdf-admin.php:641
+#: includes/class-wcpdf-admin.php:647
 msgid "%s email notification manually sent."
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:728
+#: includes/class-wcpdf-admin.php:734
 msgid "Nonce expired!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:734
+#: includes/class-wcpdf-admin.php:740
 msgid "Bad action!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:740
+#: includes/class-wcpdf-admin.php:746
 msgid "Incomplete request!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:746
+#: includes/class-wcpdf-admin.php:752
 msgid "No permissions!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:770
+#: includes/class-wcpdf-admin.php:776
 msgid "Document data saved!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:771
-msgid "An error ocurred while saving the document data!"
+#: includes/class-wcpdf-admin.php:777
+msgid "An error occurred while saving the document data!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:774
+#: includes/class-wcpdf-admin.php:780
 msgid "Document regenerated!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:775
-msgid "An error ocurred while regenerating the document!"
+#: includes/class-wcpdf-admin.php:781
+msgid "An error occurred while regenerating the document!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:778
+#: includes/class-wcpdf-admin.php:784
 msgid "Document deleted!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:779
-msgid "An error ocurred while deleting the document!"
+#: includes/class-wcpdf-admin.php:785
+msgid "An error occurred while deleting the document!"
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:829
+#: includes/class-wcpdf-admin.php:841
 msgid "Document does not exist."
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:838
+#: includes/class-wcpdf-admin.php:850
 msgid "Document is empty."
 msgstr ""
 
-#: includes/class-wcpdf-admin.php:869
+#: includes/class-wcpdf-admin.php:881
 msgid "DEBUG output enabled"
 msgstr ""
 
@@ -203,7 +209,7 @@ msgstr ""
 msgid "Are you sure you want to regenerate this document? This will make the document reflect the most current settings (such as footer text, document name, etc.) rather than using historical settings."
 msgstr ""
 
-#: includes/class-wcpdf-frontend.php:110
+#: includes/class-wcpdf-frontend.php:126
 msgid "Download invoice (PDF)"
 msgstr ""
 
@@ -240,29 +246,33 @@ msgstr ""
 msgid "Invoice Date"
 msgstr ""
 
-#: includes/class-wcpdf-main.php:936
+#. translators: name/description of the context for document creation logs
+#: includes/class-wcpdf-main.php:937
 msgid "bulk order action"
 msgstr ""
 
-#: includes/class-wcpdf-main.php:943
+#. translators: name/description of the context for document creation logs
+#: includes/class-wcpdf-main.php:945
 msgid "single order action"
 msgstr ""
 
-#: includes/class-wcpdf-main.php:950
+#. translators: name/description of the context for document creation logs
+#: includes/class-wcpdf-main.php:953
 msgid "my account"
 msgstr ""
 
-#: includes/class-wcpdf-main.php:957
+#. translators: name/description of the context for document creation logs
+#: includes/class-wcpdf-main.php:961
 msgid "email attachment"
 msgstr ""
 
 #. translators: 1. document title, 2. creation source
-#: includes/class-wcpdf-main.php:966
+#: includes/class-wcpdf-main.php:970
 msgid "PDF %1$s created via %2$s."
 msgstr ""
 
 #. translators: document title
-#: includes/class-wcpdf-main.php:1002
+#: includes/class-wcpdf-main.php:1006
 msgid "Order %s Saved"
 msgstr ""
 
@@ -698,11 +708,21 @@ msgstr ""
 msgid "%s was regenerated"
 msgstr ""
 
-#: includes/documents/abstract-wcpdf-order-document.php:879
+#. translators: %s: document name
+#: includes/documents/abstract-wcpdf-order-document.php:422
+msgid "%s Number:"
+msgstr ""
+
+#. translators: %s: document name
+#: includes/documents/abstract-wcpdf-order-document.php:428
+msgid "%s Date:"
+msgstr ""
+
+#: includes/documents/abstract-wcpdf-order-document.php:891
 msgid "Admin email"
 msgstr ""
 
-#: includes/documents/abstract-wcpdf-order-document.php:882
+#: includes/documents/abstract-wcpdf-order-document.php:894
 msgid "Manual email"
 msgstr ""
 
@@ -917,6 +937,14 @@ msgstr ""
 
 #: includes/documents/class-wcpdf-packing-slip.php:107
 msgid "Only when different from shipping address"
+msgstr ""
+
+#: includes/documents/class-wcpdf-packing-slip.php:162
+msgid "Packing Slip Number:"
+msgstr ""
+
+#: includes/documents/class-wcpdf-packing-slip.php:170
+msgid "Packing Slip Date:"
 msgstr ""
 
 #: includes/legacy/class-wcpdf-legacy-document.php:32

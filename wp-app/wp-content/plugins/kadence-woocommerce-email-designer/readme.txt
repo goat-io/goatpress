@@ -4,8 +4,8 @@ Tags: woocommerce, mail, email, email template, email templates, email design, p
 Donate link: https://www.kadencewp.com/about-us/
 Requires PHP: 5.2.4
 Requires at least: 5.0
-Tested up to: 5.6.0
-Stable tag: 1.4.7
+Tested up to: 5.8.0
+Stable tag: 1.4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -80,6 +80,11 @@ After you create your translations make sure to clear your server cache from any
 
 
 == Changelog ==
+
+= 1.4.8 =
+* Update: Better image support for outlook email client.
+* Update: Make the email selection translatable.
+* Fix: issue with heading text resetting when you type in certain areas.
 
 = 1.4.7 =
 * Fix: Possible issue with billing address format.

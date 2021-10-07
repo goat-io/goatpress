@@ -33,14 +33,25 @@ export function* query( queryId, queryParams = {} ) {
 		return error;
 	}
 
-	yield receiveQuery( queryId, queryParams.context || 'view', response, items, 'replace' );
+	yield receiveQuery(
+		queryId,
+		queryParams.context || 'view',
+		response,
+		items,
+		'replace'
+	);
 	yield { type: FINISH_QUERY, queryId, queryParams, response };
 
 	return response;
 }
 
 export function* fetchQueryNextPage( queryId, mode = 'append' ) {
-	const link = yield select( 'ithemes-security/bans', 'getQueryHeaderLink', queryId, 'next' );
+	const link = yield select(
+		'ithemes-security/bans',
+		'getQueryHeaderLink',
+		queryId,
+		'next'
+	);
 
 	if ( ! link ) {
 		return [];

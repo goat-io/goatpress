@@ -32,7 +32,7 @@ abstract class THWCFD_Admin_Settings{
 	}
 	
 	public function get_current_section(){
-		return isset( $_GET['section'] ) ? esc_attr( $_GET['section'] ) : $this->section_id;
+		return isset( $_GET['section'] ) ? sanitize_key( $_GET['section'] ) : $this->section_id;
 	}
 	
 	public function render_tabs(){
@@ -46,8 +46,8 @@ abstract class THWCFD_Admin_Settings{
 		echo '<h2 class="thpladmin-tabs nav-tab-wrapper woo-nav-tab-wrapper">';
 		foreach( $tabs as $id => $label ){
 			$active = ( $current_tab == $id ) ? 'nav-tab-active' : '';
-			$label  = __($label, 'woo-checkout-field-editor-pro');
-			echo '<a class="nav-tab '.$active.'" href="'. $this->get_admin_url($id) .'">'.$label.'</a>';
+			$label  = esc_html__($label, 'woo-checkout-field-editor-pro');
+			echo '<a class="nav-tab '.$active.'" href="'. esc_url($this->get_admin_url($id)) .'">'.$label.'</a>';
 		}
 		echo '</h2>';		
 	}
@@ -102,7 +102,7 @@ abstract class THWCFD_Admin_Settings{
 			// $tooltip_html = '<a href="javascript:void(0)" title="'. $tooltip .'" class="thpladmin_tooltip"><img src="'. $icon .'" alt="" title=""/></a>';
 		}
 		?>
-        <td style="width: 26px; padding:0px;"><?php echo $tooltip_html; ?></td>
+        <td style="width: 26px; padding:0px;"><?php esc_html_e($tooltip_html, 'woo-checkout-field-editor-pro'); ?></td>
         <?php
 	}
 	

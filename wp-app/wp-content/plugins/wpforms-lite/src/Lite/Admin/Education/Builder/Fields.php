@@ -79,6 +79,8 @@ class Fields extends Education\Builder\Fields {
 	 */
 	public function fields_attributes( $atts, $field ) {
 
+		$atts['data']['utm-content'] = ! empty( $field['name_en'] ) ? $field['name_en'] : '';
+
 		if ( empty( $field['addon'] ) ) {
 			return $atts;
 		}

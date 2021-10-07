@@ -93,7 +93,7 @@ class Sorting
 	            str_replace(
 	                '//',
 		            '/',
-		            str_replace(ABSPATH, '', $themeDirArray['theme_root']) . '/'. $themeDir . '/'
+		            str_replace(Misc::getWpRootDirPath(), '', $themeDirArray['theme_root']) . '/'. $themeDir . '/'
 	            );
 
 			$urlsToThemeDirs[] = $themeUrl;

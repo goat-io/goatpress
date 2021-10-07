@@ -34,21 +34,42 @@ class Update
 	/**
 	 * @var array
 	 */
-	public $updateDoneMsg = array();
+	public $afterSubmitMsg = array();
 
 	/**
 	 * Update constructor.
 	 */
 	public function __construct()
 	{
-	    $homePageSettingsUpdatedText = __('The homepage\'s settings were updated. Please make sure the homepage\'s cache is cleared (if you\'re using a caching plugin or a server-side caching solution) to immediately have the changes applied for every visitor.', 'wp-asset-clean-up');
-		$this->updateDoneMsg['homepage'] = <<<HTML
+	    $homePageSettingsUpdatedText      = __('The homepage\'s settings were updated. Please make sure the homepage\'s cache is cleared (if you\'re using a caching plugin or a server-side caching solution) to immediately have the changes applied for every visitor.', 'wp-asset-clean-up');
+		$this->afterSubmitMsg['homepage'] = <<<HTML
 <span class="dashicons dashicons-yes"></span> {$homePageSettingsUpdatedText}
 HTML;
 
-		$pageSettingsUpdatedText = __('This page\'s settings were updated. Please make sure the page\'s cache is cleared (if you\'re using a caching plugin or a server-side caching solution) to immediately have the changes applied for every visitor.', 'wp-asset-clean-up');
-		$this->updateDoneMsg['page'] = <<<HTML
+		$pageSettingsUpdatedText      = __('This page\'s settings were updated. Please make sure the page\'s cache is cleared (if you\'re using a caching plugin or a server-side caching solution) to immediately have the changes applied for every visitor.', 'wp-asset-clean-up');
+		$this->afterSubmitMsg['page'] = <<<HTML
 <span class="dashicons dashicons-yes"></span> {$pageSettingsUpdatedText}
+HTML;
+
+		$invalidNonceText = sprintf(
+            __('The changes were not saved because the security nonce has expired (it took over 24 hours since you loaded this page) or it was not sent for verification in the first place because the form was partially submitted due to the input fields being stripped.', 'wp-asset-clean-up'),
+            ini_get('max_input_vars')
+        );
+
+		$maxInputVarsValue = (int)@ini_get('max_input_vars');
+
+		if ($maxInputVarsValue === 1000) {
+			$invalidNonceText .= ' '. sprintf(__('The value of <strong>max_input_vars</strong> is <strong>1000</strong> which is the default one in many hosting accounts. Increase it to a higher number, ideally over %d.'), 4000);
+        } elseif ($maxInputVarsValue < 1000) {
+			$invalidNonceText .= ' '. sprintf(__('The value of <strong>max_input_vars</strong> is <strong>%d</strong>. That\'s below <strong>1000</strong> (the default one in many hosting accounts). Increase it to a higher number, ideally over %d.'), $maxInputVarsValue, 4000);
+		} else {
+			$invalidNonceText .= ' '. sprintf(__('The value of <strong>max_input_vars</strong> is <strong>%d</strong>. You might need to increase it to a higher number.'), $maxInputVarsValue);
+        }
+
+		$invalidNonceText .= ' <a target="_blank" href="https://www.assetcleanup.com/docs/?p=1346">'.__('How to fix it?', 'wp-asset-clean-up').'</a>';
+
+		$this->afterSubmitMsg['invalid_nonce_error'] = <<<HTML
+<span style="color: #cc0000;" class="dashicons dashicons-dismiss"></span> {$invalidNonceText}
 HTML;
 	}
 
@@ -72,6 +93,10 @@ HTML;
 
 	    // After an update, preload the page for the guest view (the preload for the admin is done within script.min.js own plugin file)
 	    add_action('wp_ajax_' . WPACU_PLUGIN_ID . '_preload', array($this, 'ajaxPreloadGuest'), PHP_INT_MAX);
+
+	    // e.g. when "+" or "-" is used within an asset's row (CSS/JS manager), the state is updated in the background to be remembered
+	    add_action( 'wp_ajax_' . WPACU_PLUGIN_ID . '_update_asset_row_state', array($this, 'ajaxUpdateAssetRowState') );
+	    add_action( 'wp_ajax_nopriv_' . WPACU_PLUGIN_ID . '_update_asset_row_state', array($this, 'ajaxUpdateAssetRowState') );
     }
 
 	/**
@@ -111,7 +136,7 @@ HTML;
 
         $updateAction = Misc::getVar('post', 'wpacu_update_asset_frontend');
 
-        if (! isset($_POST[$nonceName]) || $updateAction != 1 || ! Main::instance()->frontendShow()) {
+        if ($updateAction != 1 || ! Main::instance()->frontendShow()) {
             return;
         }
 
@@ -120,15 +145,10 @@ HTML;
             return;
         }
 
-        if (! wp_verify_nonce($_POST[$nonceName], $nonceAction)) {
-            $postUrlAnchor = $_SERVER['REQUEST_URI'].'#wpacu_wrap_assets';
+        if ( ! wp_verify_nonce($_POST[$nonceName], $nonceAction) ) {
             wp_die(
-                sprintf(
-                    __('The nonce expired or is not correct, thus the request was not processed. %sPlease retry%s.', 'wp-asset-clean-up'),
-                    '<a href="'.$postUrlAnchor.'">',
-                    '</a>'
-                ),
-                __('Nonce Expired', 'wp-asset-clean-up')
+	            $this->afterSubmitMsg['invalid_nonce_error'],
+                __('Nonce is missing or has expired', 'wp-asset-clean-up')
             );
         }
 
@@ -160,10 +180,7 @@ HTML;
             return;
         }
 
-	    // "Contracted" or "Expanded" when managing the assets (for admin use only)
-	    self::updateHandleRowStatus();
-
-	    // Any preloads
+        // Any preloads
 	    Preloads::updatePreloads();
 
         // Any handle notes?
@@ -260,7 +277,7 @@ HTML;
 	    // Could be just these fields available in the form (e.g. unavailable CSS/JS manager due to the page set to not load the plugin at all)
 	    $this->updatePageOptions($post->ID);
 
-    	// This is triggered only if the "Asset CleanUp" meta box was loaded with the list of assets (either in edit post/page or in "CSS & JS Manager" -> "Manage CSS/JS")
+	    // This is triggered only if the "Asset CleanUp" meta box was loaded with the list of assets (either in edit post/page or in "CSS & JS Manager" -> "Manage CSS/JS")
 	    // Otherwise, $_POST[WPACU_PLUGIN_ID] will be taken as empty which might be not if there are values in the database
     	if (! Misc::getVar('post', 'wpacu_unload_assets_area_loaded')) {
     	    return;
@@ -318,10 +335,7 @@ HTML;
 	    $this->saveToBulkUnloads($post);
 	    $this->removeBulkUnloads($post->post_type);
 
-	    // "Contracted" or "Expanded" when managing the assets (for admin use only)
-	    self::updateHandleRowStatus();
-
-	    // Any preloads
+        // Any preloads
 	    Preloads::updatePreloads();
 
 	    // Any handle notes
@@ -387,7 +401,7 @@ HTML;
 		    return;
 	    }
 
-        if (! is_array($wpacuNoLoadAssets)) {
+	    if (! is_array($wpacuNoLoadAssets)) {
             return; // only arrays (empty or not) should be used
         }
 
@@ -417,10 +431,7 @@ HTML;
 
 	    add_action('wpacu_admin_notices', array($this, 'homePageUpdated'));
 
-	    // "Contracted" or "Expanded" when managing the assets (for admin use only)
-	    self::updateHandleRowStatus();
-
-	    $this->frontEndUpdateFor['homepage'] = true;
+        $this->frontEndUpdateFor['homepage'] = true;
 
 	    self::clearTransients();
 
@@ -435,7 +446,7 @@ HTML;
     {
 	?>
 	    <div class="updated notice wpacu-notice is-dismissible">
-		    <p><?php echo $this->updateDoneMsg['homepage']; ?></p>
+		    <p><?php echo $this->afterSubmitMsg['homepage']; ?></p>
 	    </div>
 	<?php
     }
@@ -447,10 +458,22 @@ HTML;
 	{
 		?>
         <div class="updated notice wpacu-notice is-dismissible">
-            <p><?php echo $this->updateDoneMsg['page']; ?></p>
+            <p><?php echo $this->afterSubmitMsg['page']; ?></p>
         </div>
 		<?php
 	}
+
+	/**
+	 *
+	 */
+	public function changesNotMadeInvalidNonce()
+    {
+        ?>
+        <div class="error notice wpacu-error is-dismissible">
+            <p><?php echo $this->afterSubmitMsg['invalid_nonce_error']; ?></p>
+        </div>
+        <?php
+    }
 
 	/**
 	 * Lite: For Singular Page (Post, Page, Custom Post Type), Front Page (Home Page), On All Pages of a specific post type (post, page or custom)
@@ -630,9 +653,7 @@ HTML;
 	    $formTargetKey   = 'wpacu_load_it_logged_in';
 	    $targetGlobalKey = 'load_it_logged_in';
 
-	    // This field is always passed when the management list submitted (to know if a handle's data is among the submitted one
-	    // Useful to avoid adding an extra hidden field (and have more submitted fields, not good for hosts with submit limit) before the checkbox
-	    $referenceKey    = 'wpacu_preloads';
+	    $referenceKey = WPACU_FORM_ASSETS_POST_KEY;
 
 	    if (! Misc::isValidRequest('post', $referenceKey)) {
 		    return;
@@ -1063,11 +1084,14 @@ HTML;
 		// No $mainVarToUse passed? Then it's a $_POST
 		// Check if $_POST is empty via Misc::isValidRequest()
 		if (empty($mainVarToUse)) {
-			if (! Misc::isValidRequest('post', 'wpacu_ignore_child')) {
-				return;
-			}
-
-			$mainVarToUse = $_POST;
+		    if ( (isset($_POST[WPACU_FORM_ASSETS_POST_KEY]['styles']) && ! empty($_POST[WPACU_FORM_ASSETS_POST_KEY]['styles']))
+                || (isset($_POST[WPACU_FORM_ASSETS_POST_KEY]['scripts']) && ! empty($_POST[WPACU_FORM_ASSETS_POST_KEY]['scripts'])) ) {
+			    $mainVarToUse = self::updateIgnoreChildAdapt($_POST[WPACU_FORM_ASSETS_POST_KEY]); // New form fields (starting from v1.1.9.9)
+		    } elseif (Misc::isValidRequest('post', 'wpacu_ignore_child')) {
+			    $mainVarToUse = $_POST;
+			} else {
+		        return;
+		    }
 		}
 
 		if (! isset($mainVarToUse['wpacu_ignore_child']['styles']) && ! isset($mainVarToUse['wpacu_ignore_child']['scripts'])) {
@@ -1111,52 +1135,67 @@ HTML;
 	}
 
 	/**
+	 * @param $mainFormArray
 	 *
+	 * @return array
 	 */
-	public static function updateHandleRowStatus()
+	public static function updateIgnoreChildAdapt($mainFormArray)
+    {
+	    $wpacuIgnoreChildList = array();
+
+        foreach (array('styles', 'scripts') as $assetKey) {
+            if (isset($mainFormArray[$assetKey]) && ! empty($mainFormArray[$assetKey])) {
+                foreach ($mainFormArray[$assetKey] as $assetHandle => $assetData) {
+	                $wpacuIgnoreChildList['wpacu_ignore_child'][$assetKey][$assetHandle] = ''; // default
+
+                    if (isset($assetData['ignore_child']) && $assetData['ignore_child']) {
+	                    $wpacuIgnoreChildList['wpacu_ignore_child'][ $assetKey ][ $assetHandle ] = 1;
+                    }
+                }
+            }
+        }
+
+        return $wpacuIgnoreChildList;
+	}
+
+	/**
+     * This function is called via AJAX whenever "+" or "-" is used on an asset's row
+     *
+	 * @param $newState
+	 * @param $handle
+	 * @param $handleFor
+	 *
+	 * @return array|false
+	 */
+	public static function updateHandleRowStatus($newState, $handle, $handleFor)
 	{
-		$formKey = 'wpacu_handle_row_contracted_area';
-
-		if (! Misc::isValidRequest('post', $formKey)) {
-			return;
-		}
-
-		if (! isset($_POST[$formKey]['styles']) && ! isset($_POST[$formKey]['scripts'])) {
-			return;
-		}
-
 		$optionToUpdate = WPACU_PLUGIN_ID . '_global_data';
 		$globalKey = 'handle_row_contracted'; // Contracted or Expanded (default)
 
 		$existingListEmpty = array('styles' => array($globalKey => array()), 'scripts' => array($globalKey => array()));
-		$existingListJson = get_option($optionToUpdate);
+        $existingListJson = get_option($optionToUpdate);
 
 		$existingListData = Main::instance()->existingList($existingListJson, $existingListEmpty);
 		$existingList = $existingListData['list'];
 
-		if (isset($_POST[$formKey]['styles']) && ! empty($_POST[$formKey]['styles'])) {
-			foreach ($_POST[$formKey]['styles'] as $styleHandle => $styleContractedValue) {
-				// $styleContractedValue should be equal with '1' suggesting it's ON (no value means it's expanded by default)
-				if ($styleContractedValue === '' && isset($existingList['styles'][$globalKey][$styleHandle])) {
-					unset($existingList['styles'][$globalKey][$styleHandle]);
-				} elseif ($styleContractedValue !== '') {
-					$existingList['styles'][$globalKey][$styleHandle] = $styleContractedValue;
-				}
-			}
-		}
+		if ($handleFor === 'style') {
+		    $keyList = 'styles';
+		} elseif ($handleFor === 'script') {
+		    $keyList = 'scripts';
+		} else {
+		    return false;
+        }
 
-		if (isset($_POST[$formKey]['scripts']) && ! empty($_POST[$formKey]['scripts'])) {
-			foreach ($_POST[$formKey]['scripts'] as $scriptHandle => $scriptContractedValue) {
-				// $scriptContractedValue should be equal with '1' suggesting it's ON (no value means it's expanded by default)
-				if ($scriptContractedValue === '' && isset($existingList['scripts'][$globalKey][$scriptHandle])) {
-					unset($existingList['scripts'][$globalKey][$scriptHandle]);
-				} elseif ($scriptContractedValue !== '') {
-					$existingList['scripts'][$globalKey][$scriptHandle] = $scriptContractedValue;
-				}
-			}
-		}
+        // The database value should be equal with '1' suggesting it's contracted (no value means it's expanded by default)
+        if ( $newState === 'expanded' && isset( $existingList[$keyList][ $globalKey ][ $handle ] ) ) {
+            unset( $existingList[$keyList][ $globalKey ][ $handle ] ); // "expanded" (default)
+        } elseif ( $newState === 'contracted' ) {
+            $existingList[$keyList][ $globalKey ][ $handle ] = 1; // "contracted"
+        }
 
 		Misc::addUpdateOption($optionToUpdate, json_encode(Misc::filterList($existingList)));
+
+        return $existingList[$keyList][$globalKey];
 	}
 
 	/**
@@ -1295,6 +1334,32 @@ HTML;
 	        // No errors
 		    echo 'Status Code: '.wp_remote_retrieve_response_code($response).' /  Page URL (preload): ' . $pageUrlPreload . "\n\n";
 		    echo (isset($response['body']) ? $response['body'] : 'No "body" key found from wp_remote_get(), the preload might not have triggered');
+	    }
+
+	    exit();
+    }
+
+	/**
+	 *
+	 */
+	public function ajaxUpdateAssetRowState()
+    {
+	    // Option: "On Assets List Layout Load, keep the groups:"
+	    if (isset($_POST['wpacu_update_asset_row_state'])) {
+		    if ( ! isset( $_POST['action'], $_POST['wpacu_asset_row_state'], $_POST['wpacu_handle'], $_POST['wpacu_handle_for'] )
+                 || ! Menu::userCanManageAssets() ) {
+			    return;
+		    }
+
+		    if ( $_POST['wpacu_update_asset_row_state'] !== 'yes' ) {
+			    return;
+		    }
+
+		    $assetRowState = $_POST['wpacu_asset_row_state'];
+
+            $newContractedList = self::updateHandleRowStatus($assetRowState, $_POST['wpacu_handle'], $_POST['wpacu_handle_for']);
+
+		    echo "<pre>" . print_r($newContractedList, true);
 	    }
 
 	    exit();

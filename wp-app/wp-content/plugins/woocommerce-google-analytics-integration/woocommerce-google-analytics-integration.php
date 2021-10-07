@@ -5,10 +5,10 @@
  * Description: Allows Google Analytics tracking code to be inserted into WooCommerce store pages.
  * Author: WooCommerce
  * Author URI: https://woocommerce.com
- * Version: 1.5.1
+ * Version: 1.5.3
  * WC requires at least: 3.2
- * WC tested up to: 5.0
- * Tested up to: 5.6
+ * WC tested up to: 5.7
+ * Tested up to: 5.8
  * License: GPLv2 or later
  * Text Domain: woocommerce-google-analytics-integration
  * Domain Path: languages/
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 
-	define( 'WC_GOOGLE_ANALYTICS_INTEGRATION_VERSION', '1.5.1' ); // WRCS: DEFINED_VERSION.
+	define( 'WC_GOOGLE_ANALYTICS_INTEGRATION_VERSION', '1.5.3' ); // WRCS: DEFINED_VERSION.
 
 	/**
 	 * WooCommerce Google Analytics Integration main class.
@@ -40,7 +40,7 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 
 			// Load plugin text domain
 			add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-			add_action( 'init', array( $this, 'show_ga_pro_notices' ) );
+			add_action( 'admin_init', array( $this, 'show_ga_pro_notices' ) );
 
 			// Checks which WooCommerce is installed.
 			if ( class_exists( 'WC_Integration' ) && defined( 'WOOCOMMERCE_VERSION' ) && version_compare( WOOCOMMERCE_VERSION, '3.2', '>=' ) ) {
@@ -134,14 +134,19 @@ if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
 			$completed_orders = wc_orders_count( 'completed' );
 
 			// Only show the notice if there are 10 <= completed orders <= 100.
-			if ( ! ( 10 <= $completed_orders && $completed_orders <= 100 ) ) {
+			$too_few_orders_to_show_the_notice  = $completed_orders < 10;
+			$too_many_orders_to_show_the_notice = $completed_orders > 100;
+			if ( $too_many_orders_to_show_the_notice ) {
+				update_option( 'woocommerce_google_analytics_pro_notice_shown', true );
+			}
+			if ( $too_few_orders_to_show_the_notice || $too_many_orders_to_show_the_notice ) {
 				return;
 			}
 
 			$notice_html  = '<strong>' . esc_html__( 'Get detailed insights into your sales with Google Analytics Pro', 'woocommerce-google-analytics-integration' ) . '</strong><br><br>';
 
 			/* translators: 1: href link to GA pro */
-			$notice_html .= sprintf( __( 'Add advanced tracking for your sales funnel, coupons and more. [<a href="%s" target="_blank">Learn more</a> &gt;]', 'woocommerce-google-analytics-integration' ), 'https://woocommerce.com/products/woocommerce-google-analytics-pro/?utm_source=product&utm_medium=upsell&utm_campaign=google%20analytics%20free%20to%20pro%20extension%20upsell' );
+			$notice_html .= sprintf( __( 'Add advanced tracking for your sales funnel, coupons and more. [<a href="%s" target="_blank">Learn more</a> &gt;]', 'woocommerce-google-analytics-integration' ), 'https://woocommerce.com/products/woocommerce-google-analytics-pro/?utm_source=woocommerce-google-analytics-integration&utm_medium=product&utm_campaign=google%20analytics%20free%20to%20pro%20extension%20upsell' );
 
 			WC_Admin_Notices::add_custom_notice( 'woocommerce_google_analytics_pro_notice', $notice_html );
 			update_option( 'woocommerce_google_analytics_pro_notice_shown', true );

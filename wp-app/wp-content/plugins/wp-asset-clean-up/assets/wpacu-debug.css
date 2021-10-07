@@ -1,0 +1,165 @@
+#wpacu-debug-options {
+    background: white;
+    width: 90%;
+    margin: 10px;
+    border: 1px solid #cdcdcd;
+    border-radius: 5px;
+    padding: 12px;
+}
+
+#wpacu-debug-options p {
+    margin-bottom: 15px;
+}
+
+#wpacu-debug-options ul.wpacu-options {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-left: 8px;
+}
+
+#wpacu-debug-options ul.wpacu-options li {
+    line-height: normal;
+    font-size: inherit;
+}
+
+#wpacu-debug-options ul.wpacu-options li label {
+    cursor: pointer;
+    font-size: inherit;
+}
+
+#wpacu-debug-options table td {
+    padding: 20px;
+}
+
+ul#wpacu-debug-timing {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul#wpacu-debug-timing > li {
+    list-style: none;
+    padding-left: 20px;
+}
+
+ul#wpacu-debug-timing li > ul > li {
+    list-style: disc;
+    padding-left: 0;
+}
+
+tr.wpacu_plugin_row_debug_unload.wpacu_plugin_row_debug_unload_marked td {
+    background: #ffe1e1 !important;
+}
+
+/* The container */
+.wpacu_plugin_unload_debug_container {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.wpacu_plugin_unload_debug_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.wpacu_plugin_unload_debug_checkbox_checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.wpacu_plugin_unload_debug_container:hover input ~ .wpacu_plugin_unload_debug_checkbox_checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.wpacu_plugin_unload_debug_container input:checked ~ .wpacu_plugin_unload_debug_checkbox_checkmark {
+    background-color: #cc0000;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.wpacu_plugin_unload_debug_container .wpacu_plugin_unload_debug_checkbox_checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.wpacu_plugin_unload_debug_container input:checked ~ .wpacu_plugin_unload_debug_checkbox_checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.wpacu_plugin_unload_debug_container .wpacu_plugin_unload_debug_checkbox_checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/*
+ * [Dashboard]
+ */
+#wpacu-debug-admin-area {
+    line-height: 20px;
+    background: white;
+    padding: 15px 15px 30px;
+    bottom: 0;
+    z-index: 100000000;
+    width: 100%;
+    border-top: 1px solid #e7e7e7;
+}
+
+#wpacu-debug-plugins-unloaded .wpacu_plugin_icon > img {
+    -webkit-border-radius: 3px;
+    /* Chrome, Safari, Opera */
+    -moz-border-radius: 3px;
+    /* Firefox */
+    border-radius: 3px;
+}
+
+#wpacu-debug-plugins-unloaded .wpacu_plugin_icon > div {
+    background: #efefef;
+    border: #cdcdcd;
+    border-radius: 3px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    position: relative;
+    text-align: center;
+}
+
+#wpacu-debug-plugins-unloaded .wpacu_plugin_icon > div > span {
+    font-size: 20px;
+    color: #b3b3b3;
+    top: 50%;
+    vertical-align: middle;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+/*
+ * [/Dashboard]
+ */

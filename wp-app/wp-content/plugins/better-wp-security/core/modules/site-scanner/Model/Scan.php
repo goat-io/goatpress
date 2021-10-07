@@ -111,11 +111,11 @@ final class Scan implements \Countable {
 			return Status::WARN;
 		}
 
-		if ( $this->count( Status::CLEAN ) ) {
-			return Status::CLEAN;
+		if ( $this->get_errors() ) {
+			return Status::ERROR;
 		}
 
-		return Status::ERROR;
+		return Status::CLEAN;
 	}
 
 	/**

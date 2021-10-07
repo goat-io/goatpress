@@ -1,0 +1,36 @@
+.itsec-settings-advanced-nav {
+    margin-top: 3rem;
+    align-self: center;
+    display: flex;
+    align-items: center;
+
+    li:not(:last-child) {
+        border-right: 1px solid $border-color;
+        margin-right: .5rem;
+        padding-right: .5rem;
+    }
+
+    a {
+        color: $medium-text;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+
+        &:hover, &.active {
+            color: $main-blue;
+        }
+
+        &::before {
+            @include dashicon();
+            margin-right: .15rem;
+        }
+
+        &.itsec-settings-advanced-nav--tools::before {
+            content: '\f107';
+        }
+
+        &.itsec-settings-advanced-nav--advanced::before {
+            content: '\f194';
+        }
+    }
+}

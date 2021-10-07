@@ -4,7 +4,7 @@ if (! defined('ABSPATH')) {
 	exit;
 }
 
-if (array_key_exists('wpacu_clean_load', $_GET)) {
+if ( isset($_GET['wpacu_clean_load']) ) {
 	// Autoptimize
 	$_GET['ao_noptimize'] = $_REQUEST['ao_noptimize'] = '1';
 
@@ -100,10 +100,8 @@ if (! function_exists('assetCleanUpRequestUriHasAnyPublicVar')) {
 			'year'
 		);
 
-		parse_str($urlQuery, $getOutput);
-
 		foreach ($publicQueryVars as $queryVar) {
-			if (isset($getOutput[$queryVar]) && $getOutput[$queryVar]) {
+			if (strpos('?'.$urlQuery, '&'.$queryVar.'=') !== false || strpos('?'.$urlQuery, '?'.$queryVar.'=') !== false) {
 				return true;
 			}
 		}
@@ -144,6 +142,11 @@ if (! function_exists('assetCleanUpHasNoLoadMatches')) {
 			return false; // Invalid request
 		}
 
+		// Already detected? Avoid duplicate queries
+		if (isset($GLOBALS['wpacu_no_load_matches'][$targetUri])) {
+			return $GLOBALS['wpacu_no_load_matches'][$targetUri];
+		}
+
 		$doNotLoadRegExps = array();
 
 		$wpacuPluginSettingsJson = get_option( WPACU_PLUGIN_ID . '_settings' );
@@ -171,7 +174,8 @@ if (! function_exists('assetCleanUpHasNoLoadMatches')) {
 			foreach ( $doNotLoadRegExps as $doNotLoadRegExp ) {
 				if ( @preg_match( $doNotLoadRegExp, $targetUri ) || (strpos($targetUri, $doNotLoadRegExp) !== false) ) {
 					// There's a match
-					return 'is_set_in_settings';
+					$GLOBALS['wpacu_no_load_matches'][$targetUri] = 'is_set_in_settings';
+					return $GLOBALS['wpacu_no_load_matches'][$targetUri];
 				}
 			}
 		}
@@ -205,7 +209,8 @@ if (! function_exists('assetCleanUpHasNoLoadMatches')) {
 
 				if (isset($globalPageOptionsList['page_options']['homepage']['no_wpacu_load'])
 				    && $globalPageOptionsList['page_options']['homepage']['no_wpacu_load'] == 1) {
-					return 'is_set_in_page';
+					$GLOBALS['wpacu_no_load_matches'][$targetUri] = 'is_set_in_page';
+					return $GLOBALS['wpacu_no_load_matches'][$targetUri];
 				}
 			}
 		}
@@ -219,7 +224,8 @@ if (! function_exists('assetCleanUpHasNoLoadMatches')) {
 			$pageOptions = @json_decode( $pageOptionsJson, ARRAY_A );
 
 			if (isset($pageOptions['no_wpacu_load']) && $pageOptions['no_wpacu_load'] == 1) {
-				return 'is_set_in_page';
+				$GLOBALS['wpacu_no_load_matches'][$targetUri] = 'is_set_in_page';
+				return $GLOBALS['wpacu_no_load_matches'][$targetUri];
 			}
 		} else {
 			// Visiting a post, page or custom post type but not the homepage
@@ -238,11 +244,15 @@ if (! function_exists('assetCleanUpHasNoLoadMatches')) {
 					$dbPageUri = str_replace( $rootUrl, '', $dbPageUrl );
 
 					if ( ( $dbPageUri === $targetUri ) || ( strpos( $targetUri, $dbPageUri ) === 0 ) ) {
-						return 'is_set_in_page';
+						$GLOBALS['wpacu_no_load_matches'][$targetUri] = 'is_set_in_page';
+						return $GLOBALS['wpacu_no_load_matches'][$targetUri];
 					}
 				}
 			}
 		}
+
+		$GLOBALS['wpacu_no_load_matches'][$targetUri] = false;
+
 		return false;
 	}
 }
@@ -260,14 +270,14 @@ if (! function_exists('assetCleanUpNoLoad')) {
 		}
 
 		// Hide top WordPress admin bar on request for debugging purposes and a cleared view of the tested page
-		if ( array_key_exists( 'wpacu_no_admin_bar', $_GET ) ) {
+		if ( isset($_REQUEST['wpacu_no_admin_bar']) ) {
 			add_filter( 'show_admin_bar', '__return_false', PHP_INT_MAX );
 		}
 
 		// On request: for debugging purposes - e.g. https://yourwebsite.com/?wpacu_no_load
 		// Also make sure it's in the REQUEST URI and $_GET wasn't altered incorrectly before it's checked
 		// Technically, it will be like the plugin is not activated: no global settings and unload rules will be applied
-		if ( array_key_exists( 'wpacu_no_load', $_GET ) && strpos( $_SERVER['REQUEST_URI'], 'wpacu_no_load' ) !== false ) {
+		if ( isset($_GET['wpacu_no_load'], $_SERVER['REQUEST_URI']) && strpos( $_SERVER['REQUEST_URI'], 'wpacu_no_load' ) !== false ) {
 			define( 'WPACU_NO_LOAD_SET', true );
 
 			return true;
@@ -307,6 +317,13 @@ if (! function_exists('assetCleanUpNoLoad')) {
 		     ( strpos( $_SERVER['REQUEST_URI'],
 				     'admin-ajax.php' ) !== false ) && // The request URI contains 'admin-ajax.php'
 		     is_admin() ) { // If /wp-admin/admin-ajax.php is called, then it will return true
+			define( 'WPACU_NO_LOAD_SET', true );
+
+			return true;
+		}
+
+		// On some hosts .css and .js files are loaded dynamically (e.g. through the WordPress environment)
+		if (isset($_SERVER['REQUEST_URI']) && preg_match('#.(css|js)\?ver=#', $_SERVER['REQUEST_URI'])) {
 			define( 'WPACU_NO_LOAD_SET', true );
 
 			return true;

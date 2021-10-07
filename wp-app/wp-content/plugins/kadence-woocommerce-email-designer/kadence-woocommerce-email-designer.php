@@ -3,13 +3,13 @@
  * Plugin Name: Kadence WooCommerce Email Designer
  * Plugin URI: http://kadencewp.com/products/woocommerce-email-designer/
  * Description: Customize the default woocommerce email templates design and text through the native WordPress customizer. Preview emails and send test emails.
- * Version: 1.4.7
+ * Version: 1.4.8
  * Author: Kadence WP
  * Author URI: http://kadencewp.com/
  * License: GPLv2 or later
  * Text Domain: kadence-woocommerce-email-designer
  * WC requires at least: 4.2.0
- * WC tested up to: 5.0.0
+ * WC tested up to: 5.6.0
  *
  * @package Kadence Woocommerce Email Designer
  */
@@ -59,7 +59,7 @@ class Kadence_Woomail_Designer {
 
 		define( 'KT_WOOMAIL_PATH', realpath( plugin_dir_path( __FILE__ ) ) . DIRECTORY_SEPARATOR );
 		define( 'KT_WOOMAIL_URL', plugin_dir_url( __FILE__ ) );
-		define( 'KT_WOOMAIL_VERSION', '1.4.7' );
+		define( 'KT_WOOMAIL_VERSION', '1.4.8' );
 
 		if ( ! kadence_woomail_is_woo_active() ) {
 			add_action( 'admin_notices', array( $this, 'admin_notice_need_woocommerce' ) );
@@ -187,6 +187,10 @@ class Kadence_Woomail_Designer {
 				$args['image_size'] = array( 100, 100 );
 			} else if ( '150x150' === $size ) {
 				$args['image_size'] = array( 150, 150 );
+			} else if ( '40x40' === $size ) {
+				$args['image_size'] = array( 40, 40 );
+			} else if ( '50x50' === $size ) {
+				$args['image_size'] = array( 50, 50 );
 			} else if ( 'woocommerce_thumbnail' === $size ) {
 				$args['image_size'] = 'woocommerce_thumbnail';
 			} else {

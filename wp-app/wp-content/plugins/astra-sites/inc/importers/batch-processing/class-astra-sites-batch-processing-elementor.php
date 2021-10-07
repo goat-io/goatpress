@@ -108,6 +108,7 @@ class Astra_Sites_Batch_Processing_Elementor extends Source_Local {
 					foreach ( $ids_mapping as $old_id => $new_id ) {
 						$data = str_replace( '[wpforms id=\"' . $old_id, '[wpforms id=\"' . $new_id, $data );
 						$data = str_replace( '"select_form":"' . $old_id, '"select_form":"' . $new_id, $data );
+						$data = str_replace( '"form_id":"' . $old_id, '"form_id":"' . $new_id, $data );
 					}
 				}
 

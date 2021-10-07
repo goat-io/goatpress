@@ -3,7 +3,7 @@
 class ITSEC_Admin_Notice_New_Feature_Core implements ITSEC_Admin_Notice {
 
 	public function get_id() {
-		return 'release-rcp';
+		return 'release-new-ui-launch';
 	}
 
 	public function get_title() {
@@ -11,7 +11,10 @@ class ITSEC_Admin_Notice_New_Feature_Core implements ITSEC_Admin_Notice {
 	}
 
 	public function get_message() {
-		return esc_html__( 'iThemes Security Pro Now Integrates with Restrict Content Pro.', 'better-wp-security' );
+		return sprintf(
+			esc_html__( 'iThemes Security %s is here!', 'better-wp-security' ),
+			ITSEC_Core::is_pro() ? '7.0' : '8.0'
+		);
 	}
 
 	public function get_meta() {
@@ -29,13 +32,14 @@ class ITSEC_Admin_Notice_New_Feature_Core implements ITSEC_Admin_Notice {
 	public function get_actions() {
 		return array(
 			'blog' => new ITSEC_Admin_Notice_Action_Link(
-				add_query_arg( 'itsec_view_release_post', 'release-ban-users', admin_url( 'index.php' ) ),
-				esc_html__( 'See what’s new', 'better-wp-security' ),
+				add_query_arg( 'itsec_view_release_post', 'release-new-ui', admin_url( 'index.php' ) ),
+				esc_html__( 'See What’s New', 'better-wp-security' ),
 				ITSEC_Admin_Notice_Action::S_PRIMARY,
 				function () {
 					$this->handle_dismiss();
+					$url = ITSEC_Core::is_pro() ? 'https://ithemes.com/?p=64448' : 'https://ithemes.com/?p=65086';
 
-					wp_redirect( 'https://ithemes.com/?p=59484' );
+					wp_redirect( $url );
 					die;
 				}
 			)
@@ -65,7 +69,5 @@ class ITSEC_Admin_Notice_New_Feature_Core implements ITSEC_Admin_Notice {
 	}
 }
 
-if ( time() > 1603206000 ) {
-	ITSEC_Lib_Admin_Notices::register( new ITSEC_Admin_Notice_Globally_Dismissible( new ITSEC_Admin_Notice_Managers_Only( new ITSEC_Admin_Notice_New_Feature_Core() ) ) );
-}
+ITSEC_Lib_Admin_Notices::register( new ITSEC_Admin_Notice_Globally_Dismissible( new ITSEC_Admin_Notice_Managers_Only( new ITSEC_Admin_Notice_New_Feature_Core() ) ) );
 

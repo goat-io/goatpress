@@ -79,7 +79,8 @@ if (isset($data['row']['obj']->src, $data['row']['obj']->srcHref) && $data['row'
             &nbsp;&#10230;&nbsp;
              Preload (if kept loaded)?
             &nbsp;<select style="display: inline-block; width: auto; <?php if ($isJsPreload) { echo 'background: #f2faf2; padding: 5px; color: black;'; } ?>"
-                          name="wpacu_preloads[scripts][<?php echo $data['row']['obj']->handle; ?>]">
+                          data-wpacu-input="preload"
+                          name="<?php echo WPACU_FORM_ASSETS_POST_KEY; ?>[scripts][<?php echo $data['row']['obj']->handle; ?>][preload]">
                 <option value="">No (default)</option>
                 <option <?php if ($isJsPreload) { ?>selected="selected"<?php } ?> value="basic">Yes, basic</option>
             </select>
@@ -89,7 +90,4 @@ if (isset($data['row']['obj']->src, $data['row']['obj']->srcHref) && $data['row'
 	<?php
 } else {
     $hasNoSrc = true;
-    ?>
-    <input type="hidden" name="wpacu_preloads[scripts][<?php echo $data['row']['obj']->handle; ?>]" value="" />
-    <?php
 }

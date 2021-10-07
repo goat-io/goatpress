@@ -19,6 +19,16 @@ class THWCFD_Utils {
 		
 	}
 
+	public static function wcfd_capability() {
+		$allowed = array('manage_woocommerce', 'manage_options');
+		$capability = apply_filters('thwcfd_required_capability', 'manage_woocommerce');
+
+		if(!in_array($capability, $allowed)){
+			$capability = 'manage_woocommerce';
+		}
+		return $capability;
+	}
+
 	public static function is_address_field($name){
 		$address_fields = array(
 			'billing_address_1', 'billing_address_2', 'billing_state', 'billing_postcode', 'billing_city',
@@ -166,17 +176,22 @@ class THWCFD_Utils {
 		return is_array($options) ? $options : array();
 	}
 
-	public static function prepare_options_array($options_json){
+	public static function prepare_options_array($options_json, $type = 'radio'){
 		$options_json = rawurldecode($options_json);
 		$options_arr = json_decode($options_json, true);
 		$options = array();
 		
 		if($options_arr){
+			$i = 0;
 			foreach($options_arr as $option){
 				$okey = isset($option['key']) ? $option['key'] : '';
 				$otext = isset($option['text']) ? $option['text'] : '';
-				//$okey = $okey ? $okey : $otext;
-
+				if($i == 0 && $type == 'select'){
+					$okey = $okey ? $okey : '';
+				}else{
+					$okey = $okey ? $okey : sanitize_key($otext);
+				}
+				$i++;
 				//if($okey || $otext){
 					$options[$okey] = $otext;
 				//}

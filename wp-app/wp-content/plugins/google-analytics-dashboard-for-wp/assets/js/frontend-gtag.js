@@ -52,6 +52,87 @@ var ExactMetrics = function () {
 		}
 	}
 
+	function cloneFields( fields, allowedKeys, disallowedKeys ) {
+		var clone = {};
+
+		for ( var key in fields ) {
+			if ( ! fields.hasOwnProperty( key ) ) {
+				continue
+			}
+
+			if ( allowedKeys && allowedKeys.indexOf( key ) === -1 ) {
+				continue
+			}
+
+			if ( disallowedKeys && disallowedKeys.indexOf( key ) > -1 ) {
+				continue
+			}
+
+			clone[ key ] = fields[ key ];
+		}
+
+		return clone;
+	}
+
+	function __gtagMaybeTrackerV4( type, action, fieldsArray ) {
+		if ( ! exactmetrics_frontend.v4_id || type !== 'event' ) {
+			return;
+		}
+
+		var eventCategory = fieldsArray.event_category || '';
+
+		var fieldsToRemove = [
+			'event_name',
+			'event_category',
+			'event_label',
+			'value',
+		];
+
+		var fields = cloneFields( fieldsArray, null, fieldsToRemove );
+		fields.action = action;
+
+		var eventMap = {
+			'outbound-link': 'click',
+			'download': 'file_download',
+		};
+
+		__gtagTracker( type, eventMap[ eventCategory ] || eventCategory.replace( '-', '_' ), fields );
+	}
+
+	function __gtagMaybeTrackerUA( type, action, fieldsArray ) {
+		if ( ! exactmetrics_frontend.ua ) {
+			return;
+		}
+
+		var allowedFields = [
+			'event_category',
+			'event_label',
+			'value',
+		];
+
+		var uaFields = cloneFields(fieldsArray, allowedFields);
+		uaFields.send_to = exactmetrics_frontend.ua
+
+		__gtagTracker( type, action, uaFields );
+	}
+
+	function __gtagTrackerSendDual( type, action, fieldsArray, valuesArray ) {
+		type = typeof type !== 'undefined' ? type : 'event';
+		action = typeof action !== 'undefined' ? action : '';
+		valuesArray = typeof valuesArray !== 'undefined' ? valuesArray : [];
+		fieldsArray = typeof fieldsArray !== 'undefined' ? fieldsArray : {};
+
+		__gtagMaybeTrackerUA( type, action, fieldsArray );
+		__gtagMaybeTrackerV4( type, action, fieldsArray );
+
+		lastClicked.valuesArray = valuesArray;
+		lastClicked.fieldsArray = fieldsArray;
+		lastClicked.fieldsArray.event_action = action;
+		lastClicked.tracked = true;
+		__gtagTrackerLog( 'Tracked: ' + valuesArray.type );
+		__gtagTrackerLog( lastClicked );
+	}
+
 	/**
 	 * This attempts to be compatible with the gtag function.
 	 *
@@ -329,6 +410,8 @@ var ExactMetrics = function () {
 			valuesArray.el_search = el.search; 			/* "?search=test" */
 			valuesArray.el_hash = el.hash;				/* "#hash" */
 			valuesArray.el_host = el.host; 				/* "example.com:3000" */
+			valuesArray.el_classes = el.getAttribute('class')
+			valuesArray.el_id = el.id
 
 			/* Settings */
 			valuesArray.debug_mode = __gtagTrackerIsDebug(); /* "example.com:3000" */
@@ -383,45 +466,87 @@ var ExactMetrics = function () {
 						fieldsArray = {
 							event_category: 'download',
 							event_label: label || valuesArray.title,
+							file_extension: valuesArray.extension,
+							file_name: valuesArray.link.replace(/^.*\//g, ''),
+							link_text: label || valuesArray.title,
+							link_url: link,
+							link_domain: valuesArray.el_hostname,
+							link_classes: valuesArray.el_classes,
+							link_id: valuesArray.el_id,
 						};
 					} else if ( type == 'tel' ) {
 						fieldsArray = {
 							event_category: 'tel',
 							event_label: label || valuesArray.title.replace( 'tel:', '' ),
+							tel_number: link.replace( 'tel:', '' ),
+							link_text: label || valuesArray.title,
+							link_url: link,
+							link_classes: valuesArray.el_classes,
+							link_id: valuesArray.el_id,
 						};
 					} else if ( type == 'mailto' ) {
-						console.log( label || valuesArray.title.replace( 'mailto:', '' ) );
 						fieldsArray = {
 							event_category: 'mailto',
 							event_label: label || valuesArray.title.replace( 'mailto:', '' ),
+							email_address: link.replace( 'mailto:', '' ),
+							link_text: label || valuesArray.title.replace( 'mailto:', ''),
+							link_url: link,
+							link_classes: valuesArray.el_classes,
+							link_id: valuesArray.el_id,
 						};
 					} else if ( type == 'internal-as-outbound' ) {
 						fieldsArray = {
 							event_category: internalAsOutboundCategory,
 							event_label: label || valuesArray.title,
+							event_name: 'click',
+							is_affiliate_link: true,
+							affiliate_label: internalAsOutboundCategory.replace('outbound-link-', ''),
+							link_text: label || valuesArray.title,
+							link_url: link,
+							link_domain: valuesArray.el_hostname,
+							link_classes: valuesArray.el_classes,
+							link_id: valuesArray.el_id,
+							outbound: true,
 						};
 					} else if ( type == 'external' ) {
 						fieldsArray = {
 							event_category: 'outbound-link',
 							event_label: label || valuesArray.title,
+							is_affiliate_link: false,
+							link_text: label || valuesArray.title,
+							link_url: link,
+							link_domain: valuesArray.el_hostname,
+							link_classes: valuesArray.el_classes,
+							link_id: valuesArray.el_id,
+							outbound: true,
 						};
 					} else if ( type == 'cross-hostname' ) {
 						fieldsArray = {
 							event_category: 'cross-hostname',
 							event_label: label || valuesArray.title,
+							link_text: label || valuesArray.title,
+							link_url: link,
+							link_domain: valuesArray.el_hostname,
+							link_classes: valuesArray.el_classes,
+							link_id: valuesArray.el_id,
 						};
 					}
 
 					if ( fieldsArray ) {
-						__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
+						__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
 					} else {
 						if ( type && type != 'internal' ) {
 							fieldsArray = {
 								event_category: type,
 								event_label: label || valuesArray.title,
+								link_text: label || valuesArray.title,
+								link_url: link,
+								link_domain: valuesArray.el_hostname,
+								link_classes: valuesArray.el_classes,
+								link_id: valuesArray.el_id,
 							};
 
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
+							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
 						} else {
 							valuesArray.exit = 'type';
 							__gtagTrackerNotSend( valuesArray );
@@ -444,9 +569,16 @@ var ExactMetrics = function () {
 							event_category: 'download',
 							event_label: label || valuesArray.title,
 							event_callback: __gtagTrackerHitBack,
+							file_extension: valuesArray.extension,
+							file_name: valuesArray.link.replace(/^.*\//g, ''),
+							link_text: label || valuesArray.title,
+							link_url: link,
+							link_domain: valuesArray.el_hostname,
+							link_classes: valuesArray.el_classes,
+							link_id: valuesArray.el_id,
 						};
 
-						__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
+						__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
 					} else if ( type == 'internal-as-outbound' ) {
 						beforeUnloadChanged = true;
 						window.onbeforeunload = function ( e ) {
@@ -462,13 +594,22 @@ var ExactMetrics = function () {
 								event_category: internalAsOutboundCategory,
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
+								is_affiliate_link: true,
+								affiliate_label: internalAsOutboundCategory.replace('outbound-link-', ''),
+								link_text: label || valuesArray.title,
+								link_url: link,
+								link_domain: valuesArray.el_hostname,
+								link_classes: valuesArray.el_classes,
+								link_id: valuesArray.el_id,
+								outbound: true,
 							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
 							}
 
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
+							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
+
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else if ( type == 'external' ) {
@@ -486,13 +627,20 @@ var ExactMetrics = function () {
 								event_category: 'outbound-link',
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
+								is_affiliate_link: false,
+								link_text: label || valuesArray.title,
+								link_url: link,
+								link_domain: valuesArray.el_hostname,
+								link_classes: valuesArray.el_classes,
+								link_id: valuesArray.el_id,
+								outbound: true,
 							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
 							}
 
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
+							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else if ( type == 'cross-hostname' ) {
@@ -510,13 +658,18 @@ var ExactMetrics = function () {
 								event_category: 'cross-hostname',
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
+								link_text: label || valuesArray.title,
+								link_url: link,
+								link_domain: valuesArray.el_hostname,
+								link_classes: valuesArray.el_classes,
+								link_id: valuesArray.el_id,
 							};
 
 							if ( navigator.sendBeacon ) {
 								fieldsArray.transport = 'beacon';
 							}
 
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
+							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
 							setTimeout( __gtagTrackerHitBack, 1000 );
 						};
 					} else {
@@ -525,9 +678,14 @@ var ExactMetrics = function () {
 								event_category: type,
 								event_label: label || valuesArray.title,
 								event_callback: __gtagTrackerHitBack,
+								link_text: label || valuesArray.title,
+								link_url: link,
+								link_domain: valuesArray.el_hostname,
+								link_classes: valuesArray.el_classes,
+								link_id: valuesArray.el_id,
 							};
 
-							__gtagTrackerSend( 'event', action || link, fieldsArray, valuesArray );
+							__gtagTrackerSendDual( 'event', action || link, fieldsArray, valuesArray );
 						} else {
 							valuesArray.exit = 'type';
 							__gtagTrackerNotSend( valuesArray );
@@ -565,11 +723,19 @@ var ExactMetrics = function () {
 
 	function __gtagTrackerHashChangeEvent() {
 		/* Todo: Ready this section for JS unit testing */
-		if ( exactmetrics_frontend.hash_tracking === "true" && prevHash != window.location.hash && exactmetrics_frontend.ua ) {
+		if ( exactmetrics_frontend.hash_tracking === "true" && prevHash != window.location.hash && ( exactmetrics_frontend.ua || exactmetrics_frontend.v4_id ) ) {
 			prevHash = window.location.hash;
-			__gtagTracker( 'config', exactmetrics_frontend.ua, {
-				page_path: location.pathname + location.search + location.hash,
-			} )
+			if ( exactmetrics_frontend.ua ) {
+				__gtagTracker( 'config', exactmetrics_frontend.ua, {
+					page_path: location.pathname + location.search + location.hash,
+				} );
+			}
+
+			if ( exactmetrics_frontend.v4_id ) {
+				__gtagTracker( 'config', exactmetrics_frontend.v4_id, {
+					page_path: location.pathname + location.search + location.hash,
+				} );
+			}
 			__gtagTrackerLog( "Hash change to: " + location.pathname + location.search + location.hash );
 		} else {
 			__gtagTrackerLog( "Hash change to (untracked): " + location.pathname + location.search + location.hash );

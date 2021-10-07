@@ -82,12 +82,12 @@ this["wc"] = this["wc"] || {}; this["wc"]["csvExport"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 489);
+/******/ 	return __webpack_require__(__webpack_require__.s = 441);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 309:
+/***/ 263:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* FileSaver.js
@@ -374,7 +374,7 @@ if ( true && module.exports) {
 
 /***/ }),
 
-/***/ 489:
+/***/ 441:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -384,7 +384,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "downloadCSVFile", function() { return downloadCSVFile; });
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var browser_filesaver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(309);
+/* harmony import */ var browser_filesaver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(263);
 /* harmony import */ var browser_filesaver__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(browser_filesaver__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * External dependencies
@@ -398,7 +398,7 @@ function escapeCSVValue(value) {
   // See: WC_CSV_Exporter::escape_data()
 
   if (['=', '+', '-', '@'].includes(stringValue.charAt(0))) {
-    stringValue = "'" + stringValue;
+    stringValue = '"\t' + stringValue + '"';
   } else if (stringValue.match(/[,"\s]/)) {
     stringValue = '"' + stringValue.replace(/"/g, '""') + '"';
   }
@@ -458,7 +458,6 @@ function downloadCSVFile(fileName, content) {
   });
   Object(browser_filesaver__WEBPACK_IMPORTED_MODULE_1__["saveAs"])(blob, fileName);
 }
-//# sourceMappingURL=index.js.map
 
 /***/ }),
 

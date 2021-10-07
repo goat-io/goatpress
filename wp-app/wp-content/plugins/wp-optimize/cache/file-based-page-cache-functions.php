@@ -603,8 +603,8 @@ function wpo_get_url_path($url = '') {
 	$url = '' == $url ? wpo_current_url() : $url;
 	$url_parts = parse_url($url);
 	
-	if (isset($url_parts['path']) && 0 === stripos($url_parts['path'], '/index.php')) {
-		$url_parts['path'] = str_replace('/index.php', '/index-php', $url_parts['path']);
+	if (isset($url_parts['path']) && false !== stripos($url_parts['path'], '/index.php')) {
+		$url_parts['path'] = preg_replace('/(.*?)index\.php(\/.+)/i', '$1index-php$2', $url_parts['path']);
 	}
 
 	if (!isset($url_parts['host'])) $url_parts['host'] = '';

@@ -34,7 +34,7 @@ class MinifyCss
 
 				// [CUSTOM BUG FIX]
 				// Encode the special matched content to avoid any wrong minification from the minifier
-				$hasVarWithZeroUnit = false;
+				$hasVarWithZeroUnit = $hasMultipleCalcRules = false;
 
 				preg_match_all('#--([a-zA-Z0-9_-]+):(\s+)0(em|ex|%|px|cm|mm|in|pt|pc|ch|rem|vh|vw|vmin|vmax|vm)#', $cssContent, $cssVariablesMatches);
 
@@ -43,6 +43,17 @@ class MinifyCss
 
 					foreach ($cssVariablesMatches[0] as $zeroUnitMatch) {
 						$cssContent = str_replace( $zeroUnitMatch, '[wpacu]' . base64_encode( $zeroUnitMatch ) . '[/wpacu]', $cssContent );
+					}
+				}
+
+				// Fix: if the content is something like "calc(50% - 22px) calc(50% - 22px);" then leave it as it is
+				preg_match_all('#calc\((.*?)\)(\s+)calc(.*?);#si', $cssContent, $cssCalcMatches);
+
+				if (isset($cssCalcMatches[0]) && ! empty($cssCalcMatches[0])) {
+					$hasMultipleCalcRules = true;
+
+					foreach ($cssCalcMatches[0] as $cssCalcMatch) {
+						$cssContent = str_replace( $cssCalcMatch, '[wpacu]' . base64_encode( $cssCalcMatch ) . '[/wpacu];', $cssContent );
 					}
 				}
 				// [/CUSTOM BUG FIX]
@@ -63,6 +74,15 @@ class MinifyCss
 					foreach ( $cssVariablesMatches[0] as $zeroUnitMatch ) {
 						$zeroUnitMatchAlt = str_replace(': 0', ':0', $zeroUnitMatch); // remove the space
 						$minifiedContent = str_replace( '[wpacu]' . base64_encode( $zeroUnitMatch ) . '[/wpacu]', $zeroUnitMatchAlt, $minifiedContent );
+					}
+				}
+
+				if ($hasMultipleCalcRules) {
+					foreach ( $cssCalcMatches[0] as $cssCalcMatch ) {
+						$originalCssCalcMatch = $cssCalcMatch;
+						$cssCalcMatch = preg_replace(array('#calc\(\s+#', '#\s+\);#'), array('calc(', ');'), $originalCssCalcMatch);
+						$cssCalcMatch = str_replace(' ) calc(', ') calc(', $cssCalcMatch);
+						$minifiedContent = str_replace( '[wpacu]' . base64_encode( $originalCssCalcMatch ) . '[/wpacu];', $cssCalcMatch, $minifiedContent );
 					}
 				}
 				// [/CUSTOM BUG FIX]
@@ -298,12 +318,12 @@ class MinifyCss
 		// Request Minify On The Fly
 		// It will preview the page with CSS minified
 		// Only if the admin is logged-in as it uses more resources (CPU / Memory)
-		if (array_key_exists('wpacu_css_minify', $_GET) && Menu::userCanManageAssets()) {
+		if ( isset($_GET['wpacu_css_minify']) && Menu::userCanManageAssets() ) {
 			self::isMinifyCssEnabledChecked('true');
 			return true;
 		}
 
-		if ( array_key_exists('wpacu_no_css_minify', $_GET) || // not on query string request (debugging purposes)
+		if ( isset($_REQUEST['wpacu_no_css_minify']) || // not on query string request (debugging purposes)
 		     is_admin() || // not for Dashboard view
 		     (! Main::instance()->settings['minify_loaded_css']) || // Minify CSS has to be Enabled
 		     (Main::instance()->settings['test_mode'] && ! Menu::userCanManageAssets()) ) { // Does not trigger if "Test Mode" is Enabled
@@ -332,6 +352,7 @@ class MinifyCss
 			return false;
 		}
 
+		self::isMinifyCssEnabledChecked('true');
 		return true;
 	}
 

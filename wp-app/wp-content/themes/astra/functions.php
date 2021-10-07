@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Define Constants
  */
-define( 'ASTRA_THEME_VERSION', '3.6.5' );
+define( 'ASTRA_THEME_VERSION', '3.7.3' );
 define( 'ASTRA_THEME_SETTINGS', 'astra-settings' );
 define( 'ASTRA_THEME_DIR', trailingslashit( get_template_directory() ) );
 define( 'ASTRA_THEME_URI', trailingslashit( esc_url( get_template_directory_uri() ) ) );
@@ -25,7 +25,7 @@ define( 'ASTRA_THEME_URI', trailingslashit( esc_url( get_template_directory_uri(
  * Minimum Version requirement of the Astra Pro addon.
  * This constant will be used to display the notice asking user to update the Astra addon to the version defined below.
  */
-define( 'ASTRA_EXT_MIN_VER', '3.5.5' );
+define( 'ASTRA_EXT_MIN_VER', '3.6.0' );
 
 /**
  * Setup helper functions of Astra.
@@ -63,7 +63,9 @@ require_once ASTRA_THEME_DIR . 'inc/core/class-astra-walker-page.php';
 require_once ASTRA_THEME_DIR . 'inc/core/class-astra-enqueue-scripts.php';
 require_once ASTRA_THEME_DIR . 'inc/core/class-gutenberg-editor-css.php';
 require_once ASTRA_THEME_DIR . 'inc/dynamic-css/inline-on-mobile.php';
+require_once ASTRA_THEME_DIR . 'inc/dynamic-css/content-background.php';
 require_once ASTRA_THEME_DIR . 'inc/class-astra-dynamic-css.php';
+require_once ASTRA_THEME_DIR . 'inc/class-astra-global-palette.php';
 
 /**
  * Custom template tags for this theme.
@@ -108,7 +110,7 @@ if ( is_admin() ) {
 	 * Admin Menu Settings
 	 */
 	require_once ASTRA_THEME_DIR . 'inc/core/class-astra-admin-settings.php';
-	require_once ASTRA_THEME_DIR . 'inc/lib/notices/class-astra-notices.php';
+	require_once ASTRA_THEME_DIR . 'inc/lib/astra-notices/class-astra-notices.php';
 
 	/**
 	 * Metabox additions.
@@ -131,6 +133,7 @@ require_once ASTRA_THEME_DIR . 'inc/modules/related-posts/class-astra-related-po
 /**
  * Compatibility
  */
+require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-gutenberg.php';
 require_once ASTRA_THEME_DIR . 'inc/compatibility/class-astra-jetpack.php';
 require_once ASTRA_THEME_DIR . 'inc/compatibility/woocommerce/class-astra-woocommerce.php';
 require_once ASTRA_THEME_DIR . 'inc/compatibility/edd/class-astra-edd.php';

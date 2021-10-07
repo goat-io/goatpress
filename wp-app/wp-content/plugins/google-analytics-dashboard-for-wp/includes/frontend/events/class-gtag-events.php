@@ -110,6 +110,7 @@ class ExactMetrics_Gtag_Events {
 				'home_url'            => home_url(), /* Let's get the url to compare for external/internal use */
 				'hash_tracking'       => $hash_tracking, /* Should hash track */
 				'ua'                  => exactmetrics_get_ua(), /* UA code used for tracking */
+				'v4_id'               => exactmetrics_get_v4_id(), /* V4 ID used for tracking */
 			)
 		);
 	}

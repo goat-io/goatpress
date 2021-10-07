@@ -3,9 +3,9 @@
 if (!defined('ABSPATH')) die('No direct access allowed');
 
 /**
- * If we ever change the API of the Updraft_Notices class, then we'll need to rename and version it, e.g. Updraft_Notices_1_0, because otherwise a plugin may find that it's loaded an older instance than it wanted from another plugin.
+ * If we ever change the API of the Updraft_Notices class, then the version neeeds to be bumped, because otherwise a plugin may find that it's loaded an older instance than it wanted from another plugin.
  */
-abstract class Updraft_Notices_1_0 {
+abstract class Updraft_Notices_1_1 {
 
 	protected $notices_content;
 	
@@ -60,15 +60,15 @@ abstract class Updraft_Notices_1_0 {
 	protected function url_start($html_allowed, $url, $https = false, $website_home = null) {
 		$proto = ($https) ? 'https' : 'http';
 		if (strpos($url, $website_home) !== false) {
-			return (($html_allowed) ? "<a href=".apply_filters(str_replace('.', '_', $website_home).'_link', $proto.'://'.$url).">" : "");
+			return $html_allowed ? "<a href=".apply_filters(str_replace('.', '_', $website_home).'_link', $proto.'://'.$url).'>' : '';
 		} else {
-			return (($html_allowed) ? '<a href="'.$proto.'://'.$url.'">' : "");
+			return $html_allowed ? '<a href="'.$proto.'://'.$url.'">' : '';
 		}
 	}
 
 	protected function url_end($html_allowed, $url, $https = false) {
-		$proto = (($https) ? 'https' : 'http');
-		return (($html_allowed) ? '</a>' : " (".$proto."://".$url.")");
+		$proto = $https ? 'https' : 'http';
+		return $html_allowed ? '</a>' : ' ('.$proto.'://'.$url.')';
 	}
 
 	public function do_notice($notice = false, $position = 'top', $return_instead_of_echo = false) {

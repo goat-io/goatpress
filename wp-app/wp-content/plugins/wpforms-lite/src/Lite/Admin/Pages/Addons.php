@@ -123,8 +123,8 @@ class Addons {
 		echo wpforms_render( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			'admin/addons',
 			[
-				'upgrade_link' => wpforms_admin_upgrade_link( 'addons' ),
-				'addons'       => $addons,
+				'upgrade_link_base' => wpforms_admin_upgrade_link( 'addons' ),
+				'addons'            => $addons,
 			],
 			true
 		);

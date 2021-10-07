@@ -22,8 +22,8 @@ class Settings
         'dashboard_show',
         'dom_get_type',
 
-		'hide_assets_meta_box',  // Asset CleanUp (Pro): CSS & JavaScript Manager
-		'hide_options_meta_box', // Asset CleanUp (Pro): Options
+		'show_assets_meta_box', // Asset CleanUp (Pro): CSS & JavaScript Manager & Options
+
         'hide_meta_boxes_for_post_types', // Hide all meta boxes for the chosen post types
 
 		// Front-end View Assets Management
@@ -206,6 +206,8 @@ class Settings
 	        // Direct AJAX call by default (not via WP Remote Post)
 	        'dom_get_type'   => 'direct',
 
+	        'show_assets_meta_box' => 1,
+
 	        'hide_meta_boxes_for_post_types' => array(),
 
 	        // Very good especially for page builders: Divi Visual Builder, Oxygen Builder, WPBakery, Beaver Builder etc.
@@ -262,7 +264,7 @@ class Settings
 
             'fetch_cached_files_details_from' => 'disk', // Do not add more rows to the database by default (options table can become quite large)
 
-            'clear_cached_files_after' => '4',
+            'clear_cached_files_after' => '14', // 2 weeks
 
             // Starting from v1.3.6.9 (Lite) & v1.1.7.9 (Pro), /cart/ & /checkout/ pages are added to the exclusion list by default
             'do_not_load_plugin_patterns' => '/cart/'. "\n". '/checkout/',
@@ -293,6 +295,10 @@ class Settings
         }
 
 	    add_action( 'wp_ajax_' . WPACU_PLUGIN_ID . '_do_verifications',  array( $this, 'ajaxDoVerifications' ) );
+
+        // e.g. when "Contract All Groups" is used, the state is kept (the setting is updated in the background)
+        add_action( 'wp_ajax_' . WPACU_PLUGIN_ID . '_update_settings', array($this, 'ajaxUpdateSpecificSettings') );
+	    add_action( 'wp_ajax_nopriv_' . WPACU_PLUGIN_ID . '_update_settings', array($this, 'ajaxUpdateSpecificSettings') );
     }
 
 	/**
@@ -438,11 +444,23 @@ class Settings
                     if (! array_key_exists($settingsKey, $settings)) {
                         $settings[$settingsKey] = '';
 
-                        // If it doesn't exist, it was never saved
+                        // If it doesn't exist, it was never saved (Exception: "show_assets_meta_box")
                         // Make sure the default value is added
 	                    if (in_array($settingsKey, array('frontend_show_exceptions', 'minify_loaded_css_exceptions', 'inline_css_files_below_size_input', 'minify_loaded_js_exceptions', 'inline_js_files_below_size_input', 'clear_cached_files_after', 'hide_meta_boxes_for_post_types'))) {
-	                        $settings[$settingsKey] = isset($this->defaultSettings[$settingsKey]) ? $this->defaultSettings[$settingsKey] : '';
+	                        $settings[ $settingsKey ] = isset( $this->defaultSettings[ $settingsKey ] ) ? $this->defaultSettings[ $settingsKey ] : '';
                         }
+
+	                    // Renamed "hide_assets_meta_box" to "show_assets_meta_box" (legacy)
+	                    if ( $settingsKey === 'show_assets_meta_box' && isset($settings['hide_assets_meta_box']) && $settings['hide_assets_meta_box'] == 1 ) { // legacy
+	                        $settings['show_assets_meta_box'] = '0';
+	                    }
+
+	                    // "show_assets_meta_box" is either 0 or 1
+                        // if it doesn't exist, it was never saved (the user didn't update the settings after updating to 1.2.0.1)
+                        // Thus it will be activated by default: 1
+	                    if ( ! isset($settings['show_assets_meta_box']) || $settings['show_assets_meta_box'] === '' ) {
+	                        $settings['show_assets_meta_box'] = 1;
+	                    }
                     }
                 }
 
@@ -455,16 +473,16 @@ class Settings
 	    // No record in the database? Set the default values
 	    // That could be because no changes were done on the "Settings" page
 	    // OR a full reset of the plugin (via "Tools") was performed
-        $defaultSettings = $this->defaultSettings;
+        $finalDefaultSettings = $this->defaultSettings;
 
         foreach ($this->settingsKeys as $settingsKey) {
-	        if (! array_key_exists($settingsKey, $defaultSettings)) {
+	        if (! array_key_exists($settingsKey, $finalDefaultSettings)) {
 		        // Keep the keys with empty values to avoid notice errors
-		        $defaultSettings[$settingsKey] = '';
+		        $finalDefaultSettings[$settingsKey] = '';
 	        }
         }
 
-	    return $this->filterSettings($defaultSettings);
+	    return $this->filterSettings($finalDefaultSettings);
     }
 
 	/**
@@ -516,11 +534,11 @@ class Settings
 	{
 		// /?wpacu_test_mode (will load the page with "Test Mode" enabled disregarding the value from the plugin's "Settings")
 		// For debugging purposes (e.g. to make sure the HTML source is the same when a guest user accesses it as the one that is generated when the plugin is deactivated)
-		if (array_key_exists('wpacu_test_mode', $_GET)) {
+		if ( isset($_GET['wpacu_test_mode']) ) {
 			$settings['test_mode'] = true;
 		}
 
-		if (array_key_exists('wpacu_skip_test_mode', $_GET)) {
+		if ( isset($_GET['wpacu_skip_test_mode']) ) {
 		    $settings['test_mode'] = false;
         }
 
@@ -547,24 +565,24 @@ class Settings
 		}
 
 		// /?wpacu_skip_inline_css
-        if (array_key_exists('wpacu_skip_inline_css_files', $_GET)) {
+        if (isset($_GET['wpacu_skip_inline_css_files'])) {
 	        $settings['inline_css_files'] = false;
         }
 
 		// /?wpacu_skip_inline_js
-		if (array_key_exists('wpacu_skip_inline_js_files', $_GET)) {
+		if (isset($_GET['wpacu_skip_inline_js_files'])) {
 			$settings['inline_js_files'] = false;
 		}
 
 		// /?wpacu_manage_front -> "Manage in the Front-end" via query string request
         // Useful when working for a client and you prefer him to view the pages (while logged-in) without the CSS/JS list at the bottom
-		if (array_key_exists('wpacu_manage_front', $_GET)) {
+		if (isset($_GET['wpacu_manage_front'])) {
 			$settings['frontend_show'] = true;
 		}
 
 		// /?wpacu_manage_dash -> "Manage in the Dashboard" via query string request
 		// For debugging purposes
-		if (is_admin() && (array_key_exists('wpacu_manage_dash', $_REQUEST) || array_key_exists('force_manage_dash', $_REQUEST))) {
+		if (is_admin() && (isset($_REQUEST['wpacu_manage_dash']) || isset($_REQUEST['force_manage_dash']))) {
 			$settings['dashboard_show'] = true;
 		}
 
@@ -898,6 +916,31 @@ class Settings
 	    curl_close($ch);
 
 	    echo json_encode($result);
+
+	    exit();
+    }
+
+	/**
+	 *
+	 */
+	public function ajaxUpdateSpecificSettings()
+    {
+        // Option: "On Assets List Layout Load, keep the groups:"
+        if (isset($_POST['wpacu_update_keep_the_groups'])) {
+	        if ( ! isset( $_POST['action'], $_POST['wpacu_keep_the_groups_state'] ) || ! Menu::userCanManageAssets() ) {
+		        return;
+	        }
+
+	        if ( $_POST['wpacu_update_keep_the_groups'] !== 'yes' ) {
+		        return;
+	        }
+
+	        $newKeepTheGroupsState = $_POST['wpacu_keep_the_groups_state'];
+
+	        $this->updateOption( 'assets_list_layout_areas_status', $newKeepTheGroupsState );
+
+	        echo 'done';
+        }
 
 	    exit();
     }

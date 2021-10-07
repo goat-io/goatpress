@@ -7,18 +7,8 @@ use Pimple\Container;
 return static function ( Container $c ) {
 	$c['module.user-groups.files'] = [
 		'active.php'    => User_Groups\Module\Module::class,
-		'settings.php'  => User_Groups\Module\Settings::class,
-		'validator.php' => User_Groups\Module\Validator::class,
 		'rest.php'      => REST\REST::class,
 	];
-
-	$c[ User_Groups\Module\Settings::class ] = static function ( Container $c ) {
-		return new User_Groups\Module\Settings( $c[ User_Groups\Repository\Repository::class ] );
-	};
-
-	$c[ User_Groups\Module\Validator::class ] = static function ( Container $c ) {
-		return new User_Groups\Module\Validator();
-	};
 
 	$c[ User_Groups\Module\Module::class ] = static function ( Container $c ) {
 		return new User_Groups\Module\Module(
@@ -38,8 +28,7 @@ return static function ( Container $c ) {
 
 	$c[ User_Groups\Upgrader::class ] = static function ( Container $c ) {
 		return new User_Groups\Upgrader(
-			$c[ User_Groups\Repository\Repository::class ],
-			$c[ User_Groups\Module\Settings::class ]
+			$c[ User_Groups\Repository\Repository::class ]
 		);
 	};
 

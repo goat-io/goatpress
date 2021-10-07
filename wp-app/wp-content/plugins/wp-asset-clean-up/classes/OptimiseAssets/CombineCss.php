@@ -446,7 +446,7 @@ HTML;
 						$cssContent = OptimizeCommon::stripSourceMap($cssContent, 'css');
 					}
 
-					$finalCombinedCssContent .= '/*!'.str_replace(ABSPATH, '/', $localAssetsPath)."*/\n";
+					$finalCombinedCssContent .= '/*!'.str_replace(Misc::getWpRootDirPath(), '/', $localAssetsPath)."*/\n";
 					$finalCombinedCssContent .= OptimizeCss::maybeFixCssContent($cssContent, $pathToAssetDir . '/') . "\n";
 
 					$finalCombinedCssContent = self::appendToCombineCss($localAssetsExtra, $assetHref, $pathToAssetDir, $finalCombinedCssContent);
@@ -557,7 +557,7 @@ HTML;
 	public static function proceedWithCssCombine()
 	{
 		// Not on query string request (debugging purposes)
-		if (array_key_exists('wpacu_no_css_combine', $_GET)) {
+		if ( ! empty($_REQUEST) && array_key_exists('wpacu_no_css_combine', $_REQUEST) ) {
 			return false;
 		}
 

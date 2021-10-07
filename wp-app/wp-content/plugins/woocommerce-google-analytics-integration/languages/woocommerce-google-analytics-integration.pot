@@ -2,11 +2,11 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Google Analytics Integration 1.5.1\n"
+"Project-Id-Version: WooCommerce Google Analytics Integration 1.5.3\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/woocommerce-google-analytics-"
 "integration\n"
-"POT-Creation-Date: 2021-02-03 02:48:20+00:00\n"
+"POT-Creation-Date: 2021-09-15 08:00:44+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -242,11 +242,11 @@ msgstr ""
 msgid "WooCommerce"
 msgstr ""
 
-#: woocommerce-google-analytics-integration.php:141
+#: woocommerce-google-analytics-integration.php:146
 msgid "Get detailed insights into your sales with Google Analytics Pro"
 msgstr ""
 
-#: woocommerce-google-analytics-integration.php:144
+#: woocommerce-google-analytics-integration.php:149
 #. translators: 1: href link to GA pro
 msgid ""
 "Add advanced tracking for your sales funnel, coupons and more. [<a "

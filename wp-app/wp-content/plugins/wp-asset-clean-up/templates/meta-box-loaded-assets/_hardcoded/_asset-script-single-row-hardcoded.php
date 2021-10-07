@@ -25,10 +25,7 @@ if (isset($data['handle_rows_contracted']['scripts'][$data['row']['obj']->handle
                data-wpacu-handle-for="script"
                class="wpacu_handle_row_expand_contract"
                href="#"><span class="dashicons dashicons-<?php echo $dashSign; ?>"></span></a>
-            <input type="hidden"
-                   id="wpacu_script_<?php echo $data['row']['obj']->handle; ?>_row_contracted_area"
-                   name="wpacu_handle_row_contracted_area[scripts][<?php echo $data['row']['obj']->handle; ?>]"
-                   value="<?php echo $rowIsContracted; ?>" />
+            <!-- -->
         </div>
         <?php
         $insideIeCommentHtml = '<span class="wpacu_inside_cond_comm"><img style="vertical-align: middle;" width="25" height="25" src="'.WPACU_PLUGIN_URL.'/assets/icons/icon-ie.svg" alt="" title="Microsoft / Public domain" />&nbsp;<span style="font-weight: 400; color: #1C87CF;">Loads only in Internet Explorer based on the following condition:</span> <em>if '.$data['row']['obj']->inside_conditional_comment.'</em></span>';

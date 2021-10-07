@@ -17,6 +17,8 @@
 
 </div>
 
+<?php do_action('wpo_after_cache_exception_urls_fieldgroup'); ?>
+
 <h3 class="wpo-first-child"><?php _e('Cookies which, if present, will prevent caching (one per line)', 'wp-optimize'); ?></h3>
 
 <div class="wpo-fieldgroup">

@@ -776,7 +776,7 @@ class Updraft_Smush_Manager extends Updraft_Task_Manager_1_2 {
 		if (WP_Optimize()->get_db_info()->table_exists('ewwwio_images')) {
 			$old_show_errors = $wpdb->show_errors(false);
 			// EWWW Image Optimizer.
-			$ewww_image = $wpdb->get_col("SELECT attachment_id FROM {$wpdb->prefix}ewwwio_images WHERE `attachment_id`={$image_id} LIMIT 1");
+			$ewww_image = $wpdb->get_col("SELECT attachment_id FROM {$wpdb->prefix}ewwwio_images WHERE attachment_id={$image_id} AND gallery='media' LIMIT 1");
 			if (!empty($ewww_image)) return true;
 			$wpdb->show_errors($old_show_errors);
 		}
@@ -797,7 +797,7 @@ class Updraft_Smush_Manager extends Updraft_Task_Manager_1_2 {
 		if (!WP_Optimize()->get_db_info()->table_exists('ewwwio_images')) return $args;
 
 		$old_show_errors = $wpdb->show_errors(false);
-		$compressed_images = $wpdb->get_col("SELECT DISTINCT(attachment_id) FROM {$wpdb->prefix}ewwwio_images");
+		$compressed_images = $wpdb->get_col("SELECT DISTINCT(attachment_id) FROM {$wpdb->prefix}ewwwio_images WHERE gallery='media'");
 		$wpdb->show_errors($old_show_errors);
 
 		if (isset($args['post__not_in'])) {

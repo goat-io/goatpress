@@ -2,9 +2,9 @@
 
 if (!defined('WPO_PLUGIN_MAIN_PATH')) die('No direct access allowed');
 
-if (!class_exists('Updraft_Notices_1_0')) require_once(WPO_PLUGIN_MAIN_PATH.'includes/updraft-notices.php');
+if (!class_exists('Updraft_Notices_1_1')) require_once(WPO_PLUGIN_MAIN_PATH.'includes/updraft-notices.php');
 
-class WP_Optimize_Notices extends Updraft_Notices_1_0 {
+class WP_Optimize_Notices extends Updraft_Notices_1_1 {
 
 	protected static $_instance = null;
 
@@ -300,7 +300,7 @@ class WP_Optimize_Notices extends Updraft_Notices_1_0 {
 	 * @param  String  $website_home a string to be displayed
 	 * @return String                returns a string of the completed url
 	 */
-	protected function url_start($html_allowed, $url, $https = false, $website_home = 'updraftplus.com/wp-optimize') {
+	protected function url_start($html_allowed, $url, $https = false, $website_home = 'getwpo.com') {
 		return parent::url_start($html_allowed, $url, $https, $website_home);
 	}
 

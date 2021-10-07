@@ -69,9 +69,9 @@ final class ExactMetrics_Report_Overview extends ExactMetrics_Report {
 		// Add GA links.
 		if ( ! empty( $data['data'] ) ) {
 			$data['data']['galinks'] = array(
-				'countries' => 'https://analytics.google.com/analytics/web/#report/visitors-geo/' . ExactMetrics()->auth->get_referral_url() . $this->get_ga_report_range( $data['data'] ),
-				'referrals' => 'https://analytics.google.com/analytics/web/#report/trafficsources-referrals/' . ExactMetrics()->auth->get_referral_url() . $this->get_ga_report_range( $data['data'] ),
-				'topposts'  => 'https://analytics.google.com/analytics/web/#/report/content-pages/' . ExactMetrics()->auth->get_referral_url() . $this->get_ga_report_range( $data['data'] ),
+				'countries' => $this->get_ga_report_url( 'visitors-geo', 'user-demographics-detail', $data['data'] ),
+				'referrals' => $this->get_ga_report_url( 'trafficsources-referrals', 'lifecycle-user-acquisition', $data['data'], '', '_r.explorerCard..seldim=["userAcquiredCampaignSource"]' ),
+				'topposts'  => $this->get_ga_report_url( 'content-pages', 'all-pages-and-screens', $data['data'] ),
 			);
 		}
 

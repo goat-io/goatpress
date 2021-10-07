@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 494);
+/******/ 	return __webpack_require__(__webpack_require__.s = 460);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -101,40 +101,49 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 
 /***/ }),
 
-/***/ 102:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 12:
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_NAME; });
-const STORE_NAME = 'wc/admin/options';
-//# sourceMappingURL=constants.js.map
+(function() { module.exports = window["wc"]["navigation"]; }());
 
 /***/ }),
 
-/***/ 103:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 14:
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_NAME; });
-/**
- * Internal dependencies
- */
-const STORE_NAME = 'wc/admin/onboarding';
-//# sourceMappingURL=constants.js.map
+(function() { module.exports = window["wp"]["compose"]; }());
 
 /***/ }),
 
-/***/ 104:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ 15:
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_NAME; });
-const STORE_NAME = 'wc/admin/items';
-//# sourceMappingURL=constants.js.map
+(function() { module.exports = window["wp"]["url"]; }());
 
 /***/ }),
 
-/***/ 116:
+/***/ 17:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["apiFetch"]; }());
+
+/***/ }),
+
+/***/ 19:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wc"]["date"]; }());
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["i18n"]; }());
+
+/***/ }),
+
+/***/ 249:
 /***/ (function(module, exports) {
 
 var charenc = {
@@ -174,14 +183,14 @@ module.exports = charenc;
 
 /***/ }),
 
-/***/ 118:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function(){
-  var crypt = __webpack_require__(179),
-      utf8 = __webpack_require__(116).utf8,
-      isBuffer = __webpack_require__(180),
-      bin = __webpack_require__(116).bin,
+  var crypt = __webpack_require__(447),
+      utf8 = __webpack_require__(249).utf8,
+      isBuffer = __webpack_require__(448),
+      bin = __webpack_require__(249).bin,
 
   // The core
   md5 = function (message, options) {
@@ -341,412 +350,35 @@ module.exports = charenc;
 
 /***/ }),
 
-/***/ 12:
+/***/ 3:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wc"]["navigation"]; }());
+(function() { module.exports = window["lodash"]; }());
 
 /***/ }),
 
-/***/ 136:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getProfileItems", function() { return getProfileItems; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTasksStatus", function() { return getTasksStatus; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPaymentGatewaySuggestions", function() { return getPaymentGatewaySuggestions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOnboardingError", function() { return getOnboardingError; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isOnboardingRequesting", function() { return isOnboardingRequesting; });
-/**
- * Internal dependencies
- */
-const getProfileItems = state => {
-  return state.profileItems || {};
-};
-const getTasksStatus = state => {
-  return state.tasksStatus || {};
-};
-const getPaymentGatewaySuggestions = state => {
-  return state.paymentMethods || [];
-};
-const getOnboardingError = (state, selector) => {
-  return state.errors[selector] || false;
-};
-const isOnboardingRequesting = (state, selector) => {
-  return state.requesting[selector] || false;
-}; // Types
-//# sourceMappingURL=selectors.js.map
-
-/***/ }),
-
-/***/ 137:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ OPTIONS_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/options/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getOption", function() { return getOption; });
-__webpack_require__.d(selectors_namespaceObject, "getOptionsRequestingError", function() { return getOptionsRequestingError; });
-__webpack_require__.d(selectors_namespaceObject, "isOptionsUpdating", function() { return isOptionsUpdating; });
-__webpack_require__.d(selectors_namespaceObject, "getOptionsUpdatingError", function() { return getOptionsUpdatingError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/options/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "receiveOptions", function() { return receiveOptions; });
-__webpack_require__.d(actions_namespaceObject, "setRequestingError", function() { return setRequestingError; });
-__webpack_require__.d(actions_namespaceObject, "setUpdatingError", function() { return setUpdatingError; });
-__webpack_require__.d(actions_namespaceObject, "setIsUpdating", function() { return setIsUpdating; });
-__webpack_require__.d(actions_namespaceObject, "updateOptions", function() { return updateOptions; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/options/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getOption", function() { return resolvers_getOption; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: ./packages/data/build-module/options/constants.js
-var constants = __webpack_require__(102);
-
-// CONCATENATED MODULE: ./packages/data/build-module/options/selectors.js
-/**
- * Get option from state tree.
- *
- * @param {Object} state - Reducer state
- * @param {Array} name - Option name
- */
-const getOption = (state, name) => {
-  return state[name];
-};
-/**
- * Determine if an options request resulted in an error.
- *
- * @param {Object} state - Reducer state
- * @param {string} name - Option name
- */
-
-const getOptionsRequestingError = (state, name) => {
-  return state.requestingErrors[name] || false;
-};
-/**
- * Determine if options are being updated.
- *
- * @param {Object} state - Reducer state
- */
-
-const isOptionsUpdating = state => {
-  return state.isUpdating || false;
-};
-/**
- * Determine if an options update resulted in an error.
- *
- * @param {Object} state - Reducer state
- */
-
-const getOptionsUpdatingError = state => {
-  return state.updatingError || false;
-};
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// CONCATENATED MODULE: ./packages/data/build-module/options/action-types.js
-const TYPES = {
-  RECEIVE_OPTIONS: 'RECEIVE_OPTIONS',
-  SET_IS_REQUESTING: 'SET_IS_REQUESTING',
-  SET_IS_UPDATING: 'SET_IS_UPDATING',
-  SET_REQUESTING_ERROR: 'SET_REQUESTING_ERROR',
-  SET_UPDATING_ERROR: 'SET_UPDATING_ERROR'
-};
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var build_module_constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/options/actions.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-function receiveOptions(options) {
-  return {
-    type: action_types.RECEIVE_OPTIONS,
-    options
-  };
-}
-function setRequestingError(error, name) {
-  return {
-    type: action_types.SET_REQUESTING_ERROR,
-    error,
-    name
-  };
-}
-function setUpdatingError(error) {
-  return {
-    type: action_types.SET_UPDATING_ERROR,
-    error
-  };
-}
-function setIsUpdating(isUpdating) {
-  return {
-    type: action_types.SET_IS_UPDATING,
-    isUpdating
-  };
-}
-function* updateOptions(data) {
-  yield setIsUpdating(true);
-  yield receiveOptions(data);
-
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/options',
-      method: 'POST',
-      data
-    });
-    yield setIsUpdating(false);
-    return {
-      success: true,
-      ...results
-    };
-  } catch (error) {
-    yield setUpdatingError(error);
-    return {
-      success: false,
-      ...error
-    };
-  }
-}
-//# sourceMappingURL=actions.js.map
-// EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(20);
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
-
-// CONCATENATED MODULE: ./packages/data/build-module/options/controls.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-let optionNames = [];
-const fetches = {};
-const batchFetch = optionName => {
-  return {
-    type: 'BATCH_FETCH',
-    optionName
-  };
-};
-const controls = { ...external_wp_dataControls_["controls"],
-
-  BATCH_FETCH({
-    optionName
-  }) {
-    optionNames.push(optionName);
-    return new Promise(resolve => {
-      setTimeout(function () {
-        const names = optionNames.join(',');
-
-        if (fetches[names]) {
-          return fetches[names].then(result => {
-            resolve(result[optionName]);
-          });
-        }
-
-        const url = build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/options?options=' + names;
-        fetches[names] = external_wp_apiFetch_default()({
-          path: url
-        });
-        fetches[names].then(result => resolve(result)); // Clear option names after all resolved;
-
-        setTimeout(() => {
-          optionNames = []; // Delete the fetch after to allow wp data to handle cache invalidation.
-
-          delete fetches[names];
-        }, 1);
-      }, 1);
-    });
-  }
-
-};
-//# sourceMappingURL=controls.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/options/resolvers.js
-/**
- * Internal dependencies
- */
-
-
-/**
- * Request an option value.
- *
- * @param {string} name - Option name
- */
-
-function* resolvers_getOption(name) {
-  try {
-    const result = yield batchFetch(name);
-    yield receiveOptions(result);
-  } catch (error) {
-    yield setRequestingError(error, name);
-  }
-}
-//# sourceMappingURL=resolvers.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/options/reducer.js
-/**
- * Internal dependencies
- */
-
-
-const optionsReducer = (state = {
-  isUpdating: false,
-  requestingErrors: {}
-}, {
-  type,
-  options,
-  error,
-  isUpdating,
-  name
-}) => {
-  switch (type) {
-    case action_types.RECEIVE_OPTIONS:
-      state = { ...state,
-        ...options
-      };
-      break;
-
-    case action_types.SET_IS_UPDATING:
-      state = { ...state,
-        isUpdating
-      };
-      break;
-
-    case action_types.SET_REQUESTING_ERROR:
-      state = { ...state,
-        requestingErrors: {
-          [name]: error
-        }
-      };
-      break;
-
-    case action_types.SET_UPDATING_ERROR:
-      state = { ...state,
-        error,
-        updatingError: error,
-        isUpdating: false
-      };
-      break;
-  }
-
-  return state;
-};
-
-/* harmony default export */ var reducer = (optionsReducer);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/options/index.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-Object(external_wp_data_["registerStore"])(constants["a" /* STORE_NAME */], {
-  reducer: reducer,
-  actions: actions_namespaceObject,
-  controls: controls,
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
-});
-const OPTIONS_STORE_NAME = constants["a" /* STORE_NAME */];
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 14:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return JETPACK_NAMESPACE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return NAMESPACE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return WC_ADMIN_NAMESPACE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return WCS_NAMESPACE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return MAX_PER_PAGE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return SECOND; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return MINUTE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return HOUR; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DAY; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return WEEK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return MONTH; });
-/* unused harmony export DEFAULT_REQUIREMENT */
-/* unused harmony export DEFAULT_ACTIONABLE_STATUSES */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return QUERY_DEFAULTS; });
-const JETPACK_NAMESPACE = '/jetpack/v4';
-const NAMESPACE = '/wc-analytics';
-const WC_ADMIN_NAMESPACE = '/wc-admin';
-const WCS_NAMESPACE = '/wc/v1'; // WCS endpoints like Stripe are not avaiable on later /wc versions
-// WordPress & WooCommerce both set a hard limit of 100 for the per_page parameter
-
-const MAX_PER_PAGE = 100;
-const SECOND = 1000;
-const MINUTE = 60 * SECOND;
-const HOUR = 60 * MINUTE;
-const DAY = 24 * HOUR;
-const WEEK = 7 * DAY;
-const MONTH = 365 * DAY / 12;
-const DEFAULT_REQUIREMENT = {
-  timeout: 1 * MINUTE,
-  freshness: 30 * MINUTE
-};
-const DEFAULT_ACTIONABLE_STATUSES = ['processing', 'on-hold'];
-const QUERY_DEFAULTS = {
-  pageSize: 25,
-  period: 'month',
-  compare: 'previous_year',
-  noteTypes: ['info', 'marketing', 'survey', 'warning']
-};
-//# sourceMappingURL=constants.js.map
-
-/***/ }),
-
-/***/ 15:
+/***/ 30:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wp"]["compose"]; }());
+(function() { module.exports = window["wp"]["hooks"]; }());
 
 /***/ }),
 
-/***/ 16:
+/***/ 43:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wp"]["url"]; }());
+(function() { module.exports = window["wp"]["deprecated"]; }());
 
 /***/ }),
 
-/***/ 179:
+/***/ 446:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["coreData"]; }());
+
+/***/ }),
+
+/***/ 447:
 /***/ (function(module, exports) {
 
 (function() {
@@ -849,7 +481,7 @@ const QUERY_DEFAULTS = {
 
 /***/ }),
 
-/***/ 180:
+/***/ 448:
 /***/ (function(module, exports) {
 
 /*!
@@ -877,24 +509,579 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ 181:
+/***/ 460:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useOptionsHydration; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return withOptionsHydration; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(102);
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "SETTINGS_STORE_NAME", function() { return /* reexport */ SETTINGS_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "withSettingsHydration", function() { return /* reexport */ withSettingsHydration; });
+__webpack_require__.d(__webpack_exports__, "useSettings", function() { return /* reexport */ useSettings; });
+__webpack_require__.d(__webpack_exports__, "PLUGINS_STORE_NAME", function() { return /* reexport */ PLUGINS_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "pluginNames", function() { return /* reexport */ pluginNames; });
+__webpack_require__.d(__webpack_exports__, "withPluginsHydration", function() { return /* reexport */ withPluginsHydration; });
+__webpack_require__.d(__webpack_exports__, "ONBOARDING_STORE_NAME", function() { return /* reexport */ ONBOARDING_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "withOnboardingHydration", function() { return /* reexport */ withOnboardingHydration; });
+__webpack_require__.d(__webpack_exports__, "USER_STORE_NAME", function() { return /* reexport */ USER_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "withCurrentUserHydration", function() { return /* reexport */ withCurrentUserHydration; });
+__webpack_require__.d(__webpack_exports__, "useUser", function() { return /* reexport */ useUser; });
+__webpack_require__.d(__webpack_exports__, "useUserPreferences", function() { return /* reexport */ useUserPreferences; });
+__webpack_require__.d(__webpack_exports__, "OPTIONS_STORE_NAME", function() { return /* reexport */ OPTIONS_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "withOptionsHydration", function() { return /* reexport */ withOptionsHydration; });
+__webpack_require__.d(__webpack_exports__, "useOptionsHydration", function() { return /* reexport */ useOptionsHydration; });
+__webpack_require__.d(__webpack_exports__, "REVIEWS_STORE_NAME", function() { return /* reexport */ REVIEWS_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "NOTES_STORE_NAME", function() { return /* reexport */ NOTES_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "REPORTS_STORE_NAME", function() { return /* reexport */ REPORTS_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "ITEMS_STORE_NAME", function() { return /* reexport */ ITEMS_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "getLeaderboard", function() { return /* reexport */ getLeaderboard; });
+__webpack_require__.d(__webpack_exports__, "searchItemsByString", function() { return /* reexport */ searchItemsByString; });
+__webpack_require__.d(__webpack_exports__, "NAVIGATION_STORE_NAME", function() { return /* reexport */ NAVIGATION_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "withNavigationHydration", function() { return /* reexport */ withNavigationHydration; });
+__webpack_require__.d(__webpack_exports__, "PAYMENT_GATEWAYS_STORE_NAME", function() { return /* reexport */ PAYMENT_GATEWAYS_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "getFilterQuery", function() { return /* reexport */ getFilterQuery; });
+__webpack_require__.d(__webpack_exports__, "getSummaryNumbers", function() { return /* reexport */ getSummaryNumbers; });
+__webpack_require__.d(__webpack_exports__, "getReportTableData", function() { return /* reexport */ getReportTableData; });
+__webpack_require__.d(__webpack_exports__, "getReportTableQuery", function() { return /* reexport */ getReportTableQuery; });
+__webpack_require__.d(__webpack_exports__, "getReportChartData", function() { return /* reexport */ getReportChartData; });
+__webpack_require__.d(__webpack_exports__, "getTooltipValueFormat", function() { return /* reexport */ getTooltipValueFormat; });
+__webpack_require__.d(__webpack_exports__, "MAX_PER_PAGE", function() { return /* reexport */ MAX_PER_PAGE; });
+__webpack_require__.d(__webpack_exports__, "QUERY_DEFAULTS", function() { return /* reexport */ QUERY_DEFAULTS; });
+__webpack_require__.d(__webpack_exports__, "NAMESPACE", function() { return /* reexport */ NAMESPACE; });
+__webpack_require__.d(__webpack_exports__, "WC_ADMIN_NAMESPACE", function() { return /* reexport */ WC_ADMIN_NAMESPACE; });
+__webpack_require__.d(__webpack_exports__, "WCS_NAMESPACE", function() { return /* reexport */ WCS_NAMESPACE; });
+__webpack_require__.d(__webpack_exports__, "SECOND", function() { return /* reexport */ SECOND; });
+__webpack_require__.d(__webpack_exports__, "MINUTE", function() { return /* reexport */ MINUTE; });
+__webpack_require__.d(__webpack_exports__, "HOUR", function() { return /* reexport */ HOUR; });
+__webpack_require__.d(__webpack_exports__, "DAY", function() { return /* reexport */ DAY; });
+__webpack_require__.d(__webpack_exports__, "WEEK", function() { return /* reexport */ WEEK; });
+__webpack_require__.d(__webpack_exports__, "MONTH", function() { return /* reexport */ MONTH; });
+__webpack_require__.d(__webpack_exports__, "EXPORT_STORE_NAME", function() { return /* reexport */ EXPORT_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "IMPORT_STORE_NAME", function() { return /* reexport */ IMPORT_STORE_NAME; });
+__webpack_require__.d(__webpack_exports__, "getFreeExtensions", function() { return /* reexport */ getFreeExtensions; });
+__webpack_require__.d(__webpack_exports__, "getProfileItems", function() { return /* reexport */ getProfileItems; });
+__webpack_require__.d(__webpack_exports__, "getTasksStatus", function() { return /* reexport */ getTasksStatus; });
+__webpack_require__.d(__webpack_exports__, "getTaskLists", function() { return /* reexport */ getTaskLists; });
+__webpack_require__.d(__webpack_exports__, "getPaymentGatewaySuggestions", function() { return /* reexport */ getPaymentGatewaySuggestions; });
+__webpack_require__.d(__webpack_exports__, "getOnboardingError", function() { return /* reexport */ getOnboardingError; });
+__webpack_require__.d(__webpack_exports__, "isOnboardingRequesting", function() { return /* reexport */ isOnboardingRequesting; });
+__webpack_require__.d(__webpack_exports__, "getEmailPrefill", function() { return /* reexport */ getEmailPrefill; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/settings/selectors.js
+var selectors_namespaceObject = {};
+__webpack_require__.r(selectors_namespaceObject);
+__webpack_require__.d(selectors_namespaceObject, "getSettingsGroupNames", function() { return getSettingsGroupNames; });
+__webpack_require__.d(selectors_namespaceObject, "getSettings", function() { return getSettings; });
+__webpack_require__.d(selectors_namespaceObject, "getDirtyKeys", function() { return getDirtyKeys; });
+__webpack_require__.d(selectors_namespaceObject, "getIsDirty", function() { return selectors_getIsDirty; });
+__webpack_require__.d(selectors_namespaceObject, "getSettingsForGroup", function() { return selectors_getSettingsForGroup; });
+__webpack_require__.d(selectors_namespaceObject, "isUpdateSettingsRequesting", function() { return selectors_isUpdateSettingsRequesting; });
+__webpack_require__.d(selectors_namespaceObject, "getSetting", function() { return getSetting; });
+__webpack_require__.d(selectors_namespaceObject, "getLastSettingsErrorForGroup", function() { return selectors_getLastSettingsErrorForGroup; });
+__webpack_require__.d(selectors_namespaceObject, "getSettingsError", function() { return getSettingsError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/settings/actions.js
+var actions_namespaceObject = {};
+__webpack_require__.r(actions_namespaceObject);
+__webpack_require__.d(actions_namespaceObject, "updateSettingsForGroup", function() { return actions_updateSettingsForGroup; });
+__webpack_require__.d(actions_namespaceObject, "updateErrorForGroup", function() { return updateErrorForGroup; });
+__webpack_require__.d(actions_namespaceObject, "setIsRequesting", function() { return setIsRequesting; });
+__webpack_require__.d(actions_namespaceObject, "clearIsDirty", function() { return actions_clearIsDirty; });
+__webpack_require__.d(actions_namespaceObject, "updateAndPersistSettingsForGroup", function() { return actions_updateAndPersistSettingsForGroup; });
+__webpack_require__.d(actions_namespaceObject, "persistSettingsForGroup", function() { return actions_persistSettingsForGroup; });
+__webpack_require__.d(actions_namespaceObject, "clearSettings", function() { return clearSettings; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/settings/resolvers.js
+var resolvers_namespaceObject = {};
+__webpack_require__.r(resolvers_namespaceObject);
+__webpack_require__.d(resolvers_namespaceObject, "getSettings", function() { return resolvers_getSettings; });
+__webpack_require__.d(resolvers_namespaceObject, "getSettingsForGroup", function() { return resolvers_getSettingsForGroup; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/plugins/selectors.js
+var plugins_selectors_namespaceObject = {};
+__webpack_require__.r(plugins_selectors_namespaceObject);
+__webpack_require__.d(plugins_selectors_namespaceObject, "getActivePlugins", function() { return getActivePlugins; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "getInstalledPlugins", function() { return getInstalledPlugins; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "isPluginsRequesting", function() { return isPluginsRequesting; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "getPluginsError", function() { return getPluginsError; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "isJetpackConnected", function() { return isJetpackConnected; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "getJetpackConnectUrl", function() { return getJetpackConnectUrl; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "getPluginInstallState", function() { return getPluginInstallState; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "getPaypalOnboardingStatus", function() { return getPaypalOnboardingStatus; });
+__webpack_require__.d(plugins_selectors_namespaceObject, "getRecommendedPlugins", function() { return getRecommendedPlugins; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/plugins/actions.js
+var plugins_actions_namespaceObject = {};
+__webpack_require__.r(plugins_actions_namespaceObject);
+__webpack_require__.d(plugins_actions_namespaceObject, "formatErrors", function() { return formatErrors; });
+__webpack_require__.d(plugins_actions_namespaceObject, "updateActivePlugins", function() { return actions_updateActivePlugins; });
+__webpack_require__.d(plugins_actions_namespaceObject, "updateInstalledPlugins", function() { return actions_updateInstalledPlugins; });
+__webpack_require__.d(plugins_actions_namespaceObject, "setIsRequesting", function() { return actions_setIsRequesting; });
+__webpack_require__.d(plugins_actions_namespaceObject, "setError", function() { return setError; });
+__webpack_require__.d(plugins_actions_namespaceObject, "updateIsJetpackConnected", function() { return actions_updateIsJetpackConnected; });
+__webpack_require__.d(plugins_actions_namespaceObject, "updateJetpackConnectUrl", function() { return updateJetpackConnectUrl; });
+__webpack_require__.d(plugins_actions_namespaceObject, "installPlugins", function() { return installPlugins; });
+__webpack_require__.d(plugins_actions_namespaceObject, "activatePlugins", function() { return activatePlugins; });
+__webpack_require__.d(plugins_actions_namespaceObject, "installAndActivatePlugins", function() { return installAndActivatePlugins; });
+__webpack_require__.d(plugins_actions_namespaceObject, "createErrorNotice", function() { return createErrorNotice; });
+__webpack_require__.d(plugins_actions_namespaceObject, "connectToJetpack", function() { return connectToJetpack; });
+__webpack_require__.d(plugins_actions_namespaceObject, "installJetpackAndConnect", function() { return installJetpackAndConnect; });
+__webpack_require__.d(plugins_actions_namespaceObject, "connectToJetpackWithFailureRedirect", function() { return connectToJetpackWithFailureRedirect; });
+__webpack_require__.d(plugins_actions_namespaceObject, "setPaypalOnboardingStatus", function() { return setPaypalOnboardingStatus; });
+__webpack_require__.d(plugins_actions_namespaceObject, "setRecommendedPlugins", function() { return setRecommendedPlugins; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/options/selectors.js
+var options_selectors_namespaceObject = {};
+__webpack_require__.r(options_selectors_namespaceObject);
+__webpack_require__.d(options_selectors_namespaceObject, "getOption", function() { return getOption; });
+__webpack_require__.d(options_selectors_namespaceObject, "getOptionsRequestingError", function() { return getOptionsRequestingError; });
+__webpack_require__.d(options_selectors_namespaceObject, "isOptionsUpdating", function() { return isOptionsUpdating; });
+__webpack_require__.d(options_selectors_namespaceObject, "getOptionsUpdatingError", function() { return getOptionsUpdatingError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/options/actions.js
+var options_actions_namespaceObject = {};
+__webpack_require__.r(options_actions_namespaceObject);
+__webpack_require__.d(options_actions_namespaceObject, "receiveOptions", function() { return actions_receiveOptions; });
+__webpack_require__.d(options_actions_namespaceObject, "setRequestingError", function() { return setRequestingError; });
+__webpack_require__.d(options_actions_namespaceObject, "setUpdatingError", function() { return setUpdatingError; });
+__webpack_require__.d(options_actions_namespaceObject, "setIsUpdating", function() { return setIsUpdating; });
+__webpack_require__.d(options_actions_namespaceObject, "updateOptions", function() { return updateOptions; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/options/resolvers.js
+var options_resolvers_namespaceObject = {};
+__webpack_require__.r(options_resolvers_namespaceObject);
+__webpack_require__.d(options_resolvers_namespaceObject, "getOption", function() { return resolvers_getOption; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/plugins/resolvers.js
+var plugins_resolvers_namespaceObject = {};
+__webpack_require__.r(plugins_resolvers_namespaceObject);
+__webpack_require__.d(plugins_resolvers_namespaceObject, "getActivePlugins", function() { return resolvers_getActivePlugins; });
+__webpack_require__.d(plugins_resolvers_namespaceObject, "getInstalledPlugins", function() { return resolvers_getInstalledPlugins; });
+__webpack_require__.d(plugins_resolvers_namespaceObject, "isJetpackConnected", function() { return resolvers_isJetpackConnected; });
+__webpack_require__.d(plugins_resolvers_namespaceObject, "getJetpackConnectUrl", function() { return resolvers_getJetpackConnectUrl; });
+__webpack_require__.d(plugins_resolvers_namespaceObject, "getPaypalOnboardingStatus", function() { return resolvers_getPaypalOnboardingStatus; });
+__webpack_require__.d(plugins_resolvers_namespaceObject, "getRecommendedPlugins", function() { return resolvers_getRecommendedPlugins; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/onboarding/selectors.js
+var onboarding_selectors_namespaceObject = {};
+__webpack_require__.r(onboarding_selectors_namespaceObject);
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getFreeExtensions", function() { return getFreeExtensions; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getProfileItems", function() { return getProfileItems; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getTasksStatus", function() { return getTasksStatus; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getTaskLists", function() { return getTaskLists; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getPaymentGatewaySuggestions", function() { return getPaymentGatewaySuggestions; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getOnboardingError", function() { return getOnboardingError; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "isOnboardingRequesting", function() { return isOnboardingRequesting; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getEmailPrefill", function() { return getEmailPrefill; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/onboarding/actions.js
+var onboarding_actions_namespaceObject = {};
+__webpack_require__.r(onboarding_actions_namespaceObject);
+__webpack_require__.d(onboarding_actions_namespaceObject, "getFreeExtensionsError", function() { return getFreeExtensionsError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "getFreeExtensionsSuccess", function() { return getFreeExtensionsSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "setError", function() { return actions_setError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "setIsRequesting", function() { return onboarding_actions_setIsRequesting; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "setProfileItems", function() { return actions_setProfileItems; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "getTaskListsError", function() { return getTaskListsError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "getTaskListsSuccess", function() { return getTaskListsSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "snoozeTaskError", function() { return snoozeTaskError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "snoozeTaskRequest", function() { return snoozeTaskRequest; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "snoozeTaskSuccess", function() { return snoozeTaskSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoSnoozeTaskError", function() { return undoSnoozeTaskError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoSnoozeTaskRequest", function() { return undoSnoozeTaskRequest; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoSnoozeTaskSuccess", function() { return undoSnoozeTaskSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "dismissTaskError", function() { return dismissTaskError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "dismissTaskRequest", function() { return dismissTaskRequest; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "dismissTaskSuccess", function() { return dismissTaskSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTaskError", function() { return undoDismissTaskError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTaskRequest", function() { return undoDismissTaskRequest; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTaskSuccess", function() { return undoDismissTaskSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "setTasksStatus", function() { return actions_setTasksStatus; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "setPaymentMethods", function() { return setPaymentMethods; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "setEmailPrefill", function() { return setEmailPrefill; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "updateProfileItems", function() { return updateProfileItems; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "snoozeTask", function() { return snoozeTask; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoSnoozeTask", function() { return undoSnoozeTask; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "dismissTask", function() { return dismissTask; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTask", function() { return undoDismissTask; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/onboarding/resolvers.js
+var onboarding_resolvers_namespaceObject = {};
+__webpack_require__.r(onboarding_resolvers_namespaceObject);
+__webpack_require__.d(onboarding_resolvers_namespaceObject, "getProfileItems", function() { return resolvers_getProfileItems; });
+__webpack_require__.d(onboarding_resolvers_namespaceObject, "getEmailPrefill", function() { return resolvers_getEmailPrefill; });
+__webpack_require__.d(onboarding_resolvers_namespaceObject, "getTasksStatus", function() { return resolvers_getTasksStatus; });
+__webpack_require__.d(onboarding_resolvers_namespaceObject, "getTaskLists", function() { return resolvers_getTaskLists; });
+__webpack_require__.d(onboarding_resolvers_namespaceObject, "getPaymentGatewaySuggestions", function() { return resolvers_getPaymentGatewaySuggestions; });
+__webpack_require__.d(onboarding_resolvers_namespaceObject, "getFreeExtensions", function() { return resolvers_getFreeExtensions; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/reviews/selectors.js
+var reviews_selectors_namespaceObject = {};
+__webpack_require__.r(reviews_selectors_namespaceObject);
+__webpack_require__.d(reviews_selectors_namespaceObject, "getReviews", function() { return getReviews; });
+__webpack_require__.d(reviews_selectors_namespaceObject, "getReviewsTotalCount", function() { return getReviewsTotalCount; });
+__webpack_require__.d(reviews_selectors_namespaceObject, "getReviewsError", function() { return getReviewsError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/reviews/actions.js
+var reviews_actions_namespaceObject = {};
+__webpack_require__.r(reviews_actions_namespaceObject);
+__webpack_require__.d(reviews_actions_namespaceObject, "updateReviews", function() { return updateReviews; });
+__webpack_require__.d(reviews_actions_namespaceObject, "updateReview", function() { return updateReview; });
+__webpack_require__.d(reviews_actions_namespaceObject, "deleteReview", function() { return deleteReview; });
+__webpack_require__.d(reviews_actions_namespaceObject, "setReviewIsUpdating", function() { return setReviewIsUpdating; });
+__webpack_require__.d(reviews_actions_namespaceObject, "setReview", function() { return setReview; });
+__webpack_require__.d(reviews_actions_namespaceObject, "setError", function() { return reviews_actions_setError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/reviews/resolvers.js
+var reviews_resolvers_namespaceObject = {};
+__webpack_require__.r(reviews_resolvers_namespaceObject);
+__webpack_require__.d(reviews_resolvers_namespaceObject, "getReviews", function() { return resolvers_getReviews; });
+__webpack_require__.d(reviews_resolvers_namespaceObject, "getReviewsTotalCount", function() { return resolvers_getReviewsTotalCount; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/notes/selectors.js
+var notes_selectors_namespaceObject = {};
+__webpack_require__.r(notes_selectors_namespaceObject);
+__webpack_require__.d(notes_selectors_namespaceObject, "getNotes", function() { return getNotes; });
+__webpack_require__.d(notes_selectors_namespaceObject, "getNotesError", function() { return getNotesError; });
+__webpack_require__.d(notes_selectors_namespaceObject, "isNotesRequesting", function() { return isNotesRequesting; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/notes/actions.js
+var notes_actions_namespaceObject = {};
+__webpack_require__.r(notes_actions_namespaceObject);
+__webpack_require__.d(notes_actions_namespaceObject, "triggerNoteAction", function() { return triggerNoteAction; });
+__webpack_require__.d(notes_actions_namespaceObject, "removeNote", function() { return removeNote; });
+__webpack_require__.d(notes_actions_namespaceObject, "removeAllNotes", function() { return removeAllNotes; });
+__webpack_require__.d(notes_actions_namespaceObject, "batchUpdateNotes", function() { return batchUpdateNotes; });
+__webpack_require__.d(notes_actions_namespaceObject, "updateNote", function() { return updateNote; });
+__webpack_require__.d(notes_actions_namespaceObject, "setNote", function() { return setNote; });
+__webpack_require__.d(notes_actions_namespaceObject, "setNoteIsUpdating", function() { return setNoteIsUpdating; });
+__webpack_require__.d(notes_actions_namespaceObject, "setNotes", function() { return setNotes; });
+__webpack_require__.d(notes_actions_namespaceObject, "setNotesQuery", function() { return setNotesQuery; });
+__webpack_require__.d(notes_actions_namespaceObject, "setError", function() { return notes_actions_setError; });
+__webpack_require__.d(notes_actions_namespaceObject, "setIsRequesting", function() { return notes_actions_setIsRequesting; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/notes/resolvers.js
+var notes_resolvers_namespaceObject = {};
+__webpack_require__.r(notes_resolvers_namespaceObject);
+__webpack_require__.d(notes_resolvers_namespaceObject, "getNotes", function() { return resolvers_getNotes; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/reports/selectors.js
+var reports_selectors_namespaceObject = {};
+__webpack_require__.r(reports_selectors_namespaceObject);
+__webpack_require__.d(reports_selectors_namespaceObject, "getReportItemsError", function() { return selectors_getReportItemsError; });
+__webpack_require__.d(reports_selectors_namespaceObject, "getReportItems", function() { return selectors_getReportItems; });
+__webpack_require__.d(reports_selectors_namespaceObject, "getReportStats", function() { return selectors_getReportStats; });
+__webpack_require__.d(reports_selectors_namespaceObject, "getReportStatsError", function() { return selectors_getReportStatsError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/reports/actions.js
+var reports_actions_namespaceObject = {};
+__webpack_require__.r(reports_actions_namespaceObject);
+__webpack_require__.d(reports_actions_namespaceObject, "setReportItemsError", function() { return setReportItemsError; });
+__webpack_require__.d(reports_actions_namespaceObject, "setReportItems", function() { return setReportItems; });
+__webpack_require__.d(reports_actions_namespaceObject, "setReportStats", function() { return setReportStats; });
+__webpack_require__.d(reports_actions_namespaceObject, "setReportStatsError", function() { return setReportStatsError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/reports/resolvers.js
+var reports_resolvers_namespaceObject = {};
+__webpack_require__.r(reports_resolvers_namespaceObject);
+__webpack_require__.d(reports_resolvers_namespaceObject, "getReportItems", function() { return resolvers_getReportItems; });
+__webpack_require__.d(reports_resolvers_namespaceObject, "getReportStats", function() { return resolvers_getReportStats; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/items/selectors.js
+var items_selectors_namespaceObject = {};
+__webpack_require__.r(items_selectors_namespaceObject);
+__webpack_require__.d(items_selectors_namespaceObject, "getItems", function() { return selectors_getItems; });
+__webpack_require__.d(items_selectors_namespaceObject, "getItemsTotalCount", function() { return getItemsTotalCount; });
+__webpack_require__.d(items_selectors_namespaceObject, "getItemsError", function() { return selectors_getItemsError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/items/actions.js
+var items_actions_namespaceObject = {};
+__webpack_require__.r(items_actions_namespaceObject);
+__webpack_require__.d(items_actions_namespaceObject, "setItem", function() { return setItem; });
+__webpack_require__.d(items_actions_namespaceObject, "setItems", function() { return setItems; });
+__webpack_require__.d(items_actions_namespaceObject, "setItemsTotalCount", function() { return setItemsTotalCount; });
+__webpack_require__.d(items_actions_namespaceObject, "setError", function() { return items_actions_setError; });
+__webpack_require__.d(items_actions_namespaceObject, "updateProductStock", function() { return updateProductStock; });
+__webpack_require__.d(items_actions_namespaceObject, "createProductFromTemplate", function() { return createProductFromTemplate; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/items/resolvers.js
+var items_resolvers_namespaceObject = {};
+__webpack_require__.r(items_resolvers_namespaceObject);
+__webpack_require__.d(items_resolvers_namespaceObject, "getItems", function() { return resolvers_getItems; });
+__webpack_require__.d(items_resolvers_namespaceObject, "getReviewsTotalCount", function() { return items_resolvers_getReviewsTotalCount; });
+__webpack_require__.d(items_resolvers_namespaceObject, "getItemsTotalCount", function() { return resolvers_getItemsTotalCount; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/navigation/selectors.js
+var navigation_selectors_namespaceObject = {};
+__webpack_require__.r(navigation_selectors_namespaceObject);
+__webpack_require__.d(navigation_selectors_namespaceObject, "getMenuItems", function() { return getMenuItems; });
+__webpack_require__.d(navigation_selectors_namespaceObject, "getFavorites", function() { return getFavorites; });
+__webpack_require__.d(navigation_selectors_namespaceObject, "isNavigationRequesting", function() { return isNavigationRequesting; });
+__webpack_require__.d(navigation_selectors_namespaceObject, "getPersistedQuery", function() { return getPersistedQuery; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/navigation/actions.js
+var navigation_actions_namespaceObject = {};
+__webpack_require__.r(navigation_actions_namespaceObject);
+__webpack_require__.d(navigation_actions_namespaceObject, "setMenuItems", function() { return actions_setMenuItems; });
+__webpack_require__.d(navigation_actions_namespaceObject, "addMenuItems", function() { return addMenuItems; });
+__webpack_require__.d(navigation_actions_namespaceObject, "getFavoritesFailure", function() { return getFavoritesFailure; });
+__webpack_require__.d(navigation_actions_namespaceObject, "getFavoritesRequest", function() { return getFavoritesRequest; });
+__webpack_require__.d(navigation_actions_namespaceObject, "getFavoritesSuccess", function() { return getFavoritesSuccess; });
+__webpack_require__.d(navigation_actions_namespaceObject, "addFavoriteRequest", function() { return addFavoriteRequest; });
+__webpack_require__.d(navigation_actions_namespaceObject, "addFavoriteFailure", function() { return addFavoriteFailure; });
+__webpack_require__.d(navigation_actions_namespaceObject, "addFavoriteSuccess", function() { return addFavoriteSuccess; });
+__webpack_require__.d(navigation_actions_namespaceObject, "removeFavoriteRequest", function() { return removeFavoriteRequest; });
+__webpack_require__.d(navigation_actions_namespaceObject, "removeFavoriteFailure", function() { return removeFavoriteFailure; });
+__webpack_require__.d(navigation_actions_namespaceObject, "removeFavoriteSuccess", function() { return removeFavoriteSuccess; });
+__webpack_require__.d(navigation_actions_namespaceObject, "onLoad", function() { return actions_onLoad; });
+__webpack_require__.d(navigation_actions_namespaceObject, "onHistoryChange", function() { return actions_onHistoryChange; });
+__webpack_require__.d(navigation_actions_namespaceObject, "addFavorite", function() { return addFavorite; });
+__webpack_require__.d(navigation_actions_namespaceObject, "removeFavorite", function() { return removeFavorite; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/navigation/resolvers.js
+var navigation_resolvers_namespaceObject = {};
+__webpack_require__.r(navigation_resolvers_namespaceObject);
+__webpack_require__.d(navigation_resolvers_namespaceObject, "getFavorites", function() { return resolvers_getFavorites; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/payment-gateways/actions.js
+var payment_gateways_actions_namespaceObject = {};
+__webpack_require__.r(payment_gateways_actions_namespaceObject);
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "getPaymentGatewaysRequest", function() { return getPaymentGatewaysRequest; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "getPaymentGatewaysSuccess", function() { return getPaymentGatewaysSuccess; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "getPaymentGatewaysError", function() { return getPaymentGatewaysError; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "getPaymentGatewayRequest", function() { return getPaymentGatewayRequest; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "getPaymentGatewayError", function() { return getPaymentGatewayError; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "getPaymentGatewaySuccess", function() { return getPaymentGatewaySuccess; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "updatePaymentGatewaySuccess", function() { return updatePaymentGatewaySuccess; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "updatePaymentGatewayRequest", function() { return updatePaymentGatewayRequest; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "updatePaymentGatewayError", function() { return updatePaymentGatewayError; });
+__webpack_require__.d(payment_gateways_actions_namespaceObject, "updatePaymentGateway", function() { return updatePaymentGateway; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/payment-gateways/resolvers.js
+var payment_gateways_resolvers_namespaceObject = {};
+__webpack_require__.r(payment_gateways_resolvers_namespaceObject);
+__webpack_require__.d(payment_gateways_resolvers_namespaceObject, "getPaymentGateways", function() { return getPaymentGateways; });
+__webpack_require__.d(payment_gateways_resolvers_namespaceObject, "getPaymentGateway", function() { return getPaymentGateway; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/payment-gateways/selectors.js
+var payment_gateways_selectors_namespaceObject = {};
+__webpack_require__.r(payment_gateways_selectors_namespaceObject);
+__webpack_require__.d(payment_gateways_selectors_namespaceObject, "getPaymentGateway", function() { return selectors_getPaymentGateway; });
+__webpack_require__.d(payment_gateways_selectors_namespaceObject, "getPaymentGateways", function() { return selectors_getPaymentGateways; });
+__webpack_require__.d(payment_gateways_selectors_namespaceObject, "getPaymentGatewayError", function() { return selectors_getPaymentGatewayError; });
+__webpack_require__.d(payment_gateways_selectors_namespaceObject, "isPaymentGatewayUpdating", function() { return isPaymentGatewayUpdating; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/export/selectors.js
+var export_selectors_namespaceObject = {};
+__webpack_require__.r(export_selectors_namespaceObject);
+__webpack_require__.d(export_selectors_namespaceObject, "isExportRequesting", function() { return isExportRequesting; });
+__webpack_require__.d(export_selectors_namespaceObject, "getExportId", function() { return getExportId; });
+__webpack_require__.d(export_selectors_namespaceObject, "getError", function() { return getError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/export/actions.js
+var export_actions_namespaceObject = {};
+__webpack_require__.r(export_actions_namespaceObject);
+__webpack_require__.d(export_actions_namespaceObject, "setExportId", function() { return setExportId; });
+__webpack_require__.d(export_actions_namespaceObject, "setIsRequesting", function() { return export_actions_setIsRequesting; });
+__webpack_require__.d(export_actions_namespaceObject, "setError", function() { return export_actions_setError; });
+__webpack_require__.d(export_actions_namespaceObject, "startExport", function() { return startExport; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/import/selectors.js
+var import_selectors_namespaceObject = {};
+__webpack_require__.r(import_selectors_namespaceObject);
+__webpack_require__.d(import_selectors_namespaceObject, "getImportStarted", function() { return getImportStarted; });
+__webpack_require__.d(import_selectors_namespaceObject, "getFormSettings", function() { return getFormSettings; });
+__webpack_require__.d(import_selectors_namespaceObject, "getImportStatus", function() { return getImportStatus; });
+__webpack_require__.d(import_selectors_namespaceObject, "getImportTotals", function() { return getImportTotals; });
+__webpack_require__.d(import_selectors_namespaceObject, "getImportError", function() { return getImportError; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/import/actions.js
+var import_actions_namespaceObject = {};
+__webpack_require__.r(import_actions_namespaceObject);
+__webpack_require__.d(import_actions_namespaceObject, "setImportStarted", function() { return setImportStarted; });
+__webpack_require__.d(import_actions_namespaceObject, "setImportPeriod", function() { return setImportPeriod; });
+__webpack_require__.d(import_actions_namespaceObject, "setSkipPrevious", function() { return setSkipPrevious; });
+__webpack_require__.d(import_actions_namespaceObject, "setImportStatus", function() { return setImportStatus; });
+__webpack_require__.d(import_actions_namespaceObject, "setImportTotals", function() { return setImportTotals; });
+__webpack_require__.d(import_actions_namespaceObject, "setImportError", function() { return setImportError; });
+__webpack_require__.d(import_actions_namespaceObject, "updateImportation", function() { return updateImportation; });
+
+// NAMESPACE OBJECT: ./packages/data/build-module/import/resolvers.js
+var import_resolvers_namespaceObject = {};
+__webpack_require__.r(import_resolvers_namespaceObject);
+__webpack_require__.d(import_resolvers_namespaceObject, "getImportStatus", function() { return resolvers_getImportStatus; });
+__webpack_require__.d(import_resolvers_namespaceObject, "getImportTotals", function() { return resolvers_getImportTotals; });
+
+// EXTERNAL MODULE: external ["wp","coreData"]
+var external_wp_coreData_ = __webpack_require__(446);
+
+// CONCATENATED MODULE: ./packages/data/build-module/types/wp-data.js
+
+// CONCATENATED MODULE: ./packages/data/build-module/types/rule-processor.js
+
+// CONCATENATED MODULE: ./packages/data/build-module/types/index.js
 
 
+// EXTERNAL MODULE: external ["wp","data"]
+var external_wp_data_ = __webpack_require__(7);
+
+// EXTERNAL MODULE: external ["wp","dataControls"]
+var external_wp_dataControls_ = __webpack_require__(10);
+
+// CONCATENATED MODULE: ./packages/data/build-module/settings/constants.js
+const STORE_NAME = 'wc/admin/settings';
+// CONCATENATED MODULE: ./packages/data/build-module/utils.js
+function getResourceName(prefix, identifier) {
+  const identifierString = JSON.stringify(identifier, Object.keys(identifier).sort());
+  return `${prefix}:${identifierString}`;
+}
+function getResourcePrefix(resourceName) {
+  const hasPrefixIndex = resourceName.indexOf(':');
+  return hasPrefixIndex < 0 ? resourceName : resourceName.substring(0, hasPrefixIndex);
+}
+function isResourcePrefix(resourceName, prefix) {
+  const resourcePrefix = getResourcePrefix(resourceName);
+  return resourcePrefix === prefix;
+}
+function getResourceIdentifier(resourceName) {
+  const identifierString = resourceName.substring(resourceName.indexOf(':') + 1);
+  return JSON.parse(identifierString);
+}
+// CONCATENATED MODULE: ./packages/data/build-module/settings/selectors.js
+/**
+ * Internal dependencies
+ */
+
+const getSettingsGroupNames = state => {
+  const groupNames = new Set(Object.keys(state).map(resourceName => {
+    return getResourcePrefix(resourceName);
+  }));
+  return [...groupNames];
+};
+const getSettings = (state, group) => {
+  const settings = {};
+  const settingIds = state[group] && state[group].data || [];
+
+  if (settingIds.length === 0) {
+    return settings;
+  }
+
+  settingIds.forEach(id => {
+    settings[id] = state[getResourceName(group, id)].data;
+  });
+  return settings;
+};
+const getDirtyKeys = (state, group) => {
+  return state[group].dirty || [];
+};
+const selectors_getIsDirty = (state, group, keys = []) => {
+  const dirtyMap = getDirtyKeys(state, group); // if empty array bail
+
+  if (dirtyMap.length === 0) {
+    return false;
+  } // if at least one of the keys is in the dirty map then the state is dirty
+  // meaning it hasn't been persisted.
+
+
+  return keys.some(key => dirtyMap.includes(key));
+};
+const selectors_getSettingsForGroup = (state, group, keys) => {
+  const allSettings = getSettings(state, group);
+  return keys.reduce((accumulator, key) => {
+    accumulator[key] = allSettings[key] || {};
+    return accumulator;
+  }, {});
+};
+const selectors_isUpdateSettingsRequesting = (state, group) => {
+  return state[group] && Boolean(state[group].isRequesting);
+};
+/**
+ * Retrieves a setting value from the setting store.
+ *
+ * @param {Object}   state                        State param added by wp.data.
+ * @param {string}   group                        The settings group.
+ * @param {string}   name                         The identifier for the setting.
+ * @param {*}    [fallback=false]             The value to use as a fallback
+ *                                                if the setting is not in the
+ *                                                state.
+ * @param {Function} [filter=( val ) => val]  	  A callback for filtering the
+ *                                                value before it's returned.
+ *                                                Receives both the found value
+ *                                                (if it exists for the key) and
+ *                                                the provided fallback arg.
+ *
+ * @return {*}  The value present in the settings state for the given
+ *                   name.
+ */
+
+function getSetting(state, group, name, fallback = false, filter = val => val) {
+  const resourceName = getResourceName(group, name);
+  const value = state[resourceName] && state[resourceName].data || fallback;
+  return filter(value, fallback);
+}
+const selectors_getLastSettingsErrorForGroup = (state, group) => {
+  const settingsIds = state[group].data;
+
+  if (settingsIds.length === 0) {
+    return state[group].error;
+  }
+
+  return [...settingsIds].pop().error;
+};
+const getSettingsError = (state, group, id) => {
+  if (!id) {
+    return state[group] && state[group].error || false;
+  }
+
+  return state[getResourceName(group, id)].error || false;
+};
+// EXTERNAL MODULE: external ["wp","i18n"]
+var external_wp_i18n_ = __webpack_require__(2);
+
+// EXTERNAL MODULE: external "lodash"
+var external_lodash_ = __webpack_require__(3);
+
+// CONCATENATED MODULE: ./packages/data/build-module/constants.js
+const JETPACK_NAMESPACE = '/jetpack/v4';
+const NAMESPACE = '/wc-analytics';
+const WC_ADMIN_NAMESPACE = '/wc-admin';
+const WCS_NAMESPACE = '/wc/v1'; // WCS endpoints like Stripe are not avaiable on later /wc versions
+// WordPress & WooCommerce both set a hard limit of 100 for the per_page parameter
+
+const MAX_PER_PAGE = 100;
+const SECOND = 1000;
+const MINUTE = 60 * SECOND;
+const HOUR = 60 * MINUTE;
+const DAY = 24 * HOUR;
+const WEEK = 7 * DAY;
+const MONTH = 365 * DAY / 12;
+const DEFAULT_REQUIREMENT = {
+  timeout: 1 * MINUTE,
+  freshness: 30 * MINUTE
+};
+const DEFAULT_ACTIONABLE_STATUSES = ['processing', 'on-hold'];
+const QUERY_DEFAULTS = {
+  pageSize: 25,
+  period: 'month',
+  compare: 'previous_year',
+  noteTypes: ['info', 'marketing', 'survey', 'warning']
+};
+// CONCATENATED MODULE: ./packages/data/build-module/settings/action-types.js
+const TYPES = {
+  UPDATE_SETTINGS_FOR_GROUP: 'UPDATE_SETTINGS_FOR_GROUP',
+  UPDATE_ERROR_FOR_GROUP: 'UPDATE_ERROR_FOR_GROUP',
+  CLEAR_SETTINGS: 'CLEAR_SETTINGS',
+  SET_IS_REQUESTING: 'SET_IS_REQUESTING',
+  CLEAR_IS_DIRTY: 'CLEAR_IS_DIRTY'
+};
+/* harmony default export */ var action_types = (TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/settings/actions.js
 /**
  * External dependencies
  */
+
 
 
 
@@ -903,110 +1090,267 @@ function isSlowBuffer (obj) {
  */
 
 
-const useOptionsHydration = data => {
-  const dataRef = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useRef"])(data);
-  Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["useSelect"])((select, registry) => {
-    if (!dataRef.current) {
-      return;
-    }
 
-    const {
-      isResolving,
-      hasFinishedResolution
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
-    const {
-      startResolution,
-      finishResolution,
-      receiveOptions
-    } = registry.dispatch(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
-    const names = Object.keys(dataRef.current);
-    names.forEach(name => {
-      if (!isResolving('getOption', [name]) && !hasFinishedResolution('getOption', [name])) {
-        startResolution('getOption', [name]);
-        receiveOptions({
-          [name]: dataRef.current[name]
-        });
-        finishResolution('getOption', [name]);
+ // Can be removed in WP 5.9, wp.data is supported in >5.7.
+
+const resolveSelect = external_wp_data_["controls"] && external_wp_data_["controls"].resolveSelect ? external_wp_data_["controls"].resolveSelect : external_wp_dataControls_["select"];
+function actions_updateSettingsForGroup(group, data, time = new Date()) {
+  return {
+    type: action_types.UPDATE_SETTINGS_FOR_GROUP,
+    group,
+    data,
+    time
+  };
+}
+function updateErrorForGroup(group, data, error, time = new Date()) {
+  return {
+    type: action_types.UPDATE_ERROR_FOR_GROUP,
+    group,
+    data,
+    error,
+    time
+  };
+}
+function setIsRequesting(group, isRequesting) {
+  return {
+    type: action_types.SET_IS_REQUESTING,
+    group,
+    isRequesting
+  };
+}
+function actions_clearIsDirty(group) {
+  return {
+    type: action_types.CLEAR_IS_DIRTY,
+    group
+  };
+} // allows updating and persisting immediately in one action.
+
+function* actions_updateAndPersistSettingsForGroup(group, data) {
+  yield actions_updateSettingsForGroup(group, data);
+  yield* actions_persistSettingsForGroup(group);
+} // this would replace setSettingsForGroup
+
+function* actions_persistSettingsForGroup(group) {
+  // first dispatch the is persisting action
+  yield setIsRequesting(group, true); // get all dirty keys with select control
+
+  const dirtyKeys = yield resolveSelect(STORE_NAME, 'getDirtyKeys', group); // if there is nothing dirty, bail
+
+  if (dirtyKeys.length === 0) {
+    yield setIsRequesting(group, false);
+    return;
+  } // get data slice for keys
+
+
+  const dirtyData = yield resolveSelect(STORE_NAME, 'getSettingsForGroup', group, dirtyKeys);
+  const url = `${NAMESPACE}/settings/${group}/batch`;
+  const update = dirtyKeys.reduce((updates, key) => {
+    const u = Object.keys(dirtyData[key]).map(k => {
+      return {
+        id: k,
+        value: dirtyData[key][k]
+      };
+    });
+    return Object(external_lodash_["concat"])(updates, u);
+  }, []);
+
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'POST',
+      data: {
+        update
       }
     });
-  }, []);
+    yield setIsRequesting(group, false);
+
+    if (!results) {
+      throw new Error(Object(external_wp_i18n_["__"])('There was a problem updating your settings.', 'woocommerce-admin'));
+    } // remove dirtyKeys from map - note we're only doing this if there is no error.
+
+
+    yield actions_clearIsDirty(group);
+  } catch (e) {
+    yield updateErrorForGroup(group, null, e);
+    yield setIsRequesting(group, false);
+    throw e;
+  }
+}
+function clearSettings() {
+  return {
+    type: action_types.CLEAR_SETTINGS
+  };
+}
+// CONCATENATED MODULE: ./packages/data/build-module/settings/resolvers.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+ // Can be removed in WP 5.9.
+
+const resolvers_dispatch = external_wp_data_["controls"] && external_wp_data_["controls"].dispatch ? external_wp_data_["controls"].dispatch : external_wp_dataControls_["dispatch"];
+
+function settingsToSettingsResource(settings) {
+  return settings.reduce((resource, setting) => {
+    resource[setting.id] = setting.value;
+    return resource;
+  }, {});
+}
+
+function* resolvers_getSettings(group) {
+  yield resolvers_dispatch(STORE_NAME, 'setIsRequesting', group, true);
+
+  try {
+    const url = NAMESPACE + '/settings/' + group;
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'GET'
+    });
+    const resource = settingsToSettingsResource(results);
+    return actions_updateSettingsForGroup(group, {
+      [group]: resource
+    });
+  } catch (error) {
+    return updateErrorForGroup(group, null, error.message);
+  }
+}
+function* resolvers_getSettingsForGroup(group) {
+  return resolvers_getSettings(group);
+}
+// CONCATENATED MODULE: ./packages/data/build-module/settings/reducer.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+const updateGroupDataInNewState = (newState, {
+  group,
+  groupIds,
+  data,
+  time,
+  error
+}) => {
+  groupIds.forEach(id => {
+    newState[getResourceName(group, id)] = {
+      data: data[id],
+      lastReceived: time,
+      error
+    };
+  });
+  return newState;
 };
-const withOptionsHydration = data => Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["createHigherOrderComponent"])(OriginalComponent => props => {
-  useOptionsHydration(data);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(OriginalComponent, props);
-}, 'withOptionsHydration');
-//# sourceMappingURL=with-options-hydration.js.map
 
-/***/ }),
+const receiveSettings = (state = {}, {
+  type,
+  group,
+  data,
+  error,
+  time,
+  isRequesting
+}) => {
+  const newState = {};
 
-/***/ 2:
-/***/ (function(module, exports) {
+  switch (type) {
+    case action_types.SET_IS_REQUESTING:
+      state = { ...state,
+        [group]: { ...state[group],
+          isRequesting
+        }
+      };
+      break;
 
-(function() { module.exports = window["wp"]["i18n"]; }());
+    case action_types.CLEAR_IS_DIRTY:
+      state = { ...state,
+        [group]: { ...state[group],
+          dirty: []
+        }
+      };
+      break;
 
-/***/ }),
+    case action_types.UPDATE_SETTINGS_FOR_GROUP:
+    case action_types.UPDATE_ERROR_FOR_GROUP:
+      const groupIds = data ? Object.keys(data) : [];
 
-/***/ 20:
-/***/ (function(module, exports) {
+      if (data === null) {
+        state = { ...state,
+          [group]: {
+            data: state[group] ? state[group].data : [],
+            error,
+            lastReceived: time
+          }
+        };
+      } else {
+        state = { ...state,
+          [group]: {
+            data: state[group] && state[group].data ? [...state[group].data, ...groupIds] : groupIds,
+            error,
+            lastReceived: time,
+            isRequesting: false,
+            dirty: state[group] && state[group].dirty ? Object(external_lodash_["union"])(state[group].dirty, groupIds) : groupIds
+          },
+          ...updateGroupDataInNewState(newState, {
+            group,
+            groupIds,
+            data,
+            time,
+            error
+          })
+        };
+      }
 
-(function() { module.exports = window["wp"]["apiFetch"]; }());
+      break;
 
-/***/ }),
+    case action_types.CLEAR_SETTINGS:
+      state = {};
+  }
 
-/***/ 21:
-/***/ (function(module, exports) {
+  return state;
+};
 
-(function() { module.exports = window["wc"]["date"]; }());
-
-/***/ }),
-
-/***/ 273:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wp_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(274);
-/* harmony import */ var _wp_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wp_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _wp_data__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _wp_data__WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _rule_processor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(275);
-/* harmony import */ var _rule_processor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_rule_processor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _rule_processor__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _rule_processor__WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 274:
-/***/ (function(module, exports) {
-
-
-//# sourceMappingURL=wp-data.js.map
-
-/***/ }),
-
-/***/ 275:
-/***/ (function(module, exports) {
-
-
-//# sourceMappingURL=rule-processor.js.map
-
-/***/ }),
-
-/***/ 276:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return withSettingsHydration; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48);
+/* harmony default export */ var reducer = (receiveSettings);
+// CONCATENATED MODULE: ./packages/data/build-module/settings/index.js
+/**
+ * External dependencies
+ */
 
 
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+Object(external_wp_data_["registerStore"])(STORE_NAME, {
+  reducer: reducer,
+  actions: actions_namespaceObject,
+  controls: external_wp_dataControls_["controls"],
+  selectors: selectors_namespaceObject,
+  resolvers: resolvers_namespaceObject
+});
+const SETTINGS_STORE_NAME = STORE_NAME;
+// EXTERNAL MODULE: external ["wp","compose"]
+var external_wp_compose_ = __webpack_require__(14);
+
+// EXTERNAL MODULE: external ["wp","element"]
+var external_wp_element_ = __webpack_require__(0);
+
+// CONCATENATED MODULE: ./packages/data/build-module/settings/with-settings-hydration.js
 /**
  * External dependencies
  */
@@ -1018,9 +1362,9 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
-const withSettingsHydration = (group, settings) => Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["createHigherOrderComponent"])(OriginalComponent => props => {
-  const settingsRef = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useRef"])(settings);
-  Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["useSelect"])((select, registry) => {
+const withSettingsHydration = (group, settings) => Object(external_wp_compose_["createHigherOrderComponent"])(OriginalComponent => props => {
+  const settingsRef = Object(external_wp_element_["useRef"])(settings);
+  Object(external_wp_data_["useSelect"])((select, registry) => {
     if (!settingsRef.current) {
       return;
     }
@@ -1028,13 +1372,13 @@ const withSettingsHydration = (group, settings) => Object(_wordpress_compose__WE
     const {
       isResolving,
       hasFinishedResolution
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+    } = select(STORE_NAME);
     const {
       startResolution,
       finishResolution,
       updateSettingsForGroup,
       clearIsDirty
-    } = registry.dispatch(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+    } = registry.dispatch(STORE_NAME);
 
     if (!isResolving('getSettings', [group]) && !hasFinishedResolution('getSettings', [group])) {
       startResolution('getSettings', [group]);
@@ -1043,22 +1387,9 @@ const withSettingsHydration = (group, settings) => Object(_wordpress_compose__WE
       finishResolution('getSettings', [group]);
     }
   }, []);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(OriginalComponent, props);
+  return Object(external_wp_element_["createElement"])(OriginalComponent, Object.assign({}, props));
 }, 'withSettingsHydration');
-//# sourceMappingURL=with-settings-hydration.js.map
-
-/***/ }),
-
-/***/ 277:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useSettings; });
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(48);
+// CONCATENATED MODULE: ./packages/data/build-module/settings/use-settings.js
 /**
  * External dependencies
  */
@@ -1075,13 +1406,13 @@ const useSettings = (group, settingsKeys = []) => {
     settingsError,
     isRequesting,
     isDirty
-  } = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__["useSelect"])(select => {
+  } = Object(external_wp_data_["useSelect"])(select => {
     const {
       getLastSettingsErrorForGroup,
       getSettingsForGroup,
       getIsDirty,
       isUpdateSettingsRequesting
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_2__[/* STORE_NAME */ "a"]);
+    } = select(STORE_NAME);
     return {
       requestedSettings: getSettingsForGroup(group, settingsKeys),
       settingsError: Boolean(getLastSettingsErrorForGroup(group)),
@@ -1093,18 +1424,18 @@ const useSettings = (group, settingsKeys = []) => {
     persistSettingsForGroup,
     updateAndPersistSettingsForGroup,
     updateSettingsForGroup
-  } = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__["useDispatch"])(_constants__WEBPACK_IMPORTED_MODULE_2__[/* STORE_NAME */ "a"]);
-  const updateSettings = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useCallback"])((name, data) => {
+  } = Object(external_wp_data_["useDispatch"])(STORE_NAME);
+  const updateSettings = Object(external_wp_element_["useCallback"])((name, data) => {
     updateSettingsForGroup(group, {
       [name]: data
     });
   }, [group]);
-  const persistSettings = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(() => {
+  const persistSettings = Object(external_wp_element_["useCallback"])(() => {
     // this action would simply persist all settings marked as dirty in the
     // store state and then remove the dirty record in the isDirtyMap
     persistSettingsForGroup(group);
   }, [group]);
-  const updateAndPersistSettings = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useCallback"])((name, data) => {
+  const updateAndPersistSettings = Object(external_wp_element_["useCallback"])((name, data) => {
     updateAndPersistSettingsForGroup(group, {
       [name]: data
     });
@@ -1119,24 +1450,81 @@ const useSettings = (group, settingsKeys = []) => {
     updateSettings
   };
 };
-//# sourceMappingURL=use-settings.js.map
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/constants.js
+/**
+ * External dependencies
+ */
 
-/***/ }),
+const constants_STORE_NAME = 'wc/admin/plugins';
+const PAYPAL_NAMESPACE = '/wc-paypal/v1';
+/**
+ * Plugin slugs and names as key/value pairs.
+ */
 
-/***/ 278:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+const pluginNames = {
+  'facebook-for-woocommerce': Object(external_wp_i18n_["__"])('Facebook for WooCommerce', 'woocommerce-admin'),
+  jetpack: Object(external_wp_i18n_["__"])('Jetpack', 'woocommerce-admin'),
+  'klarna-checkout-for-woocommerce': Object(external_wp_i18n_["__"])('Klarna Checkout for WooCommerce', 'woocommerce-admin'),
+  'klarna-payments-for-woocommerce': Object(external_wp_i18n_["__"])('Klarna Payments for WooCommerce', 'woocommerce-admin'),
+  'mailchimp-for-woocommerce': Object(external_wp_i18n_["__"])('Mailchimp for WooCommerce', 'woocommerce-admin'),
+  'creative-mail-by-constant-contact': Object(external_wp_i18n_["__"])('Creative Mail for WooCommerce', 'woocommerce-admin'),
+  'woocommerce-gateway-paypal-express-checkout': Object(external_wp_i18n_["__"])('WooCommerce PayPal', 'woocommerce-admin'),
+  'woocommerce-gateway-stripe': Object(external_wp_i18n_["__"])('WooCommerce Stripe', 'woocommerce-admin'),
+  'woocommerce-payfast-gateway': Object(external_wp_i18n_["__"])('WooCommerce PayFast', 'woocommerce-admin'),
+  'woocommerce-payments': Object(external_wp_i18n_["__"])('WooCommerce Payments', 'woocommerce-admin'),
+  'woocommerce-services': Object(external_wp_i18n_["__"])('WooCommerce Shipping & Tax', 'woocommerce-admin'),
+  'woocommerce-services:shipping': Object(external_wp_i18n_["__"])('WooCommerce Shipping & Tax', 'woocommerce-admin'),
+  'woocommerce-services:tax': Object(external_wp_i18n_["__"])('WooCommerce Shipping & Tax', 'woocommerce-admin'),
+  'woocommerce-shipstation-integration': Object(external_wp_i18n_["__"])('WooCommerce ShipStation Gateway', 'woocommerce-admin'),
+  'woocommerce-mercadopago': Object(external_wp_i18n_["__"])('Mercado Pago payments for WooCommerce', 'woocommerce-admin'),
+  'google-listings-and-ads': Object(external_wp_i18n_["__"])('Google Listings and Ads', 'woocommerce-admin'),
+  'woo-razorpay': Object(external_wp_i18n_["__"])('Razorpay', 'woocommerce-admin'),
+  mailpoet: Object(external_wp_i18n_["__"])('MailPoet', 'woocommerce-admin')
+};
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/selectors.js
+const getActivePlugins = state => {
+  return state.active || [];
+};
+const getInstalledPlugins = state => {
+  return state.installed || [];
+};
+const isPluginsRequesting = (state, selector) => {
+  return state.requesting[selector] || false;
+};
+const getPluginsError = (state, selector) => {
+  return state.errors[selector] || false;
+};
+const isJetpackConnected = state => state.jetpackConnection;
+const getJetpackConnectUrl = (state, query) => {
+  return state.jetpackConnectUrls[query.redirect_url];
+};
+const getPluginInstallState = (state, plugin) => {
+  if (state.active.includes(plugin)) {
+    return 'activated';
+  } else if (state.installed.includes(plugin)) {
+    return 'installed';
+  }
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return withPluginsHydration; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(35);
+  return 'unavailable';
+};
+const getPaypalOnboardingStatus = state => state.paypalOnboardingStatus;
+const getRecommendedPlugins = (state, type) => {
+  return state.recommended[type];
+};
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/action-types.js
+var ACTION_TYPES;
 
-
+(function (ACTION_TYPES) {
+  ACTION_TYPES["UPDATE_ACTIVE_PLUGINS"] = "UPDATE_ACTIVE_PLUGINS";
+  ACTION_TYPES["UPDATE_INSTALLED_PLUGINS"] = "UPDATE_INSTALLED_PLUGINS";
+  ACTION_TYPES["SET_IS_REQUESTING"] = "SET_IS_REQUESTING";
+  ACTION_TYPES["SET_ERROR"] = "SET_ERROR";
+  ACTION_TYPES["UPDATE_JETPACK_CONNECTION"] = "UPDATE_JETPACK_CONNECTION";
+  ACTION_TYPES["UPDATE_JETPACK_CONNECT_URL"] = "UPDATE_JETPACK_CONNECT_URL";
+  ACTION_TYPES["SET_PAYPAL_ONBOARDING_STATUS"] = "SET_PAYPAL_ONBOARDING_STATUS";
+  ACTION_TYPES["SET_RECOMMENDED_PLUGINS"] = "SET_RECOMMENDED_PLUGINS";
+})(ACTION_TYPES || (ACTION_TYPES = {}));
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/actions.js
 /**
  * External dependencies
  */
@@ -1148,9 +1536,740 @@ const useSettings = (group, settingsKeys = []) => {
  */
 
 
-const withPluginsHydration = data => Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["createHigherOrderComponent"])(OriginalComponent => props => {
-  const dataRef = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useRef"])(data);
-  Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["useSelect"])((select, registry) => {
+
+ // Can be removed in WP 5.9, wp.data is supported in >5.7.
+
+const actions_dispatch = external_wp_data_["controls"] && external_wp_data_["controls"].dispatch ? external_wp_data_["controls"].dispatch : external_wp_dataControls_["dispatch"];
+const actions_resolveSelect = external_wp_data_["controls"] && external_wp_data_["controls"].resolveSelect ? external_wp_data_["controls"].resolveSelect : external_wp_dataControls_["select"];
+
+function isWPError(error) {
+  return error.errors !== undefined;
+}
+
+function formatErrors(response) {
+  if (isWPError(response)) {
+    // Replace the slug with a plugin name if a constant exists.
+    Object.keys(response.errors).forEach(plugin => {
+      response.errors[plugin] = response.errors[plugin].map(pluginError => {
+        return pluginNames[plugin] ? pluginError.replace(`\`${plugin}\``, pluginNames[plugin]) : pluginError;
+      });
+    });
+  } else if (typeof response === 'string') {
+    return response;
+  } else {
+    return response.message;
+  }
+
+  return '';
+}
+
+const formatErrorMessage = (pluginErrors, actionType = 'install') => {
+  return Object(external_wp_i18n_["sprintf"])(
+  /* translators: %(actionType): install or activate (the plugin). %(pluginName): a plugin slug (e.g. woocommerce-services). %(error): a single error message or in plural a comma separated error message list.*/
+  Object(external_wp_i18n_["_n"])('Could not %(actionType)s %(pluginName)s plugin, %(error)s', 'Could not %(actionType)s the following plugins: %(pluginName)s with these Errors: %(error)s', Object.keys(pluginErrors).length || 1, 'woocommerce-admin'), {
+    actionType,
+    pluginName: Object.keys(pluginErrors).join(', '),
+    error: Object.values(pluginErrors).join(', \n')
+  });
+};
+
+function actions_updateActivePlugins(active, replace = false) {
+  return {
+    type: ACTION_TYPES.UPDATE_ACTIVE_PLUGINS,
+    active,
+    replace
+  };
+}
+function actions_updateInstalledPlugins(installed, replace = false) {
+  return {
+    type: ACTION_TYPES.UPDATE_INSTALLED_PLUGINS,
+    installed,
+    replace
+  };
+}
+function actions_setIsRequesting(selector, isRequesting) {
+  return {
+    type: ACTION_TYPES.SET_IS_REQUESTING,
+    selector,
+    isRequesting
+  };
+}
+function setError(selector, error) {
+  return {
+    type: ACTION_TYPES.SET_ERROR,
+    selector,
+    error
+  };
+}
+function actions_updateIsJetpackConnected(jetpackConnection) {
+  return {
+    type: ACTION_TYPES.UPDATE_JETPACK_CONNECTION,
+    jetpackConnection
+  };
+}
+function updateJetpackConnectUrl(redirectUrl, jetpackConnectUrl) {
+  return {
+    type: ACTION_TYPES.UPDATE_JETPACK_CONNECT_URL,
+    jetpackConnectUrl,
+    redirectUrl
+  };
+}
+function* installPlugins(plugins) {
+  yield actions_setIsRequesting('installPlugins', true);
+
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/plugins/install`,
+      method: 'POST',
+      data: {
+        plugins: plugins.join(',')
+      }
+    });
+
+    if (results.data.installed.length) {
+      yield actions_updateInstalledPlugins(results.data.installed);
+    }
+
+    if (Object.keys(results.errors.errors).length) {
+      throw results.errors.errors;
+    }
+
+    yield actions_setIsRequesting('installPlugins', false);
+    return results;
+  } catch (error) {
+    if (plugins.length === 1 && !error[plugins[0]]) {
+      // Incase of a network error
+      error = {
+        [plugins[0]]: error.message
+      };
+    }
+
+    yield setError('installPlugins', error);
+    throw new Error(formatErrorMessage(error));
+  }
+}
+function* activatePlugins(plugins) {
+  yield actions_setIsRequesting('activatePlugins', true);
+
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/plugins/activate`,
+      method: 'POST',
+      data: {
+        plugins: plugins.join(',')
+      }
+    });
+
+    if (results.data.activated.length) {
+      yield actions_updateActivePlugins(results.data.activated);
+    }
+
+    if (Object.keys(results.errors.errors).length) {
+      throw results.errors.errors;
+    }
+
+    yield actions_setIsRequesting('activatePlugins', false);
+    return results;
+  } catch (error) {
+    if (plugins.length === 1 && !error[plugins[0]]) {
+      // Incase of a network error
+      error = {
+        [plugins[0]]: error.message
+      };
+    }
+
+    yield setError('activatePlugins', error);
+    throw new Error(formatErrorMessage(error, 'activate'));
+  }
+}
+function* installAndActivatePlugins(plugins) {
+  try {
+    yield actions_dispatch(constants_STORE_NAME, 'installPlugins', plugins);
+    const activations = yield actions_dispatch(constants_STORE_NAME, 'activatePlugins', plugins);
+    return activations;
+  } catch (error) {
+    throw error;
+  }
+}
+const createErrorNotice = errorMessage => {
+  return actions_dispatch('core/notices', 'createNotice', 'error', errorMessage);
+};
+function* connectToJetpack(getAdminLink) {
+  const url = yield actions_resolveSelect(constants_STORE_NAME, 'getJetpackConnectUrl', {
+    redirect_url: getAdminLink('admin.php?page=wc-admin')
+  });
+  const error = yield actions_resolveSelect(constants_STORE_NAME, 'getPluginsError', 'getJetpackConnectUrl');
+
+  if (error) {
+    throw new Error(error);
+  } else {
+    return url;
+  }
+}
+function* installJetpackAndConnect(errorAction, getAdminLink) {
+  try {
+    yield actions_dispatch(constants_STORE_NAME, 'installPlugins', ['jetpack']);
+    yield actions_dispatch(constants_STORE_NAME, 'activatePlugins', ['jetpack']);
+    const url = yield actions_dispatch(constants_STORE_NAME, 'connectToJetpack', getAdminLink);
+    window.location.href = url;
+  } catch (error) {
+    yield errorAction(error.message);
+  }
+}
+function* connectToJetpackWithFailureRedirect(failureRedirect, errorAction, getAdminLink) {
+  try {
+    const url = yield actions_dispatch(constants_STORE_NAME, 'connectToJetpack', getAdminLink);
+    window.location.href = url;
+  } catch (error) {
+    yield errorAction(error.message);
+    window.location.href = failureRedirect;
+  }
+}
+function setPaypalOnboardingStatus(status) {
+  return {
+    type: ACTION_TYPES.SET_PAYPAL_ONBOARDING_STATUS,
+    paypalOnboardingStatus: status
+  };
+}
+function setRecommendedPlugins(type, plugins) {
+  return {
+    type: ACTION_TYPES.SET_RECOMMENDED_PLUGINS,
+    recommendedType: type,
+    plugins
+  };
+}
+// EXTERNAL MODULE: external ["wp","url"]
+var external_wp_url_ = __webpack_require__(15);
+
+// CONCATENATED MODULE: ./packages/data/build-module/options/constants.js
+const options_constants_STORE_NAME = 'wc/admin/options';
+// CONCATENATED MODULE: ./packages/data/build-module/options/selectors.js
+/**
+ * Get option from state tree.
+ *
+ * @param {Object} state - Reducer state
+ * @param {Array} name - Option name
+ */
+const getOption = (state, name) => {
+  return state[name];
+};
+/**
+ * Determine if an options request resulted in an error.
+ *
+ * @param {Object} state - Reducer state
+ * @param {string} name - Option name
+ */
+
+const getOptionsRequestingError = (state, name) => {
+  return state.requestingErrors[name] || false;
+};
+/**
+ * Determine if options are being updated.
+ *
+ * @param {Object} state - Reducer state
+ */
+
+const isOptionsUpdating = state => {
+  return state.isUpdating || false;
+};
+/**
+ * Determine if an options update resulted in an error.
+ *
+ * @param {Object} state - Reducer state
+ */
+
+const getOptionsUpdatingError = state => {
+  return state.updatingError || false;
+};
+// CONCATENATED MODULE: ./packages/data/build-module/options/action-types.js
+const action_types_TYPES = {
+  RECEIVE_OPTIONS: 'RECEIVE_OPTIONS',
+  SET_IS_REQUESTING: 'SET_IS_REQUESTING',
+  SET_IS_UPDATING: 'SET_IS_UPDATING',
+  SET_REQUESTING_ERROR: 'SET_REQUESTING_ERROR',
+  SET_UPDATING_ERROR: 'SET_UPDATING_ERROR'
+};
+/* harmony default export */ var options_action_types = (action_types_TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/options/actions.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function actions_receiveOptions(options) {
+  return {
+    type: options_action_types.RECEIVE_OPTIONS,
+    options
+  };
+}
+function setRequestingError(error, name) {
+  return {
+    type: options_action_types.SET_REQUESTING_ERROR,
+    error,
+    name
+  };
+}
+function setUpdatingError(error) {
+  return {
+    type: options_action_types.SET_UPDATING_ERROR,
+    error
+  };
+}
+function setIsUpdating(isUpdating) {
+  return {
+    type: options_action_types.SET_IS_UPDATING,
+    isUpdating
+  };
+}
+function* updateOptions(data) {
+  yield setIsUpdating(true);
+  yield actions_receiveOptions(data);
+
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/options',
+      method: 'POST',
+      data
+    });
+    yield setIsUpdating(false);
+    return {
+      success: true,
+      ...results
+    };
+  } catch (error) {
+    yield setUpdatingError(error);
+    return {
+      success: false,
+      ...error
+    };
+  }
+}
+// EXTERNAL MODULE: external ["wp","apiFetch"]
+var external_wp_apiFetch_ = __webpack_require__(17);
+var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
+
+// CONCATENATED MODULE: ./packages/data/build-module/options/controls.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+let optionNames = [];
+const fetches = {};
+const batchFetch = optionName => {
+  return {
+    type: 'BATCH_FETCH',
+    optionName
+  };
+};
+const controls = { ...external_wp_dataControls_["controls"],
+
+  BATCH_FETCH({
+    optionName
+  }) {
+    optionNames.push(optionName);
+    return new Promise(resolve => {
+      setTimeout(function () {
+        const names = optionNames.join(',');
+
+        if (fetches[names]) {
+          return fetches[names].then(result => {
+            resolve(result[optionName]);
+          });
+        }
+
+        const url = WC_ADMIN_NAMESPACE + '/options?options=' + names;
+        fetches[names] = external_wp_apiFetch_default()({
+          path: url
+        });
+        fetches[names].then(result => resolve(result)); // Clear option names after all resolved;
+
+        setTimeout(() => {
+          optionNames = []; // Delete the fetch after to allow wp data to handle cache invalidation.
+
+          delete fetches[names];
+        }, 1);
+      }, 1);
+    });
+  }
+
+};
+// CONCATENATED MODULE: ./packages/data/build-module/options/resolvers.js
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Request an option value.
+ *
+ * @param {string} name - Option name
+ */
+
+function* resolvers_getOption(name) {
+  try {
+    const result = yield batchFetch(name);
+    yield actions_receiveOptions(result);
+  } catch (error) {
+    yield setRequestingError(error, name);
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/options/reducer.js
+/**
+ * Internal dependencies
+ */
+
+
+const optionsReducer = (state = {
+  isUpdating: false,
+  requestingErrors: {}
+}, {
+  type,
+  options,
+  error,
+  isUpdating,
+  name
+}) => {
+  switch (type) {
+    case options_action_types.RECEIVE_OPTIONS:
+      state = { ...state,
+        ...options
+      };
+      break;
+
+    case options_action_types.SET_IS_UPDATING:
+      state = { ...state,
+        isUpdating
+      };
+      break;
+
+    case options_action_types.SET_REQUESTING_ERROR:
+      state = { ...state,
+        requestingErrors: {
+          [name]: error
+        }
+      };
+      break;
+
+    case options_action_types.SET_UPDATING_ERROR:
+      state = { ...state,
+        error,
+        updatingError: error,
+        isUpdating: false
+      };
+      break;
+  }
+
+  return state;
+};
+
+/* harmony default export */ var options_reducer = (optionsReducer);
+// CONCATENATED MODULE: ./packages/data/build-module/options/index.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+
+Object(external_wp_data_["registerStore"])(options_constants_STORE_NAME, {
+  reducer: options_reducer,
+  actions: options_actions_namespaceObject,
+  controls: controls,
+  selectors: options_selectors_namespaceObject,
+  resolvers: options_resolvers_namespaceObject
+});
+const OPTIONS_STORE_NAME = options_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/resolvers.js
+/**
+ * External dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+ // Can be removed in WP 5.9, wp.data is supported in >5.7.
+
+const resolvers_resolveSelect = external_wp_data_["controls"] && external_wp_data_["controls"].resolveSelect ? external_wp_data_["controls"].resolveSelect : external_wp_dataControls_["select"];
+function* resolvers_getActivePlugins() {
+  yield actions_setIsRequesting('getActivePlugins', true);
+
+  try {
+    const url = WC_ADMIN_NAMESPACE + '/plugins/active';
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'GET'
+    });
+    yield actions_updateActivePlugins(results.plugins, true);
+  } catch (error) {
+    yield setError('getActivePlugins', error);
+  }
+}
+function* resolvers_getInstalledPlugins() {
+  yield actions_setIsRequesting('getInstalledPlugins', true);
+
+  try {
+    const url = WC_ADMIN_NAMESPACE + '/plugins/installed';
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'GET'
+    });
+    yield actions_updateInstalledPlugins(results.plugins, true);
+  } catch (error) {
+    yield setError('getInstalledPlugins', error);
+  }
+}
+function* resolvers_isJetpackConnected() {
+  yield actions_setIsRequesting('isJetpackConnected', true);
+
+  try {
+    const url = JETPACK_NAMESPACE + '/connection';
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'GET'
+    });
+    yield actions_updateIsJetpackConnected(results.isActive);
+  } catch (error) {
+    yield setError('isJetpackConnected', error);
+  }
+
+  yield actions_setIsRequesting('isJetpackConnected', false);
+}
+function* resolvers_getJetpackConnectUrl(query) {
+  yield actions_setIsRequesting('getJetpackConnectUrl', true);
+
+  try {
+    const url = Object(external_wp_url_["addQueryArgs"])(WC_ADMIN_NAMESPACE + '/plugins/connect-jetpack', query);
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'GET'
+    });
+    yield updateJetpackConnectUrl(query.redirect_url, results.connectAction);
+  } catch (error) {
+    yield setError('getJetpackConnectUrl', error);
+  }
+
+  yield actions_setIsRequesting('getJetpackConnectUrl', false);
+}
+
+function* setOnboardingStatusWithOptions() {
+  const options = yield resolvers_resolveSelect(OPTIONS_STORE_NAME, 'getOption', 'woocommerce-ppcp-settings');
+  const onboarded = options.merchant_email_production && options.merchant_id_production && options.client_id_production && options.client_secret_production;
+  yield setPaypalOnboardingStatus({
+    production: {
+      state: onboarded ? 'onboarded' : 'unknown',
+      onboarded: onboarded ? true : false
+    }
+  });
+}
+
+function* resolvers_getPaypalOnboardingStatus() {
+  yield actions_setIsRequesting('getPaypalOnboardingStatus', true);
+  const errorData = yield resolvers_resolveSelect(constants_STORE_NAME, 'getPluginsError', 'getPaypalOnboardingStatus');
+
+  if (errorData && errorData.data && errorData.data.status === 404) {
+    // The get-status request doesn't exist fall back to using options.
+    yield setOnboardingStatusWithOptions();
+  } else {
+    try {
+      const url = PAYPAL_NAMESPACE + '/onboarding/get-status';
+      const results = yield Object(external_wp_dataControls_["apiFetch"])({
+        path: url,
+        method: 'GET'
+      });
+      yield setPaypalOnboardingStatus(results);
+    } catch (error) {
+      yield setOnboardingStatusWithOptions();
+      yield setError('getPaypalOnboardingStatus', error);
+    }
+  }
+
+  yield actions_setIsRequesting('getPaypalOnboardingStatus', false);
+}
+const SUPPORTED_TYPES = ['payments'];
+function* resolvers_getRecommendedPlugins(type) {
+  if (!SUPPORTED_TYPES.includes(type)) {
+    return [];
+  }
+
+  yield actions_setIsRequesting('getRecommendedPlugins', true);
+
+  try {
+    const url = WC_ADMIN_NAMESPACE + '/plugins/recommended-payment-plugins';
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'GET'
+    });
+    yield setRecommendedPlugins(type, results);
+  } catch (error) {
+    yield setError('getRecommendedPlugins', error);
+  }
+
+  yield actions_setIsRequesting('getRecommendedPlugins', false);
+}
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/reducer.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const reducer_plugins = (state = {
+  active: [],
+  installed: [],
+  requesting: {},
+  errors: {},
+  jetpackConnectUrls: {},
+  recommended: {}
+}, payload) => {
+  if (payload && 'type' in payload) {
+    switch (payload.type) {
+      case ACTION_TYPES.UPDATE_ACTIVE_PLUGINS:
+        state = { ...state,
+          active: payload.replace ? payload.active : Object(external_lodash_["concat"])(state.active, payload.active),
+          requesting: { ...state.requesting,
+            getActivePlugins: false,
+            activatePlugins: false
+          },
+          errors: { ...state.errors,
+            getActivePlugins: false,
+            activatePlugins: false
+          }
+        };
+        break;
+
+      case ACTION_TYPES.UPDATE_INSTALLED_PLUGINS:
+        state = { ...state,
+          installed: payload.replace ? payload.installed : Object(external_lodash_["concat"])(state.installed, payload.installed),
+          requesting: { ...state.requesting,
+            getInstalledPlugins: false,
+            installPlugins: false
+          },
+          errors: { ...state.errors,
+            getInstalledPlugins: false,
+            installPlugin: false
+          }
+        };
+        break;
+
+      case ACTION_TYPES.SET_IS_REQUESTING:
+        state = { ...state,
+          requesting: { ...state.requesting,
+            [payload.selector]: payload.isRequesting
+          }
+        };
+        break;
+
+      case ACTION_TYPES.SET_ERROR:
+        state = { ...state,
+          requesting: { ...state.requesting,
+            [payload.selector]: false
+          },
+          errors: { ...state.errors,
+            [payload.selector]: payload.error
+          }
+        };
+        break;
+
+      case ACTION_TYPES.UPDATE_JETPACK_CONNECTION:
+        state = { ...state,
+          jetpackConnection: payload.jetpackConnection
+        };
+        break;
+
+      case ACTION_TYPES.UPDATE_JETPACK_CONNECT_URL:
+        state = { ...state,
+          jetpackConnectUrls: { ...state.jetpackConnectUrls,
+            [payload.redirectUrl]: payload.jetpackConnectUrl
+          }
+        };
+        break;
+
+      case ACTION_TYPES.SET_PAYPAL_ONBOARDING_STATUS:
+        state = { ...state,
+          paypalOnboardingStatus: payload.paypalOnboardingStatus
+        };
+        break;
+
+      case ACTION_TYPES.SET_RECOMMENDED_PLUGINS:
+        state = { ...state,
+          recommended: { ...state.recommended,
+            [payload.recommendedType]: payload.plugins
+          }
+        };
+        break;
+    }
+  }
+
+  return state;
+};
+
+/* harmony default export */ var plugins_reducer = (reducer_plugins);
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/index.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+Object(external_wp_data_["registerStore"])(constants_STORE_NAME, {
+  reducer: plugins_reducer,
+  actions: plugins_actions_namespaceObject,
+  controls: external_wp_dataControls_["controls"],
+  selectors: plugins_selectors_namespaceObject,
+  resolvers: plugins_resolvers_namespaceObject
+});
+const PLUGINS_STORE_NAME = constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/plugins/with-plugins-hydration.js
+/**
+ * External dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+const withPluginsHydration = data => Object(external_wp_compose_["createHigherOrderComponent"])(OriginalComponent => props => {
+  const dataRef = Object(external_wp_element_["useRef"])(data);
+  Object(external_wp_data_["useSelect"])((select, registry) => {
     if (!dataRef.current) {
       return;
     }
@@ -1158,14 +2277,14 @@ const withPluginsHydration = data => Object(_wordpress_compose__WEBPACK_IMPORTED
     const {
       isResolving,
       hasFinishedResolution
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "b"]);
+    } = select(constants_STORE_NAME);
     const {
       startResolution,
       finishResolution,
       updateActivePlugins,
       updateInstalledPlugins,
       updateIsJetpackConnected
-    } = registry.dispatch(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "b"]);
+    } = registry.dispatch(constants_STORE_NAME);
 
     if (!isResolving('getActivePlugins', []) && !hasFinishedResolution('getActivePlugins', [])) {
       startResolution('getActivePlugins', []);
@@ -1179,26 +2298,648 @@ const withPluginsHydration = data => Object(_wordpress_compose__WEBPACK_IMPORTED
       finishResolution('isJetpackConnected', []);
     }
   }, []);
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(OriginalComponent, props);
+  return Object(external_wp_element_["createElement"])(OriginalComponent, Object.assign({}, props));
 }, 'withPluginsHydration');
-//# sourceMappingURL=with-plugins-hydration.jsx.map
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/constants.js
+/**
+ * Internal dependencies
+ */
+const onboarding_constants_STORE_NAME = 'wc/admin/onboarding';
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/selectors.js
+const getFreeExtensions = state => {
+  return state.freeExtensions || [];
+};
+const getProfileItems = state => {
+  return state.profileItems || {};
+};
+const getTasksStatus = state => {
+  return state.tasksStatus || {};
+};
+const initialTaskLists = [];
+const getTaskLists = state => {
+  return state.taskLists || initialTaskLists;
+};
+const getPaymentGatewaySuggestions = state => {
+  return state.paymentMethods || [];
+};
+const getOnboardingError = (state, selector) => {
+  return state.errors[selector] || false;
+};
+const isOnboardingRequesting = (state, selector) => {
+  return state.requesting[selector] || false;
+};
+const getEmailPrefill = state => {
+  return state.emailPrefill || '';
+};
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/action-types.js
+const onboarding_action_types_TYPES = {
+  SET_ERROR: 'SET_ERROR',
+  SET_IS_REQUESTING: 'SET_IS_REQUESTING',
+  SET_PROFILE_ITEMS: 'SET_PROFILE_ITEMS',
+  SET_EMAIL_PREFILL: 'SET_EMAIL_PREFILL',
+  SET_TASKS_STATUS: 'SET_TASKS_STATUS',
+  GET_PAYMENT_METHODS_SUCCESS: 'GET_PAYMENT_METHODS_SUCCESS',
+  GET_FREE_EXTENSIONS_ERROR: 'GET_FREE_EXTENSIONS_ERROR',
+  GET_FREE_EXTENSIONS_SUCCESS: 'GET_FREE_EXTENSIONS_SUCCESS',
+  GET_TASK_LISTS_ERROR: 'GET_TASK_LISTS_ERROR',
+  GET_TASK_LISTS_SUCCESS: 'GET_TASK_LISTS_SUCCESS',
+  DISMISS_TASK_ERROR: 'DISMISS_TASK_ERROR',
+  DISMISS_TASK_REQUEST: 'DISMISS_TASK_REQUEST',
+  DISMISS_TASK_SUCCESS: 'DISMISS_TASK_SUCCESS',
+  UNDO_DISMISS_TASK_ERROR: 'UNDO_DISMISS_TASK_ERROR',
+  UNDO_DISMISS_TASK_REQUEST: 'UNDO_DISMISS_TASK_REQUEST',
+  UNDO_DISMISS_TASK_SUCCESS: 'UNDO_DISMISS_TASK_SUCCESS',
+  SNOOZE_TASK_ERROR: 'SNOOZE_TASK_ERROR',
+  SNOOZE_TASK_REQUEST: 'SNOOZE_TASK_REQUEST',
+  SNOOZE_TASK_SUCCESS: 'SNOOZE_TASK_SUCCESS',
+  UNDO_SNOOZE_TASK_ERROR: 'UNDO_SNOOZE_TASK_ERROR',
+  UNDO_SNOOZE_TASK_REQUEST: 'UNDO_SNOOZE_TASK_REQUEST',
+  UNDO_SNOOZE_TASK_SUCCESS: 'UNDO_SNOOZE_TASK_SUCCESS'
+};
+/* harmony default export */ var onboarding_action_types = (onboarding_action_types_TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/actions.js
+/**
+ * External dependencies
+ */
 
-/***/ }),
-
-/***/ 279:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return withOnboardingHydration; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(103);
+/**
+ * Internal dependencies
+ */
 
 
+
+function getFreeExtensionsError(error) {
+  return {
+    type: onboarding_action_types.GET_FREE_EXTENSIONS_ERROR,
+    error
+  };
+}
+function getFreeExtensionsSuccess(freeExtensions) {
+  return {
+    type: onboarding_action_types.GET_FREE_EXTENSIONS_SUCCESS,
+    freeExtensions
+  };
+}
+function actions_setError(selector, error) {
+  return {
+    type: onboarding_action_types.SET_ERROR,
+    selector,
+    error
+  };
+}
+function onboarding_actions_setIsRequesting(selector, isRequesting) {
+  return {
+    type: onboarding_action_types.SET_IS_REQUESTING,
+    selector,
+    isRequesting
+  };
+}
+function actions_setProfileItems(profileItems, replace = false) {
+  return {
+    type: onboarding_action_types.SET_PROFILE_ITEMS,
+    profileItems,
+    replace
+  };
+}
+function getTaskListsError(error) {
+  return {
+    type: onboarding_action_types.GET_TASK_LISTS_ERROR,
+    error
+  };
+}
+function getTaskListsSuccess(taskLists) {
+  return {
+    type: onboarding_action_types.GET_TASK_LISTS_SUCCESS,
+    taskLists
+  };
+}
+function snoozeTaskError(taskId, error) {
+  return {
+    type: onboarding_action_types.SNOOZE_TASK_ERROR,
+    taskId,
+    error
+  };
+}
+function snoozeTaskRequest(taskId) {
+  return {
+    type: onboarding_action_types.SNOOZE_TASK_REQUEST,
+    taskId
+  };
+}
+function snoozeTaskSuccess(task) {
+  return {
+    type: onboarding_action_types.SNOOZE_TASK_SUCCESS,
+    task
+  };
+}
+function undoSnoozeTaskError(taskId, error) {
+  return {
+    type: onboarding_action_types.UNDO_SNOOZE_TASK_ERROR,
+    taskId,
+    error
+  };
+}
+function undoSnoozeTaskRequest(taskId) {
+  return {
+    type: onboarding_action_types.UNDO_SNOOZE_TASK_REQUEST,
+    taskId
+  };
+}
+function undoSnoozeTaskSuccess(task) {
+  return {
+    type: onboarding_action_types.UNDO_SNOOZE_TASK_SUCCESS,
+    task
+  };
+}
+function dismissTaskError(taskId, error) {
+  return {
+    type: onboarding_action_types.DISMISS_TASK_ERROR,
+    taskId,
+    error
+  };
+}
+function dismissTaskRequest(taskId) {
+  return {
+    type: onboarding_action_types.DISMISS_TASK_REQUEST,
+    taskId
+  };
+}
+function dismissTaskSuccess(task) {
+  return {
+    type: onboarding_action_types.DISMISS_TASK_SUCCESS,
+    task
+  };
+}
+function undoDismissTaskError(taskId, error) {
+  return {
+    type: onboarding_action_types.UNDO_DISMISS_TASK_ERROR,
+    taskId,
+    error
+  };
+}
+function undoDismissTaskRequest(taskId) {
+  return {
+    type: onboarding_action_types.UNDO_DISMISS_TASK_REQUEST,
+    taskId
+  };
+}
+function undoDismissTaskSuccess(task) {
+  return {
+    type: onboarding_action_types.UNDO_DISMISS_TASK_SUCCESS,
+    task
+  };
+}
+function actions_setTasksStatus(tasksStatus) {
+  return {
+    type: onboarding_action_types.SET_TASKS_STATUS,
+    tasksStatus
+  };
+}
+function setPaymentMethods(paymentMethods) {
+  return {
+    type: onboarding_action_types.GET_PAYMENT_METHODS_SUCCESS,
+    paymentMethods
+  };
+}
+function setEmailPrefill(email) {
+  return {
+    type: onboarding_action_types.SET_EMAIL_PREFILL,
+    emailPrefill: email
+  };
+}
+function* updateProfileItems(items) {
+  yield onboarding_actions_setIsRequesting('updateProfileItems', true);
+  yield actions_setError('updateProfileItems', null);
+
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/onboarding/profile`,
+      method: 'POST',
+      data: items
+    });
+
+    if (results && results.status === 'success') {
+      yield actions_setProfileItems(items);
+      yield onboarding_actions_setIsRequesting('updateProfileItems', false);
+      return results;
+    }
+
+    throw new Error();
+  } catch (error) {
+    yield actions_setError('updateProfileItems', error);
+    yield onboarding_actions_setIsRequesting('updateProfileItems', false);
+    throw error;
+  }
+}
+function* snoozeTask(id) {
+  yield snoozeTaskRequest(id);
+
+  try {
+    const task = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/snooze`,
+      method: 'POST'
+    });
+    yield snoozeTaskSuccess(task);
+  } catch (error) {
+    yield snoozeTaskError(id, error);
+    throw new Error();
+  }
+}
+function* undoSnoozeTask(id) {
+  yield undoSnoozeTaskRequest(id);
+
+  try {
+    const task = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/undo_snooze`,
+      method: 'POST'
+    });
+    yield undoSnoozeTaskSuccess(task);
+  } catch (error) {
+    yield undoSnoozeTaskError(id, error);
+    throw new Error();
+  }
+}
+function* dismissTask(id) {
+  yield dismissTaskRequest(id);
+
+  try {
+    const task = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/dismiss`,
+      method: 'POST'
+    });
+    yield dismissTaskSuccess(task);
+  } catch (error) {
+    yield dismissTaskError(id, error);
+    throw new Error();
+  }
+}
+function* undoDismissTask(id) {
+  yield undoDismissTaskRequest(id);
+
+  try {
+    const task = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/undo_dismiss`,
+      method: 'POST'
+    });
+    yield undoDismissTaskSuccess(task);
+  } catch (error) {
+    yield undoDismissTaskError(id, error);
+    throw new Error();
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/resolvers.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function* resolvers_getProfileItems() {
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/onboarding/profile',
+      method: 'GET'
+    });
+    yield actions_setProfileItems(results, true);
+  } catch (error) {
+    yield actions_setError('getProfileItems', error);
+  }
+}
+function* resolvers_getEmailPrefill() {
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/onboarding/profile/experimental_get_email_prefill',
+      method: 'GET'
+    });
+    yield setEmailPrefill(results.email);
+  } catch (error) {
+    yield actions_setError('getEmailPrefill', error);
+  }
+}
+function* resolvers_getTasksStatus() {
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/onboarding/tasks/status',
+      method: 'GET'
+    });
+    yield actions_setTasksStatus(results, true);
+  } catch (error) {
+    yield actions_setError('getTasksStatus', error);
+  }
+}
+function* resolvers_getTaskLists() {
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/onboarding/tasks',
+      method: 'GET'
+    });
+    yield getTaskListsSuccess(results);
+  } catch (error) {
+    yield getTaskListsError(error);
+  }
+}
+function* resolvers_getPaymentGatewaySuggestions() {
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/onboarding/payments',
+      method: 'GET'
+    });
+    yield setPaymentMethods(results);
+  } catch (error) {
+    yield actions_setError('getPaymentGatewaySuggestions', error);
+  }
+}
+function* resolvers_getFreeExtensions() {
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/onboarding/free-extensions',
+      method: 'GET'
+    });
+    yield getFreeExtensionsSuccess(results);
+  } catch (error) {
+    yield getFreeExtensionsError(error);
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/reducer.js
+/**
+ * Internal dependencies
+ */
+
+const defaultState = {
+  errors: {},
+  freeExtensions: [],
+  profileItems: {
+    business_extensions: null,
+    completed: null,
+    industry: null,
+    other_platform: null,
+    other_platform_name: null,
+    product_count: null,
+    product_types: null,
+    revenue: null,
+    selling_venues: null,
+    setup_client: null,
+    skipped: null,
+    theme: null,
+    wccom_connected: null,
+    is_agree_marketing: null,
+    store_email: null
+  },
+  emailPrefill: '',
+  paymentMethods: [],
+  requesting: {},
+  taskLists: [],
+  tasksStatus: {}
+};
+
+const getUpdatedTaskLists = (taskLists, args) => {
+  return taskLists.map(taskList => {
+    return { ...taskList,
+      tasks: taskList.tasks.map(task => {
+        if (args.id === task.id) {
+          return { ...task,
+            ...args
+          };
+        }
+
+        return task;
+      })
+    };
+  });
+};
+
+const onboarding = (state = defaultState, {
+  freeExtensions,
+  type,
+  profileItems,
+  emailPrefill,
+  paymentMethods,
+  replace,
+  error,
+  isRequesting,
+  selector,
+  task,
+  taskId,
+  taskLists,
+  tasksStatus
+}) => {
+  switch (type) {
+    case onboarding_action_types.SET_PROFILE_ITEMS:
+      return { ...state,
+        profileItems: replace ? profileItems : { ...state.profileItems,
+          ...profileItems
+        }
+      };
+
+    case onboarding_action_types.SET_EMAIL_PREFILL:
+      return { ...state,
+        emailPrefill
+      };
+
+    case onboarding_action_types.SET_TASKS_STATUS:
+      return { ...state,
+        tasksStatus: { ...state.tasksStatus,
+          ...tasksStatus
+        }
+      };
+
+    case onboarding_action_types.SET_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          [selector]: error
+        }
+      };
+
+    case onboarding_action_types.SET_IS_REQUESTING:
+      return { ...state,
+        requesting: { ...state.requesting,
+          [selector]: isRequesting
+        }
+      };
+
+    case onboarding_action_types.GET_PAYMENT_METHODS_SUCCESS:
+      return { ...state,
+        paymentMethods
+      };
+
+    case onboarding_action_types.GET_FREE_EXTENSIONS_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          getFreeExtensions: error
+        }
+      };
+
+    case onboarding_action_types.GET_FREE_EXTENSIONS_SUCCESS:
+      return { ...state,
+        freeExtensions
+      };
+
+    case onboarding_action_types.GET_TASK_LISTS_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          getTaskLists: error
+        }
+      };
+
+    case onboarding_action_types.GET_TASK_LISTS_SUCCESS:
+      return { ...state,
+        taskLists
+      };
+
+    case onboarding_action_types.DISMISS_TASK_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          dismissTask: error
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isDismissed: false
+        })
+      };
+
+    case onboarding_action_types.DISMISS_TASK_REQUEST:
+      return { ...state,
+        requesting: { ...state.requesting,
+          dismissTask: true
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isDismissed: true
+        })
+      };
+
+    case onboarding_action_types.DISMISS_TASK_SUCCESS:
+      return { ...state,
+        requesting: { ...state.requesting,
+          dismissTask: false
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, task)
+      };
+
+    case onboarding_action_types.UNDO_DISMISS_TASK_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          undoDismissTask: error
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isDismissed: true
+        })
+      };
+
+    case onboarding_action_types.UNDO_DISMISS_TASK_REQUEST:
+      return { ...state,
+        requesting: { ...state.requesting,
+          undoDismissTask: true
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isDismissed: false
+        })
+      };
+
+    case onboarding_action_types.UNDO_DISMISS_TASK_SUCCESS:
+      return { ...state,
+        requesting: { ...state.requesting,
+          undoDismissTask: false
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, task)
+      };
+
+    case onboarding_action_types.SNOOZE_TASK_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          snoozeTask: error
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isSnoozed: false
+        })
+      };
+
+    case onboarding_action_types.SNOOZE_TASK_REQUEST:
+      return { ...state,
+        requesting: { ...state.requesting,
+          snoozeTask: true
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isSnoozed: true
+        })
+      };
+
+    case onboarding_action_types.SNOOZE_TASK_SUCCESS:
+      return { ...state,
+        requesting: { ...state.requesting,
+          snoozeTask: false
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, task)
+      };
+
+    case onboarding_action_types.UNDO_SNOOZE_TASK_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          undoSnoozeTask: error
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isSnoozed: true
+        })
+      };
+
+    case onboarding_action_types.UNDO_SNOOZE_TASK_REQUEST:
+      return { ...state,
+        requesting: { ...state.requesting,
+          undoSnoozeTask: true
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isSnoozed: false
+        })
+      };
+
+    case onboarding_action_types.UNDO_SNOOZE_TASK_SUCCESS:
+      return { ...state,
+        requesting: { ...state.requesting,
+          undoSnoozeTask: false
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, task)
+      };
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ var onboarding_reducer = (onboarding);
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/index.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+Object(external_wp_data_["registerStore"])(onboarding_constants_STORE_NAME, {
+  reducer: onboarding_reducer,
+  actions: onboarding_actions_namespaceObject,
+  controls: external_wp_dataControls_["controls"],
+  selectors: onboarding_selectors_namespaceObject,
+  resolvers: onboarding_resolvers_namespaceObject
+});
+const ONBOARDING_STORE_NAME = onboarding_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/with-onboarding-hydration.js
 /**
  * External dependencies
  */
@@ -1213,9 +2954,9 @@ const withPluginsHydration = data => Object(_wordpress_compose__WEBPACK_IMPORTED
 const withOnboardingHydration = data => {
   let hydratedProfileItems = false;
   let hydratedTasksStatus = false;
-  return Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["createHigherOrderComponent"])(OriginalComponent => props => {
-    const onboardingRef = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useRef"])(data);
-    Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["useSelect"])((select, registry) => {
+  return Object(external_wp_compose_["createHigherOrderComponent"])(OriginalComponent => props => {
+    const onboardingRef = Object(external_wp_element_["useRef"])(data);
+    Object(external_wp_data_["useSelect"])((select, registry) => {
       if (!onboardingRef.current) {
         return;
       }
@@ -1223,13 +2964,13 @@ const withOnboardingHydration = data => {
       const {
         isResolving,
         hasFinishedResolution
-      } = select(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+      } = select(onboarding_constants_STORE_NAME);
       const {
         startResolution,
         finishResolution,
         setProfileItems,
         setTasksStatus
-      } = registry.dispatch(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+      } = registry.dispatch(onboarding_constants_STORE_NAME);
       const {
         profileItems,
         tasksStatus
@@ -1249,42 +2990,18 @@ const withOnboardingHydration = data => {
         hydratedTasksStatus = true;
       }
     }, []);
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(OriginalComponent, props);
+    return Object(external_wp_element_["createElement"])(OriginalComponent, Object.assign({}, props));
   }, 'withOnboardingHydration');
 };
-//# sourceMappingURL=with-onboarding-hydration.js.map
-
-/***/ }),
-
-/***/ 280:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return USER_STORE_NAME; });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61);
+// CONCATENATED MODULE: ./packages/data/build-module/user/constants.js
+const user_constants_STORE_NAME = 'core';
+// CONCATENATED MODULE: ./packages/data/build-module/user/index.js
 /**
  * Internal dependencies
  */
 
-const USER_STORE_NAME = _constants__WEBPACK_IMPORTED_MODULE_0__[/* STORE_NAME */ "a"];
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 281:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return withCurrentUserHydration; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(61);
-
-
+const USER_STORE_NAME = user_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/user/with-current-user-hydration.js
 /**
  * External dependencies
  */
@@ -1302,10 +3019,10 @@ const USER_STORE_NAME = _constants__WEBPACK_IMPORTED_MODULE_0__[/* STORE_NAME */
  * @param {Object} currentUser Current user object in the same format as the WP REST API returns.
  */
 
-const withCurrentUserHydration = currentUser => Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["createHigherOrderComponent"])(OriginalComponent => props => {
-  const userRef = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useRef"])(currentUser); // Use currentUser to hydrate calls to @wordpress/core-data's getCurrentUser().
+const withCurrentUserHydration = currentUser => Object(external_wp_compose_["createHigherOrderComponent"])(OriginalComponent => props => {
+  const userRef = Object(external_wp_element_["useRef"])(currentUser); // Use currentUser to hydrate calls to @wordpress/core-data's getCurrentUser().
 
-  Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["useSelect"])((select, registry) => {
+  Object(external_wp_data_["useSelect"])((select, registry) => {
     if (!userRef.current) {
       return;
     }
@@ -1313,12 +3030,12 @@ const withCurrentUserHydration = currentUser => Object(_wordpress_compose__WEBPA
     const {
       isResolving,
       hasFinishedResolution
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+    } = select(user_constants_STORE_NAME);
     const {
       startResolution,
       finishResolution,
       receiveCurrentUser
-    } = registry.dispatch(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+    } = registry.dispatch(user_constants_STORE_NAME);
 
     if (!isResolving('getCurrentUser') && !hasFinishedResolution('getCurrentUser')) {
       startResolution('getCurrentUser', []);
@@ -1326,20 +3043,9 @@ const withCurrentUserHydration = currentUser => Object(_wordpress_compose__WEBPA
       finishResolution('getCurrentUser', []);
     }
   });
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(OriginalComponent, props);
+  return Object(external_wp_element_["createElement"])(OriginalComponent, Object.assign({}, props));
 }, 'withCurrentUserHydration');
-//# sourceMappingURL=with-current-user-hydration.js.map
-
-/***/ }),
-
-/***/ 282:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useUser; });
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(61);
+// CONCATENATED MODULE: ./packages/data/build-module/user/use-user.js
 /**
  * External dependencies
  */
@@ -1356,12 +3062,12 @@ const withCurrentUserHydration = currentUser => Object(_wordpress_compose__WEBPA
  */
 
 const useUser = () => {
-  const userData = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__["useSelect"])(select => {
+  const userData = Object(external_wp_data_["useSelect"])(select => {
     const {
       getCurrentUser,
       hasStartedResolution,
       hasFinishedResolution
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_1__[/* STORE_NAME */ "a"]);
+    } = select(user_constants_STORE_NAME);
     return {
       isRequesting: hasStartedResolution('getCurrentUser') && !hasFinishedResolution('getCurrentUser'),
       user: getCurrentUser(),
@@ -1370,7 +3076,11 @@ const useUser = () => {
   });
 
   const currentUserCan = capability => {
-    if (userData.user && userData.user && userData.user.capabilities[capability]) {
+    if (userData.user && userData.user.is_super_admin) {
+      return true;
+    }
+
+    if (userData.user && userData.user.capabilities[capability]) {
       return true;
     }
 
@@ -1383,20 +3093,7 @@ const useUser = () => {
     isRequesting: userData.isRequesting
   };
 };
-//# sourceMappingURL=use-user.js.map
-
-/***/ }),
-
-/***/ 283:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return useUserPreferences; });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(61);
+// CONCATENATED MODULE: ./packages/data/build-module/user/use-user-preferences.js
 /**
  * External dependencies
  */
@@ -1416,7 +3113,7 @@ const useUser = () => {
 
 const getWooCommerceMeta = user => {
   const wooMeta = user.woocommerce_meta || {};
-  const userData = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["mapValues"])(wooMeta, (data, key) => {
+  const userData = Object(external_lodash_["mapValues"])(wooMeta, (data, key) => {
     if (!data || data.length === 0) {
       return '';
     }
@@ -1438,7 +3135,7 @@ const getWooCommerceMeta = user => {
 async function updateUserPrefs(receiveCurrentUser, user, saveUser, getLastEntitySaveError, userPrefs) {
   // @todo Handle unresolved getCurrentUser() here.
   // Prep fields for update.
-  const metaData = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["mapValues"])(userPrefs, JSON.stringify);
+  const metaData = Object(external_lodash_["mapValues"])(userPrefs, JSON.stringify);
 
   if (Object.keys(metaData).length === 0) {
     return {
@@ -1485,7 +3182,7 @@ async function updateUserPrefs(receiveCurrentUser, user, saveUser, getLastEntity
 
 const useUserPreferences = () => {
   // Get our dispatch methods now - this can't happen inside the callback below.
-  const dispatch = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])(_constants__WEBPACK_IMPORTED_MODULE_2__[/* STORE_NAME */ "a"]);
+  const dispatch = Object(external_wp_data_["useDispatch"])(user_constants_STORE_NAME);
   const {
     addEntities,
     receiveCurrentUser,
@@ -1494,7 +3191,7 @@ const useUserPreferences = () => {
   let {
     saveUser
   } = dispatch;
-  const userData = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_1__["useSelect"])(select => {
+  const userData = Object(external_wp_data_["useSelect"])(select => {
     const {
       getCurrentUser,
       getEntity,
@@ -1502,7 +3199,7 @@ const useUserPreferences = () => {
       getLastEntitySaveError,
       hasStartedResolution,
       hasFinishedResolution
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_2__[/* STORE_NAME */ "a"]);
+    } = select(user_constants_STORE_NAME);
     return {
       isRequesting: hasStartedResolution('getCurrentUser') && !hasFinishedResolution('getCurrentUser'),
       user: getCurrentUser(),
@@ -1549,24 +3246,7 @@ const useUserPreferences = () => {
     updateUserPreferences
   };
 };
-//# sourceMappingURL=use-user-preferences.js.map
-
-/***/ }),
-
-/***/ 284:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return withNavigationHydration; });
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15);
-/* harmony import */ var _wordpress_compose__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
-/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(79);
-
-
+// CONCATENATED MODULE: ./packages/data/build-module/options/with-options-hydration.js
 /**
  * External dependencies
  */
@@ -1578,15 +3258,9 @@ const useUserPreferences = () => {
  */
 
 
-/**
- * Higher-order component used to hydrate navigation data.
- *
- * @param {Object} data Data object with menu items and site information.
- */
-
-const withNavigationHydration = data => Object(_wordpress_compose__WEBPACK_IMPORTED_MODULE_1__["createHigherOrderComponent"])(OriginalComponent => props => {
-  const dataRef = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["useRef"])(data);
-  Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__["useSelect"])((select, registry) => {
+const useOptionsHydration = data => {
+  const dataRef = Object(external_wp_element_["useRef"])(data);
+  Object(external_wp_data_["useSelect"])((select, registry) => {
     if (!dataRef.current) {
       return;
     }
@@ -1594,72 +3268,286 @@ const withNavigationHydration = data => Object(_wordpress_compose__WEBPACK_IMPOR
     const {
       isResolving,
       hasFinishedResolution
-    } = select(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+    } = select(options_constants_STORE_NAME);
     const {
       startResolution,
       finishResolution,
-      setMenuItems
-    } = registry.dispatch(_constants__WEBPACK_IMPORTED_MODULE_3__[/* STORE_NAME */ "a"]);
+      receiveOptions
+    } = registry.dispatch(options_constants_STORE_NAME);
+    const names = Object.keys(dataRef.current);
+    names.forEach(name => {
+      if (!isResolving('getOption', [name]) && !hasFinishedResolution('getOption', [name])) {
+        startResolution('getOption', [name]);
+        receiveOptions({
+          [name]: dataRef.current[name]
+        });
+        finishResolution('getOption', [name]);
+      }
+    });
+  }, []);
+};
+const withOptionsHydration = data => Object(external_wp_compose_["createHigherOrderComponent"])(OriginalComponent => props => {
+  useOptionsHydration(data);
+  return Object(external_wp_element_["createElement"])(OriginalComponent, Object.assign({}, props));
+}, 'withOptionsHydration');
+// CONCATENATED MODULE: ./packages/data/build-module/reviews/constants.js
+const reviews_constants_STORE_NAME = 'wc/admin/reviews';
+// CONCATENATED MODULE: ./packages/data/build-module/reviews/selectors.js
+const getReviews = (state, query) => {
+  const stringifiedQuery = JSON.stringify(query);
+  const ids = state.reviews[stringifiedQuery] && state.reviews[stringifiedQuery].data || [];
+  return ids.map(id => state.data[id]);
+};
+const getReviewsTotalCount = (state, query) => {
+  const stringifiedQuery = JSON.stringify(query);
+  return state.reviews[stringifiedQuery] && state.reviews[stringifiedQuery].totalCount;
+};
+const getReviewsError = (state, query) => {
+  const stringifiedQuery = JSON.stringify(query);
+  return state.errors[stringifiedQuery];
+};
+// CONCATENATED MODULE: ./packages/data/build-module/reviews/action-types.js
+const reviews_action_types_TYPES = {
+  UPDATE_REVIEWS: 'UPDATE_REVIEWS',
+  SET_REVIEW: 'SET_REVIEW',
+  SET_ERROR: 'SET_ERROR',
+  SET_REVIEW_IS_UPDATING: 'SET_REVIEW_IS_UPDATING'
+};
+/* harmony default export */ var reviews_action_types = (reviews_action_types_TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/reviews/actions.js
+/**
+ * External dependencies
+ */
 
-    if (!isResolving('getMenuItems') && !hasFinishedResolution('getMenuItems')) {
-      startResolution('getMenuItems', []);
-      setMenuItems(dataRef.current.menuItems);
-      finishResolution('getMenuItems', []);
-    }
-  });
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(OriginalComponent, props);
-}, 'withNavigationHydration');
-//# sourceMappingURL=with-navigation-hydration.js.map
 
-/***/ }),
+/**
+ * Internal dependencies
+ */
 
-/***/ 286:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ NOTES_STORE_NAME; });
+function updateReviews(query, reviews, totalCount) {
+  return {
+    type: reviews_action_types.UPDATE_REVIEWS,
+    reviews,
+    query,
+    totalCount
+  };
+}
+function* updateReview(reviewId, reviewFields, query) {
+  yield setReviewIsUpdating(reviewId, true);
 
-// NAMESPACE OBJECT: ./packages/data/build-module/notes/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getNotes", function() { return getNotes; });
-__webpack_require__.d(selectors_namespaceObject, "getNotesError", function() { return getNotesError; });
-__webpack_require__.d(selectors_namespaceObject, "isNotesRequesting", function() { return isNotesRequesting; });
+  try {
+    const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/products/reviews/${reviewId}`, query || {});
+    const review = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'PUT',
+      data: reviewFields
+    });
+    yield setReview(reviewId, review);
+    yield setReviewIsUpdating(reviewId, false);
+  } catch (error) {
+    yield reviews_actions_setError('updateReview', error);
+    yield setReviewIsUpdating(reviewId, false);
+    throw new Error();
+  }
+}
+function* deleteReview(reviewId) {
+  yield setReviewIsUpdating(reviewId, true);
 
-// NAMESPACE OBJECT: ./packages/data/build-module/notes/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "triggerNoteAction", function() { return triggerNoteAction; });
-__webpack_require__.d(actions_namespaceObject, "removeNote", function() { return removeNote; });
-__webpack_require__.d(actions_namespaceObject, "removeAllNotes", function() { return removeAllNotes; });
-__webpack_require__.d(actions_namespaceObject, "batchUpdateNotes", function() { return batchUpdateNotes; });
-__webpack_require__.d(actions_namespaceObject, "updateNote", function() { return updateNote; });
-__webpack_require__.d(actions_namespaceObject, "setNote", function() { return setNote; });
-__webpack_require__.d(actions_namespaceObject, "setNoteIsUpdating", function() { return setNoteIsUpdating; });
-__webpack_require__.d(actions_namespaceObject, "setNotes", function() { return setNotes; });
-__webpack_require__.d(actions_namespaceObject, "setNotesQuery", function() { return setNotesQuery; });
-__webpack_require__.d(actions_namespaceObject, "setError", function() { return setError; });
-__webpack_require__.d(actions_namespaceObject, "setIsRequesting", function() { return setIsRequesting; });
+  try {
+    const url = `${NAMESPACE}/products/reviews/${reviewId}`;
+    const response = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url,
+      method: 'DELETE'
+    });
+    yield setReview(reviewId, response);
+    yield setReviewIsUpdating(reviewId, false);
+    return response;
+  } catch (error) {
+    yield reviews_actions_setError('deleteReview', error);
+    yield setReviewIsUpdating(reviewId, false);
+    throw new Error();
+  }
+}
+function setReviewIsUpdating(reviewId, isUpdating) {
+  return {
+    type: reviews_action_types.SET_REVIEW_IS_UPDATING,
+    reviewId,
+    isUpdating
+  };
+}
+function setReview(reviewId, reviewData) {
+  return {
+    type: reviews_action_types.SET_REVIEW,
+    reviewId,
+    reviewData
+  };
+}
+function reviews_actions_setError(query, error) {
+  return {
+    type: reviews_action_types.SET_ERROR,
+    query,
+    error
+  };
+}
+// CONCATENATED MODULE: ./packages/data/build-module/controls.js
+/**
+ * External dependencies
+ */
 
-// NAMESPACE OBJECT: ./packages/data/build-module/notes/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getNotes", function() { return resolvers_getNotes; });
 
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
+const fetchWithHeaders = options => {
+  return {
+    type: 'FETCH_WITH_HEADERS',
+    options
+  };
+};
+const controls_controls = { ...external_wp_dataControls_["controls"],
 
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
+  FETCH_WITH_HEADERS({
+    options
+  }) {
+    return external_wp_apiFetch_default()({ ...options,
+      parse: false
+    }).then(response => {
+      return Promise.all([response.headers, response.status, response.json()]);
+    }).then(([headers, status, data]) => ({
+      headers,
+      status,
+      data
+    }));
+  }
 
+};
+/* harmony default export */ var build_module_controls = (controls_controls);
+// CONCATENATED MODULE: ./packages/data/build-module/reviews/resolvers.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+function* resolvers_getReviews(query) {
+  try {
+    const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/products/reviews`, query);
+    const response = yield fetchWithHeaders({
+      path: url,
+      method: 'GET'
+    });
+    const totalCount = parseInt(response.headers.get('x-wp-total'), 10);
+    yield updateReviews(query, response.data, totalCount);
+  } catch (error) {
+    yield reviews_actions_setError(query, error);
+  }
+}
+function* resolvers_getReviewsTotalCount(query) {
+  yield resolvers_getReviews(query);
+}
+// CONCATENATED MODULE: ./packages/data/build-module/reviews/reducer.js
+/**
+ * Internal dependencies
+ */
+
+
+const reducer_reducer = (state = {
+  reviews: {},
+  errors: {},
+  data: {}
+}, {
+  type,
+  query,
+  reviews,
+  reviewId,
+  reviewData,
+  totalCount,
+  error,
+  isUpdating
+}) => {
+  switch (type) {
+    case reviews_action_types.UPDATE_REVIEWS:
+      const ids = [];
+      const nextReviews = reviews.reduce((result, review) => {
+        ids.push(review.id);
+        result[review.id] = { ...(state.data[review.id] || {}),
+          ...review
+        };
+        return result;
+      }, {});
+      return { ...state,
+        reviews: { ...state.reviews,
+          [JSON.stringify(query)]: {
+            data: ids,
+            totalCount
+          }
+        },
+        data: { ...state.data,
+          ...nextReviews
+        }
+      };
+
+    case reviews_action_types.SET_REVIEW:
+      return { ...state,
+        data: { ...state.data,
+          [reviewId]: reviewData
+        }
+      };
+
+    case reviews_action_types.SET_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          [JSON.stringify(query)]: error
+        }
+      };
+
+    case reviews_action_types.SET_REVIEW_IS_UPDATING:
+      return { ...state,
+        data: { ...state.data,
+          [reviewId]: { ...state.data[reviewId],
+            isUpdating
+          }
+        }
+      };
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ var reviews_reducer = (reducer_reducer);
+// CONCATENATED MODULE: ./packages/data/build-module/reviews/index.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+
+Object(external_wp_data_["registerStore"])(reviews_constants_STORE_NAME, {
+  reducer: reviews_reducer,
+  actions: reviews_actions_namespaceObject,
+  controls: build_module_controls,
+  selectors: reviews_selectors_namespaceObject,
+  resolvers: reviews_resolvers_namespaceObject
+});
+const REVIEWS_STORE_NAME = reviews_constants_STORE_NAME;
 // CONCATENATED MODULE: ./packages/data/build-module/notes/constants.js
 /**
  * Internal dependencies
  */
-const STORE_NAME = 'wc/admin/notes';
-//# sourceMappingURL=constants.js.map
+const notes_constants_STORE_NAME = 'wc/admin/notes';
 // CONCATENATED MODULE: ./node_modules/rememo/es/rememo.js
 
 
@@ -1951,12 +3839,8 @@ const getNotesError = (state, selector) => {
 const isNotesRequesting = (state, selector) => {
   return state.requesting[selector] || false;
 };
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var constants = __webpack_require__(14);
-
 // CONCATENATED MODULE: ./packages/data/build-module/notes/action-types.js
-const TYPES = {
+const notes_action_types_TYPES = {
   SET_ERROR: 'SET_ERROR',
   SET_NOTE: 'SET_NOTE',
   SET_NOTE_IS_UPDATING: 'SET_NOTE_IS_UPDATING',
@@ -1964,8 +3848,7 @@ const TYPES = {
   SET_NOTES_QUERY: 'SET_NOTES_QUERY',
   SET_IS_REQUESTING: 'SET_IS_REQUESTING'
 };
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
+/* harmony default export */ var notes_action_types = (notes_action_types_TYPES);
 // CONCATENATED MODULE: ./packages/data/build-module/notes/actions.js
 /**
  * External dependencies
@@ -1978,8 +3861,8 @@ const TYPES = {
 
 
 function* triggerNoteAction(noteId, actionId) {
-  yield setIsRequesting('triggerNoteAction', true);
-  const url = `${constants["g" /* NAMESPACE */]}/admin/notes/${noteId}/action/${actionId}`;
+  yield notes_actions_setIsRequesting('triggerNoteAction', true);
+  const url = `${NAMESPACE}/admin/notes/${noteId}/action/${actionId}`;
 
   try {
     const result = yield Object(external_wp_dataControls_["apiFetch"])({
@@ -1987,56 +3870,56 @@ function* triggerNoteAction(noteId, actionId) {
       method: 'POST'
     });
     yield updateNote(noteId, result);
-    yield setIsRequesting('triggerNoteAction', false);
+    yield notes_actions_setIsRequesting('triggerNoteAction', false);
   } catch (error) {
-    yield setError('triggerNoteAction', error);
-    yield setIsRequesting('triggerNoteAction', false);
+    yield notes_actions_setError('triggerNoteAction', error);
+    yield notes_actions_setIsRequesting('triggerNoteAction', false);
     throw new Error();
   }
 }
 function* removeNote(noteId) {
-  yield setIsRequesting('removeNote', true);
+  yield notes_actions_setIsRequesting('removeNote', true);
   yield setNoteIsUpdating(noteId, true);
 
   try {
-    const url = `${constants["g" /* NAMESPACE */]}/admin/notes/delete/${noteId}`;
+    const url = `${NAMESPACE}/admin/notes/delete/${noteId}`;
     const response = yield Object(external_wp_dataControls_["apiFetch"])({
       path: url,
       method: 'DELETE'
     });
     yield setNote(noteId, response);
-    yield setIsRequesting('removeNote', false);
+    yield notes_actions_setIsRequesting('removeNote', false);
     return response;
   } catch (error) {
-    yield setError('removeNote', error);
-    yield setIsRequesting('removeNote', false);
+    yield notes_actions_setError('removeNote', error);
+    yield notes_actions_setIsRequesting('removeNote', false);
     yield setNoteIsUpdating(noteId, false);
     throw new Error();
   }
 }
 function* removeAllNotes() {
-  yield setIsRequesting('removeAllNotes', true);
+  yield notes_actions_setIsRequesting('removeAllNotes', true);
 
   try {
-    const url = `${constants["g" /* NAMESPACE */]}/admin/notes/delete/all`;
+    const url = `${NAMESPACE}/admin/notes/delete/all`;
     const notes = yield Object(external_wp_dataControls_["apiFetch"])({
       path: url,
       method: 'DELETE'
     });
     yield setNotes(notes);
-    yield setIsRequesting('removeAllNotes', false);
+    yield notes_actions_setIsRequesting('removeAllNotes', false);
     return notes;
   } catch (error) {
-    yield setError('removeAllNotes', error);
-    yield setIsRequesting('removeAllNotes', false);
+    yield notes_actions_setError('removeAllNotes', error);
+    yield notes_actions_setIsRequesting('removeAllNotes', false);
     throw new Error();
   }
 }
 function* batchUpdateNotes(noteIds, noteFields) {
-  yield setIsRequesting('batchUpdateNotes', true);
+  yield notes_actions_setIsRequesting('batchUpdateNotes', true);
 
   try {
-    const url = `${constants["g" /* NAMESPACE */]}/admin/notes/update`;
+    const url = `${NAMESPACE}/admin/notes/update`;
     const notes = yield Object(external_wp_dataControls_["apiFetch"])({
       path: url,
       method: 'PUT',
@@ -2046,79 +3929,75 @@ function* batchUpdateNotes(noteIds, noteFields) {
       }
     });
     yield setNotes(notes);
-    yield setIsRequesting('batchUpdateNotes', false);
+    yield notes_actions_setIsRequesting('batchUpdateNotes', false);
   } catch (error) {
-    yield setError('updateNote', error);
-    yield setIsRequesting('batchUpdateNotes', false);
+    yield notes_actions_setError('updateNote', error);
+    yield notes_actions_setIsRequesting('batchUpdateNotes', false);
     throw new Error();
   }
 }
 function* updateNote(noteId, noteFields) {
-  yield setIsRequesting('updateNote', true);
+  yield notes_actions_setIsRequesting('updateNote', true);
   yield setNoteIsUpdating(noteId, true);
 
   try {
-    const url = `${constants["g" /* NAMESPACE */]}/admin/notes/${noteId}`;
+    const url = `${NAMESPACE}/admin/notes/${noteId}`;
     const note = yield Object(external_wp_dataControls_["apiFetch"])({
       path: url,
       method: 'PUT',
       data: noteFields
     });
     yield setNote(noteId, note);
-    yield setIsRequesting('updateNote', false);
+    yield notes_actions_setIsRequesting('updateNote', false);
     yield setNoteIsUpdating(noteId, false);
   } catch (error) {
-    yield setError('updateNote', error);
-    yield setIsRequesting('updateNote', false);
+    yield notes_actions_setError('updateNote', error);
+    yield notes_actions_setIsRequesting('updateNote', false);
     yield setNoteIsUpdating(noteId, false);
     throw new Error();
   }
 }
 function setNote(noteId, noteFields) {
   return {
-    type: action_types.SET_NOTE,
+    type: notes_action_types.SET_NOTE,
     noteId,
     noteFields
   };
 }
 function setNoteIsUpdating(noteId, isUpdating) {
   return {
-    type: action_types.SET_NOTE_IS_UPDATING,
+    type: notes_action_types.SET_NOTE_IS_UPDATING,
     noteId,
     isUpdating
   };
 }
 function setNotes(notes) {
   return {
-    type: action_types.SET_NOTES,
+    type: notes_action_types.SET_NOTES,
     notes
   };
 }
 function setNotesQuery(query, noteIds) {
   return {
-    type: action_types.SET_NOTES_QUERY,
+    type: notes_action_types.SET_NOTES_QUERY,
     query,
     noteIds
   };
 }
-function setError(selector, error) {
+function notes_actions_setError(selector, error) {
   return {
-    type: action_types.SET_ERROR,
+    type: notes_action_types.SET_ERROR,
     error,
     selector
   };
 }
-function setIsRequesting(selector, isRequesting) {
+function notes_actions_setIsRequesting(selector, isRequesting) {
   return {
-    type: action_types.SET_IS_REQUESTING,
+    type: notes_action_types.SET_IS_REQUESTING,
     selector,
     isRequesting
   };
 }
-//# sourceMappingURL=actions.js.map
-// EXTERNAL MODULE: external ["wp","url"]
-var external_wp_url_ = __webpack_require__(16);
-
 // CONCATENATED MODULE: ./packages/data/build-module/notes/resolvers.js
 /**
  * External dependencies
@@ -2132,7 +4011,7 @@ var external_wp_url_ = __webpack_require__(16);
 
 
 function* resolvers_getNotes(query = {}) {
-  const url = Object(external_wp_url_["addQueryArgs"])(`${constants["g" /* NAMESPACE */]}/admin/notes`, query);
+  const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/admin/notes`, query);
 
   try {
     const notes = yield Object(external_wp_dataControls_["apiFetch"])({
@@ -2141,10 +4020,9 @@ function* resolvers_getNotes(query = {}) {
     yield setNotes(notes);
     yield setNotesQuery(query, notes.map(note => note.id));
   } catch (error) {
-    yield setError('getNotes', error);
+    yield notes_actions_setError('getNotes', error);
   }
 }
-//# sourceMappingURL=resolvers.js.map
 // CONCATENATED MODULE: ./packages/data/build-module/notes/reducer.js
 /**
  * Internal dependencies
@@ -2169,7 +4047,7 @@ const notesReducer = (state = {
   type
 }) => {
   switch (type) {
-    case action_types.SET_NOTES:
+    case notes_action_types.SET_NOTES:
       state = { ...state,
         notes: { ...state.notes,
           ...notes.reduce((acc, item) => {
@@ -2180,7 +4058,7 @@ const notesReducer = (state = {
       };
       break;
 
-    case action_types.SET_NOTES_QUERY:
+    case notes_action_types.SET_NOTES_QUERY:
       state = { ...state,
         noteQueries: { ...state.noteQueries,
           [JSON.stringify(query)]: noteIds
@@ -2188,7 +4066,7 @@ const notesReducer = (state = {
       };
       break;
 
-    case action_types.SET_ERROR:
+    case notes_action_types.SET_ERROR:
       state = { ...state,
         errors: { ...state.errors,
           [selector]: error
@@ -2196,7 +4074,7 @@ const notesReducer = (state = {
       };
       break;
 
-    case action_types.SET_NOTE:
+    case notes_action_types.SET_NOTE:
       state = { ...state,
         notes: { ...state.notes,
           [noteId]: noteFields
@@ -2204,7 +4082,7 @@ const notesReducer = (state = {
       };
       break;
 
-    case action_types.SET_NOTE_IS_UPDATING:
+    case notes_action_types.SET_NOTE_IS_UPDATING:
       state = { ...state,
         notes: { ...state.notes,
           [noteId]: { ...state.notes[noteId],
@@ -2214,7 +4092,7 @@ const notesReducer = (state = {
       };
       break;
 
-    case action_types.SET_IS_REQUESTING:
+    case notes_action_types.SET_IS_REQUESTING:
       state = { ...state,
         requesting: { ...state.requesting,
           [selector]: isRequesting
@@ -2226,8 +4104,7 @@ const notesReducer = (state = {
   return state;
 };
 
-/* harmony default export */ var reducer = (notesReducer);
-//# sourceMappingURL=reducer.js.map
+/* harmony default export */ var notes_reducer = (notesReducer);
 // CONCATENATED MODULE: ./packages/data/build-module/notes/index.js
 /**
  * External dependencies
@@ -2243,2788 +4120,49 @@ const notesReducer = (state = {
 
 
 
-Object(external_wp_data_["registerStore"])(STORE_NAME, {
-  reducer: reducer,
-  actions: actions_namespaceObject,
+Object(external_wp_data_["registerStore"])(notes_constants_STORE_NAME, {
+  reducer: notes_reducer,
+  actions: notes_actions_namespaceObject,
   controls: external_wp_dataControls_["controls"],
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
+  selectors: notes_selectors_namespaceObject,
+  resolvers: notes_resolvers_namespaceObject
 });
-const NOTES_STORE_NAME = STORE_NAME;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 287:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ REVIEWS_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/reviews/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getReviews", function() { return getReviews; });
-__webpack_require__.d(selectors_namespaceObject, "getReviewsTotalCount", function() { return getReviewsTotalCount; });
-__webpack_require__.d(selectors_namespaceObject, "getReviewsError", function() { return getReviewsError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/reviews/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "updateReviews", function() { return updateReviews; });
-__webpack_require__.d(actions_namespaceObject, "updateReview", function() { return updateReview; });
-__webpack_require__.d(actions_namespaceObject, "deleteReview", function() { return deleteReview; });
-__webpack_require__.d(actions_namespaceObject, "setReviewIsUpdating", function() { return setReviewIsUpdating; });
-__webpack_require__.d(actions_namespaceObject, "setReview", function() { return setReview; });
-__webpack_require__.d(actions_namespaceObject, "setError", function() { return setError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/reviews/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getReviews", function() { return resolvers_getReviews; });
-__webpack_require__.d(resolvers_namespaceObject, "getReviewsTotalCount", function() { return resolvers_getReviewsTotalCount; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// CONCATENATED MODULE: ./packages/data/build-module/reviews/constants.js
-const STORE_NAME = 'wc/admin/reviews';
-//# sourceMappingURL=constants.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/reviews/selectors.js
-const getReviews = (state, query) => {
-  const stringifiedQuery = JSON.stringify(query);
-  const ids = state.reviews[stringifiedQuery] && state.reviews[stringifiedQuery].data || [];
-  return ids.map(id => state.data[id]);
-};
-const getReviewsTotalCount = (state, query) => {
-  const stringifiedQuery = JSON.stringify(query);
-  return state.reviews[stringifiedQuery] && state.reviews[stringifiedQuery].totalCount;
-};
-const getReviewsError = (state, query) => {
-  const stringifiedQuery = JSON.stringify(query);
-  return state.errors[stringifiedQuery];
-};
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// EXTERNAL MODULE: external ["wp","url"]
-var external_wp_url_ = __webpack_require__(16);
-
-// CONCATENATED MODULE: ./packages/data/build-module/reviews/action-types.js
-const TYPES = {
-  UPDATE_REVIEWS: 'UPDATE_REVIEWS',
-  SET_REVIEW: 'SET_REVIEW',
-  SET_ERROR: 'SET_ERROR',
-  SET_REVIEW_IS_UPDATING: 'SET_REVIEW_IS_UPDATING'
-};
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/reviews/actions.js
-/**
- * External dependencies
- */
-
-
+const NOTES_STORE_NAME = notes_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/reports/constants.js
 /**
  * Internal dependencies
  */
-
-
-
-function updateReviews(query, reviews, totalCount) {
-  return {
-    type: action_types.UPDATE_REVIEWS,
-    reviews,
-    query,
-    totalCount
-  };
-}
-function* updateReview(reviewId, reviewFields, query) {
-  yield setReviewIsUpdating(reviewId, true);
-
-  try {
-    const url = Object(external_wp_url_["addQueryArgs"])(`${constants["g" /* NAMESPACE */]}/products/reviews/${reviewId}`, query || {});
-    const review = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'PUT',
-      data: reviewFields
-    });
-    yield setReview(reviewId, review);
-    yield setReviewIsUpdating(reviewId, false);
-  } catch (error) {
-    yield setError('updateReview', error);
-    yield setReviewIsUpdating(reviewId, false);
-    throw new Error();
-  }
-}
-function* deleteReview(reviewId) {
-  yield setReviewIsUpdating(reviewId, true);
-
-  try {
-    const url = `${constants["g" /* NAMESPACE */]}/products/reviews/${reviewId}`;
-    const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'DELETE'
-    });
-    yield setReview(reviewId, response);
-    yield setReviewIsUpdating(reviewId, false);
-    return response;
-  } catch (error) {
-    yield setError('deleteReview', error);
-    yield setReviewIsUpdating(reviewId, false);
-    throw new Error();
-  }
-}
-function setReviewIsUpdating(reviewId, isUpdating) {
-  return {
-    type: action_types.SET_REVIEW_IS_UPDATING,
-    reviewId,
-    isUpdating
-  };
-}
-function setReview(reviewId, reviewData) {
-  return {
-    type: action_types.SET_REVIEW,
-    reviewId,
-    reviewData
-  };
-}
-function setError(query, error) {
-  return {
-    type: action_types.SET_ERROR,
-    query,
-    error
-  };
-}
-//# sourceMappingURL=actions.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/controls.js
-var controls = __webpack_require__(41);
-
-// CONCATENATED MODULE: ./packages/data/build-module/reviews/resolvers.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-function* resolvers_getReviews(query) {
-  try {
-    const url = Object(external_wp_url_["addQueryArgs"])(`${constants["g" /* NAMESPACE */]}/products/reviews`, query);
-    const response = yield Object(controls["b" /* fetchWithHeaders */])({
-      path: url,
-      method: 'GET'
-    });
-    const totalCount = parseInt(response.headers.get('x-wp-total'), 10);
-    yield updateReviews(query, response.data, totalCount);
-  } catch (error) {
-    yield setError(query, error);
-  }
-}
-function* resolvers_getReviewsTotalCount(query) {
-  yield resolvers_getReviews(query);
-}
-//# sourceMappingURL=resolvers.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/reviews/reducer.js
-/**
- * Internal dependencies
- */
-
-
-const reducer = (state = {
-  reviews: {},
-  errors: {},
-  data: {}
-}, {
-  type,
-  query,
-  reviews,
-  reviewId,
-  reviewData,
-  totalCount,
-  error,
-  isUpdating
-}) => {
-  switch (type) {
-    case action_types.UPDATE_REVIEWS:
-      const ids = [];
-      const nextReviews = reviews.reduce((result, review) => {
-        ids.push(review.id);
-        result[review.id] = { ...(state.data[review.id] || {}),
-          ...review
-        };
-        return result;
-      }, {});
-      return { ...state,
-        reviews: { ...state.reviews,
-          [JSON.stringify(query)]: {
-            data: ids,
-            totalCount
-          }
-        },
-        data: { ...state.data,
-          ...nextReviews
-        }
-      };
-
-    case action_types.SET_REVIEW:
-      return { ...state,
-        data: { ...state.data,
-          [reviewId]: reviewData
-        }
-      };
-
-    case action_types.SET_ERROR:
-      return { ...state,
-        errors: { ...state.errors,
-          [JSON.stringify(query)]: error
-        }
-      };
-
-    case action_types.SET_REVIEW_IS_UPDATING:
-      return { ...state,
-        data: { ...state.data,
-          [reviewId]: { ...state.data[reviewId],
-            isUpdating
-          }
-        }
-      };
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ var reviews_reducer = (reducer);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/reviews/index.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-Object(external_wp_data_["registerStore"])(STORE_NAME, {
-  reducer: reviews_reducer,
-  actions: actions_namespaceObject,
-  controls: controls["a" /* default */],
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
-});
-const REVIEWS_STORE_NAME = STORE_NAME;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 288:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ NAVIGATION_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/navigation/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getMenuItems", function() { return getMenuItems; });
-__webpack_require__.d(selectors_namespaceObject, "getFavorites", function() { return getFavorites; });
-__webpack_require__.d(selectors_namespaceObject, "isNavigationRequesting", function() { return isNavigationRequesting; });
-__webpack_require__.d(selectors_namespaceObject, "getPersistedQuery", function() { return getPersistedQuery; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/navigation/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "setMenuItems", function() { return setMenuItems; });
-__webpack_require__.d(actions_namespaceObject, "addMenuItems", function() { return addMenuItems; });
-__webpack_require__.d(actions_namespaceObject, "getFavoritesFailure", function() { return getFavoritesFailure; });
-__webpack_require__.d(actions_namespaceObject, "getFavoritesRequest", function() { return getFavoritesRequest; });
-__webpack_require__.d(actions_namespaceObject, "getFavoritesSuccess", function() { return getFavoritesSuccess; });
-__webpack_require__.d(actions_namespaceObject, "addFavoriteRequest", function() { return addFavoriteRequest; });
-__webpack_require__.d(actions_namespaceObject, "addFavoriteFailure", function() { return addFavoriteFailure; });
-__webpack_require__.d(actions_namespaceObject, "addFavoriteSuccess", function() { return addFavoriteSuccess; });
-__webpack_require__.d(actions_namespaceObject, "removeFavoriteRequest", function() { return removeFavoriteRequest; });
-__webpack_require__.d(actions_namespaceObject, "removeFavoriteFailure", function() { return removeFavoriteFailure; });
-__webpack_require__.d(actions_namespaceObject, "removeFavoriteSuccess", function() { return removeFavoriteSuccess; });
-__webpack_require__.d(actions_namespaceObject, "onLoad", function() { return actions_onLoad; });
-__webpack_require__.d(actions_namespaceObject, "onHistoryChange", function() { return actions_onHistoryChange; });
-__webpack_require__.d(actions_namespaceObject, "addFavorite", function() { return addFavorite; });
-__webpack_require__.d(actions_namespaceObject, "removeFavorite", function() { return removeFavorite; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/navigation/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getFavorites", function() { return resolvers_getFavorites; });
-
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: ./packages/data/build-module/navigation/constants.js
-var constants = __webpack_require__(79);
-
-// EXTERNAL MODULE: external ["wp","hooks"]
-var external_wp_hooks_ = __webpack_require__(34);
-
-// CONCATENATED MODULE: ./packages/data/build-module/navigation/selectors.js
-/**
- * External dependencies
- */
-
-const MENU_ITEMS_HOOK = 'woocommerce_navigation_menu_items';
-const getMenuItems = state => {
-  return Object(external_wp_hooks_["applyFilters"])(MENU_ITEMS_HOOK, state.menuItems);
-};
-const getFavorites = state => {
-  return state.favorites || [];
-};
-const isNavigationRequesting = (state, selector) => {
-  return state.requesting[selector] || false;
-};
-const getPersistedQuery = state => {
-  return state.persistedQuery || {};
-};
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(20);
-var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
-
-// EXTERNAL MODULE: external ["wc","navigation"]
-var external_wc_navigation_ = __webpack_require__(12);
-
-// CONCATENATED MODULE: ./packages/data/build-module/navigation/action-types.js
-const TYPES = {
-  ADD_MENU_ITEMS: 'ADD_MENU_ITEMS',
-  SET_MENU_ITEMS: 'SET_MENU_ITEMS',
-  ON_HISTORY_CHANGE: 'ON_HISTORY_CHANGE',
-  ADD_FAVORITE_FAILURE: 'ADD_FAVORITE_FAILURE',
-  ADD_FAVORITE_REQUEST: 'ADD_FAVORITE_REQUEST',
-  ADD_FAVORITE_SUCCESS: 'ADD_FAVORITE_SUCCESS',
-  GET_FAVORITES_FAILURE: 'GET_FAVORITES_FAILURE',
-  GET_FAVORITES_REQUEST: 'GET_FAVORITES_REQUEST',
-  GET_FAVORITES_SUCCESS: 'GET_FAVORITES_SUCCESS',
-  REMOVE_FAVORITE_FAILURE: 'REMOVE_FAVORITE_FAILURE',
-  REMOVE_FAVORITE_REQUEST: 'REMOVE_FAVORITE_REQUEST',
-  REMOVE_FAVORITE_SUCCESS: 'REMOVE_FAVORITE_SUCCESS'
-};
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var build_module_constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/navigation/actions.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-function setMenuItems(menuItems) {
-  return {
-    type: action_types.SET_MENU_ITEMS,
-    menuItems
-  };
-}
-function addMenuItems(menuItems) {
-  return {
-    type: action_types.ADD_MENU_ITEMS,
-    menuItems
-  };
-}
-function getFavoritesFailure(error) {
-  return {
-    type: action_types.GET_FAVORITES_FAILURE,
-    error
-  };
-}
-function getFavoritesRequest(favorites) {
-  return {
-    type: action_types.GET_FAVORITES_REQUEST,
-    favorites
-  };
-}
-function getFavoritesSuccess(favorites) {
-  return {
-    type: action_types.GET_FAVORITES_SUCCESS,
-    favorites
-  };
-}
-function addFavoriteRequest(favorite) {
-  return {
-    type: action_types.ADD_FAVORITE_REQUEST,
-    favorite
-  };
-}
-function addFavoriteFailure(favorite, error) {
-  return {
-    type: action_types.ADD_FAVORITE_FAILURE,
-    favorite,
-    error
-  };
-}
-function addFavoriteSuccess(favorite) {
-  return {
-    type: action_types.ADD_FAVORITE_SUCCESS,
-    favorite
-  };
-}
-function removeFavoriteRequest(favorite) {
-  return {
-    type: action_types.REMOVE_FAVORITE_REQUEST,
-    favorite
-  };
-}
-function removeFavoriteFailure(favorite, error) {
-  return {
-    type: action_types.REMOVE_FAVORITE_FAILURE,
-    favorite,
-    error
-  };
-}
-function removeFavoriteSuccess(favorite, error) {
-  return {
-    type: action_types.REMOVE_FAVORITE_SUCCESS,
-    favorite,
-    error
-  };
-}
-function* actions_onLoad() {
-  yield actions_onHistoryChange();
-}
-function* actions_onHistoryChange() {
-  const persistedQuery = Object(external_wc_navigation_["getPersistedQuery"])();
-
-  if (!Object.keys(persistedQuery).length) {
-    return null;
-  }
-
-  yield {
-    type: action_types.ON_HISTORY_CHANGE,
-    persistedQuery
-  };
-}
-function* addFavorite(favorite) {
-  yield addFavoriteRequest(favorite);
-
-  try {
-    const results = yield external_wp_apiFetch_default()({
-      path: `${build_module_constants["k" /* WC_ADMIN_NAMESPACE */]}/navigation/favorites/me`,
-      method: 'POST',
-      data: {
-        item_id: favorite
-      }
-    });
-
-    if (results) {
-      yield addFavoriteSuccess(favorite);
-      return results;
-    }
-
-    throw new Error();
-  } catch (error) {
-    yield addFavoriteFailure(favorite, error);
-    throw new Error();
-  }
-}
-function* removeFavorite(favorite) {
-  yield removeFavoriteRequest(favorite);
-
-  try {
-    const results = yield external_wp_apiFetch_default()({
-      path: `${build_module_constants["k" /* WC_ADMIN_NAMESPACE */]}/navigation/favorites/me`,
-      method: 'DELETE',
-      data: {
-        item_id: favorite
-      }
-    });
-
-    if (results) {
-      yield removeFavoriteSuccess(favorite);
-      return results;
-    }
-
-    throw new Error();
-  } catch (error) {
-    yield removeFavoriteFailure(favorite, error);
-    throw new Error();
-  }
-}
-//# sourceMappingURL=actions.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/navigation/reducer.js
-/**
- * Internal dependencies
- */
-
-
-const reducer = (state = {
-  error: null,
-  menuItems: [],
-  favorites: [],
-  requesting: {},
-  persistedQuery: {}
-}, {
-  type,
-  error,
-  favorite,
-  favorites,
-  menuItems,
-  persistedQuery
-}) => {
-  switch (type) {
-    case action_types.SET_MENU_ITEMS:
-      state = { ...state,
-        menuItems
-      };
-      break;
-
-    case action_types.ADD_MENU_ITEMS:
-      state = { ...state,
-        menuItems: [...state.menuItems, ...menuItems]
-      };
-      break;
-
-    case action_types.ON_HISTORY_CHANGE:
-      state = { ...state,
-        persistedQuery
-      };
-      break;
-
-    case action_types.GET_FAVORITES_FAILURE:
-      state = { ...state,
-        requesting: { ...state.requesting,
-          getFavorites: false
-        }
-      };
-      break;
-
-    case action_types.GET_FAVORITES_REQUEST:
-      state = { ...state,
-        requesting: { ...state.requesting,
-          getFavorites: true
-        }
-      };
-      break;
-
-    case action_types.GET_FAVORITES_SUCCESS:
-      state = { ...state,
-        favorites,
-        requesting: { ...state.requesting,
-          getFavorites: false
-        }
-      };
-      break;
-
-    case action_types.ADD_FAVORITE_FAILURE:
-      state = { ...state,
-        error,
-        requesting: { ...state.requesting,
-          addFavorite: false
-        }
-      };
-      break;
-
-    case action_types.ADD_FAVORITE_REQUEST:
-      state = { ...state,
-        requesting: { ...state.requesting,
-          addFavorite: true
-        }
-      };
-      break;
-
-    case action_types.ADD_FAVORITE_SUCCESS:
-      const newFavorites = !state.favorites.includes(favorite) ? [...state.favorites, favorite] : state.favorites;
-      state = { ...state,
-        favorites: newFavorites,
-        menuItems: state.menuItems.map(item => {
-          if (item.id === favorite) {
-            return { ...item,
-              menuId: 'favorites'
-            };
-          }
-
-          return item;
-        }),
-        requesting: { ...state.requesting,
-          addFavorite: false
-        }
-      };
-      break;
-
-    case action_types.REMOVE_FAVORITE_FAILURE:
-      state = { ...state,
-        requesting: { ...state.requesting,
-          error,
-          removeFavorite: false
-        }
-      };
-      break;
-
-    case action_types.REMOVE_FAVORITE_REQUEST:
-      state = { ...state,
-        requesting: { ...state.requesting,
-          removeFavorite: true
-        }
-      };
-      break;
-
-    case action_types.REMOVE_FAVORITE_SUCCESS:
-      const filteredFavorites = state.favorites.filter(f => f !== favorite);
-      state = { ...state,
-        favorites: filteredFavorites,
-        menuItems: state.menuItems.map(item => {
-          if (item.id === favorite) {
-            return { ...item,
-              menuId: 'plugins'
-            };
-          }
-
-          return item;
-        }),
-        requesting: { ...state.requesting,
-          removeFavorite: false
-        }
-      };
-      break;
-  }
-
-  return state;
-};
-
-/* harmony default export */ var navigation_reducer = (reducer);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/navigation/resolvers.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-function* resolvers_getFavorites() {
-  yield getFavoritesRequest();
-
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: `${build_module_constants["k" /* WC_ADMIN_NAMESPACE */]}/navigation/favorites/me`
-    });
-
-    if (results) {
-      yield getFavoritesSuccess(results);
-      return;
-    }
-
-    throw new Error();
-  } catch (error) {
-    yield getFavoritesFailure(error);
-    throw new Error();
-  }
-}
-//# sourceMappingURL=resolvers.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/navigation/dispatchers.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-/* harmony default export */ var dispatchers = (async () => {
-  const {
-    onLoad,
-    onHistoryChange
-  } = Object(external_wp_data_["dispatch"])(constants["a" /* STORE_NAME */]);
-  await onLoad();
-  Object(external_wc_navigation_["addHistoryListener"])(async () => {
-    setTimeout(async () => {
-      await onHistoryChange();
-    }, 0);
-  });
-});
-//# sourceMappingURL=dispatchers.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/navigation/index.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-
-Object(external_wp_data_["registerStore"])(constants["a" /* STORE_NAME */], {
-  reducer: navigation_reducer,
-  actions: actions_namespaceObject,
-  controls: external_wp_dataControls_["controls"],
-  resolvers: resolvers_namespaceObject,
-  selectors: selectors_namespaceObject
-});
-dispatchers();
-const NAVIGATION_STORE_NAME = constants["a" /* STORE_NAME */];
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 289:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ PAYMENT_GATEWAYS_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/payment-gateways/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "getPaymentGatewaysRequest", function() { return getPaymentGatewaysRequest; });
-__webpack_require__.d(actions_namespaceObject, "getPaymentGatewaysSuccess", function() { return getPaymentGatewaysSuccess; });
-__webpack_require__.d(actions_namespaceObject, "getPaymentGatewaysError", function() { return getPaymentGatewaysError; });
-__webpack_require__.d(actions_namespaceObject, "getPaymentGatewayRequest", function() { return getPaymentGatewayRequest; });
-__webpack_require__.d(actions_namespaceObject, "getPaymentGatewayError", function() { return getPaymentGatewayError; });
-__webpack_require__.d(actions_namespaceObject, "getPaymentGatewaySuccess", function() { return getPaymentGatewaySuccess; });
-__webpack_require__.d(actions_namespaceObject, "updatePaymentGatewaySuccess", function() { return updatePaymentGatewaySuccess; });
-__webpack_require__.d(actions_namespaceObject, "updatePaymentGatewayRequest", function() { return updatePaymentGatewayRequest; });
-__webpack_require__.d(actions_namespaceObject, "updatePaymentGatewayError", function() { return updatePaymentGatewayError; });
-__webpack_require__.d(actions_namespaceObject, "updatePaymentGateway", function() { return updatePaymentGateway; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/payment-gateways/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getPaymentGateways", function() { return getPaymentGateways; });
-__webpack_require__.d(resolvers_namespaceObject, "getPaymentGateway", function() { return getPaymentGateway; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/payment-gateways/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getPaymentGateway", function() { return selectors_getPaymentGateway; });
-__webpack_require__.d(selectors_namespaceObject, "getPaymentGateways", function() { return selectors_getPaymentGateways; });
-__webpack_require__.d(selectors_namespaceObject, "getPaymentGatewayError", function() { return selectors_getPaymentGatewayError; });
-__webpack_require__.d(selectors_namespaceObject, "isPaymentGatewayUpdating", function() { return isPaymentGatewayUpdating; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/action-types.js
-let ACTION_TYPES;
-
-(function (ACTION_TYPES) {
-  ACTION_TYPES["GET_PAYMENT_GATEWAYS_REQUEST"] = "GET_PAYMENT_GATEWAYS_REQUEST";
-  ACTION_TYPES["GET_PAYMENT_GATEWAYS_SUCCESS"] = "GET_PAYMENT_GATEWAYS_SUCCESS";
-  ACTION_TYPES["GET_PAYMENT_GATEWAYS_ERROR"] = "GET_PAYMENT_GATEWAYS_ERROR";
-  ACTION_TYPES["UPDATE_PAYMENT_GATEWAY_REQUEST"] = "UPDATE_PAYMENT_GATEWAY_REQUEST";
-  ACTION_TYPES["UPDATE_PAYMENT_GATEWAY_SUCCESS"] = "UPDATE_PAYMENT_GATEWAY_SUCCESS";
-  ACTION_TYPES["UPDATE_PAYMENT_GATEWAY_ERROR"] = "UPDATE_PAYMENT_GATEWAY_ERROR";
-  ACTION_TYPES["GET_PAYMENT_GATEWAY_REQUEST"] = "GET_PAYMENT_GATEWAY_REQUEST";
-  ACTION_TYPES["GET_PAYMENT_GATEWAY_SUCCESS"] = "GET_PAYMENT_GATEWAY_SUCCESS";
-  ACTION_TYPES["GET_PAYMENT_GATEWAY_ERROR"] = "GET_PAYMENT_GATEWAY_ERROR";
-})(ACTION_TYPES || (ACTION_TYPES = {}));
-//# sourceMappingURL=action-types.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/constants.js
-const STORE_KEY = 'wc/payment-gateways';
-const API_NAMESPACE = 'wc/v3';
-//# sourceMappingURL=constants.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/actions.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-function getPaymentGatewaysRequest() {
-  return {
-    type: ACTION_TYPES.GET_PAYMENT_GATEWAYS_REQUEST
-  };
-}
-function getPaymentGatewaysSuccess(paymentGateways) {
-  return {
-    type: ACTION_TYPES.GET_PAYMENT_GATEWAYS_SUCCESS,
-    paymentGateways
-  };
-}
-function getPaymentGatewaysError(error) {
-  return {
-    type: ACTION_TYPES.GET_PAYMENT_GATEWAYS_ERROR,
-    error
-  };
-}
-function getPaymentGatewayRequest() {
-  return {
-    type: ACTION_TYPES.GET_PAYMENT_GATEWAY_REQUEST
-  };
-}
-function getPaymentGatewayError(error) {
-  return {
-    type: ACTION_TYPES.GET_PAYMENT_GATEWAY_ERROR,
-    error
-  };
-}
-function getPaymentGatewaySuccess(paymentGateway) {
-  return {
-    type: ACTION_TYPES.GET_PAYMENT_GATEWAY_SUCCESS,
-    paymentGateway
-  };
-}
-function updatePaymentGatewaySuccess(paymentGateway) {
-  return {
-    type: ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_SUCCESS,
-    paymentGateway
-  };
-}
-function updatePaymentGatewayRequest() {
-  return {
-    type: ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_REQUEST
-  };
-}
-function updatePaymentGatewayError(error) {
-  return {
-    type: ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_ERROR,
-    error
-  };
-}
-function* updatePaymentGateway(id, data) {
-  try {
-    yield updatePaymentGatewayRequest();
-    const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      method: 'PUT',
-      path: API_NAMESPACE + '/payment_gateways/' + id,
-      body: JSON.stringify(data)
-    });
-
-    if (response && response.id === id) {
-      // Update the already loaded payment gateway list with the new data
-      yield updatePaymentGatewaySuccess(response);
-      return response;
-    }
-  } catch (e) {
-    yield updatePaymentGatewayError(e);
-    throw e;
-  }
-}
-//# sourceMappingURL=actions.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/resolvers.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-// Can be removed in WP 5.9.
-const dispatch = external_wp_data_["controls"] && external_wp_data_["controls"].dispatch ? external_wp_data_["controls"].dispatch : external_wp_dataControls_["dispatch"];
-function* getPaymentGateways() {
-  yield getPaymentGatewaysRequest();
-
-  try {
-    const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: API_NAMESPACE + '/payment_gateways'
-    });
-    yield getPaymentGatewaysSuccess(response);
-
-    for (let i = 0; i < response.length; i++) {
-      yield dispatch(STORE_KEY, 'finishResolution', 'getPaymentGateway', [response[i].id]);
-    }
-  } catch (e) {
-    yield getPaymentGatewaysError(e);
-  }
-}
-function* getPaymentGateway(id) {
-  yield getPaymentGatewayRequest();
-
-  try {
-    const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: API_NAMESPACE + '/payment_gateways/' + id
-    });
-
-    if (response && response.id) {
-      yield getPaymentGatewaySuccess(response);
-      return response;
-    }
-  } catch (e) {
-    yield getPaymentGatewayError(e);
-  }
-}
-//# sourceMappingURL=resolvers.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/selectors.js
-/**
- * Internal dependencies
- */
-function selectors_getPaymentGateway(state, id) {
-  return state.paymentGateways.find(paymentGateway => paymentGateway.id === id);
-}
-function selectors_getPaymentGateways(state) {
-  return state.paymentGateways;
-}
-function selectors_getPaymentGatewayError(state, selector) {
-  return state.errors[selector] || null;
-}
-function isPaymentGatewayUpdating(state) {
-  return state.isUpdating || false;
-}
-//# sourceMappingURL=selectors.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/reducer.js
-/**
- * Internal dependencies
- */
-
-
-function updatePaymentGatewayList(state, paymentGateway) {
-  const targetIndex = state.paymentGateways.findIndex(gateway => gateway.id === paymentGateway.id);
-
-  if (targetIndex === -1) {
-    return { ...state,
-      paymentGateways: [...state.paymentGateways, paymentGateway],
-      isUpdating: false
-    };
-  }
-
-  return { ...state,
-    paymentGateways: [...state.paymentGateways.slice(0, targetIndex), paymentGateway, ...state.paymentGateways.slice(targetIndex + 1)],
-    isUpdating: false
-  };
-}
-
-const reducer = (state = {
-  paymentGateways: [],
-  isUpdating: false,
-  errors: {}
-}, payload) => {
-  if (payload && 'type' in payload) {
-    switch (payload.type) {
-      case ACTION_TYPES.GET_PAYMENT_GATEWAYS_REQUEST:
-      case ACTION_TYPES.GET_PAYMENT_GATEWAY_REQUEST:
-        return state;
-
-      case ACTION_TYPES.GET_PAYMENT_GATEWAYS_SUCCESS:
-        return { ...state,
-          paymentGateways: payload.paymentGateways
-        };
-
-      case ACTION_TYPES.GET_PAYMENT_GATEWAYS_ERROR:
-        return { ...state,
-          errors: { ...state.errors,
-            getPaymentGateways: payload.error
-          }
-        };
-
-      case ACTION_TYPES.GET_PAYMENT_GATEWAY_ERROR:
-        return { ...state,
-          errors: { ...state.errors,
-            getPaymentGateway: payload.error
-          }
-        };
-
-      case ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_REQUEST:
-        return { ...state,
-          isUpdating: true
-        };
-
-      case ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_SUCCESS:
-        return updatePaymentGatewayList(state, payload.paymentGateway);
-
-      case ACTION_TYPES.GET_PAYMENT_GATEWAY_SUCCESS:
-        return updatePaymentGatewayList(state, payload.paymentGateway);
-
-      case ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_ERROR:
-        return { ...state,
-          errors: { ...state.errors,
-            updatePaymentGateway: payload.error
-          },
-          isUpdating: false
-        };
-    }
-  }
-
-  return state;
-};
-
-/* harmony default export */ var payment_gateways_reducer = (reducer);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/index.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-const PAYMENT_GATEWAYS_STORE_NAME = STORE_KEY;
-Object(external_wp_data_["registerStore"])(STORE_KEY, {
-  actions: actions_namespaceObject,
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject,
-  controls: external_wp_dataControls_["controls"],
-  reducer: payment_gateways_reducer
-});
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 29:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getResourceName; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getResourcePrefix; });
-/* unused harmony export isResourcePrefix */
-/* unused harmony export getResourceIdentifier */
-function getResourceName(prefix, identifier) {
-  const identifierString = JSON.stringify(identifier, Object.keys(identifier).sort());
-  return `${prefix}:${identifierString}`;
-}
-function getResourcePrefix(resourceName) {
-  const hasPrefixIndex = resourceName.indexOf(':');
-  return hasPrefixIndex < 0 ? resourceName : resourceName.substring(0, hasPrefixIndex);
-}
-function isResourcePrefix(resourceName, prefix) {
-  const resourcePrefix = getResourcePrefix(resourceName);
-  return resourcePrefix === prefix;
-}
-function getResourceIdentifier(resourceName) {
-  const identifierString = resourceName.substring(resourceName.indexOf(':') + 1);
-  return JSON.parse(identifierString);
-}
-//# sourceMappingURL=utils.js.map
-
-/***/ }),
-
-/***/ 290:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ EXPORT_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/export/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "isExportRequesting", function() { return isExportRequesting; });
-__webpack_require__.d(selectors_namespaceObject, "getExportId", function() { return getExportId; });
-__webpack_require__.d(selectors_namespaceObject, "getError", function() { return getError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/export/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "setExportId", function() { return setExportId; });
-__webpack_require__.d(actions_namespaceObject, "setIsRequesting", function() { return setIsRequesting; });
-__webpack_require__.d(actions_namespaceObject, "setError", function() { return setError; });
-__webpack_require__.d(actions_namespaceObject, "startExport", function() { return startExport; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// CONCATENATED MODULE: ./packages/data/build-module/export/constants.js
-/**
- * Internal dependencies
- */
-const STORE_NAME = 'wc/admin/export';
-//# sourceMappingURL=constants.js.map
-// EXTERNAL MODULE: ./node_modules/md5/md5.js
-var md5 = __webpack_require__(118);
-var md5_default = /*#__PURE__*/__webpack_require__.n(md5);
-
-// EXTERNAL MODULE: ./packages/data/build-module/utils.js
-var utils = __webpack_require__(29);
-
-// CONCATENATED MODULE: ./packages/data/build-module/export/utils.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-const hashExportArgs = args => {
-  return md5_default()(Object(utils["a" /* getResourceName */])('export', args));
-};
-//# sourceMappingURL=utils.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/export/selectors.js
-/**
- * Internal dependencies
- */
-
-const isExportRequesting = (state, selector, selectorArgs) => {
-  return Boolean(state.requesting[selector] && state.requesting[selector][hashExportArgs(selectorArgs)]);
-};
-const getExportId = (state, exportType, exportArgs) => {
-  return state.exportIds[exportType] && state.exportIds[exportType][hashExportArgs(exportArgs)];
-};
-const getError = (state, selector, selectorArgs) => {
-  return state.errors[selector] && state.errors[selector][hashExportArgs(selectorArgs)];
-};
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/controls.js
-var controls = __webpack_require__(41);
-
-// CONCATENATED MODULE: ./packages/data/build-module/export/action-types.js
-const TYPES = {
-  START_EXPORT: 'START_EXPORT',
-  SET_EXPORT_ID: 'SET_EXPORT_ID',
-  SET_ERROR: 'SET_ERROR',
-  SET_IS_REQUESTING: 'SET_IS_REQUESTING'
-};
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/export/actions.js
-/**
- * Internal dependencies
- */
-
-
-
-function setExportId(exportType, exportArgs, exportId) {
-  return {
-    type: action_types.SET_EXPORT_ID,
-    exportType,
-    exportArgs,
-    exportId
-  };
-}
-function setIsRequesting(selector, selectorArgs, isRequesting) {
-  return {
-    type: action_types.SET_IS_REQUESTING,
-    selector,
-    selectorArgs,
-    isRequesting
-  };
-}
-function setError(selector, selectorArgs, error) {
-  return {
-    type: action_types.SET_ERROR,
-    selector,
-    selectorArgs,
-    error
-  };
-}
-function* startExport(type, args) {
-  yield setIsRequesting('startExport', {
-    type,
-    args
-  }, true);
-
-  try {
-    const response = yield Object(controls["b" /* fetchWithHeaders */])({
-      path: `${constants["g" /* NAMESPACE */]}/reports/${type}/export`,
-      method: 'POST',
-      data: {
-        report_args: args,
-        email: true
-      }
-    });
-    yield setIsRequesting('startExport', {
-      type,
-      args
-    }, false);
-    const {
-      export_id: exportId,
-      message
-    } = response.data;
-
-    if (exportId) {
-      yield setExportId(type, args, exportId);
-    } else {
-      throw new Error(message);
-    }
-
-    return response.data;
-  } catch (error) {
-    yield setError('startExport', {
-      type,
-      args
-    }, error.message);
-    yield setIsRequesting('startExport', {
-      type,
-      args
-    }, false);
-    throw error;
-  }
-}
-//# sourceMappingURL=actions.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/export/reducer.js
-/**
- * Internal dependencies
- */
-
-
-
-const exportReducer = (state = {
-  errors: {},
-  requesting: {},
-  exportMeta: {},
-  exportIds: {}
-}, {
-  error,
-  exportArgs,
-  exportId,
-  exportType,
-  isRequesting,
-  selector,
-  selectorArgs,
-  type
-}) => {
-  switch (type) {
-    case action_types.SET_IS_REQUESTING:
-      return { ...state,
-        requesting: { ...state.requesting,
-          [selector]: { ...state.requesting[selector],
-            [hashExportArgs(selectorArgs)]: isRequesting
-          }
-        }
-      };
-
-    case action_types.SET_EXPORT_ID:
-      return { ...state,
-        exportMeta: { ...state.exportMeta,
-          [exportId]: {
-            exportType,
-            exportArgs
-          }
-        },
-        exportIds: { ...state.exportIds,
-          [exportType]: { ...state.exportIds[exportType],
-            [hashExportArgs({
-              type: exportType,
-              args: exportArgs
-            })]: exportId
-          }
-        }
-      };
-
-    case action_types.SET_ERROR:
-      return { ...state,
-        errors: { ...state.errors,
-          [selector]: { ...state.errors[selector],
-            [hashExportArgs(selectorArgs)]: error
-          }
-        }
-      };
-
-    default:
-      return state;
-  }
-};
-
-/* harmony default export */ var reducer = (exportReducer);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/export/index.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-Object(external_wp_data_["registerStore"])(STORE_NAME, {
-  reducer: reducer,
-  actions: actions_namespaceObject,
-  controls: controls["a" /* default */],
-  selectors: selectors_namespaceObject
-});
-const EXPORT_STORE_NAME = STORE_NAME;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 291:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ IMPORT_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/import/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getImportStarted", function() { return getImportStarted; });
-__webpack_require__.d(selectors_namespaceObject, "getFormSettings", function() { return getFormSettings; });
-__webpack_require__.d(selectors_namespaceObject, "getImportStatus", function() { return getImportStatus; });
-__webpack_require__.d(selectors_namespaceObject, "getImportTotals", function() { return getImportTotals; });
-__webpack_require__.d(selectors_namespaceObject, "getImportError", function() { return getImportError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/import/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "setImportStarted", function() { return setImportStarted; });
-__webpack_require__.d(actions_namespaceObject, "setImportPeriod", function() { return setImportPeriod; });
-__webpack_require__.d(actions_namespaceObject, "setSkipPrevious", function() { return setSkipPrevious; });
-__webpack_require__.d(actions_namespaceObject, "setImportStatus", function() { return setImportStatus; });
-__webpack_require__.d(actions_namespaceObject, "setImportTotals", function() { return setImportTotals; });
-__webpack_require__.d(actions_namespaceObject, "setImportError", function() { return setImportError; });
-__webpack_require__.d(actions_namespaceObject, "updateImportation", function() { return updateImportation; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/import/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getImportStatus", function() { return resolvers_getImportStatus; });
-__webpack_require__.d(resolvers_namespaceObject, "getImportTotals", function() { return resolvers_getImportTotals; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// CONCATENATED MODULE: ./packages/data/build-module/import/constants.js
-/**
- * Internal dependencies
- */
-const STORE_NAME = 'wc/admin/import';
-//# sourceMappingURL=constants.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/import/selectors.js
-const getImportStarted = state => {
-  const {
-    activeImport,
-    lastImportStartTimestamp
-  } = state;
-  return {
-    activeImport,
-    lastImportStartTimestamp
-  } || {};
-};
-const getFormSettings = state => {
-  const {
-    period,
-    skipPrevious
-  } = state;
-  return {
-    period,
-    skipPrevious
-  } || {};
-};
-const getImportStatus = (state, query) => {
-  const stringifiedQuery = JSON.stringify(query);
-  return state.importStatus[stringifiedQuery] || {};
-};
-const getImportTotals = (state, query) => {
-  const {
-    importTotals,
-    lastImportStartTimestamp
-  } = state;
-  const stringifiedQuery = JSON.stringify(query);
-  return { ...importTotals[stringifiedQuery],
-    lastImportStartTimestamp
-  } || {};
-};
-const getImportError = (state, query) => {
-  const stringifiedQuery = JSON.stringify(query);
-  return state.errors[stringifiedQuery] || false;
-};
-//# sourceMappingURL=selectors.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/import/action-types.js
-const TYPES = {
-  SET_IMPORT_DATE: 'SET_IMPORT_DATE',
-  SET_IMPORT_ERROR: 'SET_IMPORT_ERROR',
-  SET_IMPORT_PERIOD: 'SET_IMPORT_PERIOD',
-  SET_IMPORT_STARTED: 'SET_IMPORT_STARTED',
-  SET_IMPORT_STATUS: 'SET_IMPORT_STATUS',
-  SET_IMPORT_TOTALS: 'SET_IMPORT_TOTALS',
-  SET_SKIP_IMPORTED: 'SET_SKIP_IMPORTED'
-};
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/import/actions.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-function setImportStarted(activeImport) {
-  return {
-    type: action_types.SET_IMPORT_STARTED,
-    activeImport
-  };
-}
-function setImportPeriod(date, dateModified) {
-  if (!dateModified) {
-    return {
-      type: action_types.SET_IMPORT_PERIOD,
-      date
-    };
-  }
-
-  return {
-    type: action_types.SET_IMPORT_DATE,
-    date
-  };
-}
-function setSkipPrevious(skipPrevious) {
-  return {
-    type: action_types.SET_SKIP_IMPORTED,
-    skipPrevious
-  };
-}
-function setImportStatus(query, importStatus) {
-  return {
-    type: action_types.SET_IMPORT_STATUS,
-    importStatus,
-    query
-  };
-}
-function setImportTotals(query, importTotals) {
-  return {
-    type: action_types.SET_IMPORT_TOTALS,
-    importTotals,
-    query
-  };
-}
-function setImportError(query, error) {
-  return {
-    type: action_types.SET_IMPORT_ERROR,
-    error,
-    query
-  };
-}
-function* updateImportation(path, importStarted = false) {
-  yield setImportStarted(importStarted);
-
-  try {
-    const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      path,
-      method: 'POST'
-    });
-    return response;
-  } catch (error) {
-    yield setImportError(path, error);
-    throw error;
-  }
-}
-//# sourceMappingURL=actions.js.map
-// EXTERNAL MODULE: external ["wp","url"]
-var external_wp_url_ = __webpack_require__(16);
-
-// EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
-
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/import/resolvers.js
-/**
- * External dependencies
- */
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-function* resolvers_getImportStatus(query) {
-  try {
-    const url = Object(external_wp_url_["addQueryArgs"])(`${constants["g" /* NAMESPACE */]}/reports/import/status`, Object(external_lodash_["omit"])(query, ['timestamp']));
-    const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url
-    });
-    yield setImportStatus(query, response);
-  } catch (error) {
-    yield setImportError(query, error);
-  }
-}
-function* resolvers_getImportTotals(query) {
-  try {
-    const url = Object(external_wp_url_["addQueryArgs"])(`${constants["g" /* NAMESPACE */]}/reports/import/totals`, query);
-    const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url
-    });
-    yield setImportTotals(query, response);
-  } catch (error) {
-    yield setImportError(query, error);
-  }
-}
-//# sourceMappingURL=resolvers.js.map
-// EXTERNAL MODULE: external ["wp","i18n"]
-var external_wp_i18n_ = __webpack_require__(2);
-
-// EXTERNAL MODULE: external "moment"
-var external_moment_ = __webpack_require__(9);
-var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
-
-// CONCATENATED MODULE: ./packages/data/build-module/import/reducer.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-const reducer = (state = {
-  activeImport: false,
-  importStatus: {},
-  importTotals: {},
-  errors: {},
-  lastImportStartTimestamp: 0,
-  period: {
-    date: external_moment_default()().format(Object(external_wp_i18n_["__"])('MM/DD/YYYY', 'woocommerce-admin')),
-    label: 'all'
-  },
-  skipPrevious: true
-}, {
-  type,
-  query,
-  importStatus,
-  importTotals,
-  activeImport,
-  date,
-  error,
-  skipPrevious
-}) => {
-  switch (type) {
-    case action_types.SET_IMPORT_STARTED:
-      state = { ...state,
-        activeImport,
-        lastImportStartTimestamp: activeImport ? Date.now() : state.lastImportStartTimestamp
-      };
-      break;
-
-    case action_types.SET_IMPORT_PERIOD:
-      state = { ...state,
-        period: { ...state.period,
-          label: date
-        },
-        activeImport: false
-      };
-      break;
-
-    case action_types.SET_IMPORT_DATE:
-      state = { ...state,
-        period: {
-          date,
-          label: 'custom'
-        },
-        activeImport: false
-      };
-      break;
-
-    case action_types.SET_SKIP_IMPORTED:
-      state = { ...state,
-        skipPrevious,
-        activeImport: false
-      };
-      break;
-
-    case action_types.SET_IMPORT_STATUS:
-      state = { ...state,
-        importStatus: { ...state.importStatus,
-          [JSON.stringify(query)]: importStatus
-        },
-        errors: { ...state.errors,
-          [JSON.stringify(query)]: false
-        }
-      };
-      break;
-
-    case action_types.SET_IMPORT_TOTALS:
-      state = { ...state,
-        importTotals: { ...state.importTotals,
-          [JSON.stringify(query)]: importTotals
-        }
-      };
-      break;
-
-    case action_types.SET_IMPORT_ERROR:
-      state = { ...state,
-        errors: { ...state.errors,
-          [JSON.stringify(query)]: error
-        }
-      };
-      break;
-  }
-
-  return state;
-};
-
-/* harmony default export */ var import_reducer = (reducer);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/import/index.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-Object(external_wp_data_["registerStore"])(STORE_NAME, {
-  reducer: import_reducer,
-  actions: actions_namespaceObject,
-  controls: external_wp_dataControls_["controls"],
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
-});
-const IMPORT_STORE_NAME = STORE_NAME;
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 292:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ SETTINGS_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/settings/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getSettingsGroupNames", function() { return getSettingsGroupNames; });
-__webpack_require__.d(selectors_namespaceObject, "getSettings", function() { return getSettings; });
-__webpack_require__.d(selectors_namespaceObject, "getDirtyKeys", function() { return getDirtyKeys; });
-__webpack_require__.d(selectors_namespaceObject, "getIsDirty", function() { return getIsDirty; });
-__webpack_require__.d(selectors_namespaceObject, "getSettingsForGroup", function() { return getSettingsForGroup; });
-__webpack_require__.d(selectors_namespaceObject, "isUpdateSettingsRequesting", function() { return isUpdateSettingsRequesting; });
-__webpack_require__.d(selectors_namespaceObject, "getSetting", function() { return getSetting; });
-__webpack_require__.d(selectors_namespaceObject, "getLastSettingsErrorForGroup", function() { return getLastSettingsErrorForGroup; });
-__webpack_require__.d(selectors_namespaceObject, "getSettingsError", function() { return getSettingsError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/settings/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "updateSettingsForGroup", function() { return updateSettingsForGroup; });
-__webpack_require__.d(actions_namespaceObject, "updateErrorForGroup", function() { return updateErrorForGroup; });
-__webpack_require__.d(actions_namespaceObject, "setIsRequesting", function() { return setIsRequesting; });
-__webpack_require__.d(actions_namespaceObject, "clearIsDirty", function() { return clearIsDirty; });
-__webpack_require__.d(actions_namespaceObject, "updateAndPersistSettingsForGroup", function() { return updateAndPersistSettingsForGroup; });
-__webpack_require__.d(actions_namespaceObject, "persistSettingsForGroup", function() { return persistSettingsForGroup; });
-__webpack_require__.d(actions_namespaceObject, "clearSettings", function() { return clearSettings; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/settings/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getSettings", function() { return resolvers_getSettings; });
-__webpack_require__.d(resolvers_namespaceObject, "getSettingsForGroup", function() { return resolvers_getSettingsForGroup; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// EXTERNAL MODULE: ./packages/data/build-module/settings/constants.js
-var constants = __webpack_require__(48);
-
-// EXTERNAL MODULE: ./packages/data/build-module/utils.js
-var utils = __webpack_require__(29);
-
-// CONCATENATED MODULE: ./packages/data/build-module/settings/selectors.js
-/**
- * Internal dependencies
- */
-
-const getSettingsGroupNames = state => {
-  const groupNames = new Set(Object.keys(state).map(resourceName => {
-    return Object(utils["b" /* getResourcePrefix */])(resourceName);
-  }));
-  return [...groupNames];
-};
-const getSettings = (state, group) => {
-  const settings = {};
-  const settingIds = state[group] && state[group].data || [];
-
-  if (settingIds.length === 0) {
-    return settings;
-  }
-
-  settingIds.forEach(id => {
-    settings[id] = state[Object(utils["a" /* getResourceName */])(group, id)].data;
-  });
-  return settings;
-};
-const getDirtyKeys = (state, group) => {
-  return state[group].dirty || [];
-};
-const getIsDirty = (state, group, keys = []) => {
-  const dirtyMap = getDirtyKeys(state, group); // if empty array bail
-
-  if (dirtyMap.length === 0) {
-    return false;
-  } // if at least one of the keys is in the dirty map then the state is dirty
-  // meaning it hasn't been persisted.
-
-
-  return keys.some(key => dirtyMap.includes(key));
-};
-const getSettingsForGroup = (state, group, keys) => {
-  const allSettings = getSettings(state, group);
-  return keys.reduce((accumulator, key) => {
-    accumulator[key] = allSettings[key] || {};
-    return accumulator;
-  }, {});
-};
-const isUpdateSettingsRequesting = (state, group) => {
-  return state[group] && Boolean(state[group].isRequesting);
-};
-/**
- * Retrieves a setting value from the setting store.
- *
- * @param {Object}   state                        State param added by wp.data.
- * @param {string}   group                        The settings group.
- * @param {string}   name                         The identifier for the setting.
- * @param {*}    [fallback=false]             The value to use as a fallback
- *                                                if the setting is not in the
- *                                                state.
- * @param {Function} [filter=( val ) => val]  	  A callback for filtering the
- *                                                value before it's returned.
- *                                                Receives both the found value
- *                                                (if it exists for the key) and
- *                                                the provided fallback arg.
- *
- * @return {*}  The value present in the settings state for the given
- *                   name.
- */
-
-function getSetting(state, group, name, fallback = false, filter = val => val) {
-  const resourceName = Object(utils["a" /* getResourceName */])(group, name);
-  const value = state[resourceName] && state[resourceName].data || fallback;
-  return filter(value, fallback);
-}
-const getLastSettingsErrorForGroup = (state, group) => {
-  const settingsIds = state[group].data;
-
-  if (settingsIds.length === 0) {
-    return state[group].error;
-  }
-
-  return [...settingsIds].pop().error;
-};
-const getSettingsError = (state, group, id) => {
-  if (!id) {
-    return state[group] && state[group].error || false;
-  }
-
-  return state[Object(utils["a" /* getResourceName */])(group, id)].error || false;
-};
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: external ["wp","i18n"]
-var external_wp_i18n_ = __webpack_require__(2);
-
-// EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
-
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var build_module_constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/settings/action-types.js
-const TYPES = {
-  UPDATE_SETTINGS_FOR_GROUP: 'UPDATE_SETTINGS_FOR_GROUP',
-  UPDATE_ERROR_FOR_GROUP: 'UPDATE_ERROR_FOR_GROUP',
-  CLEAR_SETTINGS: 'CLEAR_SETTINGS',
-  SET_IS_REQUESTING: 'SET_IS_REQUESTING',
-  CLEAR_IS_DIRTY: 'CLEAR_IS_DIRTY'
-};
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/settings/actions.js
-/**
- * External dependencies
- */
-
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
- // Can be removed in WP 5.9, wp.data is supported in >5.7.
-
-const resolveSelect = external_wp_data_["controls"] && external_wp_data_["controls"].resolveSelect ? external_wp_data_["controls"].resolveSelect : external_wp_dataControls_["select"];
-function updateSettingsForGroup(group, data, time = new Date()) {
-  return {
-    type: action_types.UPDATE_SETTINGS_FOR_GROUP,
-    group,
-    data,
-    time
-  };
-}
-function updateErrorForGroup(group, data, error, time = new Date()) {
-  return {
-    type: action_types.UPDATE_ERROR_FOR_GROUP,
-    group,
-    data,
-    error,
-    time
-  };
-}
-function setIsRequesting(group, isRequesting) {
-  return {
-    type: action_types.SET_IS_REQUESTING,
-    group,
-    isRequesting
-  };
-}
-function clearIsDirty(group) {
-  return {
-    type: action_types.CLEAR_IS_DIRTY,
-    group
-  };
-} // allows updating and persisting immediately in one action.
-
-function* updateAndPersistSettingsForGroup(group, data) {
-  yield updateSettingsForGroup(group, data);
-  yield* persistSettingsForGroup(group);
-} // this would replace setSettingsForGroup
-
-function* persistSettingsForGroup(group) {
-  // first dispatch the is persisting action
-  yield setIsRequesting(group, true); // get all dirty keys with select control
-
-  const dirtyKeys = yield resolveSelect(constants["a" /* STORE_NAME */], 'getDirtyKeys', group); // if there is nothing dirty, bail
-
-  if (dirtyKeys.length === 0) {
-    yield setIsRequesting(group, false);
-    return;
-  } // get data slice for keys
-
-
-  const dirtyData = yield resolveSelect(constants["a" /* STORE_NAME */], 'getSettingsForGroup', group, dirtyKeys);
-  const url = `${build_module_constants["g" /* NAMESPACE */]}/settings/${group}/batch`;
-  const update = dirtyKeys.reduce((updates, key) => {
-    const u = Object.keys(dirtyData[key]).map(k => {
-      return {
-        id: k,
-        value: dirtyData[key][k]
-      };
-    });
-    return Object(external_lodash_["concat"])(updates, u);
-  }, []);
-
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'POST',
-      data: {
-        update
-      }
-    });
-    yield setIsRequesting(group, false);
-
-    if (!results) {
-      throw new Error(Object(external_wp_i18n_["__"])('There was a problem updating your settings.', 'woocommerce-admin'));
-    } // remove dirtyKeys from map - note we're only doing this if there is no error.
-
-
-    yield clearIsDirty(group);
-  } catch (e) {
-    yield updateErrorForGroup(group, null, e);
-    yield setIsRequesting(group, false);
-    throw e;
-  }
-}
-function clearSettings() {
-  return {
-    type: action_types.CLEAR_SETTINGS
-  };
-}
-//# sourceMappingURL=actions.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/settings/resolvers.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
- // Can be removed in WP 5.9.
-
-const dispatch = external_wp_data_["controls"] && external_wp_data_["controls"].dispatch ? external_wp_data_["controls"].dispatch : external_wp_dataControls_["dispatch"];
-
-function settingsToSettingsResource(settings) {
-  return settings.reduce((resource, setting) => {
-    resource[setting.id] = setting.value;
-    return resource;
-  }, {});
-}
-
-function* resolvers_getSettings(group) {
-  yield dispatch(constants["a" /* STORE_NAME */], 'setIsRequesting', group, true);
-
-  try {
-    const url = build_module_constants["g" /* NAMESPACE */] + '/settings/' + group;
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'GET'
-    });
-    const resource = settingsToSettingsResource(results);
-    return updateSettingsForGroup(group, {
-      [group]: resource
-    });
-  } catch (error) {
-    return updateErrorForGroup(group, null, error.message);
-  }
-}
-function* resolvers_getSettingsForGroup(group) {
-  return resolvers_getSettings(group);
-}
-//# sourceMappingURL=resolvers.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/settings/reducer.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-
-const updateGroupDataInNewState = (newState, {
-  group,
-  groupIds,
-  data,
-  time,
-  error
-}) => {
-  groupIds.forEach(id => {
-    newState[Object(utils["a" /* getResourceName */])(group, id)] = {
-      data: data[id],
-      lastReceived: time,
-      error
-    };
-  });
-  return newState;
-};
-
-const receiveSettings = (state = {}, {
-  type,
-  group,
-  data,
-  error,
-  time,
-  isRequesting
-}) => {
-  const newState = {};
-
-  switch (type) {
-    case action_types.SET_IS_REQUESTING:
-      state = { ...state,
-        [group]: { ...state[group],
-          isRequesting
-        }
-      };
-      break;
-
-    case action_types.CLEAR_IS_DIRTY:
-      state = { ...state,
-        [group]: { ...state[group],
-          dirty: []
-        }
-      };
-      break;
-
-    case action_types.UPDATE_SETTINGS_FOR_GROUP:
-    case action_types.UPDATE_ERROR_FOR_GROUP:
-      const groupIds = data ? Object.keys(data) : [];
-
-      if (data === null) {
-        state = { ...state,
-          [group]: {
-            data: state[group] ? state[group].data : [],
-            error,
-            lastReceived: time
-          }
-        };
-      } else {
-        state = { ...state,
-          [group]: {
-            data: state[group] && state[group].data ? [...state[group].data, ...groupIds] : groupIds,
-            error,
-            lastReceived: time,
-            isRequesting: false,
-            dirty: state[group] && state[group].dirty ? Object(external_lodash_["union"])(state[group].dirty, groupIds) : groupIds
-          },
-          ...updateGroupDataInNewState(newState, {
-            group,
-            groupIds,
-            data,
-            time,
-            error
-          })
-        };
-      }
-
-      break;
-
-    case action_types.CLEAR_SETTINGS:
-      state = {};
-  }
-
-  return state;
-};
-
-/* harmony default export */ var reducer = (receiveSettings);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/settings/index.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-Object(external_wp_data_["registerStore"])(constants["a" /* STORE_NAME */], {
-  reducer: reducer,
-  actions: actions_namespaceObject,
-  controls: external_wp_dataControls_["controls"],
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
-});
-const SETTINGS_STORE_NAME = constants["a" /* STORE_NAME */];
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 293:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ PLUGINS_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/plugins/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getActivePlugins", function() { return getActivePlugins; });
-__webpack_require__.d(selectors_namespaceObject, "getInstalledPlugins", function() { return getInstalledPlugins; });
-__webpack_require__.d(selectors_namespaceObject, "isPluginsRequesting", function() { return isPluginsRequesting; });
-__webpack_require__.d(selectors_namespaceObject, "getPluginsError", function() { return getPluginsError; });
-__webpack_require__.d(selectors_namespaceObject, "isJetpackConnected", function() { return isJetpackConnected; });
-__webpack_require__.d(selectors_namespaceObject, "getJetpackConnectUrl", function() { return getJetpackConnectUrl; });
-__webpack_require__.d(selectors_namespaceObject, "getPluginInstallState", function() { return getPluginInstallState; });
-__webpack_require__.d(selectors_namespaceObject, "getPaypalOnboardingStatus", function() { return getPaypalOnboardingStatus; });
-__webpack_require__.d(selectors_namespaceObject, "getRecommendedPlugins", function() { return getRecommendedPlugins; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/plugins/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "formatErrors", function() { return formatErrors; });
-__webpack_require__.d(actions_namespaceObject, "updateActivePlugins", function() { return updateActivePlugins; });
-__webpack_require__.d(actions_namespaceObject, "updateInstalledPlugins", function() { return updateInstalledPlugins; });
-__webpack_require__.d(actions_namespaceObject, "setIsRequesting", function() { return setIsRequesting; });
-__webpack_require__.d(actions_namespaceObject, "setError", function() { return setError; });
-__webpack_require__.d(actions_namespaceObject, "updateIsJetpackConnected", function() { return updateIsJetpackConnected; });
-__webpack_require__.d(actions_namespaceObject, "updateJetpackConnectUrl", function() { return updateJetpackConnectUrl; });
-__webpack_require__.d(actions_namespaceObject, "installPlugins", function() { return installPlugins; });
-__webpack_require__.d(actions_namespaceObject, "activatePlugins", function() { return activatePlugins; });
-__webpack_require__.d(actions_namespaceObject, "installAndActivatePlugins", function() { return installAndActivatePlugins; });
-__webpack_require__.d(actions_namespaceObject, "createErrorNotice", function() { return createErrorNotice; });
-__webpack_require__.d(actions_namespaceObject, "connectToJetpack", function() { return connectToJetpack; });
-__webpack_require__.d(actions_namespaceObject, "installJetpackAndConnect", function() { return installJetpackAndConnect; });
-__webpack_require__.d(actions_namespaceObject, "connectToJetpackWithFailureRedirect", function() { return connectToJetpackWithFailureRedirect; });
-__webpack_require__.d(actions_namespaceObject, "setPaypalOnboardingStatus", function() { return setPaypalOnboardingStatus; });
-__webpack_require__.d(actions_namespaceObject, "setRecommendedPlugins", function() { return setRecommendedPlugins; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/plugins/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getActivePlugins", function() { return resolvers_getActivePlugins; });
-__webpack_require__.d(resolvers_namespaceObject, "getInstalledPlugins", function() { return resolvers_getInstalledPlugins; });
-__webpack_require__.d(resolvers_namespaceObject, "isJetpackConnected", function() { return resolvers_isJetpackConnected; });
-__webpack_require__.d(resolvers_namespaceObject, "getJetpackConnectUrl", function() { return resolvers_getJetpackConnectUrl; });
-__webpack_require__.d(resolvers_namespaceObject, "getPaypalOnboardingStatus", function() { return resolvers_getPaypalOnboardingStatus; });
-__webpack_require__.d(resolvers_namespaceObject, "getRecommendedPlugins", function() { return resolvers_getRecommendedPlugins; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// EXTERNAL MODULE: ./packages/data/build-module/plugins/constants.js
-var constants = __webpack_require__(35);
-
-// CONCATENATED MODULE: ./packages/data/build-module/plugins/selectors.js
-/**
- * Internal dependencies
- */
-const getActivePlugins = state => {
-  return state.active || [];
-};
-const getInstalledPlugins = state => {
-  return state.installed || [];
-};
-const isPluginsRequesting = (state, selector) => {
-  return state.requesting[selector] || false;
-};
-const getPluginsError = (state, selector) => {
-  return state.errors[selector] || false;
-};
-const isJetpackConnected = state => state.jetpackConnection;
-const getJetpackConnectUrl = (state, query) => {
-  return state.jetpackConnectUrls[query.redirect_url];
-};
-const getPluginInstallState = (state, plugin) => {
-  if (state.active.includes(plugin)) {
-    return 'activated';
-  } else if (state.installed.includes(plugin)) {
-    return 'installed';
-  }
-
-  return 'unavailable';
-};
-const getPaypalOnboardingStatus = state => state.paypalOnboardingStatus;
-const getRecommendedPlugins = (state, type) => {
-  return state.recommended[type];
-}; // Types
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: external ["wp","i18n"]
-var external_wp_i18n_ = __webpack_require__(2);
-
-// CONCATENATED MODULE: ./packages/data/build-module/plugins/action-types.js
-let ACTION_TYPES;
-
-(function (ACTION_TYPES) {
-  ACTION_TYPES["UPDATE_ACTIVE_PLUGINS"] = "UPDATE_ACTIVE_PLUGINS";
-  ACTION_TYPES["UPDATE_INSTALLED_PLUGINS"] = "UPDATE_INSTALLED_PLUGINS";
-  ACTION_TYPES["SET_IS_REQUESTING"] = "SET_IS_REQUESTING";
-  ACTION_TYPES["SET_ERROR"] = "SET_ERROR";
-  ACTION_TYPES["UPDATE_JETPACK_CONNECTION"] = "UPDATE_JETPACK_CONNECTION";
-  ACTION_TYPES["UPDATE_JETPACK_CONNECT_URL"] = "UPDATE_JETPACK_CONNECT_URL";
-  ACTION_TYPES["SET_PAYPAL_ONBOARDING_STATUS"] = "SET_PAYPAL_ONBOARDING_STATUS";
-  ACTION_TYPES["SET_RECOMMENDED_PLUGINS"] = "SET_RECOMMENDED_PLUGINS";
-})(ACTION_TYPES || (ACTION_TYPES = {}));
-//# sourceMappingURL=action-types.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var build_module_constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/plugins/actions.js
-/**
- * External dependencies
- */
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-// Can be removed in WP 5.9, wp.data is supported in >5.7.
-const dispatch = external_wp_data_["controls"] && external_wp_data_["controls"].dispatch ? external_wp_data_["controls"].dispatch : external_wp_dataControls_["dispatch"];
-const resolveSelect = external_wp_data_["controls"] && external_wp_data_["controls"].resolveSelect ? external_wp_data_["controls"].resolveSelect : external_wp_dataControls_["select"];
-
-function isWPError(error) {
-  return error.errors !== undefined;
-}
-
-function formatErrors(response) {
-  if (isWPError(response)) {
-    // Replace the slug with a plugin name if a constant exists.
-    Object.keys(response.errors).forEach(plugin => {
-      response.errors[plugin] = response.errors[plugin].map(pluginError => {
-        return constants["c" /* pluginNames */][plugin] ? pluginError.replace(`\`${plugin}\``, constants["c" /* pluginNames */][plugin]) : pluginError;
-      });
-    });
-  }
-
-  return response;
-}
-
-const formatErrorMessage = (pluginErrors, actionType = 'install') => {
-  return Object(external_wp_i18n_["sprintf"])(
-  /* translators: %(actionType): install or activate (the plugin). %(pluginName): a plugin slug (e.g. woocommerce-services). %(error): a single error message or in plural a comma separated error message list.*/
-  Object(external_wp_i18n_["_n"])('Could not %(actionType)s %(pluginName)s plugin, %(error)s', 'Could not %(actionType)s the following plugins: %(pluginName)s with these Errors: %(error)s', Object.keys(pluginErrors).length, 'woocommerce-admin'), {
-    actionType,
-    pluginName: Object.keys(pluginErrors).join(', '),
-    error: Object.values(pluginErrors).join(', \n')
-  });
-};
-
-function updateActivePlugins(active, replace = false) {
-  return {
-    type: ACTION_TYPES.UPDATE_ACTIVE_PLUGINS,
-    active,
-    replace
-  };
-}
-function updateInstalledPlugins(installed, replace = false) {
-  return {
-    type: ACTION_TYPES.UPDATE_INSTALLED_PLUGINS,
-    installed,
-    replace
-  };
-}
-function setIsRequesting(selector, isRequesting) {
-  return {
-    type: ACTION_TYPES.SET_IS_REQUESTING,
-    selector,
-    isRequesting
-  };
-}
-function setError(selector, error) {
-  return {
-    type: ACTION_TYPES.SET_ERROR,
-    selector,
-    error
-  };
-}
-function updateIsJetpackConnected(jetpackConnection) {
-  return {
-    type: ACTION_TYPES.UPDATE_JETPACK_CONNECTION,
-    jetpackConnection
-  };
-}
-function updateJetpackConnectUrl(redirectUrl, jetpackConnectUrl) {
-  return {
-    type: ACTION_TYPES.UPDATE_JETPACK_CONNECT_URL,
-    jetpackConnectUrl,
-    redirectUrl
-  };
-}
-function* installPlugins(plugins) {
-  yield setIsRequesting('installPlugins', true);
-
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: `${build_module_constants["k" /* WC_ADMIN_NAMESPACE */]}/plugins/install`,
-      method: 'POST',
-      data: {
-        plugins: plugins.join(',')
-      }
-    });
-
-    if (results.data.installed.length) {
-      yield updateInstalledPlugins(results.data.installed);
-    }
-
-    if (Object.keys(results.errors.errors).length) {
-      throw results.errors.errors;
-    }
-
-    yield setIsRequesting('installPlugins', false);
-    return results;
-  } catch (error) {
-    yield setError('installPlugins', error);
-    throw new Error(formatErrorMessage(error));
-  }
-}
-function* activatePlugins(plugins) {
-  yield setIsRequesting('activatePlugins', true);
-
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: `${build_module_constants["k" /* WC_ADMIN_NAMESPACE */]}/plugins/activate`,
-      method: 'POST',
-      data: {
-        plugins: plugins.join(',')
-      }
-    });
-
-    if (results.data.activated.length) {
-      yield updateActivePlugins(results.data.activated);
-    }
-
-    if (Object.keys(results.errors.errors).length) {
-      throw results.errors.errors;
-    }
-
-    yield setIsRequesting('activatePlugins', false);
-    return results;
-  } catch (error) {
-    yield setError('activatePlugins', error);
-    throw new Error(formatErrors(error));
-  }
-}
-function* installAndActivatePlugins(plugins) {
-  try {
-    yield dispatch(constants["b" /* STORE_NAME */], 'installPlugins', plugins);
-    const activations = yield dispatch(constants["b" /* STORE_NAME */], 'activatePlugins', plugins);
-    return activations;
-  } catch (error) {
-    throw error;
-  }
-}
-const createErrorNotice = errorMessage => {
-  return dispatch('core/notices', 'createNotice', 'error', errorMessage);
-};
-function* connectToJetpack(getAdminLink) {
-  const url = yield resolveSelect(constants["b" /* STORE_NAME */], 'getJetpackConnectUrl', {
-    redirect_url: getAdminLink('admin.php?page=wc-admin')
-  });
-  const error = yield resolveSelect(constants["b" /* STORE_NAME */], 'getPluginsError', 'getJetpackConnectUrl');
-
-  if (error) {
-    throw new Error(error);
-  } else {
-    return url;
-  }
-}
-function* installJetpackAndConnect(errorAction, getAdminLink) {
-  try {
-    yield dispatch(constants["b" /* STORE_NAME */], 'installPlugins', ['jetpack']);
-    yield dispatch(constants["b" /* STORE_NAME */], 'activatePlugins', ['jetpack']);
-    const url = yield dispatch(constants["b" /* STORE_NAME */], 'connectToJetpack', getAdminLink);
-    window.location.href = url;
-  } catch (error) {
-    yield errorAction(error.message);
-  }
-}
-function* connectToJetpackWithFailureRedirect(failureRedirect, errorAction, getAdminLink) {
-  try {
-    const url = yield dispatch(constants["b" /* STORE_NAME */], 'connectToJetpack', getAdminLink);
-    window.location.href = url;
-  } catch (error) {
-    yield errorAction(error.message);
-    window.location.href = failureRedirect;
-  }
-}
-function setPaypalOnboardingStatus(status) {
-  return {
-    type: ACTION_TYPES.SET_PAYPAL_ONBOARDING_STATUS,
-    paypalOnboardingStatus: status
-  };
-}
-function setRecommendedPlugins(type, plugins) {
-  return {
-    type: ACTION_TYPES.SET_RECOMMENDED_PLUGINS,
-    recommendedType: type,
-    plugins
-  };
-}
-//# sourceMappingURL=actions.js.map
-// EXTERNAL MODULE: external ["wp","url"]
-var external_wp_url_ = __webpack_require__(16);
-
-// EXTERNAL MODULE: ./packages/data/build-module/options/index.js + 6 modules
-var build_module_options = __webpack_require__(137);
-
-// CONCATENATED MODULE: ./packages/data/build-module/plugins/resolvers.js
-/**
- * External dependencies
- */
-
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-// Can be removed in WP 5.9, wp.data is supported in >5.7.
-const resolvers_resolveSelect = external_wp_data_["controls"] && external_wp_data_["controls"].resolveSelect ? external_wp_data_["controls"].resolveSelect : external_wp_dataControls_["select"];
-function* resolvers_getActivePlugins() {
-  yield setIsRequesting('getActivePlugins', true);
-
-  try {
-    const url = build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/plugins/active';
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'GET'
-    });
-    yield updateActivePlugins(results.plugins, true);
-  } catch (error) {
-    yield setError('getActivePlugins', error);
-  }
-}
-function* resolvers_getInstalledPlugins() {
-  yield setIsRequesting('getInstalledPlugins', true);
-
-  try {
-    const url = build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/plugins/installed';
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'GET'
-    });
-    yield updateInstalledPlugins(results.plugins, true);
-  } catch (error) {
-    yield setError('getInstalledPlugins', error);
-  }
-}
-function* resolvers_isJetpackConnected() {
-  yield setIsRequesting('isJetpackConnected', true);
-
-  try {
-    const url = build_module_constants["c" /* JETPACK_NAMESPACE */] + '/connection';
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'GET'
-    });
-    yield updateIsJetpackConnected(results.isActive);
-  } catch (error) {
-    yield setError('isJetpackConnected', error);
-  }
-
-  yield setIsRequesting('isJetpackConnected', false);
-}
-function* resolvers_getJetpackConnectUrl(query) {
-  yield setIsRequesting('getJetpackConnectUrl', true);
-
-  try {
-    const url = Object(external_wp_url_["addQueryArgs"])(build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/plugins/connect-jetpack', query);
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'GET'
-    });
-    yield updateJetpackConnectUrl(query.redirect_url, results.connectAction);
-  } catch (error) {
-    yield setError('getJetpackConnectUrl', error);
-  }
-
-  yield setIsRequesting('getJetpackConnectUrl', false);
-}
-
-function* setOnboardingStatusWithOptions() {
-  const options = yield resolvers_resolveSelect(build_module_options["a" /* OPTIONS_STORE_NAME */], 'getOption', 'woocommerce-ppcp-settings');
-  const onboarded = options.merchant_email_production && options.merchant_id_production && options.client_id_production && options.client_secret_production;
-  yield setPaypalOnboardingStatus({
-    production: {
-      state: onboarded ? 'onboarded' : 'unknown',
-      onboarded: onboarded ? true : false
-    }
-  });
-}
-
-function* resolvers_getPaypalOnboardingStatus() {
-  yield setIsRequesting('getPaypalOnboardingStatus', true);
-  const errorData = yield resolvers_resolveSelect(constants["b" /* STORE_NAME */], 'getPluginsError', 'getPaypalOnboardingStatus');
-
-  if (errorData && errorData.data && errorData.data.status === 404) {
-    // The get-status request doesn't exist fall back to using options.
-    yield setOnboardingStatusWithOptions();
-  } else {
-    try {
-      const url = constants["a" /* PAYPAL_NAMESPACE */] + '/onboarding/get-status';
-      const results = yield Object(external_wp_dataControls_["apiFetch"])({
-        path: url,
-        method: 'GET'
-      });
-      yield setPaypalOnboardingStatus(results);
-    } catch (error) {
-      yield setOnboardingStatusWithOptions();
-      yield setError('getPaypalOnboardingStatus', error);
-    }
-  }
-
-  yield setIsRequesting('getPaypalOnboardingStatus', false);
-}
-const SUPPORTED_TYPES = ['payments'];
-function* resolvers_getRecommendedPlugins(type) {
-  if (!SUPPORTED_TYPES.includes(type)) {
-    return [];
-  }
-
-  yield setIsRequesting('getRecommendedPlugins', true);
-
-  try {
-    const url = build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/plugins/recommended-payment-plugins';
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: url,
-      method: 'GET'
-    });
-    yield setRecommendedPlugins(type, results);
-  } catch (error) {
-    yield setError('getRecommendedPlugins', error);
-  }
-
-  yield setIsRequesting('getRecommendedPlugins', false);
-}
-//# sourceMappingURL=resolvers.js.map
-// EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
-
-// CONCATENATED MODULE: ./packages/data/build-module/plugins/reducer.js
-/**
- * External dependencies
- */
-
-/**
- * Internal dependencies
- */
-
-
-
-const reducer_plugins = (state = {
-  active: [],
-  installed: [],
-  requesting: {},
-  errors: {},
-  jetpackConnectUrls: {},
-  recommended: {}
-}, payload) => {
-  if (payload && 'type' in payload) {
-    switch (payload.type) {
-      case ACTION_TYPES.UPDATE_ACTIVE_PLUGINS:
-        state = { ...state,
-          active: payload.replace ? payload.active : Object(external_lodash_["concat"])(state.active, payload.active),
-          requesting: { ...state.requesting,
-            getActivePlugins: false,
-            activatePlugins: false
-          },
-          errors: { ...state.errors,
-            getActivePlugins: false,
-            activatePlugins: false
-          }
-        };
-        break;
-
-      case ACTION_TYPES.UPDATE_INSTALLED_PLUGINS:
-        state = { ...state,
-          installed: payload.replace ? payload.installed : Object(external_lodash_["concat"])(state.installed, payload.installed),
-          requesting: { ...state.requesting,
-            getInstalledPlugins: false,
-            installPlugins: false
-          },
-          errors: { ...state.errors,
-            getInstalledPlugins: false,
-            installPlugin: false
-          }
-        };
-        break;
-
-      case ACTION_TYPES.SET_IS_REQUESTING:
-        state = { ...state,
-          requesting: { ...state.requesting,
-            [payload.selector]: payload.isRequesting
-          }
-        };
-        break;
-
-      case ACTION_TYPES.SET_ERROR:
-        state = { ...state,
-          requesting: { ...state.requesting,
-            [payload.selector]: false
-          },
-          errors: { ...state.errors,
-            [payload.selector]: payload.error
-          }
-        };
-        break;
-
-      case ACTION_TYPES.UPDATE_JETPACK_CONNECTION:
-        state = { ...state,
-          jetpackConnection: payload.jetpackConnection
-        };
-        break;
-
-      case ACTION_TYPES.UPDATE_JETPACK_CONNECT_URL:
-        state = { ...state,
-          jetpackConnectUrls: { ...state.jetpackConnectUrls,
-            [payload.redirectUrl]: payload.jetpackConnectUrl
-          }
-        };
-        break;
-
-      case ACTION_TYPES.SET_PAYPAL_ONBOARDING_STATUS:
-        state = { ...state,
-          paypalOnboardingStatus: payload.paypalOnboardingStatus
-        };
-        break;
-
-      case ACTION_TYPES.SET_RECOMMENDED_PLUGINS:
-        state = { ...state,
-          recommended: { ...state.recommended,
-            [payload.recommendedType]: payload.plugins
-          }
-        };
-        break;
-    }
-  }
-
-  return state;
-};
-
-/* harmony default export */ var reducer = (reducer_plugins);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/plugins/index.js
-/**
- * External dependencies
- */
-
-
-/**
- * Internal dependencies
- */
-
-
-
-
-
-
-Object(external_wp_data_["registerStore"])(constants["b" /* STORE_NAME */], {
-  reducer: reducer,
-  actions: actions_namespaceObject,
-  controls: external_wp_dataControls_["controls"],
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
-});
-const PLUGINS_STORE_NAME = constants["b" /* STORE_NAME */];
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 294:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ REPORTS_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/reports/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getReportItemsError", function() { return getReportItemsError; });
-__webpack_require__.d(selectors_namespaceObject, "getReportItems", function() { return getReportItems; });
-__webpack_require__.d(selectors_namespaceObject, "getReportStats", function() { return getReportStats; });
-__webpack_require__.d(selectors_namespaceObject, "getReportStatsError", function() { return getReportStatsError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/reports/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "setReportItemsError", function() { return setReportItemsError; });
-__webpack_require__.d(actions_namespaceObject, "setReportItems", function() { return setReportItems; });
-__webpack_require__.d(actions_namespaceObject, "setReportStats", function() { return setReportStats; });
-__webpack_require__.d(actions_namespaceObject, "setReportStatsError", function() { return setReportStatsError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/reports/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getReportItems", function() { return resolvers_getReportItems; });
-__webpack_require__.d(resolvers_namespaceObject, "getReportStats", function() { return resolvers_getReportStats; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: ./packages/data/build-module/reports/constants.js
-var constants = __webpack_require__(89);
-
-// EXTERNAL MODULE: ./packages/data/build-module/utils.js
-var utils = __webpack_require__(29);
-
+const reports_constants_STORE_NAME = 'wc/admin/reports';
 // CONCATENATED MODULE: ./packages/data/build-module/reports/selectors.js
 /**
  * Internal dependencies
  */
 
 const EMPTY_OBJECT = {};
-const getReportItemsError = (state, endpoint, query) => {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+const selectors_getReportItemsError = (state, endpoint, query) => {
+  const resourceName = getResourceName(endpoint, query);
   return state.itemErrors[resourceName] || false;
 };
-const getReportItems = (state, endpoint, query) => {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+const selectors_getReportItems = (state, endpoint, query) => {
+  const resourceName = getResourceName(endpoint, query);
   return state.items[resourceName] || EMPTY_OBJECT;
 };
-const getReportStats = (state, endpoint, query) => {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+const selectors_getReportStats = (state, endpoint, query) => {
+  const resourceName = getResourceName(endpoint, query);
   return state.stats[resourceName] || EMPTY_OBJECT;
 };
-const getReportStatsError = (state, endpoint, query) => {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+const selectors_getReportStatsError = (state, endpoint, query) => {
+  const resourceName = getResourceName(endpoint, query);
   return state.statErrors[resourceName] || false;
 };
-//# sourceMappingURL=selectors.js.map
 // CONCATENATED MODULE: ./packages/data/build-module/reports/action-types.js
-const TYPES = {
+const reports_action_types_TYPES = {
   SET_ITEM_ERROR: 'SET_ITEM_ERROR',
   SET_STAT_ERROR: 'SET_STAT_ERROR',
   SET_REPORT_ITEMS: 'SET_REPORT_ITEMS',
   SET_REPORT_STATS: 'SET_REPORT_STATS'
 };
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
+/* harmony default export */ var reports_action_types = (reports_action_types_TYPES);
 // CONCATENATED MODULE: ./packages/data/build-module/reports/actions.js
 /**
  * Internal dependencies
@@ -5032,47 +4170,37 @@ const TYPES = {
 
 
 function setReportItemsError(endpoint, query, error) {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+  const resourceName = getResourceName(endpoint, query);
   return {
-    type: action_types.SET_ITEM_ERROR,
+    type: reports_action_types.SET_ITEM_ERROR,
     resourceName,
     error
   };
 }
 function setReportItems(endpoint, query, items) {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+  const resourceName = getResourceName(endpoint, query);
   return {
-    type: action_types.SET_REPORT_ITEMS,
+    type: reports_action_types.SET_REPORT_ITEMS,
     resourceName,
     items
   };
 }
 function setReportStats(endpoint, query, stats) {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+  const resourceName = getResourceName(endpoint, query);
   return {
-    type: action_types.SET_REPORT_STATS,
+    type: reports_action_types.SET_REPORT_STATS,
     resourceName,
     stats
   };
 }
 function setReportStatsError(endpoint, query, error) {
-  const resourceName = Object(utils["a" /* getResourceName */])(endpoint, query);
+  const resourceName = getResourceName(endpoint, query);
   return {
-    type: action_types.SET_STAT_ERROR,
+    type: reports_action_types.SET_STAT_ERROR,
     resourceName,
     error
   };
 }
-//# sourceMappingURL=actions.js.map
-// EXTERNAL MODULE: external ["wp","url"]
-var external_wp_url_ = __webpack_require__(16);
-
-// EXTERNAL MODULE: ./packages/data/build-module/controls.js
-var controls = __webpack_require__(41);
-
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var build_module_constants = __webpack_require__(14);
-
 // CONCATENATED MODULE: ./packages/data/build-module/reports/resolvers.js
 /**
  * External dependencies
@@ -5088,11 +4216,11 @@ var build_module_constants = __webpack_require__(14);
 function* resolvers_getReportItems(endpoint, query) {
   const fetchArgs = {
     parse: false,
-    path: Object(external_wp_url_["addQueryArgs"])(`${build_module_constants["g" /* NAMESPACE */]}/reports/${endpoint}`, query)
+    path: Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/reports/${endpoint}`, query)
   };
 
   try {
-    const response = yield Object(controls["b" /* fetchWithHeaders */])(fetchArgs);
+    const response = yield fetchWithHeaders(fetchArgs);
     const data = response.data;
     const totalResults = parseInt(response.headers.get('x-wp-total'), 10);
     const totalPages = parseInt(response.headers.get('x-wp-totalpages'), 10);
@@ -5108,11 +4236,11 @@ function* resolvers_getReportItems(endpoint, query) {
 function* resolvers_getReportStats(endpoint, query) {
   const fetchArgs = {
     parse: false,
-    path: Object(external_wp_url_["addQueryArgs"])(`${build_module_constants["g" /* NAMESPACE */]}/reports/${endpoint}/stats`, query)
+    path: Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/reports/${endpoint}/stats`, query)
   };
 
   try {
-    const response = yield Object(controls["b" /* fetchWithHeaders */])(fetchArgs);
+    const response = yield fetchWithHeaders(fetchArgs);
     const data = response.data;
     const totalResults = parseInt(response.headers.get('x-wp-total'), 10);
     const totalPages = parseInt(response.headers.get('x-wp-totalpages'), 10);
@@ -5125,7 +4253,6 @@ function* resolvers_getReportStats(endpoint, query) {
     yield setReportStatsError(endpoint, query, error);
   }
 }
-//# sourceMappingURL=resolvers.js.map
 // CONCATENATED MODULE: ./packages/data/build-module/reports/reducer.js
 /**
  * Internal dependencies
@@ -5145,28 +4272,28 @@ const reports = (state = {
   resourceName
 }) => {
   switch (type) {
-    case action_types.SET_REPORT_ITEMS:
+    case reports_action_types.SET_REPORT_ITEMS:
       return { ...state,
         items: { ...state.items,
           [resourceName]: items
         }
       };
 
-    case action_types.SET_REPORT_STATS:
+    case reports_action_types.SET_REPORT_STATS:
       return { ...state,
         stats: { ...state.stats,
           [resourceName]: stats
         }
       };
 
-    case action_types.SET_ITEM_ERROR:
+    case reports_action_types.SET_ITEM_ERROR:
       return { ...state,
         itemErrors: { ...state.itemErrors,
           [resourceName]: error
         }
       };
 
-    case action_types.SET_STAT_ERROR:
+    case reports_action_types.SET_STAT_ERROR:
       return { ...state,
         statErrors: { ...state.statErrors,
           [resourceName]: error
@@ -5178,8 +4305,7 @@ const reports = (state = {
   }
 };
 
-/* harmony default export */ var reducer = (reports);
-//# sourceMappingURL=reducer.js.map
+/* harmony default export */ var reports_reducer = (reports);
 // CONCATENATED MODULE: ./packages/data/build-module/reports/index.js
 /**
  * External dependencies
@@ -5195,104 +4321,200 @@ const reports = (state = {
 
 
 
-Object(external_wp_data_["registerStore"])(constants["a" /* STORE_NAME */], {
-  reducer: reducer,
-  actions: actions_namespaceObject,
-  controls: controls["a" /* default */],
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
+Object(external_wp_data_["registerStore"])(reports_constants_STORE_NAME, {
+  reducer: reports_reducer,
+  actions: reports_actions_namespaceObject,
+  controls: build_module_controls,
+  selectors: reports_selectors_namespaceObject,
+  resolvers: reports_resolvers_namespaceObject
 });
-const REPORTS_STORE_NAME = constants["a" /* STORE_NAME */];
-//# sourceMappingURL=index.js.map
+const REPORTS_STORE_NAME = reports_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/items/constants.js
+const items_constants_STORE_NAME = 'wc/admin/items';
+// EXTERNAL MODULE: external ["wc","date"]
+var external_wc_date_ = __webpack_require__(19);
 
-/***/ }),
+// CONCATENATED MODULE: ./packages/data/build-module/items/utils.js
+/**
+ * External dependencies
+ */
 
-/***/ 295:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ ITEMS_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/items/selectors.js
-var selectors_namespaceObject = {};
-__webpack_require__.r(selectors_namespaceObject);
-__webpack_require__.d(selectors_namespaceObject, "getItems", function() { return getItems; });
-__webpack_require__.d(selectors_namespaceObject, "getItemsTotalCount", function() { return getItemsTotalCount; });
-__webpack_require__.d(selectors_namespaceObject, "getItemsError", function() { return getItemsError; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/items/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "setItem", function() { return setItem; });
-__webpack_require__.d(actions_namespaceObject, "setItems", function() { return setItems; });
-__webpack_require__.d(actions_namespaceObject, "setItemsTotalCount", function() { return setItemsTotalCount; });
-__webpack_require__.d(actions_namespaceObject, "setError", function() { return setError; });
-__webpack_require__.d(actions_namespaceObject, "updateProductStock", function() { return updateProductStock; });
-__webpack_require__.d(actions_namespaceObject, "createProductFromTemplate", function() { return createProductFromTemplate; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/items/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getItems", function() { return resolvers_getItems; });
-__webpack_require__.d(resolvers_namespaceObject, "getReviewsTotalCount", function() { return getReviewsTotalCount; });
-__webpack_require__.d(resolvers_namespaceObject, "getItemsTotalCount", function() { return resolvers_getItemsTotalCount; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: ./packages/data/build-module/items/constants.js
-var constants = __webpack_require__(104);
-
-// EXTERNAL MODULE: ./packages/data/build-module/utils.js
-var utils = __webpack_require__(29);
-
-// EXTERNAL MODULE: ./packages/data/build-module/items/utils.js
-var items_utils = __webpack_require__(88);
-
-// CONCATENATED MODULE: ./packages/data/build-module/items/selectors.js
 /**
  * Internal dependencies
  */
 
 
-const getItems = (state, itemType, query) => {
-  const resourceName = Object(utils["a" /* getResourceName */])(itemType, query);
-  const ids = state.items[resourceName] && state.items[resourceName].data || [];
+
+/**
+ * Returns leaderboard data to render a leaderboard table.
+ *
+ * @param  {Object} options                 arguments
+ * @param  {string} options.id              Leaderboard ID
+ * @param  {number} options.per_page       Per page limit
+ * @param  {Object} options.persisted_query Persisted query passed to endpoint
+ * @param  {Object} options.query           Query parameters in the url
+ * @param  {Object} options.select          Instance of @wordpress/select
+ * @param  {string} options.defaultDateRange   User specified default date range.
+ * @return {Object} Object containing leaderboard responses.
+ */
+
+function getLeaderboard(options) {
+  const endpoint = 'leaderboards';
+  const {
+    per_page: perPage,
+    persisted_query: persistedQuery,
+    query,
+    select,
+    filterQuery
+  } = options;
+  const {
+    getItems,
+    getItemsError,
+    isResolving
+  } = select(items_constants_STORE_NAME);
+  const response = {
+    isRequesting: false,
+    isError: false,
+    rows: []
+  };
+  const datesFromQuery = Object(external_wc_date_["getCurrentDates"])(query, options.defaultDateRange);
+  const leaderboardQuery = { ...filterQuery,
+    after: Object(external_wc_date_["appendTimestamp"])(datesFromQuery.primary.after, 'start'),
+    before: Object(external_wc_date_["appendTimestamp"])(datesFromQuery.primary.before, 'end'),
+    per_page: perPage,
+    persisted_query: JSON.stringify(persistedQuery)
+  }; // Disable eslint rule requiring `getItems` to be defined below because the next two statements
+  // depend on `getItems` to have been called.
+  // eslint-disable-next-line @wordpress/no-unused-vars-before-return
+
+  const leaderboards = getItems(endpoint, leaderboardQuery);
+
+  if (isResolving('getItems', [endpoint, leaderboardQuery])) {
+    return { ...response,
+      isRequesting: true
+    };
+  } else if (getItemsError(endpoint, leaderboardQuery)) {
+    return { ...response,
+      isError: true
+    };
+  }
+
+  const leaderboard = leaderboards.get(options.id);
+  return { ...response,
+    rows: leaderboard === null || leaderboard === void 0 ? void 0 : leaderboard.rows
+  };
+}
+/**
+ * Returns items based on a search query.
+ *
+ * @param  {Object}   selector    Instance of @wordpress/select response
+ * @param  {string}   endpoint  Report API Endpoint
+ * @param  {string[]} search    Array of search strings.
+ * @param  {Object}   options  Query options.
+ * @return {Object}   Object containing API request information and the matching items.
+ */
+
+function searchItemsByString(selector, endpoint, search, options = {}) {
+  const {
+    getItems,
+    getItemsError,
+    isResolving
+  } = selector;
+  const items = {};
+  let isRequesting = false;
+  let isError = false;
+  search.forEach(searchWord => {
+    const query = {
+      search: searchWord,
+      per_page: 10,
+      ...options
+    };
+    const newItems = getItems(endpoint, query);
+    newItems.forEach((item, id) => {
+      items[id] = item;
+    });
+
+    if (isResolving('getItems', [endpoint, query])) {
+      isRequesting = true;
+    }
+
+    if (getItemsError(endpoint, query)) {
+      isError = true;
+    }
+  });
+  return {
+    items,
+    isRequesting,
+    isError
+  };
+}
+/**
+ * Generate a resource name for item totals count.
+ *
+ * It omits query parameters from the identifier that don't affect
+ * totals values like pagination and response field filtering.
+ *
+ * @param {string} itemType Item type for totals count.
+ * @param {Object} query Query for item totals count.
+ * @return {string} Resource name for item totals.
+ */
+
+function getTotalCountResourceName(itemType, query) {
+  // Disable eslint rule because we're using this spread to omit properties
+  // that don't affect item totals count results.
+  // eslint-disable-next-line no-unused-vars, camelcase
+  const {
+    _fields,
+    page,
+    per_page,
+    ...totalsQuery
+  } = query;
+  return getResourceName('total-' + itemType, totalsQuery);
+}
+// CONCATENATED MODULE: ./packages/data/build-module/items/selectors.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const selectors_getItems = rememo((state, itemType, query, defaultValue = new Map()) => {
+  const resourceName = getResourceName(itemType, query);
+  const ids = state.items[resourceName] && state.items[resourceName].data;
+
+  if (!ids) {
+    return defaultValue;
+  }
+
   return ids.reduce((map, id) => {
     map.set(id, state.data[itemType][id]);
     return map;
   }, new Map());
-};
+}, (state, itemType, query) => {
+  const resourceName = getResourceName(itemType, query);
+  return [state.items[resourceName]];
+});
 const getItemsTotalCount = (state, itemType, query, defaultValue = 0) => {
-  const resourceName = Object(items_utils["b" /* getTotalCountResourceName */])(itemType, query);
+  const resourceName = getTotalCountResourceName(itemType, query);
   const totalCount = state.items.hasOwnProperty(resourceName) ? state.items[resourceName] : defaultValue;
   return totalCount;
 };
-const getItemsError = (state, itemType, query) => {
-  const resourceName = Object(utils["a" /* getResourceName */])(itemType, query);
+const selectors_getItemsError = (state, itemType, query) => {
+  const resourceName = getResourceName(itemType, query);
   return state.errors[resourceName];
 };
-//# sourceMappingURL=selectors.js.map
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// EXTERNAL MODULE: external ["wp","url"]
-var external_wp_url_ = __webpack_require__(16);
-
 // CONCATENATED MODULE: ./packages/data/build-module/items/action-types.js
-const TYPES = {
+const items_action_types_TYPES = {
   SET_ITEM: 'SET_ITEM',
   SET_ITEMS: 'SET_ITEMS',
   SET_ITEMS_TOTAL_COUNT: 'SET_ITEMS_TOTAL_COUNT',
   SET_ERROR: 'SET_ERROR'
 };
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var build_module_constants = __webpack_require__(14);
-
+/* harmony default export */ var items_action_types = (items_action_types_TYPES);
 // CONCATENATED MODULE: ./packages/data/build-module/items/actions.js
 /**
  * External dependencies
@@ -5307,7 +4529,7 @@ var build_module_constants = __webpack_require__(14);
 
 function setItem(itemType, id, item) {
   return {
-    type: action_types.SET_ITEM,
+    type: items_action_types.SET_ITEM,
     id,
     item,
     itemType
@@ -5315,7 +4537,7 @@ function setItem(itemType, id, item) {
 }
 function setItems(itemType, query, items, totalCount) {
   return {
-    type: action_types.SET_ITEMS,
+    type: items_action_types.SET_ITEMS,
     items,
     itemType,
     query,
@@ -5324,15 +4546,15 @@ function setItems(itemType, query, items, totalCount) {
 }
 function setItemsTotalCount(itemType, query, totalCount) {
   return {
-    type: action_types.SET_ITEMS_TOTAL_COUNT,
+    type: items_action_types.SET_ITEMS_TOTAL_COUNT,
     itemType,
     query,
     totalCount
   };
 }
-function setError(itemType, query, error) {
+function items_actions_setError(itemType, query, error) {
   return {
-    type: action_types.SET_ERROR,
+    type: items_action_types.SET_ERROR,
     itemType,
     query,
     error
@@ -5349,7 +4571,7 @@ function* updateProductStock(product, quantity) {
   } = updatedProduct; // Optimistically update product stock.
 
   yield setItem('products', id, updatedProduct);
-  let url = build_module_constants["g" /* NAMESPACE */];
+  let url = NAMESPACE;
 
   switch (type) {
     case 'variation':
@@ -5372,13 +4594,13 @@ function* updateProductStock(product, quantity) {
   } catch (error) {
     // Update failed, return product back to original state.
     yield setItem('products', id, product);
-    yield setError('products', id, error);
+    yield items_actions_setError('products', id, error);
     return false;
   }
 }
 function* createProductFromTemplate(itemFields, query) {
   try {
-    const url = Object(external_wp_url_["addQueryArgs"])(`${build_module_constants["k" /* WC_ADMIN_NAMESPACE */]}/onboarding/tasks/create_product_from_template`, query || {});
+    const url = Object(external_wp_url_["addQueryArgs"])(`${WC_ADMIN_NAMESPACE}/onboarding/tasks/create_product_from_template`, query || {});
     const newItem = yield Object(external_wp_dataControls_["apiFetch"])({
       path: url,
       method: 'POST',
@@ -5387,14 +4609,10 @@ function* createProductFromTemplate(itemFields, query) {
     yield setItem('products', newItem.id, newItem);
     return newItem;
   } catch (error) {
-    yield setError('createProductFromTemplate', query, error);
+    yield items_actions_setError('createProductFromTemplate', query, error);
     throw error;
   }
 }
-//# sourceMappingURL=actions.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/controls.js
-var controls = __webpack_require__(41);
-
 // CONCATENATED MODULE: ./packages/data/build-module/items/resolvers.js
 /**
  * External dependencies
@@ -5411,9 +4629,9 @@ var controls = __webpack_require__(41);
 
 function* request(itemType, query) {
   const endpoint = itemType === 'categories' ? 'products/categories' : itemType;
-  const url = Object(external_wp_url_["addQueryArgs"])(`${build_module_constants["g" /* NAMESPACE */]}/${endpoint}`, query);
+  const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/${endpoint}`, query);
   const isUnboundedRequest = query.per_page === -1;
-  const fetch = isUnboundedRequest ? external_wp_dataControls_["apiFetch"] : controls["b" /* fetchWithHeaders */];
+  const fetch = isUnboundedRequest ? external_wp_dataControls_["apiFetch"] : fetchWithHeaders;
   const response = yield fetch({
     path: url,
     method: 'GET'
@@ -5442,10 +4660,10 @@ function* resolvers_getItems(itemType, query) {
     yield setItemsTotalCount(itemType, query, totalCount);
     yield setItems(itemType, query, items);
   } catch (error) {
-    yield setError(itemType, query, error);
+    yield items_actions_setError(itemType, query, error);
   }
 }
-function* getReviewsTotalCount(itemType, query) {
+function* items_resolvers_getReviewsTotalCount(itemType, query) {
   yield resolvers_getItemsTotalCount(itemType, query);
 }
 function* resolvers_getItemsTotalCount(itemType, query) {
@@ -5459,10 +4677,9 @@ function* resolvers_getItemsTotalCount(itemType, query) {
     } = yield request(itemType, totalsQuery);
     yield setItemsTotalCount(itemType, query, totalCount);
   } catch (error) {
-    yield setError(itemType, query, error);
+    yield items_actions_setError(itemType, query, error);
   }
 }
-//# sourceMappingURL=resolvers.js.map
 // CONCATENATED MODULE: ./packages/data/build-module/items/reducer.js
 /**
  * Internal dependencies
@@ -5471,7 +4688,7 @@ function* resolvers_getItemsTotalCount(itemType, query) {
 
 
 
-const reducer = (state = {
+const items_reducer_reducer = (state = {
   items: {},
   errors: {},
   data: {}
@@ -5486,7 +4703,7 @@ const reducer = (state = {
   error
 }) => {
   switch (type) {
-    case action_types.SET_ITEM:
+    case items_action_types.SET_ITEM:
       const itemData = state.data[itemType] || {};
       return { ...state,
         data: { ...state.data,
@@ -5498,14 +4715,14 @@ const reducer = (state = {
         }
       };
 
-    case action_types.SET_ITEMS:
+    case items_action_types.SET_ITEMS:
       const ids = [];
       const nextItems = items.reduce((result, theItem) => {
         ids.push(theItem.id);
         result[theItem.id] = theItem;
         return result;
       }, {});
-      const resourceName = Object(utils["a" /* getResourceName */])(itemType, query);
+      const resourceName = getResourceName(itemType, query);
       return { ...state,
         items: { ...state.items,
           [resourceName]: {
@@ -5519,18 +4736,18 @@ const reducer = (state = {
         }
       };
 
-    case action_types.SET_ITEMS_TOTAL_COUNT:
-      const totalResourceName = Object(items_utils["b" /* getTotalCountResourceName */])(itemType, query);
+    case items_action_types.SET_ITEMS_TOTAL_COUNT:
+      const totalResourceName = getTotalCountResourceName(itemType, query);
       return { ...state,
         items: { ...state.items,
           [totalResourceName]: totalCount
         }
       };
 
-    case action_types.SET_ERROR:
+    case items_action_types.SET_ERROR:
       return { ...state,
         errors: { ...state.errors,
-          [Object(utils["a" /* getResourceName */])(itemType, query)]: error
+          [getResourceName(itemType, query)]: error
         }
       };
 
@@ -5539,8 +4756,7 @@ const reducer = (state = {
   }
 };
 
-/* harmony default export */ var items_reducer = (reducer);
-//# sourceMappingURL=reducer.js.map
+/* harmony default export */ var items_reducer = (items_reducer_reducer);
 // CONCATENATED MODULE: ./packages/data/build-module/items/index.js
 /**
  * External dependencies
@@ -5556,72 +4772,61 @@ const reducer = (state = {
 
 
 
-Object(external_wp_data_["registerStore"])(constants["a" /* STORE_NAME */], {
+Object(external_wp_data_["registerStore"])(items_constants_STORE_NAME, {
   reducer: items_reducer,
-  actions: actions_namespaceObject,
-  controls: controls["a" /* default */],
-  selectors: selectors_namespaceObject,
-  resolvers: resolvers_namespaceObject
+  actions: items_actions_namespaceObject,
+  controls: build_module_controls,
+  selectors: items_selectors_namespaceObject,
+  resolvers: items_resolvers_namespaceObject
 });
-const ITEMS_STORE_NAME = constants["a" /* STORE_NAME */];
-//# sourceMappingURL=index.js.map
+const ITEMS_STORE_NAME = items_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/constants.js
+const navigation_constants_STORE_NAME = 'woocommerce-navigation';
+// EXTERNAL MODULE: external ["wp","hooks"]
+var external_wp_hooks_ = __webpack_require__(30);
 
-/***/ }),
-
-/***/ 297:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "a", function() { return /* binding */ ONBOARDING_STORE_NAME; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/onboarding/actions.js
-var actions_namespaceObject = {};
-__webpack_require__.r(actions_namespaceObject);
-__webpack_require__.d(actions_namespaceObject, "setError", function() { return setError; });
-__webpack_require__.d(actions_namespaceObject, "setIsRequesting", function() { return setIsRequesting; });
-__webpack_require__.d(actions_namespaceObject, "setProfileItems", function() { return setProfileItems; });
-__webpack_require__.d(actions_namespaceObject, "setTasksStatus", function() { return setTasksStatus; });
-__webpack_require__.d(actions_namespaceObject, "setPaymentMethods", function() { return setPaymentMethods; });
-__webpack_require__.d(actions_namespaceObject, "updateProfileItems", function() { return updateProfileItems; });
-
-// NAMESPACE OBJECT: ./packages/data/build-module/onboarding/resolvers.js
-var resolvers_namespaceObject = {};
-__webpack_require__.r(resolvers_namespaceObject);
-__webpack_require__.d(resolvers_namespaceObject, "getProfileItems", function() { return getProfileItems; });
-__webpack_require__.d(resolvers_namespaceObject, "getTasksStatus", function() { return getTasksStatus; });
-__webpack_require__.d(resolvers_namespaceObject, "getPaymentGatewaySuggestions", function() { return getPaymentGatewaySuggestions; });
-
-// EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(7);
-
-// EXTERNAL MODULE: external ["wp","dataControls"]
-var external_wp_dataControls_ = __webpack_require__(10);
-
-// EXTERNAL MODULE: ./packages/data/build-module/onboarding/constants.js
-var constants = __webpack_require__(103);
-
-// EXTERNAL MODULE: ./packages/data/build-module/onboarding/selectors.js
-var selectors = __webpack_require__(136);
-
-// CONCATENATED MODULE: ./packages/data/build-module/onboarding/action-types.js
-const TYPES = {
-  SET_ERROR: 'SET_ERROR',
-  SET_IS_REQUESTING: 'SET_IS_REQUESTING',
-  SET_PROFILE_ITEMS: 'SET_PROFILE_ITEMS',
-  SET_TASKS_STATUS: 'SET_TASKS_STATUS',
-  GET_PAYMENT_METHODS_SUCCESS: 'GET_PAYMENT_METHODS_SUCCESS'
-};
-/* harmony default export */ var action_types = (TYPES);
-//# sourceMappingURL=action-types.js.map
-// EXTERNAL MODULE: ./packages/data/build-module/constants.js
-var build_module_constants = __webpack_require__(14);
-
-// CONCATENATED MODULE: ./packages/data/build-module/onboarding/actions.js
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/selectors.js
 /**
  * External dependencies
  */
+
+const MENU_ITEMS_HOOK = 'woocommerce_navigation_menu_items';
+const getMenuItems = state => {
+  return Object(external_wp_hooks_["applyFilters"])(MENU_ITEMS_HOOK, state.menuItems);
+};
+const getFavorites = state => {
+  return state.favorites || [];
+};
+const isNavigationRequesting = (state, selector) => {
+  return state.requesting[selector] || false;
+};
+const getPersistedQuery = state => {
+  return state.persistedQuery || {};
+};
+// EXTERNAL MODULE: external ["wc","navigation"]
+var external_wc_navigation_ = __webpack_require__(12);
+
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/action-types.js
+const navigation_action_types_TYPES = {
+  ADD_MENU_ITEMS: 'ADD_MENU_ITEMS',
+  SET_MENU_ITEMS: 'SET_MENU_ITEMS',
+  ON_HISTORY_CHANGE: 'ON_HISTORY_CHANGE',
+  ADD_FAVORITE_FAILURE: 'ADD_FAVORITE_FAILURE',
+  ADD_FAVORITE_REQUEST: 'ADD_FAVORITE_REQUEST',
+  ADD_FAVORITE_SUCCESS: 'ADD_FAVORITE_SUCCESS',
+  GET_FAVORITES_FAILURE: 'GET_FAVORITES_FAILURE',
+  GET_FAVORITES_REQUEST: 'GET_FAVORITES_REQUEST',
+  GET_FAVORITES_SUCCESS: 'GET_FAVORITES_SUCCESS',
+  REMOVE_FAVORITE_FAILURE: 'REMOVE_FAVORITE_FAILURE',
+  REMOVE_FAVORITE_REQUEST: 'REMOVE_FAVORITE_REQUEST',
+  REMOVE_FAVORITE_SUCCESS: 'REMOVE_FAVORITE_SUCCESS'
+};
+/* harmony default export */ var navigation_action_types = (navigation_action_types_TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/actions.js
+/**
+ * External dependencies
+ */
+
 
 /**
  * Internal dependencies
@@ -5629,187 +4834,308 @@ var build_module_constants = __webpack_require__(14);
 
 
 
-function setError(selector, error) {
+function actions_setMenuItems(menuItems) {
   return {
-    type: action_types.SET_ERROR,
-    selector,
+    type: navigation_action_types.SET_MENU_ITEMS,
+    menuItems
+  };
+}
+function addMenuItems(menuItems) {
+  return {
+    type: navigation_action_types.ADD_MENU_ITEMS,
+    menuItems
+  };
+}
+function getFavoritesFailure(error) {
+  return {
+    type: navigation_action_types.GET_FAVORITES_FAILURE,
     error
   };
 }
-function setIsRequesting(selector, isRequesting) {
+function getFavoritesRequest(favorites) {
   return {
-    type: action_types.SET_IS_REQUESTING,
-    selector,
-    isRequesting
+    type: navigation_action_types.GET_FAVORITES_REQUEST,
+    favorites
   };
 }
-function setProfileItems(profileItems, replace = false) {
+function getFavoritesSuccess(favorites) {
   return {
-    type: action_types.SET_PROFILE_ITEMS,
-    profileItems,
-    replace
+    type: navigation_action_types.GET_FAVORITES_SUCCESS,
+    favorites
   };
 }
-function setTasksStatus(tasksStatus) {
+function addFavoriteRequest(favorite) {
   return {
-    type: action_types.SET_TASKS_STATUS,
-    tasksStatus
+    type: navigation_action_types.ADD_FAVORITE_REQUEST,
+    favorite
   };
 }
-function setPaymentMethods(paymentMethods) {
+function addFavoriteFailure(favorite, error) {
   return {
-    type: action_types.GET_PAYMENT_METHODS_SUCCESS,
-    paymentMethods
+    type: navigation_action_types.ADD_FAVORITE_FAILURE,
+    favorite,
+    error
   };
 }
-function* updateProfileItems(items) {
-  yield setIsRequesting('updateProfileItems', true);
+function addFavoriteSuccess(favorite) {
+  return {
+    type: navigation_action_types.ADD_FAVORITE_SUCCESS,
+    favorite
+  };
+}
+function removeFavoriteRequest(favorite) {
+  return {
+    type: navigation_action_types.REMOVE_FAVORITE_REQUEST,
+    favorite
+  };
+}
+function removeFavoriteFailure(favorite, error) {
+  return {
+    type: navigation_action_types.REMOVE_FAVORITE_FAILURE,
+    favorite,
+    error
+  };
+}
+function removeFavoriteSuccess(favorite, error) {
+  return {
+    type: navigation_action_types.REMOVE_FAVORITE_SUCCESS,
+    favorite,
+    error
+  };
+}
+function* actions_onLoad() {
+  yield actions_onHistoryChange();
+}
+function* actions_onHistoryChange() {
+  const persistedQuery = Object(external_wc_navigation_["getPersistedQuery"])();
+
+  if (!Object.keys(persistedQuery).length) {
+    return null;
+  }
+
+  yield {
+    type: navigation_action_types.ON_HISTORY_CHANGE,
+    persistedQuery
+  };
+}
+function* addFavorite(favorite) {
+  yield addFavoriteRequest(favorite);
 
   try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: `${build_module_constants["k" /* WC_ADMIN_NAMESPACE */]}/onboarding/profile`,
+    const results = yield external_wp_apiFetch_default()({
+      path: `${WC_ADMIN_NAMESPACE}/navigation/favorites/me`,
       method: 'POST',
-      data: items
+      data: {
+        item_id: favorite
+      }
     });
 
-    if (results && results.status === 'success') {
-      yield setProfileItems(items);
-      yield setIsRequesting('updateProfileItems', false);
+    if (results) {
+      yield addFavoriteSuccess(favorite);
       return results;
     }
 
     throw new Error();
   } catch (error) {
-    yield setError('updateProfileItems', error);
-    yield setIsRequesting('updateProfileItems', false);
+    yield addFavoriteFailure(favorite, error);
     throw new Error();
   }
 }
-//# sourceMappingURL=actions.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/onboarding/resolvers.js
-/**
- * External dependencies
- */
+function* removeFavorite(favorite) {
+  yield removeFavoriteRequest(favorite);
 
-/**
- * Internal dependencies
- */
-
-
-
-function* getProfileItems() {
   try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/onboarding/profile',
-      method: 'GET'
+    const results = yield external_wp_apiFetch_default()({
+      path: `${WC_ADMIN_NAMESPACE}/navigation/favorites/me`,
+      method: 'DELETE',
+      data: {
+        item_id: favorite
+      }
     });
-    yield setProfileItems(results, true);
+
+    if (results) {
+      yield removeFavoriteSuccess(favorite);
+      return results;
+    }
+
+    throw new Error();
   } catch (error) {
-    yield setError('getProfileItems', error);
+    yield removeFavoriteFailure(favorite, error);
+    throw new Error();
   }
 }
-function* getTasksStatus() {
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/onboarding/tasks/status',
-      method: 'GET'
-    });
-    yield setTasksStatus(results, true);
-  } catch (error) {
-    yield setError('getTasksStatus', error);
-  }
-}
-function* getPaymentGatewaySuggestions() {
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: build_module_constants["k" /* WC_ADMIN_NAMESPACE */] + '/onboarding/payments',
-      method: 'GET'
-    });
-    yield setPaymentMethods(results);
-  } catch (error) {
-    yield setError('getPaymentGatewaySuggestions', error);
-  }
-}
-//# sourceMappingURL=resolvers.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/onboarding/reducer.js
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/reducer.js
 /**
  * Internal dependencies
  */
 
-const defaultState = {
-  errors: {},
-  profileItems: {
-    business_extensions: null,
-    completed: null,
-    industry: null,
-    other_platform: null,
-    other_platform_name: null,
-    product_count: null,
-    product_types: null,
-    revenue: null,
-    selling_venues: null,
-    setup_client: null,
-    skipped: null,
-    theme: null,
-    wccom_connected: null
-  },
-  paymentMethods: [],
+
+const navigation_reducer_reducer = (state = {
+  error: null,
+  menuItems: [],
+  favorites: [],
   requesting: {},
-  tasksStatus: {}
-};
-
-const onboarding = (state = defaultState, {
+  persistedQuery: {}
+}, {
   type,
-  profileItems,
-  paymentMethods,
-  replace,
   error,
-  isRequesting,
-  selector,
-  tasksStatus
+  favorite,
+  favorites,
+  menuItems,
+  persistedQuery
 }) => {
   switch (type) {
-    case action_types.SET_PROFILE_ITEMS:
-      return { ...state,
-        profileItems: replace ? profileItems : { ...state.profileItems,
-          ...profileItems
-        }
+    case navigation_action_types.SET_MENU_ITEMS:
+      state = { ...state,
+        menuItems
       };
+      break;
 
-    case action_types.SET_TASKS_STATUS:
-      return { ...state,
-        tasksStatus: { ...state.tasksStatus,
-          ...tasksStatus
-        }
+    case navigation_action_types.ADD_MENU_ITEMS:
+      state = { ...state,
+        menuItems: [...state.menuItems, ...menuItems]
       };
+      break;
 
-    case action_types.SET_ERROR:
-      return { ...state,
-        errors: { ...state.errors,
-          [selector]: error
-        }
+    case navigation_action_types.ON_HISTORY_CHANGE:
+      state = { ...state,
+        persistedQuery
       };
+      break;
 
-    case action_types.SET_IS_REQUESTING:
-      return { ...state,
+    case navigation_action_types.GET_FAVORITES_FAILURE:
+      state = { ...state,
         requesting: { ...state.requesting,
-          [selector]: isRequesting
+          getFavorites: false
         }
       };
+      break;
 
-    case action_types.GET_PAYMENT_METHODS_SUCCESS:
-      return { ...state,
-        paymentMethods
+    case navigation_action_types.GET_FAVORITES_REQUEST:
+      state = { ...state,
+        requesting: { ...state.requesting,
+          getFavorites: true
+        }
       };
+      break;
 
-    default:
-      return state;
+    case navigation_action_types.GET_FAVORITES_SUCCESS:
+      state = { ...state,
+        favorites,
+        requesting: { ...state.requesting,
+          getFavorites: false
+        }
+      };
+      break;
+
+    case navigation_action_types.ADD_FAVORITE_FAILURE:
+      state = { ...state,
+        error,
+        requesting: { ...state.requesting,
+          addFavorite: false
+        }
+      };
+      break;
+
+    case navigation_action_types.ADD_FAVORITE_REQUEST:
+      state = { ...state,
+        requesting: { ...state.requesting,
+          addFavorite: true
+        }
+      };
+      break;
+
+    case navigation_action_types.ADD_FAVORITE_SUCCESS:
+      const newFavorites = !state.favorites.includes(favorite) ? [...state.favorites, favorite] : state.favorites;
+      state = { ...state,
+        favorites: newFavorites,
+        menuItems: state.menuItems.map(item => {
+          if (item.id === favorite) {
+            return { ...item,
+              menuId: 'favorites'
+            };
+          }
+
+          return item;
+        }),
+        requesting: { ...state.requesting,
+          addFavorite: false
+        }
+      };
+      break;
+
+    case navigation_action_types.REMOVE_FAVORITE_FAILURE:
+      state = { ...state,
+        requesting: { ...state.requesting,
+          error,
+          removeFavorite: false
+        }
+      };
+      break;
+
+    case navigation_action_types.REMOVE_FAVORITE_REQUEST:
+      state = { ...state,
+        requesting: { ...state.requesting,
+          removeFavorite: true
+        }
+      };
+      break;
+
+    case navigation_action_types.REMOVE_FAVORITE_SUCCESS:
+      const filteredFavorites = state.favorites.filter(f => f !== favorite);
+      state = { ...state,
+        favorites: filteredFavorites,
+        menuItems: state.menuItems.map(item => {
+          if (item.id === favorite) {
+            return { ...item,
+              menuId: 'plugins'
+            };
+          }
+
+          return item;
+        }),
+        requesting: { ...state.requesting,
+          removeFavorite: false
+        }
+      };
+      break;
   }
+
+  return state;
 };
 
-/* harmony default export */ var reducer = (onboarding);
-//# sourceMappingURL=reducer.js.map
-// CONCATENATED MODULE: ./packages/data/build-module/onboarding/index.js
+/* harmony default export */ var navigation_reducer = (navigation_reducer_reducer);
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/resolvers.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function* resolvers_getFavorites() {
+  yield getFavoritesRequest();
+
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/navigation/favorites/me`
+    });
+
+    if (results) {
+      yield getFavoritesSuccess(results);
+      return;
+    }
+
+    throw new Error();
+  } catch (error) {
+    yield getFavoritesFailure(error);
+    throw new Error();
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/dispatchers.js
 /**
  * External dependencies
  */
@@ -5820,266 +5146,23 @@ const onboarding = (state = defaultState, {
  */
 
 
-
-
-
-
-Object(external_wp_data_["registerStore"])(constants["a" /* STORE_NAME */], {
-  reducer: reducer,
-  actions: actions_namespaceObject,
-  controls: external_wp_dataControls_["controls"],
-  selectors: selectors,
-  resolvers: resolvers_namespaceObject
+/* harmony default export */ var dispatchers = (async () => {
+  const {
+    onLoad,
+    onHistoryChange
+  } = Object(external_wp_data_["dispatch"])(navigation_constants_STORE_NAME);
+  await onLoad();
+  Object(external_wc_navigation_["addHistoryListener"])(async () => {
+    setTimeout(async () => {
+      await onHistoryChange();
+    }, 0);
+  });
 });
-const ONBOARDING_STORE_NAME = constants["a" /* STORE_NAME */];
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["lodash"]; }());
-
-/***/ }),
-
-/***/ 34:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wp"]["hooks"]; }());
-
-/***/ }),
-
-/***/ 35:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return STORE_NAME; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PAYPAL_NAMESPACE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return pluginNames; });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/index.js
 /**
  * External dependencies
  */
 
-const STORE_NAME = 'wc/admin/plugins';
-const PAYPAL_NAMESPACE = '/wc-paypal/v1';
-/**
- * Plugin slugs and names as key/value pairs.
- */
-
-const pluginNames = {
-  'facebook-for-woocommerce': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Facebook for WooCommerce', 'woocommerce-admin'),
-  jetpack: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Jetpack', 'woocommerce-admin'),
-  'klarna-checkout-for-woocommerce': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Klarna Checkout for WooCommerce', 'woocommerce-admin'),
-  'klarna-payments-for-woocommerce': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Klarna Payments for WooCommerce', 'woocommerce-admin'),
-  'mailchimp-for-woocommerce': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Mailchimp for WooCommerce', 'woocommerce-admin'),
-  'creative-mail-by-constant-contact': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Creative Mail for WooCommerce', 'woocommerce-admin'),
-  'woocommerce-gateway-paypal-express-checkout': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce PayPal', 'woocommerce-admin'),
-  'woocommerce-gateway-stripe': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce Stripe', 'woocommerce-admin'),
-  'woocommerce-payfast-gateway': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce PayFast', 'woocommerce-admin'),
-  'woocommerce-payments': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce Payments', 'woocommerce-admin'),
-  'woocommerce-services': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce Shipping & Tax', 'woocommerce-admin'),
-  'woocommerce-services:shipping': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce Shipping & Tax', 'woocommerce-admin'),
-  'woocommerce-services:tax': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce Shipping & Tax', 'woocommerce-admin'),
-  'woocommerce-shipstation-integration': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('WooCommerce ShipStation Gateway', 'woocommerce-admin'),
-  'woocommerce-mercadopago': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Mercado Pago payments for WooCommerce', 'woocommerce-admin'),
-  'google-listings-and-ads': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Google Listings and Ads', 'woocommerce-admin'),
-  'woo-razorpay': Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Razorpay', 'woocommerce-admin'),
-  mailpoet: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('MailPoet', 'woocommerce-admin')
-};
-//# sourceMappingURL=constants.js.map
-
-/***/ }),
-
-/***/ 41:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return fetchWithHeaders; });
-/* harmony import */ var _wordpress_data_controls__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
-/* harmony import */ var _wordpress_data_controls__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data_controls__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__);
-/**
- * External dependencies
- */
-
-
-const fetchWithHeaders = options => {
-  return {
-    type: 'FETCH_WITH_HEADERS',
-    options
-  };
-};
-const controls = { ..._wordpress_data_controls__WEBPACK_IMPORTED_MODULE_0__["controls"],
-
-  FETCH_WITH_HEADERS({
-    options
-  }) {
-    return _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({ ...options,
-      parse: false
-    }).then(response => {
-      return Promise.all([response.headers, response.status, response.json()]);
-    }).then(([headers, status, data]) => ({
-      headers,
-      status,
-      data
-    }));
-  }
-
-};
-/* harmony default export */ __webpack_exports__["a"] = (controls);
-//# sourceMappingURL=controls.js.map
-
-/***/ }),
-
-/***/ 48:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_NAME; });
-const STORE_NAME = 'wc/admin/settings';
-//# sourceMappingURL=constants.js.map
-
-/***/ }),
-
-/***/ 494:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(495);
-/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(273);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _types__WEBPACK_IMPORTED_MODULE_1__) if(["SETTINGS_STORE_NAME","withSettingsHydration","useSettings","PLUGINS_STORE_NAME","pluginNames","withPluginsHydration","ONBOARDING_STORE_NAME","withOnboardingHydration","USER_STORE_NAME","withCurrentUserHydration","useUser","useUserPreferences","OPTIONS_STORE_NAME","withOptionsHydration","useOptionsHydration","REVIEWS_STORE_NAME","NOTES_STORE_NAME","REPORTS_STORE_NAME","ITEMS_STORE_NAME","getLeaderboard","searchItemsByString","NAVIGATION_STORE_NAME","withNavigationHydration","PAYMENT_GATEWAYS_STORE_NAME","getFilterQuery","getSummaryNumbers","getReportTableData","getReportTableQuery","getReportChartData","getTooltipValueFormat","MAX_PER_PAGE","QUERY_DEFAULTS","NAMESPACE","WC_ADMIN_NAMESPACE","WCS_NAMESPACE","SECOND","MINUTE","HOUR","DAY","WEEK","MONTH","EXPORT_STORE_NAME","IMPORT_STORE_NAME","default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _types__WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _settings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(292);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SETTINGS_STORE_NAME", function() { return _settings__WEBPACK_IMPORTED_MODULE_2__["a"]; });
-
-/* harmony import */ var _settings_with_settings_hydration__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(276);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withSettingsHydration", function() { return _settings_with_settings_hydration__WEBPACK_IMPORTED_MODULE_3__["a"]; });
-
-/* harmony import */ var _settings_use_settings__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(277);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useSettings", function() { return _settings_use_settings__WEBPACK_IMPORTED_MODULE_4__["a"]; });
-
-/* harmony import */ var _plugins__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(293);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PLUGINS_STORE_NAME", function() { return _plugins__WEBPACK_IMPORTED_MODULE_5__["a"]; });
-
-/* harmony import */ var _plugins_constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(35);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "pluginNames", function() { return _plugins_constants__WEBPACK_IMPORTED_MODULE_6__["c"]; });
-
-/* harmony import */ var _plugins_with_plugins_hydration__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(278);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withPluginsHydration", function() { return _plugins_with_plugins_hydration__WEBPACK_IMPORTED_MODULE_7__["a"]; });
-
-/* harmony import */ var _onboarding__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(297);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ONBOARDING_STORE_NAME", function() { return _onboarding__WEBPACK_IMPORTED_MODULE_8__["a"]; });
-
-/* harmony import */ var _onboarding_with_onboarding_hydration__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(279);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withOnboardingHydration", function() { return _onboarding_with_onboarding_hydration__WEBPACK_IMPORTED_MODULE_9__["a"]; });
-
-/* harmony import */ var _user__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(280);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "USER_STORE_NAME", function() { return _user__WEBPACK_IMPORTED_MODULE_10__["a"]; });
-
-/* harmony import */ var _user_with_current_user_hydration__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(281);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withCurrentUserHydration", function() { return _user_with_current_user_hydration__WEBPACK_IMPORTED_MODULE_11__["a"]; });
-
-/* harmony import */ var _user_use_user__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(282);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useUser", function() { return _user_use_user__WEBPACK_IMPORTED_MODULE_12__["a"]; });
-
-/* harmony import */ var _user_use_user_preferences__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(283);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useUserPreferences", function() { return _user_use_user_preferences__WEBPACK_IMPORTED_MODULE_13__["a"]; });
-
-/* harmony import */ var _options__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(137);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OPTIONS_STORE_NAME", function() { return _options__WEBPACK_IMPORTED_MODULE_14__["a"]; });
-
-/* harmony import */ var _options_with_options_hydration__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(181);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withOptionsHydration", function() { return _options_with_options_hydration__WEBPACK_IMPORTED_MODULE_15__["b"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "useOptionsHydration", function() { return _options_with_options_hydration__WEBPACK_IMPORTED_MODULE_15__["a"]; });
-
-/* harmony import */ var _reviews__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(287);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "REVIEWS_STORE_NAME", function() { return _reviews__WEBPACK_IMPORTED_MODULE_16__["a"]; });
-
-/* harmony import */ var _notes__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(286);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NOTES_STORE_NAME", function() { return _notes__WEBPACK_IMPORTED_MODULE_17__["a"]; });
-
-/* harmony import */ var _reports__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(294);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "REPORTS_STORE_NAME", function() { return _reports__WEBPACK_IMPORTED_MODULE_18__["a"]; });
-
-/* harmony import */ var _items__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(295);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ITEMS_STORE_NAME", function() { return _items__WEBPACK_IMPORTED_MODULE_19__["a"]; });
-
-/* harmony import */ var _items_utils__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(88);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getLeaderboard", function() { return _items_utils__WEBPACK_IMPORTED_MODULE_20__["a"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "searchItemsByString", function() { return _items_utils__WEBPACK_IMPORTED_MODULE_20__["c"]; });
-
-/* harmony import */ var _navigation__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(288);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NAVIGATION_STORE_NAME", function() { return _navigation__WEBPACK_IMPORTED_MODULE_21__["a"]; });
-
-/* harmony import */ var _navigation_with_navigation_hydration__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(284);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "withNavigationHydration", function() { return _navigation_with_navigation_hydration__WEBPACK_IMPORTED_MODULE_22__["a"]; });
-
-/* harmony import */ var _payment_gateways__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(289);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PAYMENT_GATEWAYS_STORE_NAME", function() { return _payment_gateways__WEBPACK_IMPORTED_MODULE_23__["a"]; });
-
-/* harmony import */ var _reports_utils__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(68);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getFilterQuery", function() { return _reports_utils__WEBPACK_IMPORTED_MODULE_24__["a"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getSummaryNumbers", function() { return _reports_utils__WEBPACK_IMPORTED_MODULE_24__["e"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getReportTableData", function() { return _reports_utils__WEBPACK_IMPORTED_MODULE_24__["c"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getReportTableQuery", function() { return _reports_utils__WEBPACK_IMPORTED_MODULE_24__["d"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getReportChartData", function() { return _reports_utils__WEBPACK_IMPORTED_MODULE_24__["b"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTooltipValueFormat", function() { return _reports_utils__WEBPACK_IMPORTED_MODULE_24__["f"]; });
-
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(14);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MAX_PER_PAGE", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["d"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "QUERY_DEFAULTS", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["h"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NAMESPACE", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["g"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WC_ADMIN_NAMESPACE", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["k"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WCS_NAMESPACE", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["j"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SECOND", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["i"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MINUTE", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["e"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HOUR", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["b"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DAY", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["a"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "WEEK", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["l"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MONTH", function() { return _constants__WEBPACK_IMPORTED_MODULE_25__["f"]; });
-
-/* harmony import */ var _export__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(290);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "EXPORT_STORE_NAME", function() { return _export__WEBPACK_IMPORTED_MODULE_26__["a"]; });
-
-/* harmony import */ var _import__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(291);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "IMPORT_STORE_NAME", function() { return _import__WEBPACK_IMPORTED_MODULE_27__["a"]; });
-
-/* harmony import */ var _onboarding_selectors__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(136);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getProfileItems", function() { return _onboarding_selectors__WEBPACK_IMPORTED_MODULE_28__["getProfileItems"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getTasksStatus", function() { return _onboarding_selectors__WEBPACK_IMPORTED_MODULE_28__["getTasksStatus"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getPaymentGatewaySuggestions", function() { return _onboarding_selectors__WEBPACK_IMPORTED_MODULE_28__["getPaymentGatewaySuggestions"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getOnboardingError", function() { return _onboarding_selectors__WEBPACK_IMPORTED_MODULE_28__["getOnboardingError"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "isOnboardingRequesting", function() { return _onboarding_selectors__WEBPACK_IMPORTED_MODULE_28__["isOnboardingRequesting"]; });
-
-/**
- * External dependencies
- */
 
 /**
  * Internal dependencies
@@ -6091,77 +5174,328 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-
-/***/ 495:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wp"]["coreData"]; }());
-
-/***/ }),
-
-/***/ 61:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_NAME; });
-const STORE_NAME = 'core';
-//# sourceMappingURL=constants.js.map
-
-/***/ }),
-
-/***/ 68:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getFilterQuery; });
-/* unused harmony export timeStampFilterDates */
-/* unused harmony export getQueryFromConfig */
-/* unused harmony export isReportDataEmpty */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return getSummaryNumbers; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getReportChartData; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return getTooltipValueFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return getReportTableQuery; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return getReportTableData; });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9);
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _woocommerce_date__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(21);
-/* harmony import */ var _woocommerce_date__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
-/* harmony import */ var _woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(68);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(14);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(89);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(29);
+Object(external_wp_data_["registerStore"])(navigation_constants_STORE_NAME, {
+  reducer: navigation_reducer,
+  actions: navigation_actions_namespaceObject,
+  controls: external_wp_dataControls_["controls"],
+  resolvers: navigation_resolvers_namespaceObject,
+  selectors: navigation_selectors_namespaceObject
+});
+dispatchers();
+const NAVIGATION_STORE_NAME = navigation_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/navigation/with-navigation-hydration.js
 /**
  * External dependencies
  */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+/**
+ * Higher-order component used to hydrate navigation data.
+ *
+ * @param {Object} data Data object with menu items and site information.
+ */
+
+const withNavigationHydration = data => Object(external_wp_compose_["createHigherOrderComponent"])(OriginalComponent => props => {
+  const dataRef = Object(external_wp_element_["useRef"])(data);
+  Object(external_wp_data_["useSelect"])((select, registry) => {
+    if (!dataRef.current) {
+      return;
+    }
+
+    const {
+      isResolving,
+      hasFinishedResolution
+    } = select(navigation_constants_STORE_NAME);
+    const {
+      startResolution,
+      finishResolution,
+      setMenuItems
+    } = registry.dispatch(navigation_constants_STORE_NAME);
+
+    if (!isResolving('getMenuItems') && !hasFinishedResolution('getMenuItems')) {
+      startResolution('getMenuItems', []);
+      setMenuItems(dataRef.current.menuItems);
+      finishResolution('getMenuItems', []);
+    }
+  });
+  return Object(external_wp_element_["createElement"])(OriginalComponent, Object.assign({}, props));
+}, 'withNavigationHydration');
+// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/action-types.js
+var action_types_ACTION_TYPES;
+
+(function (ACTION_TYPES) {
+  ACTION_TYPES["GET_PAYMENT_GATEWAYS_REQUEST"] = "GET_PAYMENT_GATEWAYS_REQUEST";
+  ACTION_TYPES["GET_PAYMENT_GATEWAYS_SUCCESS"] = "GET_PAYMENT_GATEWAYS_SUCCESS";
+  ACTION_TYPES["GET_PAYMENT_GATEWAYS_ERROR"] = "GET_PAYMENT_GATEWAYS_ERROR";
+  ACTION_TYPES["UPDATE_PAYMENT_GATEWAY_REQUEST"] = "UPDATE_PAYMENT_GATEWAY_REQUEST";
+  ACTION_TYPES["UPDATE_PAYMENT_GATEWAY_SUCCESS"] = "UPDATE_PAYMENT_GATEWAY_SUCCESS";
+  ACTION_TYPES["UPDATE_PAYMENT_GATEWAY_ERROR"] = "UPDATE_PAYMENT_GATEWAY_ERROR";
+  ACTION_TYPES["GET_PAYMENT_GATEWAY_REQUEST"] = "GET_PAYMENT_GATEWAY_REQUEST";
+  ACTION_TYPES["GET_PAYMENT_GATEWAY_SUCCESS"] = "GET_PAYMENT_GATEWAY_SUCCESS";
+  ACTION_TYPES["GET_PAYMENT_GATEWAY_ERROR"] = "GET_PAYMENT_GATEWAY_ERROR";
+})(action_types_ACTION_TYPES || (action_types_ACTION_TYPES = {}));
+// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/constants.js
+const STORE_KEY = 'wc/payment-gateways';
+const API_NAMESPACE = 'wc/v3';
+// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/actions.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function getPaymentGatewaysRequest() {
+  return {
+    type: action_types_ACTION_TYPES.GET_PAYMENT_GATEWAYS_REQUEST
+  };
+}
+function getPaymentGatewaysSuccess(paymentGateways) {
+  return {
+    type: action_types_ACTION_TYPES.GET_PAYMENT_GATEWAYS_SUCCESS,
+    paymentGateways
+  };
+}
+function getPaymentGatewaysError(error) {
+  return {
+    type: action_types_ACTION_TYPES.GET_PAYMENT_GATEWAYS_ERROR,
+    error
+  };
+}
+function getPaymentGatewayRequest() {
+  return {
+    type: action_types_ACTION_TYPES.GET_PAYMENT_GATEWAY_REQUEST
+  };
+}
+function getPaymentGatewayError(error) {
+  return {
+    type: action_types_ACTION_TYPES.GET_PAYMENT_GATEWAY_ERROR,
+    error
+  };
+}
+function getPaymentGatewaySuccess(paymentGateway) {
+  return {
+    type: action_types_ACTION_TYPES.GET_PAYMENT_GATEWAY_SUCCESS,
+    paymentGateway
+  };
+}
+function updatePaymentGatewaySuccess(paymentGateway) {
+  return {
+    type: action_types_ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_SUCCESS,
+    paymentGateway
+  };
+}
+function updatePaymentGatewayRequest() {
+  return {
+    type: action_types_ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_REQUEST
+  };
+}
+function updatePaymentGatewayError(error) {
+  return {
+    type: action_types_ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_ERROR,
+    error
+  };
+}
+function* updatePaymentGateway(id, data) {
+  try {
+    yield updatePaymentGatewayRequest();
+    const response = yield Object(external_wp_dataControls_["apiFetch"])({
+      method: 'PUT',
+      path: API_NAMESPACE + '/payment_gateways/' + id,
+      body: JSON.stringify(data)
+    });
+
+    if (response && response.id === id) {
+      // Update the already loaded payment gateway list with the new data
+      yield updatePaymentGatewaySuccess(response);
+      return response;
+    }
+  } catch (e) {
+    yield updatePaymentGatewayError(e);
+    throw e;
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/resolvers.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+ // Can be removed in WP 5.9.
+
+const payment_gateways_resolvers_dispatch = external_wp_data_["controls"] && external_wp_data_["controls"].dispatch ? external_wp_data_["controls"].dispatch : external_wp_dataControls_["dispatch"];
+function* getPaymentGateways() {
+  yield getPaymentGatewaysRequest();
+
+  try {
+    const response = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: API_NAMESPACE + '/payment_gateways'
+    });
+    yield getPaymentGatewaysSuccess(response);
+
+    for (let i = 0; i < response.length; i++) {
+      yield payment_gateways_resolvers_dispatch(STORE_KEY, 'finishResolution', 'getPaymentGateway', [response[i].id]);
+    }
+  } catch (e) {
+    yield getPaymentGatewaysError(e);
+  }
+}
+function* getPaymentGateway(id) {
+  yield getPaymentGatewayRequest();
+
+  try {
+    const response = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: API_NAMESPACE + '/payment_gateways/' + id
+    });
+
+    if (response && response.id) {
+      yield getPaymentGatewaySuccess(response);
+      return response;
+    }
+  } catch (e) {
+    yield getPaymentGatewayError(e);
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/selectors.js
+function selectors_getPaymentGateway(state, id) {
+  return state.paymentGateways.find(paymentGateway => paymentGateway.id === id);
+}
+function selectors_getPaymentGateways(state) {
+  return state.paymentGateways;
+}
+function selectors_getPaymentGatewayError(state, selector) {
+  return state.errors[selector] || null;
+}
+function isPaymentGatewayUpdating(state) {
+  return state.isUpdating || false;
+}
+// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/reducer.js
+/**
+ * Internal dependencies
+ */
+
+
+function updatePaymentGatewayList(state, paymentGateway) {
+  const targetIndex = state.paymentGateways.findIndex(gateway => gateway.id === paymentGateway.id);
+
+  if (targetIndex === -1) {
+    return { ...state,
+      paymentGateways: [...state.paymentGateways, paymentGateway],
+      isUpdating: false
+    };
+  }
+
+  return { ...state,
+    paymentGateways: [...state.paymentGateways.slice(0, targetIndex), paymentGateway, ...state.paymentGateways.slice(targetIndex + 1)],
+    isUpdating: false
+  };
+}
+
+const payment_gateways_reducer_reducer = (state = {
+  paymentGateways: [],
+  isUpdating: false,
+  errors: {}
+}, payload) => {
+  if (payload && 'type' in payload) {
+    switch (payload.type) {
+      case action_types_ACTION_TYPES.GET_PAYMENT_GATEWAYS_REQUEST:
+      case action_types_ACTION_TYPES.GET_PAYMENT_GATEWAY_REQUEST:
+        return state;
+
+      case action_types_ACTION_TYPES.GET_PAYMENT_GATEWAYS_SUCCESS:
+        return { ...state,
+          paymentGateways: payload.paymentGateways
+        };
+
+      case action_types_ACTION_TYPES.GET_PAYMENT_GATEWAYS_ERROR:
+        return { ...state,
+          errors: { ...state.errors,
+            getPaymentGateways: payload.error
+          }
+        };
+
+      case action_types_ACTION_TYPES.GET_PAYMENT_GATEWAY_ERROR:
+        return { ...state,
+          errors: { ...state.errors,
+            getPaymentGateway: payload.error
+          }
+        };
+
+      case action_types_ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_REQUEST:
+        return { ...state,
+          isUpdating: true
+        };
+
+      case action_types_ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_SUCCESS:
+        return updatePaymentGatewayList(state, payload.paymentGateway);
+
+      case action_types_ACTION_TYPES.GET_PAYMENT_GATEWAY_SUCCESS:
+        return updatePaymentGatewayList(state, payload.paymentGateway);
+
+      case action_types_ACTION_TYPES.UPDATE_PAYMENT_GATEWAY_ERROR:
+        return { ...state,
+          errors: { ...state.errors,
+            updatePaymentGateway: payload.error
+          },
+          isUpdating: false
+        };
+    }
+  }
+
+  return state;
+};
+
+/* harmony default export */ var payment_gateways_reducer = (payment_gateways_reducer_reducer);
+// CONCATENATED MODULE: ./packages/data/build-module/payment-gateways/index.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+const PAYMENT_GATEWAYS_STORE_NAME = STORE_KEY;
+Object(external_wp_data_["registerStore"])(STORE_KEY, {
+  actions: payment_gateways_actions_namespaceObject,
+  selectors: payment_gateways_selectors_namespaceObject,
+  resolvers: payment_gateways_resolvers_namespaceObject,
+  controls: external_wp_dataControls_["controls"],
+  reducer: payment_gateways_reducer
+});
+// EXTERNAL MODULE: external "moment"
+var external_moment_ = __webpack_require__(9);
+var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
+
+// EXTERNAL MODULE: external ["wp","deprecated"]
+var external_wp_deprecated_ = __webpack_require__(43);
+var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_);
+
+// CONCATENATED MODULE: ./packages/data/build-module/reports/utils.js
+/**
+ * External dependencies
+ */
+
 
 
 
@@ -6219,7 +5553,7 @@ const noIntervalEndpoints = ['stock', 'customers'];
 function timeStampFilterDates(config, activeFilter) {
   const advancedFilterConfig = config.filters[activeFilter.key];
 
-  if (Object(lodash__WEBPACK_IMPORTED_MODULE_0__["get"])(advancedFilterConfig, ['input', 'component']) !== 'Date') {
+  if (Object(external_lodash_["get"])(advancedFilterConfig, ['input', 'component']) !== 'Date') {
     return activeFilter;
   }
 
@@ -6236,12 +5570,12 @@ function timeStampFilterDates(config, activeFilter) {
   if (Array.isArray(value)) {
     const [after, before] = value;
     return Object.assign({}, activeFilter, {
-      value: [Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["appendTimestamp"])(moment__WEBPACK_IMPORTED_MODULE_1___default()(after), timeOfDayMap.after), Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["appendTimestamp"])(moment__WEBPACK_IMPORTED_MODULE_1___default()(before), timeOfDayMap.before)]
+      value: [Object(external_wc_date_["appendTimestamp"])(external_moment_default()(after), timeOfDayMap.after), Object(external_wc_date_["appendTimestamp"])(external_moment_default()(before), timeOfDayMap.before)]
     });
   }
 
   return Object.assign({}, activeFilter, {
-    value: Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["appendTimestamp"])(moment__WEBPACK_IMPORTED_MODULE_1___default()(value), timeOfDayMap[rule])
+    value: Object(external_wc_date_["appendTimestamp"])(external_moment_default()(value), timeOfDayMap[rule])
   });
 }
 function getQueryFromConfig(config, advancedFilters, query) {
@@ -6252,20 +5586,20 @@ function getQueryFromConfig(config, advancedFilters, query) {
   }
 
   if (queryValue === 'advanced') {
-    const activeFilters = Object(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__["getActiveFiltersFromQuery"])(query, advancedFilters.filters);
+    const activeFilters = Object(external_wc_navigation_["getActiveFiltersFromQuery"])(query, advancedFilters.filters);
 
     if (activeFilters.length === 0) {
       return {};
     }
 
-    const filterQuery = Object(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__["getQueryFromActiveFilters"])(activeFilters.map(filter => timeStampFilterDates(advancedFilters, filter)), {}, advancedFilters.filters);
+    const filterQuery = Object(external_wc_navigation_["getQueryFromActiveFilters"])(activeFilters.map(filter => timeStampFilterDates(advancedFilters, filter)), {}, advancedFilters.filters);
     return {
       match: query.match || 'all',
       ...filterQuery
     };
   }
 
-  const filter = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["find"])(Object(_woocommerce_navigation__WEBPACK_IMPORTED_MODULE_3__["flattenFilters"])(config.filters), {
+  const filter = Object(external_lodash_["find"])(Object(external_wc_navigation_["flattenFilters"])(config.filters), {
     value: queryValue
   });
 
@@ -6308,11 +5642,11 @@ function isReportDataEmpty(report, endpoint) {
     return true;
   }
 
-  if (!report.data.totals || Object(lodash__WEBPACK_IMPORTED_MODULE_0__["isNull"])(report.data.totals)) {
+  if (!report.data.totals || Object(external_lodash_["isNull"])(report.data.totals)) {
     return true;
   }
 
-  const checkIntervals = !Object(lodash__WEBPACK_IMPORTED_MODULE_0__["includes"])(noIntervalEndpoints, endpoint);
+  const checkIntervals = !Object(external_lodash_["includes"])(noIntervalEndpoints, endpoint);
 
   if (checkIntervals && (!report.data.intervals || report.data.intervals.length === 0)) {
     return true;
@@ -6339,19 +5673,19 @@ function getRequestQuery(options) {
     query,
     fields
   } = options;
-  const datesFromQuery = Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["getCurrentDates"])(query, options.defaultDateRange);
-  const interval = Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["getIntervalForQuery"])(query);
+  const datesFromQuery = Object(external_wc_date_["getCurrentDates"])(query, options.defaultDateRange);
+  const interval = Object(external_wc_date_["getIntervalForQuery"])(query);
   const filterQuery = getFilterQuery(options);
   const end = datesFromQuery[dataType].before;
-  const noIntervals = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["includes"])(noIntervalEndpoints, endpoint);
+  const noIntervals = Object(external_lodash_["includes"])(noIntervalEndpoints, endpoint);
   return noIntervals ? { ...filterQuery,
     fields
   } : {
     order: 'asc',
     interval,
-    per_page: _constants__WEBPACK_IMPORTED_MODULE_5__[/* MAX_PER_PAGE */ "d"],
-    after: Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["appendTimestamp"])(datesFromQuery[dataType].after, 'start'),
-    before: Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["appendTimestamp"])(end, 'end'),
+    per_page: MAX_PER_PAGE,
+    after: Object(external_wc_date_["appendTimestamp"])(datesFromQuery[dataType].after, 'start'),
+    before: Object(external_wc_date_["appendTimestamp"])(end, 'end'),
     segmentby: query.segmentby,
     fields,
     ...filterQuery
@@ -6379,7 +5713,7 @@ function getSummaryNumbers(options) {
     getReportStats,
     getReportStatsError,
     isResolving
-  } = select(_constants__WEBPACK_IMPORTED_MODULE_6__[/* STORE_NAME */ "a"]);
+  } = select(reports_constants_STORE_NAME);
   const response = {
     isRequesting: false,
     isError: false,
@@ -6473,7 +5807,7 @@ const EMPTY_ARRAY = [];
  * all the requests have resolved successfully.
  */
 
-const getReportChartDataResponse = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["memoize"])((requestString, totals, intervals) => ({
+const getReportChartDataResponse = Object(external_lodash_["memoize"])((requestString, totals, intervals) => ({
   isEmpty: false,
   isError: false,
   isRequesting: false,
@@ -6489,7 +5823,8 @@ const getReportChartDataResponse = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["m
  * @param  {string} options.endpoint  Report API Endpoint
  * @param  {string} options.dataType  'primary' or 'secondary'
  * @param  {Object} options.query     Query parameters in the url
- * @param  {Object} options.select    Instance of @wordpress/select
+ * @param  {Object} options.selector    Instance of @wordpress/select response
+ * @param  {Object} options.select    (Depreciated) Instance of @wordpress/select
  * @param  {Array}  options.limitBy   Properties used to limit the results. It will be used in the API call to send the IDs.
  * @param  {string}  options.defaultDateRange   User specified default date range.
  * @return {Object}  Object containing API request information (response, fetching, and error details)
@@ -6497,14 +5832,23 @@ const getReportChartDataResponse = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["m
 
 function getReportChartData(options) {
   const {
-    endpoint,
-    select
+    endpoint
   } = options;
+  let reportSelectors = options.selector;
+
+  if (options.select && !options.selector) {
+    external_wp_deprecated_default()('option.select', {
+      version: '1.7.0',
+      hint: 'You can pass the report selectors through option.selector now.'
+    });
+    reportSelectors = options.select(reports_constants_STORE_NAME);
+  }
+
   const {
     getReportStats,
     getReportStatsError,
     isResolving
-  } = select(_constants__WEBPACK_IMPORTED_MODULE_6__[/* STORE_NAME */ "a"]);
+  } = reportSelectors;
   const requestQuery = getRequestQuery(options); // Disable eslint rule requiring `stats` to be defined below because the next two if statements
   // depend on `getReportStats` to have been called.
   // eslint-disable-next-line @wordpress/no-unused-vars-before-return
@@ -6527,11 +5871,11 @@ function getReportChartData(options) {
   let intervals = stats && stats.data && stats.data.intervals || EMPTY_ARRAY; // If we have more than 100 results for this time period,
   // we need to make additional requests to complete the response.
 
-  if (stats.totalResults > _constants__WEBPACK_IMPORTED_MODULE_5__[/* MAX_PER_PAGE */ "d"]) {
+  if (stats.totalResults > MAX_PER_PAGE) {
     let isFetching = true;
     let isError = false;
     const pagedData = [];
-    const totalPages = Math.ceil(stats.totalResults / _constants__WEBPACK_IMPORTED_MODULE_5__[/* MAX_PER_PAGE */ "d"]);
+    const totalPages = Math.ceil(stats.totalResults / MAX_PER_PAGE);
     let pagesFetched = 1;
 
     for (let i = 2; i <= totalPages; i++) {
@@ -6566,14 +5910,14 @@ function getReportChartData(options) {
       return reportChartDataResponses.error;
     }
 
-    Object(lodash__WEBPACK_IMPORTED_MODULE_0__["forEach"])(pagedData, function (_data) {
+    Object(external_lodash_["forEach"])(pagedData, function (_data) {
       if (_data.data && _data.data.intervals && Array.isArray(_data.data.intervals)) {
         intervals = intervals.concat(_data.data.intervals);
       }
     });
   }
 
-  return getReportChartDataResponse(Object(_utils__WEBPACK_IMPORTED_MODULE_7__[/* getResourceName */ "a"])(endpoint, requestQuery), totals, intervals);
+  return getReportChartDataResponse(getResourceName(endpoint, requestQuery), totals, intervals);
 }
 /**
  * Returns a formatting function or string to be used by d3-format
@@ -6617,15 +5961,15 @@ function getReportTableQuery(options) {
     tableQuery = {}
   } = options;
   const filterQuery = getFilterQuery(options);
-  const datesFromQuery = Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["getCurrentDates"])(query, options.defaultDateRange);
-  const noIntervals = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["includes"])(noIntervalEndpoints, options.endpoint);
+  const datesFromQuery = Object(external_wc_date_["getCurrentDates"])(query, options.defaultDateRange);
+  const noIntervals = Object(external_lodash_["includes"])(noIntervalEndpoints, options.endpoint);
   return {
     orderby: query.orderby || 'date',
     order: query.order || 'desc',
-    after: noIntervals ? undefined : Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["appendTimestamp"])(datesFromQuery.primary.after, 'start'),
-    before: noIntervals ? undefined : Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_2__["appendTimestamp"])(datesFromQuery.primary.before, 'end'),
+    after: noIntervals ? undefined : Object(external_wc_date_["appendTimestamp"])(datesFromQuery.primary.after, 'start'),
+    before: noIntervals ? undefined : Object(external_wc_date_["appendTimestamp"])(datesFromQuery.primary.before, 'end'),
     page: query.paged || 1,
-    per_page: query.per_page || _constants__WEBPACK_IMPORTED_MODULE_5__[/* QUERY_DEFAULTS */ "h"].pageSize,
+    per_page: query.per_page || QUERY_DEFAULTS.pageSize,
     ...filterQuery,
     ...tableQuery
   };
@@ -6636,7 +5980,8 @@ function getReportTableQuery(options) {
  * @param  {Object} options                arguments
  * @param  {string} options.endpoint       Report API Endpoint
  * @param  {Object} options.query          Query parameters in the url
- * @param  {Object} options.select         Instance of @wordpress/select
+ * @param  {Object} options.selector       Instance of @wordpress/select response
+ * @param  {Object} options.select         (depreciated) Instance of @wordpress/select
  * @param  {Object} options.tableQuery     Query parameters specific for that endpoint
  * @param  {string}  options.defaultDateRange   User specified default date range.
  * @return {Object} Object    Table data response
@@ -6644,15 +5989,24 @@ function getReportTableQuery(options) {
 
 function getReportTableData(options) {
   const {
-    endpoint,
-    select
+    endpoint
   } = options;
+  let reportSelectors = options.selector;
+
+  if (options.select && !options.selector) {
+    external_wp_deprecated_default()('option.select', {
+      version: '1.7.0',
+      hint: 'You can pass the report selectors through option.selector now.'
+    });
+    reportSelectors = options.select(reports_constants_STORE_NAME);
+  }
+
   const {
     getReportItems,
     getReportItemsError,
-    isResolving
-  } = select(_constants__WEBPACK_IMPORTED_MODULE_6__[/* STORE_NAME */ "a"]);
-  const tableQuery = _utils__WEBPACK_IMPORTED_MODULE_4__[/* getReportTableQuery */ "d"](options);
+    hasFinishedResolution
+  } = reportSelectors;
+  const tableQuery = getReportTableQuery(options);
   const response = {
     query: tableQuery,
     isRequesting: false,
@@ -6666,12 +6020,15 @@ function getReportTableData(options) {
   // eslint-disable-next-line @wordpress/no-unused-vars-before-return
 
   const items = getReportItems(endpoint, tableQuery);
+  const queryResolved = hasFinishedResolution('getReportItems', [endpoint, tableQuery]);
 
-  if (isResolving('getReportItems', [endpoint, tableQuery])) {
+  if (!queryResolved) {
     return { ...response,
       isRequesting: true
     };
-  } else if (getReportItemsError(endpoint, tableQuery)) {
+  }
+
+  if (getReportItemsError(endpoint, tableQuery)) {
     return { ...response,
       isError: true
     };
@@ -6681,38 +6038,190 @@ function getReportTableData(options) {
     items
   };
 }
-//# sourceMappingURL=utils.js.map
+// CONCATENATED MODULE: ./packages/data/build-module/export/constants.js
+/**
+ * Internal dependencies
+ */
+const export_constants_STORE_NAME = 'wc/admin/export';
+// EXTERNAL MODULE: ./node_modules/md5/md5.js
+var md5 = __webpack_require__(266);
+var md5_default = /*#__PURE__*/__webpack_require__.n(md5);
 
-/***/ }),
+// CONCATENATED MODULE: ./packages/data/build-module/export/utils.js
+/**
+ * External dependencies
+ */
 
-/***/ 7:
-/***/ (function(module, exports) {
+/**
+ * Internal dependencies
+ */
 
-(function() { module.exports = window["wp"]["data"]; }());
 
-/***/ }),
+const hashExportArgs = args => {
+  return md5_default()(getResourceName('export', args));
+};
+// CONCATENATED MODULE: ./packages/data/build-module/export/selectors.js
+/**
+ * Internal dependencies
+ */
 
-/***/ 79:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+const isExportRequesting = (state, selector, selectorArgs) => {
+  return Boolean(state.requesting[selector] && state.requesting[selector][hashExportArgs(selectorArgs)]);
+};
+const getExportId = (state, exportType, exportArgs) => {
+  return state.exportIds[exportType] && state.exportIds[exportType][hashExportArgs(exportArgs)];
+};
+const getError = (state, selector, selectorArgs) => {
+  return state.errors[selector] && state.errors[selector][hashExportArgs(selectorArgs)];
+};
+// CONCATENATED MODULE: ./packages/data/build-module/export/action-types.js
+const export_action_types_TYPES = {
+  START_EXPORT: 'START_EXPORT',
+  SET_EXPORT_ID: 'SET_EXPORT_ID',
+  SET_ERROR: 'SET_ERROR',
+  SET_IS_REQUESTING: 'SET_IS_REQUESTING'
+};
+/* harmony default export */ var export_action_types = (export_action_types_TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/export/actions.js
+/**
+ * Internal dependencies
+ */
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_NAME; });
-const STORE_NAME = 'woocommerce-navigation';
-//# sourceMappingURL=constants.js.map
 
-/***/ }),
 
-/***/ 88:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+function setExportId(exportType, exportArgs, exportId) {
+  return {
+    type: export_action_types.SET_EXPORT_ID,
+    exportType,
+    exportArgs,
+    exportId
+  };
+}
+function export_actions_setIsRequesting(selector, selectorArgs, isRequesting) {
+  return {
+    type: export_action_types.SET_IS_REQUESTING,
+    selector,
+    selectorArgs,
+    isRequesting
+  };
+}
+function export_actions_setError(selector, selectorArgs, error) {
+  return {
+    type: export_action_types.SET_ERROR,
+    selector,
+    selectorArgs,
+    error
+  };
+}
+function* startExport(type, args) {
+  yield export_actions_setIsRequesting('startExport', {
+    type,
+    args
+  }, true);
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return getLeaderboard; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return searchItemsByString; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getTotalCountResourceName; });
-/* harmony import */ var _woocommerce_date__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
-/* harmony import */ var _woocommerce_date__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_date__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(104);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(29);
+  try {
+    const response = yield fetchWithHeaders({
+      path: `${NAMESPACE}/reports/${type}/export`,
+      method: 'POST',
+      data: {
+        report_args: args,
+        email: true
+      }
+    });
+    yield export_actions_setIsRequesting('startExport', {
+      type,
+      args
+    }, false);
+    const {
+      export_id: exportId,
+      message
+    } = response.data;
+
+    if (exportId) {
+      yield setExportId(type, args, exportId);
+    } else {
+      throw new Error(message);
+    }
+
+    return response.data;
+  } catch (error) {
+    yield export_actions_setError('startExport', {
+      type,
+      args
+    }, error.message);
+    yield export_actions_setIsRequesting('startExport', {
+      type,
+      args
+    }, false);
+    throw error;
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/export/reducer.js
+/**
+ * Internal dependencies
+ */
+
+
+
+const exportReducer = (state = {
+  errors: {},
+  requesting: {},
+  exportMeta: {},
+  exportIds: {}
+}, {
+  error,
+  exportArgs,
+  exportId,
+  exportType,
+  isRequesting,
+  selector,
+  selectorArgs,
+  type
+}) => {
+  switch (type) {
+    case export_action_types.SET_IS_REQUESTING:
+      return { ...state,
+        requesting: { ...state.requesting,
+          [selector]: { ...state.requesting[selector],
+            [hashExportArgs(selectorArgs)]: isRequesting
+          }
+        }
+      };
+
+    case export_action_types.SET_EXPORT_ID:
+      return { ...state,
+        exportMeta: { ...state.exportMeta,
+          [exportId]: {
+            exportType,
+            exportArgs
+          }
+        },
+        exportIds: { ...state.exportIds,
+          [exportType]: { ...state.exportIds[exportType],
+            [hashExportArgs({
+              type: exportType,
+              args: exportArgs
+            })]: exportId
+          }
+        }
+      };
+
+    case export_action_types.SET_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          [selector]: { ...state.errors[selector],
+            [hashExportArgs(selectorArgs)]: error
+          }
+        }
+      };
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ var export_reducer = (exportReducer);
+// CONCATENATED MODULE: ./packages/data/build-module/export/index.js
 /**
  * External dependencies
  */
@@ -6723,144 +6232,338 @@ const STORE_NAME = 'woocommerce-navigation';
 
 
 
-/**
- * Returns leaderboard data to render a leaderboard table.
- *
- * @param  {Object} options                 arguments
- * @param  {string} options.id              Leaderboard ID
- * @param  {number} options.per_page       Per page limit
- * @param  {Object} options.persisted_query Persisted query passed to endpoint
- * @param  {Object} options.query           Query parameters in the url
- * @param  {Object} options.select          Instance of @wordpress/select
- * @param  {string} options.defaultDateRange   User specified default date range.
- * @return {Object} Object containing leaderboard responses.
- */
 
-function getLeaderboard(options) {
-  const endpoint = 'leaderboards';
-  const {
-    per_page: perPage,
-    persisted_query: persistedQuery,
-    query,
-    select,
-    filterQuery
-  } = options;
-  const {
-    getItems,
-    getItemsError,
-    isResolving
-  } = select(_constants__WEBPACK_IMPORTED_MODULE_1__[/* STORE_NAME */ "a"]);
-  const response = {
-    isRequesting: false,
-    isError: false,
-    rows: []
-  };
-  const datesFromQuery = Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_0__["getCurrentDates"])(query, options.defaultDateRange);
-  const leaderboardQuery = { ...filterQuery,
-    after: Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_0__["appendTimestamp"])(datesFromQuery.primary.after, 'start'),
-    before: Object(_woocommerce_date__WEBPACK_IMPORTED_MODULE_0__["appendTimestamp"])(datesFromQuery.primary.before, 'end'),
-    per_page: perPage,
-    persisted_query: JSON.stringify(persistedQuery)
-  }; // Disable eslint rule requiring `getItems` to be defined below because the next two statements
-  // depend on `getItems` to have been called.
-  // eslint-disable-next-line @wordpress/no-unused-vars-before-return
 
-  const leaderboards = getItems(endpoint, leaderboardQuery);
 
-  if (isResolving('getItems', [endpoint, leaderboardQuery])) {
-    return { ...response,
-      isRequesting: true
-    };
-  } else if (getItemsError(endpoint, leaderboardQuery)) {
-    return { ...response,
-      isError: true
-    };
-  }
-
-  const leaderboard = leaderboards.get(options.id);
-  return { ...response,
-    rows: leaderboard === null || leaderboard === void 0 ? void 0 : leaderboard.rows
-  };
-}
-/**
- * Returns items based on a search query.
- *
- * @param  {Object}   select    Instance of @wordpress/select
- * @param  {string}   endpoint  Report API Endpoint
- * @param  {string[]} search    Array of search strings.
- * @return {Object}   Object containing API request information and the matching items.
- */
-
-function searchItemsByString(select, endpoint, search) {
-  const {
-    getItems,
-    getItemsError,
-    isResolving
-  } = select(_constants__WEBPACK_IMPORTED_MODULE_1__[/* STORE_NAME */ "a"]);
-  const items = {};
-  let isRequesting = false;
-  let isError = false;
-  search.forEach(searchWord => {
-    const query = {
-      search: searchWord,
-      per_page: 10
-    };
-    const newItems = getItems(endpoint, query);
-    newItems.forEach((item, id) => {
-      items[id] = item;
-    });
-
-    if (isResolving('getItems', [endpoint, query])) {
-      isRequesting = true;
-    }
-
-    if (getItemsError(endpoint, query)) {
-      isError = true;
-    }
-  });
-  return {
-    items,
-    isRequesting,
-    isError
-  };
-}
-/**
- * Generate a resource name for item totals count.
- *
- * It omits query parameters from the identifier that don't affect
- * totals values like pagination and response field filtering.
- *
- * @param {string} itemType Item type for totals count.
- * @param {Object} query Query for item totals count.
- * @return {string} Resource name for item totals.
- */
-
-function getTotalCountResourceName(itemType, query) {
-  // Disable eslint rule because we're using this spread to omit properties
-  // that don't affect item totals count results.
-  // eslint-disable-next-line no-unused-vars, camelcase
-  const {
-    _fields,
-    page,
-    per_page,
-    ...totalsQuery
-  } = query;
-  return Object(_utils__WEBPACK_IMPORTED_MODULE_2__[/* getResourceName */ "a"])('total-' + itemType, totalsQuery);
-}
-//# sourceMappingURL=utils.js.map
-
-/***/ }),
-
-/***/ 89:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return STORE_NAME; });
+Object(external_wp_data_["registerStore"])(export_constants_STORE_NAME, {
+  reducer: export_reducer,
+  actions: export_actions_namespaceObject,
+  controls: build_module_controls,
+  selectors: export_selectors_namespaceObject
+});
+const EXPORT_STORE_NAME = export_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/import/constants.js
 /**
  * Internal dependencies
  */
-const STORE_NAME = 'wc/admin/reports';
-//# sourceMappingURL=constants.js.map
+const import_constants_STORE_NAME = 'wc/admin/import';
+// CONCATENATED MODULE: ./packages/data/build-module/import/selectors.js
+const getImportStarted = state => {
+  const {
+    activeImport,
+    lastImportStartTimestamp
+  } = state;
+  return {
+    activeImport,
+    lastImportStartTimestamp
+  } || {};
+};
+const getFormSettings = state => {
+  const {
+    period,
+    skipPrevious
+  } = state;
+  return {
+    period,
+    skipPrevious
+  } || {};
+};
+const getImportStatus = (state, query) => {
+  const stringifiedQuery = JSON.stringify(query);
+  return state.importStatus[stringifiedQuery] || {};
+};
+const getImportTotals = (state, query) => {
+  const {
+    importTotals,
+    lastImportStartTimestamp
+  } = state;
+  const stringifiedQuery = JSON.stringify(query);
+  return { ...importTotals[stringifiedQuery],
+    lastImportStartTimestamp
+  } || {};
+};
+const getImportError = (state, query) => {
+  const stringifiedQuery = JSON.stringify(query);
+  return state.errors[stringifiedQuery] || false;
+};
+// CONCATENATED MODULE: ./packages/data/build-module/import/action-types.js
+const import_action_types_TYPES = {
+  SET_IMPORT_DATE: 'SET_IMPORT_DATE',
+  SET_IMPORT_ERROR: 'SET_IMPORT_ERROR',
+  SET_IMPORT_PERIOD: 'SET_IMPORT_PERIOD',
+  SET_IMPORT_STARTED: 'SET_IMPORT_STARTED',
+  SET_IMPORT_STATUS: 'SET_IMPORT_STATUS',
+  SET_IMPORT_TOTALS: 'SET_IMPORT_TOTALS',
+  SET_SKIP_IMPORTED: 'SET_SKIP_IMPORTED'
+};
+/* harmony default export */ var import_action_types = (import_action_types_TYPES);
+// CONCATENATED MODULE: ./packages/data/build-module/import/actions.js
+/**
+ * External dependencies
+ */
+
+/**
+ * Internal dependencies
+ */
+
+
+function setImportStarted(activeImport) {
+  return {
+    type: import_action_types.SET_IMPORT_STARTED,
+    activeImport
+  };
+}
+function setImportPeriod(date, dateModified) {
+  if (!dateModified) {
+    return {
+      type: import_action_types.SET_IMPORT_PERIOD,
+      date
+    };
+  }
+
+  return {
+    type: import_action_types.SET_IMPORT_DATE,
+    date
+  };
+}
+function setSkipPrevious(skipPrevious) {
+  return {
+    type: import_action_types.SET_SKIP_IMPORTED,
+    skipPrevious
+  };
+}
+function setImportStatus(query, importStatus) {
+  return {
+    type: import_action_types.SET_IMPORT_STATUS,
+    importStatus,
+    query
+  };
+}
+function setImportTotals(query, importTotals) {
+  return {
+    type: import_action_types.SET_IMPORT_TOTALS,
+    importTotals,
+    query
+  };
+}
+function setImportError(query, error) {
+  return {
+    type: import_action_types.SET_IMPORT_ERROR,
+    error,
+    query
+  };
+}
+function* updateImportation(path, importStarted = false) {
+  yield setImportStarted(importStarted);
+
+  try {
+    const response = yield Object(external_wp_dataControls_["apiFetch"])({
+      path,
+      method: 'POST'
+    });
+    return response;
+  } catch (error) {
+    yield setImportError(path, error);
+    throw error;
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/import/resolvers.js
+/**
+ * External dependencies
+ */
+
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+function* resolvers_getImportStatus(query) {
+  try {
+    const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/reports/import/status`, Object(external_lodash_["omit"])(query, ['timestamp']));
+    const response = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url
+    });
+    yield setImportStatus(query, response);
+  } catch (error) {
+    yield setImportError(query, error);
+  }
+}
+function* resolvers_getImportTotals(query) {
+  try {
+    const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/reports/import/totals`, query);
+    const response = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: url
+    });
+    yield setImportTotals(query, response);
+  } catch (error) {
+    yield setImportError(query, error);
+  }
+}
+// CONCATENATED MODULE: ./packages/data/build-module/import/reducer.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+const import_reducer_reducer = (state = {
+  activeImport: false,
+  importStatus: {},
+  importTotals: {},
+  errors: {},
+  lastImportStartTimestamp: 0,
+  period: {
+    date: external_moment_default()().format(Object(external_wp_i18n_["__"])('MM/DD/YYYY', 'woocommerce-admin')),
+    label: 'all'
+  },
+  skipPrevious: true
+}, {
+  type,
+  query,
+  importStatus,
+  importTotals,
+  activeImport,
+  date,
+  error,
+  skipPrevious
+}) => {
+  switch (type) {
+    case import_action_types.SET_IMPORT_STARTED:
+      state = { ...state,
+        activeImport,
+        lastImportStartTimestamp: activeImport ? Date.now() : state.lastImportStartTimestamp
+      };
+      break;
+
+    case import_action_types.SET_IMPORT_PERIOD:
+      state = { ...state,
+        period: { ...state.period,
+          label: date
+        },
+        activeImport: false
+      };
+      break;
+
+    case import_action_types.SET_IMPORT_DATE:
+      state = { ...state,
+        period: {
+          date,
+          label: 'custom'
+        },
+        activeImport: false
+      };
+      break;
+
+    case import_action_types.SET_SKIP_IMPORTED:
+      state = { ...state,
+        skipPrevious,
+        activeImport: false
+      };
+      break;
+
+    case import_action_types.SET_IMPORT_STATUS:
+      state = { ...state,
+        importStatus: { ...state.importStatus,
+          [JSON.stringify(query)]: importStatus
+        },
+        errors: { ...state.errors,
+          [JSON.stringify(query)]: false
+        }
+      };
+      break;
+
+    case import_action_types.SET_IMPORT_TOTALS:
+      state = { ...state,
+        importTotals: { ...state.importTotals,
+          [JSON.stringify(query)]: importTotals
+        }
+      };
+      break;
+
+    case import_action_types.SET_IMPORT_ERROR:
+      state = { ...state,
+        errors: { ...state.errors,
+          [JSON.stringify(query)]: error
+        }
+      };
+      break;
+  }
+
+  return state;
+};
+
+/* harmony default export */ var import_reducer = (import_reducer_reducer);
+// CONCATENATED MODULE: ./packages/data/build-module/import/index.js
+/**
+ * External dependencies
+ */
+
+
+/**
+ * Internal dependencies
+ */
+
+
+
+
+
+
+Object(external_wp_data_["registerStore"])(import_constants_STORE_NAME, {
+  reducer: import_reducer,
+  actions: import_actions_namespaceObject,
+  controls: external_wp_dataControls_["controls"],
+  selectors: import_selectors_namespaceObject,
+  resolvers: import_resolvers_namespaceObject
+});
+const IMPORT_STORE_NAME = import_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/index.js
+/**
+ * External dependencies
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["data"]; }());
 
 /***/ }),
 

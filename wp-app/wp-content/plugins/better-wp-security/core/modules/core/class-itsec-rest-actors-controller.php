@@ -30,7 +30,7 @@ class ITSEC_REST_Actors_Controller extends WP_REST_Controller {
 	}
 
 	public function get_items_permissions_check( $request ) {
-		return ITSEC_Core::current_user_can_manage();
+		return ITSEC_Core::current_user_can_manage() || current_user_can( 'itsec_dashboard_access' );
 	}
 
 	public function get_items( $request ) {

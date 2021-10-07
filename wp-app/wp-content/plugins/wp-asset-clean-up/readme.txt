@@ -3,8 +3,8 @@ Contributors: gabelivan
 Tags: minify css, minify javascript, defer css javascript, page speed, dequeue, performance
 Donate link: https://www.gabelivan.com/items/wp-asset-cleanup-pro/?utm_source=wp_org_lite&utm_medium=donate
 Requires at least: 4.5
-Tested up to: 5.7.2
-Stable tag: 1.3.8.0
+Tested up to: 5.8.1
+Stable tag: 1.3.8.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -150,7 +150,7 @@ Whenever you unload certain CSS/JS files, you expect to either see an immediate 
 
 = How can I access all the features? =
 
-You can get access to more features, priority support and automatic updates by <a href="https://www.gabelivan.com/items/wp-asset-cleanup-pro/?utm_source=wp_org_lite&utm_medium=inside_faq">Upgrading to the Pro version</a>.
+You can get access to more features, priority support and automatic updates by <a href="https://www.gabelivan.com/items/wp-asset-cleanup-pro/?utm_source=wp_org_lite&utm_medium=inside_faq">upgrading to the Pro version</a>. It's strongly recommended to avoid using any <a href="https://www.gabelivan.com/asset-cleanup-pro-nulled-wordpress-plugin/?utm_source=wp_org_lite&utm_medium=inside_faq_nulled_area">Asset CleanUp Pro nulled</a> versions as they might contain malware and you will also not get any official support and access to plugin updates (e.g. bug fixes).
 
 = jQuery and jQuery Migrate are often loading on pages/post. Are they always needed? =
 
@@ -190,6 +190,39 @@ With the recently released "Test Mode" feature, you can safely unload assets on 
 4. Homepage CSS & JS Management (List sorted by location)
 
 == Changelog ==
+= 1.3.8.4 =
+* Fix: Warning: Undefined array key "show_assets_meta_box" in [...]/wp-content/plugins/wp-asset-clean-up/classes/Settings.php on line 461
+
+= 1.3.8.3 =
+* Automatically preload any combined JS files within the BODY tag (that do not have any "defer" or "async" attribute) to improve the Google PageSpeed Insights score for the following: "Preload key requests"
+* Reorganised the layout for "Manage in the Dashboard" from "Settings" -> "Plugin Usage Preferences"
+* Fix: When minifying CSS content, do not strip the extra calc() when something like the following is used: "calc( 50% - 22px ) calc( 50% - 22px )"
+* Fix: When Gutenberg editor is used and the post is updated, sometimes the CSS/JS manager is reloaded BEFORE the changes are saved showing the same state as it used to be confusing the admin that the changes weren't applied
+
+= 1.3.8.2 =
+* If the security nonce is expired or not sent when certain forms are submitted, show an error message about the potential problems and how to fix them without showing the standard "Link has expired" error
+* Added the plugin version under the "Lite" text next to the logo
+* WPML Fix: Load the combined CSS/JS files from the right domain to avoid any CORS policy issues (in case there are multiple domains for each language)
+* Fix: The CSS/JS manager form wasn't submitting when "Do not load Asset CleanUp Pro on this page (this will disable any functionality of the plugin)" was enabled
+* Fix: Make sure the loading exception rule if the user is logged-in is saving correctly
+* Fix: Do not show the "loading based on screen size" area if there is no SRC attached to the handle (e.g. "woocommerce-inline" handle)
+* Fix: Do not print anything whenever a cron job is triggered (this is only for debugging)
+* Fix: Assets' position was not shown correctly within the Dashboard (HEAD instead of BODY)
+* Fix: Do not trigger any cache clearing and page preloading if the post status is "draft" (after the post is saved)
+
+= 1.3.8.1 =
+* Reduce the total number of submitted fields whenever the form from the CSS/JS manager is used to avoid having problems if "max_input_vars" (php.ini) is equal with 1000 or lower / read more: https://www.assetcleanup.com/docs/sometimes-data-is-not-saving-after-submitting-a-form-why/
+* UX improvement: The state of an asset row (contracted or expanded) is now done via AJAX on click (to reduce the number of inputs from the form)
+* UX improvement: When CSS/JS groups are contracted / expanded, make sure the change is preserved (Setting's value: "On Assets List Layout Load, keep the groups:") for future visits
+* Do not add any CSS/JS manager link to the post's actions (when the list of posts is viewed) if the post does not have the status of "publish" or "private"
+* Highlight the fact that in the "Page Options" area within "Overview" (plugin's menu), there are posts that are not "publish" or "private"
+* FlyWheel compatibility: The WordPress root directory has to be different than ABSPATH in relation to the assets from the plugins or the theme
+* Added the plugin version under the "Lite" text next to the logo
+* Do not show any "Manage CSS & JS" link when viewing certain post types (e.g. "ct_template" from Oxygen Builder)
+* Fix: "Uncaught ReferenceError: wpacuLoadCSS is not defined" by updating the fallback script for async preloading CSS
+* Fix: "Warning: Constant WPACU_PREVENT_ANY_FRONTEND_OPTIMIZATION already defined"
+* Fix: More accuracy in detecting all the loaded assets when they have to be filtered for alternative loading of different content / read more: https://www.assetcleanup.com/docs/?p=988
+
 = 1.3.8.0 =
 * The meta box "Asset CleanUp Pro: Page Options" has had its contents moved to the "Page Options" area from the CSS/JS manager in any location the assets are managed
 * Added "Page Options" for the homepage as well (e.g. latest posts) besides posts, pages, and any public custom post types (e.g. WooCommerce product pages)
