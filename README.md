@@ -54,7 +54,7 @@ The image includes configuration enhancements for;
 
 ## Create your own site
 
-Clone this project and execute the following command in your terminal
+Clone this project, create an env file and execute the following command in your terminal
 
 ```bash
   make start
