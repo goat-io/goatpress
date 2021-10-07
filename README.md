@@ -32,6 +32,9 @@ Goatpress runs on a single container to facilitate Cloud Run or K8s deployments
 ## Features (from [Openbridge](https://github.com/openbridge/nginx))
 
 The image includes configuration enhancements for;
+
+* PHP 8.0 and PHP-FPM
+* NGINX 1.19.9
 * Reverse Proxy
 * SEO optimizations
 * Customizable configurations
@@ -50,7 +53,7 @@ The image includes configuration enhancements for;
 * Rate limited connections to slow down attackers
 * CDN support
 * Cache purge
-* Pair with [high performance PHP-FPM container](https://hub.docker.com/r/openbridge/ob_php-fpm/) for [blazing fast Wordpress installs](https://github.com/openbridge/wordpress)
+* [High performance PHP-FPM](https://hub.docker.com/r/openbridge/ob_php-fpm/) for [blazing fast Wordpress installs](https://github.com/openbridge/wordpress)
 
 ## Create your own site
 
@@ -63,8 +66,6 @@ Clone this project, create an env file and execute the following command in your
 ## Local Development
 
 This project has a full WP copy and some useful basic plugins that you can activate or remove as you like.
-
-
 
 ### Create ENV file
 
