@@ -53,19 +53,19 @@ class THWCFD_Admin_Settings_Advanced extends THWCFD_Admin_Settings{
 	public function get_advanced_settings_fields(){
 		return array(
 			'enable_label_override' => array(
-				'name'=>'enable_label_override', 'label'=>'Enable label override for address fields.', 'type'=>'checkbox', 'value'=>'1', 'checked'=>1
+				'name'=>'enable_label_override', 'label'=>__('Enable label override for address fields.', 'woo-checkout-field-editor-pro'), 'type'=>'checkbox', 'value'=>'1', 'checked'=>1
 			),
 			'enable_placeholder_override' => array(
-				'name'=>'enable_placeholder_override', 'label'=>'Enable placeholder override for address fields.', 'type'=>'checkbox', 'value'=>'1', 'checked'=>1
+				'name'=>'enable_placeholder_override', 'label'=>__('Enable placeholder override for address fields.', 'woo-checkout-field-editor-pro'), 'type'=>'checkbox', 'value'=>'1', 'checked'=>1
 			),
 			'enable_class_override' => array(
-				'name'=>'enable_class_override', 'label'=>'Enable class override for address fields.', 'type'=>'checkbox', 'value'=>'1', 'checked'=>0
+				'name'=>'enable_class_override', 'label'=>__('Enable class override for address fields.', 'woo-checkout-field-editor-pro'), 'type'=>'checkbox', 'value'=>'1', 'checked'=>0
 			),
 			'enable_priority_override' => array(
-				'name'=>'enable_priority_override', 'label'=>'Enable priority override for address fields.', 'type'=>'checkbox', 'value'=>'1', 'checked'=>1
+				'name'=>'enable_priority_override', 'label'=>__('Enable priority override for address fields.', 'woo-checkout-field-editor-pro'), 'type'=>'checkbox', 'value'=>'1', 'checked'=>1
 			),
 			'enable_required_override' => array(
-				'name'=>'enable_required_override', 'label'=>'Enable required validation override for address fields.', 'type'=>'checkbox', 'value'=>'1', 'checked'=>0
+				'name'=>'enable_required_override', 'label'=>__('Enable required validation override for address fields.', 'woo-checkout-field-editor-pro'), 'type'=>'checkbox', 'value'=>'1', 'checked'=>0
 			),
 		);
 	}
@@ -76,7 +76,7 @@ class THWCFD_Admin_Settings_Advanced extends THWCFD_Admin_Settings{
 	}
 		
 	public function save_advanced_settings($settings){
-		$result = update_option(THWCFD_Utils::OPTION_KEY_ADVANCED_SETTINGS, $settings);
+		$result = update_option(THWCFD_Utils::OPTION_KEY_ADVANCED_SETTINGS, $settings, 'no');
 		return $result;
 	}
 	
@@ -88,7 +88,7 @@ class THWCFD_Admin_Settings_Advanced extends THWCFD_Admin_Settings{
 		}
 
 		delete_option(THWCFD_Utils::OPTION_KEY_ADVANCED_SETTINGS);
-		$this->print_notices('Settings successfully reset.', 'updated', false);
+		$this->print_notices(__('Settings successfully reset.', 'woo-checkout-field-editor-pro'), 'updated', false);
 	}
 	
 	private function save_settings(){
@@ -124,9 +124,9 @@ class THWCFD_Admin_Settings_Advanced extends THWCFD_Admin_Settings{
 				
 		$result = $this->save_advanced_settings($settings);
 		if ($result == true) {
-			$this->print_notices('Your changes were saved.', 'updated', false);
+			$this->print_notices(__('Your changes were saved.', 'woo-checkout-field-editor-pro'), 'updated', false);
 		} else {
-			$this->print_notices('Your changes were not saved due to an error (or you made none!).', 'error', false);
+			$this->print_notices(__('Your changes were not saved due to an error (or you made none!).', 'woo-checkout-field-editor-pro'), 'error', false);
 		}	
 	}
 	
@@ -155,7 +155,7 @@ class THWCFD_Admin_Settings_Advanced extends THWCFD_Admin_Settings{
                 <p class="submit">
 					<input type="submit" name="save_settings" class="btn btn-small btn-primary" value="Save changes">
                     <input type="submit" name="reset_settings" class="btn btn-small" value="Reset to default" 
-					onclick="return confirm('Are you sure you want to reset to default settings? all your changes will be deleted.');">
+					onclick="return confirm(<?php _e('Are you sure you want to reset to default settings? all your changes will be deleted.', 'woo-checkout-field-editor-pro'); ?>)">
             	</p>
             	<?php wp_nonce_field( 'thwcfd_advanced_settings', 'thwcfd_security_advanced_settings' ); ?>
             </form>

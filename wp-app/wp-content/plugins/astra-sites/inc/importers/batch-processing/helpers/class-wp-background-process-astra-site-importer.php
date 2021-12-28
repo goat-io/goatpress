@@ -44,10 +44,14 @@ if ( class_exists( 'WP_Background_Process' ) ) :
 				astra_sites_error_log( '-------- Importing Page Builders --------' );
 				update_site_option( 'astra-sites-batch-status-string', 'Importing Page Builders', 'no' );
 				$process->import_page_builders();
-			} elseif ( 'import_categories' === $method ) {
-				astra_sites_error_log( '-------- Importing Tags --------' );
-				update_site_option( 'astra-sites-batch-status-string', 'Importing Tags', 'no' );
-				$process->import_categories();
+			} elseif ( 'import_all_categories_and_tags' === $method ) {
+				astra_sites_error_log( '-------- Importing All Categories and Tags --------' );
+				update_site_option( 'astra-sites-batch-status-string', 'Importing All Categories and Tags', 'no' );
+				$process->import_all_categories_and_tags();
+			} elseif ( 'import_all_categories' === $method ) {
+				astra_sites_error_log( '-------- Importing All Categories --------' );
+				update_site_option( 'astra-sites-batch-status-string', 'Importing All Categories', 'no' );
+				$process->import_all_categories();
 			} elseif ( 'import_sites' === $method ) {
 				astra_sites_error_log( '-------- Importing Sites --------' );
 				$page = $object['page'];
@@ -64,10 +68,6 @@ if ( class_exists( 'WP_Background_Process' ) ) :
 				astra_sites_error_log( '-------- Importing Blocks Categories --------' );
 				update_site_option( 'astra-sites-batch-status-string', 'Importing Blocks Categories', 'no' );
 				$process->import_block_categories();
-			} elseif ( 'import_site_categories' === $method ) {
-				astra_sites_error_log( '-------- Importing Site Categories --------' );
-				update_site_option( 'astra-sites-batch-status-string', 'Importing Site Categories', 'no' );
-				$process->import_site_categories();
 			}
 
 			return false;

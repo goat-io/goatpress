@@ -89,7 +89,7 @@ if ( class_exists( 'WP_CLI_Command' ) && ! class_exists( 'Astra_Sites_WP_CLI' ) 
 			$search   = isset( $assoc_args['search'] ) ? $assoc_args['search'] : '';
 
 			$rest_args = array(
-				'_fields'  => 'id,title,slug,astra-site-category,astra-site-page-builder,astra-sites-tag,astra-site-type,astra-site-url',
+				'_fields'  => 'id,title,slug,astra-sites-site-category,astra-site-page-builder,astra-site-type,astra-site-url',
 				'per_page' => $per_page,
 			);
 
@@ -572,7 +572,7 @@ if ( class_exists( 'WP_CLI_Command' ) && ! class_exists( 'Astra_Sites_WP_CLI' ) 
 
 			// Add categories.
 			$category   = isset( $assoc_args['category'] ) ? $assoc_args['category'] : '';
-			$response   = $this->get_term_ids( 'astra-site-category', $category, $args );
+			$response   = $this->get_term_ids( 'astra-sites-site-category', $category, $args );
 			$args       = $response['args'];
 			$categories = $response['terms'];
 			if ( empty( $categories['data'] ) ) {
@@ -595,8 +595,8 @@ if ( class_exists( 'WP_CLI_Command' ) && ! class_exists( 'Astra_Sites_WP_CLI' ) 
 						'page_builders' => array(),
 					);
 
-					if ( isset( $site['astra-site-category'] ) && ! empty( $categories['data'] ) ) {
-						foreach ( $site['astra-site-category'] as $category_key => $category_id ) {
+					if ( isset( $site['astra-sites-site-category'] ) && ! empty( $categories['data'] ) ) {
+						foreach ( $site['astra-sites-site-category'] as $category_key => $category_id ) {
 							if ( isset( $categories['data'][ $category_id ] ) ) {
 								$single_site['categories'][ $category_id ] = $categories['data'][ $category_id ];
 							}

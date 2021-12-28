@@ -57,17 +57,21 @@ WPFormsEducation.liteCore = window.WPFormsEducation.liteCore || ( function( docu
 		 */
 		openModalButtonClick: function() {
 
-			$( '#wpforms-builder, #wpcontent' ).on(
+			$( document ).on(
 				'click',
 				'.education-modal',
 				function( event ) {
 
-					event.preventDefault();
-					event.stopImmediatePropagation();
-
 					var $this = $( this ),
 						name = $this.data( 'name' ),
 						utmContent = WPFormsEducation.core.getUTMContentValue( $this );
+
+					if ( $this.data( 'action' ) && [ 'activate', 'install' ].includes( $this.data( 'action' ) ) ) {
+						return;
+					}
+
+					event.preventDefault();
+					event.stopImmediatePropagation();
 
 					if ( $this.hasClass( 'wpforms-add-fields-button' ) ) {
 						name  = $this.text();

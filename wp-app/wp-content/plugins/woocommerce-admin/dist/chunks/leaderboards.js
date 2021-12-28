@@ -1,6 +1,6 @@
 (window["__wcAdmin_webpackJsonp"] = window["__wcAdmin_webpackJsonp"] || []).push([[32],{
 
-/***/ 501:
+/***/ 506:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -58,13 +58,13 @@ ReportError.propTypes = {
 
 /***/ }),
 
-/***/ 506:
+/***/ 511:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export ALLOWED_TAGS */
 /* unused harmony export ALLOWED_ATTR */
-/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(66);
+/* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(53);
 /* harmony import */ var dompurify__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dompurify__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * External dependencies
@@ -83,21 +83,21 @@ const ALLOWED_ATTR = ['target', 'href', 'rel', 'name', 'download'];
 
 /***/ }),
 
-/***/ 599:
+/***/ 615:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 600:
+/***/ 616:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 619:
+/***/ 636:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -118,7 +118,7 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
@@ -139,16 +139,16 @@ var external_wc_tracks_ = __webpack_require__(16);
 var external_wc_navigation_ = __webpack_require__(12);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
-var external_wc_experimental_ = __webpack_require__(20);
+var external_wc_experimental_ = __webpack_require__(17);
 
 // EXTERNAL MODULE: ./client/analytics/components/report-error/index.js
-var report_error = __webpack_require__(501);
+var report_error = __webpack_require__(506);
 
 // EXTERNAL MODULE: ./client/lib/sanitize-html/index.js
-var sanitize_html = __webpack_require__(506);
+var sanitize_html = __webpack_require__(511);
 
 // EXTERNAL MODULE: ./client/analytics/components/leaderboard/style.scss
-var style = __webpack_require__(599);
+var style = __webpack_require__(615);
 
 // CONCATENATED MODULE: ./client/analytics/components/leaderboard/index.js
 
@@ -310,7 +310,7 @@ leaderboard_Leaderboard.defaultProps = {
   return leaderboardData;
 }))(leaderboard_Leaderboard));
 // EXTERNAL MODULE: ./client/dashboard/leaderboards/style.scss
-var leaderboards_style = __webpack_require__(600);
+var leaderboards_style = __webpack_require__(616);
 
 // CONCATENATED MODULE: ./client/dashboard/leaderboards/index.js
 

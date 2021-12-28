@@ -5,11 +5,11 @@
 
 if (!defined('ABSPATH')) die('Access denied.');
 
-if (!class_exists('Updraft_Task_1_1')) require_once(WPO_PLUGIN_MAIN_PATH . 'vendor/team-updraft/common-libs/src/updraft-tasks/class-updraft-task.php');
+if (!class_exists('Updraft_Task_1_2')) require_once(WPO_PLUGIN_MAIN_PATH . 'vendor/team-updraft/common-libs/src/updraft-tasks/class-updraft-task.php');
 
 if (!class_exists('Updraft_Smush_Task')) :
 
-abstract class Updraft_Smush_Task extends Updraft_Task_1_1 {
+abstract class Updraft_Smush_Task extends Updraft_Task_1_2 {
 
 	/**
 	 * A flag indicating if the operation was succesful
@@ -90,7 +90,7 @@ abstract class Updraft_Smush_Task extends Updraft_Task_1_1 {
 			if (defined('WPO_USE_WEBP_CONVERSION') && true === WPO_USE_WEBP_CONVERSION) {
 				$this->maybe_do_webp_conversion($file_path);
 			}
-
+			
 			/**
 			 * Filters the options for a single image to compress.
 			 * Currently supports:
@@ -124,9 +124,14 @@ abstract class Updraft_Smush_Task extends Updraft_Task_1_1 {
 	 * @param string $source Source image file path
 	 */
 	public function maybe_do_webp_conversion($source) {
-		if (!class_exists('WPO_WebP_Convert')) include_once(WPO_PLUGIN_MAIN_PATH . 'webp/class-wpo-webp-convert.php');
-		$webp_converter = new WPO_WebP_Convert();
-		$webp_converter->convert($source);
+		$webp_conversion = WP_Optimize()->get_options()->get_option('webp_conversion', false);
+		if (!empty($webp_conversion)) {
+			if (!class_exists('WPO_WebP_Convert')) include_once(WPO_PLUGIN_MAIN_PATH . 'webp/class-wpo-webp-convert.php');
+			$webp_converter = new WPO_WebP_Convert();
+			$webp_converter->convert($source);
+		} else {
+			$this->log('There were no WebP conversion tools found on your server.');
+		}
 	}
 
 	/**
@@ -180,7 +185,7 @@ abstract class Updraft_Smush_Task extends Updraft_Task_1_1 {
 			return false;
 		}
 
-		if (!in_array(pathinfo($file_path, PATHINFO_EXTENSION), $allowed_file_types)) {
+		if (!in_array(strtolower(pathinfo($file_path, PATHINFO_EXTENSION)), $allowed_file_types)) {
 			$this->fail("invalid_file_type", "$file_path - cannot be optimized, it has an invalid file type");
 			return false;
 		}
@@ -265,6 +270,7 @@ abstract class Updraft_Smush_Task extends Updraft_Task_1_1 {
 
 		clearstatcache(true, $file_path); // phpcs:ignore PHPCompatibility.FunctionUse.NewFunctionParameters.clearstatcache_clear_realpath_cacheFound,PHPCompatibility.FunctionUse.NewFunctionParameters.clearstatcache_filenameFound
 		if (0 == $original_size) {
+			$saved = '';
 			$info = sprintf(__("The file was compressed to %s using WP-Optimize", 'wp-optimize'), WP_Optimize()->format_size(filesize($file_path)));
 		} else {
 			$saved = round((($original_size - filesize($file_path)) / $original_size * 100), 2);

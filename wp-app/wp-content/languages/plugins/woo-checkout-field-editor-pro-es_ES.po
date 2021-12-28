@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Checkout Field Editor (Checkout Manager) for WooCommerce - Development (trunk) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-02-12 09:45:22+0000\n"
+"PO-Revision-Date: 2021-10-08 09:55:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,47 +23,89 @@ msgstr "Radio"
 msgid "Textarea"
 msgstr "Área de texto"
 
+#: admin/class-thwcfd-admin-settings-general.php:259
+#: admin/class-thwcfd-admin-settings-general.php:319
+msgid "Your changes were not saved due to an error."
+msgstr "No se han guardado tus cambios debido a un error."
+
+#: admin/class-thwcfd-admin-settings-general.php:274
+msgid "Your changes were not saved due to no fields found."
+msgstr "No se han guardado tus cambios debido a que no se han encontrado campos."
+
 #: admin/class-thwcfd-admin-form-field.php:41
 msgid "Password"
 msgstr "Contraseña"
 
-#: admin/class-thwcfd-admin-settings-general.php:79
+#: admin/class-thwcfd-admin-settings-general.php:31
+#: admin/class-thwcfd-admin-settings.php:24
+msgid "Checkout Fields"
+msgstr "Campos de pago"
+
+#: admin/class-thwcfd-admin-form-field.php:84
+msgid "Display in Order Detail Pages"
+msgstr "Mostrar en las páginas de datos del pedido"
+
+#: admin/class-thwcfd-admin-form-field.php:83
+msgid "Display in Emails"
+msgstr "Mostrar en los correos electrónicos"
+
+#: admin/class-thwcfd-admin-form-field.php:81
+#: admin/class-thwcfd-admin-settings-general.php:94
 msgid "Enabled"
 msgstr "Activado"
 
-#: admin/class-thwcfd-admin-settings-general.php:78
+#: admin/class-thwcfd-admin-form-field.php:79
+#: admin/class-thwcfd-admin-settings-general.php:93
 msgid "Required"
 msgstr "Obligatorio"
 
+#: admin/class-thwcfd-admin-form-field.php:57
+msgid "State"
+msgstr "Provincia/Estado"
+
+#: admin/class-thwcfd-admin-form-field.php:56
+msgid "Postcode"
+msgstr "Código postal"
+
 #: admin/class-thwcfd-admin-form-field.php:43
+#: admin/class-thwcfd-admin-form-field.php:55
 msgid "Phone"
 msgstr "Teléfono"
 
 #: admin/class-thwcfd-admin-form-field.php:42
+#: admin/class-thwcfd-admin-form-field.php:54
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: admin/class-thwcfd-admin-settings-general.php:77
-msgid "Validations"
-msgstr "Validaciones"
+#: admin/class-thwcfd-admin-form-field.php:76
+msgid "Select validations"
+msgstr "Seleccionar validaciones"
 
-#: admin/class-thwcfd-admin-form-field.php:399
+#: admin/class-thwcfd-admin-form-field.php:75
+msgid "Class"
+msgstr "Clase"
+
+#: admin/class-thwcfd-admin-form-field.php:400
 msgid "Options"
 msgstr "Opciones"
 
-#: admin/class-thwcfd-admin-settings-general.php:76
+#: admin/class-thwcfd-admin-form-field.php:73
+#: admin/class-thwcfd-admin-settings-general.php:91
 msgid "Placeholder"
 msgstr "Marcador de posicción"
 
-#: admin/class-thwcfd-admin-settings-general.php:75
+#: admin/class-thwcfd-admin-form-field.php:71
+#: admin/class-thwcfd-admin-settings-general.php:90
 msgid "Label"
 msgstr "Etiqueta"
 
-#: admin/class-thwcfd-admin-settings-general.php:73
+#: admin/class-thwcfd-admin-form-field.php:70
+#: admin/class-thwcfd-admin-settings-general.php:88
 msgid "Name"
 msgstr "Nombre"
 
-#: admin/class-thwcfd-admin-settings-general.php:74
+#: admin/class-thwcfd-admin-form-field.php:68
+#: admin/class-thwcfd-admin-settings-general.php:89
 msgid "Type"
 msgstr "Tipo"
 
@@ -75,65 +117,85 @@ msgstr "Seleccionar"
 msgid "Text"
 msgstr "Texto"
 
-#: admin/class-thwcfd-admin-settings-general.php:80
-#: admin/class-thwcfd-admin-settings-general.php:173
-msgid "Edit"
-msgstr "Editar"
+#: admin/class-thwcfd-admin-settings-general.php:92
+msgid "Validations"
+msgstr "Validaciones"
 
-#: admin/class-thwcfd-admin-settings-general.php:94
-msgid "Reset to default fields"
-msgstr "Restablecer a los campos por defecto"
+#: admin/class-thwcfd-admin-form-field.php:75
+msgid "Separate classes with comma"
+msgstr "Separar las clases con coma"
 
-#: admin/class-thwcfd-admin-settings-general.php:93
-msgid "Save changes"
-msgstr "Guardar los cambios"
-
-#: admin/class-thwcfd-admin-settings-general.php:90
-msgid "Disable"
-msgstr "Desactivar"
-
-#: admin/class-thwcfd-admin-settings-general.php:89
-msgid "Enable"
-msgstr "Activar"
-
-#: admin/class-thwcfd-admin-settings-general.php:88
-msgid "Remove"
-msgstr "Eliminar"
-
-#: admin/class-thwcfd-admin-settings-general.php:87
-msgid "Add field"
-msgstr "Añadir un campo"
-
-#: includes/utils/class-thwcfd-utils.php:126
-msgctxt "placeholder"
-msgid "Notes about your order, e.g. special notes for delivery."
-msgstr "Notas sobre tu pedido, por ejemplo, notas especiales para la entrega."
-
-#: includes/utils/class-thwcfd-utils.php:125
-msgid "Order Notes"
-msgstr "Notas del pedido"
-
-#: admin/class-thwcfd-admin.php:75
-msgid "Settings"
-msgstr "Ajustes"
-
-#: admin/class-thwcfd-admin.php:69
-msgid "WooCommerce"
-msgstr "WooCommerce"
-
-#: admin/class-thwcfd-admin.php:64
-msgid "Checkout Form"
-msgstr "Formulario de pago"
-
-#. Description of the plugin
-msgid "Customize WooCommerce checkout fields(Add, Edit, Delete and re-arrange fields)."
-msgstr "Personaliza los campos de pago de WooCommerce (añadir, editar, borrar y reorganizar los campos)."
+#. Plugin Name of the plugin
+msgid "Checkout Field Editor for WooCommerce"
+msgstr "Checkout Field Editor for WooCommerce"
 
 #. Plugin URI of the plugin
 #. Author URI of the plugin
 msgid "https://www.themehigh.com"
 msgstr "https://www.themehigh.com"
 
-#. Plugin Name of the plugin
-msgid "Checkout Field Editor for WooCommerce"
-msgstr "Checkout Field Editor for WooCommerce"
+#. Description of the plugin
+msgid "Customize WooCommerce checkout fields(Add, Edit, Delete and re-arrange fields)."
+msgstr "Personaliza los campos de pago de WooCommerce (añadir, editar, borrar y reorganizar los campos)."
+
+#: admin/class-thwcfd-admin.php:55
+msgid "Checkout Form"
+msgstr "Formulario de pago"
+
+#: admin/class-thwcfd-admin.php:60
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: admin/class-thwcfd-admin.php:66
+msgid "Settings"
+msgstr "Ajustes"
+
+#: includes/utils/class-thwcfd-utils.php:151
+msgid "Order Notes"
+msgstr "Notas del pedido"
+
+#: includes/utils/class-thwcfd-utils.php:152
+msgctxt "placeholder"
+msgid "Notes about your order, e.g. special notes for delivery."
+msgstr "Notas sobre tu pedido, por ejemplo, notas especiales para la entrega."
+
+#: admin/class-thwcfd-admin-settings-general.php:102
+msgid "Add field"
+msgstr "Añadir un campo"
+
+#: admin/class-thwcfd-admin-settings-general.php:103
+msgid "Remove"
+msgstr "Eliminar"
+
+#: admin/class-thwcfd-admin-settings-general.php:104
+msgid "Enable"
+msgstr "Activar"
+
+#: admin/class-thwcfd-admin-settings-general.php:105
+msgid "Disable"
+msgstr "Desactivar"
+
+#: admin/class-thwcfd-admin-settings-general.php:108
+msgid "Save changes"
+msgstr "Guardar los cambios"
+
+#: admin/class-thwcfd-admin-settings-general.php:109
+msgid "Reset to default fields"
+msgstr "Restablecer a los campos por defecto"
+
+#: admin/class-thwcfd-admin-settings-general.php:95
+#: admin/class-thwcfd-admin-settings-general.php:191
+msgid "Edit"
+msgstr "Editar"
+
+#: admin/class-thwcfd-admin-settings-advanced.php:129
+#: admin/class-thwcfd-admin-settings-general.php:256
+#: admin/class-thwcfd-admin-settings-general.php:316
+msgid "Your changes were not saved due to an error (or you made none!)."
+msgstr "Tus cambios no se han guardado debido a un error (¡o no has hecho ninguno!)."
+
+#: admin/class-thwcfd-admin-settings-advanced.php:127
+#: admin/class-thwcfd-admin-settings-general.php:254
+#: admin/class-thwcfd-admin-settings-general.php:314
+msgid "Your changes were saved."
+msgstr "Tus cambios se han guardado."

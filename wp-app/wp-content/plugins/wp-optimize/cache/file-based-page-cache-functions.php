@@ -14,12 +14,16 @@ if (!defined('WPO_CACHE_EXT_DIR')) define('WPO_CACHE_EXT_DIR', dirname(__FILE__)
 /**
  * Cache output before it goes to the browser. If moving/renaming this function, then also change the check above.
  *
- * @param  string $buffer Page HTML.
- * @param  int    $flags  OB flags to be passed through.
- * @return string
+ * @param  String $buffer Page HTML.
+ * @param  Int    $flags  OB flags to be passed through.
+ *
+ * @return String
  */
 if (!function_exists('wpo_cache')) :
 function wpo_cache($buffer, $flags) {
+	
+	// This case appears to happen for unclear reasons without WP being fully loaded, e.g. https://wordpress.org/support/topic/fatal-error-since-wp-5-8-update/ . It is simplest just to short-circuit it.
+	if ('' === $buffer) return '';
 	
 	// This array records reasons why no cacheing took place. Be careful not to allow actions to proceed that should not - i.e. take note of its state appropriately.
 	$no_cache_because = array();
@@ -29,7 +33,7 @@ function wpo_cache($buffer, $flags) {
 	}
 
 	// Don't cache pages for logged in users.
-	if (empty($GLOBALS['wpo_cache_config']['enable_user_specific_cache']) && (!function_exists('is_user_logged_in') || is_user_logged_in())) {
+	if (!wpo_user_specific_cache_enabled() && (!function_exists('is_user_logged_in') || is_user_logged_in())) {
 		$no_cache_because[] = __('User is logged in', 'wp-optimize');
 	}
 
@@ -59,17 +63,26 @@ function wpo_cache($buffer, $flags) {
 		}
 	}
 
-	$can_cache_page = (defined('DONOTCACHEPAGE') && DONOTCACHEPAGE) ? false : true;
+	$can_cache_page = true;
+	
+	if (defined('DONOTCACHEPAGE') && DONOTCACHEPAGE) {
+		$can_cache_page = false;
+	}
 
 	/**
 	 * Defines if the page can be cached or not
 	 *
 	 * @param boolean $can_cache_page
 	 */
-	$can_cache_page = apply_filters('wpo_can_cache_page', $can_cache_page);
+	$can_cache_page_filter = apply_filters('wpo_can_cache_page', $can_cache_page);
 
-	if (!$can_cache_page) {
-		$no_cache_because[] = __('DONOTCACHEPAGE constant or wpo_can_cache_page filter forbade it', 'wp-optimize');
+	if (!$can_cache_page_filter) {
+		if ($can_cache_page) {
+			$can_cache_page = false;
+			$no_cache_because[] = __('wpo_can_cache_page filter forbade it', 'wp-optimize');
+		} else {
+			$no_cache_because[] = __('DONOTCACHEPAGE constant forbade it and wpo_can_cache_page filter did not over-ride it', 'wp-optimize');
+		}
 	}
 
 	if (defined('REST_REQUEST') && REST_REQUEST) {
@@ -254,8 +267,19 @@ function wpo_restricted_cache_page_type($restricted) {
  */
 if (!function_exists('wpo_cache_loggedin_users')) :
 function wpo_cache_loggedin_users() {
-	return !empty($GLOBALS['wpo_cache_config']['enable_user_caching']) || !empty($GLOBALS['wpo_cache_config']['enable_user_specific_cache']);
+	return !empty($GLOBALS['wpo_cache_config']['enable_user_caching']) || wpo_user_specific_cache_enabled();
 }
+endif;
+
+/**
+ * Returns true if we need to cache content for loggedin users.
+ *
+ * @return bool
+ */
+if (!function_exists('wpo_user_specific_cache_enabled')) :
+	function wpo_user_specific_cache_enabled() {
+		return !empty($GLOBALS['wpo_cache_config']['enable_user_specific_cache']) && !empty($GLOBALS['wpo_cache_config']['wp_salt_auth']) && !empty($GLOBALS['wpo_cache_config']['wp_salt_logged_in']);
+	}
 endif;
 
 /**
@@ -665,7 +689,7 @@ function wpo_get_url_exceptions() {
 		$exceptions = array_filter($exceptions, 'trim');
 	}
 
-	return $exceptions;
+	return apply_filters('wpo_get_url_exceptions', $exceptions);
 }
 endif;
 

@@ -1,5 +1,30 @@
 == Changelog ==
 
+= 1.7.1.2 =
+- Fixed: Edge case when form tokens (anti-spam protection) failed verification at certain time of a new day.
+
+= 1.7.1.1 =
+- Changed: Improved translations by removing confusion if non-translatable placeholders are used.
+- Changed: Improved support for WordPress Core UI colors and admin themes in the admin bar menu.
+- Changed: Improved display of empty and hidden field labels in Form Builder preview.
+- Changed: Field helper notification in the Form Builder now can be dismissed.
+- Changed: Improved and standardized look of classic and modern Dropdown field across Form Builder, admin area, and frontend.
+- Fixed: Strip slashes from Paragraph Text field when the value is dynamically populated.
+- Fixed: SMTP settings page linked to Setup Wizard even when SMTP settings are already configured.
+- Fixed: Notifications count in the admin bar is misaligned.
+- Fixed: Field helper notification in the Form Builder overlaps and blocks Duplicate and Delete actions when hovered.
+- Fixed: Non-latin (Punycode) email addresses are not converted for display in email suggestion hints.
+
+= 1.7.0 =
+- Added: Uncanny Automator integration.
+- Changed: Updated jQuery Validation library to v1.9.3.
+- Fixed: Incorrect handling of language files downloads when the plugin is activated, or site language is changed.
+- Fixed: Alignment for admin notification counter.
+- Fixed: Javascript error in Elementor page builder.
+- Fixed: Embedded forms into global sidebar report about an error in the Divi page builder.
+- Fixed: Change settings were not applied for a Duplicated Modern Dropdown field.
+- Fixed: Form fields not displaying full width on mobile devices with Base form styling selected.
+
 = 1.6.9 =
 - Added: Keyboard Shortcuts informational popup in the Form Builder, triggered with `Ctrl + /` shortcut.
 - Added: Separate category for templates added by addons.

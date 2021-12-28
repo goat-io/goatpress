@@ -23,18 +23,18 @@ function exactmetrics_seedprod_tracking( $settings ) {
     do_action( 'exactmetrics_tracking_before_analytics' );
     do_action( 'exactmetrics_tracking_before', 'analytics' );
 
-    require_once plugin_dir_path( EXACTMETRICS_PLUGIN_FILE ) . 'includes/frontend/tracking/class-tracking-analytics.php';
-    $tracking = new ExactMetrics_Tracking_Analytics();
-    echo $tracking->frontend_output();
+	require_once plugin_dir_path( EXACTMETRICS_PLUGIN_FILE ) . 'includes/frontend/tracking/class-tracking-gtag.php';
+	$tracking = new ExactMetrics_Tracking_Gtag();
+	echo $tracking->frontend_output();
 
-    do_action( 'exactmetrics_tracking_after_analytics' );
-    do_action( 'exactmetrics_tracking_after', 'analytics' );
+	do_action( 'exactmetrics_tracking_after_gtag' );
+    do_action( 'exactmetrics_tracking_after', 'gtag' );
 
     $track_user    = exactmetrics_track_user();
 
     if ( $track_user ) {
-        require_once plugin_dir_path( EXACTMETRICS_PLUGIN_FILE ) . 'includes/frontend/events/class-analytics-events.php';
-        new ExactMetrics_Analytics_Events();
+	    require_once plugin_dir_path( EXACTMETRICS_PLUGIN_FILE ) . 'includes/frontend/events/class-gtag-events.php';
+	    new ExactMetrics_Gtag_Events();
 
         // Let's run form tracking if we find it
         if ( function_exists( 'exactmetrics_forms_output_after_script' ) ) {

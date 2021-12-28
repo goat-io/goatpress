@@ -8222,8 +8222,3 @@ function is_php_version_compatible( $required ) {
 function wp_fuzzy_number_match( $expected, $actual, $precision = 1 ) {
 	return abs( (float) $expected - (float) $actual ) <= $precision;
 }
-
-add_action( 'init', 'stop_heartbeat', 1 );
-function stop_heartbeat() {
-wp_deregister_script('heartbeat');
-}

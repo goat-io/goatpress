@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 460);
+/******/ 	return __webpack_require__(__webpack_require__.s = 464);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -122,17 +122,10 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 
 /***/ }),
 
-/***/ 17:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wp"]["apiFetch"]; }());
-
-/***/ }),
-
 /***/ 19:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wc"]["date"]; }());
+(function() { module.exports = window["wp"]["apiFetch"]; }());
 
 /***/ }),
 
@@ -143,7 +136,14 @@ this["wc"] = this["wc"] || {}; this["wc"]["data"] =
 
 /***/ }),
 
-/***/ 249:
+/***/ 20:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wc"]["date"]; }());
+
+/***/ }),
+
+/***/ 252:
 /***/ (function(module, exports) {
 
 var charenc = {
@@ -183,14 +183,1418 @@ module.exports = charenc;
 
 /***/ }),
 
-/***/ 266:
+/***/ 268:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*! @license DOMPurify 2.3.3 | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.3.3/LICENSE */
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  undefined;
+}(this, function () { 'use strict';
+
+  function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+  var hasOwnProperty = Object.hasOwnProperty,
+      setPrototypeOf = Object.setPrototypeOf,
+      isFrozen = Object.isFrozen,
+      getPrototypeOf = Object.getPrototypeOf,
+      getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+  var freeze = Object.freeze,
+      seal = Object.seal,
+      create = Object.create; // eslint-disable-line import/no-mutable-exports
+
+  var _ref = typeof Reflect !== 'undefined' && Reflect,
+      apply = _ref.apply,
+      construct = _ref.construct;
+
+  if (!apply) {
+    apply = function apply(fun, thisValue, args) {
+      return fun.apply(thisValue, args);
+    };
+  }
+
+  if (!freeze) {
+    freeze = function freeze(x) {
+      return x;
+    };
+  }
+
+  if (!seal) {
+    seal = function seal(x) {
+      return x;
+    };
+  }
+
+  if (!construct) {
+    construct = function construct(Func, args) {
+      return new (Function.prototype.bind.apply(Func, [null].concat(_toConsumableArray(args))))();
+    };
+  }
+
+  var arrayForEach = unapply(Array.prototype.forEach);
+  var arrayPop = unapply(Array.prototype.pop);
+  var arrayPush = unapply(Array.prototype.push);
+
+  var stringToLowerCase = unapply(String.prototype.toLowerCase);
+  var stringMatch = unapply(String.prototype.match);
+  var stringReplace = unapply(String.prototype.replace);
+  var stringIndexOf = unapply(String.prototype.indexOf);
+  var stringTrim = unapply(String.prototype.trim);
+
+  var regExpTest = unapply(RegExp.prototype.test);
+
+  var typeErrorCreate = unconstruct(TypeError);
+
+  function unapply(func) {
+    return function (thisArg) {
+      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+
+      return apply(func, thisArg, args);
+    };
+  }
+
+  function unconstruct(func) {
+    return function () {
+      for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+        args[_key2] = arguments[_key2];
+      }
+
+      return construct(func, args);
+    };
+  }
+
+  /* Add properties to a lookup table */
+  function addToSet(set, array) {
+    if (setPrototypeOf) {
+      // Make 'in' and truthy checks like Boolean(set.constructor)
+      // independent of any properties defined on Object.prototype.
+      // Prevent prototype setters from intercepting set as a this value.
+      setPrototypeOf(set, null);
+    }
+
+    var l = array.length;
+    while (l--) {
+      var element = array[l];
+      if (typeof element === 'string') {
+        var lcElement = stringToLowerCase(element);
+        if (lcElement !== element) {
+          // Config presets (e.g. tags.js, attrs.js) are immutable.
+          if (!isFrozen(array)) {
+            array[l] = lcElement;
+          }
+
+          element = lcElement;
+        }
+      }
+
+      set[element] = true;
+    }
+
+    return set;
+  }
+
+  /* Shallow clone an object */
+  function clone(object) {
+    var newObject = create(null);
+
+    var property = void 0;
+    for (property in object) {
+      if (apply(hasOwnProperty, object, [property])) {
+        newObject[property] = object[property];
+      }
+    }
+
+    return newObject;
+  }
+
+  /* IE10 doesn't support __lookupGetter__ so lets'
+   * simulate it. It also automatically checks
+   * if the prop is function or getter and behaves
+   * accordingly. */
+  function lookupGetter(object, prop) {
+    while (object !== null) {
+      var desc = getOwnPropertyDescriptor(object, prop);
+      if (desc) {
+        if (desc.get) {
+          return unapply(desc.get);
+        }
+
+        if (typeof desc.value === 'function') {
+          return unapply(desc.value);
+        }
+      }
+
+      object = getPrototypeOf(object);
+    }
+
+    function fallbackValue(element) {
+      console.warn('fallback value for', element);
+      return null;
+    }
+
+    return fallbackValue;
+  }
+
+  var html = freeze(['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big', 'blink', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'content', 'data', 'datalist', 'dd', 'decorator', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt', 'element', 'em', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'main', 'map', 'mark', 'marquee', 'menu', 'menuitem', 'meter', 'nav', 'nobr', 'ol', 'optgroup', 'option', 'output', 'p', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'section', 'select', 'shadow', 'small', 'source', 'spacer', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'tr', 'track', 'tt', 'u', 'ul', 'var', 'video', 'wbr']);
+
+  // SVG
+  var svg = freeze(['svg', 'a', 'altglyph', 'altglyphdef', 'altglyphitem', 'animatecolor', 'animatemotion', 'animatetransform', 'circle', 'clippath', 'defs', 'desc', 'ellipse', 'filter', 'font', 'g', 'glyph', 'glyphref', 'hkern', 'image', 'line', 'lineargradient', 'marker', 'mask', 'metadata', 'mpath', 'path', 'pattern', 'polygon', 'polyline', 'radialgradient', 'rect', 'stop', 'style', 'switch', 'symbol', 'text', 'textpath', 'title', 'tref', 'tspan', 'view', 'vkern']);
+
+  var svgFilters = freeze(['feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence']);
+
+  // List of SVG elements that are disallowed by default.
+  // We still need to know them so that we can do namespace
+  // checks properly in case one wants to add them to
+  // allow-list.
+  var svgDisallowed = freeze(['animate', 'color-profile', 'cursor', 'discard', 'fedropshadow', 'feimage', 'font-face', 'font-face-format', 'font-face-name', 'font-face-src', 'font-face-uri', 'foreignobject', 'hatch', 'hatchpath', 'mesh', 'meshgradient', 'meshpatch', 'meshrow', 'missing-glyph', 'script', 'set', 'solidcolor', 'unknown', 'use']);
+
+  var mathMl = freeze(['math', 'menclose', 'merror', 'mfenced', 'mfrac', 'mglyph', 'mi', 'mlabeledtr', 'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom', 'mroot', 'mrow', 'ms', 'mspace', 'msqrt', 'mstyle', 'msub', 'msup', 'msubsup', 'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover']);
+
+  // Similarly to SVG, we want to know all MathML elements,
+  // even those that we disallow by default.
+  var mathMlDisallowed = freeze(['maction', 'maligngroup', 'malignmark', 'mlongdiv', 'mscarries', 'mscarry', 'msgroup', 'mstack', 'msline', 'msrow', 'semantics', 'annotation', 'annotation-xml', 'mprescripts', 'none']);
+
+  var text = freeze(['#text']);
+
+  var html$1 = freeze(['accept', 'action', 'align', 'alt', 'autocapitalize', 'autocomplete', 'autopictureinpicture', 'autoplay', 'background', 'bgcolor', 'border', 'capture', 'cellpadding', 'cellspacing', 'checked', 'cite', 'class', 'clear', 'color', 'cols', 'colspan', 'controls', 'controlslist', 'coords', 'crossorigin', 'datetime', 'decoding', 'default', 'dir', 'disabled', 'disablepictureinpicture', 'disableremoteplayback', 'download', 'draggable', 'enctype', 'enterkeyhint', 'face', 'for', 'headers', 'height', 'hidden', 'high', 'href', 'hreflang', 'id', 'inputmode', 'integrity', 'ismap', 'kind', 'label', 'lang', 'list', 'loading', 'loop', 'low', 'max', 'maxlength', 'media', 'method', 'min', 'minlength', 'multiple', 'muted', 'name', 'noshade', 'novalidate', 'nowrap', 'open', 'optimum', 'pattern', 'placeholder', 'playsinline', 'poster', 'preload', 'pubdate', 'radiogroup', 'readonly', 'rel', 'required', 'rev', 'reversed', 'role', 'rows', 'rowspan', 'spellcheck', 'scope', 'selected', 'shape', 'size', 'sizes', 'span', 'srclang', 'start', 'src', 'srcset', 'step', 'style', 'summary', 'tabindex', 'title', 'translate', 'type', 'usemap', 'valign', 'value', 'width', 'xmlns', 'slot']);
+
+  var svg$1 = freeze(['accent-height', 'accumulate', 'additive', 'alignment-baseline', 'ascent', 'attributename', 'attributetype', 'azimuth', 'basefrequency', 'baseline-shift', 'begin', 'bias', 'by', 'class', 'clip', 'clippathunits', 'clip-path', 'clip-rule', 'color', 'color-interpolation', 'color-interpolation-filters', 'color-profile', 'color-rendering', 'cx', 'cy', 'd', 'dx', 'dy', 'diffuseconstant', 'direction', 'display', 'divisor', 'dur', 'edgemode', 'elevation', 'end', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'filterunits', 'flood-color', 'flood-opacity', 'font-family', 'font-size', 'font-size-adjust', 'font-stretch', 'font-style', 'font-variant', 'font-weight', 'fx', 'fy', 'g1', 'g2', 'glyph-name', 'glyphref', 'gradientunits', 'gradienttransform', 'height', 'href', 'id', 'image-rendering', 'in', 'in2', 'k', 'k1', 'k2', 'k3', 'k4', 'kerning', 'keypoints', 'keysplines', 'keytimes', 'lang', 'lengthadjust', 'letter-spacing', 'kernelmatrix', 'kernelunitlength', 'lighting-color', 'local', 'marker-end', 'marker-mid', 'marker-start', 'markerheight', 'markerunits', 'markerwidth', 'maskcontentunits', 'maskunits', 'max', 'mask', 'media', 'method', 'mode', 'min', 'name', 'numoctaves', 'offset', 'operator', 'opacity', 'order', 'orient', 'orientation', 'origin', 'overflow', 'paint-order', 'path', 'pathlength', 'patterncontentunits', 'patterntransform', 'patternunits', 'points', 'preservealpha', 'preserveaspectratio', 'primitiveunits', 'r', 'rx', 'ry', 'radius', 'refx', 'refy', 'repeatcount', 'repeatdur', 'restart', 'result', 'rotate', 'scale', 'seed', 'shape-rendering', 'specularconstant', 'specularexponent', 'spreadmethod', 'startoffset', 'stddeviation', 'stitchtiles', 'stop-color', 'stop-opacity', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke', 'stroke-width', 'style', 'surfacescale', 'systemlanguage', 'tabindex', 'targetx', 'targety', 'transform', 'text-anchor', 'text-decoration', 'text-rendering', 'textlength', 'type', 'u1', 'u2', 'unicode', 'values', 'viewbox', 'visibility', 'version', 'vert-adv-y', 'vert-origin-x', 'vert-origin-y', 'width', 'word-spacing', 'wrap', 'writing-mode', 'xchannelselector', 'ychannelselector', 'x', 'x1', 'x2', 'xmlns', 'y', 'y1', 'y2', 'z', 'zoomandpan']);
+
+  var mathMl$1 = freeze(['accent', 'accentunder', 'align', 'bevelled', 'close', 'columnsalign', 'columnlines', 'columnspan', 'denomalign', 'depth', 'dir', 'display', 'displaystyle', 'encoding', 'fence', 'frame', 'height', 'href', 'id', 'largeop', 'length', 'linethickness', 'lspace', 'lquote', 'mathbackground', 'mathcolor', 'mathsize', 'mathvariant', 'maxsize', 'minsize', 'movablelimits', 'notation', 'numalign', 'open', 'rowalign', 'rowlines', 'rowspacing', 'rowspan', 'rspace', 'rquote', 'scriptlevel', 'scriptminsize', 'scriptsizemultiplier', 'selection', 'separator', 'separators', 'stretchy', 'subscriptshift', 'supscriptshift', 'symmetric', 'voffset', 'width', 'xmlns']);
+
+  var xml = freeze(['xlink:href', 'xml:id', 'xlink:title', 'xml:space', 'xmlns:xlink']);
+
+  // eslint-disable-next-line unicorn/better-regex
+  var MUSTACHE_EXPR = seal(/\{\{[\s\S]*|[\s\S]*\}\}/gm); // Specify template detection regex for SAFE_FOR_TEMPLATES mode
+  var ERB_EXPR = seal(/<%[\s\S]*|[\s\S]*%>/gm);
+  var DATA_ATTR = seal(/^data-[\-\w.\u00B7-\uFFFF]/); // eslint-disable-line no-useless-escape
+  var ARIA_ATTR = seal(/^aria-[\-\w]+$/); // eslint-disable-line no-useless-escape
+  var IS_ALLOWED_URI = seal(/^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i // eslint-disable-line no-useless-escape
+  );
+  var IS_SCRIPT_OR_DATA = seal(/^(?:\w+script|data):/i);
+  var ATTR_WHITESPACE = seal(/[\u0000-\u0020\u00A0\u1680\u180E\u2000-\u2029\u205F\u3000]/g // eslint-disable-line no-control-regex
+  );
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+  function _toConsumableArray$1(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+  var getGlobal = function getGlobal() {
+    return typeof window === 'undefined' ? null : window;
+  };
+
+  /**
+   * Creates a no-op policy for internal use only.
+   * Don't export this function outside this module!
+   * @param {?TrustedTypePolicyFactory} trustedTypes The policy factory.
+   * @param {Document} document The document object (to determine policy name suffix)
+   * @return {?TrustedTypePolicy} The policy created (or null, if Trusted Types
+   * are not supported).
+   */
+  var _createTrustedTypesPolicy = function _createTrustedTypesPolicy(trustedTypes, document) {
+    if ((typeof trustedTypes === 'undefined' ? 'undefined' : _typeof(trustedTypes)) !== 'object' || typeof trustedTypes.createPolicy !== 'function') {
+      return null;
+    }
+
+    // Allow the callers to control the unique policy name
+    // by adding a data-tt-policy-suffix to the script element with the DOMPurify.
+    // Policy creation with duplicate names throws in Trusted Types.
+    var suffix = null;
+    var ATTR_NAME = 'data-tt-policy-suffix';
+    if (document.currentScript && document.currentScript.hasAttribute(ATTR_NAME)) {
+      suffix = document.currentScript.getAttribute(ATTR_NAME);
+    }
+
+    var policyName = 'dompurify' + (suffix ? '#' + suffix : '');
+
+    try {
+      return trustedTypes.createPolicy(policyName, {
+        createHTML: function createHTML(html$$1) {
+          return html$$1;
+        }
+      });
+    } catch (_) {
+      // Policy creation failed (most likely another DOMPurify script has
+      // already run). Skip creating the policy, as this will only cause errors
+      // if TT are enforced.
+      console.warn('TrustedTypes policy ' + policyName + ' could not be created.');
+      return null;
+    }
+  };
+
+  function createDOMPurify() {
+    var window = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getGlobal();
+
+    var DOMPurify = function DOMPurify(root) {
+      return createDOMPurify(root);
+    };
+
+    /**
+     * Version label, exposed for easier checks
+     * if DOMPurify is up to date or not
+     */
+    DOMPurify.version = '2.3.3';
+
+    /**
+     * Array of elements that DOMPurify removed during sanitation.
+     * Empty if nothing was removed.
+     */
+    DOMPurify.removed = [];
+
+    if (!window || !window.document || window.document.nodeType !== 9) {
+      // Not running in a browser, provide a factory function
+      // so that you can pass your own Window
+      DOMPurify.isSupported = false;
+
+      return DOMPurify;
+    }
+
+    var originalDocument = window.document;
+
+    var document = window.document;
+    var DocumentFragment = window.DocumentFragment,
+        HTMLTemplateElement = window.HTMLTemplateElement,
+        Node = window.Node,
+        Element = window.Element,
+        NodeFilter = window.NodeFilter,
+        _window$NamedNodeMap = window.NamedNodeMap,
+        NamedNodeMap = _window$NamedNodeMap === undefined ? window.NamedNodeMap || window.MozNamedAttrMap : _window$NamedNodeMap,
+        Text = window.Text,
+        Comment = window.Comment,
+        DOMParser = window.DOMParser,
+        trustedTypes = window.trustedTypes;
+
+
+    var ElementPrototype = Element.prototype;
+
+    var cloneNode = lookupGetter(ElementPrototype, 'cloneNode');
+    var getNextSibling = lookupGetter(ElementPrototype, 'nextSibling');
+    var getChildNodes = lookupGetter(ElementPrototype, 'childNodes');
+    var getParentNode = lookupGetter(ElementPrototype, 'parentNode');
+
+    // As per issue #47, the web-components registry is inherited by a
+    // new document created via createHTMLDocument. As per the spec
+    // (http://w3c.github.io/webcomponents/spec/custom/#creating-and-passing-registries)
+    // a new empty registry is used when creating a template contents owner
+    // document, so we use that as our parent document to ensure nothing
+    // is inherited.
+    if (typeof HTMLTemplateElement === 'function') {
+      var template = document.createElement('template');
+      if (template.content && template.content.ownerDocument) {
+        document = template.content.ownerDocument;
+      }
+    }
+
+    var trustedTypesPolicy = _createTrustedTypesPolicy(trustedTypes, originalDocument);
+    var emptyHTML = trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML('') : '';
+
+    var _document = document,
+        implementation = _document.implementation,
+        createNodeIterator = _document.createNodeIterator,
+        createDocumentFragment = _document.createDocumentFragment,
+        getElementsByTagName = _document.getElementsByTagName;
+    var importNode = originalDocument.importNode;
+
+
+    var documentMode = {};
+    try {
+      documentMode = clone(document).documentMode ? document.documentMode : {};
+    } catch (_) {}
+
+    var hooks = {};
+
+    /**
+     * Expose whether this browser supports running the full DOMPurify.
+     */
+    DOMPurify.isSupported = typeof getParentNode === 'function' && implementation && typeof implementation.createHTMLDocument !== 'undefined' && documentMode !== 9;
+
+    var MUSTACHE_EXPR$$1 = MUSTACHE_EXPR,
+        ERB_EXPR$$1 = ERB_EXPR,
+        DATA_ATTR$$1 = DATA_ATTR,
+        ARIA_ATTR$$1 = ARIA_ATTR,
+        IS_SCRIPT_OR_DATA$$1 = IS_SCRIPT_OR_DATA,
+        ATTR_WHITESPACE$$1 = ATTR_WHITESPACE;
+    var IS_ALLOWED_URI$$1 = IS_ALLOWED_URI;
+
+    /**
+     * We consider the elements and attributes below to be safe. Ideally
+     * don't add any new ones but feel free to remove unwanted ones.
+     */
+
+    /* allowed element names */
+
+    var ALLOWED_TAGS = null;
+    var DEFAULT_ALLOWED_TAGS = addToSet({}, [].concat(_toConsumableArray$1(html), _toConsumableArray$1(svg), _toConsumableArray$1(svgFilters), _toConsumableArray$1(mathMl), _toConsumableArray$1(text)));
+
+    /* Allowed attribute names */
+    var ALLOWED_ATTR = null;
+    var DEFAULT_ALLOWED_ATTR = addToSet({}, [].concat(_toConsumableArray$1(html$1), _toConsumableArray$1(svg$1), _toConsumableArray$1(mathMl$1), _toConsumableArray$1(xml)));
+
+    /* Explicitly forbidden tags (overrides ALLOWED_TAGS/ADD_TAGS) */
+    var FORBID_TAGS = null;
+
+    /* Explicitly forbidden attributes (overrides ALLOWED_ATTR/ADD_ATTR) */
+    var FORBID_ATTR = null;
+
+    /* Decide if ARIA attributes are okay */
+    var ALLOW_ARIA_ATTR = true;
+
+    /* Decide if custom data attributes are okay */
+    var ALLOW_DATA_ATTR = true;
+
+    /* Decide if unknown protocols are okay */
+    var ALLOW_UNKNOWN_PROTOCOLS = false;
+
+    /* Output should be safe for common template engines.
+     * This means, DOMPurify removes data attributes, mustaches and ERB
+     */
+    var SAFE_FOR_TEMPLATES = false;
+
+    /* Decide if document with <html>... should be returned */
+    var WHOLE_DOCUMENT = false;
+
+    /* Track whether config is already set on this instance of DOMPurify. */
+    var SET_CONFIG = false;
+
+    /* Decide if all elements (e.g. style, script) must be children of
+     * document.body. By default, browsers might move them to document.head */
+    var FORCE_BODY = false;
+
+    /* Decide if a DOM `HTMLBodyElement` should be returned, instead of a html
+     * string (or a TrustedHTML object if Trusted Types are supported).
+     * If `WHOLE_DOCUMENT` is enabled a `HTMLHtmlElement` will be returned instead
+     */
+    var RETURN_DOM = false;
+
+    /* Decide if a DOM `DocumentFragment` should be returned, instead of a html
+     * string  (or a TrustedHTML object if Trusted Types are supported) */
+    var RETURN_DOM_FRAGMENT = false;
+
+    /* If `RETURN_DOM` or `RETURN_DOM_FRAGMENT` is enabled, decide if the returned DOM
+     * `Node` is imported into the current `Document`. If this flag is not enabled the
+     * `Node` will belong (its ownerDocument) to a fresh `HTMLDocument`, created by
+     * DOMPurify.
+     *
+     * This defaults to `true` starting DOMPurify 2.2.0. Note that setting it to `false`
+     * might cause XSS from attacks hidden in closed shadowroots in case the browser
+     * supports Declarative Shadow: DOM https://web.dev/declarative-shadow-dom/
+     */
+    var RETURN_DOM_IMPORT = true;
+
+    /* Try to return a Trusted Type object instead of a string, return a string in
+     * case Trusted Types are not supported  */
+    var RETURN_TRUSTED_TYPE = false;
+
+    /* Output should be free from DOM clobbering attacks? */
+    var SANITIZE_DOM = true;
+
+    /* Keep element content when removing element? */
+    var KEEP_CONTENT = true;
+
+    /* If a `Node` is passed to sanitize(), then performs sanitization in-place instead
+     * of importing it into a new Document and returning a sanitized copy */
+    var IN_PLACE = false;
+
+    /* Allow usage of profiles like html, svg and mathMl */
+    var USE_PROFILES = {};
+
+    /* Tags to ignore content of when KEEP_CONTENT is true */
+    var FORBID_CONTENTS = null;
+    var DEFAULT_FORBID_CONTENTS = addToSet({}, ['annotation-xml', 'audio', 'colgroup', 'desc', 'foreignobject', 'head', 'iframe', 'math', 'mi', 'mn', 'mo', 'ms', 'mtext', 'noembed', 'noframes', 'noscript', 'plaintext', 'script', 'style', 'svg', 'template', 'thead', 'title', 'video', 'xmp']);
+
+    /* Tags that are safe for data: URIs */
+    var DATA_URI_TAGS = null;
+    var DEFAULT_DATA_URI_TAGS = addToSet({}, ['audio', 'video', 'img', 'source', 'image', 'track']);
+
+    /* Attributes safe for values like "javascript:" */
+    var URI_SAFE_ATTRIBUTES = null;
+    var DEFAULT_URI_SAFE_ATTRIBUTES = addToSet({}, ['alt', 'class', 'for', 'id', 'label', 'name', 'pattern', 'placeholder', 'role', 'summary', 'title', 'value', 'style', 'xmlns']);
+
+    var MATHML_NAMESPACE = 'http://www.w3.org/1998/Math/MathML';
+    var SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
+    var HTML_NAMESPACE = 'http://www.w3.org/1999/xhtml';
+    /* Document namespace */
+    var NAMESPACE = HTML_NAMESPACE;
+    var IS_EMPTY_INPUT = false;
+
+    /* Parsing of strict XHTML documents */
+    var PARSER_MEDIA_TYPE = void 0;
+    var SUPPORTED_PARSER_MEDIA_TYPES = ['application/xhtml+xml', 'text/html'];
+    var DEFAULT_PARSER_MEDIA_TYPE = 'text/html';
+    var transformCaseFunc = void 0;
+
+    /* Keep a reference to config to pass to hooks */
+    var CONFIG = null;
+
+    /* Ideally, do not touch anything below this line */
+    /* ______________________________________________ */
+
+    var formElement = document.createElement('form');
+
+    /**
+     * _parseConfig
+     *
+     * @param  {Object} cfg optional config literal
+     */
+    // eslint-disable-next-line complexity
+    var _parseConfig = function _parseConfig(cfg) {
+      if (CONFIG && CONFIG === cfg) {
+        return;
+      }
+
+      /* Shield configuration object from tampering */
+      if (!cfg || (typeof cfg === 'undefined' ? 'undefined' : _typeof(cfg)) !== 'object') {
+        cfg = {};
+      }
+
+      /* Shield configuration object from prototype pollution */
+      cfg = clone(cfg);
+
+      /* Set configuration parameters */
+      ALLOWED_TAGS = 'ALLOWED_TAGS' in cfg ? addToSet({}, cfg.ALLOWED_TAGS) : DEFAULT_ALLOWED_TAGS;
+      ALLOWED_ATTR = 'ALLOWED_ATTR' in cfg ? addToSet({}, cfg.ALLOWED_ATTR) : DEFAULT_ALLOWED_ATTR;
+      URI_SAFE_ATTRIBUTES = 'ADD_URI_SAFE_ATTR' in cfg ? addToSet(clone(DEFAULT_URI_SAFE_ATTRIBUTES), cfg.ADD_URI_SAFE_ATTR) : DEFAULT_URI_SAFE_ATTRIBUTES;
+      DATA_URI_TAGS = 'ADD_DATA_URI_TAGS' in cfg ? addToSet(clone(DEFAULT_DATA_URI_TAGS), cfg.ADD_DATA_URI_TAGS) : DEFAULT_DATA_URI_TAGS;
+      FORBID_CONTENTS = 'FORBID_CONTENTS' in cfg ? addToSet({}, cfg.FORBID_CONTENTS) : DEFAULT_FORBID_CONTENTS;
+      FORBID_TAGS = 'FORBID_TAGS' in cfg ? addToSet({}, cfg.FORBID_TAGS) : {};
+      FORBID_ATTR = 'FORBID_ATTR' in cfg ? addToSet({}, cfg.FORBID_ATTR) : {};
+      USE_PROFILES = 'USE_PROFILES' in cfg ? cfg.USE_PROFILES : false;
+      ALLOW_ARIA_ATTR = cfg.ALLOW_ARIA_ATTR !== false; // Default true
+      ALLOW_DATA_ATTR = cfg.ALLOW_DATA_ATTR !== false; // Default true
+      ALLOW_UNKNOWN_PROTOCOLS = cfg.ALLOW_UNKNOWN_PROTOCOLS || false; // Default false
+      SAFE_FOR_TEMPLATES = cfg.SAFE_FOR_TEMPLATES || false; // Default false
+      WHOLE_DOCUMENT = cfg.WHOLE_DOCUMENT || false; // Default false
+      RETURN_DOM = cfg.RETURN_DOM || false; // Default false
+      RETURN_DOM_FRAGMENT = cfg.RETURN_DOM_FRAGMENT || false; // Default false
+      RETURN_DOM_IMPORT = cfg.RETURN_DOM_IMPORT !== false; // Default true
+      RETURN_TRUSTED_TYPE = cfg.RETURN_TRUSTED_TYPE || false; // Default false
+      FORCE_BODY = cfg.FORCE_BODY || false; // Default false
+      SANITIZE_DOM = cfg.SANITIZE_DOM !== false; // Default true
+      KEEP_CONTENT = cfg.KEEP_CONTENT !== false; // Default true
+      IN_PLACE = cfg.IN_PLACE || false; // Default false
+      IS_ALLOWED_URI$$1 = cfg.ALLOWED_URI_REGEXP || IS_ALLOWED_URI$$1;
+      NAMESPACE = cfg.NAMESPACE || HTML_NAMESPACE;
+
+      PARSER_MEDIA_TYPE =
+      // eslint-disable-next-line unicorn/prefer-includes
+      SUPPORTED_PARSER_MEDIA_TYPES.indexOf(cfg.PARSER_MEDIA_TYPE) === -1 ? PARSER_MEDIA_TYPE = DEFAULT_PARSER_MEDIA_TYPE : PARSER_MEDIA_TYPE = cfg.PARSER_MEDIA_TYPE;
+
+      // HTML tags and attributes are not case-sensitive, converting to lowercase. Keeping XHTML as is.
+      transformCaseFunc = PARSER_MEDIA_TYPE === 'application/xhtml+xml' ? function (x) {
+        return x;
+      } : stringToLowerCase;
+
+      if (SAFE_FOR_TEMPLATES) {
+        ALLOW_DATA_ATTR = false;
+      }
+
+      if (RETURN_DOM_FRAGMENT) {
+        RETURN_DOM = true;
+      }
+
+      /* Parse profile info */
+      if (USE_PROFILES) {
+        ALLOWED_TAGS = addToSet({}, [].concat(_toConsumableArray$1(text)));
+        ALLOWED_ATTR = [];
+        if (USE_PROFILES.html === true) {
+          addToSet(ALLOWED_TAGS, html);
+          addToSet(ALLOWED_ATTR, html$1);
+        }
+
+        if (USE_PROFILES.svg === true) {
+          addToSet(ALLOWED_TAGS, svg);
+          addToSet(ALLOWED_ATTR, svg$1);
+          addToSet(ALLOWED_ATTR, xml);
+        }
+
+        if (USE_PROFILES.svgFilters === true) {
+          addToSet(ALLOWED_TAGS, svgFilters);
+          addToSet(ALLOWED_ATTR, svg$1);
+          addToSet(ALLOWED_ATTR, xml);
+        }
+
+        if (USE_PROFILES.mathMl === true) {
+          addToSet(ALLOWED_TAGS, mathMl);
+          addToSet(ALLOWED_ATTR, mathMl$1);
+          addToSet(ALLOWED_ATTR, xml);
+        }
+      }
+
+      /* Merge configuration parameters */
+      if (cfg.ADD_TAGS) {
+        if (ALLOWED_TAGS === DEFAULT_ALLOWED_TAGS) {
+          ALLOWED_TAGS = clone(ALLOWED_TAGS);
+        }
+
+        addToSet(ALLOWED_TAGS, cfg.ADD_TAGS);
+      }
+
+      if (cfg.ADD_ATTR) {
+        if (ALLOWED_ATTR === DEFAULT_ALLOWED_ATTR) {
+          ALLOWED_ATTR = clone(ALLOWED_ATTR);
+        }
+
+        addToSet(ALLOWED_ATTR, cfg.ADD_ATTR);
+      }
+
+      if (cfg.ADD_URI_SAFE_ATTR) {
+        addToSet(URI_SAFE_ATTRIBUTES, cfg.ADD_URI_SAFE_ATTR);
+      }
+
+      if (cfg.FORBID_CONTENTS) {
+        if (FORBID_CONTENTS === DEFAULT_FORBID_CONTENTS) {
+          FORBID_CONTENTS = clone(FORBID_CONTENTS);
+        }
+
+        addToSet(FORBID_CONTENTS, cfg.FORBID_CONTENTS);
+      }
+
+      /* Add #text in case KEEP_CONTENT is set to true */
+      if (KEEP_CONTENT) {
+        ALLOWED_TAGS['#text'] = true;
+      }
+
+      /* Add html, head and body to ALLOWED_TAGS in case WHOLE_DOCUMENT is true */
+      if (WHOLE_DOCUMENT) {
+        addToSet(ALLOWED_TAGS, ['html', 'head', 'body']);
+      }
+
+      /* Add tbody to ALLOWED_TAGS in case tables are permitted, see #286, #365 */
+      if (ALLOWED_TAGS.table) {
+        addToSet(ALLOWED_TAGS, ['tbody']);
+        delete FORBID_TAGS.tbody;
+      }
+
+      // Prevent further manipulation of configuration.
+      // Not available in IE8, Safari 5, etc.
+      if (freeze) {
+        freeze(cfg);
+      }
+
+      CONFIG = cfg;
+    };
+
+    var MATHML_TEXT_INTEGRATION_POINTS = addToSet({}, ['mi', 'mo', 'mn', 'ms', 'mtext']);
+
+    var HTML_INTEGRATION_POINTS = addToSet({}, ['foreignobject', 'desc', 'title', 'annotation-xml']);
+
+    /* Keep track of all possible SVG and MathML tags
+     * so that we can perform the namespace checks
+     * correctly. */
+    var ALL_SVG_TAGS = addToSet({}, svg);
+    addToSet(ALL_SVG_TAGS, svgFilters);
+    addToSet(ALL_SVG_TAGS, svgDisallowed);
+
+    var ALL_MATHML_TAGS = addToSet({}, mathMl);
+    addToSet(ALL_MATHML_TAGS, mathMlDisallowed);
+
+    /**
+     *
+     *
+     * @param  {Element} element a DOM element whose namespace is being checked
+     * @returns {boolean} Return false if the element has a
+     *  namespace that a spec-compliant parser would never
+     *  return. Return true otherwise.
+     */
+    var _checkValidNamespace = function _checkValidNamespace(element) {
+      var parent = getParentNode(element);
+
+      // In JSDOM, if we're inside shadow DOM, then parentNode
+      // can be null. We just simulate parent in this case.
+      if (!parent || !parent.tagName) {
+        parent = {
+          namespaceURI: HTML_NAMESPACE,
+          tagName: 'template'
+        };
+      }
+
+      var tagName = stringToLowerCase(element.tagName);
+      var parentTagName = stringToLowerCase(parent.tagName);
+
+      if (element.namespaceURI === SVG_NAMESPACE) {
+        // The only way to switch from HTML namespace to SVG
+        // is via <svg>. If it happens via any other tag, then
+        // it should be killed.
+        if (parent.namespaceURI === HTML_NAMESPACE) {
+          return tagName === 'svg';
+        }
+
+        // The only way to switch from MathML to SVG is via
+        // svg if parent is either <annotation-xml> or MathML
+        // text integration points.
+        if (parent.namespaceURI === MATHML_NAMESPACE) {
+          return tagName === 'svg' && (parentTagName === 'annotation-xml' || MATHML_TEXT_INTEGRATION_POINTS[parentTagName]);
+        }
+
+        // We only allow elements that are defined in SVG
+        // spec. All others are disallowed in SVG namespace.
+        return Boolean(ALL_SVG_TAGS[tagName]);
+      }
+
+      if (element.namespaceURI === MATHML_NAMESPACE) {
+        // The only way to switch from HTML namespace to MathML
+        // is via <math>. If it happens via any other tag, then
+        // it should be killed.
+        if (parent.namespaceURI === HTML_NAMESPACE) {
+          return tagName === 'math';
+        }
+
+        // The only way to switch from SVG to MathML is via
+        // <math> and HTML integration points
+        if (parent.namespaceURI === SVG_NAMESPACE) {
+          return tagName === 'math' && HTML_INTEGRATION_POINTS[parentTagName];
+        }
+
+        // We only allow elements that are defined in MathML
+        // spec. All others are disallowed in MathML namespace.
+        return Boolean(ALL_MATHML_TAGS[tagName]);
+      }
+
+      if (element.namespaceURI === HTML_NAMESPACE) {
+        // The only way to switch from SVG to HTML is via
+        // HTML integration points, and from MathML to HTML
+        // is via MathML text integration points
+        if (parent.namespaceURI === SVG_NAMESPACE && !HTML_INTEGRATION_POINTS[parentTagName]) {
+          return false;
+        }
+
+        if (parent.namespaceURI === MATHML_NAMESPACE && !MATHML_TEXT_INTEGRATION_POINTS[parentTagName]) {
+          return false;
+        }
+
+        // Certain elements are allowed in both SVG and HTML
+        // namespace. We need to specify them explicitly
+        // so that they don't get erronously deleted from
+        // HTML namespace.
+        var commonSvgAndHTMLElements = addToSet({}, ['title', 'style', 'font', 'a', 'script']);
+
+        // We disallow tags that are specific for MathML
+        // or SVG and should never appear in HTML namespace
+        return !ALL_MATHML_TAGS[tagName] && (commonSvgAndHTMLElements[tagName] || !ALL_SVG_TAGS[tagName]);
+      }
+
+      // The code should never reach this place (this means
+      // that the element somehow got namespace that is not
+      // HTML, SVG or MathML). Return false just in case.
+      return false;
+    };
+
+    /**
+     * _forceRemove
+     *
+     * @param  {Node} node a DOM node
+     */
+    var _forceRemove = function _forceRemove(node) {
+      arrayPush(DOMPurify.removed, { element: node });
+      try {
+        // eslint-disable-next-line unicorn/prefer-dom-node-remove
+        node.parentNode.removeChild(node);
+      } catch (_) {
+        try {
+          node.outerHTML = emptyHTML;
+        } catch (_) {
+          node.remove();
+        }
+      }
+    };
+
+    /**
+     * _removeAttribute
+     *
+     * @param  {String} name an Attribute name
+     * @param  {Node} node a DOM node
+     */
+    var _removeAttribute = function _removeAttribute(name, node) {
+      try {
+        arrayPush(DOMPurify.removed, {
+          attribute: node.getAttributeNode(name),
+          from: node
+        });
+      } catch (_) {
+        arrayPush(DOMPurify.removed, {
+          attribute: null,
+          from: node
+        });
+      }
+
+      node.removeAttribute(name);
+
+      // We void attribute values for unremovable "is"" attributes
+      if (name === 'is' && !ALLOWED_ATTR[name]) {
+        if (RETURN_DOM || RETURN_DOM_FRAGMENT) {
+          try {
+            _forceRemove(node);
+          } catch (_) {}
+        } else {
+          try {
+            node.setAttribute(name, '');
+          } catch (_) {}
+        }
+      }
+    };
+
+    /**
+     * _initDocument
+     *
+     * @param  {String} dirty a string of dirty markup
+     * @return {Document} a DOM, filled with the dirty markup
+     */
+    var _initDocument = function _initDocument(dirty) {
+      /* Create a HTML document */
+      var doc = void 0;
+      var leadingWhitespace = void 0;
+
+      if (FORCE_BODY) {
+        dirty = '<remove></remove>' + dirty;
+      } else {
+        /* If FORCE_BODY isn't used, leading whitespace needs to be preserved manually */
+        var matches = stringMatch(dirty, /^[\r\n\t ]+/);
+        leadingWhitespace = matches && matches[0];
+      }
+
+      if (PARSER_MEDIA_TYPE === 'application/xhtml+xml') {
+        // Root of XHTML doc must contain xmlns declaration (see https://www.w3.org/TR/xhtml1/normative.html#strict)
+        dirty = '<html xmlns="http://www.w3.org/1999/xhtml"><head></head><body>' + dirty + '</body></html>';
+      }
+
+      var dirtyPayload = trustedTypesPolicy ? trustedTypesPolicy.createHTML(dirty) : dirty;
+      /*
+       * Use the DOMParser API by default, fallback later if needs be
+       * DOMParser not work for svg when has multiple root element.
+       */
+      if (NAMESPACE === HTML_NAMESPACE) {
+        try {
+          doc = new DOMParser().parseFromString(dirtyPayload, PARSER_MEDIA_TYPE);
+        } catch (_) {}
+      }
+
+      /* Use createHTMLDocument in case DOMParser is not available */
+      if (!doc || !doc.documentElement) {
+        doc = implementation.createDocument(NAMESPACE, 'template', null);
+        try {
+          doc.documentElement.innerHTML = IS_EMPTY_INPUT ? '' : dirtyPayload;
+        } catch (_) {
+          // Syntax error if dirtyPayload is invalid xml
+        }
+      }
+
+      var body = doc.body || doc.documentElement;
+
+      if (dirty && leadingWhitespace) {
+        body.insertBefore(document.createTextNode(leadingWhitespace), body.childNodes[0] || null);
+      }
+
+      /* Work on whole document or just its body */
+      if (NAMESPACE === HTML_NAMESPACE) {
+        return getElementsByTagName.call(doc, WHOLE_DOCUMENT ? 'html' : 'body')[0];
+      }
+
+      return WHOLE_DOCUMENT ? doc.documentElement : body;
+    };
+
+    /**
+     * _createIterator
+     *
+     * @param  {Document} root document/fragment to create iterator for
+     * @return {Iterator} iterator instance
+     */
+    var _createIterator = function _createIterator(root) {
+      return createNodeIterator.call(root.ownerDocument || root, root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_COMMENT | NodeFilter.SHOW_TEXT, null, false);
+    };
+
+    /**
+     * _isClobbered
+     *
+     * @param  {Node} elm element to check for clobbering attacks
+     * @return {Boolean} true if clobbered, false if safe
+     */
+    var _isClobbered = function _isClobbered(elm) {
+      if (elm instanceof Text || elm instanceof Comment) {
+        return false;
+      }
+
+      if (typeof elm.nodeName !== 'string' || typeof elm.textContent !== 'string' || typeof elm.removeChild !== 'function' || !(elm.attributes instanceof NamedNodeMap) || typeof elm.removeAttribute !== 'function' || typeof elm.setAttribute !== 'function' || typeof elm.namespaceURI !== 'string' || typeof elm.insertBefore !== 'function') {
+        return true;
+      }
+
+      return false;
+    };
+
+    /**
+     * _isNode
+     *
+     * @param  {Node} obj object to check whether it's a DOM node
+     * @return {Boolean} true is object is a DOM node
+     */
+    var _isNode = function _isNode(object) {
+      return (typeof Node === 'undefined' ? 'undefined' : _typeof(Node)) === 'object' ? object instanceof Node : object && (typeof object === 'undefined' ? 'undefined' : _typeof(object)) === 'object' && typeof object.nodeType === 'number' && typeof object.nodeName === 'string';
+    };
+
+    /**
+     * _executeHook
+     * Execute user configurable hooks
+     *
+     * @param  {String} entryPoint  Name of the hook's entry point
+     * @param  {Node} currentNode node to work on with the hook
+     * @param  {Object} data additional hook parameters
+     */
+    var _executeHook = function _executeHook(entryPoint, currentNode, data) {
+      if (!hooks[entryPoint]) {
+        return;
+      }
+
+      arrayForEach(hooks[entryPoint], function (hook) {
+        hook.call(DOMPurify, currentNode, data, CONFIG);
+      });
+    };
+
+    /**
+     * _sanitizeElements
+     *
+     * @protect nodeName
+     * @protect textContent
+     * @protect removeChild
+     *
+     * @param   {Node} currentNode to check for permission to exist
+     * @return  {Boolean} true if node was killed, false if left alive
+     */
+    var _sanitizeElements = function _sanitizeElements(currentNode) {
+      var content = void 0;
+
+      /* Execute a hook if present */
+      _executeHook('beforeSanitizeElements', currentNode, null);
+
+      /* Check if element is clobbered or can clobber */
+      if (_isClobbered(currentNode)) {
+        _forceRemove(currentNode);
+        return true;
+      }
+
+      /* Check if tagname contains Unicode */
+      if (stringMatch(currentNode.nodeName, /[\u0080-\uFFFF]/)) {
+        _forceRemove(currentNode);
+        return true;
+      }
+
+      /* Now let's check the element's type and name */
+      var tagName = transformCaseFunc(currentNode.nodeName);
+
+      /* Execute a hook if present */
+      _executeHook('uponSanitizeElement', currentNode, {
+        tagName: tagName,
+        allowedTags: ALLOWED_TAGS
+      });
+
+      /* Detect mXSS attempts abusing namespace confusion */
+      if (!_isNode(currentNode.firstElementChild) && (!_isNode(currentNode.content) || !_isNode(currentNode.content.firstElementChild)) && regExpTest(/<[/\w]/g, currentNode.innerHTML) && regExpTest(/<[/\w]/g, currentNode.textContent)) {
+        _forceRemove(currentNode);
+        return true;
+      }
+
+      /* Mitigate a problem with templates inside select */
+      if (tagName === 'select' && regExpTest(/<template/i, currentNode.innerHTML)) {
+        _forceRemove(currentNode);
+        return true;
+      }
+
+      /* Remove element if anything forbids its presence */
+      if (!ALLOWED_TAGS[tagName] || FORBID_TAGS[tagName]) {
+        /* Keep content except for bad-listed elements */
+        if (KEEP_CONTENT && !FORBID_CONTENTS[tagName]) {
+          var parentNode = getParentNode(currentNode) || currentNode.parentNode;
+          var childNodes = getChildNodes(currentNode) || currentNode.childNodes;
+
+          if (childNodes && parentNode) {
+            var childCount = childNodes.length;
+
+            for (var i = childCount - 1; i >= 0; --i) {
+              parentNode.insertBefore(cloneNode(childNodes[i], true), getNextSibling(currentNode));
+            }
+          }
+        }
+
+        _forceRemove(currentNode);
+        return true;
+      }
+
+      /* Check whether element has a valid namespace */
+      if (currentNode instanceof Element && !_checkValidNamespace(currentNode)) {
+        _forceRemove(currentNode);
+        return true;
+      }
+
+      if ((tagName === 'noscript' || tagName === 'noembed') && regExpTest(/<\/no(script|embed)/i, currentNode.innerHTML)) {
+        _forceRemove(currentNode);
+        return true;
+      }
+
+      /* Sanitize element content to be template-safe */
+      if (SAFE_FOR_TEMPLATES && currentNode.nodeType === 3) {
+        /* Get the element's text content */
+        content = currentNode.textContent;
+        content = stringReplace(content, MUSTACHE_EXPR$$1, ' ');
+        content = stringReplace(content, ERB_EXPR$$1, ' ');
+        if (currentNode.textContent !== content) {
+          arrayPush(DOMPurify.removed, { element: currentNode.cloneNode() });
+          currentNode.textContent = content;
+        }
+      }
+
+      /* Execute a hook if present */
+      _executeHook('afterSanitizeElements', currentNode, null);
+
+      return false;
+    };
+
+    /**
+     * _isValidAttribute
+     *
+     * @param  {string} lcTag Lowercase tag name of containing element.
+     * @param  {string} lcName Lowercase attribute name.
+     * @param  {string} value Attribute value.
+     * @return {Boolean} Returns true if `value` is valid, otherwise false.
+     */
+    // eslint-disable-next-line complexity
+    var _isValidAttribute = function _isValidAttribute(lcTag, lcName, value) {
+      /* Make sure attribute cannot clobber */
+      if (SANITIZE_DOM && (lcName === 'id' || lcName === 'name') && (value in document || value in formElement)) {
+        return false;
+      }
+
+      /* Allow valid data-* attributes: At least one character after "-"
+          (https://html.spec.whatwg.org/multipage/dom.html#embedding-custom-non-visible-data-with-the-data-*-attributes)
+          XML-compatible (https://html.spec.whatwg.org/multipage/infrastructure.html#xml-compatible and http://www.w3.org/TR/xml/#d0e804)
+          We don't need to check the value; it's always URI safe. */
+      if (ALLOW_DATA_ATTR && !FORBID_ATTR[lcName] && regExpTest(DATA_ATTR$$1, lcName)) ; else if (ALLOW_ARIA_ATTR && regExpTest(ARIA_ATTR$$1, lcName)) ; else if (!ALLOWED_ATTR[lcName] || FORBID_ATTR[lcName]) {
+        return false;
+
+        /* Check value is safe. First, is attr inert? If so, is safe */
+      } else if (URI_SAFE_ATTRIBUTES[lcName]) ; else if (regExpTest(IS_ALLOWED_URI$$1, stringReplace(value, ATTR_WHITESPACE$$1, ''))) ; else if ((lcName === 'src' || lcName === 'xlink:href' || lcName === 'href') && lcTag !== 'script' && stringIndexOf(value, 'data:') === 0 && DATA_URI_TAGS[lcTag]) ; else if (ALLOW_UNKNOWN_PROTOCOLS && !regExpTest(IS_SCRIPT_OR_DATA$$1, stringReplace(value, ATTR_WHITESPACE$$1, ''))) ; else if (!value) ; else {
+        return false;
+      }
+
+      return true;
+    };
+
+    /**
+     * _sanitizeAttributes
+     *
+     * @protect attributes
+     * @protect nodeName
+     * @protect removeAttribute
+     * @protect setAttribute
+     *
+     * @param  {Node} currentNode to sanitize
+     */
+    var _sanitizeAttributes = function _sanitizeAttributes(currentNode) {
+      var attr = void 0;
+      var value = void 0;
+      var lcName = void 0;
+      var l = void 0;
+      /* Execute a hook if present */
+      _executeHook('beforeSanitizeAttributes', currentNode, null);
+
+      var attributes = currentNode.attributes;
+
+      /* Check if we have attributes; if not we might have a text node */
+
+      if (!attributes) {
+        return;
+      }
+
+      var hookEvent = {
+        attrName: '',
+        attrValue: '',
+        keepAttr: true,
+        allowedAttributes: ALLOWED_ATTR
+      };
+      l = attributes.length;
+
+      /* Go backwards over all attributes; safely remove bad ones */
+      while (l--) {
+        attr = attributes[l];
+        var _attr = attr,
+            name = _attr.name,
+            namespaceURI = _attr.namespaceURI;
+
+        value = stringTrim(attr.value);
+        lcName = transformCaseFunc(name);
+
+        /* Execute a hook if present */
+        hookEvent.attrName = lcName;
+        hookEvent.attrValue = value;
+        hookEvent.keepAttr = true;
+        hookEvent.forceKeepAttr = undefined; // Allows developers to see this is a property they can set
+        _executeHook('uponSanitizeAttribute', currentNode, hookEvent);
+        value = hookEvent.attrValue;
+        /* Did the hooks approve of the attribute? */
+        if (hookEvent.forceKeepAttr) {
+          continue;
+        }
+
+        /* Remove attribute */
+        _removeAttribute(name, currentNode);
+
+        /* Did the hooks approve of the attribute? */
+        if (!hookEvent.keepAttr) {
+          continue;
+        }
+
+        /* Work around a security issue in jQuery 3.0 */
+        if (regExpTest(/\/>/i, value)) {
+          _removeAttribute(name, currentNode);
+          continue;
+        }
+
+        /* Sanitize attribute content to be template-safe */
+        if (SAFE_FOR_TEMPLATES) {
+          value = stringReplace(value, MUSTACHE_EXPR$$1, ' ');
+          value = stringReplace(value, ERB_EXPR$$1, ' ');
+        }
+
+        /* Is `value` valid for this attribute? */
+        var lcTag = transformCaseFunc(currentNode.nodeName);
+        if (!_isValidAttribute(lcTag, lcName, value)) {
+          continue;
+        }
+
+        /* Handle invalid data-* attribute set by try-catching it */
+        try {
+          if (namespaceURI) {
+            currentNode.setAttributeNS(namespaceURI, name, value);
+          } else {
+            /* Fallback to setAttribute() for browser-unrecognized namespaces e.g. "x-schema". */
+            currentNode.setAttribute(name, value);
+          }
+
+          arrayPop(DOMPurify.removed);
+        } catch (_) {}
+      }
+
+      /* Execute a hook if present */
+      _executeHook('afterSanitizeAttributes', currentNode, null);
+    };
+
+    /**
+     * _sanitizeShadowDOM
+     *
+     * @param  {DocumentFragment} fragment to iterate over recursively
+     */
+    var _sanitizeShadowDOM = function _sanitizeShadowDOM(fragment) {
+      var shadowNode = void 0;
+      var shadowIterator = _createIterator(fragment);
+
+      /* Execute a hook if present */
+      _executeHook('beforeSanitizeShadowDOM', fragment, null);
+
+      while (shadowNode = shadowIterator.nextNode()) {
+        /* Execute a hook if present */
+        _executeHook('uponSanitizeShadowNode', shadowNode, null);
+
+        /* Sanitize tags and elements */
+        if (_sanitizeElements(shadowNode)) {
+          continue;
+        }
+
+        /* Deep shadow DOM detected */
+        if (shadowNode.content instanceof DocumentFragment) {
+          _sanitizeShadowDOM(shadowNode.content);
+        }
+
+        /* Check attributes, sanitize if necessary */
+        _sanitizeAttributes(shadowNode);
+      }
+
+      /* Execute a hook if present */
+      _executeHook('afterSanitizeShadowDOM', fragment, null);
+    };
+
+    /**
+     * Sanitize
+     * Public method providing core sanitation functionality
+     *
+     * @param {String|Node} dirty string or DOM node
+     * @param {Object} configuration object
+     */
+    // eslint-disable-next-line complexity
+    DOMPurify.sanitize = function (dirty, cfg) {
+      var body = void 0;
+      var importedNode = void 0;
+      var currentNode = void 0;
+      var oldNode = void 0;
+      var returnNode = void 0;
+      /* Make sure we have a string to sanitize.
+        DO NOT return early, as this will return the wrong type if
+        the user has requested a DOM object rather than a string */
+      IS_EMPTY_INPUT = !dirty;
+      if (IS_EMPTY_INPUT) {
+        dirty = '<!-->';
+      }
+
+      /* Stringify, in case dirty is an object */
+      if (typeof dirty !== 'string' && !_isNode(dirty)) {
+        // eslint-disable-next-line no-negated-condition
+        if (typeof dirty.toString !== 'function') {
+          throw typeErrorCreate('toString is not a function');
+        } else {
+          dirty = dirty.toString();
+          if (typeof dirty !== 'string') {
+            throw typeErrorCreate('dirty is not a string, aborting');
+          }
+        }
+      }
+
+      /* Check we can run. Otherwise fall back or ignore */
+      if (!DOMPurify.isSupported) {
+        if (_typeof(window.toStaticHTML) === 'object' || typeof window.toStaticHTML === 'function') {
+          if (typeof dirty === 'string') {
+            return window.toStaticHTML(dirty);
+          }
+
+          if (_isNode(dirty)) {
+            return window.toStaticHTML(dirty.outerHTML);
+          }
+        }
+
+        return dirty;
+      }
+
+      /* Assign config vars */
+      if (!SET_CONFIG) {
+        _parseConfig(cfg);
+      }
+
+      /* Clean up removed elements */
+      DOMPurify.removed = [];
+
+      /* Check if dirty is correctly typed for IN_PLACE */
+      if (typeof dirty === 'string') {
+        IN_PLACE = false;
+      }
+
+      if (IN_PLACE) ; else if (dirty instanceof Node) {
+        /* If dirty is a DOM element, append to an empty document to avoid
+           elements being stripped by the parser */
+        body = _initDocument('<!---->');
+        importedNode = body.ownerDocument.importNode(dirty, true);
+        if (importedNode.nodeType === 1 && importedNode.nodeName === 'BODY') {
+          /* Node is already a body, use as is */
+          body = importedNode;
+        } else if (importedNode.nodeName === 'HTML') {
+          body = importedNode;
+        } else {
+          // eslint-disable-next-line unicorn/prefer-dom-node-append
+          body.appendChild(importedNode);
+        }
+      } else {
+        /* Exit directly if we have nothing to do */
+        if (!RETURN_DOM && !SAFE_FOR_TEMPLATES && !WHOLE_DOCUMENT &&
+        // eslint-disable-next-line unicorn/prefer-includes
+        dirty.indexOf('<') === -1) {
+          return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(dirty) : dirty;
+        }
+
+        /* Initialize the document to work on */
+        body = _initDocument(dirty);
+
+        /* Check we have a DOM node from the data */
+        if (!body) {
+          return RETURN_DOM ? null : emptyHTML;
+        }
+      }
+
+      /* Remove first element node (ours) if FORCE_BODY is set */
+      if (body && FORCE_BODY) {
+        _forceRemove(body.firstChild);
+      }
+
+      /* Get node iterator */
+      var nodeIterator = _createIterator(IN_PLACE ? dirty : body);
+
+      /* Now start iterating over the created document */
+      while (currentNode = nodeIterator.nextNode()) {
+        /* Fix IE's strange behavior with manipulated textNodes #89 */
+        if (currentNode.nodeType === 3 && currentNode === oldNode) {
+          continue;
+        }
+
+        /* Sanitize tags and elements */
+        if (_sanitizeElements(currentNode)) {
+          continue;
+        }
+
+        /* Shadow DOM detected, sanitize it */
+        if (currentNode.content instanceof DocumentFragment) {
+          _sanitizeShadowDOM(currentNode.content);
+        }
+
+        /* Check attributes, sanitize if necessary */
+        _sanitizeAttributes(currentNode);
+
+        oldNode = currentNode;
+      }
+
+      oldNode = null;
+
+      /* If we sanitized `dirty` in-place, return it. */
+      if (IN_PLACE) {
+        return dirty;
+      }
+
+      /* Return sanitized string or DOM */
+      if (RETURN_DOM) {
+        if (RETURN_DOM_FRAGMENT) {
+          returnNode = createDocumentFragment.call(body.ownerDocument);
+
+          while (body.firstChild) {
+            // eslint-disable-next-line unicorn/prefer-dom-node-append
+            returnNode.appendChild(body.firstChild);
+          }
+        } else {
+          returnNode = body;
+        }
+
+        if (RETURN_DOM_IMPORT) {
+          /*
+            AdoptNode() is not used because internal state is not reset
+            (e.g. the past names map of a HTMLFormElement), this is safe
+            in theory but we would rather not risk another attack vector.
+            The state that is cloned by importNode() is explicitly defined
+            by the specs.
+          */
+          returnNode = importNode.call(originalDocument, returnNode, true);
+        }
+
+        return returnNode;
+      }
+
+      var serializedHTML = WHOLE_DOCUMENT ? body.outerHTML : body.innerHTML;
+
+      /* Sanitize final string template-safe */
+      if (SAFE_FOR_TEMPLATES) {
+        serializedHTML = stringReplace(serializedHTML, MUSTACHE_EXPR$$1, ' ');
+        serializedHTML = stringReplace(serializedHTML, ERB_EXPR$$1, ' ');
+      }
+
+      return trustedTypesPolicy && RETURN_TRUSTED_TYPE ? trustedTypesPolicy.createHTML(serializedHTML) : serializedHTML;
+    };
+
+    /**
+     * Public method to set the configuration once
+     * setConfig
+     *
+     * @param {Object} cfg configuration object
+     */
+    DOMPurify.setConfig = function (cfg) {
+      _parseConfig(cfg);
+      SET_CONFIG = true;
+    };
+
+    /**
+     * Public method to remove the configuration
+     * clearConfig
+     *
+     */
+    DOMPurify.clearConfig = function () {
+      CONFIG = null;
+      SET_CONFIG = false;
+    };
+
+    /**
+     * Public method to check if an attribute value is valid.
+     * Uses last set config, if any. Otherwise, uses config defaults.
+     * isValidAttribute
+     *
+     * @param  {string} tag Tag name of containing element.
+     * @param  {string} attr Attribute name.
+     * @param  {string} value Attribute value.
+     * @return {Boolean} Returns true if `value` is valid. Otherwise, returns false.
+     */
+    DOMPurify.isValidAttribute = function (tag, attr, value) {
+      /* Initialize shared config vars if necessary. */
+      if (!CONFIG) {
+        _parseConfig({});
+      }
+
+      var lcTag = transformCaseFunc(tag);
+      var lcName = transformCaseFunc(attr);
+      return _isValidAttribute(lcTag, lcName, value);
+    };
+
+    /**
+     * AddHook
+     * Public method to add DOMPurify hooks
+     *
+     * @param {String} entryPoint entry point for the hook to add
+     * @param {Function} hookFunction function to execute
+     */
+    DOMPurify.addHook = function (entryPoint, hookFunction) {
+      if (typeof hookFunction !== 'function') {
+        return;
+      }
+
+      hooks[entryPoint] = hooks[entryPoint] || [];
+      arrayPush(hooks[entryPoint], hookFunction);
+    };
+
+    /**
+     * RemoveHook
+     * Public method to remove a DOMPurify hook at a given entryPoint
+     * (pops it from the stack of hooks if more are present)
+     *
+     * @param {String} entryPoint entry point for the hook to remove
+     */
+    DOMPurify.removeHook = function (entryPoint) {
+      if (hooks[entryPoint]) {
+        arrayPop(hooks[entryPoint]);
+      }
+    };
+
+    /**
+     * RemoveHooks
+     * Public method to remove all DOMPurify hooks at a given entryPoint
+     *
+     * @param  {String} entryPoint entry point for the hooks to remove
+     */
+    DOMPurify.removeHooks = function (entryPoint) {
+      if (hooks[entryPoint]) {
+        hooks[entryPoint] = [];
+      }
+    };
+
+    /**
+     * RemoveAllHooks
+     * Public method to remove all DOMPurify hooks
+     *
+     */
+    DOMPurify.removeAllHooks = function () {
+      hooks = {};
+    };
+
+    return DOMPurify;
+  }
+
+  var purify = createDOMPurify();
+
+  return purify;
+
+}));
+//# sourceMappingURL=purify.js.map
+
+
+/***/ }),
+
+/***/ 269:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function(){
-  var crypt = __webpack_require__(447),
-      utf8 = __webpack_require__(249).utf8,
-      isBuffer = __webpack_require__(448),
-      bin = __webpack_require__(249).bin,
+  var crypt = __webpack_require__(450),
+      utf8 = __webpack_require__(252).utf8,
+      isBuffer = __webpack_require__(451),
+      bin = __webpack_require__(252).bin,
 
   // The core
   md5 = function (message, options) {
@@ -350,35 +1754,344 @@ module.exports = charenc;
 
 /***/ }),
 
-/***/ 3:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["lodash"]; }());
-
-/***/ }),
-
-/***/ 30:
+/***/ 28:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["hooks"]; }());
 
 /***/ }),
 
-/***/ 43:
+/***/ 29:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var stringify = __webpack_require__(56);
+var parse = __webpack_require__(57);
+var formats = __webpack_require__(35);
+
+module.exports = {
+    formats: formats,
+    parse: parse,
+    stringify: stringify
+};
+
+
+/***/ }),
+
+/***/ 35:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var replace = String.prototype.replace;
+var percentTwenties = /%20/g;
+
+var Format = {
+    RFC1738: 'RFC1738',
+    RFC3986: 'RFC3986'
+};
+
+module.exports = {
+    'default': Format.RFC3986,
+    formatters: {
+        RFC1738: function (value) {
+            return replace.call(value, percentTwenties, '+');
+        },
+        RFC3986: function (value) {
+            return String(value);
+        }
+    },
+    RFC1738: Format.RFC1738,
+    RFC3986: Format.RFC3986
+};
+
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
+
+/***/ }),
+
+/***/ 40:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["deprecated"]; }());
 
 /***/ }),
 
-/***/ 446:
+/***/ 41:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var formats = __webpack_require__(35);
+
+var has = Object.prototype.hasOwnProperty;
+var isArray = Array.isArray;
+
+var hexTable = (function () {
+    var array = [];
+    for (var i = 0; i < 256; ++i) {
+        array.push('%' + ((i < 16 ? '0' : '') + i.toString(16)).toUpperCase());
+    }
+
+    return array;
+}());
+
+var compactQueue = function compactQueue(queue) {
+    while (queue.length > 1) {
+        var item = queue.pop();
+        var obj = item.obj[item.prop];
+
+        if (isArray(obj)) {
+            var compacted = [];
+
+            for (var j = 0; j < obj.length; ++j) {
+                if (typeof obj[j] !== 'undefined') {
+                    compacted.push(obj[j]);
+                }
+            }
+
+            item.obj[item.prop] = compacted;
+        }
+    }
+};
+
+var arrayToObject = function arrayToObject(source, options) {
+    var obj = options && options.plainObjects ? Object.create(null) : {};
+    for (var i = 0; i < source.length; ++i) {
+        if (typeof source[i] !== 'undefined') {
+            obj[i] = source[i];
+        }
+    }
+
+    return obj;
+};
+
+var merge = function merge(target, source, options) {
+    /* eslint no-param-reassign: 0 */
+    if (!source) {
+        return target;
+    }
+
+    if (typeof source !== 'object') {
+        if (isArray(target)) {
+            target.push(source);
+        } else if (target && typeof target === 'object') {
+            if ((options && (options.plainObjects || options.allowPrototypes)) || !has.call(Object.prototype, source)) {
+                target[source] = true;
+            }
+        } else {
+            return [target, source];
+        }
+
+        return target;
+    }
+
+    if (!target || typeof target !== 'object') {
+        return [target].concat(source);
+    }
+
+    var mergeTarget = target;
+    if (isArray(target) && !isArray(source)) {
+        mergeTarget = arrayToObject(target, options);
+    }
+
+    if (isArray(target) && isArray(source)) {
+        source.forEach(function (item, i) {
+            if (has.call(target, i)) {
+                var targetItem = target[i];
+                if (targetItem && typeof targetItem === 'object' && item && typeof item === 'object') {
+                    target[i] = merge(targetItem, item, options);
+                } else {
+                    target.push(item);
+                }
+            } else {
+                target[i] = item;
+            }
+        });
+        return target;
+    }
+
+    return Object.keys(source).reduce(function (acc, key) {
+        var value = source[key];
+
+        if (has.call(acc, key)) {
+            acc[key] = merge(acc[key], value, options);
+        } else {
+            acc[key] = value;
+        }
+        return acc;
+    }, mergeTarget);
+};
+
+var assign = function assignSingleSource(target, source) {
+    return Object.keys(source).reduce(function (acc, key) {
+        acc[key] = source[key];
+        return acc;
+    }, target);
+};
+
+var decode = function (str, decoder, charset) {
+    var strWithoutPlus = str.replace(/\+/g, ' ');
+    if (charset === 'iso-8859-1') {
+        // unescape never throws, no try...catch needed:
+        return strWithoutPlus.replace(/%[0-9a-f]{2}/gi, unescape);
+    }
+    // utf-8
+    try {
+        return decodeURIComponent(strWithoutPlus);
+    } catch (e) {
+        return strWithoutPlus;
+    }
+};
+
+var encode = function encode(str, defaultEncoder, charset, kind, format) {
+    // This code was originally written by Brian White (mscdex) for the io.js core querystring library.
+    // It has been adapted here for stricter adherence to RFC 3986
+    if (str.length === 0) {
+        return str;
+    }
+
+    var string = str;
+    if (typeof str === 'symbol') {
+        string = Symbol.prototype.toString.call(str);
+    } else if (typeof str !== 'string') {
+        string = String(str);
+    }
+
+    if (charset === 'iso-8859-1') {
+        return escape(string).replace(/%u[0-9a-f]{4}/gi, function ($0) {
+            return '%26%23' + parseInt($0.slice(2), 16) + '%3B';
+        });
+    }
+
+    var out = '';
+    for (var i = 0; i < string.length; ++i) {
+        var c = string.charCodeAt(i);
+
+        if (
+            c === 0x2D // -
+            || c === 0x2E // .
+            || c === 0x5F // _
+            || c === 0x7E // ~
+            || (c >= 0x30 && c <= 0x39) // 0-9
+            || (c >= 0x41 && c <= 0x5A) // a-z
+            || (c >= 0x61 && c <= 0x7A) // A-Z
+            || (format === formats.RFC1738 && (c === 0x28 || c === 0x29)) // ( )
+        ) {
+            out += string.charAt(i);
+            continue;
+        }
+
+        if (c < 0x80) {
+            out = out + hexTable[c];
+            continue;
+        }
+
+        if (c < 0x800) {
+            out = out + (hexTable[0xC0 | (c >> 6)] + hexTable[0x80 | (c & 0x3F)]);
+            continue;
+        }
+
+        if (c < 0xD800 || c >= 0xE000) {
+            out = out + (hexTable[0xE0 | (c >> 12)] + hexTable[0x80 | ((c >> 6) & 0x3F)] + hexTable[0x80 | (c & 0x3F)]);
+            continue;
+        }
+
+        i += 1;
+        c = 0x10000 + (((c & 0x3FF) << 10) | (string.charCodeAt(i) & 0x3FF));
+        out += hexTable[0xF0 | (c >> 18)]
+            + hexTable[0x80 | ((c >> 12) & 0x3F)]
+            + hexTable[0x80 | ((c >> 6) & 0x3F)]
+            + hexTable[0x80 | (c & 0x3F)];
+    }
+
+    return out;
+};
+
+var compact = function compact(value) {
+    var queue = [{ obj: { o: value }, prop: 'o' }];
+    var refs = [];
+
+    for (var i = 0; i < queue.length; ++i) {
+        var item = queue[i];
+        var obj = item.obj[item.prop];
+
+        var keys = Object.keys(obj);
+        for (var j = 0; j < keys.length; ++j) {
+            var key = keys[j];
+            var val = obj[key];
+            if (typeof val === 'object' && val !== null && refs.indexOf(val) === -1) {
+                queue.push({ obj: obj, prop: key });
+                refs.push(val);
+            }
+        }
+    }
+
+    compactQueue(queue);
+
+    return value;
+};
+
+var isRegExp = function isRegExp(obj) {
+    return Object.prototype.toString.call(obj) === '[object RegExp]';
+};
+
+var isBuffer = function isBuffer(obj) {
+    if (!obj || typeof obj !== 'object') {
+        return false;
+    }
+
+    return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));
+};
+
+var combine = function combine(a, b) {
+    return [].concat(a, b);
+};
+
+var maybeMap = function maybeMap(val, fn) {
+    if (isArray(val)) {
+        var mapped = [];
+        for (var i = 0; i < val.length; i += 1) {
+            mapped.push(fn(val[i]));
+        }
+        return mapped;
+    }
+    return fn(val);
+};
+
+module.exports = {
+    arrayToObject: arrayToObject,
+    assign: assign,
+    combine: combine,
+    compact: compact,
+    decode: decode,
+    encode: encode,
+    isBuffer: isBuffer,
+    isRegExp: isRegExp,
+    maybeMap: maybeMap,
+    merge: merge
+};
+
+
+/***/ }),
+
+/***/ 449:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["coreData"]; }());
 
 /***/ }),
 
-/***/ 447:
+/***/ 450:
 /***/ (function(module, exports) {
 
 (function() {
@@ -481,7 +2194,7 @@ module.exports = charenc;
 
 /***/ }),
 
-/***/ 448:
+/***/ 451:
 /***/ (function(module, exports) {
 
 /*!
@@ -509,7 +2222,7 @@ function isSlowBuffer (obj) {
 
 /***/ }),
 
-/***/ 460:
+/***/ 464:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -562,12 +2275,12 @@ __webpack_require__.d(__webpack_exports__, "EXPORT_STORE_NAME", function() { ret
 __webpack_require__.d(__webpack_exports__, "IMPORT_STORE_NAME", function() { return /* reexport */ IMPORT_STORE_NAME; });
 __webpack_require__.d(__webpack_exports__, "getFreeExtensions", function() { return /* reexport */ getFreeExtensions; });
 __webpack_require__.d(__webpack_exports__, "getProfileItems", function() { return /* reexport */ getProfileItems; });
-__webpack_require__.d(__webpack_exports__, "getTasksStatus", function() { return /* reexport */ getTasksStatus; });
 __webpack_require__.d(__webpack_exports__, "getTaskLists", function() { return /* reexport */ getTaskLists; });
 __webpack_require__.d(__webpack_exports__, "getPaymentGatewaySuggestions", function() { return /* reexport */ getPaymentGatewaySuggestions; });
 __webpack_require__.d(__webpack_exports__, "getOnboardingError", function() { return /* reexport */ getOnboardingError; });
 __webpack_require__.d(__webpack_exports__, "isOnboardingRequesting", function() { return /* reexport */ isOnboardingRequesting; });
 __webpack_require__.d(__webpack_exports__, "getEmailPrefill", function() { return /* reexport */ getEmailPrefill; });
+__webpack_require__.d(__webpack_exports__, "getProductTypes", function() { return /* reexport */ getProductTypes; });
 
 // NAMESPACE OBJECT: ./packages/data/build-module/settings/selectors.js
 var selectors_namespaceObject = {};
@@ -669,12 +2382,12 @@ var onboarding_selectors_namespaceObject = {};
 __webpack_require__.r(onboarding_selectors_namespaceObject);
 __webpack_require__.d(onboarding_selectors_namespaceObject, "getFreeExtensions", function() { return getFreeExtensions; });
 __webpack_require__.d(onboarding_selectors_namespaceObject, "getProfileItems", function() { return getProfileItems; });
-__webpack_require__.d(onboarding_selectors_namespaceObject, "getTasksStatus", function() { return getTasksStatus; });
 __webpack_require__.d(onboarding_selectors_namespaceObject, "getTaskLists", function() { return getTaskLists; });
 __webpack_require__.d(onboarding_selectors_namespaceObject, "getPaymentGatewaySuggestions", function() { return getPaymentGatewaySuggestions; });
 __webpack_require__.d(onboarding_selectors_namespaceObject, "getOnboardingError", function() { return getOnboardingError; });
 __webpack_require__.d(onboarding_selectors_namespaceObject, "isOnboardingRequesting", function() { return isOnboardingRequesting; });
 __webpack_require__.d(onboarding_selectors_namespaceObject, "getEmailPrefill", function() { return getEmailPrefill; });
+__webpack_require__.d(onboarding_selectors_namespaceObject, "getProductTypes", function() { return getProductTypes; });
 
 // NAMESPACE OBJECT: ./packages/data/build-module/onboarding/actions.js
 var onboarding_actions_namespaceObject = {};
@@ -698,24 +2411,35 @@ __webpack_require__.d(onboarding_actions_namespaceObject, "dismissTaskSuccess", 
 __webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTaskError", function() { return undoDismissTaskError; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTaskRequest", function() { return undoDismissTaskRequest; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTaskSuccess", function() { return undoDismissTaskSuccess; });
-__webpack_require__.d(onboarding_actions_namespaceObject, "setTasksStatus", function() { return actions_setTasksStatus; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "hideTaskListError", function() { return hideTaskListError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "hideTaskListRequest", function() { return hideTaskListRequest; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "hideTaskListSuccess", function() { return hideTaskListSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "optimisticallyCompleteTaskRequest", function() { return optimisticallyCompleteTaskRequest; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "setPaymentMethods", function() { return setPaymentMethods; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "setEmailPrefill", function() { return setEmailPrefill; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "actionTaskError", function() { return actionTaskError; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "actionTaskRequest", function() { return actionTaskRequest; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "actionTaskSuccess", function() { return actionTaskSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "getProductTypesSuccess", function() { return getProductTypesSuccess; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "getProductTypesError", function() { return getProductTypesError; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "updateProfileItems", function() { return updateProfileItems; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "snoozeTask", function() { return snoozeTask; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "undoSnoozeTask", function() { return undoSnoozeTask; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "dismissTask", function() { return dismissTask; });
 __webpack_require__.d(onboarding_actions_namespaceObject, "undoDismissTask", function() { return undoDismissTask; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "hideTaskList", function() { return hideTaskList; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "optimisticallyCompleteTask", function() { return optimisticallyCompleteTask; });
+__webpack_require__.d(onboarding_actions_namespaceObject, "actionTask", function() { return actionTask; });
 
 // NAMESPACE OBJECT: ./packages/data/build-module/onboarding/resolvers.js
 var onboarding_resolvers_namespaceObject = {};
 __webpack_require__.r(onboarding_resolvers_namespaceObject);
 __webpack_require__.d(onboarding_resolvers_namespaceObject, "getProfileItems", function() { return resolvers_getProfileItems; });
 __webpack_require__.d(onboarding_resolvers_namespaceObject, "getEmailPrefill", function() { return resolvers_getEmailPrefill; });
-__webpack_require__.d(onboarding_resolvers_namespaceObject, "getTasksStatus", function() { return resolvers_getTasksStatus; });
 __webpack_require__.d(onboarding_resolvers_namespaceObject, "getTaskLists", function() { return resolvers_getTaskLists; });
 __webpack_require__.d(onboarding_resolvers_namespaceObject, "getPaymentGatewaySuggestions", function() { return resolvers_getPaymentGatewaySuggestions; });
 __webpack_require__.d(onboarding_resolvers_namespaceObject, "getFreeExtensions", function() { return resolvers_getFreeExtensions; });
+__webpack_require__.d(onboarding_resolvers_namespaceObject, "getProductTypes", function() { return resolvers_getProductTypes; });
 
 // NAMESPACE OBJECT: ./packages/data/build-module/reviews/selectors.js
 var reviews_selectors_namespaceObject = {};
@@ -915,7 +2639,7 @@ __webpack_require__.d(import_resolvers_namespaceObject, "getImportStatus", funct
 __webpack_require__.d(import_resolvers_namespaceObject, "getImportTotals", function() { return resolvers_getImportTotals; });
 
 // EXTERNAL MODULE: external ["wp","coreData"]
-var external_wp_coreData_ = __webpack_require__(446);
+var external_wp_coreData_ = __webpack_require__(449);
 
 // CONCATENATED MODULE: ./packages/data/build-module/types/wp-data.js
 
@@ -1041,7 +2765,7 @@ const getSettingsError = (state, group, id) => {
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
+var external_lodash_ = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./packages/data/build-module/constants.js
 const JETPACK_NAMESPACE = '/jetpack/v4';
@@ -1850,7 +3574,7 @@ function* updateOptions(data) {
   }
 }
 // EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(17);
+var external_wp_apiFetch_ = __webpack_require__(19);
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
 
 // CONCATENATED MODULE: ./packages/data/build-module/options/controls.js
@@ -1880,25 +3604,29 @@ const controls = { ...external_wp_dataControls_["controls"],
     optionNames.push(optionName);
     return new Promise(resolve => {
       setTimeout(function () {
-        const names = optionNames.join(',');
-
-        if (fetches[names]) {
-          return fetches[names].then(result => {
-            resolve(result[optionName]);
+        if (fetches[optionName]) {
+          return fetches[optionName].then(result => {
+            resolve(result);
           });
-        }
+        } // Get unique option names.
+
+
+        const names = [...new Set(optionNames)].join(','); // Send request for a group of options.
 
         const url = WC_ADMIN_NAMESPACE + '/options?options=' + names;
-        fetches[names] = external_wp_apiFetch_default()({
+        const fetch = external_wp_apiFetch_default()({
           path: url
         });
-        fetches[names].then(result => resolve(result)); // Clear option names after all resolved;
+        fetch.then(result => resolve(result));
+        optionNames.forEach(option => {
+          fetches[option] = fetch;
+          fetches[option].then(() => {
+            // Delete the fetch after to allow wp data to handle cache invalidation.
+            delete fetches[option];
+          });
+        }); // Clear option names after we've sent the request for a group of options.
 
-        setTimeout(() => {
-          optionNames = []; // Delete the fetch after to allow wp data to handle cache invalidation.
-
-          delete fetches[names];
-        }, 1);
+        optionNames = [];
       }, 1);
     });
   }
@@ -2312,10 +4040,8 @@ const getFreeExtensions = state => {
 const getProfileItems = state => {
   return state.profileItems || {};
 };
-const getTasksStatus = state => {
-  return state.tasksStatus || {};
-};
 const initialTaskLists = [];
+const EMPTY_ARRAY = [];
 const getTaskLists = state => {
   return state.taskLists || initialTaskLists;
 };
@@ -2331,14 +4057,18 @@ const isOnboardingRequesting = (state, selector) => {
 const getEmailPrefill = state => {
   return state.emailPrefill || '';
 };
+const getProductTypes = state => {
+  return state.productTypes || EMPTY_ARRAY;
+};
 // CONCATENATED MODULE: ./packages/data/build-module/onboarding/action-types.js
 const onboarding_action_types_TYPES = {
   SET_ERROR: 'SET_ERROR',
   SET_IS_REQUESTING: 'SET_IS_REQUESTING',
   SET_PROFILE_ITEMS: 'SET_PROFILE_ITEMS',
   SET_EMAIL_PREFILL: 'SET_EMAIL_PREFILL',
-  SET_TASKS_STATUS: 'SET_TASKS_STATUS',
   GET_PAYMENT_METHODS_SUCCESS: 'GET_PAYMENT_METHODS_SUCCESS',
+  GET_PRODUCT_TYPES_SUCCESS: 'GET_PRODUCT_TYPES_SUCCESS',
+  GET_PRODUCT_TYPES_ERROR: 'GET_PRODUCT_TYPES_ERROR',
   GET_FREE_EXTENSIONS_ERROR: 'GET_FREE_EXTENSIONS_ERROR',
   GET_FREE_EXTENSIONS_SUCCESS: 'GET_FREE_EXTENSIONS_SUCCESS',
   GET_TASK_LISTS_ERROR: 'GET_TASK_LISTS_ERROR',
@@ -2354,9 +4084,135 @@ const onboarding_action_types_TYPES = {
   SNOOZE_TASK_SUCCESS: 'SNOOZE_TASK_SUCCESS',
   UNDO_SNOOZE_TASK_ERROR: 'UNDO_SNOOZE_TASK_ERROR',
   UNDO_SNOOZE_TASK_REQUEST: 'UNDO_SNOOZE_TASK_REQUEST',
-  UNDO_SNOOZE_TASK_SUCCESS: 'UNDO_SNOOZE_TASK_SUCCESS'
+  UNDO_SNOOZE_TASK_SUCCESS: 'UNDO_SNOOZE_TASK_SUCCESS',
+  HIDE_TASK_LIST_ERROR: 'HIDE_TASK_LIST_ERROR',
+  HIDE_TASK_LIST_REQUEST: 'HIDE_TASK_LIST_REQUEST',
+  HIDE_TASK_LIST_SUCCESS: 'HIDE_TASK_LIST_SUCCESS',
+  OPTIMISTICALLY_COMPLETE_TASK_REQUEST: 'OPTIMISTICALLY_COMPLETE_TASK_REQUEST',
+  ACTION_TASK_ERROR: 'ACTION_TASK_ERROR',
+  ACTION_TASK_REQUEST: 'ACTION_TASK_REQUEST',
+  ACTION_TASK_SUCCESS: 'ACTION_TASK_SUCCESS'
 };
 /* harmony default export */ var onboarding_action_types = (onboarding_action_types_TYPES);
+// EXTERNAL MODULE: external ["wp","hooks"]
+var external_wp_hooks_ = __webpack_require__(28);
+
+// EXTERNAL MODULE: ./node_modules/qs/lib/index.js
+var lib = __webpack_require__(29);
+
+// EXTERNAL MODULE: external ["wp","deprecated"]
+var external_wp_deprecated_ = __webpack_require__(40);
+var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_);
+
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/deprecated-tasks.js
+/**
+ * External dependencies
+ */
+
+
+
+
+function getQuery() {
+  const searchString = window.location && window.location.search;
+
+  if (!searchString) {
+    return {};
+  }
+
+  const search = searchString.substring(1);
+  return Object(lib["parse"])(search);
+}
+/**
+ * A simple class to handle deprecated tasks using the woocommerce_admin_onboarding_task_list filter.
+ */
+
+
+class deprecated_tasks_DeprecatedTasks {
+  constructor() {
+    this.filteredTasks = Object(external_wp_hooks_["applyFilters"])('woocommerce_admin_onboarding_task_list', [], getQuery());
+
+    if (this.filteredTasks && this.filteredTasks.length > 0) {
+      external_wp_deprecated_default()('woocommerce_admin_onboarding_task_list', {
+        version: '2.10.0',
+        alternative: 'TaskLists::add_task()',
+        plugin: '@woocommerce/data'
+      });
+    }
+
+    this.tasks = this.filteredTasks.reduce((org, task) => {
+      return { ...org,
+        [task.key]: task
+      };
+    }, {});
+  }
+
+  hasDeprecatedTasks() {
+    return this.filteredTasks.length > 0;
+  }
+
+  getPostData() {
+    return this.hasDeprecatedTasks() ? {
+      extended_tasks: this.filteredTasks.map(task => ({
+        title: task.title,
+        content: task.content,
+        additional_info: task.additionalInfo,
+        time: task.time,
+        level: task.level ? parseInt(task.level, 10) : 3,
+        list_id: task.type || 'extended',
+        is_visible: task.visible,
+        id: task.key,
+        is_snoozeable: task.allowRemindMeLater,
+        is_dismissable: task.isDismissable,
+        is_complete: task.completed
+      }))
+    } : null;
+  }
+
+  mergeDeprecatedCallbackFunctions(taskLists) {
+    if (this.filteredTasks.length > 0) {
+      for (const taskList of taskLists) {
+        // Merge any extended task list items, to keep the callback functions around.
+        taskList.tasks = taskList.tasks.map(task => {
+          if (this.tasks && this.tasks[task.id]) {
+            return { ...this.tasks[task.id],
+              ...task,
+              isDeprecated: true
+            };
+          }
+
+          return task;
+        });
+      }
+    }
+
+    return taskLists;
+  }
+  /**
+   * Used to keep backwards compatibility with the extended task list filter on the client.
+   * This can be removed after version WC Admin 2.10 (see deprecated notice in resolvers.js).
+   *
+   * @param {Object} task the returned task object.
+   * @param {Array}  keys to keep in the task object.
+   * @return {Object} task with the keys specified.
+   */
+
+
+  static possiblyPruneTaskData(task, keys) {
+    if (!task.time && !task.title) {
+      // client side task
+      return keys.reduce((simplifiedTask, key) => {
+        return { ...simplifiedTask,
+          [key]: task[key]
+        };
+      }, {
+        id: task.id
+      });
+    }
+
+    return task;
+  }
+
+}
 // CONCATENATED MODULE: ./packages/data/build-module/onboarding/actions.js
 /**
  * External dependencies
@@ -2365,6 +4221,7 @@ const onboarding_action_types_TYPES = {
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -2489,10 +4346,29 @@ function undoDismissTaskSuccess(task) {
     task
   };
 }
-function actions_setTasksStatus(tasksStatus) {
+function hideTaskListError(taskListId, error) {
   return {
-    type: onboarding_action_types.SET_TASKS_STATUS,
-    tasksStatus
+    type: onboarding_action_types.HIDE_TASK_LIST_ERROR,
+    taskListId,
+    error
+  };
+}
+function hideTaskListRequest(taskListId) {
+  return {
+    type: onboarding_action_types.HIDE_TASK_LIST_REQUEST,
+    taskListId
+  };
+}
+function hideTaskListSuccess(taskList) {
+  return {
+    type: onboarding_action_types.HIDE_TASK_LIST_SUCCESS,
+    taskList
+  };
+}
+function optimisticallyCompleteTaskRequest(taskId) {
+  return {
+    type: onboarding_action_types.OPTIMISTICALLY_COMPLETE_TASK_REQUEST,
+    taskId
   };
 }
 function setPaymentMethods(paymentMethods) {
@@ -2505,6 +4381,37 @@ function setEmailPrefill(email) {
   return {
     type: onboarding_action_types.SET_EMAIL_PREFILL,
     emailPrefill: email
+  };
+}
+function actionTaskError(taskId, error) {
+  return {
+    type: onboarding_action_types.ACTION_TASK_ERROR,
+    taskId,
+    error
+  };
+}
+function actionTaskRequest(taskId) {
+  return {
+    type: onboarding_action_types.ACTION_TASK_REQUEST,
+    taskId
+  };
+}
+function actionTaskSuccess(task) {
+  return {
+    type: onboarding_action_types.ACTION_TASK_SUCCESS,
+    task
+  };
+}
+function getProductTypesSuccess(productTypes) {
+  return {
+    type: onboarding_action_types.GET_PRODUCT_TYPES_SUCCESS,
+    productTypes
+  };
+}
+function getProductTypesError(error) {
+  return {
+    type: onboarding_action_types.GET_PRODUCT_TYPES_ERROR,
+    error
   };
 }
 function* updateProfileItems(items) {
@@ -2539,7 +4446,7 @@ function* snoozeTask(id) {
       path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/snooze`,
       method: 'POST'
     });
-    yield snoozeTaskSuccess(task);
+    yield snoozeTaskSuccess(deprecated_tasks_DeprecatedTasks.possiblyPruneTaskData(task, ['isSnoozed', 'isDismissed', 'snoozedUntil']));
   } catch (error) {
     yield snoozeTaskError(id, error);
     throw new Error();
@@ -2553,7 +4460,7 @@ function* undoSnoozeTask(id) {
       path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/undo_snooze`,
       method: 'POST'
     });
-    yield undoSnoozeTaskSuccess(task);
+    yield undoSnoozeTaskSuccess(deprecated_tasks_DeprecatedTasks.possiblyPruneTaskData(task, ['isSnoozed', 'isDismissed', 'snoozedUntil']));
   } catch (error) {
     yield undoSnoozeTaskError(id, error);
     throw new Error();
@@ -2567,7 +4474,7 @@ function* dismissTask(id) {
       path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/dismiss`,
       method: 'POST'
     });
-    yield dismissTaskSuccess(task);
+    yield dismissTaskSuccess(deprecated_tasks_DeprecatedTasks.possiblyPruneTaskData(task, ['isDismissed', 'isSnoozed']));
   } catch (error) {
     yield dismissTaskError(id, error);
     throw new Error();
@@ -2581,9 +4488,40 @@ function* undoDismissTask(id) {
       path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/undo_dismiss`,
       method: 'POST'
     });
-    yield undoDismissTaskSuccess(task);
+    yield undoDismissTaskSuccess(deprecated_tasks_DeprecatedTasks.possiblyPruneTaskData(task, ['isDismissed', 'isSnoozed']));
   } catch (error) {
     yield undoDismissTaskError(id, error);
+    throw new Error();
+  }
+}
+function* hideTaskList(id) {
+  yield hideTaskListRequest(id);
+
+  try {
+    const taskList = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/hide`,
+      method: 'POST'
+    });
+    yield hideTaskListSuccess(taskList);
+  } catch (error) {
+    yield hideTaskListError(id, error);
+    throw new Error();
+  }
+}
+function* optimisticallyCompleteTask(id) {
+  yield optimisticallyCompleteTaskRequest(id);
+}
+function* actionTask(id) {
+  yield actionTaskRequest(id);
+
+  try {
+    const task = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: `${WC_ADMIN_NAMESPACE}/onboarding/tasks/${id}/action`,
+      method: 'POST'
+    });
+    yield actionTaskSuccess(deprecated_tasks_DeprecatedTasks.possiblyPruneTaskData(task, ['isActioned']));
+  } catch (error) {
+    yield actionTaskError(id, error);
     throw new Error();
   }
 }
@@ -2595,6 +4533,7 @@ function* undoDismissTask(id) {
 /**
  * Internal dependencies
  */
+
 
 
 
@@ -2620,23 +4559,16 @@ function* resolvers_getEmailPrefill() {
     yield actions_setError('getEmailPrefill', error);
   }
 }
-function* resolvers_getTasksStatus() {
-  try {
-    const results = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: WC_ADMIN_NAMESPACE + '/onboarding/tasks/status',
-      method: 'GET'
-    });
-    yield actions_setTasksStatus(results, true);
-  } catch (error) {
-    yield actions_setError('getTasksStatus', error);
-  }
-}
 function* resolvers_getTaskLists() {
+  const deprecatedTasks = new deprecated_tasks_DeprecatedTasks();
+
   try {
     const results = yield Object(external_wp_dataControls_["apiFetch"])({
       path: WC_ADMIN_NAMESPACE + '/onboarding/tasks',
-      method: 'GET'
+      method: deprecatedTasks.hasDeprecatedTasks() ? 'POST' : 'GET',
+      data: deprecatedTasks.getPostData()
     });
+    deprecatedTasks.mergeDeprecatedCallbackFunctions(results);
     yield getTaskListsSuccess(results);
   } catch (error) {
     yield getTaskListsError(error);
@@ -2662,6 +4594,17 @@ function* resolvers_getFreeExtensions() {
     yield getFreeExtensionsSuccess(results);
   } catch (error) {
     yield getFreeExtensionsError(error);
+  }
+}
+function* resolvers_getProductTypes() {
+  try {
+    const results = yield Object(external_wp_dataControls_["apiFetch"])({
+      path: WC_ADMIN_NAMESPACE + '/onboarding/product-types',
+      method: 'GET'
+    });
+    yield getProductTypesSuccess(results);
+  } catch (error) {
+    yield getProductTypesError(error);
   }
 }
 // CONCATENATED MODULE: ./packages/data/build-module/onboarding/reducer.js
@@ -2691,9 +4634,9 @@ const defaultState = {
   },
   emailPrefill: '',
   paymentMethods: [],
+  productTypes: [],
   requesting: {},
-  taskLists: [],
-  tasksStatus: {}
+  taskLists: []
 };
 
 const getUpdatedTaskLists = (taskLists, args) => {
@@ -2718,14 +4661,16 @@ const onboarding = (state = defaultState, {
   profileItems,
   emailPrefill,
   paymentMethods,
+  productTypes,
   replace,
   error,
   isRequesting,
   selector,
   task,
   taskId,
-  taskLists,
-  tasksStatus
+  taskListId,
+  taskList,
+  taskLists
 }) => {
   switch (type) {
     case onboarding_action_types.SET_PROFILE_ITEMS:
@@ -2738,13 +4683,6 @@ const onboarding = (state = defaultState, {
     case onboarding_action_types.SET_EMAIL_PREFILL:
       return { ...state,
         emailPrefill
-      };
-
-    case onboarding_action_types.SET_TASKS_STATUS:
-      return { ...state,
-        tasksStatus: { ...state.tasksStatus,
-          ...tasksStatus
-        }
       };
 
     case onboarding_action_types.SET_ERROR:
@@ -2764,6 +4702,18 @@ const onboarding = (state = defaultState, {
     case onboarding_action_types.GET_PAYMENT_METHODS_SUCCESS:
       return { ...state,
         paymentMethods
+      };
+
+    case onboarding_action_types.GET_PRODUCT_TYPES_SUCCESS:
+      return { ...state,
+        productTypes
+      };
+
+    case onboarding_action_types.GET_PRODUCT_TYPES_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          productTypes: error
+        }
       };
 
     case onboarding_action_types.GET_FREE_EXTENSIONS_ERROR:
@@ -2910,6 +4860,86 @@ const onboarding = (state = defaultState, {
         taskLists: getUpdatedTaskLists(state.taskLists, task)
       };
 
+    case onboarding_action_types.HIDE_TASK_LIST_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          hideTaskList: error
+        },
+        taskLists: state.taskLists.map(list => {
+          if (taskListId === list.id) {
+            return { ...list,
+              isVisible: true
+            };
+          }
+
+          return list;
+        })
+      };
+
+    case onboarding_action_types.HIDE_TASK_LIST_REQUEST:
+      return { ...state,
+        requesting: { ...state.requesting,
+          hideTaskList: true
+        },
+        taskLists: state.taskLists.map(list => {
+          if (taskListId === list.id) {
+            return { ...list,
+              isVisible: false
+            };
+          }
+
+          return list;
+        })
+      };
+
+    case onboarding_action_types.HIDE_TASK_LIST_SUCCESS:
+      return { ...state,
+        requesting: { ...state.requesting,
+          hideTaskList: false
+        },
+        taskLists: state.taskLists.map(list => {
+          return taskListId === list.id ? taskList : list;
+        })
+      };
+
+    case onboarding_action_types.OPTIMISTICALLY_COMPLETE_TASK_REQUEST:
+      return { ...state,
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isComplete: true
+        })
+      };
+
+    case onboarding_action_types.ACTION_TASK_ERROR:
+      return { ...state,
+        errors: { ...state.errors,
+          actionTask: error
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isActioned: false
+        })
+      };
+
+    case onboarding_action_types.ACTION_TASK_REQUEST:
+      return { ...state,
+        requesting: { ...state.requesting,
+          actionTask: true
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, {
+          id: taskId,
+          isActioned: true
+        })
+      };
+
+    case onboarding_action_types.ACTION_TASK_SUCCESS:
+      return { ...state,
+        requesting: { ...state.requesting,
+          actionTask: false
+        },
+        taskLists: getUpdatedTaskLists(state.taskLists, task)
+      };
+
     default:
       return state;
   }
@@ -2953,7 +4983,6 @@ const ONBOARDING_STORE_NAME = onboarding_constants_STORE_NAME;
 
 const withOnboardingHydration = data => {
   let hydratedProfileItems = false;
-  let hydratedTasksStatus = false;
   return Object(external_wp_compose_["createHigherOrderComponent"])(OriginalComponent => props => {
     const onboardingRef = Object(external_wp_element_["useRef"])(data);
     Object(external_wp_data_["useSelect"])((select, registry) => {
@@ -2968,12 +4997,10 @@ const withOnboardingHydration = data => {
       const {
         startResolution,
         finishResolution,
-        setProfileItems,
-        setTasksStatus
+        setProfileItems
       } = registry.dispatch(onboarding_constants_STORE_NAME);
       const {
-        profileItems,
-        tasksStatus
+        profileItems
       } = onboardingRef.current;
 
       if (profileItems && !hydratedProfileItems && !isResolving('getProfileItems', []) && !hasFinishedResolution('getProfileItems', [])) {
@@ -2981,13 +5008,6 @@ const withOnboardingHydration = data => {
         setProfileItems(profileItems, true);
         finishResolution('getProfileItems', []);
         hydratedProfileItems = true;
-      }
-
-      if (tasksStatus && !hydratedTasksStatus && !isResolving('getTasksStatus', []) && !hasFinishedResolution('getTasksStatus', [])) {
-        startResolution('getTasksStatus', []);
-        setTasksStatus(tasksStatus, true);
-        finishResolution('getTasksStatus', []);
-        hydratedTasksStatus = true;
       }
     }, []);
     return Object(external_wp_element_["createElement"])(OriginalComponent, Object.assign({}, props));
@@ -3854,6 +5874,7 @@ const notes_action_types_TYPES = {
  * External dependencies
  */
 
+
 /**
  * Internal dependencies
  */
@@ -3897,11 +5918,11 @@ function* removeNote(noteId) {
     throw new Error();
   }
 }
-function* removeAllNotes() {
+function* removeAllNotes(query = {}) {
   yield notes_actions_setIsRequesting('removeAllNotes', true);
 
   try {
-    const url = `${NAMESPACE}/admin/notes/delete/all`;
+    const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/admin/notes/delete/all`, query);
     const notes = yield Object(external_wp_dataControls_["apiFetch"])({
       path: url,
       method: 'DELETE'
@@ -3998,10 +6019,15 @@ function notes_actions_setIsRequesting(selector, isRequesting) {
     isRequesting
   };
 }
+// EXTERNAL MODULE: ./packages/data/node_modules/dompurify/dist/purify.js
+var purify = __webpack_require__(268);
+
 // CONCATENATED MODULE: ./packages/data/build-module/notes/resolvers.js
 /**
  * External dependencies
  */
+
+
 
 
 /**
@@ -4010,6 +6036,7 @@ function notes_actions_setIsRequesting(selector, isRequesting) {
 
 
 
+let notesExceededWarningShown = false;
 function* resolvers_getNotes(query = {}) {
   const url = Object(external_wp_url_["addQueryArgs"])(`${NAMESPACE}/admin/notes`, query);
 
@@ -4017,6 +6044,33 @@ function* resolvers_getNotes(query = {}) {
     const notes = yield Object(external_wp_dataControls_["apiFetch"])({
       path: url
     });
+
+    if (!notesExceededWarningShown) {
+      const noteNames = notes.reduce((filtered, note) => {
+        const content = Object(purify["sanitize"])(note.content, {
+          ALLOWED_TAGS: []
+        });
+
+        if (content.length > 320) {
+          filtered.push(note.name);
+        }
+
+        return filtered;
+      }, []);
+
+      if (noteNames.length) {
+        /* eslint-disable no-console */
+        console.warn(Object(external_wp_i18n_["sprintf"])(
+        /* translators: %s = link to developer blog */
+        Object(external_wp_i18n_["__"])('WooCommerce Admin will soon limit inbox note contents to 320 characters. For more information, please visit %s. The following notes currently exceeds that limit:', 'woocommerce-admin'), 'https://developer.woocommerce.com/?p=10749') + '\n' + noteNames.map((name, idx) => {
+          return `  ${idx + 1}. ${name}`;
+        }).join('\n'));
+        /* eslint-enable no-console */
+
+        notesExceededWarningShown = true;
+      }
+    }
+
     yield setNotes(notes);
     yield setNotesQuery(query, notes.map(note => note.id));
   } catch (error) {
@@ -4332,7 +6386,7 @@ const REPORTS_STORE_NAME = reports_constants_STORE_NAME;
 // CONCATENATED MODULE: ./packages/data/build-module/items/constants.js
 const items_constants_STORE_NAME = 'wc/admin/items';
 // EXTERNAL MODULE: external ["wc","date"]
-var external_wc_date_ = __webpack_require__(19);
+var external_wc_date_ = __webpack_require__(20);
 
 // CONCATENATED MODULE: ./packages/data/build-module/items/utils.js
 /**
@@ -4782,9 +6836,6 @@ Object(external_wp_data_["registerStore"])(items_constants_STORE_NAME, {
 const ITEMS_STORE_NAME = items_constants_STORE_NAME;
 // CONCATENATED MODULE: ./packages/data/build-module/navigation/constants.js
 const navigation_constants_STORE_NAME = 'woocommerce-navigation';
-// EXTERNAL MODULE: external ["wp","hooks"]
-var external_wp_hooks_ = __webpack_require__(30);
-
 // CONCATENATED MODULE: ./packages/data/build-module/navigation/selectors.js
 /**
  * External dependencies
@@ -5487,10 +7538,6 @@ Object(external_wp_data_["registerStore"])(STORE_KEY, {
 var external_moment_ = __webpack_require__(9);
 var external_moment_default = /*#__PURE__*/__webpack_require__.n(external_moment_);
 
-// EXTERNAL MODULE: external ["wp","deprecated"]
-var external_wp_deprecated_ = __webpack_require__(43);
-var external_wp_deprecated_default = /*#__PURE__*/__webpack_require__.n(external_wp_deprecated_);
-
 // CONCATENATED MODULE: ./packages/data/build-module/reports/utils.js
 /**
  * External dependencies
@@ -5800,7 +7847,7 @@ const reportChartDataResponses = {
     }
   }
 };
-const EMPTY_ARRAY = [];
+const utils_EMPTY_ARRAY = [];
 /**
  * Cache helper for returning the full chart dataset after multiple
  * requests. Memoized on the request query (string), only called after
@@ -5868,7 +7915,7 @@ function getReportChartData(options) {
   }
 
   const totals = stats && stats.data && stats.data.totals || null;
-  let intervals = stats && stats.data && stats.data.intervals || EMPTY_ARRAY; // If we have more than 100 results for this time period,
+  let intervals = stats && stats.data && stats.data.intervals || utils_EMPTY_ARRAY; // If we have more than 100 results for this time period,
   // we need to make additional requests to complete the response.
 
   if (stats.totalResults > MAX_PER_PAGE) {
@@ -6044,7 +8091,7 @@ function getReportTableData(options) {
  */
 const export_constants_STORE_NAME = 'wc/admin/export';
 // EXTERNAL MODULE: ./node_modules/md5/md5.js
-var md5 = __webpack_require__(266);
+var md5 = __webpack_require__(269);
 var md5_default = /*#__PURE__*/__webpack_require__.n(md5);
 
 // CONCATENATED MODULE: ./packages/data/build-module/export/utils.js
@@ -6524,6 +8571,8 @@ Object(external_wp_data_["registerStore"])(import_constants_STORE_NAME, {
   resolvers: import_resolvers_namespaceObject
 });
 const IMPORT_STORE_NAME = import_constants_STORE_NAME;
+// CONCATENATED MODULE: ./packages/data/build-module/onboarding/types.js
+
 // CONCATENATED MODULE: ./packages/data/build-module/index.js
 /**
  * External dependencies
@@ -6556,6 +8605,558 @@ const IMPORT_STORE_NAME = import_constants_STORE_NAME;
 
 
 
+
+
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(41);
+var formats = __webpack_require__(35);
+var has = Object.prototype.hasOwnProperty;
+
+var arrayPrefixGenerators = {
+    brackets: function brackets(prefix) {
+        return prefix + '[]';
+    },
+    comma: 'comma',
+    indices: function indices(prefix, key) {
+        return prefix + '[' + key + ']';
+    },
+    repeat: function repeat(prefix) {
+        return prefix;
+    }
+};
+
+var isArray = Array.isArray;
+var push = Array.prototype.push;
+var pushToArray = function (arr, valueOrArray) {
+    push.apply(arr, isArray(valueOrArray) ? valueOrArray : [valueOrArray]);
+};
+
+var toISO = Date.prototype.toISOString;
+
+var defaultFormat = formats['default'];
+var defaults = {
+    addQueryPrefix: false,
+    allowDots: false,
+    charset: 'utf-8',
+    charsetSentinel: false,
+    delimiter: '&',
+    encode: true,
+    encoder: utils.encode,
+    encodeValuesOnly: false,
+    format: defaultFormat,
+    formatter: formats.formatters[defaultFormat],
+    // deprecated
+    indices: false,
+    serializeDate: function serializeDate(date) {
+        return toISO.call(date);
+    },
+    skipNulls: false,
+    strictNullHandling: false
+};
+
+var isNonNullishPrimitive = function isNonNullishPrimitive(v) {
+    return typeof v === 'string'
+        || typeof v === 'number'
+        || typeof v === 'boolean'
+        || typeof v === 'symbol'
+        || typeof v === 'bigint';
+};
+
+var stringify = function stringify(
+    object,
+    prefix,
+    generateArrayPrefix,
+    strictNullHandling,
+    skipNulls,
+    encoder,
+    filter,
+    sort,
+    allowDots,
+    serializeDate,
+    format,
+    formatter,
+    encodeValuesOnly,
+    charset
+) {
+    var obj = object;
+    if (typeof filter === 'function') {
+        obj = filter(prefix, obj);
+    } else if (obj instanceof Date) {
+        obj = serializeDate(obj);
+    } else if (generateArrayPrefix === 'comma' && isArray(obj)) {
+        obj = utils.maybeMap(obj, function (value) {
+            if (value instanceof Date) {
+                return serializeDate(value);
+            }
+            return value;
+        });
+    }
+
+    if (obj === null) {
+        if (strictNullHandling) {
+            return encoder && !encodeValuesOnly ? encoder(prefix, defaults.encoder, charset, 'key', format) : prefix;
+        }
+
+        obj = '';
+    }
+
+    if (isNonNullishPrimitive(obj) || utils.isBuffer(obj)) {
+        if (encoder) {
+            var keyValue = encodeValuesOnly ? prefix : encoder(prefix, defaults.encoder, charset, 'key', format);
+            return [formatter(keyValue) + '=' + formatter(encoder(obj, defaults.encoder, charset, 'value', format))];
+        }
+        return [formatter(prefix) + '=' + formatter(String(obj))];
+    }
+
+    var values = [];
+
+    if (typeof obj === 'undefined') {
+        return values;
+    }
+
+    var objKeys;
+    if (generateArrayPrefix === 'comma' && isArray(obj)) {
+        // we need to join elements in
+        objKeys = [{ value: obj.length > 0 ? obj.join(',') || null : undefined }];
+    } else if (isArray(filter)) {
+        objKeys = filter;
+    } else {
+        var keys = Object.keys(obj);
+        objKeys = sort ? keys.sort(sort) : keys;
+    }
+
+    for (var i = 0; i < objKeys.length; ++i) {
+        var key = objKeys[i];
+        var value = typeof key === 'object' && key.value !== undefined ? key.value : obj[key];
+
+        if (skipNulls && value === null) {
+            continue;
+        }
+
+        var keyPrefix = isArray(obj)
+            ? typeof generateArrayPrefix === 'function' ? generateArrayPrefix(prefix, key) : prefix
+            : prefix + (allowDots ? '.' + key : '[' + key + ']');
+
+        pushToArray(values, stringify(
+            value,
+            keyPrefix,
+            generateArrayPrefix,
+            strictNullHandling,
+            skipNulls,
+            encoder,
+            filter,
+            sort,
+            allowDots,
+            serializeDate,
+            format,
+            formatter,
+            encodeValuesOnly,
+            charset
+        ));
+    }
+
+    return values;
+};
+
+var normalizeStringifyOptions = function normalizeStringifyOptions(opts) {
+    if (!opts) {
+        return defaults;
+    }
+
+    if (opts.encoder !== null && opts.encoder !== undefined && typeof opts.encoder !== 'function') {
+        throw new TypeError('Encoder has to be a function.');
+    }
+
+    var charset = opts.charset || defaults.charset;
+    if (typeof opts.charset !== 'undefined' && opts.charset !== 'utf-8' && opts.charset !== 'iso-8859-1') {
+        throw new TypeError('The charset option must be either utf-8, iso-8859-1, or undefined');
+    }
+
+    var format = formats['default'];
+    if (typeof opts.format !== 'undefined') {
+        if (!has.call(formats.formatters, opts.format)) {
+            throw new TypeError('Unknown format option provided.');
+        }
+        format = opts.format;
+    }
+    var formatter = formats.formatters[format];
+
+    var filter = defaults.filter;
+    if (typeof opts.filter === 'function' || isArray(opts.filter)) {
+        filter = opts.filter;
+    }
+
+    return {
+        addQueryPrefix: typeof opts.addQueryPrefix === 'boolean' ? opts.addQueryPrefix : defaults.addQueryPrefix,
+        allowDots: typeof opts.allowDots === 'undefined' ? defaults.allowDots : !!opts.allowDots,
+        charset: charset,
+        charsetSentinel: typeof opts.charsetSentinel === 'boolean' ? opts.charsetSentinel : defaults.charsetSentinel,
+        delimiter: typeof opts.delimiter === 'undefined' ? defaults.delimiter : opts.delimiter,
+        encode: typeof opts.encode === 'boolean' ? opts.encode : defaults.encode,
+        encoder: typeof opts.encoder === 'function' ? opts.encoder : defaults.encoder,
+        encodeValuesOnly: typeof opts.encodeValuesOnly === 'boolean' ? opts.encodeValuesOnly : defaults.encodeValuesOnly,
+        filter: filter,
+        format: format,
+        formatter: formatter,
+        serializeDate: typeof opts.serializeDate === 'function' ? opts.serializeDate : defaults.serializeDate,
+        skipNulls: typeof opts.skipNulls === 'boolean' ? opts.skipNulls : defaults.skipNulls,
+        sort: typeof opts.sort === 'function' ? opts.sort : null,
+        strictNullHandling: typeof opts.strictNullHandling === 'boolean' ? opts.strictNullHandling : defaults.strictNullHandling
+    };
+};
+
+module.exports = function (object, opts) {
+    var obj = object;
+    var options = normalizeStringifyOptions(opts);
+
+    var objKeys;
+    var filter;
+
+    if (typeof options.filter === 'function') {
+        filter = options.filter;
+        obj = filter('', obj);
+    } else if (isArray(options.filter)) {
+        filter = options.filter;
+        objKeys = filter;
+    }
+
+    var keys = [];
+
+    if (typeof obj !== 'object' || obj === null) {
+        return '';
+    }
+
+    var arrayFormat;
+    if (opts && opts.arrayFormat in arrayPrefixGenerators) {
+        arrayFormat = opts.arrayFormat;
+    } else if (opts && 'indices' in opts) {
+        arrayFormat = opts.indices ? 'indices' : 'repeat';
+    } else {
+        arrayFormat = 'indices';
+    }
+
+    var generateArrayPrefix = arrayPrefixGenerators[arrayFormat];
+
+    if (!objKeys) {
+        objKeys = Object.keys(obj);
+    }
+
+    if (options.sort) {
+        objKeys.sort(options.sort);
+    }
+
+    for (var i = 0; i < objKeys.length; ++i) {
+        var key = objKeys[i];
+
+        if (options.skipNulls && obj[key] === null) {
+            continue;
+        }
+        pushToArray(keys, stringify(
+            obj[key],
+            key,
+            generateArrayPrefix,
+            options.strictNullHandling,
+            options.skipNulls,
+            options.encode ? options.encoder : null,
+            options.filter,
+            options.sort,
+            options.allowDots,
+            options.serializeDate,
+            options.format,
+            options.formatter,
+            options.encodeValuesOnly,
+            options.charset
+        ));
+    }
+
+    var joined = keys.join(options.delimiter);
+    var prefix = options.addQueryPrefix === true ? '?' : '';
+
+    if (options.charsetSentinel) {
+        if (options.charset === 'iso-8859-1') {
+            // encodeURIComponent('&#10003;'), the "numeric entity" representation of a checkmark
+            prefix += 'utf8=%26%2310003%3B&';
+        } else {
+            // encodeURIComponent('✓')
+            prefix += 'utf8=%E2%9C%93&';
+        }
+    }
+
+    return joined.length > 0 ? prefix + joined : '';
+};
+
+
+/***/ }),
+
+/***/ 57:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var utils = __webpack_require__(41);
+
+var has = Object.prototype.hasOwnProperty;
+var isArray = Array.isArray;
+
+var defaults = {
+    allowDots: false,
+    allowPrototypes: false,
+    arrayLimit: 20,
+    charset: 'utf-8',
+    charsetSentinel: false,
+    comma: false,
+    decoder: utils.decode,
+    delimiter: '&',
+    depth: 5,
+    ignoreQueryPrefix: false,
+    interpretNumericEntities: false,
+    parameterLimit: 1000,
+    parseArrays: true,
+    plainObjects: false,
+    strictNullHandling: false
+};
+
+var interpretNumericEntities = function (str) {
+    return str.replace(/&#(\d+);/g, function ($0, numberStr) {
+        return String.fromCharCode(parseInt(numberStr, 10));
+    });
+};
+
+var parseArrayValue = function (val, options) {
+    if (val && typeof val === 'string' && options.comma && val.indexOf(',') > -1) {
+        return val.split(',');
+    }
+
+    return val;
+};
+
+// This is what browsers will submit when the ✓ character occurs in an
+// application/x-www-form-urlencoded body and the encoding of the page containing
+// the form is iso-8859-1, or when the submitted form has an accept-charset
+// attribute of iso-8859-1. Presumably also with other charsets that do not contain
+// the ✓ character, such as us-ascii.
+var isoSentinel = 'utf8=%26%2310003%3B'; // encodeURIComponent('&#10003;')
+
+// These are the percent-encoded utf-8 octets representing a checkmark, indicating that the request actually is utf-8 encoded.
+var charsetSentinel = 'utf8=%E2%9C%93'; // encodeURIComponent('✓')
+
+var parseValues = function parseQueryStringValues(str, options) {
+    var obj = {};
+    var cleanStr = options.ignoreQueryPrefix ? str.replace(/^\?/, '') : str;
+    var limit = options.parameterLimit === Infinity ? undefined : options.parameterLimit;
+    var parts = cleanStr.split(options.delimiter, limit);
+    var skipIndex = -1; // Keep track of where the utf8 sentinel was found
+    var i;
+
+    var charset = options.charset;
+    if (options.charsetSentinel) {
+        for (i = 0; i < parts.length; ++i) {
+            if (parts[i].indexOf('utf8=') === 0) {
+                if (parts[i] === charsetSentinel) {
+                    charset = 'utf-8';
+                } else if (parts[i] === isoSentinel) {
+                    charset = 'iso-8859-1';
+                }
+                skipIndex = i;
+                i = parts.length; // The eslint settings do not allow break;
+            }
+        }
+    }
+
+    for (i = 0; i < parts.length; ++i) {
+        if (i === skipIndex) {
+            continue;
+        }
+        var part = parts[i];
+
+        var bracketEqualsPos = part.indexOf(']=');
+        var pos = bracketEqualsPos === -1 ? part.indexOf('=') : bracketEqualsPos + 1;
+
+        var key, val;
+        if (pos === -1) {
+            key = options.decoder(part, defaults.decoder, charset, 'key');
+            val = options.strictNullHandling ? null : '';
+        } else {
+            key = options.decoder(part.slice(0, pos), defaults.decoder, charset, 'key');
+            val = utils.maybeMap(
+                parseArrayValue(part.slice(pos + 1), options),
+                function (encodedVal) {
+                    return options.decoder(encodedVal, defaults.decoder, charset, 'value');
+                }
+            );
+        }
+
+        if (val && options.interpretNumericEntities && charset === 'iso-8859-1') {
+            val = interpretNumericEntities(val);
+        }
+
+        if (part.indexOf('[]=') > -1) {
+            val = isArray(val) ? [val] : val;
+        }
+
+        if (has.call(obj, key)) {
+            obj[key] = utils.combine(obj[key], val);
+        } else {
+            obj[key] = val;
+        }
+    }
+
+    return obj;
+};
+
+var parseObject = function (chain, val, options, valuesParsed) {
+    var leaf = valuesParsed ? val : parseArrayValue(val, options);
+
+    for (var i = chain.length - 1; i >= 0; --i) {
+        var obj;
+        var root = chain[i];
+
+        if (root === '[]' && options.parseArrays) {
+            obj = [].concat(leaf);
+        } else {
+            obj = options.plainObjects ? Object.create(null) : {};
+            var cleanRoot = root.charAt(0) === '[' && root.charAt(root.length - 1) === ']' ? root.slice(1, -1) : root;
+            var index = parseInt(cleanRoot, 10);
+            if (!options.parseArrays && cleanRoot === '') {
+                obj = { 0: leaf };
+            } else if (
+                !isNaN(index)
+                && root !== cleanRoot
+                && String(index) === cleanRoot
+                && index >= 0
+                && (options.parseArrays && index <= options.arrayLimit)
+            ) {
+                obj = [];
+                obj[index] = leaf;
+            } else {
+                obj[cleanRoot] = leaf;
+            }
+        }
+
+        leaf = obj;
+    }
+
+    return leaf;
+};
+
+var parseKeys = function parseQueryStringKeys(givenKey, val, options, valuesParsed) {
+    if (!givenKey) {
+        return;
+    }
+
+    // Transform dot notation to bracket notation
+    var key = options.allowDots ? givenKey.replace(/\.([^.[]+)/g, '[$1]') : givenKey;
+
+    // The regex chunks
+
+    var brackets = /(\[[^[\]]*])/;
+    var child = /(\[[^[\]]*])/g;
+
+    // Get the parent
+
+    var segment = options.depth > 0 && brackets.exec(key);
+    var parent = segment ? key.slice(0, segment.index) : key;
+
+    // Stash the parent if it exists
+
+    var keys = [];
+    if (parent) {
+        // If we aren't using plain objects, optionally prefix keys that would overwrite object prototype properties
+        if (!options.plainObjects && has.call(Object.prototype, parent)) {
+            if (!options.allowPrototypes) {
+                return;
+            }
+        }
+
+        keys.push(parent);
+    }
+
+    // Loop through children appending to the array until we hit depth
+
+    var i = 0;
+    while (options.depth > 0 && (segment = child.exec(key)) !== null && i < options.depth) {
+        i += 1;
+        if (!options.plainObjects && has.call(Object.prototype, segment[1].slice(1, -1))) {
+            if (!options.allowPrototypes) {
+                return;
+            }
+        }
+        keys.push(segment[1]);
+    }
+
+    // If there's a remainder, just add whatever is left
+
+    if (segment) {
+        keys.push('[' + key.slice(segment.index) + ']');
+    }
+
+    return parseObject(keys, val, options, valuesParsed);
+};
+
+var normalizeParseOptions = function normalizeParseOptions(opts) {
+    if (!opts) {
+        return defaults;
+    }
+
+    if (opts.decoder !== null && opts.decoder !== undefined && typeof opts.decoder !== 'function') {
+        throw new TypeError('Decoder has to be a function.');
+    }
+
+    if (typeof opts.charset !== 'undefined' && opts.charset !== 'utf-8' && opts.charset !== 'iso-8859-1') {
+        throw new TypeError('The charset option must be either utf-8, iso-8859-1, or undefined');
+    }
+    var charset = typeof opts.charset === 'undefined' ? defaults.charset : opts.charset;
+
+    return {
+        allowDots: typeof opts.allowDots === 'undefined' ? defaults.allowDots : !!opts.allowDots,
+        allowPrototypes: typeof opts.allowPrototypes === 'boolean' ? opts.allowPrototypes : defaults.allowPrototypes,
+        arrayLimit: typeof opts.arrayLimit === 'number' ? opts.arrayLimit : defaults.arrayLimit,
+        charset: charset,
+        charsetSentinel: typeof opts.charsetSentinel === 'boolean' ? opts.charsetSentinel : defaults.charsetSentinel,
+        comma: typeof opts.comma === 'boolean' ? opts.comma : defaults.comma,
+        decoder: typeof opts.decoder === 'function' ? opts.decoder : defaults.decoder,
+        delimiter: typeof opts.delimiter === 'string' || utils.isRegExp(opts.delimiter) ? opts.delimiter : defaults.delimiter,
+        // eslint-disable-next-line no-implicit-coercion, no-extra-parens
+        depth: (typeof opts.depth === 'number' || opts.depth === false) ? +opts.depth : defaults.depth,
+        ignoreQueryPrefix: opts.ignoreQueryPrefix === true,
+        interpretNumericEntities: typeof opts.interpretNumericEntities === 'boolean' ? opts.interpretNumericEntities : defaults.interpretNumericEntities,
+        parameterLimit: typeof opts.parameterLimit === 'number' ? opts.parameterLimit : defaults.parameterLimit,
+        parseArrays: opts.parseArrays !== false,
+        plainObjects: typeof opts.plainObjects === 'boolean' ? opts.plainObjects : defaults.plainObjects,
+        strictNullHandling: typeof opts.strictNullHandling === 'boolean' ? opts.strictNullHandling : defaults.strictNullHandling
+    };
+};
+
+module.exports = function (str, opts) {
+    var options = normalizeParseOptions(opts);
+
+    if (str === '' || str === null || typeof str === 'undefined') {
+        return options.plainObjects ? Object.create(null) : {};
+    }
+
+    var tempObj = typeof str === 'string' ? parseValues(str, options) : str;
+    var obj = options.plainObjects ? Object.create(null) : {};
+
+    // Iterate over the keys and setup the new object
+
+    var keys = Object.keys(tempObj);
+    for (var i = 0; i < keys.length; ++i) {
+        var key = keys[i];
+        var newObj = parseKeys(key, tempObj[key], options, typeof str === 'string');
+        obj = utils.merge(obj, newObj, options);
+    }
+
+    return utils.compact(obj);
+};
 
 
 /***/ }),

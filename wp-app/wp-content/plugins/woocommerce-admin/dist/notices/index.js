@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 463);
+/******/ 	return __webpack_require__(__webpack_require__.s = 467);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,14 +94,14 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["lodash"]; }());
 
 /***/ }),
 
-/***/ 463:
+/***/ 467:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -130,7 +130,7 @@ var external_wp_notices_ = __webpack_require__(127);
 var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
+var external_lodash_ = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./packages/notices/build-module/store/utils/on-sub-key.js
 /**

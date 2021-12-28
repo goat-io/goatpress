@@ -178,6 +178,10 @@ if ( ! class_exists( 'Astra_Sites_Image_Importer' ) ) :
 		 */
 		public function import( $attachment ) {
 
+			if ( isset( $attachment['url'] ) && ! astra_sites_is_valid_url( $attachment['url'] ) ) {
+				return $attachment;
+			}
+
 			Astra_Sites_Importer_Log::add( 'Source - ' . $attachment['url'] );
 			$saved_image = $this->get_saved_image( $attachment );
 			Astra_Sites_Importer_Log::add( 'Log - ' . wp_json_encode( $saved_image['attachment'] ) );

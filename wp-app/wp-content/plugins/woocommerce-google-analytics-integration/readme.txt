@@ -3,7 +3,7 @@ Contributors: woocommerce, automattic, claudiosanches, bor0, royho, laurendaviss
 Tags: woocommerce, google analytics
 Requires at least: 3.9
 Tested up to: 5.8
-Stable tag: 1.5.3
+Stable tag: 1.5.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,7 +13,7 @@ Provides integration between Google Analytics and WooCommerce.
 
 This plugin provides the integration between Google Analytics and the WooCommerce plugin. You can link a referral to a purchase and add transaction information to your Google Analytics data. It also supports Global Site Tag, Universal Analytics, eCommerce, and enhanced eCommerce event tracking.
 
-Starting from WooCommerce 2.1, this integration is no packaged with WooCommerce and is only available by using this plugin.
+Starting from WooCommerce 2.1, this integration is not packaged with WooCommerce and is only available by using this plugin.
 
 Contributions are welcome via the [GitHub repository](https://github.com/woocommerce/woocommerce-google-analytics-integration).
 
@@ -59,6 +59,14 @@ Exact wording depends on the national data privacy laws and should be adjusted.
 1. Google Analytics Integration Settings.
 
 == Changelog ==
+
+= 1.5.5 - 2021-12-09 =
+* Tweak - WC 6.0 compatibility.
+* Tweak - WP 5.9 compatibility.
+
+= 1.5.4 - 2021-11-10 =
+* Fix - Remove the slow order counting query from admin init.
+* Tweak - WC 5.9 compatibility.
 
 = 1.5.3 - 2021-09-15 =
 * Tweak - Avoid unnecessary completed orders queries.

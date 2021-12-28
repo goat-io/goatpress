@@ -44,9 +44,10 @@ class THWCFD_Admin {
 	}
 
 	private function enqueue_scripts($suffix) {
-		$deps = array('jquery', 'jquery-ui-dialog', 'jquery-ui-sortable', 'jquery-tiptip', 'woocommerce_admin', 'selectWoo', 'wp-color-picker');
+		$deps = array('jquery', 'jquery-ui-dialog', 'jquery-ui-sortable', 'jquery-tiptip', 'woocommerce_admin', 'selectWoo', 'wp-color-picker', 'wp-i18n');
 			
 		wp_enqueue_script('thwcfd-admin-script', THWCFD_ASSETS_URL_ADMIN . 'js/thwcfd-admin'. $suffix .'.js', $deps, $this->version, false);
+    	wp_set_script_translations('thwcfd-admin-script', 'woo-checkout-field-editor-pro', dirname(THWCFD_BASE_NAME) . '/languages/');
 	}
 	
 	public function admin_menu() {
@@ -54,7 +55,7 @@ class THWCFD_Admin {
 		$this->screen_id = add_submenu_page('woocommerce', __('WooCommerce Checkout Field Editor', 'woo-checkout-field-editor-pro'), __('Checkout Form', 'woo-checkout-field-editor-pro'), $capability, 'checkout_form_designer', array($this, 'output_settings'));
 	}
 	
-	public function add_screen_id($ids){
+	public function add_screen_id($ids) {
 		$ids[] = 'woocommerce_page_checkout_form_designer';
 		$ids[] = strtolower(__('WooCommerce', 'woo-checkout-field-editor-pro')) .'_page_checkout_form_designer';
 
@@ -69,7 +70,7 @@ class THWCFD_Admin {
 		return $links;
 	}
 
-	private function output_review_request_link(){
+	private function output_review_request_link() {
 		$is_dismissed = get_transient('thwcfd_review_request_notice_dismissed');
 		if($is_dismissed){
 			return;
@@ -83,7 +84,7 @@ class THWCFD_Admin {
 		$thwcfd_since = get_option('thwcfd_since');
 		if(!$thwcfd_since){
 			$now = time();
-			update_option('thwcfd_since', $now, 'no' );
+			update_option('thwcfd_since', $now, 'no');
 		}else{
 			$now = time();
 			$diff_seconds = $now - $thwcfd_since;
@@ -98,13 +99,11 @@ class THWCFD_Admin {
 	private function render_review_request_notice(){
 		?>
 		<div id="thwcfd_review_request_notice" class="notice notice-info is-dismissible  thpladmin-notice" data-nonce="<?php echo wp_create_nonce( 'thwcfd_review_request_notice'); ?>" data-action="dismiss_thwcfd_review_request_notice" style="display:none">
-			<h3>
-				Just wanted to say thank you for using Checkout Field Editor plugin in your store.
-			</h3>
-			<p>We hope you had a great experience. Please leave us with your feedback to serve best to you and others. Cheers!</p>
+			<h3><?php _e('Just wanted to say thank you for using Checkout Field Editor plugin in your store.', 'woo-checkout-field-editor-pro'); ?></h3>
+			<p><?php _e('We hope you had a great experience. Please leave us with your feedback to serve best to you and others. Cheers!', 'woo-checkout-field-editor-pro'); ?></p>
 			<p class="action-row">
-		        <button type="button" class="button button-primary" onclick="window.open('https://wordpress.org/support/plugin/woo-checkout-field-editor-pro/reviews?rate=5#new-post', '_blank')">Review Now</button>
-		        <button type="button" class="button" onclick="thwcfdHideReviewRequestNotice(this)">Remind Me Later</button>
+		        <button type="button" class="button button-primary" onclick="window.open('https://wordpress.org/support/plugin/woo-checkout-field-editor-pro/reviews?rate=5#new-post', '_blank')"><?php _e('Review Now', 'woo-checkout-field-editor-pro'); ?></button>
+		        <button type="button" class="button" onclick="thwcfdHideReviewRequestNotice(this)"><?php _e('Remind Me Later', 'woo-checkout-field-editor-pro'); ?></button>
             	<span class="logo"><a target="_blank" href="https://www.themehigh.com">
                 	<img src="<?php echo esc_url(THWCFD_ASSETS_URL_ADMIN .'css/logo.svg'); ?>" />
                 </a></span>
@@ -132,6 +131,9 @@ class THWCFD_Admin {
 		}elseif($tab === 'pro'){
 			$pro_details = THWCFD_Admin_Settings_Pro::instance();	
 			$pro_details->render_page();
+		}elseif($tab === 'themehigh_plugins'){
+			$themehigh_plugins = THWCFD_Admin_Settings_Themehigh_Plugins::instance();	
+			$themehigh_plugins->render_page();
 		}else{
 			$general_settings = THWCFD_Admin_Settings_General::instance();	
 			$general_settings->init();

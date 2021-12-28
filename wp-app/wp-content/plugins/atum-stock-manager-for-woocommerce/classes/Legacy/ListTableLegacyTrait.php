@@ -719,10 +719,32 @@ trait ListTableLegacyTrait {
 					// Get all the children from their corresponding meta key.
 					foreach ( $parents->posts as $parent_id ) {
 						$children = get_post_meta( $parent_id, '_children', TRUE );
-
+						// Unset uncontrolled childrens.
 						if ( ! empty( $children ) && is_array( $children ) ) {
-							$grouped_products     = array_merge( $grouped_products, $children );
-							$parents_with_child[] = $parent_id;
+
+							foreach ( $children as $key => $grouped_children ) {
+								$product_child = Helpers::get_atum_product( $grouped_children );
+
+								if ( $product_child ) {
+
+									if ( 'yes' === Helpers::get_atum_control_status( $product_child ) ) {
+
+										if ( ! $this->show_controlled ) {
+											unset( $children[ $key ] );
+										}
+
+									}
+									elseif ( $this->show_controlled ) {
+										unset( $children[ $key ] );
+									}
+
+								}
+
+							}
+							if ( ! empty( $children ) ) {
+								$grouped_products     = array_merge( $grouped_products, $children );
+								$parents_with_child[] = $parent_id;
+							}
 						}
 					}
 
@@ -764,6 +786,9 @@ trait ListTableLegacyTrait {
 				$children_args['post__in'] = $grouped_products;
 			}
 			else {
+				if ( ! empty( $this->supplier_variation_products ) ) {
+					$children_args['post__in'] = $this->supplier_variation_products;
+				}
 				$children_args['post_parent__in'] = $parents->posts;
 			}
 
@@ -796,9 +821,18 @@ trait ListTableLegacyTrait {
 
 			}
 
+			// Avoid to duplicate grouped children.
+			if ( 'grouped' === $parent_type && $this->is_searching_by_id_column() ) {
+				remove_filter( 'posts_search', array( $this, 'posts_search' ) );
+			}
+
 			add_filter( 'posts_clauses', array( $this, 'atum_product_data_query_clauses' ) );
 			$children = new \WP_Query( apply_filters( 'atum/list_table/get_children/children_args', $children_args ) );
 			remove_filter( 'posts_clauses', array( $this, 'atum_product_data_query_clauses' ) );
+
+			if ( 'grouped' === $parent_type && $this->is_searching_by_id_column() ) {
+				add_filter( 'posts_search', array( $this, 'posts_search' ), 10, 2 );
+			}
 
 			if ( $children->found_posts ) {
 
@@ -883,7 +917,7 @@ trait ListTableLegacyTrait {
 				return $bundle_children;
 
 			}
-			else {
+			elseif ( 'grouped' !== $parent_type || ! $this->is_searching_by_id_column() ) {
 				$this->excluded = array_unique( array_merge( $this->excluded, $parents->posts ) );
 			}
 

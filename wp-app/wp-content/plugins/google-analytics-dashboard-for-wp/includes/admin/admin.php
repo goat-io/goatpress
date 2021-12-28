@@ -70,6 +70,8 @@ function exactmetrics_admin_menu() {
     // Add About us page.
     add_submenu_page( $hook, __( 'About Us:', 'google-analytics-dashboard-for-wp' ), __( 'About Us', 'google-analytics-dashboard-for-wp' ), 'manage_options', $submenu_base . '#/about' );
 
+    add_submenu_page( $hook, __( 'Growth Tools:', 'google-analytics-dashboard-for-wp' ), __( 'Growth Tools', 'google-analytics-dashboard-for-wp' ), 'manage_options', $submenu_base . '#/growth-tools' );
+
     if ( ! exactmetrics_is_pro_version() ) {
 	    add_submenu_page( $hook, __( 'Upgrade to Pro:', 'google-analytics-dashboard-for-wp' ), '<span class="exactmetrics-upgrade-submenu"> ' . __( 'Upgrade to Pro', 'google-analytics-dashboard-for-wp' ) . '</span>', 'exactmetrics_save_settings', exactmetrics_get_upgrade_link( 'admin-menu', 'submenu', "https://www.exactmetrics.com/lite/" ) );
     }

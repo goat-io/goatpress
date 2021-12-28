@@ -293,6 +293,10 @@ Get the external IP from the following command, as that is our url for the app. 
 kubectl get service nginx-ingress-controller
 ```
 
+
+# WORDPRESS MD5 GENERATOR
+http://www.miraclesalad.com/webtools/md5.php
+
 [stars-shield]: https://img.shields.io/github/stars/goat-io/goatpress?style=flat-square
 [stars-url]: https://github.com/goat-io/goatpress/stargazers
 [issues-shield]: https://img.shields.io/github/issues/goat-io/goatpress?style=flat-square

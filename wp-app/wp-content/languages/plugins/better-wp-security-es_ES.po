@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - iThemes Security (formerly Better WP Security) - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-09-08 08:49:27+0000\n"
+"PO-Revision-Date: 2021-11-27 06:10:31+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,14 @@ msgstr ""
 "X-Generator: GlotPress/3.0.0-alpha.2\n"
 "Language: es\n"
 "Project-Id-Version: Plugins - iThemes Security (formerly Better WP Security) - Stable (latest release)\n"
+
+#: module-strings.php:32
+msgid "Excluded Tables"
+msgstr "Tablas excluidas"
+
+#: module-strings.php:348
+msgid "Enable XML-RPC"
+msgstr "Activar XML-RPC"
 
 #: module-strings.php:370
 msgid "API Access"
@@ -425,7 +433,7 @@ msgstr "Lista de tablas a excluir de cada copia de seguridad."
 
 #: module-strings.php:30
 msgid "Configuration"
-msgstr "Confirguración"
+msgstr "Configuración"
 
 #: module-strings.php:29
 msgid "Scheduling"
@@ -5900,6 +5908,10 @@ msgstr "Guardar Localmente y por Correo"
 #: module-strings.php:14
 msgid "The number of days between database backups."
 msgstr "El número de días entre las copias de seguridad de bases de datos."
+
+#: module-strings.php:34
+msgid "Included Tables"
+msgstr "Tablas incluidas"
 
 #: module-strings.php:24
 msgid "Compress Backup Files"

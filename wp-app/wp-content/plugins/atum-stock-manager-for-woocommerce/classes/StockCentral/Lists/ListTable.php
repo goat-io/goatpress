@@ -283,11 +283,6 @@ class ListTable extends AtumListTable {
 		// Call the parent class once all the $args are set.
 		parent::__construct( $args );
 
-		// Filtering with extra filters.
-		if ( ! empty( $_REQUEST['extra_filter'] ) ) {
-			add_action( 'pre_get_posts', array( $this, 'do_extra_filter' ) );
-		}
-
 	}
 
 	/**
@@ -295,9 +290,11 @@ class ListTable extends AtumListTable {
 	 *
 	 * @since 1.4.16
 	 *
+	 * @param bool $force_defaults
+	 *
 	 * @return array
 	 */
-	public static function get_table_columns() {
+	public static function get_table_columns( $force_defaults = FALSE ) {
 
 		// Can be called statically so it should need the sale_days before initializing the list.
 		self::set_sales_day();
@@ -353,7 +350,14 @@ class ListTable extends AtumListTable {
 			unset( $table_columns['_purchase_price'], $table_columns['_inbound_stock'], $table_columns['calc_gross_profit'] );
 		}
 
-		return (array) apply_filters( 'atum/stock_central_list/table_columns', $table_columns );
+		$table_columns = (array) apply_filters( 'atum/stock_central_list/table_columns', $table_columns );
+
+		// Check if the user has disabled any column from settings.
+		if ( ! $force_defaults ) {
+			$table_columns = self::maybe_disable_columns( $table_columns, 'sc_columns' );
+		}
+
+		return $table_columns;
 
 	}
 
@@ -387,8 +391,8 @@ class ListTable extends AtumListTable {
 		);
 
 		?>
-		<select name="extra_filter" class="wc-enhanced-select atum-enhanced-select dropdown_extra_filter auto-filter date-selector" autocomplete="off">
-			<option value=""><?php esc_attr_e( 'Extra Filters', ATUM_TEXT_DOMAIN ) ?></option>
+		<select name="extra_filter" class="wc-enhanced-select atum-enhanced-select dropdown_extra_filter auto-filter" autocomplete="off">
+			<option value=""><?php esc_html_e( 'Extra filters...', ATUM_TEXT_DOMAIN ) ?></option>
 
 			<?php foreach ( $extra_filters as $extra_filter => $label ) : ?>
 				<option value="<?php echo esc_attr( $extra_filter ) ?>"
@@ -430,11 +434,11 @@ class ListTable extends AtumListTable {
 		$stock_on_hold = self::EMPTY_COL;
 
 		if ( $this->allow_calcs ) {
-			$stock_on_hold = Helpers::get_product_stock_on_hold( $this->product );
+			$stock_on_hold = Helpers::get_product_stock_on_hold( $this->list_item );
 			$this->increase_total( '_stock_on_hold', $stock_on_hold );
 		}
 
-		return apply_filters( 'atum/stock_central_list/column_stock_hold', $stock_on_hold, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_stock_hold', $stock_on_hold, $item, $this->list_item, $this );
 
 	}
 
@@ -449,10 +453,10 @@ class ListTable extends AtumListTable {
 	 */
 	protected function column__reserved_stock( $item ) {
 
-		$reserved_stock = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'reserved-stock', $this->product );
+		$reserved_stock = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'reserved-stock', $this->list_item );
 		$this->increase_total( '_reserved_stock', $reserved_stock );
 
-		return apply_filters( 'atum/stock_central_list/column_reserved_stock', $reserved_stock, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_reserved_stock', $reserved_stock, $item, $this->list_item, $this );
 	}
 	
 	/**
@@ -471,20 +475,18 @@ class ListTable extends AtumListTable {
 		}
 		else {
 
-			$sold_today = $this->product->get_sold_today();
+			$sold_today = $this->list_item->get_sold_today();
 
-			if ( is_null( $sold_today ) || Helpers::is_product_data_outdated( $this->product ) ) {
-				$sold_today = Helpers::get_sold_last_days( 'today midnight', $this->day, $this->product->get_id() );
-				$this->product->set_sold_today( $sold_today );
-				$timestamp = Helpers::get_current_timestamp();
-				$this->product->set_update_date( $timestamp ); // This will force the update even when the values didn't chnage.
+			if ( is_null( $sold_today ) || Helpers::is_product_data_outdated( $this->list_item ) ) {
+				$sold_today = Helpers::get_sold_last_days( 'today midnight', $this->day, $this->list_item->get_id() );
+				$this->list_item->set_sold_today( $sold_today );
 			}
 
 		}
 
 		$this->increase_total( '_sold_today', $sold_today );
 		
-		return apply_filters( 'atum/stock_central_list/column_sold_today', $sold_today, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_sold_today', $sold_today, $item, $this->list_item, $this );
 		
 	}
 
@@ -499,10 +501,10 @@ class ListTable extends AtumListTable {
 	 */
 	protected function column__customer_returns( $item ) {
 
-		$consumer_returns = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'customer-returns', $this->product );
+		$consumer_returns = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'customer-returns', $this->list_item );
 		$this->increase_total( '_customer_returns', $consumer_returns );
 
-		return apply_filters( 'atum/stock_central_list/column_customer_returns', $consumer_returns, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_customer_returns', $consumer_returns, $item, $this->list_item, $this );
 	}
 
 	/**
@@ -516,10 +518,10 @@ class ListTable extends AtumListTable {
 	 */
 	protected function column__warehouse_damage( $item ) {
 
-		$warehouse_damages = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'warehouse-damage', $this->product );
+		$warehouse_damages = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'warehouse-damage', $this->list_item );
 		$this->increase_total( '_warehouse_damage', $warehouse_damages );
 
-		return apply_filters( 'atum/stock_central_list/column_warehouse_damage', $warehouse_damages, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_warehouse_damage', $warehouse_damages, $item, $this->list_item, $this );
 	}
 
 	/**
@@ -533,10 +535,10 @@ class ListTable extends AtumListTable {
 	 */
 	protected function column__lost_in_post( $item ) {
 
-		$lost_in_post = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'lost-in-post', $this->product );
+		$lost_in_post = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'lost-in-post', $this->list_item );
 		$this->increase_total( '_lost_in_post', $lost_in_post );
 
-		return apply_filters( 'atum/stock_central_list/column_lost_in_post', $lost_in_post, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_lost_in_post', $lost_in_post, $item, $this->list_item, $this );
 	}
 
 	/**
@@ -550,10 +552,10 @@ class ListTable extends AtumListTable {
 	 */
 	protected function column__other_logs( $item ) {
 
-		$others = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'other', $this->product );
+		$others = ! $this->allow_calcs ? self::EMPTY_COL : Helpers::get_log_item_qty( 'other', $this->list_item );
 		$this->increase_total( '_other_logs', $others );
 
-		return apply_filters( 'atum/stock_central_list/column_other_logs', $others, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_other_logs', $others, $item, $this->list_item, $this );
 	}
 
 	/**
@@ -573,21 +575,19 @@ class ListTable extends AtumListTable {
 		if ( $this->allow_calcs ) {
 
 			$sale_days        = self::$sale_days;
-			$sales_last_ndays = $this->product->get_sales_last_days();
+			$sales_last_ndays = $this->list_item->get_sales_last_days();
 			$days_queried     = Helpers::get_sold_last_days_option() !== $sale_days; // Is sold_last_days a request?
 
 			if (
 				is_null( $sales_last_ndays ) || $days_queried ||
-				Helpers::is_product_data_outdated( $this->product )
+				Helpers::is_product_data_outdated( $this->list_item )
 			) {
 
-				$sales_last_ndays = Helpers::get_sold_last_days( "$this->day -$sale_days days", $this->day, $this->product->get_id() );
+				$sales_last_ndays = Helpers::get_sold_last_days( "$this->day -$sale_days days", $this->day, $this->list_item->get_id() );
 
 				// Only save values if the sale days are the set in options.
 				if ( ! $days_queried ) {
-					$this->product->set_sales_last_days( $sales_last_ndays );
-					$timestamp = Helpers::get_current_timestamp();
-					$this->product->set_update_date( $timestamp ); // This will force the update even when the values didn't chnage.
+					$this->list_item->set_sales_last_days( $sales_last_ndays );
 				}
 
 			}
@@ -602,7 +602,7 @@ class ListTable extends AtumListTable {
 
 		}
 
-		return apply_filters( 'atum/stock_central_list/column_sales_last_days', $sales_last_ndays, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_sales_last_days', $sales_last_ndays, $item, $this->list_item, $this );
 
 	}
 	
@@ -622,7 +622,7 @@ class ListTable extends AtumListTable {
 
 		if ( $this->allow_calcs ) {
 			$sales = $this->column__sales_last_days( $item, FALSE );
-			$stock = $this->product->get_stock_quantity();
+			$stock = $this->list_item->get_stock_quantity();
 
 			if ( $stock > 0 && $sales > 0 ) {
 				$sale_days = max( 1, self::$sale_days );
@@ -633,7 +633,7 @@ class ListTable extends AtumListTable {
 			}
 		}
 		
-		return apply_filters( 'atum/stock_central_list/column_stock_will_last_days', $will_last, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_stock_will_last_days', $will_last, $item, $this->list_item, $this );
 		
 	}
 	
@@ -652,20 +652,18 @@ class ListTable extends AtumListTable {
 
 		if ( $this->allow_calcs ) {
 
-			$out_stock_days = $this->product->get_out_stock_days();
+			$out_stock_days = $this->list_item->get_out_stock_days();
 
-			if ( is_null( $out_stock_days ) || Helpers::is_product_data_outdated( $this->product ) ) {
-				$out_stock_days = Helpers::get_product_out_stock_days( $this->product );
-				$this->product->set_out_stock_days( $out_stock_days );
-				$timestamp = Helpers::get_current_timestamp();
-				$this->product->set_update_date( $timestamp ); // This will force the update even when the values didn't change.
+			if ( is_null( $out_stock_days ) || Helpers::is_product_data_outdated( $this->list_item ) ) {
+				$out_stock_days = Helpers::get_product_out_stock_days( $this->list_item );
+				$this->list_item->set_out_stock_days( $out_stock_days );
 			}
 
 		}
 
 		$out_stock_days = is_numeric( $out_stock_days ) ? $out_stock_days : self::EMPTY_COL;
 		
-		return apply_filters( 'atum/stock_central_list/column_out_stock_days', $out_stock_days, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_out_stock_days', $out_stock_days, $item, $this->list_item, $this );
 		
 	}
 
@@ -684,13 +682,11 @@ class ListTable extends AtumListTable {
 
 		if ( $this->allow_calcs ) {
 
-			$lost_sales = $this->product->get_lost_sales();
+			$lost_sales = $this->list_item->get_lost_sales();
 
-			if ( is_null( $lost_sales ) || Helpers::is_product_data_outdated( $this->product ) ) {
-				$lost_sales = Helpers::get_product_lost_sales( $this->product );
-				$this->product->set_lost_sales( $lost_sales );
-				$timestamp = Helpers::get_current_timestamp();
-				$this->product->set_update_date( $timestamp ); // This will force the update even when the values didn't chnage.
+			if ( is_null( $lost_sales ) || Helpers::is_product_data_outdated( $this->list_item ) ) {
+				$lost_sales = Helpers::get_product_lost_sales( $this->list_item );
+				$this->list_item->set_lost_sales( $lost_sales );
 			}
 
 		}
@@ -698,7 +694,7 @@ class ListTable extends AtumListTable {
 		$lost_sales = is_numeric( $lost_sales ) ? Helpers::format_price( $lost_sales ) : self::EMPTY_COL;
 		$this->increase_total( '_lost_sales', $lost_sales );
 
-		return apply_filters( 'atum/stock_central_list/column_lost_sales', $lost_sales, $item, $this->product, $this );
+		return apply_filters( 'atum/stock_central_list/column_lost_sales', $lost_sales, $item, $this->list_item, $this );
 
 	}
 	
@@ -787,8 +783,8 @@ class ListTable extends AtumListTable {
 
 						} );
 
-						$filtered_products = $product_results + $filtered_products;
-						$sorted            = TRUE;
+						$filtered_products += $product_results;
+						$sorted             = TRUE;
 
 					}
 

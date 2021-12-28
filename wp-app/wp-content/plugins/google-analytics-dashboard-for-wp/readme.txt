@@ -4,7 +4,7 @@ Donate link: http://www.wpbeginner.com/wpbeginner-needs-your-help/
 Tags: analytics,google analytics,google analytics dashboard,google analytics plugin,google analytics widget,gtag
 Requires at least: 4.8.0
 Tested up to: 5.8
-Stable tag: 7.1.0
+Stable tag: 7.3.0
 Requires PHP: 5.5
 License: GPL v3
 
@@ -170,6 +170,20 @@ You can translate Google Analytics Dashboard for WP by ExactMetrics on [translat
 4. Want more features? <a href="https://www.exactmetrics.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">Purchase ExactMetrics Pro</a>!
 
 == Changelog ==
+= 7.3.0: December 14, 2021 =
+- New: From January 1 to 14, 2022, a limited time only Year In Review report will appear in the Reports section to reflect on your site's analytics in 2021 and offer insights and suggestions for improvement.
+- New In Pro: We've released a new integration with AffiliateWP to make it super simple to see how your affiliates are impacting your eCommerce stores.
+- New In Pro: We've released our ExactMetrics Media addon which makes it easy to track YouTube, Vimeo and media-library-uploaded videos.
+- Tweak: We've ensured all links to our documentation will open in a new tab to make them easier to use.
+- Fixed: An issue with the headline analyzer has been fixed that could have caused it to unpin in Gutenberg when another plugin's item was unpinned.
+- Fixed: A bug that caused the bounce rate box to sometimes show twice on the GAv3 dashboard widget has been fixed.
+
+= 7.2.0: November 3, 2021 =
+- New In Pro: 7 day traffic Email Summaries
+- New In Pro: Compatibility for the Complianz and CookieYes cookie notice plugins.
+- Tweak: Cleaned up the outputting of the GA compatibility layer feature.
+- Bugfix: Fixed an issue with dual tracking that could cause bounce rate to be off for GAv3 properties.
+
 = 7.1.0: September 29, 2021 =
 - Tweak: We've updated some of the GAv4 report labels to be more accurate.
 - New in Pro: We've added Google Ads conversion tracking for WooCommerce, Easy Digital Downloads, and MemberPress.

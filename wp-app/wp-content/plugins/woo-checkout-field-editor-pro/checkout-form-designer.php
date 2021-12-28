@@ -3,13 +3,13 @@
  * Plugin Name: Checkout Field Editor for WooCommerce
  * Description: Customize WooCommerce checkout fields(Add, Edit, Delete and re-arrange fields).
  * Author:      ThemeHigh
- * Version:     1.4.9
+ * Version:     1.5.1
  * Author URI:  https://www.themehigh.com
  * Plugin URI:  https://www.themehigh.com
  * Text Domain: woo-checkout-field-editor-pro
  * Domain Path: /languages
  * WC requires at least: 3.0.0
- * WC tested up to: 5.6.0
+ * WC tested up to: 5.9.0
  */
  
 if(!defined( 'ABSPATH' )) exit;
@@ -25,7 +25,7 @@ if (!function_exists('is_woocommerce_active')){
 }
 
 if(is_woocommerce_active()) {
-	define('THWCFD_VERSION', '1.4.9');
+	define('THWCFD_VERSION', '1.5.1');
 	!defined('THWCFD_BASE_NAME') && define('THWCFD_BASE_NAME', plugin_basename( __FILE__ ));
 	!defined('THWCFD_PATH') && define('THWCFD_PATH', plugin_dir_path( __FILE__ ));
 	!defined('THWCFD_URL') && define('THWCFD_URL', plugins_url( '/', __FILE__ ));

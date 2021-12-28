@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["marketingCoupons"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 467);
+/******/ 	return __webpack_require__(__webpack_require__.s = 471);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,7 +107,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["marketingCoupons"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(47)();
+  module.exports = __webpack_require__(48)();
 }
 
 
@@ -120,7 +120,7 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
-/***/ 101:
+/***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -148,6 +148,7 @@ __webpack_require__.d(icons_namespaceObject, "googleAds", function() { return li
 __webpack_require__.d(icons_namespaceObject, "googleListingsAndAds", function() { return library_google; });
 __webpack_require__.d(icons_namespaceObject, "hubspotForWoocommerce", function() { return library_hubspot; });
 __webpack_require__.d(icons_namespaceObject, "mailchimpForWoocommerce", function() { return library_mailchimp; });
+__webpack_require__.d(icons_namespaceObject, "mailpoet", function() { return library_mailpoet; });
 __webpack_require__.d(icons_namespaceObject, "woocommerceStoreCredit", function() { return currency_dollar; });
 __webpack_require__.d(icons_namespaceObject, "woocommerceFreeGiftCoupons", function() { return library_gift; });
 __webpack_require__.d(icons_namespaceObject, "woocommerceUrlCoupons", function() { return library_link; });
@@ -155,21 +156,21 @@ __webpack_require__.d(icons_namespaceObject, "woocommerceGroupCoupons", function
 __webpack_require__.d(icons_namespaceObject, "woocommerceSmartCoupons", function() { return library_tip; });
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(35);
+var helpers_extends = __webpack_require__(36);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: external ["wp","element"]
 var external_wp_element_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./client/marketing/components/button/style.scss
-var button_style = __webpack_require__(271);
+var button_style = __webpack_require__(274);
 
 // CONCATENATED MODULE: ./client/marketing/components/button/index.js
 
@@ -191,20 +192,20 @@ var button_style = __webpack_require__(271);
   }));
 });
 // EXTERNAL MODULE: ./client/marketing/components/card/index.js
-var card = __webpack_require__(77);
+var card = __webpack_require__(78);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
 var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
-var icon = __webpack_require__(115);
+var icon = __webpack_require__(116);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
+var external_lodash_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: ./client/marketing/components/product-icon/style.scss
-var product_icon_style = __webpack_require__(273);
+var product_icon_style = __webpack_require__(276);
 
 // EXTERNAL MODULE: external ["wp","primitives"]
 var external_wp_primitives_ = __webpack_require__(8);
@@ -506,6 +507,24 @@ const mailchimp = Object(external_wp_element_["createElement"])(external_wp_prim
   fill: "black"
 }));
 /* harmony default export */ var library_mailchimp = (mailchimp);
+// CONCATENATED MODULE: ./client/marketing/components/product-icon/icons/library/mailpoet.js
+
+
+/**
+ * External dependencies
+ */
+
+const mailpoet = Object(external_wp_element_["createElement"])(external_wp_primitives_["SVG"], {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "-30 -30 212.02 216.4"
+}, Object(external_wp_element_["createElement"])(external_wp_primitives_["Path"], {
+  fill: "#fe5301",
+  d: "M37.71,89.1c3.5,0,5.9-.8,7.2-2.3a8,8,0,0,0,2-5.4V35.7l17,45.1a12.68,12.68,0,0,0,3.7,5.4c1.6,1.3,4,2,7.2,2a12.54,12.54,0,0,0,5.9-1.4,8.41,8.41,0,0,0,3.9-5l18.1-50V81a8.53,8.53,0,0,0,2.1,6.1c1.4,1.4,3.7,2.2,6.9,2.2,3.5,0,5.9-.8,7.2-2.3a8,8,0,0,0,2-5.4V8.7a7.48,7.48,0,0,0-3.3-6.6c-2.1-1.4-5-2.1-8.6-2.1a19.3,19.3,0,0,0-9.4,2,11.63,11.63,0,0,0-5.1,6.8L74.91,67.1,54.41,8.4a12.4,12.4,0,0,0-4.5-6.2c-2.1-1.5-5-2.2-8.8-2.2a16.51,16.51,0,0,0-8.9,2.1c-2.3,1.5-3.5,3.9-3.5,7.2V80.8c0,2.8.7,4.8,2,6.2C32.21,88.4,34.41,89.1,37.71,89.1Z"
+}), Object(external_wp_element_["createElement"])(external_wp_primitives_["Path"], {
+  fill: "#fe5301",
+  d: "M149,116.6l-2.4-1.9a7.4,7.4,0,0,0-9.4.3,19.65,19.65,0,0,1-12.5,4.6h-21.4A37.08,37.08,0,0,0,77,130.5l-1.1,1.2-1.1-1.1a37.25,37.25,0,0,0-26.3-10.9H27a19.59,19.59,0,0,1-12.4-4.6,7.28,7.28,0,0,0-9.4-.3l-2.4,1.9A7.43,7.43,0,0,0,0,122.2a7.14,7.14,0,0,0,2.4,5.7A37.28,37.28,0,0,0,27,137.4h21.6a19.59,19.59,0,0,1,18.9,14.4v.2c.1.7,1.2,4.4,8.5,4.4s8.4-3.7,8.5-4.4v-.2a19.59,19.59,0,0,1,18.9-14.4H125a37.28,37.28,0,0,0,24.6-9.5,7.42,7.42,0,0,0,2.4-5.7A7.86,7.86,0,0,0,149,116.6Z"
+}));
+/* harmony default export */ var library_mailpoet = (mailpoet);
 // CONCATENATED MODULE: ./client/marketing/components/product-icon/icons/library/currency-dollar.js
 
 
@@ -598,6 +617,8 @@ const tip = Object(external_wp_element_["createElement"])(external_wp_primitives
 
  // Mailchimp
 
+ // MailPoet
+
  // Coupons
 
 
@@ -654,13 +675,13 @@ product_icon_ProductIcon.propTypes = {
 };
 /* harmony default export */ var product_icon = (product_icon_ProductIcon);
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroup.js + 2 modules
-var TransitionGroup = __webpack_require__(172);
+var TransitionGroup = __webpack_require__(173);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js + 3 modules
 var CSSTransition = __webpack_require__(169);
 
 // EXTERNAL MODULE: ./client/marketing/components/slider/style.scss
-var slider_style = __webpack_require__(274);
+var slider_style = __webpack_require__(277);
 
 // CONCATENATED MODULE: ./client/marketing/components/slider/index.js
 
@@ -752,7 +773,7 @@ Slider.propTypes = {
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -839,7 +860,7 @@ function Icon(_ref) {
 
 /***/ }),
 
-/***/ 121:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -1107,7 +1128,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/Transition.js + 1 modules
-var Transition = __webpack_require__(64);
+var Transition = __webpack_require__(67);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js
 
@@ -1396,7 +1417,14 @@ CSSTransition_CSSTransition.propTypes =  false ? undefined : {};
 
 /***/ }),
 
-/***/ 170:
+/***/ 17:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wc"]["experimental"]; }());
+
+/***/ }),
+
+/***/ 171:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1404,7 +1432,7 @@ CSSTransition_CSSTransition.propTypes =  false ? undefined : {};
 // UNUSED EXPORTS: RecommendedExtensions, RecommendedExtensionsPlaceholder
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(35);
+var helpers_extends = __webpack_require__(36);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: external ["wp","element"]
@@ -1428,13 +1456,13 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: ./client/marketing/components/recommended-extensions/style.scss
-var style = __webpack_require__(121);
+var style = __webpack_require__(122);
 
 // EXTERNAL MODULE: external ["wc","tracks"]
 var external_wc_tracks_ = __webpack_require__(16);
 
-// EXTERNAL MODULE: ./client/marketing/components/index.js + 18 modules
-var components = __webpack_require__(101);
+// EXTERNAL MODULE: ./client/marketing/components/index.js + 19 modules
+var components = __webpack_require__(102);
 
 // EXTERNAL MODULE: ./client/lib/in-app-purchase.js
 var in_app_purchase = __webpack_require__(162);
@@ -1525,10 +1553,10 @@ const RecommendedExtensionsPlaceholder = () => {
 
 /* harmony default export */ var placeholder = (RecommendedExtensionsPlaceholder);
 // EXTERNAL MODULE: ./client/marketing/data/constants.js
-var constants = __webpack_require__(46);
+var constants = __webpack_require__(47);
 
 // EXTERNAL MODULE: ./client/marketing/components/card/index.js
-var card = __webpack_require__(77);
+var card = __webpack_require__(78);
 
 // CONCATENATED MODULE: ./client/marketing/components/recommended-extensions/index.js
 
@@ -1633,7 +1661,7 @@ RecommendedExtensions.defaultProps = {
 
 /***/ }),
 
-/***/ 171:
+/***/ 172:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1669,14 +1697,14 @@ var external_wc_tracks_ = __webpack_require__(16);
 // EXTERNAL MODULE: ./client/marketing/components/knowledge-base/style.scss
 var style = __webpack_require__(163);
 
-// EXTERNAL MODULE: ./client/marketing/components/index.js + 18 modules
-var components = __webpack_require__(101);
+// EXTERNAL MODULE: ./client/marketing/components/index.js + 19 modules
+var components = __webpack_require__(102);
 
 // EXTERNAL MODULE: ./client/marketing/data/constants.js
-var constants = __webpack_require__(46);
+var constants = __webpack_require__(47);
 
 // EXTERNAL MODULE: ./client/marketing/components/card/index.js
-var card = __webpack_require__(77);
+var card = __webpack_require__(78);
 
 // EXTERNAL MODULE: ./node_modules/interpolate-components/lib/index.js
 var lib = __webpack_require__(18);
@@ -1961,7 +1989,7 @@ KnowledgeBase.defaultProps = {
 
 /***/ }),
 
-/***/ 172:
+/***/ 173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2444,13 +2472,6 @@ exports.default = interpolate;
 
 /***/ }),
 
-/***/ 20:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wc"]["experimental"]; }());
-
-/***/ }),
-
 /***/ 21:
 /***/ (function(module, exports) {
 
@@ -2532,27 +2553,6 @@ function _inheritsLoose(subClass, superClass) {
 
 /***/ }),
 
-/***/ 271:
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ 272:
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ 273:
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ 274:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2561,6 +2561,27 @@ function _inheritsLoose(subClass, superClass) {
 /***/ }),
 
 /***/ 275:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ 276:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ 277:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2600,7 +2621,7 @@ var external_wp_dataControls_ = __webpack_require__(10);
 var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: ./client/marketing/data/constants.js
-var constants = __webpack_require__(46);
+var constants = __webpack_require__(47);
 
 // EXTERNAL MODULE: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(2);
@@ -2756,7 +2777,7 @@ function* resolvers_getRecommendedPlugins(category) {
   try {
     const categoryParam = yield category ? `&category=${category}` : '';
     const response = yield Object(external_wp_dataControls_["apiFetch"])({
-      path: `${constants["a" /* API_NAMESPACE */]}/recommended?per_page=6${categoryParam}`
+      path: `${constants["a" /* API_NAMESPACE */]}/recommended?per_page=9${categoryParam}`
     });
 
     if (response) {
@@ -2789,7 +2810,7 @@ function* resolvers_getBlogPosts(category) {
 var build_module = __webpack_require__(13);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
+var external_lodash_ = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./client/marketing/data/reducer.js
 /**
@@ -2884,17 +2905,17 @@ Object(external_wp_data_["registerStore"])(constants["b" /* STORE_KEY */], {
 
 /***/ }),
 
-/***/ 29:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["ReactDOM"]; }());
-
-/***/ }),
-
 /***/ 3:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["lodash"]; }());
+(function() { module.exports = window["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ 31:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["ReactDOM"]; }());
 
 /***/ }),
 
@@ -2909,7 +2930,7 @@ Object(external_wp_data_["registerStore"])(constants["b" /* STORE_KEY */], {
 
 /***/ }),
 
-/***/ 35:
+/***/ 36:
 /***/ (function(module, exports) {
 
 function _extends() {
@@ -2939,18 +2960,18 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 /***/ 4:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wp"]["components"]; }());
+(function() { module.exports = window["lodash"]; }());
 
 /***/ }),
 
-/***/ 452:
+/***/ 455:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 46:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2961,7 +2982,7 @@ const API_NAMESPACE = '/wc-admin/marketing';
 
 /***/ }),
 
-/***/ 467:
+/***/ 471:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2978,16 +2999,16 @@ var external_wp_i18n_ = __webpack_require__(2);
 var build_module = __webpack_require__(13);
 
 // EXTERNAL MODULE: ./client/marketing/coupons/style.scss
-var style = __webpack_require__(452);
+var style = __webpack_require__(455);
 
 // EXTERNAL MODULE: ./client/marketing/components/recommended-extensions/index.js + 2 modules
-var recommended_extensions = __webpack_require__(170);
+var recommended_extensions = __webpack_require__(171);
 
 // EXTERNAL MODULE: ./client/marketing/components/knowledge-base/index.js + 2 modules
-var knowledge_base = __webpack_require__(171);
+var knowledge_base = __webpack_require__(172);
 
 // EXTERNAL MODULE: ./client/marketing/data/index.js + 5 modules
-var data = __webpack_require__(275);
+var data = __webpack_require__(278);
 
 // CONCATENATED MODULE: ./client/marketing/coupons/index.js
 
@@ -3043,7 +3064,7 @@ if (postForm) {
 
 /***/ }),
 
-/***/ 47:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3056,7 +3077,7 @@ if (postForm) {
 
 
 
-var ReactPropTypesSecret = __webpack_require__(48);
+var ReactPropTypesSecret = __webpack_require__(49);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -3115,7 +3136,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3250,7 +3271,7 @@ module.exports = emptyFunction;
 
 /***/ }),
 
-/***/ 64:
+/***/ 67:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3271,7 +3292,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: external "ReactDOM"
-var external_ReactDOM_ = __webpack_require__(29);
+var external_ReactDOM_ = __webpack_require__(31);
 var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_ReactDOM_);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/config.js
@@ -4178,21 +4199,21 @@ module.exports = function (mixedString) {
 
 /***/ }),
 
-/***/ 77:
+/***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _woocommerce_experimental__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20);
+/* harmony import */ var _woocommerce_experimental__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(17);
 /* harmony import */ var _woocommerce_experimental__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_woocommerce_experimental__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(272);
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(275);
 /* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_scss__WEBPACK_IMPORTED_MODULE_5__);
 
 

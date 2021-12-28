@@ -114,8 +114,24 @@ class THWCFD_Utils {
 		return $return;
 	}
 
+	public static function is_wc_handle_custom_field($field){
+		$name = isset($field['name']) ? $field['name'] : '';
+		$special_fields = array();
+		
+		if(version_compare(THWCFD_Utils::get_wc_version(), '5.6.0', ">=")){
+			$special_fields[] = 'shipping_phone';
+		}
+
+		$special_fields = apply_filters('thwcfd_wc_handle_custom_field', $special_fields);
+
+		if($name && in_array($name, $special_fields)){
+			return true;
+		}
+		return false;
+	}	
+
 	public static function update_fields($key, $fields){
-		$result = update_option('wc_fields_' . $key, $fields);
+		$result = update_option('wc_fields_' . $key, $fields, 'no');
 		return $result;
 	}
 
@@ -351,6 +367,20 @@ class THWCFD_Utils {
 			}
 		}
 		echo $text;
+	}
+	/***********************************
+	 ----- i18n functions - END ------
+	 ***********************************/
+
+	public static function get_wc_version() {
+		if(!class_exists('WooCommerce')){
+		    return;
+		}
+
+		if(defined('WC_VERSION')) {
+		    return WC_VERSION;
+		}
+		return;
 	}
 
 	public static function write_log ( $log )  {

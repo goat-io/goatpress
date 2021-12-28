@@ -174,108 +174,18 @@ $site_import_options = apply_filters(
  */
 ?>
 <script type="text/template" id="tmpl-astra-sites-page-builder-sites">
-	<# for ( site_id in data ) { #>
+
 	<#
-		var current_site_id     = site_id;
-		var type                = data[site_id]['type'] || 'site';
-		var wrapper_class       = data[site_id]['class'] || '';
-		var page_site_id        = data[site_id]['site_id'] || '';
-		var favorite_status     = false;
-		var favorite_class      = '';
-		var favorite_title      = '<?php esc_html_e( 'Make as Favorite', 'astra-sites' ); ?>';
-		var featured_image_url = data[site_id]['featured-image-url'];
-		var thumbnail_image_url = data[site_id]['thumbnail-image-url'] || featured_image_url;
-
-		var site_type = data[site_id]['astra-sites-type'] || '';
-		var page_id = '';
-		if ( 'site' === type ) {
-			if( Object.values( astraSitesVars.favorite_data ).indexOf( String(site_id) ) >= 0 ) {
-				favorite_class = 'is-favorite';
-				favorite_status = true;
-				favorite_title = '<?php esc_html_e( 'Make as Unfavorite', 'astra-sites' ); ?>';
-			}
-		} else {
-			thumbnail_image_url = featured_image_url;
-			current_site_id = page_site_id;
-			page_id = site_id;
+	if( data ) {
+		let sites_list =  data;
+		if( data.sites ) {
+			sites_list = Object.assign( data.sites, data.related );
 		}
+		for ( site_id in sites_list ) {
 
-		var title = data[site_id]['title'] || '';
-		var pages_count = parseInt( data[site_id]['pages-count'] ) || 0;
-		var pages_count_class = '';
-		var pages_count_string = ( pages_count !== 1 ) ? pages_count + ' Templates' : pages_count + ' Template';
-		if( 'site' === type ) {
-			if( pages_count ) {
-				pages_count_class = 'has-pages';
-			} else {
-				pages_count_class = 'no-pages';
-			}
-		}
-		var site_title = data[site_id]['site-title'] || '';
-
-	#>
-	<div class="theme astra-theme site-single {{favorite_class}} {{pages_count_class}} astra-sites-previewing-{{type}} {{wrapper_class}}" data-site-id="{{current_site_id}}" data-page-id="{{page_id}}">
-		<div class="inner">
-			<span class="site-preview" data-title="{{{title}}}">
-				<div class="theme-screenshot one loading" data-src="{{thumbnail_image_url}}" data-featured-src="{{featured_image_url}}"></div>
-			</span>
-			<div class="theme-id-container">
-				<div class="theme-name">
-					<span class="title">
-						<# if ( 'site' === type ) { #>
-							<div class='site-title'>{{{title}}}</div>
-							<# if ( pages_count ) { #>
-								<div class='pages-count'>{{{pages_count_string}}}</div>
-							<# } #>
-						<# } else { #>
-							<div class='site-title'>{{{site_title}}}</div>
-							<div class='page-title'>{{{title}}}</div>
-						<# } #>
-					</span>
-				</div>
-				<# if ( '' === type || 'site' === type ) { #>
-					<div class="favorite-action-wrap" data-favorite="{{favorite_class}}" title="{{favorite_title}}">
-						<i class="ast-icon-heart"></i>
-					</div>
-				<# } #>
-			</div>
-			<# if ( site_type && 'free' !== site_type ) { #>
-				<?php /* translators: %s are white label strings. */ ?>
-				<div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'astra-sites' ), Astra_Sites_White_Label::get_instance()->get_white_label_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><img class="premium-crown-icon" src="<?php echo esc_url( ASTRA_SITES_URI . 'inc/assets/images/premium-crown.svg' ); ?>" alt="premium-crown"><?php esc_html_e( 'Premium', 'astra-sites' ); ?></div>
-			<# } #>
-		</div>
-	</div>
-	<# } #>
-
-</script>
-
-<?php
-/**
- * TMPL - Show Page Builder Sites
- */
-?>
-<script type="text/template" id="tmpl-astra-sites-page-builder-sites-search">
-	<# var pages_list = []; #>
-	<# var sites_list = []; #>
-	<# var pages_list_arr = []; #>
-	<# var sites_list_arr = []; #>
-	<# for ( site_id in data ) {
-		var type = data[site_id]['type'] || 'site';
-		if ( 'site' === type ) {
-			sites_list_arr.push( data[site_id] );
-			sites_list[site_id] = data[site_id];
-		} else {
-			pages_list_arr.push( data[site_id] );
-			pages_list[site_id] = data[site_id]
-		}
-	} #>
-	<# if ( sites_list_arr.length > 0 ) { #>
-		<h3 class="ast-sites__search-title"><?php esc_html_e( 'Site Templates', 'astra-sites' ); ?></h3>
-		<div class="ast-sites__search-wrap">
-		<# for ( site_id in sites_list ) { #>
-		<#
 			var current_site_id     = site_id;
 			var type                = sites_list[site_id]['type'] || 'site';
+			var wrapper_class       = sites_list[site_id]['class'] || '';
 			var page_site_id        = sites_list[site_id]['site_id'] || '';
 			var favorite_status     = false;
 			var favorite_class      = '';
@@ -285,63 +195,169 @@ $site_import_options = apply_filters(
 
 			var site_type = sites_list[site_id]['astra-sites-type'] || '';
 			var page_id = '';
-			if( Object.values( astraSitesVars.favorite_data ).indexOf( String(site_id) ) >= 0 ) {
-				favorite_class = 'is-favorite';
-				favorite_status = true;
-				favorite_title = '<?php esc_html_e( 'Make as Unfavorite', 'astra-sites' ); ?>';
+			if ( 'site' === type ) {
+				if( Object.values( astraSitesVars.favorite_data ).indexOf( String(site_id) ) >= 0 ) {
+					favorite_class = 'is-favorite';
+					favorite_status = true;
+					favorite_title = '<?php esc_html_e( 'Make as Unfavorite', 'astra-sites' ); ?>';
+				}
+			} else {
+				thumbnail_image_url = featured_image_url;
+				current_site_id = page_site_id;
+				page_id = site_id;
 			}
 
 			var title = sites_list[site_id]['title'] || '';
 			var pages_count = parseInt( sites_list[site_id]['pages-count'] ) || 0;
-			var pages_count_string = ( pages_count !== 1 ) ? pages_count + ' Templates' : pages_count + ' Template';
 			var pages_count_class = '';
-			if( pages_count ) {
-				pages_count_class = 'has-pages';
-			} else {
-				pages_count_class = 'no-pages';
+			var pages_count_string = ( pages_count !== 1 ) ? pages_count + ' Templates' : pages_count + ' Template';
+			if( 'site' === type ) {
+				if( pages_count ) {
+					pages_count_class = 'has-pages';
+				} else {
+					pages_count_class = 'no-pages';
+				}
 			}
 			var site_title = sites_list[site_id]['site-title'] || '';
 
 		#>
-			<div class="theme astra-theme site-single {{favorite_class}} {{pages_count_class}} astra-sites-previewing-{{type}}" data-site-id="{{current_site_id}}" data-page-id="{{page_id}}">
-				<div class="inner">
-					<span class="site-preview" data-title="{{{title}}}">
-						<div class="theme-screenshot one loading" data-src="{{thumbnail_image_url}}" data-featured-src="{{featured_image_url}}"></div>
-					</span>
-					<div class="theme-id-container">
-						<div class="theme-name">
-							<span class="title">
-								<# if ( 'site' === type ) { #>
-									<div class='site-title'>{{{title}}}</div>
-									<# if ( pages_count ) { #>
-										<div class='pages-count'>{{{pages_count_string}}}</div>
-									<# } #>
-								<# } else { #>
-									<div class='site-title'>{{{site_title}}}</div>
-									<div class='page-title'>{{{title}}}</div>
+		<div class="theme astra-theme site-single {{favorite_class}} {{pages_count_class}} astra-sites-previewing-{{type}} {{wrapper_class}}" data-site-id="{{current_site_id}}" data-page-id="{{page_id}}">
+			<div class="inner">
+				<span class="site-preview" data-title="{{{title}}}">
+					<div class="theme-screenshot one loading" data-src="{{thumbnail_image_url}}" data-featured-src="{{featured_image_url}}"></div>
+				</span>
+				<div class="theme-id-container">
+					<div class="theme-name">
+						<span class="title">
+							<# if ( 'site' === type ) { #>
+								<div class='site-title'>{{{title}}}</div>
+								<# if ( pages_count ) { #>
+									<div class='pages-count'>{{{pages_count_string}}}</div>
 								<# } #>
-							</span>
-						</div>
-						<# if ( '' === type || 'site' === type ) { #>
-							<div class="favorite-action-wrap" data-favorite="{{favorite_class}}" title="{{favorite_title}}">
-								<i class="ast-icon-heart"></i>
-							</div>
-						<# } #>
+							<# } else { #>
+								<div class='site-title'>{{{site_title}}}</div>
+								<div class='page-title'>{{{title}}}</div>
+							<# } #>
+						</span>
 					</div>
-					<# if ( site_type && 'free' !== site_type ) { #>
-						<?php /* translators: %s are white label strings. */ ?>
-						<div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'astra-sites' ), Astra_Sites_White_Label::get_instance()->get_white_label_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php esc_html_e( 'Premium', 'astra-sites' ); ?></div>
+					<# if ( '' === type || 'site' === type ) { #>
+						<div class="favorite-action-wrap" data-favorite="{{favorite_class}}" title="{{favorite_title}}">
+							<i class="ast-icon-heart"></i>
+						</div>
 					<# } #>
 				</div>
+				<# if ( site_type && 'free' !== site_type ) { #>
+					<?php /* translators: %s are white label strings. */ ?>
+					<div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'astra-sites' ), Astra_Sites_White_Label::get_instance()->get_white_label_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php esc_html_e( 'Premium', 'astra-sites' ); ?></div>
+				<# } #>
 			</div>
-		<# } #>
 		</div>
+		<# } #>
 	<# } #>
-	<# if ( pages_list_arr.length > 0 ) { #>
+
+</script>
+
+<?php
+/**
+ * TMPL - Show Page Builder Sites
+ */
+?>
+<script type="text/template" id="tmpl-new-astra-sites-page-builder-sites-search">
+
+	<# if( Object.keys( data.sites ).length || Object.keys( data.related ).length ) { #>
+
+		<h3 class="ast-sites__search-title"><?php esc_html_e( 'Site Templates', 'astra-sites' ); ?></h3>
+		<div class="ast-sites__search-wrap">
+			<#
+			let sites_list = Object.assign( data.sites, data.related );
+
+			for ( site_id in sites_list ) { #>
+			<#
+				var current_site_id     = site_id;
+				var type                = sites_list[site_id]['type'] || 'site';
+				var page_site_id        = sites_list[site_id]['site_id'] || '';
+				var favorite_status     = false;
+				var favorite_class      = '';
+				var favorite_title      = '<?php esc_html_e( 'Make as Favorite', 'astra-sites' ); ?>';
+				var featured_image_url = sites_list[site_id]['featured-image-url'];
+				var thumbnail_image_url = sites_list[site_id]['thumbnail-image-url'] || featured_image_url;
+
+				var site_type = sites_list[site_id]['astra-sites-type'] || '';
+				var page_id = '';
+				if( Object.values( astraSitesVars.favorite_data ).indexOf( String(site_id) ) >= 0 ) {
+					favorite_class = 'is-favorite';
+					favorite_status = true;
+					favorite_title = '<?php esc_html_e( 'Make as Unfavorite', 'astra-sites' ); ?>';
+				}
+
+				var title = sites_list[site_id]['title'] || '';
+				var pages_count = parseInt( sites_list[site_id]['pages-count'] ) || 0;
+				var pages_count_string = ( pages_count !== 1 ) ? pages_count + ' Templates' : pages_count + ' Template';
+				var pages_count_class = '';
+				if( pages_count ) {
+					pages_count_class = 'has-pages';
+				} else {
+					pages_count_class = 'no-pages';
+				}
+				var site_title = sites_list[site_id]['site-title'] || '';
+				var site_categories = Object.values( sites_list[site_id]['categories'] ) || [];
+
+			#>
+				<div class="theme astra-theme site-single {{favorite_class}} {{pages_count_class}} astra-sites-previewing-{{type}}" data-site-id="{{current_site_id}}" data-page-id="{{page_id}}">
+					<div class="inner">
+						<span class="site-preview" data-title="{{{title}}}">
+							<div class="theme-screenshot one loading" data-src="{{thumbnail_image_url}}" data-featured-src="{{featured_image_url}}"></div>
+						</span>
+						<div class="theme-id-container">
+							<div class="theme-name">
+								<span class="title" style="text-align: center; flex: 1;">
+
+									<# if ( 'site' === type ) { #>
+										<div class='site-title'>{{{title}}}</div>
+										<# if ( pages_count ) { #>
+											<div class='pages-count'>{{{pages_count_string}}}</div>
+										<# } #>
+									<# } else { #>
+										<div class='site-title'>{{{site_title}}}</div>
+										<div class='page-title'>{{{title}}}</div>
+									<# } #>
+
+									<div style="text-decoration: none; font-size: 10px;">
+										[{{ sites_list[site_id]['astra-site-page-builder'].toUpperCase() }}]
+									</div>
+
+									<# if( sites_list[site_id]['categories'] ) { #>
+										<div class="class-name-{{Object.values( sites_list[site_id]['categories'] )}}"  style="text-decoration: none; font-weight: bold;">
+											{{ Object.values( sites_list[site_id]['categories'] ).join( ', ' ).toUpperCase() }}
+										</div>
+									<# } #>
+								</span>
+							</div>
+							<!-- TEMORARY -->
+							<# if ( false ) { #>
+								<div class="favorite-action-wrap" data-favorite="{{favorite_class}}" title="{{favorite_title}}">
+									<i class="ast-icon-heart"></i>
+								</div>
+							<# } #>
+						</div>
+						<# if ( site_type && 'free' !== site_type ) { #>
+							<?php /* translators: %s are white label strings. */ ?>
+							<div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'astra-sites' ), Astra_Sites_White_Label::get_instance()->get_white_label_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php esc_html_e( 'Premium', 'astra-sites' ); ?></div>
+						<# } #>
+					</div>
+				</div>
+			<# } #>
+		</div>
+
+	<# } #>
+
+	<# if ( Object.keys( data.pages ).length > 0 ) { #>
 
 		<h3 class="ast-sites__search-title"><?php esc_html_e( 'Page Templates', 'astra-sites' ); ?></h3>
 		<div class="ast-sites__search-wrap">
-		<# for ( site_id in pages_list ) { #>
+		<#
+		let pages_list = data.pages;
+		for ( site_id in pages_list ) { #>
 		<#
 			var current_site_id     = site_id;
 			var type                = pages_list[site_id]['type'] || 'site';
@@ -397,6 +413,156 @@ $site_import_options = apply_filters(
 			</div>
 		<# } #>
 		</div>
+		<# } #>
+
+</script>
+
+<script type="text/template" id="tmpl-astra-sites-page-builder-sites-search">
+	<# for ( data ) {
+		<# let pages_list = []; #>
+		<# let sites_list = []; #>
+		<# let pages_list_arr = []; #>
+		<# let sites_list_arr = []; #>
+		<# for ( site_id in data ) {
+			var type = data[site_id]['type'] || 'site';
+			if ( 'site' === type ) {
+				sites_list_arr.push( data[site_id] );
+				sites_list[site_id] = data[site_id];
+			} else {
+				pages_list_arr.push( data[site_id] );
+				pages_list[site_id] = data[site_id]
+			}
+		} #>
+		<# if ( sites_list_arr.length > 0 ) { #>
+			<h3 class="ast-sites__search-title"><?php esc_html_e( 'Site Templates', 'astra-sites' ); ?></h3>
+			<div class="ast-sites__search-wrap">
+			<# for ( site_id in sites_list ) { #>
+			<#
+				var current_site_id     = site_id;
+				var type                = sites_list[site_id]['type'] || 'site';
+				var page_site_id        = sites_list[site_id]['site_id'] || '';
+				var favorite_status     = false;
+				var favorite_class      = '';
+				var favorite_title      = '<?php esc_html_e( 'Make as Favorite', 'astra-sites' ); ?>';
+				var featured_image_url = sites_list[site_id]['featured-image-url'];
+				var thumbnail_image_url = sites_list[site_id]['thumbnail-image-url'] || featured_image_url;
+
+				var site_type = sites_list[site_id]['astra-sites-type'] || '';
+				var page_id = '';
+				if( Object.values( astraSitesVars.favorite_data ).indexOf( String(site_id) ) >= 0 ) {
+					favorite_class = 'is-favorite';
+					favorite_status = true;
+					favorite_title = '<?php esc_html_e( 'Make as Unfavorite', 'astra-sites' ); ?>';
+				}
+
+				var title = sites_list[site_id]['title'] || '';
+				var pages_count = parseInt( sites_list[site_id]['pages-count'] ) || 0;
+				var pages_count_string = ( pages_count !== 1 ) ? pages_count + ' Templates' : pages_count + ' Template';
+				var pages_count_class = '';
+				if( pages_count ) {
+					pages_count_class = 'has-pages';
+				} else {
+					pages_count_class = 'no-pages';
+				}
+				var site_title = sites_list[site_id]['site-title'] || '';
+				var site_categories = Object.values( sites_list[site_id]['categories'] ) || [];
+
+			#>
+				<div class="theme astra-theme site-single {{favorite_class}} {{pages_count_class}} astra-sites-previewing-{{type}}" data-site-id="{{current_site_id}}" data-page-id="{{page_id}}">
+					<div class="inner">
+						<span class="site-preview" data-title="{{{title}}}">
+							<div class="theme-screenshot one loading" data-src="{{thumbnail_image_url}}" data-featured-src="{{featured_image_url}}"></div>
+						</span>
+						<div class="theme-id-container">
+							<div class="theme-name">
+								<span class="title">
+									<# if ( 'site' === type ) { #>
+										<div class='site-title'>{{{title}}}</div>
+										<# if ( pages_count ) { #>
+											<div class='pages-count'>{{{pages_count_string}}}</div>
+										<# } #>
+									<# } else { #>
+										<div class='site-title'>{{{site_title}}}</div>
+										<div class='page-title'>{{{title}}}</div>
+									<# } #>
+								</span>
+							</div>
+							<# if ( '' === type || 'site' === type ) { #>
+								<div class="favorite-action-wrap" data-favorite="{{favorite_class}}" title="{{favorite_title}}">
+									<i class="ast-icon-heart"></i>
+								</div>
+							<# } #>
+						</div>
+						<# if ( site_type && 'free' !== site_type ) { #>
+							<?php /* translators: %s are white label strings. */ ?>
+							<div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'astra-sites' ), Astra_Sites_White_Label::get_instance()->get_white_label_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php esc_html_e( 'Premium', 'astra-sites' ); ?></div>
+						<# } #>
+					</div>
+				</div>
+			<# } #>
+			</div>
+		<# } #>
+		<# if ( pages_list_arr.length > 0 ) { #>
+
+			<h3 class="ast-sites__search-title"><?php esc_html_e( 'Page Templates', 'astra-sites' ); ?></h3>
+			<div class="ast-sites__search-wrap">
+			<# for ( site_id in pages_list ) { #>
+			<#
+				var current_site_id     = site_id;
+				var type                = pages_list[site_id]['type'] || 'site';
+				var page_site_id        = pages_list[site_id]['site_id'] || '';
+				var favorite_status     = false;
+				var favorite_class      = '';
+				var favorite_title      = '<?php esc_html_e( 'Make as Favorite', 'astra-sites' ); ?>';
+				var featured_image_url = pages_list[site_id]['featured-image-url'];
+				var thumbnail_image_url = pages_list[site_id]['thumbnail-image-url'] || featured_image_url;
+
+				var site_type = pages_list[site_id]['astra-sites-type'] || '';
+				var page_id = '';
+				thumbnail_image_url = featured_image_url;
+				current_site_id = page_site_id;
+				page_id = site_id;
+
+				var title = pages_list[site_id]['title'] || '';
+				var pages_count = pages_list[site_id]['pages-count'] || 0;
+				var pages_count_class = '';
+				if( 'site' === type ) {
+					if( pages_count ) {
+						pages_count_class = 'has-pages';
+					} else {
+						pages_count_class = 'no-pages';
+					}
+				}
+				var site_title = pages_list[site_id]['site-title'] || '';
+
+			#>
+				<div class="theme astra-theme site-single {{favorite_class}} {{pages_count_class}} astra-sites-previewing-{{type}}" data-site-id="{{current_site_id}}" data-page-id="{{page_id}}">
+					<div class="inner">
+						<span class="site-preview" data-title="{{{title}}}">
+							<div class="theme-screenshot one loading" data-src="{{thumbnail_image_url}}" data-featured-src="{{featured_image_url}}"></div>
+						</span>
+						<div class="theme-id-container">
+							<div class="theme-name">
+								<span class="title">
+									<div class='site-title'>{{{site_title}}}</div>
+									<div class='page-title'>{{{title}}}</div>
+								</span>
+							</div>
+							<# if ( '' === type || 'site' === type ) { #>
+								<div class="favorite-action-wrap" data-favorite="{{favorite_class}}" title="{{favorite_title}}">
+									<i class="ast-icon-heart"></i>
+								</div>
+							<# } #>
+						</div>
+						<# if ( site_type && 'free' !== site_type ) { #>
+							<?php /* translators: %s are white label strings. */ ?>
+							<div class="agency-ribbons" title="<?php printf( esc_attr__( 'This premium template is accessible with %1$s "Premium" Package.', 'astra-sites' ), Astra_Sites_White_Label::get_instance()->get_white_label_name() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>"><?php esc_html_e( 'Premium', 'astra-sites' ); ?></div>
+						<# } #>
+					</div>
+				</div>
+			<# } #>
+			</div>
+		<# } #>
 	<# } #>
 
 </script>
@@ -646,51 +812,57 @@ $site_import_options = apply_filters(
  */
 ?>
 <script type="text/template" id="tmpl-astra-sites-request-failed-user">
-	<p>{{{ data.primary }}}</p>
+
+	<# if ( data.primary ) { #>
+		<p>{{{ data.primary }}}</p>
+	<# } #>
+
 	<# if ( 'Cloudflare' === data.error.code ) { #>
 		<div class="current-importing-status">{{{ data.error.message + ' (' + data.error.code + ')' }}}</div>
 	<# } else { #>
 		<div class="current-importing-status">{{{ data.error.code }}} - {{{ data.error.message }}}</div>
 	<# } #>
-	<# if ( 'WP_Error' === data.error.code ) { #>
-	<p>
-		<?php
-		/* translators: %s doc link. */
-		printf( __( 'We have listed the <a href="%s" target="_blank">possible solutions here</a> to help you resolve this.', 'astra-sites' ), 'https://wpastra.com/docs/fix-starter-template-importing-issues/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		?>
-	</p>
-	<# } else if ( 'Cloudflare' === data.error.code ) { #>
-	<p>
-		<# if ( '522' == data.error.response_code ) { #>
-			<?php
-			/* translators: %s doc link. */
-			printf( __( 'Please <a class="ast-try-again" href="">click here and try again</a>. If this still does not work after few attempts, please report it <a href="%s" target="_blank">here</a>.', 'astra-sites' ), 'https://wpastra.com/support/open-a-ticket/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			?>
-		<# } else { #>
-			<?php
-			/* translators: %s doc link. */
-			printf( __( 'Please report this error %1$shere%2$s, so we can fix it.', 'astra-sites' ), '<a class="ast-try-again" href="https://wpastra.com/support/open-a-ticket/">', '</a>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			?>
-		<# } #>
-	</p>
-	<# } else { #>
-	<p>
-		<?php
-		$ip       = Astra_Sites_Helper::get_client_ip();
-		$url_text = __( 'Please report this error <a href="#LINK" target="_blank">here</a> so we can fix it.', 'astra-sites' );
-		$url      = 'https://wpastra.com/starter-templates-support/?ip=' . $ip;
-		?>
-		<#
-		var url = '<?php echo $url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>';
-		url += '&template-id=' + data.id;
-		url += '&subject=' + data.error.code + ' - ' + data.error.message;
 
-		var url_text = '<?php echo $url_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>';
-		url_text = url_text.replace( "#LINK", url );
-		#>
-		{{{url_text}}}
-	</p>
+	<# if ( 'WP_Error' === data.error.code ) { #>
+		<p>
+			<?php
+			/* translators: %s doc link. */
+			printf( __( 'We have listed the <a href="%s" target="_blank">possible solutions here</a> to help you resolve this.', 'astra-sites' ), 'https://wpastra.com/docs/fix-starter-template-importing-issues/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			?>
+		</p>
+	<# } else if ( 'Cloudflare' === data.error.code ) { #>
+		<p>
+			<# if ( data.error.response_code && '522' == data.error.response_code ) { #>
+				<?php
+				/* translators: %s doc link. */
+				printf( __( 'Please <a class="ast-try-again" href="">click here and try again</a>. If this still does not work after few attempts, please report it <a href="%s" target="_blank">here</a>.', 'astra-sites' ), 'https://wpastra.com/support/open-a-ticket/' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
+			<# } else { #>
+				<?php
+				/* translators: %s doc link. */
+				printf( __( 'Please report this error %1$shere%2$s, so we can fix it.', 'astra-sites' ), '<a class="ast-try-again" href="https://wpastra.com/support/open-a-ticket/">', '</a>' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				?>
+			<# } #>
+		</p>
+	<# } else { #>
+		<p>
+			<?php
+			$ip       = Astra_Sites_Helper::get_client_ip();
+			$url_text = __( 'Please report this error <a href="#LINK" target="_blank">here</a> so we can fix it.', 'astra-sites' );
+			$url      = 'https://wpastra.com/starter-templates-support/?ip=' . $ip;
+			?>
+			<#
+			var url = '<?php echo $url; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>';
+			url += '&template-id=' + data.id;
+			url += '&subject=' + data.error.code + ' - ' + data.error.message;
+
+			var url_text = '<?php echo $url_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>';
+			url_text = url_text.replace( "#LINK", url );
+			#>
+			{{{url_text}}}
+		</p>
 	<# } #>
+
 </script>
 
 <?php

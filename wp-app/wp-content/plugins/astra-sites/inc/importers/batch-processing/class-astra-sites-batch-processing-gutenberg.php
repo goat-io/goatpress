@@ -204,8 +204,6 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing_Gutenberg' ) ) :
 		 */
 		public function get_content( $content = '' ) {
 
-			$content = stripslashes( $content );
-
 			// Extract all links.
 			preg_match_all( '#\bhttps?://[^,\s()<>]+(?:\([\w\d]+\)|([^,[:punct:]\s]|/))#', $content, $match );
 

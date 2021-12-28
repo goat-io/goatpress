@@ -5,7 +5,7 @@ Tags: cache, minify, database, image optimize, performance, clean, spam, speed, 
 Requires PHP: 5.6
 Requires at least: 4.5
 Tested up to: 5.8
-Stable tag: 3.1.12
+Stable tag: 3.2.1
 License: GPLv2+
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -364,6 +364,49 @@ If none of the above works, disable processing of JavaScript files in the minify
 
 == Changelog ==
 
+= 3.2.1 - 29/Nov/2021 =
+
+* FIX: Apply different image compression levels
+* FIX: Cache - Purge WooCommerce product page after stock update
+* FIX: Database errors after adding a new site
+* FIX: Flatsome theme compatibility with google fonts
+* FIX: Image compression advanced settings, display default backup days instead of empty value.
+* FIX: Image compression was not working when the image extension used capital letters
+* FIX: Premium - Cache - Potential PHP error in User-specific cache
+* FIX: Premium - resolve potential admin-area PHP error if the deprecated mailchimp sync plugin and MC4WP plugin are both active (and potentially other situations where a plugin deactivates another)
+* FIX: Premium - Unused images - compatibility with PHP 8
+* FIX: Premium - Unused images - issue with parenthesis in name
+* FIX: Premium - Unused images - Pagination count doesn't update
+* FIX: Prevent a PHP notice when using with UpdraftCentral
+* FIX: Save prioritize maximum compression setting correctly
+* FIX: Wrong redirect when wiping settings on multisite
+* TWEAK: Premium - add review link at bottom of settings
+* TWEAK: Force monolog/monolog and psr/log versions to retain PHP 5.X compatibility/satisfy wordpress.org SVN hooks
+* TWEAK: Add compatibility with Kinsta
+* TWEAK: Added functionality for to convert MyISAM to InnoDB
+* TWEAK: Add filters for minify input string
+* TWEAK: Cache - Added filter to modify cache exception urls
+* TWEAK: Cache - Optimize preload from sitemap
+* TWEAK: Cache - Serve different versions based on cookie consent
+* TWEAK: changed filter to prevent deprecation notice in php 8.1+
+* TWEAK: Decide automatically whether to inline css or not based on file size
+* TWEAK: Fix typo in text domain name
+* TWEAK: get_hurl function minified.
+* TWEAK: Improve clarity of debug message when DONOTCACHEPAGE constant is used
+* TWEAK: Improve DB UI/UX on multisite
+* TWEAK: Improve minify cache size messages
+* TWEAK: Making Estatik plugin compatible
+* TWEAK: Minify - Add JS translations support
+* TWEAK: Minify HTML only on cache pre-loading
+* TWEAK: Port from previous semaphore classes to Updraft_Semaphore_3_0
+* TWEAK: Premium - Unused images - Show that there are images in the trash without having to re-scan everything
+* TWEAK: Prevent a PHP notice when downloding image compression log file. Fix backup modal styling issue.
+* TWEAK: Prevent fatal error in gzip settings when stylesheet could not be fetched
+* TWEAK: Short-circuit trivial case of nothing in the buffer when page-cacheing, to involve any possible other issues
+* TWEAK: Update comments count after trackbacks and pingbacks deletion
+* TWEAK: Update minified asset when the enqueued scripts and styles version change
+* TWEAK: Use proper constant of includes path in user cache extension
+
 = 3.1.12 - 12/Jul/2021 =
 
 * FEATURE: Ability to defer js files and asynchronously load css files
@@ -431,6 +474,7 @@ If none of the above works, disable processing of JavaScript files in the minify
 * TWEAK: Add visual clue when image compression was cancelled
 * TWEAK: Image compression - multi image selection using Ctrl/Shift keys
 * TWEAK: Premium - Unused images - Reset last clicked image reference when `select none` is clicked
+* FIX: Premium - Unused images - Pagination not working in the trash
 * TWEAK: Prevent bots from indexing plugins list json file
 * TWEAK: Minify - Added a setting to change the time stale cache should be kept
 * TWEAK: Better support for Beaver Builder
@@ -1150,4 +1194,4 @@ If none of the above works, disable processing of JavaScript files in the minify
 * Fix Interface
 
 == Upgrade Notice ==
-* 3.1.12: Ability to defer js files and asynchronously load css files. Option to not aggregate inline styles and scripts; a recommended update for all.
+* 3.2.1: Many and various tweaks and fixes; a recommended update for all.

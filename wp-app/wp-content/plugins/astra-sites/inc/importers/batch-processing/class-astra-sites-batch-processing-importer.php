@@ -46,38 +46,73 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing_Importer' ) ) :
 		}
 
 		/**
-		 * Import Categories
+		 * Import All Categories and Tags
 		 *
-		 * @since 2.0.0
+		 * @since 2.6.22
 		 * @return void
 		 */
-		public function import_categories() {
-			astra_sites_error_log( 'Requesting Tags' );
-			update_site_option( 'astra-sites-batch-status-string', 'Requesting Tags', 'no' );
+		public function import_all_categories_and_tags() {
+			astra_sites_error_log( 'Requesting Site Categories' );
+			update_site_option( 'astra-sites-batch-status-string', 'Requesting Site Categories', 'no' );
 
 			$api_args     = array(
 				'timeout' => 30,
 			);
-			$tags_request = wp_remote_get( trailingslashit( Astra_Sites::get_instance()->get_api_domain() ) . 'wp-json/wp/v2/astra-sites-tag/?_fields=id,name,slug', $api_args );
-			if ( ! is_wp_error( $tags_request ) && 200 === (int) wp_remote_retrieve_response_code( $tags_request ) ) {
-				$tags = json_decode( wp_remote_retrieve_body( $tags_request ), true );
+			$request = wp_remote_get( trailingslashit( Astra_Sites::get_instance()->get_api_domain() ) . 'wp-content/uploads/all-site-categories.json', $api_args );
+			if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
+				$cats = json_decode( wp_remote_retrieve_body( $request ), true );
 
-				if ( isset( $tags['code'] ) ) {
-					$message = isset( $tags['message'] ) ? $tags['message'] : '';
+				if ( isset( $cats['code'] ) ) {
+					$message = isset( $cats['message'] ) ? $cats['message'] : '';
 					if ( ! empty( $message ) ) {
 						astra_sites_error_log( 'HTTP Request Error: ' . $message );
 					} else {
 						astra_sites_error_log( 'HTTP Request Error!' );
 					}
 				} else {
-					update_site_option( 'astra-sites-tags', $tags, 'no' );
+					update_site_option( 'astra-sites-all-site-categories-and-tags', $cats, 'no' );
 
-					do_action( 'astra_sites_sync_tags', $tags );
+					do_action( 'astra_sites_sync_all_site_categories_and_tags', $cats );
 				}
 			}
 
-			astra_sites_error_log( 'Tags Imported Successfully!' );
-			update_site_option( 'astra-sites-batch-status-string', 'Tags Imported Successfully!', 'no' );
+			astra_sites_error_log( 'Site Categories Imported Successfully!' );
+			update_site_option( 'astra-sites-batch-status-string', 'Site Categories Imported Successfully!', 'no' );
+		}
+
+		/**
+		 * Import All Categories and Tags
+		 *
+		 * @since 2.6.22
+		 * @return void
+		 */
+		public function import_all_categories() {
+			astra_sites_error_log( 'Requesting Site Categories' );
+			update_site_option( 'astra-sites-batch-status-string', 'Requesting Site Categories', 'no' );
+
+			$api_args     = array(
+				'timeout' => 30,
+			);
+			$request = wp_remote_get( trailingslashit( Astra_Sites::get_instance()->get_api_domain() ) . 'wp-json/wp/v2/astra-sites-site-category/?hide_empty=true&_fields=id,name,slug&per_page=100', $api_args );
+			if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
+				$cats = json_decode( wp_remote_retrieve_body( $request ), true );
+
+				if ( isset( $cats['code'] ) ) {
+					$message = isset( $cats['message'] ) ? $cats['message'] : '';
+					if ( ! empty( $message ) ) {
+						astra_sites_error_log( 'HTTP Request Error: ' . $message );
+					} else {
+						astra_sites_error_log( 'HTTP Request Error!' );
+					}
+				} else {
+					update_site_option( 'astra-sites-all-site-categories', $cats, 'no' );
+
+					do_action( 'astra_sites_sync_all_site_categories', $cats );
+				}
+			}
+
+			astra_sites_error_log( 'Site Categories Imported Successfully!' );
+			update_site_option( 'astra-sites-batch-status-string', 'Site Categories Imported Successfully!', 'no' );
 		}
 
 		/**
@@ -93,7 +128,7 @@ if ( ! class_exists( 'Astra_Sites_Batch_Processing_Importer' ) ) :
 			$api_args           = array(
 				'timeout' => 30,
 			);
-			$categories_request = wp_remote_get( trailingslashit( Astra_Sites::get_instance()->get_api_domain() ) . 'wp-json/wp/v2/astra-site-category/?_fields=id,name,slug&per_page=100', $api_args );
+			$categories_request = wp_remote_get( trailingslashit( Astra_Sites::get_instance()->get_api_domain() ) . 'wp-json/wp/v2/astra-sites-site-category/?hide_empty=true&_fields=id,name,slug&per_page=100', $api_args );
 			if ( ! is_wp_error( $categories_request ) && 200 === (int) wp_remote_retrieve_response_code( $categories_request ) ) {
 				$categories = json_decode( wp_remote_retrieve_body( $categories_request ), true );
 

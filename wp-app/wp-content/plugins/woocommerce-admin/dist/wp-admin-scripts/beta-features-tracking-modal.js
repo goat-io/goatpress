@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["betaFeaturesTrackingModal"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 469);
+/******/ 	return __webpack_require__(__webpack_require__.s = 473);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -101,7 +101,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["betaFeaturesTrackingModal"] =
 
 /***/ }),
 
-/***/ 122:
+/***/ 121:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wc"]["explat"]; }());
@@ -129,21 +129,21 @@ this["wc"] = this["wc"] || {}; this["wc"]["betaFeaturesTrackingModal"] =
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["components"]; }());
 
 /***/ }),
 
-/***/ 458:
+/***/ 461:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 469:
+/***/ 473:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -157,7 +157,7 @@ var external_wp_element_ = __webpack_require__(0);
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
@@ -172,7 +172,7 @@ var external_wc_data_ = __webpack_require__(11);
 var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: external ["wc","explat"]
-var external_wc_explat_ = __webpack_require__(122);
+var external_wc_explat_ = __webpack_require__(121);
 
 // CONCATENATED MODULE: ./client/wp-admin-scripts/beta-features-tracking-modal/container.js
 
@@ -279,7 +279,7 @@ const BetaFeaturesTrackingContainer = Object(external_wp_compose_["compose"])(Ob
   };
 }))(BetaFeaturesTrackingModal);
 // EXTERNAL MODULE: ./client/wp-admin-scripts/beta-features-tracking-modal/style.scss
-var style = __webpack_require__(458);
+var style = __webpack_require__(461);
 
 // CONCATENATED MODULE: ./client/wp-admin-scripts/beta-features-tracking-modal/index.js
 

@@ -191,15 +191,15 @@ class ExactMetrics_Tracking_Analytics extends ExactMetrics_Tracking_Abstract {
 	 * @return string Javascript to output.
 	 */
 	public function frontend_output( ) {
-		$options        = $this->frontend_tracking_options();
-		$src     	    = apply_filters( 'exactmetrics_frontend_output_analytics_src', '//www.google-analytics.com/analytics.js' );
-		$compat_mode     = exactmetrics_get_option( 'gatracker_compatibility_mode', false );
-		$compat    	 	= $compat_mode ? 'window.ga = __gaTracker;' : '';
-		$track_user 	= exactmetrics_track_user();
-		$ua         	= exactmetrics_get_ua();
-		$output     	= '';
-		$reason     	= '';
-		$attr_string    = exactmetrics_get_frontend_analytics_script_atts();
+		$options     = $this->frontend_tracking_options();
+		$src         = apply_filters( 'exactmetrics_frontend_output_analytics_src', '//www.google-analytics.com/analytics.js' );
+		$compat_mode = apply_filters( 'exactmetrics_get_option_gatracker_compatibility_mode', true );
+		$compat      = $compat_mode ? 'window.ga = __gaTracker;' : '';
+		$track_user  = exactmetrics_track_user();
+		$ua          = exactmetrics_get_ua();
+		$output      = '';
+		$reason      = '';
+		$attr_string = exactmetrics_get_frontend_analytics_script_atts();
 		ob_start();
 		?>
 <!-- This site uses the Google Analytics by ExactMetrics plugin v<?php echo EXACTMETRICS_VERSION; ?> - Using Analytics tracking - https://www.exactmetrics.com/ -->

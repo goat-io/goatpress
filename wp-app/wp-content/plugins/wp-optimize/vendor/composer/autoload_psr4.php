@@ -17,4 +17,5 @@ return array(
     'MatthiasMullie\\Minify\\' => array($vendorDir . '/matthiasmullie/minify/src'),
     'Intervention\\HttpAuth\\' => array($vendorDir . '/intervention/httpauth/src'),
     'ImageMimeTypeGuesser\\' => array($vendorDir . '/rosell-dk/image-mime-type-guesser/src'),
+    'HtaccessCapabilityTester\\' => array($vendorDir . '/rosell-dk/htaccess-capability-tester/src'),
 );

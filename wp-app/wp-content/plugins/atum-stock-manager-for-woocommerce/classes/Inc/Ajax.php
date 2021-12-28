@@ -27,11 +27,13 @@ use Atum\Dashboard\WidgetHelpers;
 use Atum\Dashboard\Widgets\Videos;
 use Atum\InboundStock\Lists\ListTable as InboundStockListTable;
 use Atum\Legacy\AjaxLegacyTrait;
+use Atum\Modules\ModuleManager;
 use Atum\PurchaseOrders\Models\PurchaseOrder;
 use Atum\PurchaseOrders\PurchaseOrders;
 use Atum\Settings\Settings;
 use Atum\InventoryLogs\Models\Log;
 use Atum\StockCentral\Lists\ListTable;
+use Atum\Suppliers\Supplier;
 use Atum\Suppliers\Suppliers;
 
 final class Ajax {
@@ -168,6 +170,9 @@ final class Ajax {
 		// Save PO Multiple Suppliers.
 		add_action( 'wp_ajax_atum_save_po_multiple_supplier', array( $this, 'save_purchase_order_multiple_suppliers' ) );
 
+		// Create a new supplier from the "Create Supplier" modal.
+		add_action( 'wp_ajax_atum_create_supplier', array( $this, 'create_supplier' ) );
+
 	}
 
 	/**
@@ -179,7 +184,7 @@ final class Ajax {
 	 */
 	public function save_dashboard_layout() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		$layout  = ! empty( $_POST['layout'] ) ? $_POST['layout'] : array();
 		$user_id = get_current_user_id();
@@ -198,7 +203,7 @@ final class Ajax {
 	 */
 	public function restore_dashboard_layout() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		$user_id = get_current_user_id();
 		Dashboard::restore_user_widgets_layout( $user_id );
@@ -215,7 +220,7 @@ final class Ajax {
 	 */
 	public function add_new_widget() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		if ( empty( $_POST['widget'] ) ) {
 			wp_send_json_error( __( 'Invalid widget', ATUM_TEXT_DOMAIN ) );
@@ -271,7 +276,7 @@ final class Ajax {
 	 */
 	public function videos_widget_sorting() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		if ( empty( $_POST['sortby'] ) ) {
 			wp_die( - 1 );
@@ -294,7 +299,7 @@ final class Ajax {
 	 */
 	public function current_stock_values() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		$current_stock_values = WidgetHelpers::get_items_in_stock( $_POST['categorySelected'], $_POST['productTypeSelected'] );
 		$current_stock_values = array_map( 'strval', $current_stock_values ); // Avoid issues with decimals when encoding to JSON.
@@ -313,7 +318,7 @@ final class Ajax {
 	 */
 	public function load_sales_data() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		if ( empty( $_POST['widget'] ) || empty( $_POST['filter'] ) ) {
 			wp_send_json_error( __( 'Invalid data', ATUM_TEXT_DOMAIN ) );
@@ -405,7 +410,7 @@ final class Ajax {
 	 */
 	public function statistics_widget_chart() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		if ( empty( $_POST['chart_data'] ) || empty( $_POST['chart_period'] ) ) {
 			wp_send_json_error();
@@ -472,10 +477,14 @@ final class Ajax {
 	 * @package Stock Central
 	 *
 	 * @since 0.0.1
+	 *
+	 * @param bool $return_data Optional. Whether to return the data or send the JSON to the browser.
+	 *
+	 * @return array|void
 	 */
-	public function fetch_stock_central_list() {
+	public function fetch_stock_central_list( $return_data = FALSE ) {
 
-		check_ajax_referer( 'atum-list-table-nonce', 'token' );
+		check_ajax_referer( 'atum-list-table-nonce', 'security' );
 
 		$args = array(
 			'per_page'        => ! empty( $_REQUEST['per_page'] ) ? absint( $_REQUEST['per_page'] ) : Helpers::get_option( 'posts_per_page', Settings::DEFAULT_POSTS_PER_PAGE ),
@@ -499,7 +508,8 @@ final class Ajax {
 		 * @var ListTable $list
 		 */
 		$list = new $list_class( $args );
-		$list->ajax_response();
+
+		return $list->ajax_response( $return_data );
 
 	}
 
@@ -512,7 +522,7 @@ final class Ajax {
 	 */
 	public function fetch_inbound_stock_list() {
 
-		check_ajax_referer( 'atum-list-table-nonce', 'token' );
+		check_ajax_referer( 'atum-list-table-nonce', 'security' );
 
 		$args = array(
 			'per_page' => ! empty( $_REQUEST['per_page'] ) ? absint( $_REQUEST['per_page'] ) : Helpers::get_option( 'posts_per_page', Settings::DEFAULT_POSTS_PER_PAGE ),
@@ -547,7 +557,7 @@ final class Ajax {
 	 */
 	public function update_list_data() {
 
-		check_ajax_referer( 'atum-list-table-nonce', 'token' );
+		check_ajax_referer( 'atum-list-table-nonce', 'security' );
 
 		if ( empty( $_POST['data'] ) ) {
 			wp_send_json_error( __( 'Error saving the table data.', ATUM_TEXT_DOMAIN ) );
@@ -584,7 +594,20 @@ final class Ajax {
 				AtumCache::enable_cache();
 			}
 
-			wp_send_json_success( __( 'Data saved.', ATUM_TEXT_DOMAIN ) );
+			// Ensure all the data is read from the DB after updating.
+			AtumCache::delete_all_atum_caches();
+
+			// If we aren't in SC, we will have to fetch the data from elsewhere.
+			$table_data = apply_filters( 'atum/ajax/update_list_data/fetch_table_data', NULL );
+
+			if ( ! $table_data ) {
+				$table_data = $this->fetch_stock_central_list( TRUE );
+			}
+
+			wp_send_json_success( [
+				'notice'    => __( 'Data saved.', ATUM_TEXT_DOMAIN ),
+				'tableData' => $table_data,
+			] );
 
 		} catch ( \Exception $e ) {
 			wp_send_json_error( $e->getMessage() );
@@ -601,9 +624,9 @@ final class Ajax {
 	 */
 	public function apply_bulk_action() {
 
-		check_ajax_referer( 'atum-list-table-nonce', 'token' );
+		check_ajax_referer( 'atum-list-table-nonce', 'security' );
 
-		if ( empty( $_POST['ids'] ) ) {
+		if ( empty( $_POST['ids'] ) || ! is_array( $_POST['ids'] ) ) {
 			wp_send_json_error( __( 'No Items Selected.', ATUM_TEXT_DOMAIN ) );
 		}
 
@@ -611,9 +634,10 @@ final class Ajax {
 			wp_send_json_error( __( 'Invalid bulk action.', ATUM_TEXT_DOMAIN ) );
 		}
 
-		$ids = array_unique( $_POST['ids'] );
+		$ids         = array_unique( $_POST['ids'] );
+		$bulk_action = esc_attr( $_POST['bulk_action'] );
 
-		switch ( $_POST['bulk_action'] ) {
+		switch ( $bulk_action ) {
 			case 'uncontrol_stock':
 				foreach ( $ids as $id ) {
 
@@ -671,7 +695,7 @@ final class Ajax {
 				break;
 		}
 
-		$args = [ $_POST['bulk_action'], $ids ];
+		$args = [ $bulk_action, $ids ];
 
 		if ( ! empty( $_POST['extra_data'] ) ) {
 			$args[] = $_POST['extra_data'];
@@ -692,7 +716,7 @@ final class Ajax {
 	 */
 	public function control_all_products() {
 
-		check_ajax_referer( 'atum-control-all-products-nonce', 'token' );
+		check_ajax_referer( 'atum-control-all-products-nonce', 'security' );
 		Helpers::change_status_meta( Globals::ATUM_CONTROL_STOCK_KEY, 'yes' );
 
 	}
@@ -823,7 +847,7 @@ final class Ajax {
 	 */
 	private function check_license_post_data() {
 
-		check_ajax_referer( ATUM_PREFIX . 'manage_license', 'token' );
+		check_ajax_referer( ATUM_PREFIX . 'manage_license', 'security' );
 
 		if ( empty( $_POST['addon'] ) ) {
 			wp_send_json_error( __( 'No addon name provided', ATUM_TEXT_DOMAIN ) );
@@ -1046,7 +1070,7 @@ final class Ajax {
 	 */
 	public function remove_license() {
 
-		check_ajax_referer( ATUM_PREFIX . 'manage_license', 'token' );
+		check_ajax_referer( ATUM_PREFIX . 'manage_license', 'security' );
 
 		if ( empty( $_POST['addon'] ) ) {
 			wp_send_json_error( __( 'Add-on name not provided', ATUM_TEXT_DOMAIN ) );
@@ -1100,7 +1124,7 @@ final class Ajax {
 		$post_id = isset( $_GET['limit'] ) ? intval( $_GET['limit'] ) : 0;
 
 		if ( empty( $term ) ) {
-			wp_die();
+			wp_die( [] );
 		}
 
 		global $wpdb;
@@ -1186,9 +1210,7 @@ final class Ajax {
 		parse_str( $url['query'], $url_query );
 
 		if ( ! empty( $url_query['post'] ) ) {
-
 			$post_id = absint( $url_query['post'] );
-
 		}
 
 		if ( $post_id ) {
@@ -1257,7 +1279,7 @@ final class Ajax {
 		$order_id = absint( $_GET['term'] );
 
 		if ( empty( $order_id ) ) {
-			wp_die();
+			wp_die( [] );
 		}
 
 		// Get all the orders with IDs starting with the provided number.
@@ -1277,7 +1299,7 @@ final class Ajax {
 		$order_ids = $wpdb->get_col( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		if ( empty( $order_ids ) ) {
-			wp_die();
+			wp_die( [] );
 		}
 
 		$order_results = array();
@@ -1305,19 +1327,15 @@ final class Ajax {
 		$where = '';
 
 		if ( is_numeric( $_GET['term'] ) ) {
-
 			$supplier_id = absint( $_GET['term'] );
 			$where       = "AND ID LIKE $supplier_id";
-
 		}
 		elseif ( ! empty( $_GET['term'] ) ) {
-
 			$supplier_name = $wpdb->esc_like( $_GET['term'] );
 			$where         = "AND post_title LIKE '%%{$supplier_name}%%'";
-
 		}
 		else {
-			wp_die();
+			wp_die( [] );
 		}
 
 		// Get all the orders with IDs starting with the provided number.
@@ -1339,7 +1357,7 @@ final class Ajax {
 		$suppliers = $wpdb->get_results( $query ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 
 		if ( empty( $suppliers ) ) {
-			wp_die();
+			wp_die( [] );
 		}
 
 		$supplier_results = array();
@@ -1793,14 +1811,7 @@ final class Ajax {
 				wp_die( - 1 );
 			}
 
-			// Parse the jQuery serialized items.
-			$items = array();
-			parse_str( $_POST['items'], $items );
-
-			do_action( 'atum/ajax/atum_order/before_save_order_items', $atum_order, $items );
-
-			// Save order items.
-			$atum_order->save_order_items( $items );
+			$atum_order->save_posted_order_items();
 
 			// Return HTML items.
 			Helpers::load_view( 'meta-boxes/atum-order/items', compact( 'atum_order' ) );
@@ -1964,7 +1975,7 @@ final class Ajax {
 			wp_send_json_error( __( 'Invalid data provided', ATUM_TEXT_DOMAIN ) );
 		}
 
-		$atum_order      = Helpers::get_atum_order_model( absint( $_POST['atum_order_id'] ), TRUE );
+		$atum_order      = Helpers::get_atum_order_model( absint( $_POST['atum_order_id'] ), TRUE, PurchaseOrders::POST_TYPE );
 		$atum_order_item = $atum_order->get_item( absint( $_POST['atum_order_item_id'] ) );
 
 		/**
@@ -2211,7 +2222,7 @@ final class Ajax {
 	 */
 	public function get_locations_tree() {
 
-		check_ajax_referer( 'atum-list-table-nonce', 'token' );
+		check_ajax_referer( 'atum-list-table-nonce', 'security' );
 
 		$locations_tree = '';
 
@@ -2271,7 +2282,7 @@ final class Ajax {
 	 */
 	public function set_locations_tree() {
 
-		check_ajax_referer( 'atum-list-table-nonce', 'token' );
+		check_ajax_referer( 'atum-list-table-nonce', 'security' );
 
 		if ( empty( $_POST['product_id'] ) ) {
 			wp_send_json_error( __( 'No valid product ID provided', ATUM_TEXT_DOMAIN ) );
@@ -2306,7 +2317,7 @@ final class Ajax {
 	 */
 	public function change_manage_stock() {
 
-		check_ajax_referer( 'atum-script-runner-nonce', 'token' );
+		check_ajax_referer( 'atum-script-runner-nonce', 'security' );
 
 		if ( empty( $_POST['option'] ) ) {
 			wp_send_json_error( __( 'Please select an option from the dropdown', ATUM_TEXT_DOMAIN ) );
@@ -2334,7 +2345,7 @@ final class Ajax {
 	 */
 	public function change_control_stock() {
 
-		check_ajax_referer( 'atum-script-runner-nonce', 'token' );
+		check_ajax_referer( 'atum-script-runner-nonce', 'security' );
 
 		if ( empty( $_POST['option'] ) ) {
 			wp_send_json_error( __( 'Please select an option from the dropdown', ATUM_TEXT_DOMAIN ) );
@@ -2362,7 +2373,7 @@ final class Ajax {
 	 */
 	public function clear_out_stock_threshold() {
 
-		check_ajax_referer( 'atum-script-runner-nonce', 'token' );
+		check_ajax_referer( 'atum-script-runner-nonce', 'security' );
 
 		Helpers::force_rebuild_stock_status( NULL, TRUE, TRUE );
 
@@ -2384,7 +2395,7 @@ final class Ajax {
 	 */
 	public function change_table_style_user_meta() {
 
-		check_ajax_referer( 'atum-list-table-style', 'token' );
+		check_ajax_referer( 'atum-list-table-style', 'security' );
 
 		if ( ! isset( $_POST['enabled'], $_POST['feature'] ) ) {
 			wp_die( -1 );
@@ -2408,7 +2419,7 @@ final class Ajax {
 	 */
 	public function get_marketing_popup_info() {
 
-		check_ajax_referer( 'atum-marketing-popup-nonce', 'token' );
+		check_ajax_referer( 'atum-marketing-popup-nonce', 'security' );
 
 		if ( Helpers::show_marketing_popup() ) {
 
@@ -2444,7 +2455,7 @@ final class Ajax {
 	 */
 	public function marketing_popup_state() {
 
-		check_ajax_referer( 'atum-marketing-popup-nonce', 'token' );
+		check_ajax_referer( 'atum-marketing-popup-nonce', 'security' );
 
 		if ( ! isset( $_POST['transientKey'] ) ) {
 			wp_die();
@@ -2468,7 +2479,7 @@ final class Ajax {
 	 */
 	public function marketing_dashboard_state() {
 
-		check_ajax_referer( 'atum-dashboard-widgets', 'token' );
+		check_ajax_referer( 'atum-dashboard-widgets', 'security' );
 
 		if ( ! isset( $_POST['transientKey'] ) ) {
 			wp_die();
@@ -2492,7 +2503,7 @@ final class Ajax {
 	 */
 	public function get_color_scheme() {
 
-		check_ajax_referer( 'atum-color-scheme-nonce', 'token' );
+		check_ajax_referer( 'atum-color-scheme-nonce', 'security' );
 
 		$custom_settings = $settings = [];
 
@@ -2600,7 +2611,7 @@ final class Ajax {
 	 */
 	public function update_calc_props() {
 
-		check_ajax_referer( 'atum-script-runner-nonce', 'token' );
+		check_ajax_referer( 'atum-script-runner-nonce', 'security' );
 
 		if ( empty( $_POST['option'] ) ) {
 			wp_send_json_error( __( 'Please enter the number of products you want to process per AJAX call', ATUM_TEXT_DOMAIN ) );
@@ -2648,12 +2659,57 @@ final class Ajax {
 	 */
 	public function clear_out_atum_transients() {
 
-		check_ajax_referer( 'atum-script-runner-nonce', 'token' );
+		check_ajax_referer( 'atum-script-runner-nonce', 'security' );
 
 		AtumCache::delete_transients();
 
 		do_action( 'atum/ajax/tool_clear_out_atum_transients' );
 		wp_send_json_success( __( 'All your saved temporary data were cleared successfully.', ATUM_TEXT_DOMAIN ) );
+
+	}
+
+	/**
+	 * Create a new supplier from the "Create Supplier" modal.
+	 *
+	 * @since 1.9.6
+	 */
+	public function create_supplier() {
+
+		check_ajax_referer( 'create-supplier-nonce', 'security' );
+
+		if ( empty( $_POST['supplier_data'] ) ) {
+			wp_send_json_error( __( 'Invalid data', ATUM_TEXT_DOMAIN ) );
+		}
+
+		if ( ! ModuleManager::is_module_active( 'purchase_orders' ) ) {
+			wp_send_json_error( __( 'Purchase Orders module isn\'t active.', ATUM_TEXT_DOMAIN ) );
+		}
+
+		if ( ! AtumCapabilities::current_user_can( 'create_suppliers' ) ) {
+			wp_send_json_error( __( 'You don\'t have enough privileges.', ATUM_TEXT_DOMAIN ) );
+		}
+
+		parse_str( $_POST['supplier_data'], $posted_data );
+
+		if ( empty( $posted_data['name'] ) ) {
+			wp_send_json_error( __( 'The Supplier name is required', ATUM_TEXT_DOMAIN ) );
+		}
+
+		$supplier = new Supplier();
+		$supplier->set_data( $posted_data );
+		$supplier_id = $supplier->save();
+
+		if ( ! $supplier_id ) {
+			wp_send_json_error( __( 'Something failed when creating the supplier.', ATUM_TEXT_DOMAIN ) );
+		}
+
+		wp_send_json_success( [
+			'message'       => __( 'Supplier Created', ATUM_TEXT_DOMAIN ),
+			'text_link'     => __( 'Complete supplier details', ATUM_TEXT_DOMAIN ),
+			'supplier_link' => get_edit_post_link( $supplier_id ),
+			'supplier_id'   => $supplier_id,
+			'supplier_name' => $supplier->name,
+		] );
 
 	}
 

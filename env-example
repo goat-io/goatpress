@@ -7,41 +7,42 @@
 # WORDPRESS_LOGIN_URL: URL of the wordpress admin login
 #       i.e: d663bd873d93
 WORDPRESS_WP_SITEURL="http://127.0.0.1"
-WORDPRESS_LOGIN_URL= "mysupersecretloginurl"
+WORDPRESS_LOGIN_URL= "d663bd873d434343293"
 # TOTALMEM / 4
 WORDPRESS_WP_MEMORY_LIMIT="256M"
+
 
 ###############################################################################
 # Wordpress Database Configuration
 ###############################################################################
-WORDPRESS_DB_HOST="db"
+WORDPRESS_DB_HOST="mysql"
 WORDPRESS_DB_NAME="wordpress"
 WORDPRESS_DB_USER="root"
-WORDPRESS_DB_PASSWORD="some.secure.password"
+WORDPRESS_DB_PASSWORD="um7Upx4HrANDnK7EgD4yD5uZ7gA9"
 
 ###############################################################################
 # NEW RELIC
 ###############################################################################
-NEW_RELIC_LICENSE_KEY="NEW_RELIC_KEY"
-NEW_RELIC_APP_NAME="NEW_RELIC_APP_NAME"
+NEW_RELIC_LICENSE_KEY="NRAK-ZJ83THE8V7G9JTBHSAXRGJW6299"
+NEW_RELIC_APP_NAME="goat"
 
 ###############################################################################
 # REDIS
 ###############################################################################
 #WP_REDIS_DISABLED=true
-WP_REDIS_HOST="ec2-52-21-130-39.compute-1.amazonaws.com"
-WP_REDIS_PORT=17199
+WP_REDIS_HOST="192.168.1.157"
+WP_REDIS_PORT=6379
 # USE PW WHEN REQUIRED
-WP_REDIS_PASSWORD="some.secure.password"
+#WP_REDIS_PASSWORD="pab38fbee08812f17f1529fc6a6db76a6d7313147e38bdb07f1a6df794e7118cd"
 # Include REDIS PORT in the URL
-NGINX_REDIS_UPSTREAM="myredishost:6379"
-NGINX_REDIS_PASSWORD="some.secure.password"
+NGINX_REDIS_UPSTREAM="192.168.1.157:6379"
+#NGINX_REDIS_PASSWORD="pab38fbee08812f17f1529fc6a6db76a6d7313147e38bdb07f1a6df794e7118cd"
 
 ###############################################################################
 # NGINX
 ###############################################################################
 #Optional
-NGINX_CDN_HOST="https://my-ultra-fast-cdn.com"
+NGINX_CDN_HOST="https://storage.googleapis.com/wplocal"
     #######
     # NOT REQUIRED (SHOWING DEFAULT VALUES)
     #######

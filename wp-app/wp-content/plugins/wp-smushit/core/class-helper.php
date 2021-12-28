@@ -25,6 +25,24 @@ if ( ! defined( 'WPINC' ) ) {
 class Helper {
 
 	/**
+	 * Check if user is a WPMU DEV admin.
+	 *
+	 * @since 3.9.3
+	 *
+	 * @return bool
+	 */
+	public static function is_wpmu_dev_admin() {
+		if ( class_exists( '\WPMUDEV_Dashboard' ) ) {
+			if ( method_exists( '\WPMUDEV_Dashboard_Site', 'allowed_user' ) ) {
+				$user_id = get_current_user_id();
+				return \WPMUDEV_Dashboard::$site->allowed_user( $user_id );
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Get mime type for file.
 	 *
 	 * @since 3.1.0  Moved here as a helper function.
@@ -85,7 +103,7 @@ class Helper {
 	 *
 	 * @param int $attachment_id  Attachment ID.
 	 *
-	 * @return bool|false|string
+	 * @return bool|string
 	 */
 	public static function get_attached_file( $attachment_id ) {
 		if ( empty( $attachment_id ) ) {
@@ -94,9 +112,16 @@ class Helper {
 
 		do_action( 'smush_s3_integration_fetch_file' );
 
-		$file_path = get_attached_file( $attachment_id );
-		if ( ! empty( $file_path ) && strpos( $file_path, 's3' ) !== false ) {
-			$file_path = get_attached_file( $attachment_id, true );
+		if ( function_exists( 'wp_get_original_image_path' ) ) {
+			$file_path = wp_get_original_image_path( $attachment_id );
+			if ( ! empty( $file_path ) && strpos( $file_path, 's3' ) !== false ) {
+				$file_path = wp_get_original_image_path( $attachment_id, true );
+			}
+		} else {
+			$file_path = get_attached_file( $attachment_id );
+			if ( ! empty( $file_path ) && strpos( $file_path, 's3' ) !== false ) {
+				$file_path = get_attached_file( $attachment_id, true );
+			}
 		}
 
 		// Turn the filter off again. We'll call this method when we want the file to be downloaded.
@@ -125,7 +150,7 @@ class Helper {
 			return $savings;
 		}
 
-		$pngjpg_savings = get_post_meta( $attachment_id, WP_SMUSH_PREFIX . 'pngjpg_savings', true );
+		$pngjpg_savings = get_post_meta( $attachment_id, 'wp-smush-pngjpg_savings', true );
 		if ( empty( $pngjpg_savings ) || ! is_array( $pngjpg_savings ) ) {
 			return $savings;
 		}
@@ -363,7 +388,7 @@ class Helper {
 		}
 
 		if ( $count > 1 ) {
-			update_post_meta( $id, WP_SMUSH_PREFIX . 'animated', true );
+			update_post_meta( $id, 'wp-smush-animated', true );
 		}
 	}
 
@@ -400,5 +425,27 @@ class Helper {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get upsell URL.
+	 *
+	 * @since 3.9.1
+	 *
+	 * @param string $utm_campaign  Campaing string.
+	 *
+	 * @return string
+	 */
+	public static function get_url( $utm_campaign = '' ) {
+		$upgrade_url = 'https://wpmudev.com/project/wp-smush-pro/';
+
+		return add_query_arg(
+			array(
+				'utm_source'   => 'smush',
+				'utm_medium'   => 'plugin',
+				'utm_campaign' => $utm_campaign,
+			),
+			$upgrade_url
+		);
 	}
 }

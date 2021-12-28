@@ -1,158 +1,382 @@
-# Copyright (C) 2019 Checkout Field Editor for WooCommerce
-# This file is distributed under the same license as the Checkout Field Editor for WooCommerce package.
+# Copyright (C) 2021 ThemeHigh
+# This file is distributed under the same license as the Checkout Field Editor for WooCommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Checkout Field Editor for WooCommerce 1.3.2\n"
+"Project-Id-Version: Checkout Field Editor for WooCommerce 1.4.9\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woo-checkout-field-editor-pro\n"
-"POT-Creation-Date: 2019-07-12 12:34:37+00:00\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2021-09-21T17:14:59+05:30\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: woo-checkout-field-editor-pro\n"
 
-#: classes/class-wc-checkout-field-editor.php:30
-msgid "WooCommerce Checkout Form Designer"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:30
-msgid "Checkout Form"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:47
-msgid "Settings"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:96
-msgid "SUCCESS: Checkout fields successfully reset"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:390
-msgid "Fields"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:431
-msgid "+ Add field"
-msgstr ""
-msgid "Add field"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:432
-msgid "Remove"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:433
-msgid "Enable"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:434
-msgid "Disable"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:437
-msgid "Save changes"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:438
-msgid "Reset to default fields"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:589
-msgid "Edit"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:717
-msgid "Your changes were saved."
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:719
-msgid "Your changes were not saved due to an error (or you made none!)."
-msgstr ""
-#. Plugin Name of the plugin/theme
+#. Plugin Name of the plugin
 msgid "Checkout Field Editor for WooCommerce"
 msgstr ""
 
-#. Description of the plugin/theme
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://www.themehigh.com"
+msgstr ""
+
+#. Description of the plugin
 msgid "Customize WooCommerce checkout fields(Add, Edit, Delete and re-arrange fields)."
 msgstr ""
 
-#: classes/class-wc-checkout-field-editor.php:489
-msgid "Name"
+#. Author of the plugin
+msgid "ThemeHigh"
 msgstr ""
 
-#: classes/class-wc-checkout-field-editor.php:490
-msgid "Type"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:491
-msgid "Label"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:492
-msgid "Placeholder"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:493
-msgid "Validation Rules"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:494
-msgid "Required"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:495
-msgid "Enabled"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:290
-msgid "Class"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:298
-msgid "Validation"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:316
-msgid "Clear Row"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:326
-msgid "Display in Emails"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:333
-msgid "Display in Order Detail Pages"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:257
-msgid "New Checkout Field"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:246
+#: admin/class-thwcfd-admin-form-field.php:40
 msgid "Text"
 msgstr ""
 
-#: classes/class-wc-checkout-field-editor.php:247
-msgid "Select"
+#: admin/class-thwcfd-admin-form-field.php:41
+msgid "Password"
 msgstr ""
 
-#: classes/class-wc-checkout-field-editor.php:303
-msgid "Phone"
-msgstr ""
-
-#: classes/class-wc-checkout-field-editor.php:302
+#: admin/class-thwcfd-admin-form-field.php:42
+#: admin/class-thwcfd-admin-form-field.php:54
 msgid "Email"
 msgstr ""
 
-#: classes/class-wc-checkout-field-editor.php:304
+#: admin/class-thwcfd-admin-form-field.php:43
+#: admin/class-thwcfd-admin-form-field.php:55
+msgid "Phone"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:44
+msgid "Select"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:45
+msgid "Textarea"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:46
+msgid "Radio"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:56
 msgid "Postcode"
 msgstr ""
 
-#: classes/class-wc-checkout-field-editor.php:305
+#: admin/class-thwcfd-admin-form-field.php:57
 msgid "State"
 msgstr ""
 
-#: classes/class-wc-checkout-field-editor.php:438
+#: admin/class-thwcfd-admin-form-field.php:58
+msgid "Number"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:62
+msgid "Full width"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:63
+msgid "Half width left"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:64
+msgid "Half width right"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:68
+#: admin/class-thwcfd-admin-settings-general.php:88
+msgid "Type"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:70
+#: admin/class-thwcfd-admin-settings-general.php:87
+msgid "Name"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:71
+#: admin/class-thwcfd-admin-settings-general.php:89
+msgid "Label"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:72
+msgid "Default Value"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:73
+#: admin/class-thwcfd-admin-settings-general.php:90
+msgid "Placeholder"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:75
+msgid "Class"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:75
+msgid "Separate classes with comma"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:76
+msgid "Validation"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:76
+msgid "Select validations"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:79
+#: admin/class-thwcfd-admin-settings-general.php:92
+msgid "Required"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:81
+#: admin/class-thwcfd-admin-settings-general.php:93
+msgid "Enabled"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:83
+msgid "Display in Emails"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:84
+msgid "Display in Order Detail Pages"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:125
+msgid "Save Field"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:128
+msgid "Basic Info"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:160
+msgid "Save & Close"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:163
+msgid "Next"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:166
+msgid "Back"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:180
+msgid "Basic Details"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:194
+msgid "Display Settings"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:400
+msgid "Options"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:408
+#: admin/assets/js/inc/thwcfd-admin-field.js:389
+#: admin/assets/js/thwcfd-admin.js:789
+msgid "Option Value"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:409
+#: admin/assets/js/inc/thwcfd-admin-field.js:390
+#: admin/assets/js/thwcfd-admin.js:790
+msgid "Option Text"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:411
+#: admin/assets/js/inc/thwcfd-admin-field.js:392
+#: admin/assets/js/thwcfd-admin.js:792
+msgid "Add new option"
+msgstr ""
+
+#: admin/class-thwcfd-admin-form-field.php:411
+#: admin/assets/js/inc/thwcfd-admin-field.js:393
+#: admin/assets/js/thwcfd-admin.js:793
+msgid "Remove option"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:56
+msgid "Enable label override for address fields."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:59
+msgid "Enable placeholder override for address fields."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:62
+msgid "Enable class override for address fields."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:65
+msgid "Enable priority override for address fields."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:68
+msgid "Enable required validation override for address fields."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:91
+msgid "Settings successfully reset."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:127
+#: admin/class-thwcfd-admin-settings-general.php:252
+#: admin/class-thwcfd-admin-settings-general.php:312
+msgid "Your changes were saved."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:129
+#: admin/class-thwcfd-admin-settings-general.php:254
+#: admin/class-thwcfd-admin-settings-general.php:314
+msgid "Your changes were not saved due to an error (or you made none!)."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-advanced.php:158
+msgid "Are you sure you want to reset to default settings? all your changes will be deleted."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:31
+#: admin/class-thwcfd-admin-settings.php:24
 msgid "Checkout Fields"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:32
+#: admin/class-thwcfd-admin-settings.php:25
+msgid "Advanced Settings"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:33
+#: admin/class-thwcfd-admin-settings.php:26
+msgid "Premium Features"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:36
+msgid "Billing Fields"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:37
+msgid "Shipping Fields"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:38
+msgid "Additional Fields"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:74
+msgid "Checkout fields successfully reset"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:91
+msgid "Validations"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:94
+#: admin/class-thwcfd-admin-settings-general.php:190
+msgid "Edit"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:101
+msgid "Add field"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:102
+msgid "Remove"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:103
+msgid "Enable"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:104
+msgid "Disable"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:107
+msgid "Save changes"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:108
+msgid "Reset to default fields"
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:109
+msgid "Are you sure you want to reset to default fields? all your changes will be deleted."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:257
+#: admin/class-thwcfd-admin-settings-general.php:317
+msgid "Your changes were not saved due to an error."
+msgstr ""
+
+#: admin/class-thwcfd-admin-settings-general.php:272
+msgid "Your changes were not saved due to no fields found."
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:55
+msgid "WooCommerce Checkout Field Editor"
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:55
+msgid "Checkout Form"
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:60
+msgid "WooCommerce"
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:66
+msgid "Settings"
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:68
+msgid "Get Pro"
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:102
+msgid "Just wanted to say thank you for using Checkout Field Editor plugin in your store."
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:103
+msgid "We hope you had a great experience. Please leave us with your feedback to serve best to you and others. Cheers!"
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:105
+msgid "Review Now"
+msgstr ""
+
+#: admin/class-thwcfd-admin.php:106
+msgid "Remind Me Later"
+msgstr ""
+
+#: public/class-thwcfd-public-checkout.php:355
+msgid "<strong>%s</strong> is not a valid number."
+msgstr ""
+
+#: admin/assets/js/inc/thwcfd-admin-field.js:10
+#: admin/assets/js/thwcfd-admin.js:410
+msgid "NAME/ID must begin with a lowercase letter ([a-z]) or underscores (\"_\") and may be followed by any number of lowercase letters, digits ([0-9]) and underscores (\"_\")"
+msgstr ""
+
+#: admin/assets/js/inc/thwcfd-admin-field.js:59
+#: admin/assets/js/thwcfd-admin.js:459
+msgid "Edit Field"
+msgstr ""
+
+#: admin/assets/js/inc/thwcfd-admin-field.js:59
+#: admin/assets/js/thwcfd-admin.js:459
+msgid "New Field"
+msgstr ""
+
+#: admin/assets/js/inc/thwcfd-admin-field.js:310
+#: admin/assets/js/thwcfd-admin.js:710
+msgid "Enter a value given in the options."
+msgstr ""
+
+#: admin/assets/js/inc/thwcfd-admin.js:74
+#: admin/assets/js/thwcfd-admin.js:935
+msgid "Yes"
 msgstr ""

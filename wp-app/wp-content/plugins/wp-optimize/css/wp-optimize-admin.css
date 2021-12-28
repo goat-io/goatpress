@@ -1391,6 +1391,11 @@ a.wpo-info__trigger span.dashicons {
 	transform-origin: 50% 50%;
 }
 
+.wpo-info.highlight-dashicons span.dashicons {
+	color: green;
+	font-weight: bold;
+}
+
 /* TABS */
 
 #wp-optimize-wrap h2.nav-tab-wrapper {

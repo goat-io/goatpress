@@ -417,6 +417,7 @@ var WP_Optimize_Smush = function() {
 			image_quality = $('#custom_compression_slider').val();
 			lossy_compression = image_quality < 100 ? true : false;
 		} else {
+			// The '90' here has to be kept in sync with WP_Optimize::admin_page_wpo_images_smush()
 			image_quality = $('#enable_lossy_compression').is(":checked") ? 90 : 100;
 			lossy_compression = image_quality < 100 ? true : false;
 		}
@@ -529,7 +530,7 @@ var WP_Optimize_Smush = function() {
 		$(this).toggleClass('opened');
 	});
 
-	$('.wpo-fieldgroup .autosmush input, .wpo-fieldgroup .compression_level, .wpo-fieldgroup .image_options, #smush-show-metabox').on('change', function(e) {
+	$('.wpo-fieldgroup .autosmush input, .wpo-fieldgroup .compression_level, .wpo-fieldgroup .image_options, #smush-show-metabox, #enable_webp_conversion').on('change', function(e) {
 		save_options();
 	});
 
@@ -620,6 +621,7 @@ var WP_Optimize_Smush = function() {
 			image_quality = $('#custom_compression_slider').val();
 			lossy_compression = image_quality < 100 ? true : false;
 		} else {
+			// The '90' here has to be kept in sync with WP_Optimize::admin_page_wpo_images_smush()
 			image_quality = $('#enable_lossy_compression').is(":checked") ? 90 : 100;
 			lossy_compression = image_quality < 100 ? true : false;
 		}
@@ -633,7 +635,8 @@ var WP_Optimize_Smush = function() {
 			'back_up_delete_after_days': $('#smush-backup-delete-days').val(),
 			'preserve_exif': $('#smush-preserve-exif').is(":checked"),
 			'autosmush': $('#smush-automatically').is(":checked"),
-			'show_smush_metabox': $('#smush-show-metabox').is(":checked")
+			'show_smush_metabox': $('#smush-show-metabox').is(":checked"),
+			'webp_conversion': $('#enable_webp_conversion').is(":checked")
 		}
 
 		smush_manager_send_command('update_smush_options', smush_options, function(resp) {

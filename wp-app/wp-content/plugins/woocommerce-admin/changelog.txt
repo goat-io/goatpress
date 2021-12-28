@@ -1,3 +1,76 @@
+== 2.9.4 12/15/2021 ==
+- Fix: Incorrect version reported in system status report.
+
+== 2.9.3 12/15/2021 ==
+- Fix: Correctly match payment gateways by id #7994
+
+== 2.9.2 12/13/2021 ==
+- Fix: Fix shipping task completion status #8031
+
+== 2.9.1 12/07/2021 == 
+- Fix: Fix shipping task not offering step 3. #7985
+
+== 2.9.0 11/30/2021 == 
+
+- Dev: Remove task status endpoint #7841
+- Fix: Fix ordering and styling issue with WooCommerce Payments payment method promotion. #7943
+- Fix: Fix ExPlat PHP client #7926
+- Fix: Fix marketing extensions tracks #7908
+- Update: Increased number of possible items in Recommended Extensions list from 6 to 9 #7887
+- Update: Reverts addition of Marketplace and My Subscriptions pages to the Marketplace menu. #7902
+- Update: Add marketing extensions back to onboarding wizard #7831
+- Update: Add profile notes. #7861
+- Update: Change CTA text for personalize store task after completion #7852
+- Update: Refactor data source poller for re-usability. #7671
+- Update: Update WC Pay card to include in-person information #7830
+- Update: Updating navigation link colors #7833
+- Tweak: Use page title Extensions for Marketplace and My Subscriptions pages. #7901
+- Tweak: Remove the Spinner component to prevent undesired page flickering. #7886
+- Tweak: Add route and layout for unmatched path #7503
+- Tweak: Avoid caching extended info #7819
+- Tweak: Minor design update for Marketing task. #7732
+- Fix: Do not clear `current` class from the entire page when updating wp-admin's menu. #7773
+- Fix: Fix calendar not being dismissed when clicking outside. #7714
+- Fix: fixed warnings when using AdvancedFilters component. #7704
+- Fix: Fix Tasklist UI illustrations styling #7858
+- Fix: Revert experiment task titles back to original #7853
+- Fix: Ensure homescreen defaults to single column layout. #7969
+- Add: Add Avalara to tax task #7874
+- Add: Add 2col expirement. #7872
+- Add: Added two column experimental task list #7669
+- Add: Add header cards for all tasks in Tasklist UI experiment #7838
+- Add: Add onboarding task docs #7762
+- Dev: Add method to check for install status #7808
+- Dev: Refactor tax task into separate components
+- Dev: Update the task list to use the new task list REST API #7736
+- Performance: Only load default tasks during REST requests #7904
+
+== 2.8.0 11/02/2021 == 
+
+- Add: Store Profiler and Product task - include Subscriptions #7734
+- Fix: Fix issue where stock activity panel was not rendering correctly. #7817
+- Fix: Increase CSS specificity to avoid conflicts and broken panel styling. #7813
+- Fix: Updated link to WooCommerce Developers Blog in readme.txt #7824
+- Fix: Fixed navigation menu text color after Gutenberg 11.6.0 #7771
+- Fix: Add status param to notes/delete/all REST endpoint, to correctly delete all notes. #7743
+- Fix: Allow already installed marketing extensions to be activated #7740
+- Fix: Add missing title text for marketing task. #7640
+- Fix: Assign parent order status as children order status if refund order #7253
+- Fix: Fix category lookup logic to update children correctly. #7709
+- Fix: Fixing an unwanted page refresh when using Woo Navigation. #7615
+- Fix: Fix naming of event names and properties. #7677
+- Fix: Fix white screen for variation analytic data without a name. #7686
+- Update: Update back up copy of free extension for Google Listing & Ads plugin. #7798
+- Update: Update Eway payment gateway capitalization (was eWAY). #7678
+- Update: Enable Square in France. #7679
+- Update: Update WC pay supported country list for the default free extensions. #7873
+- Enhancement: Add experiment for promoting WooCommerce Payments in payment methods table. #7666
+- Performance: Only load tasks during rest api requests #7856
+
+== 2.7.2 10/11/2021 == 
+
+- Fix: Fix analytics crashing on daylight saving #7763
+
 == 2.7.1 10/01/2021 == 
 
 - Fix: Allow super admins all capabilities within WooCommerce Admin #7489
@@ -5,7 +78,6 @@
 - Fix: Fix up onboarding profiler not working when opted out of tracking #7490
 - Fix: Making Business Details sticky in onboarding wizard #7426
 - Fix: Missing RTL for onboarding styles. #7531
-- Fix: No changelog necessary as it is in the component package. #7423
 - Fix: Skip scheduling action if Action Scheduler tables have not been set up #7521
 - Fix: Update country region typeahead for better autofill support. #7497
 - Fix: Use installable extensions for local state versus free extensions. #7585
@@ -22,6 +94,7 @@
 - Update: Create task list REST API endpoint #7512
 - Update: Deleted OnboardingEmailMarketing note class #7595
 - Update: Removes the use of the depreciated woocommerce_shared_settings hook. #7480
+- Update: Removes non WooCommerce Admin specific settings from the `wc_admin` namespace in the `wc/data` settings store (ex
 - Update: Updating eway logo in payment suggestions defaults #7562
 - Update: Update marketing task completion logic. #7586
 - Dev: Add email address field to OBW #7552
@@ -31,6 +104,27 @@
 - Tweak: Remove the preloaded onboarding options #7338
 - Tweak: Update analytics card header text styles #6506
 - Enhancement: Align Table fields with the fallback on isNumeric. #7431
+
+== 2.6.5 09/22/2021 == 
+
+- Fix: Add filters to get new hidden options #7698
+
+== 2.6.4 09/21/2021 == 
+
+- Fix: Use installable extensions for local state versus free extensions. #7585
+
+== 2.6.3 09/21/2021 == 
+
+- Fix: Unsecured reports
+- Fix: Fatal error and unrelated results in analytics. #7682
+
+== 2.6.2 09/14/2021 == 
+
+- Fix: Update task-item logic to only display content when expanded is true. #7611
+
+== 2.6.1 09/01/2021 == 
+
+- Update: Update marketing task completion logic. #7586
 
 == 2.6.0 08/31/2021 == 
 
@@ -45,6 +139,9 @@
 - Fix: Fix blank screen on analytics screens when searching #7482
 - Fix: Fix all links with hash to behind query parameters #7483
 - Fix: Fix Stats module CSS issue introduced by Gutenberg #7488
+- Fix: Fix marketing task visibility #7580
+- Fix: Fix stats-overview card padding issue #7594
+- Fix: Fix layout issue on marketing task #7598
 - Add: Add boolean isReverseTrend prop to SummaryNumber to show "positive" delta for negative numbers. #7357
 - Add: Adding links to help panel for marketing task #7384
 - Add: Add installed marketing extensions card to extensions task #7419

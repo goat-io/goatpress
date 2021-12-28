@@ -63,18 +63,38 @@ var AstraSearch = wp.Backbone.View.extend({
         let thisObject = this;
         thisObject.searching = true;
         AstraImageCommon.config.q = event.target.value;
-        var url = astraImages.pixabay_url + '?' + $.param( AstraImageCommon.config );
 
-        if ( url ) {
-            fetch( url ).then(function (response) {
-                return response.json();
-            }).then(function (result) {
-                thisObject.searching = false;
-                this.images = result.hits;
-                wp.media.view.AstraAttachmentsBrowser.images = this.images;
-                $( document ).trigger( 'ast-image__refresh' );
-            });
-        }
+		// Do Image Search.
+		$.ajax({
+			url: astraImages.ajaxurl,
+			type: 'POST',
+			data: {
+				'action' : 'astra-sites-search-images',
+				'params' : AstraImageCommon.config,
+				'_ajax_nonce' : astraImages._ajax_nonce,
+			},
+			beforeSend: function () {
+				console.groupCollapsed('Requesting Pixabay API');
+			}
+		})
+		.fail(function( jqXHR ){
+			console.log( jqXHR );
+			console.groupEnd();
+		})
+		.done(function (response) {
+			console.log('Response:');
+			console.log( response );
+			console.groupEnd();
+
+			if (response.success) {
+				thisObject.searching = false;
+				this.images = response.data.hits;
+				wp.media.view.AstraAttachmentsBrowser.images = this.images;
+			}
+
+			$( document ).trigger( 'ast-image__refresh' );
+		});
+
     },
 
     pushState: function( event ) {

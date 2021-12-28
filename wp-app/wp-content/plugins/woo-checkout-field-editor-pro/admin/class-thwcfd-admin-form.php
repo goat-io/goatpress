@@ -66,9 +66,9 @@ abstract class THWCFD_Admin_Form {
 			$args = wp_parse_args( $args, $defaults );
 
 			$ftype     = isset($field['type']) ? $field['type'] : 'text';
-			$flabel    = isset($field['label']) && !empty($field['label']) ? __($field['label'], 'woo-checkout-field-editor-pro') : '';
-			$sub_label = isset($field['sub_label']) && !empty($field['sub_label']) ? __($field['sub_label'], 'woo-checkout-field-editor-pro') : '';
-			$tooltip   = isset($field['hint_text']) && !empty($field['hint_text']) ? __($field['hint_text'], 'woo-checkout-field-editor-pro') : '';
+			$flabel    = isset($field['label']) && !empty($field['label']) ? $field['label'] : '';
+			$sub_label = isset($field['sub_label']) && !empty($field['sub_label']) ? $field['sub_label'] : '';
+			$tooltip   = isset($field['hint_text']) && !empty($field['hint_text']) ? $field['hint_text'] : '';
 
 			$field_html = '';
 

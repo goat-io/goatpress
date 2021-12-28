@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kadence WooCommerce Email Designer\n"
 "POT-Creation-Date: 2019-08-12 17:02-0600\n"
-"PO-Revision-Date: 2020-10-26 15:36+0000\n"
+"PO-Revision-Date: 2021-10-12 12:39-0600\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it_IT\n"
@@ -10,13 +10,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;_ex:"
-"1,2c;_n:1,2;esc_attr_x:1,2c;_x:1,2c;esc_html_x:1,2c\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-KeywordsList: __;_e;esc_html__;esc_html_e;esc_attr__;esc_attr_e;"
+"_ex:1,2c;_n:1,2;esc_attr_x:1,2c;_x:1,2c;esc_html_x:1,2c\n"
 "X-Poedit-Basepath: ..\n"
-"X-Poedit-SearchPath-0: .\n"
 "Report-Msgid-Bugs-To: \n"
-"X-Loco-Version: 2.4.3; wp-5.5.2-alpha-49307"
+"X-Loco-Version: 2.4.3; wp-5.5.2-alpha-49307\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: includes/class-customizer-kwdimportexport-control.php:16
 #: includes/class-customizer-kwdimportexport-control.php:21
@@ -190,8 +190,8 @@ msgstr ""
 #: includes/class-kadence-woomail-customizer.php:378
 #, php-format
 msgid ""
-"<a href=\"%s\">Kadence Woocommerce Email Designer</a> plugin by <a "
-"href=\"%s\">Kadence Themes</a>."
+"<a href=\"%s\">Kadence Woocommerce Email Designer</a> plugin by <a href=\"%s"
+"\">Kadence Themes</a>."
 msgstr ""
 
 #: includes/class-kadence-woomail-customizer.php:383
@@ -1214,8 +1214,8 @@ msgstr "La tua ricevuta da {site_title} per l'ordine del {order_date}"
 #: includes/class-kadence-woomail-settings.php:2707
 #, fuzzy
 msgid ""
-"Your subscription renewal order has been received and is now being processed."
-" Your order details are shown below for your reference:"
+"Your subscription renewal order has been received and is now being "
+"processed. Your order details are shown below for your reference:"
 msgstr ""
 "Il tuo ordine è stato ricevuto ed è in stato di preparazione. Qui sotto puoi "
 "trovare i dettagli del tuo ordine:"
@@ -1626,9 +1626,8 @@ msgstr "Ospite"
 
 #: kadence-woocommerce-email-designer.php:486
 #: kadence-woocommerce-email-designer.php:487
-#, fuzzy
 msgid "Email Customizer"
-msgstr "Cliente"
+msgstr "Personalizza email"
 
 #: kadence-woocommerce-email-designer.php:501
 msgid "Open Email Designer"

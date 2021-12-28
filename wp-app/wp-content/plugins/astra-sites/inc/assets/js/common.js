@@ -10,7 +10,6 @@
         offset: 0,
         loadingStatus: true,
         config: {
-            key            : astraImages.pixabay_api_key,
             q              : '',
             lang           : 'en',
             image_type     : 'all',

@@ -404,9 +404,6 @@ class ExactMetrics_Install {
 		// Transfer Demographics
 		$settings['demographics'] = ! empty( $em_legacy_options['ga_dash_remarketing'] ) ? 1 : 0;
 
-		// Enable compat mode
-		$settings['gatracker_compatibility_mode'] = true;
-
 
 		$settings['gadwp_migrated'] = time();
 
@@ -457,7 +454,6 @@ class ExactMetrics_Install {
 			'tag_links_in_rss'                         => true,
 			'allow_anchor'                             => 0,
 			'add_allow_linker'                         => 0,
-			'custom_code'                              => '',
 			'save_settings'                            => array( 'administrator' ),
 			'view_reports'                             => array( 'administrator', 'editor' ),
 			'events_mode'                              => 'js',

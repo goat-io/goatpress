@@ -58,6 +58,9 @@ if ( ! class_exists( 'Astra_Sites_Compatibility' ) ) :
 
 			// Plugin - LearnDash.
 			require_once ASTRA_SITES_DIR . 'inc/classes/compatibility/learndash/class-astra-sites-compatibility-learndash.php';
+
+			// Plugin - UAG.
+			require_once ASTRA_SITES_DIR . 'inc/classes/compatibility/uag/class-astra-sites-compatibility-uag.php';
 		}
 
 	}

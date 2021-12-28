@@ -1,5 +1,10 @@
 <?php
 
+// BEGIN iThemes Security - No modifiques ni borres esta línea
+// iThemes Security Config Details: 2
+define( 'DISALLOW_FILE_EDIT', true ); // Desactivar editor de archivos - Seguridad > Ajustes > Ajustes WordPress > Editor de archivos
+// END iThemes Security - No modifiques ni borres esta línea
+
 // Autoload the  Dotenv file
 // require_once(__DIR__ . '/vendor/autoload.php');
 // (new \Dotenv\Dotenv(__DIR__.'/'))->load();

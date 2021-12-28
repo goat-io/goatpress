@@ -5,7 +5,7 @@ License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 Tags: SEO, XML sitemap, Content analysis, Readability, Schema
 Tested up to: 5.8
-Stable tag: 17.2.1
+Stable tag: 17.8
 Requires PHP: 5.6.20
 
 Improve your WordPress SEO: Write better content and have a fully optimized WordPress site using the Yoast SEO plugin.
@@ -42,7 +42,7 @@ We know content is king, that's why Yoast SEO is famous for its **state-of-the-a
 
 * **SEO analysis**: an invaluable tool while writing SEO-friendly content with the right (focus) keyphrases in mind.
 * **Readability analysis**: ensures that humans and search engines can read and understand your content.
-* **Full language support** for: English, German, French, Dutch, Spanish, Italian, Russian, Indonesian, Polish, Portuguese, Arabic, Swedish, Hebrew, Hungarian, Turkish, Czech, Norwegian and Slovak.
+* **Full language support** for: English, German, French, Dutch, Spanish, Italian, Russian, Indonesian, Polish, Portuguese, Arabic, Swedish, Hebrew, Hungarian, Turkish, Czech, Norwegian, Slovak and Greek.
 * **A Google preview**, which shows what your listings will look like in the search results. Even on mobile devices!
 * **Innovative Schema blocks** for the WordPress block editor, so that your FAQ and HowTo content can be shown directly in the search results. Plus a breadcrumbs block to guide your users.
 * **[Premium] Internal linking blocks** to easily improve the structure of your content. Easily add a **table of contents block**, a **related links block**, a **subpages** block, or **siblings block**! Plus, we’ll keep adding these easy-to-add blocks to improve your site structure.
@@ -236,45 +236,56 @@ Your question has most likely been answered on our help center: [yoast.com/help/
 
 == Changelog ==
 
-= 17.2.1 =
-Release Date: September 28th, 2021
+= 17.8 =
+Release Date: December 14th, 2021
 
-Bugfixes:
-
-* Fixes a bug that could lead to a fatal error in the breadcrumbs block for auto-draft posts.
-
-= 17.2 =
-Release Date: September 21st, 2021
-
-Yoast SEO 17.2 is out now! Yoast SEO comes with many powerful tools that will help you write SEO-proof and readable texts. And as of today, you can also work on your readability in the Farsi language. Readable content is awesome content! Read more about what’s new in Yoast SEO 17.2 in [our release post](https://yoa.st/release-17-2)!
+Yoast SEO 17.8 is out now and ready for you to download. In this release, we fix a number of bugs and added a few enhancements for you to enjoy! Read more about what's new in Yoast SEO 17.8 in [our release post in English](https://yoa.st/release-17-8) or [our release post in Spanish](https://yoa.st/release-17-8-spanish)!
 
 Enhancements:
 
-* Completes the readability analysis for Farsi by adding the transition words, sentence beginnings and passive voice assessments, and by adjusting the sentence length assessment to make it more appropriate for the Farsi language.
-* Improves keyword detection for Farsi by adding more categories to the list of function words. E.g., general adjectives and adverbs category, conjunctions, and articles.
-* Cleans up indexables for posts with an `auto-draft` post-status, in order to speed-up your admin pages.
+* Improves the user direction in the configuration workout.
+* Adds a sleep interval to the WP CLI index command to limit server load while this command is running. Props to [roborourke](https://github.com/roborourke).
 
 Bugfixes:
 
-* Fixes a bug where indexables would be created for post auto-drafts when the SEO optimization is run.
+* Fixes a bug where on small screens the advanced setting's search engine follow checkbox would have a misplaced center.
+* Fixes a bug where the styling of the introduction dialog in Elementor would be broken due to changes in Elementor.
+* Fixes a bug where the reading time functionality for languages other than English would incorrectly output English reading speed values.
+* Fixes a bug where certain text strings in the Google, Facebook and Twitter previews would not be translated.
+* Fixes a bug where the state of indexation was not persisted when switching between workouts and the workouts page.
+* Fixes a bug where the Workouts page wouldn't display translations.
 
 Other:
 
-* Loads our help beacon on the workouts page.
+* Fixes some styling issues in the configuration workout.
+* Prevents SEO managers from changing the site description in the configuration workout.
+* Optimizes and compresses several .png images to reduce their size. Props to [lowwebtech](https://github.com/lowwebtech).
 
-= 17.1 =
-Release Date: September 7th, 2021
+= 17.7.1 =
+Release Date: December 1st, 2021
 
-Yoast SEO 17.1 is out today! In this release, you’ll find a couple of small changes that’ll help you write great titles that stand up to Google’s scrutiny. It also includes some behind-the-scenes improvements, including several fixes for our indexables data management. For now, please enjoy Yoast SEO and write the best possible content in the language of your choice! Read more about what’s new in Yoast SEO 17.1 in [our release post](https://yoa.st/release-17-1)!
+Bugfixes:
+
+* Fixes a bug where the notification to start configuring Yoast SEO would also been shown on existing installations.
+* Fixes a bug where Yoast addons would not inherit the auto-update settings from Yoast SEO.
+* Fixes a bug where changing the auto-update settings of another plugin could stop Yoast addons from being auto-updated.
+
+= 17.7 =
+Release Date: November 30th, 2021
+
+Meet Yoast SEO 17.7! This release introduces a new configuration workout to help you set up the Yoast SEO plugin properly from the get-go. Get the basic settings right in Yoast SEO and create a solid foundation for your SEO! Read more about what's new in Yoast SEO 17.7 in [our release post in English](https://yoa.st/release-17-7) or [our release post in Spanish](https://yoa.st/release-17-7-spanish)!
 
 Enhancements:
 
-* Improves the performance of saving posts by excluding unchanged items, especially noticeable on posts with many links.
-* Stops showing the SEO Optimization notification on non-production sites.
-* Improves the filtering of function words in Dutch, English, Indonesian, Russian, and Spanish by including time-related words like 'minute'.
-* Updates the styling of our Google preview, to reflect the updated styling of the Google search results.
-* Stops warning users when they have short titles, because concise, specific titles are less likely to be altered by Google.
-* Removes the `|` and `~` separator options from titles, because Google frequently replaces these in search results.
+* Replaces the configuration wizard with a configuration workout, which makes it easier to configure Yoast SEO for your website.
+* Adds a link to the archive page for the content types in the Search Appearance settings. Props to [felipelousantos](https://github.com/felipelousantos).
+* Adds a few more French transition words to be recognised by the transition words assessment. Props to [Cellophile](https://github.com/Cellophile).
+
+Bugfixes:
+
+* Fixes a bug where non-passive Greek words ending in -ου or -είτε were previously recognized as passive. Props to [artemidaspatanews](https://github.com/artemidaspatanews).
+* Fixes a bug where some post types would cause a PHP warning about custom fields.
+* Fixes a bug where memory issues could occur when indexing a site with large amounts of terms assigned to many posts.
 
 = Earlier versions =
 For the changelog of earlier versions, please refer to [the changelog on yoast.com](https://yoa.st/yoast-seo-changelog).

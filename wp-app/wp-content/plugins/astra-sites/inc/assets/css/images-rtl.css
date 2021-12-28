@@ -615,3 +615,18 @@
         width: 240px;
     }
 }
+@media (min-width: 1025px) and (max-width: 1200px) {
+    .ast-attachments-search-wrap .ast-image__search-wrap input {
+        width: 220px;
+    }
+}
+@media (min-width: 1201px) and (max-width: 1321px) {
+    .ast-attachments-search-wrap .ast-image__search-wrap input {
+        width: 360px;
+    }
+}
+@media (min-width: 1322px) and (max-width: 1430px) {
+    .ast-attachments-search-wrap .ast-image__search-wrap input {
+        width: 500px;
+    }
+}

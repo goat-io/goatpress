@@ -4,7 +4,7 @@
  * Plugin URI: https://exactmetrics.com
  * Description: Displays Google Analytics Reports and Real-Time Statistics in your Dashboard. Automatically inserts the tracking code in every page of your website.
  * Author: ExactMetrics
- * Version: 7.1.0
+ * Version: 7.3.0
  * Requires at least: 4.8.0
  * Requires PHP: 5.5
  * Author URI: https://exactmetrics.com
@@ -44,7 +44,7 @@ final class ExactMetrics_Lite {
 	 * @access public
 	 * @var string $version Plugin version.
 	 */
-	public $version = '7.1.0';
+	public $version = '7.3.0';
 
 	/**
 	 * Plugin file.
@@ -151,6 +151,7 @@ final class ExactMetrics_Lite {
 	 * @since 7.15.0
 	 * @accces public
 	 * @var string
+	 * @deprecated Since 8.3 with the removal of ga compatibility
 	 */
 	public $tracking_mode;
 
@@ -549,6 +550,7 @@ final class ExactMetrics_Lite {
 	/**
 	 * Get the tracking mode for the frontend scripts.
 	 *
+	 * @deprecated Since 8.3 with the removal of ga compatibility
 	 * @return string
 	 */
 	public function get_tracking_mode() {

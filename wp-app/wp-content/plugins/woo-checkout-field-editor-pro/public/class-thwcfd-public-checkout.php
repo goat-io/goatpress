@@ -292,7 +292,7 @@ class THWCFD_Public_Checkout {
 							$options_arr = THWCFD_Utils::prepare_field_options($new_field['options']);
 							$options = array();
 							foreach($options_arr as $key => $value) {
-								$options[$key] = __($value, 'woo-checkout-field-editor-pro');
+								$options[$key] = THWCFD_Utils::t($value);
 							}
 							$new_field['options'] = $options;
 						}
@@ -348,11 +348,11 @@ class THWCFD_Public_Checkout {
 		if($value && is_array($validators) && !empty($validators)){
 			foreach($validators as $vname){
 				$err_msg = '';
-				$flabel = isset($field['label']) ? THWCFD_Utils::t($field['label']) : $key;
+				$flabel = isset($field['label']) ? $field['label'] : $key;
 
 				if($vname === 'number'){
 					if(!is_numeric($value)){
-						$err_msg = '<strong>'. $flabel .'</strong> '. THWCFD_Utils::t('is not a valid number.');	
+						$err_msg = sprintf( __( '<strong>%s</strong> is not a valid number.', 'woo-checkout-field-editor-pro' ), $flabel );
 					}
 				}
 
@@ -388,7 +388,7 @@ class THWCFD_Public_Checkout {
 			$fields = THWCFD_Utils::get_fields($type);
 			
 			foreach($fields as $name => $field){
-				if(THWCFD_Utils::is_active_custom_field($field) && isset($posted[$name])){
+				if(THWCFD_Utils::is_active_custom_field($field) && isset($posted[$name]) && !THWCFD_Utils::is_wc_handle_custom_field($field)){
 
 					$type = isset($field['type']) ? $field['type'] : 'text';
 
@@ -434,7 +434,7 @@ class THWCFD_Public_Checkout {
 
 		// Loop through all custom fields to see if it should be added
 		foreach( $fields as $key => $field ) {
-			if(isset($field['show_in_email']) && $field['show_in_email']){
+			if(isset($field['show_in_email']) && $field['show_in_email'] && !THWCFD_Utils::is_wc_handle_custom_field($field)){
 				$order_id = THWCFD_Utils::get_order_id($order);
 				$value = get_post_meta( $order_id, $key, true );
 				
@@ -472,7 +472,7 @@ class THWCFD_Public_Checkout {
 			$fields_html = '';
 			// Loop through all custom fields to see if it should be added
 			foreach($fields as $key => $field){			
-				if(THWCFD_Utils::is_active_custom_field($field) && isset($field['show_in_order']) && $field['show_in_order']){
+				if(THWCFD_Utils::is_active_custom_field($field) && isset($field['show_in_order']) && $field['show_in_order'] && !THWCFD_Utils::is_wc_handle_custom_field($field)){
 					$value = get_post_meta( $order_id, $key, true );
 					
 					if($value){

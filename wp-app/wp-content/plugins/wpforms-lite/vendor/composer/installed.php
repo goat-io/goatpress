@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '22dc7cf9776878e44f8449accc088a5b9daf392b',
+        'reference' => '1fa21bcf6f2cebe9610f95c283838fc979fd3299',
         'name' => 'awesomemotive/wpforms',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '22dc7cf9776878e44f8449accc088a5b9daf392b',
+            'reference' => '1fa21bcf6f2cebe9610f95c283838fc979fd3299',
             'dev_requirement' => false,
         ),
         'goodby/csv' => array(

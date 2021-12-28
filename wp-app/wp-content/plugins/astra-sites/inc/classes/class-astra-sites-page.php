@@ -55,29 +55,8 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 				return;
 			}
 
-			add_action( 'after_setup_theme', array( $this, 'init_admin_settings' ), 99 );
 			add_action( 'wp_ajax_astra-sites-change-page-builder', array( $this, 'save_page_builder_on_ajax' ) );
-			add_action( 'admin_init', array( $this, 'save_page_builder_on_submit' ) );
 			add_action( 'admin_init', array( $this, 'getting_started' ) );
-			add_action( 'admin_body_class', array( $this, 'admin_body_class' ) );
-		}
-
-		/**
-		 * Admin Body Classes
-		 *
-		 * @since 2.0.0
-		 * @param string $classes Space separated class string.
-		 */
-		public function admin_body_class( $classes = '' ) {
-			$is_page_builder_screen = isset( $_GET['change-page-builder'] ) ? true : false; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$current_page_builder   = self::get_instance()->get_setting( 'page_builder' );
-
-			if ( $is_page_builder_screen || empty( $current_page_builder ) ) {
-				return $classes . ' astra-sites-change-page-builder ';
-			}
-
-			return $classes;
-
 		}
 
 		/**
@@ -96,20 +75,6 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 				return;
 			}
 
-			if ( 'appearance_page_starter-templates' === $current_screen->base ) {
-				$manual_sync = get_site_option( 'astra-sites-manual-sync-complete', 'no' );
-				if ( 'yes' === $manual_sync ) {
-					$status = get_site_option( 'astra-sites-batch-is-complete', 'no' );
-					if ( 'yes' === $status ) {
-						?>
-						<div class="astra-sites-sync-library-message success astra-sites-notice notice notice-success is-dismissible">
-							<p><?php Astra_Sites::get_instance()->get_sync_complete_message( true ); ?></p>
-						</div>
-						<?php
-					}
-				}
-			}
-
 			if ( 'plugins' === $current_screen->base ) {
 				$processed    = get_option( '_astra_sites_gettings_started', 'no' );
 				$product_name = Astra_Sites_White_Label::get_instance()->get_white_label_name( 'Astra' );
@@ -122,11 +87,6 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 					'page' => 'starter-templates',
 				);
 
-				$page_builder = self::get_instance()->get_setting( 'page_builder' );
-
-				if ( empty( $page_builder ) ) {
-					$arguments['change-page-builder'] = 'yes';
-				}
 				$url = add_query_arg( $arguments, admin_url( 'themes.php' ) );
 
 				?>
@@ -137,49 +97,6 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 				<?php
 			}
 
-		}
-
-		/**
-		 * Save Page Builder
-		 *
-		 * @since 1.4.0 The `$page_builder_slug` was added.
-		 *
-		 * @param  string $page_builder_slug Page Builder Slug.
-		 * @return mixed
-		 */
-		public function save_page_builder_on_submit( $page_builder_slug = '' ) {
-
-			// Only admins can save settings.
-			if ( ! defined( 'WP_CLI' ) && ! current_user_can( 'manage_options' ) ) {
-				return;
-			}
-
-			if ( ! defined( 'WP_CLI' ) && ( ! isset( $_REQUEST['astra-sites-page-builder'] ) || ! wp_verify_nonce( $_REQUEST['astra-sites-page-builder'], 'astra-sites-welcome-screen' ) ) ) {
-				return;
-			}
-
-			// Stored Settings.
-			$stored_data = $this->get_settings();
-
-			$page_builder = isset( $_REQUEST['page_builder'] ) ? sanitize_key( $_REQUEST['page_builder'] ) : sanitize_key( $page_builder_slug );
-
-			if ( ! empty( $page_builder ) ) {
-				// New settings.
-				$new_data = array(
-					'page_builder' => $page_builder,
-				);
-
-				// Merge settings.
-				$data = wp_parse_args( $new_data, $stored_data );
-
-				// Update settings.
-				update_option( 'astra_sites_settings', $data, 'no' );
-			}
-
-			if ( ! defined( 'WP_CLI' ) ) {
-				wp_safe_redirect( admin_url( '/themes.php?page=starter-templates' ) );
-				exit();
-			}
 		}
 
 		/**
@@ -286,15 +203,6 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 			$new_data = wp_parse_args( $args, $stored_data );
 
 			update_option( 'astra_sites_settings', $new_data, 'no' );
-		}
-
-		/**
-		 * Admin settings init
-		 */
-		public function init_admin_settings() {
-			add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-			add_action( 'astra_sites_menu_general_action', array( $this, 'general_page' ) );
-			add_action( 'astra_pages_menu_general_action', array( $this, 'general_page_for_astra_pages' ) );
 		}
 
 		/**
@@ -441,188 +349,6 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 					</div>
 				</div>
 				<?php
-			} elseif ( empty( $default_page_builder ) || isset( $_GET['change-page-builder'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$plugins       = get_option( 'active_plugins', array() );
-				$page_builders = array();
-				if ( $plugins ) {
-					foreach ( $plugins as $key => $plugin_init ) {
-						if ( false !== strpos( $plugin_init, 'elementor' ) ) {
-							$page_builders[] = 'elementor';
-						}
-						if ( false !== strpos( $plugin_init, 'beaver-builder' ) ) {
-							$page_builders[] = 'beaver-builder';
-						}
-						if ( false !== strpos( $plugin_init, 'brizy' ) ) {
-							$page_builders[] = 'brizy';
-						}
-					}
-				}
-				$page_builders   = array_unique( $page_builders );
-				$page_builders[] = 'gutenberg';
-				$page_builders   = implode( ',', $page_builders );
-				?>
-				<div class="astra-sites-welcome astra-sites-change-page-builder" data-plugins="<?php echo esc_attr( $page_builders ); ?>">
-					<div class="inner-wrap">
-						<div class="inner">
-							<div class="header">
-								<?php
-								$white_label       = false;
-								$white_label_class = '';
-								if ( is_callable( 'Astra_Ext_White_Label_Markup::get_whitelabel_string' ) ) {
-									$white_label_title = Astra_Ext_White_Label_Markup::get_whitelabel_string( 'astra-sites', 'name' );
-									if ( $white_label_title ) {
-										$white_label       = true;
-										$white_label_class = 'white-label-enabled';
-									}
-								}
-								?>
-								<span class="logo <?php echo esc_attr( $white_label_class ); ?>">
-									<?php if ( ! $white_label ) { ?>
-										<img src="<?php echo esc_url( ASTRA_SITES_URI . 'inc/assets/images/logo.svg' ); ?>">
-									<?php } else { ?>
-										<?php echo esc_html( Astra_Sites_White_Label::get_instance()->get_white_label_name() ); ?>
-									<?php } ?>
-									<h3 class="title"><?php esc_html_e( 'Getting Started', 'astra-sites' ); ?></h3>
-								</span>
-
-								<a href="<?php echo esc_url( admin_url() ); ?>" class="close"><span class="dashicons dashicons-no-alt"></span></a>
-							</div>
-							<form id="astra-sites-welcome-form" enctype="multipart/form-data" method="post">
-								<h1><?php esc_html_e( 'Select Page Builder', 'astra-sites' ); ?></h1>
-								<p><?php esc_html_e( 'We offer starter templates that can be imported in one click. These sites are available in the following page builders. Please choose your preferred page builder from the list below.', 'astra-sites' ); ?></p>
-								<div class="fields">
-									<ul class="page-builders">
-										<?php
-										$default_page_builder = $this->get_setting( 'page_builder' );
-										$page_builders        = $this->get_page_builders();
-										foreach ( $page_builders as $key => $page_builder ) {
-											$title = isset( $page_builder['title'] ) ? $page_builder['title'] : $page_builder['name'];
-											?>
-											<li data-page-builder="<?php echo esc_html( $page_builder['slug'] ); ?>">
-												<label>
-													<input type="radio" name="page_builder" value="<?php echo esc_html( $page_builder['name'] ); ?>">
-													<img src="<?php echo esc_url( $this->get_page_builder_image( $page_builder['slug'] ) ); ?>" title="<?php echo esc_attr( $title ); ?>" />
-													<div class="title"><?php echo esc_html( $page_builder['name'] ); ?></div>
-												</label>
-											</li>
-											<?php
-										}
-										?>
-									</ul>
-								</div>
-								<input type="hidden" name="message" value="saved" />
-								<?php wp_nonce_field( 'astra-sites-welcome-screen', 'astra-sites-page-builder' ); ?>
-							</form>
-						</div>
-					</div>
-				</div>
-			<?php } else { ?>
-
-				<div class="nav-tab-wrapper">
-					<?php
-					$white_label       = false;
-					$white_label_class = '';
-					if ( is_callable( 'Astra_Ext_White_Label_Markup::get_whitelabel_string' ) ) {
-						$white_label_title = Astra_Ext_White_Label_Markup::get_whitelabel_string( 'astra-sites', 'name' );
-						if ( $white_label_title ) {
-							$white_label       = true;
-							$white_label_class = 'white-label-enabled';
-						}
-					}
-					?>
-					<div class="logo <?php echo esc_attr( $white_label_class ); ?>">
-						<div class="astra-sites-logo-wrap">
-							<?php if ( ! $white_label ) { ?>
-								<img src="<?php echo esc_url( ASTRA_SITES_URI . 'inc/assets/images/logo.svg' ); ?>">
-							<?php } else { ?>
-								<?php echo esc_html( Astra_Sites_White_Label::get_instance()->get_white_label_name() ); ?>
-							<?php } ?>
-						</div>
-					</div>
-
-					<div class="back-to-layout" title="Back to Layout"><i class="ast-icon-chevron-left"></i></div>
-					<div id="astra-sites-filters" class="hide-on-mobile">
-						<?php $this->site_filters(); ?>
-					</div>
-					<div class="form">
-						<div class="filters-wrap favorite-filters-wrap header-actions">
-							<div class="filters-slug">
-								<ul class="filter-links">
-									<li>
-										<a title="<?php esc_html_e( 'My Favorite', 'astra-sites' ); ?>" href="#" class="astra-sites-show-favorite-button">
-											<i class="ast-icon-heart"></i>
-										</a>
-									</li>
-									<li>
-										<a title="<?php esc_html_e( 'Sync Library', 'astra-sites' ); ?>" href="#" class="astra-sites-sync-library-button">
-											<i class="ast-icon-refresh"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<span class="page-builder-icon">
-							<div class="selected-page-builder">
-								<?php
-								$page_builder = $this->get_default_page_builder();
-								if ( $page_builder ) {
-									?>
-									<img src="<?php echo esc_url( $this->get_page_builder_image( $page_builder['slug'] ) ); ?>" />
-									<span class="page-builder-title"><?php echo esc_html( $page_builder['name'] ); ?></span>
-									<span class="dashicons dashicons-arrow-down"></span>
-								<?php } ?>
-							</div>
-							<ul class="page-builders">
-								<?php
-								$default_page_builder = $this->get_setting( 'page_builder' );
-								$page_builders        = Astra_Sites::get_instance()->get_page_builders();
-								foreach ( $page_builders as $key => $page_builder ) {
-									$class = '';
-									if ( $default_page_builder === $page_builder['slug'] ) {
-										$class = 'active';
-									}
-									?>
-									<li data-page-builder="<?php echo esc_html( $page_builder['slug'] ); ?>" class="<?php echo esc_html( $class ); ?>">
-										<img src="<?php echo esc_url( $this->get_page_builder_image( $page_builder['slug'] ) ); ?>" />
-										<div class="title"><?php echo esc_html( $page_builder['name'] ); ?></div>
-									</li>
-									<?php
-								}
-								?>
-							</ul>
-							<form id="astra-sites-welcome-form-inline" enctype="multipart/form-data" method="post" style="display: none;">
-								<div class="fields">
-									<input type="hidden" name="page_builder" class="page-builder-input" required="required" />
-								</div>
-								<input type="hidden" name="message" value="saved" />
-								<?php wp_nonce_field( 'astra-sites-welcome-screen', 'astra-sites-page-builder' ); ?>
-							</form>
-						</span>
-					</div>
-					<?php
-					$view_actions = $this->get_view_actions();
-
-					foreach ( $view_actions as $slug => $data ) {
-
-						if ( ! $data['show'] ) {
-							continue;
-						}
-
-						$url = $this->get_page_url( $slug );
-
-						if ( 'general' === $slug ) {
-							update_option( 'astra_parent_page_url', $url, 'no' );
-						}
-
-						$active = ( $slug === $action ) ? 'nav-tab-active' : '';
-						?>
-							<a class='nav-tab <?php echo esc_attr( $active ); ?>' href='<?php echo esc_url( $url ); ?>'> <?php echo esc_html( $data['label'] ); ?> </a>
-					<?php } ?>
-				</div><!-- .nav-tab-wrapper -->
-				<div id="astra-sites-filters" class="hide-on-desktop">
-					<?php $this->site_filters(); ?>
-				</div>
-				<?php
 			}
 		}
 
@@ -639,7 +365,7 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 				<div class="section-left">
 					<div class="search-form">
 						<?php
-						$categories = Astra_Sites::get_instance()->get_api_option( 'astra-sites-categories' );
+						$categories = Astra_Sites::get_instance()->get_api_option( 'astra-sites-all-site-categories' );
 						if ( ! empty( $categories ) ) {
 							?>
 						<div id="astra-sites__category-filter" class="dropdown-check-list" tabindex="100">
@@ -794,56 +520,6 @@ if ( ! class_exists( 'Astra_Sites_Page' ) ) {
 			$url = $parent_page_url . '&action=' . $menu_slug;
 
 			return esc_url( $url );
-		}
-
-		/**
-		 * Add main menu
-		 *
-		 * @since 1.0.6
-		 */
-		public function add_admin_menu() {
-			$page_title = apply_filters( 'astra_sites_menu_page_title', esc_html__( 'Starter Templates', 'astra-sites' ) );
-
-			$page = add_theme_page( $page_title, $page_title, 'manage_options', 'starter-templates', array( $this, 'menu_callback' ) );
-		}
-
-		/**
-		 * Menu callback
-		 *
-		 * @since 1.0.6
-		 */
-		public function menu_callback() {
-
-			$current_slug = isset( $_GET['action'] ) ? esc_attr( $_GET['action'] ) : 'general'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-
-			$active_tab   = str_replace( '_', '-', $current_slug );
-			$current_slug = str_replace( '-', '_', $current_slug );
-			?>
-			<div class="astra-sites-menu-page-wrapper">
-				<?php $this->init_nav_menu( $active_tab ); ?>
-				<?php do_action( 'astra_sites_menu_' . esc_attr( $current_slug ) . '_action' ); ?>
-			</div>
-			<?php
-		}
-
-		/**
-		 * Include general page
-		 *
-		 * @since 1.0.6
-		 */
-		public function general_page() {
-			$default_page_builder = $this->get_setting( 'page_builder' );
-			if ( empty( $default_page_builder ) || isset( $_GET['change-page-builder'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				return;
-			}
-
-			$global_cpt_meta = array(
-				'category_slug' => 'astra-site-category',
-				'cpt_slug'      => 'astra-sites',
-				'page_builder'  => 'astra-site-page-builder',
-			);
-
-			require_once ASTRA_SITES_DIR . 'inc/includes/admin-page.php';
 		}
 
 		/**

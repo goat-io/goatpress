@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["customerEffortScore"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 466);
+/******/ 	return __webpack_require__(__webpack_require__.s = 470);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,7 +107,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["customerEffortScore"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(47)();
+  module.exports = __webpack_require__(48)();
 }
 
 
@@ -120,6 +120,13 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
+/***/ 17:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wc"]["experimental"]; }());
+
+/***/ }),
+
 /***/ 2:
 /***/ (function(module, exports) {
 
@@ -127,21 +134,14 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
-/***/ 20:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wc"]["experimental"]; }());
-
-/***/ }),
-
-/***/ 4:
+/***/ 3:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["components"]; }());
 
 /***/ }),
 
-/***/ 466:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -168,10 +168,10 @@ var external_wp_compose_ = __webpack_require__(14);
 var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external ["wc","experimental"]
-var external_wc_experimental_ = __webpack_require__(20);
+var external_wc_experimental_ = __webpack_require__(17);
 
 // CONCATENATED MODULE: ./packages/customer-effort-score/build-module/customer-feedback-modal/index.js
 /**
@@ -419,7 +419,7 @@ CustomerEffortScore.propTypes = {
 
 /***/ }),
 
-/***/ 47:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -432,7 +432,7 @@ CustomerEffortScore.propTypes = {
 
 
 
-var ReactPropTypesSecret = __webpack_require__(48);
+var ReactPropTypesSecret = __webpack_require__(49);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -491,7 +491,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

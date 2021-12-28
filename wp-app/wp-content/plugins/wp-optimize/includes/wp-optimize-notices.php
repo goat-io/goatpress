@@ -122,6 +122,27 @@ class WP_Optimize_Notices extends Updraft_Notices_1_1 {
 				'supported_positions' => $this->anywhere,
 				'validity_function' => 'is_wpo_premium_installed',
 			),
+			'wpo-power-tweaks' => array(
+				'prefix' => '',
+				'title' => __("Power tweaks for advanced users and better site performance.", "wp-optimize"),
+				'text' => __("WP-Optimize Premium comes with the power tweaks that will enable you to improve performance by targeting specific weak points, either in WordPress Core, or in popular plugins.", "wp-optimize"),
+				'image' => 'notices/wp_optimize_logo.png',
+				'button_link' => 'https://getwpo.com/faqs/#Power-tweaks-2-',
+				'button_meta' => 'wpo-premium',
+				'dismiss_time' => 'dismiss_notice',
+				'supported_positions' => $this->anywhere,
+				'validity_function' => 'is_wpo_premium_installed',
+			),
+			'subscriben' => array(
+				'prefix' => '',
+				'title' => 'Subscriben ' .__('by', 'wp-optimize'). ' UpdraftPlus',
+				'text' => __("The WordPress subscription extension for WooCommerce store owners.", "wp-optimize"),
+				'image' => 'notices/subscriben.png',
+				'button_link' => 'https://subscribenplugin.com',
+				'button_meta' => 'read_more',
+				'dismiss_time' => 'dismiss_notice',
+				'supported_positions' => $this->anywhere,
+			),
 
 			// The sale adverts content starts here
 			'blackfriday' => array(

@@ -71,6 +71,9 @@ class THWCFD {
 		add_action('wp_ajax_dismiss_thwcfd_review_request_notice', array($plugin_admin, 'dismiss_thwcfd_review_request_notice'));
 		add_action('wp_ajax_skip_thwcfd_review_request_notice', array($plugin_admin, 'skip_thwcfd_review_request_notice'));
 
+		$themehigh_plugins = new THWCFD_Admin_Settings_Themehigh_Plugins();
+		add_action('wp_ajax_th_activate_plugin', array($themehigh_plugins, 'activate_themehigh_plugins'));
+
 		$general_settings = new THWCFD_Admin_Settings_General();
 		add_action('after_setup_theme', array($general_settings, 'define_admin_hooks'));
 	}

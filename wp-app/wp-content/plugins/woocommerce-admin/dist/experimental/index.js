@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["experimental"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 462);
+/******/ 	return __webpack_require__(__webpack_require__.s = 466);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,13 +107,13 @@ this["wc"] = this["wc"] || {}; this["wc"]["experimental"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(47)();
+  module.exports = __webpack_require__(48)();
 }
 
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -266,7 +266,7 @@ var external_React_ = __webpack_require__(5);
 var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/Transition.js + 1 modules
-var Transition = __webpack_require__(64);
+var Transition = __webpack_require__(67);
 
 // CONCATENATED MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js
 
@@ -555,7 +555,7 @@ CSSTransition_CSSTransition.propTypes =  false ? undefined : {};
 
 /***/ }),
 
-/***/ 172:
+/***/ 173:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -952,12 +952,12 @@ function _inheritsLoose(subClass, superClass) {
 
 /***/ }),
 
-/***/ 264:
+/***/ 266:
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__(5), __webpack_require__(29));
+		module.exports = factory(__webpack_require__(5), __webpack_require__(31));
 	else {}
 })(this, function(__WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__2__) {
 return /******/ (function(modules) { // webpackBootstrap
@@ -1555,7 +1555,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 276:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1580,7 +1580,7 @@ var chevronUp = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createEl
 
 /***/ }),
 
-/***/ 277:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1605,7 +1605,14 @@ var chevronDown = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["create
 
 /***/ }),
 
-/***/ 29:
+/***/ 3:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ 31:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["ReactDOM"]; }());
@@ -1623,14 +1630,7 @@ var chevronDown = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["create
 
 /***/ }),
 
-/***/ 4:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wp"]["components"]; }());
-
-/***/ }),
-
-/***/ 462:
+/***/ 466:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1655,7 +1655,7 @@ __webpack_require__.d(__webpack_exports__, "InboxNotePlaceholder", function() { 
 __webpack_require__.d(__webpack_exports__, "VerticalCSSTransition", function() { return /* reexport */ VerticalCSSTransition; });
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/CSSTransition.js + 3 modules
 var CSSTransition = __webpack_require__(169);
@@ -1700,7 +1700,7 @@ const ExperimentalListItem = ({
   ...otherProps
 }) => {
   // for styling purposes only
-  const hasAction = !!(otherProps !== null && otherProps !== void 0 && otherProps.onClick);
+  const hasAction = !!(otherProps === null || otherProps === void 0 ? void 0 : otherProps.onClick);
   const roleProps = hasAction ? {
     role: 'button',
     onKeyDown: e => handleKeyDown(e, otherProps.onClick),
@@ -1724,7 +1724,7 @@ const ExperimentalListItem = ({
   }), children));
 };
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroup.js + 2 modules
-var TransitionGroup = __webpack_require__(172);
+var TransitionGroup = __webpack_require__(173);
 
 // CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/experimental-list.js
 /**
@@ -1769,16 +1769,16 @@ const ExperimentalList = ({
   }));
 };
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
-var icon = __webpack_require__(115);
+var icon = __webpack_require__(116);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-down.js
-var chevron_down = __webpack_require__(277);
+var chevron_down = __webpack_require__(280);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/chevron-up.js
-var chevron_up = __webpack_require__(276);
+var chevron_up = __webpack_require__(279);
 
 // EXTERNAL MODULE: ./node_modules/react-transition-group/esm/Transition.js + 1 modules
-var Transition = __webpack_require__(64);
+var Transition = __webpack_require__(67);
 
 // CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/collapsible-list/index.js
 /**
@@ -1950,6 +1950,9 @@ const ExperimentalCollapsibleList = ({
     triggerCallbacks(!isCollapsed);
   }, [isCollapsed]);
   const listClasses = classnames_default()(listProps.className || '', 'woocommerce-experimental-list');
+  const wrapperClasses = classnames_default()({
+    'woocommerce-experimental-list-wrapper': !isCollapsed
+  });
   return Object(external_wp_element_["createElement"])(ExperimentalList, Object.assign({}, listProps, {
     className: listClasses
   }), [...displayedChildren.shown, Object(external_wp_element_["createElement"])(Transition["a" /* default */], {
@@ -1961,6 +1964,7 @@ const ExperimentalCollapsibleList = ({
   }, state => {
     const transitionStyles = collapsible_list_getTransitionStyle(state, isCollapsed, collapseContainerRef.current);
     return Object(external_wp_element_["createElement"])("div", {
+      className: wrapperClasses,
       ref: collapseContainerRef,
       style: transitionStyles
     }, Object(external_wp_element_["createElement"])(TransitionGroup["a" /* default */], {
@@ -2003,17 +2007,17 @@ const ExperimentalCollapsibleList = ({
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/library/check.js
-var check = __webpack_require__(472);
+var check = __webpack_require__(477);
 
 // EXTERNAL MODULE: ./node_modules/gridicons/dist/notice-outline.js
-var notice_outline = __webpack_require__(60);
+var notice_outline = __webpack_require__(63);
 var notice_outline_default = /*#__PURE__*/__webpack_require__.n(notice_outline);
 
 // EXTERNAL MODULE: external ["wc","components"]
 var external_wc_components_ = __webpack_require__(21);
 
 // EXTERNAL MODULE: ./node_modules/dompurify/dist/purify.js
-var purify = __webpack_require__(66);
+var purify = __webpack_require__(53);
 
 // CONCATENATED MODULE: ./packages/experimental/build-module/vertical-css-transition/vertical-css-transition.js
 /**
@@ -2137,7 +2141,7 @@ const VerticalCSSTransition = ({
     ref: collapseContainerRef
   }, children));
 };
-// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/task-item.js
+// CONCATENATED MODULE: ./packages/experimental/build-module/experimental-list/task-item/index.js
 /**
  * External dependencies
  */
@@ -2212,8 +2216,10 @@ const TaskItem = ({
   completed,
   title,
   onDelete,
+  onCollapse,
   onDismiss,
-  remindMeLater,
+  onSnooze,
+  onExpand,
   onClick,
   additionalInfo,
   time,
@@ -2226,9 +2232,13 @@ const TaskItem = ({
   actionLabel,
   ...listItemProps
 }) => {
+  const [isTaskExpanded, setTaskExpanded] = Object(external_wp_element_["useState"])(expanded);
+  Object(external_wp_element_["useEffect"])(() => {
+    setTaskExpanded(expanded);
+  }, [expanded]);
   const className = classnames_default()('woocommerce-task-list__item', {
     complete: completed,
-    expanded,
+    expanded: isTaskExpanded,
     'level-2': level === 2 && !completed,
     'level-1': level === 1 && !completed
   });
@@ -2237,11 +2247,24 @@ const TaskItem = ({
     showActionButton = expandable;
   }
 
-  const showEllipsisMenu = (onDismiss || remindMeLater) && !completed || onDelete && completed;
+  const showEllipsisMenu = (onDismiss || onSnooze) && !completed || onDelete && completed;
+
+  const toggleActionVisibility = () => {
+    setTaskExpanded(!isTaskExpanded);
+
+    if (isTaskExpanded && onExpand) {
+      onExpand();
+    }
+
+    if (!isTaskExpanded && onCollapse) {
+      onCollapse();
+    }
+  };
+
   return Object(external_wp_element_["createElement"])(ExperimentalListItem, Object.assign({
     disableGutters: true,
     className: className,
-    onClick: onClick
+    onClick: expandable && showActionButton ? toggleActionVisibility : onClick
   }, listItemProps), Object(external_wp_element_["createElement"])(OptionalTaskTooltip, {
     level: level,
     completed: completed
@@ -2265,7 +2288,7 @@ const TaskItem = ({
     className: "woocommerce-task-list__item-title"
   }, title), Object(external_wp_element_["createElement"])(OptionalExpansionWrapper, {
     expandable: expandable,
-    expanded: expanded
+    expanded: isTaskExpanded
   }, Object(external_wp_element_["createElement"])("div", {
     className: "woocommerce-task-list__item-expandable-content"
   }, content, expandable && !completed && additionalInfo && Object(external_wp_element_["createElement"])("div", {
@@ -2296,10 +2319,10 @@ const TaskItem = ({
         e.stopPropagation();
         onDismiss();
       }
-    }, Object(external_wp_i18n_["__"])('Dismiss', 'woocommerce-admin')), remindMeLater && !completed && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
+    }, Object(external_wp_i18n_["__"])('Dismiss', 'woocommerce-admin')), onSnooze && !completed && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
       onClick: e => {
         e.stopPropagation();
-        remindMeLater();
+        onSnooze();
       }
     }, Object(external_wp_i18n_["__"])('Remind me later', 'woocommerce-admin')), onDelete && completed && Object(external_wp_element_["createElement"])(external_wp_components_["Button"], {
       onClick: e => {
@@ -2310,7 +2333,7 @@ const TaskItem = ({
   }));
 };
 // EXTERNAL MODULE: ./node_modules/react-visibility-sensor/dist/visibility-sensor.js
-var visibility_sensor = __webpack_require__(264);
+var visibility_sensor = __webpack_require__(266);
 var visibility_sensor_default = /*#__PURE__*/__webpack_require__.n(visibility_sensor);
 
 // EXTERNAL MODULE: external "moment"
@@ -2713,7 +2736,32 @@ const useSlot = external_wp_components_["useSlot"] || external_wp_components_["_
 
 /***/ }),
 
-/***/ 47:
+/***/ 477:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * WordPress dependencies
+ */
+
+var check = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24"
+}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
+  d: "M18.3 5.6L9.9 16.9l-4.6-3.4-.9 1.2 5.8 4.3 9.3-12.6z"
+}));
+/* harmony default export */ __webpack_exports__["a"] = (check);
+//# sourceMappingURL=check.js.map
+
+/***/ }),
+
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2726,7 +2774,7 @@ const useSlot = external_wp_components_["useSlot"] || external_wp_components_["_
 
 
 
-var ReactPropTypesSecret = __webpack_require__(48);
+var ReactPropTypesSecret = __webpack_require__(49);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -2785,32 +2833,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 472:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
-/* harmony import */ var _wordpress_primitives__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__);
-
-
-/**
- * WordPress dependencies
- */
-
-var check = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["SVG"], {
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 24 24"
-}, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__["Path"], {
-  d: "M18.3 5.6L9.9 16.9l-4.6-3.4-.9 1.2 5.8 4.3 9.3-12.6z"
-}));
-/* harmony default export */ __webpack_exports__["a"] = (check);
-//# sourceMappingURL=check.js.map
-
-/***/ }),
-
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2837,546 +2860,7 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 
-/***/ 6:
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-/* global define */
-
-(function () {
-	'use strict';
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames() {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				if (arg.length) {
-					var inner = classNames.apply(null, arg);
-					if (inner) {
-						classes.push(inner);
-					}
-				}
-			} else if (argType === 'object') {
-				if (arg.toString === Object.prototype.toString) {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				} else {
-					classes.push(arg.toString());
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if ( true && module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
-		// register as 'classnames', consistent with npm package name
-		define('classnames', [], function () {
-			return classNames;
-		});
-	} else {
-		window.classNames = classNames;
-	}
-}());
-
-
-/***/ }),
-
-/***/ 60:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-var _extends=Object.assign||function(a){for(var c,b=1;b<arguments.length;b++)for(var d in c=arguments[b],c)Object.prototype.hasOwnProperty.call(c,d)&&(a[d]=c[d]);return a};Object.defineProperty(exports,'__esModule',{value:!0});exports.default=function(a){var b=a.size,c=b===void 0?24:b,d=a.onClick,e=a.icon,f=a.className,g=_objectWithoutProperties(a,['size','onClick','icon','className']),j=['gridicon','gridicons-notice-outline',f,!!function h(k){return 0==k%18}(c)&&'needs-offset',!1,!1].filter(Boolean).join(' ');return _react2.default.createElement('svg',_extends({className:j,height:c,width:c,onClick:d},g,{xmlns:'http://www.w3.org/2000/svg',viewBox:'0 0 24 24'}),_react2.default.createElement('g',null,_react2.default.createElement('path',{d:'M12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8 3.59-8 8-8m0-2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13h-2v2h2v-2zm-2-2h2l.5-6h-3l.5 6z'})))};var _react=__webpack_require__(5),_react2=_interopRequireDefault(_react);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}function _objectWithoutProperties(a,b){var d={};for(var c in a)0<=b.indexOf(c)||Object.prototype.hasOwnProperty.call(a,c)&&(d[c]=a[c]);return d}module.exports=exports['default'];
-
-
-/***/ }),
-
-/***/ 64:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// UNUSED EXPORTS: UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-var objectWithoutPropertiesLoose = __webpack_require__(22);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
-var inheritsLoose = __webpack_require__(25);
-
-// EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(1);
-
-// EXTERNAL MODULE: external "React"
-var external_React_ = __webpack_require__(5);
-var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
-
-// EXTERNAL MODULE: external "ReactDOM"
-var external_ReactDOM_ = __webpack_require__(29);
-var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_ReactDOM_);
-
-// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/config.js
-/* harmony default export */ var config = ({
-  disabled: false
-});
-// EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroupContext.js
-var TransitionGroupContext = __webpack_require__(33);
-
-// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/Transition.js
-
-
-
-
-
-
-
-
-var UNMOUNTED = 'unmounted';
-var EXITED = 'exited';
-var ENTERING = 'entering';
-var ENTERED = 'entered';
-var EXITING = 'exiting';
-/**
- * The Transition component lets you describe a transition from one component
- * state to another _over time_ with a simple declarative API. Most commonly
- * it's used to animate the mounting and unmounting of a component, but can also
- * be used to describe in-place transition states as well.
- *
- * ---
- *
- * **Note**: `Transition` is a platform-agnostic base component. If you're using
- * transitions in CSS, you'll probably want to use
- * [`CSSTransition`](https://reactcommunity.org/react-transition-group/css-transition)
- * instead. It inherits all the features of `Transition`, but contains
- * additional features necessary to play nice with CSS transitions (hence the
- * name of the component).
- *
- * ---
- *
- * By default the `Transition` component does not alter the behavior of the
- * component it renders, it only tracks "enter" and "exit" states for the
- * components. It's up to you to give meaning and effect to those states. For
- * example we can add styles to a component when it enters or exits:
- *
- * ```jsx
- * import { Transition } from 'react-transition-group';
- *
- * const duration = 300;
- *
- * const defaultStyle = {
- *   transition: `opacity ${duration}ms ease-in-out`,
- *   opacity: 0,
- * }
- *
- * const transitionStyles = {
- *   entering: { opacity: 1 },
- *   entered:  { opacity: 1 },
- *   exiting:  { opacity: 0 },
- *   exited:  { opacity: 0 },
- * };
- *
- * const Fade = ({ in: inProp }) => (
- *   <Transition in={inProp} timeout={duration}>
- *     {state => (
- *       <div style={{
- *         ...defaultStyle,
- *         ...transitionStyles[state]
- *       }}>
- *         I'm a fade Transition!
- *       </div>
- *     )}
- *   </Transition>
- * );
- * ```
- *
- * There are 4 main states a Transition can be in:
- *  - `'entering'`
- *  - `'entered'`
- *  - `'exiting'`
- *  - `'exited'`
- *
- * Transition state is toggled via the `in` prop. When `true` the component
- * begins the "Enter" stage. During this stage, the component will shift from
- * its current transition state, to `'entering'` for the duration of the
- * transition and then to the `'entered'` stage once it's complete. Let's take
- * the following example (we'll use the
- * [useState](https://reactjs.org/docs/hooks-reference.html#usestate) hook):
- *
- * ```jsx
- * function App() {
- *   const [inProp, setInProp] = useState(false);
- *   return (
- *     <div>
- *       <Transition in={inProp} timeout={500}>
- *         {state => (
- *           // ...
- *         )}
- *       </Transition>
- *       <button onClick={() => setInProp(true)}>
- *         Click to Enter
- *       </button>
- *     </div>
- *   );
- * }
- * ```
- *
- * When the button is clicked the component will shift to the `'entering'` state
- * and stay there for 500ms (the value of `timeout`) before it finally switches
- * to `'entered'`.
- *
- * When `in` is `false` the same thing happens except the state moves from
- * `'exiting'` to `'exited'`.
- */
-
-var Transition_Transition = /*#__PURE__*/function (_React$Component) {
-  Object(inheritsLoose["a" /* default */])(Transition, _React$Component);
-
-  function Transition(props, context) {
-    var _this;
-
-    _this = _React$Component.call(this, props, context) || this;
-    var parentGroup = context; // In the context of a TransitionGroup all enters are really appears
-
-    var appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
-    var initialStatus;
-    _this.appearStatus = null;
-
-    if (props.in) {
-      if (appear) {
-        initialStatus = EXITED;
-        _this.appearStatus = ENTERING;
-      } else {
-        initialStatus = ENTERED;
-      }
-    } else {
-      if (props.unmountOnExit || props.mountOnEnter) {
-        initialStatus = UNMOUNTED;
-      } else {
-        initialStatus = EXITED;
-      }
-    }
-
-    _this.state = {
-      status: initialStatus
-    };
-    _this.nextCallback = null;
-    return _this;
-  }
-
-  Transition.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
-    var nextIn = _ref.in;
-
-    if (nextIn && prevState.status === UNMOUNTED) {
-      return {
-        status: EXITED
-      };
-    }
-
-    return null;
-  } // getSnapshotBeforeUpdate(prevProps) {
-  //   let nextStatus = null
-  //   if (prevProps !== this.props) {
-  //     const { status } = this.state
-  //     if (this.props.in) {
-  //       if (status !== ENTERING && status !== ENTERED) {
-  //         nextStatus = ENTERING
-  //       }
-  //     } else {
-  //       if (status === ENTERING || status === ENTERED) {
-  //         nextStatus = EXITING
-  //       }
-  //     }
-  //   }
-  //   return { nextStatus }
-  // }
-  ;
-
-  var _proto = Transition.prototype;
-
-  _proto.componentDidMount = function componentDidMount() {
-    this.updateStatus(true, this.appearStatus);
-  };
-
-  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-    var nextStatus = null;
-
-    if (prevProps !== this.props) {
-      var status = this.state.status;
-
-      if (this.props.in) {
-        if (status !== ENTERING && status !== ENTERED) {
-          nextStatus = ENTERING;
-        }
-      } else {
-        if (status === ENTERING || status === ENTERED) {
-          nextStatus = EXITING;
-        }
-      }
-    }
-
-    this.updateStatus(false, nextStatus);
-  };
-
-  _proto.componentWillUnmount = function componentWillUnmount() {
-    this.cancelNextCallback();
-  };
-
-  _proto.getTimeouts = function getTimeouts() {
-    var timeout = this.props.timeout;
-    var exit, enter, appear;
-    exit = enter = appear = timeout;
-
-    if (timeout != null && typeof timeout !== 'number') {
-      exit = timeout.exit;
-      enter = timeout.enter; // TODO: remove fallback for next major
-
-      appear = timeout.appear !== undefined ? timeout.appear : enter;
-    }
-
-    return {
-      exit: exit,
-      enter: enter,
-      appear: appear
-    };
-  };
-
-  _proto.updateStatus = function updateStatus(mounting, nextStatus) {
-    if (mounting === void 0) {
-      mounting = false;
-    }
-
-    if (nextStatus !== null) {
-      // nextStatus will always be ENTERING or EXITING.
-      this.cancelNextCallback();
-
-      if (nextStatus === ENTERING) {
-        this.performEnter(mounting);
-      } else {
-        this.performExit();
-      }
-    } else if (this.props.unmountOnExit && this.state.status === EXITED) {
-      this.setState({
-        status: UNMOUNTED
-      });
-    }
-  };
-
-  _proto.performEnter = function performEnter(mounting) {
-    var _this2 = this;
-
-    var enter = this.props.enter;
-    var appearing = this.context ? this.context.isMounting : mounting;
-
-    var _ref2 = this.props.nodeRef ? [appearing] : [external_ReactDOM_default.a.findDOMNode(this), appearing],
-        maybeNode = _ref2[0],
-        maybeAppearing = _ref2[1];
-
-    var timeouts = this.getTimeouts();
-    var enterTimeout = appearing ? timeouts.appear : timeouts.enter; // no enter animation skip right to ENTERED
-    // if we are mounting and running this it means appear _must_ be set
-
-    if (!mounting && !enter || config.disabled) {
-      this.safeSetState({
-        status: ENTERED
-      }, function () {
-        _this2.props.onEntered(maybeNode);
-      });
-      return;
-    }
-
-    this.props.onEnter(maybeNode, maybeAppearing);
-    this.safeSetState({
-      status: ENTERING
-    }, function () {
-      _this2.props.onEntering(maybeNode, maybeAppearing);
-
-      _this2.onTransitionEnd(enterTimeout, function () {
-        _this2.safeSetState({
-          status: ENTERED
-        }, function () {
-          _this2.props.onEntered(maybeNode, maybeAppearing);
-        });
-      });
-    });
-  };
-
-  _proto.performExit = function performExit() {
-    var _this3 = this;
-
-    var exit = this.props.exit;
-    var timeouts = this.getTimeouts();
-    var maybeNode = this.props.nodeRef ? undefined : external_ReactDOM_default.a.findDOMNode(this); // no exit animation skip right to EXITED
-
-    if (!exit || config.disabled) {
-      this.safeSetState({
-        status: EXITED
-      }, function () {
-        _this3.props.onExited(maybeNode);
-      });
-      return;
-    }
-
-    this.props.onExit(maybeNode);
-    this.safeSetState({
-      status: EXITING
-    }, function () {
-      _this3.props.onExiting(maybeNode);
-
-      _this3.onTransitionEnd(timeouts.exit, function () {
-        _this3.safeSetState({
-          status: EXITED
-        }, function () {
-          _this3.props.onExited(maybeNode);
-        });
-      });
-    });
-  };
-
-  _proto.cancelNextCallback = function cancelNextCallback() {
-    if (this.nextCallback !== null) {
-      this.nextCallback.cancel();
-      this.nextCallback = null;
-    }
-  };
-
-  _proto.safeSetState = function safeSetState(nextState, callback) {
-    // This shouldn't be necessary, but there are weird race conditions with
-    // setState callbacks and unmounting in testing, so always make sure that
-    // we can cancel any pending setState callbacks after we unmount.
-    callback = this.setNextCallback(callback);
-    this.setState(nextState, callback);
-  };
-
-  _proto.setNextCallback = function setNextCallback(callback) {
-    var _this4 = this;
-
-    var active = true;
-
-    this.nextCallback = function (event) {
-      if (active) {
-        active = false;
-        _this4.nextCallback = null;
-        callback(event);
-      }
-    };
-
-    this.nextCallback.cancel = function () {
-      active = false;
-    };
-
-    return this.nextCallback;
-  };
-
-  _proto.onTransitionEnd = function onTransitionEnd(timeout, handler) {
-    this.setNextCallback(handler);
-    var node = this.props.nodeRef ? this.props.nodeRef.current : external_ReactDOM_default.a.findDOMNode(this);
-    var doesNotHaveTimeoutOrListener = timeout == null && !this.props.addEndListener;
-
-    if (!node || doesNotHaveTimeoutOrListener) {
-      setTimeout(this.nextCallback, 0);
-      return;
-    }
-
-    if (this.props.addEndListener) {
-      var _ref3 = this.props.nodeRef ? [this.nextCallback] : [node, this.nextCallback],
-          maybeNode = _ref3[0],
-          maybeNextCallback = _ref3[1];
-
-      this.props.addEndListener(maybeNode, maybeNextCallback);
-    }
-
-    if (timeout != null) {
-      setTimeout(this.nextCallback, timeout);
-    }
-  };
-
-  _proto.render = function render() {
-    var status = this.state.status;
-
-    if (status === UNMOUNTED) {
-      return null;
-    }
-
-    var _this$props = this.props,
-        children = _this$props.children,
-        _in = _this$props.in,
-        _mountOnEnter = _this$props.mountOnEnter,
-        _unmountOnExit = _this$props.unmountOnExit,
-        _appear = _this$props.appear,
-        _enter = _this$props.enter,
-        _exit = _this$props.exit,
-        _timeout = _this$props.timeout,
-        _addEndListener = _this$props.addEndListener,
-        _onEnter = _this$props.onEnter,
-        _onEntering = _this$props.onEntering,
-        _onEntered = _this$props.onEntered,
-        _onExit = _this$props.onExit,
-        _onExiting = _this$props.onExiting,
-        _onExited = _this$props.onExited,
-        _nodeRef = _this$props.nodeRef,
-        childProps = Object(objectWithoutPropertiesLoose["a" /* default */])(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
-
-    return (
-      /*#__PURE__*/
-      // allows for nested Transitions
-      external_React_default.a.createElement(TransitionGroupContext["a" /* default */].Provider, {
-        value: null
-      }, typeof children === 'function' ? children(status, childProps) : external_React_default.a.cloneElement(external_React_default.a.Children.only(children), childProps))
-    );
-  };
-
-  return Transition;
-}(external_React_default.a.Component);
-
-Transition_Transition.contextType = TransitionGroupContext["a" /* default */];
-Transition_Transition.propTypes =  false ? undefined : {}; // Name the function so it is clearer in the documentation
-
-function noop() {}
-
-Transition_Transition.defaultProps = {
-  in: false,
-  mountOnEnter: false,
-  unmountOnExit: false,
-  appear: false,
-  enter: true,
-  exit: true,
-  onEnter: noop,
-  onEntering: noop,
-  onEntered: noop,
-  onExit: noop,
-  onExiting: noop,
-  onExited: noop
-};
-Transition_Transition.UNMOUNTED = UNMOUNTED;
-Transition_Transition.EXITED = EXITED;
-Transition_Transition.ENTERING = ENTERING;
-Transition_Transition.ENTERED = ENTERED;
-Transition_Transition.EXITING = EXITING;
-/* harmony default export */ var esm_Transition = __webpack_exports__["a"] = (Transition_Transition);
-
-/***/ }),
-
-/***/ 66:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 /*! @license DOMPurify | (c) Cure53 and other contributors | Released under the Apache license 2.0 and Mozilla Public License 2.0 | github.com/cure53/DOMPurify/blob/2.2.2/LICENSE */
@@ -4735,6 +4219,545 @@ Transition_Transition.EXITING = EXITING;
 }));
 //# sourceMappingURL=purify.js.map
 
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString === Object.prototype.toString) {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				} else {
+					classes.push(arg.toString());
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (typeof define === 'function' && typeof define.amd === 'object' && define.amd) {
+		// register as 'classnames', consistent with npm package name
+		define('classnames', [], function () {
+			return classNames;
+		});
+	} else {
+		window.classNames = classNames;
+	}
+}());
+
+
+/***/ }),
+
+/***/ 63:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+var _extends=Object.assign||function(a){for(var c,b=1;b<arguments.length;b++)for(var d in c=arguments[b],c)Object.prototype.hasOwnProperty.call(c,d)&&(a[d]=c[d]);return a};Object.defineProperty(exports,'__esModule',{value:!0});exports.default=function(a){var b=a.size,c=b===void 0?24:b,d=a.onClick,e=a.icon,f=a.className,g=_objectWithoutProperties(a,['size','onClick','icon','className']),j=['gridicon','gridicons-notice-outline',f,!!function h(k){return 0==k%18}(c)&&'needs-offset',!1,!1].filter(Boolean).join(' ');return _react2.default.createElement('svg',_extends({className:j,height:c,width:c,onClick:d},g,{xmlns:'http://www.w3.org/2000/svg',viewBox:'0 0 24 24'}),_react2.default.createElement('g',null,_react2.default.createElement('path',{d:'M12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8 3.59-8 8-8m0-2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13h-2v2h2v-2zm-2-2h2l.5-6h-3l.5 6z'})))};var _react=__webpack_require__(5),_react2=_interopRequireDefault(_react);function _interopRequireDefault(a){return a&&a.__esModule?a:{default:a}}function _objectWithoutProperties(a,b){var d={};for(var c in a)0<=b.indexOf(c)||Object.prototype.hasOwnProperty.call(a,c)&&(d[c]=a[c]);return d}module.exports=exports['default'];
+
+
+/***/ }),
+
+/***/ 67:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// UNUSED EXPORTS: UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+var objectWithoutPropertiesLoose = __webpack_require__(22);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js + 1 modules
+var inheritsLoose = __webpack_require__(25);
+
+// EXTERNAL MODULE: ./node_modules/prop-types/index.js
+var prop_types = __webpack_require__(1);
+
+// EXTERNAL MODULE: external "React"
+var external_React_ = __webpack_require__(5);
+var external_React_default = /*#__PURE__*/__webpack_require__.n(external_React_);
+
+// EXTERNAL MODULE: external "ReactDOM"
+var external_ReactDOM_ = __webpack_require__(31);
+var external_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_ReactDOM_);
+
+// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/config.js
+/* harmony default export */ var config = ({
+  disabled: false
+});
+// EXTERNAL MODULE: ./node_modules/react-transition-group/esm/TransitionGroupContext.js
+var TransitionGroupContext = __webpack_require__(33);
+
+// CONCATENATED MODULE: ./node_modules/react-transition-group/esm/Transition.js
+
+
+
+
+
+
+
+
+var UNMOUNTED = 'unmounted';
+var EXITED = 'exited';
+var ENTERING = 'entering';
+var ENTERED = 'entered';
+var EXITING = 'exiting';
+/**
+ * The Transition component lets you describe a transition from one component
+ * state to another _over time_ with a simple declarative API. Most commonly
+ * it's used to animate the mounting and unmounting of a component, but can also
+ * be used to describe in-place transition states as well.
+ *
+ * ---
+ *
+ * **Note**: `Transition` is a platform-agnostic base component. If you're using
+ * transitions in CSS, you'll probably want to use
+ * [`CSSTransition`](https://reactcommunity.org/react-transition-group/css-transition)
+ * instead. It inherits all the features of `Transition`, but contains
+ * additional features necessary to play nice with CSS transitions (hence the
+ * name of the component).
+ *
+ * ---
+ *
+ * By default the `Transition` component does not alter the behavior of the
+ * component it renders, it only tracks "enter" and "exit" states for the
+ * components. It's up to you to give meaning and effect to those states. For
+ * example we can add styles to a component when it enters or exits:
+ *
+ * ```jsx
+ * import { Transition } from 'react-transition-group';
+ *
+ * const duration = 300;
+ *
+ * const defaultStyle = {
+ *   transition: `opacity ${duration}ms ease-in-out`,
+ *   opacity: 0,
+ * }
+ *
+ * const transitionStyles = {
+ *   entering: { opacity: 1 },
+ *   entered:  { opacity: 1 },
+ *   exiting:  { opacity: 0 },
+ *   exited:  { opacity: 0 },
+ * };
+ *
+ * const Fade = ({ in: inProp }) => (
+ *   <Transition in={inProp} timeout={duration}>
+ *     {state => (
+ *       <div style={{
+ *         ...defaultStyle,
+ *         ...transitionStyles[state]
+ *       }}>
+ *         I'm a fade Transition!
+ *       </div>
+ *     )}
+ *   </Transition>
+ * );
+ * ```
+ *
+ * There are 4 main states a Transition can be in:
+ *  - `'entering'`
+ *  - `'entered'`
+ *  - `'exiting'`
+ *  - `'exited'`
+ *
+ * Transition state is toggled via the `in` prop. When `true` the component
+ * begins the "Enter" stage. During this stage, the component will shift from
+ * its current transition state, to `'entering'` for the duration of the
+ * transition and then to the `'entered'` stage once it's complete. Let's take
+ * the following example (we'll use the
+ * [useState](https://reactjs.org/docs/hooks-reference.html#usestate) hook):
+ *
+ * ```jsx
+ * function App() {
+ *   const [inProp, setInProp] = useState(false);
+ *   return (
+ *     <div>
+ *       <Transition in={inProp} timeout={500}>
+ *         {state => (
+ *           // ...
+ *         )}
+ *       </Transition>
+ *       <button onClick={() => setInProp(true)}>
+ *         Click to Enter
+ *       </button>
+ *     </div>
+ *   );
+ * }
+ * ```
+ *
+ * When the button is clicked the component will shift to the `'entering'` state
+ * and stay there for 500ms (the value of `timeout`) before it finally switches
+ * to `'entered'`.
+ *
+ * When `in` is `false` the same thing happens except the state moves from
+ * `'exiting'` to `'exited'`.
+ */
+
+var Transition_Transition = /*#__PURE__*/function (_React$Component) {
+  Object(inheritsLoose["a" /* default */])(Transition, _React$Component);
+
+  function Transition(props, context) {
+    var _this;
+
+    _this = _React$Component.call(this, props, context) || this;
+    var parentGroup = context; // In the context of a TransitionGroup all enters are really appears
+
+    var appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
+    var initialStatus;
+    _this.appearStatus = null;
+
+    if (props.in) {
+      if (appear) {
+        initialStatus = EXITED;
+        _this.appearStatus = ENTERING;
+      } else {
+        initialStatus = ENTERED;
+      }
+    } else {
+      if (props.unmountOnExit || props.mountOnEnter) {
+        initialStatus = UNMOUNTED;
+      } else {
+        initialStatus = EXITED;
+      }
+    }
+
+    _this.state = {
+      status: initialStatus
+    };
+    _this.nextCallback = null;
+    return _this;
+  }
+
+  Transition.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
+    var nextIn = _ref.in;
+
+    if (nextIn && prevState.status === UNMOUNTED) {
+      return {
+        status: EXITED
+      };
+    }
+
+    return null;
+  } // getSnapshotBeforeUpdate(prevProps) {
+  //   let nextStatus = null
+  //   if (prevProps !== this.props) {
+  //     const { status } = this.state
+  //     if (this.props.in) {
+  //       if (status !== ENTERING && status !== ENTERED) {
+  //         nextStatus = ENTERING
+  //       }
+  //     } else {
+  //       if (status === ENTERING || status === ENTERED) {
+  //         nextStatus = EXITING
+  //       }
+  //     }
+  //   }
+  //   return { nextStatus }
+  // }
+  ;
+
+  var _proto = Transition.prototype;
+
+  _proto.componentDidMount = function componentDidMount() {
+    this.updateStatus(true, this.appearStatus);
+  };
+
+  _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+    var nextStatus = null;
+
+    if (prevProps !== this.props) {
+      var status = this.state.status;
+
+      if (this.props.in) {
+        if (status !== ENTERING && status !== ENTERED) {
+          nextStatus = ENTERING;
+        }
+      } else {
+        if (status === ENTERING || status === ENTERED) {
+          nextStatus = EXITING;
+        }
+      }
+    }
+
+    this.updateStatus(false, nextStatus);
+  };
+
+  _proto.componentWillUnmount = function componentWillUnmount() {
+    this.cancelNextCallback();
+  };
+
+  _proto.getTimeouts = function getTimeouts() {
+    var timeout = this.props.timeout;
+    var exit, enter, appear;
+    exit = enter = appear = timeout;
+
+    if (timeout != null && typeof timeout !== 'number') {
+      exit = timeout.exit;
+      enter = timeout.enter; // TODO: remove fallback for next major
+
+      appear = timeout.appear !== undefined ? timeout.appear : enter;
+    }
+
+    return {
+      exit: exit,
+      enter: enter,
+      appear: appear
+    };
+  };
+
+  _proto.updateStatus = function updateStatus(mounting, nextStatus) {
+    if (mounting === void 0) {
+      mounting = false;
+    }
+
+    if (nextStatus !== null) {
+      // nextStatus will always be ENTERING or EXITING.
+      this.cancelNextCallback();
+
+      if (nextStatus === ENTERING) {
+        this.performEnter(mounting);
+      } else {
+        this.performExit();
+      }
+    } else if (this.props.unmountOnExit && this.state.status === EXITED) {
+      this.setState({
+        status: UNMOUNTED
+      });
+    }
+  };
+
+  _proto.performEnter = function performEnter(mounting) {
+    var _this2 = this;
+
+    var enter = this.props.enter;
+    var appearing = this.context ? this.context.isMounting : mounting;
+
+    var _ref2 = this.props.nodeRef ? [appearing] : [external_ReactDOM_default.a.findDOMNode(this), appearing],
+        maybeNode = _ref2[0],
+        maybeAppearing = _ref2[1];
+
+    var timeouts = this.getTimeouts();
+    var enterTimeout = appearing ? timeouts.appear : timeouts.enter; // no enter animation skip right to ENTERED
+    // if we are mounting and running this it means appear _must_ be set
+
+    if (!mounting && !enter || config.disabled) {
+      this.safeSetState({
+        status: ENTERED
+      }, function () {
+        _this2.props.onEntered(maybeNode);
+      });
+      return;
+    }
+
+    this.props.onEnter(maybeNode, maybeAppearing);
+    this.safeSetState({
+      status: ENTERING
+    }, function () {
+      _this2.props.onEntering(maybeNode, maybeAppearing);
+
+      _this2.onTransitionEnd(enterTimeout, function () {
+        _this2.safeSetState({
+          status: ENTERED
+        }, function () {
+          _this2.props.onEntered(maybeNode, maybeAppearing);
+        });
+      });
+    });
+  };
+
+  _proto.performExit = function performExit() {
+    var _this3 = this;
+
+    var exit = this.props.exit;
+    var timeouts = this.getTimeouts();
+    var maybeNode = this.props.nodeRef ? undefined : external_ReactDOM_default.a.findDOMNode(this); // no exit animation skip right to EXITED
+
+    if (!exit || config.disabled) {
+      this.safeSetState({
+        status: EXITED
+      }, function () {
+        _this3.props.onExited(maybeNode);
+      });
+      return;
+    }
+
+    this.props.onExit(maybeNode);
+    this.safeSetState({
+      status: EXITING
+    }, function () {
+      _this3.props.onExiting(maybeNode);
+
+      _this3.onTransitionEnd(timeouts.exit, function () {
+        _this3.safeSetState({
+          status: EXITED
+        }, function () {
+          _this3.props.onExited(maybeNode);
+        });
+      });
+    });
+  };
+
+  _proto.cancelNextCallback = function cancelNextCallback() {
+    if (this.nextCallback !== null) {
+      this.nextCallback.cancel();
+      this.nextCallback = null;
+    }
+  };
+
+  _proto.safeSetState = function safeSetState(nextState, callback) {
+    // This shouldn't be necessary, but there are weird race conditions with
+    // setState callbacks and unmounting in testing, so always make sure that
+    // we can cancel any pending setState callbacks after we unmount.
+    callback = this.setNextCallback(callback);
+    this.setState(nextState, callback);
+  };
+
+  _proto.setNextCallback = function setNextCallback(callback) {
+    var _this4 = this;
+
+    var active = true;
+
+    this.nextCallback = function (event) {
+      if (active) {
+        active = false;
+        _this4.nextCallback = null;
+        callback(event);
+      }
+    };
+
+    this.nextCallback.cancel = function () {
+      active = false;
+    };
+
+    return this.nextCallback;
+  };
+
+  _proto.onTransitionEnd = function onTransitionEnd(timeout, handler) {
+    this.setNextCallback(handler);
+    var node = this.props.nodeRef ? this.props.nodeRef.current : external_ReactDOM_default.a.findDOMNode(this);
+    var doesNotHaveTimeoutOrListener = timeout == null && !this.props.addEndListener;
+
+    if (!node || doesNotHaveTimeoutOrListener) {
+      setTimeout(this.nextCallback, 0);
+      return;
+    }
+
+    if (this.props.addEndListener) {
+      var _ref3 = this.props.nodeRef ? [this.nextCallback] : [node, this.nextCallback],
+          maybeNode = _ref3[0],
+          maybeNextCallback = _ref3[1];
+
+      this.props.addEndListener(maybeNode, maybeNextCallback);
+    }
+
+    if (timeout != null) {
+      setTimeout(this.nextCallback, timeout);
+    }
+  };
+
+  _proto.render = function render() {
+    var status = this.state.status;
+
+    if (status === UNMOUNTED) {
+      return null;
+    }
+
+    var _this$props = this.props,
+        children = _this$props.children,
+        _in = _this$props.in,
+        _mountOnEnter = _this$props.mountOnEnter,
+        _unmountOnExit = _this$props.unmountOnExit,
+        _appear = _this$props.appear,
+        _enter = _this$props.enter,
+        _exit = _this$props.exit,
+        _timeout = _this$props.timeout,
+        _addEndListener = _this$props.addEndListener,
+        _onEnter = _this$props.onEnter,
+        _onEntering = _this$props.onEntering,
+        _onEntered = _this$props.onEntered,
+        _onExit = _this$props.onExit,
+        _onExiting = _this$props.onExiting,
+        _onExited = _this$props.onExited,
+        _nodeRef = _this$props.nodeRef,
+        childProps = Object(objectWithoutPropertiesLoose["a" /* default */])(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
+
+    return (
+      /*#__PURE__*/
+      // allows for nested Transitions
+      external_React_default.a.createElement(TransitionGroupContext["a" /* default */].Provider, {
+        value: null
+      }, typeof children === 'function' ? children(status, childProps) : external_React_default.a.cloneElement(external_React_default.a.Children.only(children), childProps))
+    );
+  };
+
+  return Transition;
+}(external_React_default.a.Component);
+
+Transition_Transition.contextType = TransitionGroupContext["a" /* default */];
+Transition_Transition.propTypes =  false ? undefined : {}; // Name the function so it is clearer in the documentation
+
+function noop() {}
+
+Transition_Transition.defaultProps = {
+  in: false,
+  mountOnEnter: false,
+  unmountOnExit: false,
+  appear: false,
+  enter: true,
+  exit: true,
+  onEnter: noop,
+  onEntering: noop,
+  onEntered: noop,
+  onExit: noop,
+  onExiting: noop,
+  onExited: noop
+};
+Transition_Transition.UNMOUNTED = UNMOUNTED;
+Transition_Transition.EXITED = EXITED;
+Transition_Transition.ENTERING = ENTERING;
+Transition_Transition.ENTERED = ENTERED;
+Transition_Transition.EXITING = EXITING;
+/* harmony default export */ var esm_Transition = __webpack_exports__["a"] = (Transition_Transition);
 
 /***/ }),
 

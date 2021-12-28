@@ -93,7 +93,7 @@ $img = get_option( 'woocommerce_email_header_image' );
 														if ( $header_image_link ) {
 															echo '<a href="' . esc_url( get_home_url() ) . '" target="_blank" style="display:block; text-decoration: none;">';
 														}
-														echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" width="' . esc_attr( $header_image_maxwidth ) . '" /></p>';
+														echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" width="' . esc_attr( $header_image_maxwidth ) . '" />';
 														if ( $header_image_link ) {
 															echo '</a>';
 														}
@@ -121,9 +121,9 @@ $img = get_option( 'woocommerce_email_header_image' );
 																if ( $img ) {
 																	echo '<p style="margin-top:0;">';
 																	if ( $header_image_link ) {
-																		echo '<a href="' . esc_url( get_site_url() ) . '" target="_blank" style="display:block; text-decoration: none;">';
+																		echo '<a href="' . esc_url( get_home_url() ) . '" target="_blank" style="display:block; text-decoration: none;">';
 																	}
-																	echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" width="' . esc_attr( $header_image_maxwidth ) . '" /></p>';
+																	echo '<img src="' . esc_url( $img ) . '" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '" width="' . esc_attr( $header_image_maxwidth ) . '" />';
 																	if ( $header_image_link ) {
 																		echo '</a>';
 																	}

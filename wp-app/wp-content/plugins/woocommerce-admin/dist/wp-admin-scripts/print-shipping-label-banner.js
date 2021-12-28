@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["printShippingLabelBanner"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 464);
+/******/ 	return __webpack_require__(__webpack_require__.s = 468);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -107,7 +107,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["printShippingLabelBanner"] =
 if (false) { var throwOnDirectAccess, ReactIs; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(47)();
+  module.exports = __webpack_require__(48)();
 }
 
 
@@ -120,7 +120,7 @@ if (false) { var throwOnDirectAccess, ReactIs; } else {
 
 /***/ }),
 
-/***/ 115:
+/***/ 116:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -348,13 +348,6 @@ function enqueueScript(script) {
 
 /***/ }),
 
-/***/ 17:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["wp"]["apiFetch"]; }());
-
-/***/ }),
-
 /***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -522,6 +515,13 @@ exports.default = interpolate;
 
 /***/ }),
 
+/***/ 19:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["apiFetch"]; }());
+
+/***/ }),
+
 /***/ 2:
 /***/ (function(module, exports) {
 
@@ -551,7 +551,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
-/***/ 250:
+/***/ 253:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -561,11 +561,11 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 /***/ 3:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["lodash"]; }());
+(function() { module.exports = window["wp"]["components"]; }());
 
 /***/ }),
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, exports) {
 
 function _defineProperty(obj, key, value) {
@@ -591,11 +591,11 @@ module.exports["default"] = module.exports, module.exports.__esModule = true;
 /***/ 4:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wp"]["components"]; }());
+(function() { module.exports = window["lodash"]; }());
 
 /***/ }),
 
-/***/ 464:
+/***/ 468:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -612,14 +612,14 @@ var external_wc_data_ = __webpack_require__(11);
 var build_module = __webpack_require__(13);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(38);
+var defineProperty = __webpack_require__(39);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: external ["wp","i18n"]
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external ["wp","compose"]
 var external_wp_compose_ = __webpack_require__(14);
@@ -633,7 +633,7 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(3);
+var external_lodash_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: external ["wp","data"]
 var external_wp_data_ = __webpack_require__(7);
@@ -642,7 +642,7 @@ var external_wp_data_ = __webpack_require__(7);
 var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: ./client/wp-admin-scripts/print-shipping-label-banner/style.scss
-var style = __webpack_require__(250);
+var style = __webpack_require__(253);
 
 // CONCATENATED MODULE: ./client/wp-admin-scripts/print-shipping-label-banner/dismiss-modal/index.js
 
@@ -736,7 +736,7 @@ class dismiss_modal_DismissModal extends external_wp_element_["Component"] {
   };
 }))(dismiss_modal_DismissModal));
 // EXTERNAL MODULE: ./node_modules/@wordpress/icons/build-module/icon/index.js + 2 modules
-var icon = __webpack_require__(115);
+var icon = __webpack_require__(116);
 
 // EXTERNAL MODULE: external ["wp","primitives"]
 var external_wp_primitives_ = __webpack_require__(8);
@@ -800,7 +800,7 @@ function SetupNotice({
   }), getErrorMessage(errorReason));
 }
 // EXTERNAL MODULE: external ["wp","apiFetch"]
-var external_wp_apiFetch_ = __webpack_require__(17);
+var external_wp_apiFetch_ = __webpack_require__(19);
 var external_wp_apiFetch_default = /*#__PURE__*/__webpack_require__.n(external_wp_apiFetch_);
 
 // CONCATENATED MODULE: ./client/wp-admin-scripts/print-shipping-label-banner/wcs-api.js
@@ -1270,7 +1270,7 @@ Object(external_wp_element_["render"])(Object(external_wp_element_["createElemen
 
 /***/ }),
 
-/***/ 47:
+/***/ 48:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1283,7 +1283,7 @@ Object(external_wp_element_["render"])(Object(external_wp_element_["createElemen
 
 
 
-var ReactPropTypesSecret = __webpack_require__(48);
+var ReactPropTypesSecret = __webpack_require__(49);
 
 function emptyFunction() {}
 function emptyFunctionWithReset() {}
@@ -1342,7 +1342,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 48:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

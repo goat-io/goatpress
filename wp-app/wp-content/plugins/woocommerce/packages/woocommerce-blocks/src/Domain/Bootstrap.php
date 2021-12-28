@@ -5,6 +5,8 @@ use Automattic\WooCommerce\Blocks\AssetsController as AssetsController;
 use Automattic\WooCommerce\Blocks\Assets\Api as AssetApi;
 use Automattic\WooCommerce\Blocks\Assets\AssetDataRegistry;
 use Automattic\WooCommerce\Blocks\BlockTypesController;
+use Automattic\WooCommerce\Blocks\BlockTemplatesController;
+use Automattic\WooCommerce\Blocks\InboxNotifications;
 use Automattic\WooCommerce\Blocks\Installer;
 use Automattic\WooCommerce\Blocks\Registry\Container;
 use Automattic\WooCommerce\Blocks\RestApi;
@@ -57,22 +59,33 @@ class Bootstrap {
 	public function __construct( Container $container ) {
 		$this->container = $container;
 		$this->package   = $container->get( Package::class );
-		$this->init();
-		/**
-		 * Usable as a safe event hook for when the plugin has been loaded.
-		 */
-		do_action( 'woocommerce_blocks_loaded' );
+		if ( $this->has_core_dependencies() ) {
+			$this->init();
+			/**
+			 * Fires after WooCommerce Blocks plugin has loaded.
+			 *
+			 * This hook is intended to be used as a safe event hook for when the plugin has been loaded, and all
+			 * dependency requirements have been met.
+			 */
+			do_action( 'woocommerce_blocks_loaded' );
+		}
 	}
 
 	/**
 	 * Init the package - load the blocks library and define constants.
 	 */
 	protected function init() {
-		if ( ! $this->has_core_dependencies() ) {
-			return;
-		}
 		$this->register_dependencies();
 		$this->register_payment_methods();
+
+		add_action(
+			'admin_init',
+			function() {
+				InboxNotifications::create_surface_cart_checkout_blocks_notification();
+			},
+			10,
+			0
+		);
 
 		$is_rest = wc()->is_rest_api_request();
 
@@ -89,6 +102,7 @@ class Bootstrap {
 		$this->container->get( RestApi::class );
 		$this->container->get( GoogleAnalytics::class );
 		$this->container->get( BlockTypesController::class );
+		$this->container->get( BlockTemplatesController::class );
 		if ( $this->package->feature()->is_feature_plugin_build() ) {
 			$this->container->get( PaymentsApi::class );
 		}
@@ -100,7 +114,7 @@ class Bootstrap {
 	 * @return boolean
 	 */
 	protected function has_core_dependencies() {
-		$has_needed_dependencies = class_exists( 'WooCommerce' );
+		$has_needed_dependencies = class_exists( 'WooCommerce', false );
 		if ( $has_needed_dependencies ) {
 			$plugin_data = \get_file_data(
 				$this->package->get_path( 'woocommerce-gutenberg-products-block.php' ),
@@ -216,6 +230,12 @@ class Bootstrap {
 			}
 		);
 		$this->container->register(
+			BlockTemplatesController::class,
+			function ( Container $container ) {
+				return new BlockTemplatesController();
+			}
+		);
+		$this->container->register(
 			DraftOrders::class,
 			function( Container $container ) {
 				return new DraftOrders( $container->get( Package::class ) );
@@ -259,7 +279,7 @@ class Bootstrap {
 			GoogleAnalytics::class,
 			function( Container $container ) {
 				// Require Google Analytics Integration to be activated.
-				if ( ! class_exists( 'WC_Google_Analytics_Integration' ) ) {
+				if ( ! class_exists( 'WC_Google_Analytics_Integration', false ) ) {
 					return;
 				}
 				$asset_api = $container->get( AssetApi::class );

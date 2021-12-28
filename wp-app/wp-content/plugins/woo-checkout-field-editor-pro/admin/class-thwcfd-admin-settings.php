@@ -20,7 +20,12 @@ abstract class THWCFD_Admin_Settings{
 	protected $sections = '';
 
 	public function __construct() {
-		$this->tabs = array( 'fields' => 'Checkout Fields', 'advanced_settings' => 'Advanced Settings', 'pro' => 'Premium Features');
+		$this->tabs = array(
+			'fields' => __('Checkout Fields', 'woo-checkout-field-editor-pro'),
+			'advanced_settings' => __('Advanced Settings', 'woo-checkout-field-editor-pro'),
+			'pro' => __('Premium Features', 'woo-checkout-field-editor-pro'),
+			'themehigh_plugins' => __('Other Free Plugins', 'woo-checkout-field-editor-pro'),
+		);
 	}
 	
 	public function get_tabs(){
@@ -46,7 +51,7 @@ abstract class THWCFD_Admin_Settings{
 		echo '<h2 class="thpladmin-tabs nav-tab-wrapper woo-nav-tab-wrapper">';
 		foreach( $tabs as $id => $label ){
 			$active = ( $current_tab == $id ) ? 'nav-tab-active' : '';
-			$label  = esc_html__($label, 'woo-checkout-field-editor-pro');
+			//$label  = esc_html__($label, 'woo-checkout-field-editor-pro');
 			echo '<a class="nav-tab '.$active.'" href="'. esc_url($this->get_admin_url($id)) .'">'.$label.'</a>';
 		}
 		echo '</h2>';		
@@ -83,7 +88,7 @@ abstract class THWCFD_Admin_Settings{
 	}
 
 	public function print_notices($msg, $type='updated', $return=false){
-		$notice = '<div class="thwcfd-notice '. $type .'"><p>'. __($msg, 'woo-checkout-field-editor-pro') .'</p></div>';
+		$notice = '<div class="thwcfd-notice '. $type .'"><p>'. $msg .'</p></div>';
 		if(!$return){
 			echo $notice;
 		}
@@ -102,7 +107,7 @@ abstract class THWCFD_Admin_Settings{
 			// $tooltip_html = '<a href="javascript:void(0)" title="'. $tooltip .'" class="thpladmin_tooltip"><img src="'. $icon .'" alt="" title=""/></a>';
 		}
 		?>
-        <td style="width: 26px; padding:0px;"><?php esc_html_e($tooltip_html, 'woo-checkout-field-editor-pro'); ?></td>
+        <td style="width: 26px; padding:0px;"><?php esc_html($tooltip_html); ?></td>
         <?php
 	}
 	

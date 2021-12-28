@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["tracks"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 449);
+/******/ 	return __webpack_require__(__webpack_require__.s = 452);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -278,7 +278,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ 267:
+/***/ 270:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/* eslint-env browser */
@@ -331,11 +331,7 @@ function useColors() {
   // document is undefined in react-native: https://github.com/facebook/react-native/pull/1632
 
 
-  return typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || // Is firebug? http://stackoverflow.com/a/398120/376773
-  typeof window !== 'undefined' && window.console && (window.console.firebug || window.console.exception && window.console.table) || // Is firefox >= v31?
-  // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
-  typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
-  typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
+  return typeof document !== 'undefined' && document.documentElement && document.documentElement.style && document.documentElement.style.WebkitAppearance || typeof window !== 'undefined' && window.console && (window.console.firebug || window.console.exception && window.console.table) || typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31 || typeof navigator !== 'undefined' && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
 }
 /**
  * Colorize log arguments if enabled.
@@ -449,7 +445,7 @@ function localstorage() {
   }
 }
 
-module.exports = __webpack_require__(450)(exports);
+module.exports = __webpack_require__(453)(exports);
 const {
   formatters
 } = module.exports;
@@ -468,7 +464,7 @@ formatters.j = function (v) {
 
 /***/ }),
 
-/***/ 449:
+/***/ 452:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -476,7 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recordEvent", function() { return recordEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "queueRecordEvent", function() { return queueRecordEvent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recordPageView", function() { return recordPageView; });
-/* harmony import */ var debug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(267);
+/* harmony import */ var debug__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(270);
 /* harmony import */ var debug__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(debug__WEBPACK_IMPORTED_MODULE_0__);
 /**
  * External dependencies
@@ -605,7 +601,7 @@ function recordPageView(path, extraProperties) {
 
 /***/ }),
 
-/***/ 450:
+/***/ 453:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -619,7 +615,7 @@ function setup(env) {
   createDebug.disable = disable;
   createDebug.enable = enable;
   createDebug.enabled = enabled;
-  createDebug.humanize = __webpack_require__(451);
+  createDebug.humanize = __webpack_require__(454);
   createDebug.destroy = destroy;
   Object.keys(env).forEach(key => {
     createDebug[key] = env[key];
@@ -865,7 +861,7 @@ module.exports = setup;
 
 /***/ }),
 
-/***/ 451:
+/***/ 454:
 /***/ (function(module, exports) {
 
 /**

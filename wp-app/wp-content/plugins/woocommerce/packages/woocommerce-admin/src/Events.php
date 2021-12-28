@@ -49,6 +49,9 @@ use \Automattic\WooCommerce\Admin\Notes\AddFirstProduct;
 use \Automattic\WooCommerce\Admin\Notes\DrawAttention;
 use \Automattic\WooCommerce\Admin\Notes\GettingStartedInEcommerceWebinar;
 use \Automattic\WooCommerce\Admin\Notes\NavigationNudge;
+use Automattic\WooCommerce\Admin\Schedulers\MailchimpScheduler;
+use \Automattic\WooCommerce\Admin\Notes\CompleteStoreDetails;
+use \Automattic\WooCommerce\Admin\Notes\UpdateStoreDetails;
 
 /**
  * Events Class.
@@ -96,12 +99,16 @@ class Events {
 		$this->possibly_add_notes();
 
 		if ( $this->is_remote_inbox_notifications_enabled() ) {
-			DataSourcePoller::read_specs_from_data_sources();
+			DataSourcePoller::get_instance()->read_specs_from_data_sources();
 			RemoteInboxNotificationsEngine::run();
 		}
 
 		if ( $this->is_merchant_email_notifications_enabled() ) {
 			MerchantEmailNotifications::run();
+		}
+
+		if ( Features::is_enabled( 'onboarding' ) ) {
+			( new MailchimpScheduler() )->run();
 		}
 	}
 
@@ -112,7 +119,6 @@ class Events {
 		NewSalesRecord::possibly_add_note();
 		MobileApp::possibly_add_note();
 		TrackingOptIn::possibly_add_note();
-		OnboardingEmailMarketing::possibly_add_note();
 		OnboardingPayments::possibly_add_note();
 		PersonalizeStore::possibly_add_note();
 		WooCommercePayments::possibly_add_note();
@@ -146,6 +152,8 @@ class Events {
 		GettingStartedInEcommerceWebinar::possibly_add_note();
 		FirstDownlaodableProduct::possibly_add_note();
 		NavigationNudge::possibly_add_note();
+		CompleteStoreDetails::possibly_add_note();
+		UpdateStoreDetails::possibly_add_note();
 	}
 
 	/**

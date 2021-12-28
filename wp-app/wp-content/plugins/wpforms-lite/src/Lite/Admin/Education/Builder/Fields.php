@@ -38,7 +38,21 @@ class Fields extends Education\Builder\Fields {
 			$edu_fields = $this->fields->get_by_group( $group );
 			$edu_fields = $this->fields->set_values( $edu_fields, 'class', 'education-modal', 'empty' );
 
-			$fields[ $group ]['fields'] = array_merge( $group_data['fields'], $edu_fields );
+			foreach ( $edu_fields as $edu_field ) {
+
+				// Skip if in the current group already exist field of this type.
+				if ( ! empty( wp_list_filter( $group_data, [ 'type' => $edu_field['type'] ] ) ) ) {
+					continue;
+				}
+
+				$addon = ! empty( $edu_field['addon'] ) ? $this->addons->get_addon( $edu_field['addon'] ) : [];
+
+				if ( ! empty( $addon ) ) {
+					$edu_field['license'] = isset( $addon['license_level'] ) ? $addon['license_level'] : '';
+				}
+
+				$fields[ $group ]['fields'][] = $edu_field;
+			}
 		}
 
 		return $fields;
@@ -60,7 +74,10 @@ class Fields extends Education\Builder\Fields {
 		?>
 
 		<div class="wpforms-field-option-group wpforms-field-option-group-conditionals">
-			<a href="#" class="wpforms-field-option-group-toggle education-modal" data-name="<?php esc_attr_e( 'Smart Conditional Logic', 'wpforms-lite' ); ?>">
+			<a href="#"
+				class="wpforms-field-option-group-toggle education-modal"
+				data-name="<?php esc_attr_e( 'Smart Conditional Logic', 'wpforms-lite' ); ?>"
+				data-utm-content="Smart Conditional Logic">
 				<?php esc_html_e( 'Smart Logic', 'wpforms-lite' ); ?>
 			</a>
 		</div>
@@ -93,6 +110,10 @@ class Fields extends Education\Builder\Fields {
 
 		if ( ! empty( $addon['video'] ) ) {
 			$atts['data']['video'] = $addon['video'];
+		}
+
+		if ( ! empty( $field['license'] ) ) {
+			$atts['data']['license'] = $field['license'];
 		}
 
 		return $atts;

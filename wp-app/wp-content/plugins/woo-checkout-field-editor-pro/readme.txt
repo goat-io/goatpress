@@ -5,7 +5,7 @@ Tags: checkout field editor, woocommerce checkout field editor, checkout manager
 Requires at least: 4.9
 Tested up to: 5.8
 Requires PHP: 5.6
-Stable tag: 1.4.9
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -249,6 +249,15 @@ Yes. There is a button 'reset to default fields' to go back to the WooCommerce d
 9. Locale override settings
 
 == Changelog ==
+= 1.5.1 =
+* Added WooCommerce 5.9.0 compatibility.
+
+= 1.5.0 =
+* Improved the pot file.
+* Added compatibility with Loco Translate plugin.
+* Added WPML compatibility for dynamic strings.
+* Added WooCommerce 5.8.0 compatibility.
+
 = 1.4.9 =
 * Added security improvements.
 * Added compatibility with PHP 8 version.

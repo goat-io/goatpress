@@ -65,7 +65,9 @@ class WPForms_Lite {
 			echo '<span id="wpforms-builder-settings-notifications-title">';
 				esc_html_e( 'Notifications', 'wpforms-lite' );
 			echo '</span>';
-			echo '<button class="wpforms-builder-settings-block-add education-modal" data-name="' . esc_attr__( 'Multiple notifications', 'wpforms-lite' ) . '">';
+			echo '<button class="wpforms-builder-settings-block-add education-modal"
+					data-utm-content="Multiple notifications"
+					data-name="' . esc_attr__( 'Multiple notifications', 'wpforms-lite' ) . '">';
 				esc_html_e( 'Add New Notification', 'wpforms-lite' );
 			echo '</button>';
 		echo '</div>';
@@ -307,7 +309,9 @@ class WPForms_Lite {
 
 		echo '<div class="wpforms-panel-content-section-title">';
 			esc_html_e( 'Confirmations', 'wpforms-lite' );
-			echo '<button class="wpforms-builder-settings-block-add education-modal" data-name="' . esc_attr__( 'Multiple confirmations', 'wpforms-lite' ) . '">';
+			echo '<button class="wpforms-builder-settings-block-add education-modal"
+					data-utm-content="Multiple confirmations"
+					data-name="' . esc_attr__( 'Multiple confirmations', 'wpforms-lite' ) . '">';
 				esc_html_e( 'Add New Confirmation', 'wpforms-lite' );
 			echo '</button>';
 		echo '</div>';
@@ -495,7 +499,7 @@ class WPForms_Lite {
 				<?php
 				printf(
 					wp_kses( /* translators: %s - star icons. */
-						__( 'We know that you will truly love WPForms. It has over 9000+ five star ratings (%s) and is active on over 4 million websites.', 'wpforms-lite' ),
+						__( 'We know that you will truly love WPForms. It has over 9000+ five star ratings (%s) and is active on over 5 million websites.', 'wpforms-lite' ),
 						[
 							'i' => [
 								'class'       => [],

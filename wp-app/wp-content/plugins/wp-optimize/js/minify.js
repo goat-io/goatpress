@@ -460,9 +460,9 @@
 
 	minify.updateStats = function(data) {
 		if (data.cachesize.length > 0) {
-			$("#wpo_min_cache_size").html(data.cachesize);
-			$("#wpo_min_cache_total_size").html(data.total_cache_size);
-			$("#wpo_min_cache_time").html(data.cacheTime);
+			$("#wpo_min_cache_size").html(this.enabled ? data.cachesize : wpoptimize.no_minified_assets);
+			$("#wpo_min_cache_total_size").html(this.enabled ? data.total_cache_size : wpoptimize.no_minified_assets);
+			$("#wpo_min_cache_time").html(this.enabled ? data.cacheTime : '-');
 			$("#wpo_min_cache_path").html(data.cachePath);
 		}
 	};

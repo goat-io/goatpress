@@ -109,7 +109,7 @@
 	display: flex;
 	padding: 0 12px 0 12px;
 	border: 0;
-	width: 97px;
+	width: 135px;
 	justify-content: space-between;
 	align-items: center;
 	font-weight: 500;
@@ -143,7 +143,7 @@
 	box-sizing: content-box;
 	border: 1px solid #e4e4e4;
 	margin-top: 10px;
-	min-width: 70px;
+	min-width: 135px;
     background-color: #fff;
     border-radius: 6px;
     box-shadow: 0 3px 6px rgba(0,0,0,.1);
@@ -219,10 +219,7 @@
     border-right: 1px solid #DDDDDD;
     box-shadow: none;
 }
-.appearance_page_starter-templates .search-form:hover,
-.appearance_page_starter-templates .search-form:focus {
-    box-shadow: 0 1px 4px 0 rgba(32,33,36,0.18);
-}
+
 #astra-sites-filters .ui-widget.ui-widget-content {
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
@@ -256,11 +253,7 @@
 .searching #wp-filter-search-input {
 	border-bottom-left-radius: 0;
 }
-#astra-sites-filters .ui-autocomplete .ui-state-active {
-    background: #c0c0c0;
-    border-color: #c0c0c0;
-    margin: 0;
-}
+
 #wp-filter-search-input.has-input + .search-icon {
 	display: none;
 }
@@ -3136,4 +3129,3 @@ body.loading-content .select-page-builder {
     }
 
 }
-
